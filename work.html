@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🍕 EasyPageX — We Write the Ending First</title>
+<meta name="description" content="EasyPageX builds landing pages by working backward from the customer — one memo at a time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #0F1526;
+    --ink-2: #171F38;
+    --paper: #F1E9D8;
+    --paper-2: #E8DEC7;
+    --text-ink: #201C15;
+    --text-dim: #6b6455;
+    --stamp: #B4432A;
+    --teal: #3FBFA0;
+    --gold: #C9A227;
+    --cream-soft: #FBF7EE;
+    --shadow: 0 20px 60px rgba(0,0,0,0.35);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Space Grotesk', sans-serif;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--stamp); color:var(--cream-soft);}
+
+  h1,h2,h3{font-family:'Fraunces', serif; margin:0; letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  /* background texture */
+  .grid-lines{
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 20%, transparent 75%);
+  }
+
+  header{position:relative; z-index:2; padding:26px 0 0;}
+  .topbar{display:flex; align-items:center; justify-content:space-between;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Space Grotesk'; font-weight:700; font-size:18px; letter-spacing:0.02em;}
+  .brand svg{width:30px;height:30px;}
+  .topcta{
+    font-family:'IBM Plex Mono'; font-size:12px; text-decoration:none; color:var(--ink);
+    background:var(--paper); padding:9px 16px; border-radius:100px; font-weight:600;
+    border:1px solid rgba(0,0,0,0.1);
+  }
+
+  /* HERO */
+  .hero{position:relative; z-index:2; padding:90px 0 70px; text-align:left;}
+  .eyebrow{
+    font-family:'IBM Plex Mono'; font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--teal); display:flex; align-items:center; gap:10px; margin-bottom:22px;
+  }
+  .eyebrow::before{content:''; width:26px; height:1px; background:var(--teal); display:inline-block;}
+  .hero h1{
+    font-size:clamp(38px, 6vw, 74px); line-height:1.02; font-weight:600; max-width:920px; color:var(--cream-soft);
+  }
+  .hero h1 em{font-style:italic; font-weight:400; color:var(--gold);}
+  .hero p.lede{
+    font-size:18px; line-height:1.65; max-width:600px; margin:26px 0 34px; color:#C9C3B4;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:'Space Grotesk'; font-weight:600; font-size:15px; padding:14px 26px; border-radius:8px;
+    text-decoration:none; display:inline-flex; align-items:center; gap:8px; cursor:pointer; border:none;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--stamp); color:var(--cream-soft); box-shadow:0 10px 30px rgba(180,67,42,0.35);}
+  .btn-ghost{background:transparent; color:var(--paper); border:1px solid rgba(241,233,216,0.3);}
+
+  /* SECTION SHELL */
+  section{position:relative; z-index:2; padding:90px 0;}
+  .section-head{max-width:680px; margin-bottom:50px;}
+  .tag{
+    font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:14px; display:block;
+  }
+  .section-head h2{font-size:clamp(28px,4vw,42px); color:var(--cream-soft); font-weight:600; line-height:1.15;}
+  .section-head p{font-size:16.5px; color:#B7B0A0; line-height:1.6; margin-top:16px;}
+
+  .reveal{opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ===== PR/FAQ generator — signature element ===== */
+  .memo-shell{
+    background:var(--paper); color:var(--text-ink); border-radius:6px; box-shadow:var(--shadow);
+    position:relative; overflow:hidden; border:1px solid rgba(0,0,0,0.06);
+  }
+  .memo-shell::before{
+    content:''; position:absolute; top:0; left:0; right:0; height:6px;
+    background:repeating-linear-gradient(90deg, var(--stamp) 0 18px, transparent 18px 26px);
+    opacity:0.5;
+  }
+  .memo-grid{display:grid; grid-template-columns:1fr 1fr; gap:0;}
+  @media (max-width:840px){ .memo-grid{grid-template-columns:1fr;} }
+
+  .memo-form{padding:40px 40px 40px; border-right:1px dashed rgba(0,0,0,0.15);}
+  @media (max-width:840px){ .memo-form{border-right:none; border-bottom:1px dashed rgba(0,0,0,0.15);} }
+  .memo-form .mono{font-size:12px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim); display:block; margin-bottom:6px;}
+  .field{margin-bottom:20px;}
+  .field input{
+    width:100%; font-family:'IBM Plex Mono'; font-size:15px; padding:10px 0; border:none; border-bottom:2px solid rgba(0,0,0,0.15);
+    background:transparent; color:var(--text-ink); outline:none;
+  }
+  .field input:focus{border-bottom-color:var(--stamp);}
+  .field input::placeholder{color:rgba(32,28,21,0.35);}
+
+  .memo-output{padding:40px; position:relative;}
+  .stamp-badge{
+    position:absolute; top:28px; right:32px; width:84px; height:84px; border-radius:50%;
+    border:3px solid var(--stamp); color:var(--stamp); display:flex; align-items:center; justify-content:center;
+    text-align:center; font-family:'IBM Plex Mono'; font-size:9.5px; font-weight:700; letter-spacing:0.06em;
+    transform:rotate(-14deg); opacity:0.85; text-transform:uppercase; line-height:1.3; pointer-events:none;
+  }
+  .memo-output .doc-title{font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-dim); margin-bottom:14px;}
+  #prHeadline{font-family:'Fraunces'; font-weight:600; font-size:23px; line-height:1.25; margin-bottom:14px; color:var(--text-ink);}
+  #prBody{font-family:'IBM Plex Mono'; font-size:13.5px; line-height:1.75; color:#3a352a;}
+  #prBody b{color:var(--text-ink);}
+
+  .faq-row{margin-top:26px; border-top:1px dashed rgba(0,0,0,0.15); padding-top:18px;}
+  .faq-row .q{font-family:'IBM Plex Mono'; font-weight:700; font-size:12.5px; color:var(--stamp); margin-bottom:4px;}
+  .faq-row .a{font-family:'IBM Plex Mono'; font-size:12.5px; color:#4a4436; line-height:1.6;}
+
+  /* ===== Principles grid ===== */
+  .principles{display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:rgba(241,233,216,0.12); border-radius:10px; overflow:hidden;}
+  @media (max-width:700px){ .principles{grid-template-columns:1fr;} }
+  .principle{background:var(--ink-2); padding:34px; position:relative;}
+  .principle .num{font-family:'IBM Plex Mono'; font-size:12px; color:var(--teal); margin-bottom:16px; display:block;}
+  .principle h3{font-size:20px; color:var(--cream-soft); font-weight:600; margin-bottom:10px;}
+  .principle p{font-size:14.5px; color:#B7B0A0; line-height:1.6; margin:0;}
+
+  /* ===== Six page narrative / reading ritual ===== */
+  .narrative-panel{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:50px; align-items:center;
+  }
+  @media (max-width:840px){ .narrative-panel{grid-template-columns:1fr;} }
+  .pages-stack{position:relative; height:280px; display:flex; align-items:center; justify-content:center;}
+  .timer-card{
+    background:var(--paper); color:var(--text-ink); border-radius:8px; padding:30px; box-shadow:var(--shadow);
+    width:100%; max-width:320px; text-align:center;
+  }
+  .timer-display{font-family:'IBM Plex Mono'; font-size:44px; font-weight:700; margin:14px 0; color:var(--stamp); letter-spacing:0.02em;}
+  .timer-bar{height:6px; background:rgba(0,0,0,0.1); border-radius:100px; overflow:hidden; margin-bottom:20px;}
+  .timer-bar-fill{height:100%; width:0%; background:var(--teal); transition:width .2s linear;}
+  .timer-note{font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-dim); margin-top:14px; line-height:1.5;}
+  .btn-timer{
+    background:var(--ink); color:var(--cream-soft); font-family:'Space Grotesk'; font-weight:600; font-size:13.5px;
+    padding:11px 20px; border-radius:6px; border:none; cursor:pointer; width:100%;
+  }
+  .btn-timer:disabled{opacity:0.5; cursor:default;}
+
+  /* ===== two pizza teams ===== */
+  .pizza-row{display:flex; gap:40px; align-items:center; flex-wrap:wrap;}
+  .pizza-visual{flex:0 0 auto;}
+  .pizza-copy{flex:1 1 320px; min-width:280px;}
+  .pizza-copy p{color:#B7B0A0; font-size:16px; line-height:1.7;}
+  .team-avatars{display:flex; gap:10px; margin-top:22px;}
+  .avatar{
+    width:44px; height:44px; border-radius:50%; background:var(--ink-2); border:1px solid rgba(241,233,216,0.2);
+    display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono'; font-size:12px; color:var(--teal);
+  }
+
+  /* ===== input vs output ===== */
+  .io-table{display:grid; grid-template-columns:1fr 1fr; gap:2px; background:rgba(241,233,216,0.12); border-radius:10px; overflow:hidden;}
+  @media (max-width:700px){ .io-table{grid-template-columns:1fr;} }
+  .io-col{background:var(--ink-2); padding:32px;}
+  .io-col h4{font-family:'IBM Plex Mono'; font-size:12px; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:20px;}
+  .io-col.inputs h4{color:var(--teal);}
+  .io-col.outputs h4{color:var(--gold);}
+  .io-item{display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid rgba(241,233,216,0.08); font-size:14.5px; color:#D6D0C2;}
+  .io-item:last-child{border-bottom:none;}
+  .io-item .dot{width:7px; height:7px; border-radius:50%; flex:0 0 auto;}
+  .io-col.inputs .dot{background:var(--teal);}
+  .io-col.outputs .dot{background:var(--gold);}
+
+  /* ===== bar raiser ===== */
+  .checklist{background:var(--ink-2); border-radius:10px; padding:36px 40px;}
+  .check-item{display:flex; gap:16px; padding:16px 0; border-bottom:1px solid rgba(241,233,216,0.08); align-items:flex-start;}
+  .check-item:last-child{border-bottom:none;}
+  .check-box{
+    width:22px; height:22px; border-radius:5px; border:2px solid var(--teal); flex:0 0 auto; margin-top:2px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .check-item p{margin:0; font-size:15px; color:#D6D0C2; line-height:1.5;}
+  .check-item strong{color:var(--cream-soft); font-weight:600;}
+
+  /* ===== CTA / footer ===== */
+  .cta-final{text-align:center; padding:100px 0 60px;}
+  .cta-final h2{font-size:clamp(30px,5vw,50px); color:var(--cream-soft); font-weight:600; max-width:700px; margin:0 auto 24px;}
+  .cta-final p{color:#B7B0A0; font-size:17px; max-width:520px; margin:0 auto 34px;}
+  .cta-buttons{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+
+  footer{
+    position:relative; z-index:2; padding:40px 0 50px; border-top:1px solid rgba(241,233,216,0.1);
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;
+  }
+  .foot-note{font-family:'IBM Plex Mono'; font-size:12px; color:#7A7364;}
+  .epx-badge{
+    display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+    background:var(--paper); color:var(--ink); padding:10px 18px; border-radius:100px;
+    font-family:'Space Grotesk'; font-weight:700; font-size:13px; box-shadow:0 8px 24px rgba(0,0,0,0.25);
+    transition:transform .18s ease;
+  }
+  .epx-badge:hover{transform:translateY(-2px);}
+  .epx-badge svg{width:16px;height:16px;}
+
+  /* floating action buttons */
+  .fab-stack{position:fixed; right:22px; bottom:22px; z-index:50; display:flex; flex-direction:column; gap:12px;}
+  .fab{
+    width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    text-decoration:none; box-shadow:0 10px 26px rgba(0,0,0,0.4); transition:transform .18s ease;
+  }
+  .fab:hover{transform:scale(1.08);}
+  .fab-wa{background:#25D366;}
+  .fab-ig{background:radial-gradient(circle at 30% 110%, #ffdb73 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);}
+  .fab svg{width:26px; height:26px;}
+
+  @media (max-width:600px){
+    .fab-stack{right:14px; bottom:14px;}
+    .memo-form, .memo-output{padding:28px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-lines"></div>
+
+<div class="wrap">
+  <header>
+    <div class="topbar">
+      <div class="brand">
+        <svg viewBox="0 0 40 40" fill="none">
+          <path d="M20 3C24 9 27 16 27 22C27 27.5 24 31 20 33C16 31 13 27.5 13 22C13 16 16 9 20 3Z" fill="#F1E9D8"/>
+          <circle cx="20" cy="18" r="3.4" fill="#0F1526"/>
+          <path d="M13 27L7 34L13 32.5Z" fill="#B4432A"/>
+          <path d="M27 27L33 34L27 32.5Z" fill="#B4432A"/>
+        </svg>
+        EasyPageX
+      </div>
+      <a class="topcta" href="https://easypagex.github.io" target="_blank" rel="noopener">easypagex.github.io</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">The EasyPageX Methodology</span>
+    <h1>We write the <em>ending</em> first — <br>then we build your landing page backward from it.</h1>
+    <p class="lede">Every page we ship starts with a one-page press release written from your future customer's point of view. If that page doesn't sound worth clicking, we rewrite it before a single line of HTML exists.</p>
+    <div class="hero-ctas">
+      <a href="#pr-generator" class="btn btn-primary">Write your press release ↓</a>
+      <a href="#principles" class="btn btn-ghost">See how we build</a>
+    </div>
+  </section>
+
+  <!-- WORKING BACKWARDS / PR-FAQ GENERATOR -->
+  <section id="pr-generator">
+    <div class="section-head reveal">
+      <span class="tag">01 — Working Backwards</span>
+      <h2>Before we touch a design tool, we write the memo.</h2>
+      <p>Two documents come before any code: a Press Release, written as if your page already exists and a customer is telling a friend about it — and an FAQ that answers the hard questions, yours and theirs, in plain language. Try it below with your own business.</p>
+    </div>
+
+    <div class="memo-shell reveal">
+      <div class="memo-grid">
+        <div class="memo-form">
+          <span class="mono">Fill in the blanks</span>
+          <div class="field">
+            <label class="mono">Business name</label>
+            <input type="text" id="fBiz" placeholder="e.g. Café Almendra" maxlength="40">
+          </div>
+          <div class="field">
+            <label class="mono">City / market</label>
+            <input type="text" id="fCity" placeholder="e.g. Madrid" maxlength="30">
+          </div>
+          <div class="field">
+            <label class="mono">What you sell</label>
+            <input type="text" id="fWhat" placeholder="e.g. specialty coffee & pastries" maxlength="60">
+          </div>
+          <div class="field">
+            <label class="mono">The one thing customers should feel</label>
+            <input type="text" id="fFeel" placeholder="e.g. like they found a hidden gem" maxlength="60">
+          </div>
+        </div>
+        <div class="memo-output">
+          <div class="stamp-badge">Working<br>Backwards<br>Approved</div>
+          <span class="doc-title">Press Release — Draft 1</span>
+          <div id="prHeadline">Your Business Launches a Landing Page Customers Actually Finish Reading</div>
+          <div id="prBody">Fill in the fields on the left and watch this memo write itself — the same way your real page gets written before it gets designed.</div>
+
+          <div class="faq-row">
+            <div class="q">Q: How long does it take to build?</div>
+            <div class="a" id="faqTime">Most single-page sites go from memo to live link in under a week.</div>
+          </div>
+          <div class="faq-row">
+            <div class="q">Q: What if the first draft isn't right?</div>
+            <div class="a">We revise the press release, not just the pixels — logic first, layout second.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP PRINCIPLES -->
+  <section id="principles">
+    <div class="section-head reveal">
+      <span class="tag">02 — Principles, Not Posters</span>
+      <h2>Four rules we actually use on every build.</h2>
+      <p>Borrowed from the leadership principles that run a global operation — applied to something much smaller: your page, your customers, your Tuesday afternoon.</p>
+    </div>
+    <div class="principles reveal">
+      <div class="principle">
+        <span class="num">Customer Obsession</span>
+        <h3>Start with the thumb, not the logo.</h3>
+        <p>We open every project on a phone screen, not a desktop mockup, because that's where your customer actually finds you.</p>
+      </div>
+      <div class="principle">
+        <span class="num">Ownership</span>
+        <h3>It's still our page after you pay us.</h3>
+        <p>We check load times and broken links weeks after launch — a page that stops working is still our problem.</p>
+      </div>
+      <div class="principle">
+        <span class="num">Bias for Action</span>
+        <h3>Most decisions are reversible. So we ship.</h3>
+        <p>A button color or a headline can change in five minutes. We'd rather have it live and adjust than perfect it in a folder.</p>
+      </div>
+      <div class="principle">
+        <span class="num">Have Backbone; Disagree and Commit</span>
+        <h3>We'll say if it won't convert.</h3>
+        <p>If a request will quietly hurt your bookings, we say so once, clearly — then build exactly what you decide.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIX PAGE NARRATIVE -->
+  <section>
+    <div class="section-head reveal">
+      <span class="tag">03 — No Slides, Just Pages</span>
+      <h2>We banned the slide deck. We write the brief instead.</h2>
+      <p>Every project starts with one dense page describing what we're building and why — not a slideshow that hides weak logic behind a nice transition. Before any client call, everyone reads it in silence first.</p>
+    </div>
+    <div class="narrative-panel">
+      <div class="pages-stack reveal">
+        <svg viewBox="0 0 320 260" width="100%" style="max-width:340px;">
+          <g id="pagesGroup">
+            <rect x="70" y="30" width="170" height="210" rx="4" fill="#1D2542" stroke="#3A4568" stroke-width="1.5" transform="rotate(-8 155 135)"/>
+            <rect x="80" y="20" width="170" height="210" rx="4" fill="#232C4E" stroke="#3A4568" stroke-width="1.5" transform="rotate(-3 165 125)"/>
+            <rect x="90" y="15" width="170" height="210" rx="4" fill="#F1E9D8"/>
+            <g stroke="#B4B09E" stroke-width="2">
+              <line x1="108" y1="45" x2="230" y2="45"/>
+              <line x1="108" y1="60" x2="230" y2="60"/>
+              <line x1="108" y1="75" x2="200" y2="75"/>
+              <line x1="108" y1="100" x2="230" y2="100"/>
+              <line x1="108" y1="115" x2="230" y2="115"/>
+              <line x1="108" y1="130" x2="180" y2="130"/>
+              <line x1="108" y1="155" x2="230" y2="155"/>
+              <line x1="108" y1="170" x2="230" y2="170"/>
+              <line x1="108" y1="185" x2="210" y2="185"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="timer-card reveal">
+        <span class="mono" style="font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim);">Silent Reading Ritual</span>
+        <div class="timer-display" id="timerDisplay">00:15</div>
+        <div class="timer-bar"><div class="timer-bar-fill" id="timerFill"></div></div>
+        <button class="btn-timer" id="timerBtn">Start silent read</button>
+        <div class="timer-note">Real sessions run 15–20 minutes before anyone speaks. This demo is compressed to 15 seconds so you can feel the pause.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TWO PIZZA TEAMS -->
+  <section>
+    <div class="section-head reveal">
+      <span class="tag">04 — Two-Pizza Teams</span>
+      <h2>Small enough to feed with two pizzas. Small enough to move fast.</h2>
+    </div>
+    <div class="pizza-row reveal">
+      <div class="pizza-visual">
+        <svg width="180" height="180" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="88" fill="#E8B23D"/>
+          <circle cx="100" cy="100" r="88" fill="none" stroke="#B4432A" stroke-width="6"/>
+          <g fill="#B4432A">
+            <circle cx="70" cy="70" r="9"/>
+            <circle cx="130" cy="65" r="9"/>
+            <circle cx="105" cy="105" r="9"/>
+            <circle cx="65" cy="120" r="9"/>
+            <circle cx="135" cy="130" r="9"/>
+            <circle cx="95" cy="145" r="9"/>
+          </g>
+          <path d="M100 12 L100 188" stroke="#0F1526" stroke-width="3" opacity="0.15"/>
+          <path d="M12 100 L188 100" stroke="#0F1526" stroke-width="3" opacity="0.15"/>
+          <path d="M40 40 L160 160" stroke="#0F1526" stroke-width="3" opacity="0.15"/>
+          <path d="M160 40 L40 160" stroke="#0F1526" stroke-width="3" opacity="0.15"/>
+        </svg>
+      </div>
+      <div class="pizza-copy">
+        <p>Your landing page isn't routed through a committee. It's built by a designer-builder and a reviewer — two people who own the outcome start to finish, so nothing gets lost in a handoff.</p>
+        <div class="team-avatars">
+          <div class="avatar">B</div>
+          <div class="avatar">R</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INPUT VS OUTPUT -->
+  <section>
+    <div class="section-head reveal">
+      <span class="tag">05 — Inputs Over Outputs</span>
+      <h2>We chase the numbers we can actually control.</h2>
+      <p>Bookings and calls are outcomes — they follow from decisions made earlier. So we obsess over the inputs and trust the outputs to arrive.</p>
+    </div>
+    <div class="io-table reveal">
+      <div class="io-col inputs">
+        <h4>Inputs we control</h4>
+        <div class="io-item"><span class="dot"></span>Page loads in under 2 seconds</div>
+        <div class="io-item"><span class="dot"></span>WhatsApp button visible in one thumb-reach</div>
+        <div class="io-item"><span class="dot"></span>Above-the-fold answers "what is this?"</div>
+        <div class="io-item"><span class="dot"></span>Tap targets sized for real thumbs</div>
+        <div class="io-item"><span class="dot"></span>One clear next step per screen</div>
+      </div>
+      <div class="io-col outputs">
+        <h4>Outputs that follow</h4>
+        <div class="io-item"><span class="dot"></span>More inbound messages</div>
+        <div class="io-item"><span class="dot"></span>Fewer people bouncing on mobile</div>
+        <div class="io-item"><span class="dot"></span>More bookings and reservations</div>
+        <div class="io-item"><span class="dot"></span>Higher trust before first contact</div>
+        <div class="io-item"><span class="dot"></span>Referrals from a page worth sharing</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAR RAISER -->
+  <section>
+    <div class="section-head reveal">
+      <span class="tag">06 — The Bar Raiser</span>
+      <h2>Nothing launches until it clears the bar.</h2>
+      <p>One person on every project has veto power over launch — not to slow things down, but to make sure every page we ship is better than the last one, not just fast to finish.</p>
+    </div>
+    <div class="checklist reveal">
+      <div class="check-item">
+        <div class="check-box">✓</div>
+        <p><strong>Mobile-first pass:</strong> every section checked on a real phone, not just resized in a browser.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-box">✓</div>
+        <p><strong>Contact paths work:</strong> WhatsApp, Instagram, and phone links all tested by hand before launch.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-box">✓</div>
+        <p><strong>No dead weight:</strong> no external images or scripts that can silently break the page later.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-box">✓</div>
+        <p><strong>Sound and motion respect the reader:</strong> nothing autoplays, everything can be muted in one tap.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final reveal">
+    <h2>Ready to write your press release?</h2>
+    <p>Tell us what you sell and who it's for. We'll come back with the memo before we come back with a mockup.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/34609204298?text=Hello%2C%20I%20want%20a%20landing%20page%20with%20EasyPageX" target="_blank" rel="noopener" class="btn btn-primary">Chat on WhatsApp</a>
+      <a href="https://easypagex.github.io" target="_blank" rel="noopener" class="btn btn-ghost">See more EasyPageX builds</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-note">© 2026 EasyPageX — single-file landing pages, built backward from your customer.</div>
+    <a class="epx-badge" href="https://easypagex.github.io" target="_blank" rel="noopener">
+      <svg viewBox="0 0 40 40" fill="none">
+        <path d="M20 3C24 9 27 16 27 22C27 27.5 24 31 20 33C16 31 13 27.5 13 22C13 16 16 9 20 3Z" fill="#0F1526"/>
+        <circle cx="20" cy="18" r="3.4" fill="#F1E9D8"/>
+      </svg>
+      Powered by EasyPageX
+    </a>
+  </footer>
+</div>
+
+<div class="fab-stack">
+  <a class="fab fab-wa" href="https://wa.me/34609204298?text=Hello%2C%20I%20want%20a%20landing%20page%20with%20EasyPageX" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.43 1.33 4.92L2.05 22l5.32-1.39a9.9 9.9 0 0 0 4.67 1.19h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.1a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.15.82.84-3.07-.2-.32a8.15 8.15 0 0 1-1.25-4.38c0-4.5 3.66-8.16 8.17-8.16 4.5 0 8.16 3.66 8.16 8.17 0 4.5-3.66 8.17-8.17 8.17zm4.48-6.12c-.25-.12-1.46-.72-1.68-.8-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.96-.14.16-.29.18-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.42h-.48c-.16 0-.42.06-.64.31-.22.25-.85.83-.85 2.02 0 1.2.87 2.35.99 2.51.12.16 1.71 2.62 4.15 3.67.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.46-.6 1.66-1.17.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+  </a>
+  <a class="fab fab-ig" href="https://instagram.com/easypagex" target="_blank" rel="noopener" aria-label="Instagram">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+  </a>
+</div>
+
+<script>
+(function(){
+  // Scroll reveal
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  els.forEach(el=>io.observe(el));
+
+  // Web Audio — soft paper/click tones
+  let actx;
+  function ctx(){ if(!actx){ actx = new (window.AudioContext||window.webkitAudioContext)(); } return actx; }
+  function paperClick(){
+    try{
+      const c = ctx();
+      const bufSize = c.sampleRate * 0.06;
+      const buf = c.createBuffer(1, bufSize, c.sampleRate);
+      const data = buf.getChannelData(0);
+      for(let i=0;i<bufSize;i++){ data[i] = (Math.random()*2-1) * (1 - i/bufSize); }
+      const src = c.createBufferSource(); src.buffer = buf;
+      const filt = c.createBiquadFilter(); filt.type='highpass'; filt.frequency.value=1200;
+      const gain = c.createGain(); gain.gain.value = 0.18;
+      src.connect(filt); filt.connect(gain); gain.connect(c.destination);
+      src.start();
+    }catch(e){}
+  }
+  function chime(freq){
+    try{
+      const c = ctx();
+      const o = c.createOscillator(); const g = c.createGain();
+      o.type='sine'; o.frequency.value=freq;
+      g.gain.setValueAtTime(0.0001, c.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.12, c.currentTime+0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime+0.5);
+      o.connect(g); g.connect(c.destination);
+      o.start(); o.stop(c.currentTime+0.5);
+    }catch(e){}
+  }
+
+  // PR / FAQ generator
+  const fBiz = document.getElementById('fBiz');
+  const fCity = document.getElementById('fCity');
+  const fWhat = document.getElementById('fWhat');
+  const fFeel = document.getElementById('fFeel');
+  const prHeadline = document.getElementById('prHeadline');
+  const prBody = document.getElementById('prBody');
+  const faqTime = document.getElementById('faqTime');
+
+  function render(){
+    const biz = fBiz.value.trim() || 'Your Business';
+    const city = fCity.value.trim() || 'your city';
+    const what = fWhat.value.trim() || 'what you do best';
+    const feel = fFeel.value.trim() || 'like they found exactly what they needed';
+
+    prHeadline.innerHTML = `${biz} Launches a Landing Page Built Around ${escapeHtml(what)}`;
+    prBody.innerHTML = `Today, <b>${escapeHtml(biz)}</b> in ${escapeHtml(city)} opens a single page designed for one job: helping the right customer find ${escapeHtml(what)} in under ten seconds. Every visitor should leave feeling ${escapeHtml(feel)} — and know exactly how to reach you next.`;
+    faqTime.textContent = `Most single-page sites for businesses like ${escapeHtml(biz)} go from memo to live link in under a week.`;
+  }
+  function escapeHtml(s){
+    return s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  [fBiz,fCity,fWhat,fFeel].forEach(inp=>{
+    inp.addEventListener('input', ()=>{ render(); });
+    inp.addEventListener('focus', ()=>paperClick());
+  });
+
+  // Silent reading timer (compressed to 15s)
+  const timerBtn = document.getElementById('timerBtn');
+  const timerDisplay = document.getElementById('timerDisplay');
+  const timerFill = document.getElementById('timerFill');
+  const TOTAL = 15;
+  let running = false;
+
+  timerBtn.addEventListener('click', ()=>{
+    if(running) return;
+    running = true;
+    timerBtn.disabled = true;
+    timerBtn.textContent = 'Reading in silence…';
+    chime(660);
+    let elapsed = 0;
+    const iv = setInterval(()=>{
+      elapsed += 0.1;
+      const remain = Math.max(0, TOTAL - elapsed);
+      const mm = String(Math.floor(remain/60)).padStart(2,'0');
+      const ss = String(Math.floor(remain%60)).padStart(2,'0');
+      timerDisplay.textContent = `${mm}:${ss}`;
+      timerFill.style.width = ((elapsed/TOTAL)*100)+'%';
+      if(elapsed >= TOTAL){
+        clearInterval(iv);
+        running = false;
+        timerBtn.disabled = false;
+        timerBtn.textContent = 'Discussion begins — read again';
+        chime(880);
+      }
+    }, 100);
+  });
+})();
+</script>
+
+</body>
+</html>

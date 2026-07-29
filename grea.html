@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚀 EasyPageX — Good Pages Are the Enemy of Great Pages</title>
+<meta name="description" content="EasyPageX builds landing pages disciplined enough to make your business leap from good to great — one page, one flywheel, one push at a time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red-deep:#8c0f22;
+    --red:#c31432;
+    --red-bright:#e01b3d;
+    --black:#0a0a0a;
+    --white:#fdfaf4;
+    --yellow:#ffd400;
+    --yellow-dim:#e0b800;
+    --line: rgba(255,255,255,0.18);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--red);
+    color:var(--white);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    position:relative;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(circle at 15% 20%, var(--red-bright) 0%, transparent 45%),
+      radial-gradient(circle at 85% 75%, var(--red-deep) 0%, transparent 50%);
+    z-index:-1;
+    pointer-events:none;
+  }
+  h1,h2,h3, .display{
+    font-family:'Archivo Black', sans-serif;
+    line-height:1.05;
+    text-transform:uppercase;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'JetBrains Mono', monospace; letter-spacing:0.04em;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+  a{color:inherit;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,10,10,0.75);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:72px;
+  }
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Archivo Black',sans-serif; font-size:20px;}
+  .logo span{color:var(--yellow);}
+  .nav-links{display:flex; gap:28px; font-size:14px; font-weight:600;}
+  .nav-links a{opacity:0.85; text-decoration:none; transition:opacity .2s, color .2s;}
+  .nav-links a:hover{opacity:1; color:var(--yellow);}
+  .nav-cta{
+    background:var(--yellow); color:var(--black); padding:10px 20px;
+    border-radius:6px; font-weight:800; font-size:13px; text-decoration:none;
+    text-transform:uppercase; letter-spacing:0.03em;
+    border:2px solid var(--yellow);
+    transition:transform .15s ease, background .2s;
+  }
+  .nav-cta:hover{transform:translateY(-2px); background:var(--white);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:100px 0 70px;
+    position:relative;
+  }
+  .hero .wrap{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:50px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--black); color:var(--yellow);
+    padding:6px 14px; border-radius:999px; font-size:12px; font-weight:700;
+    letter-spacing:0.08em; margin-bottom:22px; text-transform:uppercase;
+    border:1px solid var(--yellow);
+  }
+  .hero h1{
+    font-size:clamp(38px, 5.4vw, 68px);
+    color:var(--white);
+  }
+  .hero h1 em{
+    font-style:normal; color:var(--yellow);
+    -webkit-text-stroke:1.5px var(--black);
+  }
+  .hero p.lead{
+    margin-top:22px; font-size:18px; line-height:1.6; color:rgba(253,250,244,0.88);
+    max-width:52ch;
+  }
+  .hero-ctas{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--yellow); color:var(--black); border:2px solid var(--black);
+    padding:16px 26px; border-radius:8px; font-weight:800; text-decoration:none;
+    font-size:15px; text-transform:uppercase; letter-spacing:0.03em;
+    box-shadow:5px 5px 0 var(--black);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary:hover{transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--black);}
+  .btn-ghost{
+    background:transparent; color:var(--white); border:2px solid var(--white);
+    padding:16px 26px; border-radius:8px; font-weight:800; text-decoration:none;
+    font-size:15px; text-transform:uppercase; letter-spacing:0.03em;
+    transition:background .2s, color .2s;
+  }
+  .btn-ghost:hover{background:var(--white); color:var(--red);}
+
+  /* Flywheel signature graphic */
+  .flywheel-stage{
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  #flywheel{ cursor:pointer; filter:drop-shadow(0 20px 40px rgba(0,0,0,0.35)); touch-action:manipulation; }
+  #flywheel .rim{ transform-origin:200px 200px; }
+  .flywheel-hint{
+    position:absolute; bottom:-6px; left:50%; transform:translateX(-50%);
+    font-size:12px; color:rgba(253,250,244,0.75); text-align:center; font-weight:600;
+    text-transform:uppercase; letter-spacing:0.08em;
+  }
+
+  /* ---------- SECTION SHELLS ---------- */
+  section{padding:90px 0;}
+  .section-black{background:var(--black);}
+  .kicker{
+    font-size:13px; font-weight:800; color:var(--yellow); letter-spacing:0.12em;
+    text-transform:uppercase; margin-bottom:14px; display:block;
+  }
+  .section-title{font-size:clamp(28px,3.6vw,44px); color:var(--white); max-width:18ch;}
+  .section-sub{margin-top:16px; font-size:17px; line-height:1.65; color:rgba(253,250,244,0.85); max-width:62ch;}
+
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- PHASES ---------- */
+  .phase-tag{
+    display:inline-block; background:var(--yellow); color:var(--black);
+    font-weight:800; font-size:12px; padding:5px 12px; border-radius:5px;
+    text-transform:uppercase; letter-spacing:0.06em; margin-bottom:18px;
+  }
+  .card-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:22px; margin-top:44px;
+  }
+  .pcard{
+    background:rgba(255,255,255,0.05);
+    border:1px solid var(--line);
+    border-left:4px solid var(--yellow);
+    border-radius:10px; padding:28px;
+  }
+  .pcard h3{font-size:19px; color:var(--white); margin-bottom:10px; text-transform:none; font-family:'Inter',sans-serif; font-weight:800;}
+  .pcard p{font-size:15px; line-height:1.6; color:rgba(253,250,244,0.8);}
+
+  /* Hedgehog venn */
+  .hedgehog-wrap{
+    display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; margin-top:50px;
+  }
+  .venn-legend{display:flex; flex-direction:column; gap:18px;}
+  .venn-legend .item{display:flex; gap:14px; align-items:flex-start;}
+  .venn-legend .dot{width:14px; height:14px; border-radius:50%; margin-top:5px; flex-shrink:0;}
+  .venn-legend h4{font-size:15px; text-transform:uppercase; color:var(--white); margin-bottom:4px; letter-spacing:0.03em;}
+  .venn-legend p{font-size:14px; color:rgba(253,250,244,0.75); line-height:1.5;}
+
+  /* Stockdale strip */
+  .stockdale{
+    background:var(--red-deep); border:2px dashed var(--yellow); border-radius:14px;
+    padding:36px; margin-top:50px; display:grid; grid-template-columns:1fr 1fr; gap:30px;
+  }
+  .stockdale .col h4{color:var(--yellow); font-size:14px; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px; font-weight:800;}
+  .stockdale .col p{font-size:15px; line-height:1.6; color:var(--white);}
+
+  /* Flywheel section */
+  .flywheel-steps{
+    display:flex; flex-wrap:wrap; gap:0; margin-top:50px; counter-reset:step;
+  }
+  .fstep{
+    flex:1 1 200px; padding:22px 20px; border-top:3px solid var(--yellow); position:relative;
+  }
+  .fstep .num{
+    font-family:'Archivo Black',sans-serif; font-size:34px; color:var(--yellow); opacity:0.9;
+  }
+  .fstep h4{font-size:15px; color:var(--white); margin:10px 0 8px; text-transform:uppercase;}
+  .fstep p{font-size:13.5px; color:rgba(253,250,244,0.75); line-height:1.5;}
+
+  /* Pricing / CTA band */
+  .cta-band{
+    background:var(--yellow); color:var(--black); border-radius:18px; padding:60px 44px;
+    text-align:center; position:relative; overflow:hidden;
+  }
+  .cta-band h2{color:var(--black); font-size:clamp(26px,4vw,42px);}
+  .cta-band p{max-width:56ch; margin:16px auto 30px; font-size:16px; font-weight:600; opacity:0.85;}
+  .cta-band .btn-primary{
+    background:var(--black); color:var(--yellow); border-color:var(--black);
+    box-shadow:5px 5px 0 var(--white);
+  }
+  .cta-band .btn-primary:hover{box-shadow:8px 8px 0 var(--white);}
+
+  /* Footer */
+  footer{
+    background:var(--black); padding:60px 0 30px; border-top:1px solid var(--line);
+  }
+  .foot-grid{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:30px;}
+  .foot-brand{max-width:320px;}
+  .foot-brand p{font-size:14px; color:rgba(253,250,244,0.6); margin-top:12px; line-height:1.6;}
+  .easypagex-btn{
+    display:inline-flex; align-items:center; gap:10px;
+    background:linear-gradient(135deg, var(--yellow), var(--yellow-dim));
+    color:var(--black); font-weight:800; padding:14px 22px; border-radius:10px;
+    text-decoration:none; font-size:14px; text-transform:uppercase; letter-spacing:0.03em;
+    border:2px solid var(--black);
+    box-shadow:4px 4px 0 var(--red-bright);
+    transition:transform .15s ease;
+  }
+  .easypagex-btn:hover{transform:translate(-2px,-2px);}
+  .foot-copy{font-size:12.5px; color:rgba(253,250,244,0.4); margin-top:40px; text-align:center;}
+
+  /* Floating action buttons */
+  .float-actions{
+    position:fixed; right:22px; bottom:24px; display:flex; flex-direction:column; gap:14px; z-index:60;
+  }
+  .fab{
+    width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 20px rgba(0,0,0,0.4); text-decoration:none; border:2px solid var(--black);
+    transition:transform .18s ease;
+  }
+  .fab:hover{transform:scale(1.08);}
+  .fab.wa{background:#25D366;}
+  .fab.ig{background:radial-gradient(circle at 30% 110%, #ffdb6b 0%, #ee6666 30%, #cd486b 45%, #6f5aa5 70%, #4a3a8a 100%);}
+
+  @media (max-width:880px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .flywheel-stage{order:-1;}
+    .card-grid{grid-template-columns:1fr;}
+    .hedgehog-wrap{grid-template-columns:1fr;}
+    .stockdale{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{transition:none;}
+    #flywheel .rim{animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">🚀<span>Easy</span>PageX</div>
+    <div class="nav-links">
+      <a href="#hedgehog">Hedgehog Concept</a>
+      <a href="#flywheel-section">The Flywheel</a>
+      <a href="#pricing">Get Started</a>
+    </div>
+    <a class="nav-cta" href="#pricing">EASYPAGEX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">◆ For businesses tired of "fine"</span>
+      <h1>Good pages are the enemy of <em>great</em> ones.</h1>
+      <p class="lead">Jim Collins studied 1,435 companies to find out why a rare few made the leap from good to great. EasyPageX studies your business for about 24 hours &mdash; then builds the one landing page disciplined enough to do the same for you.</p>
+      <div class="hero-ctas">
+        <a href="#pricing" class="btn-primary">Start My Leap →</a>
+        <a href="#flywheel-section" class="btn-ghost">Spin the Flywheel ↻</a>
+      </div>
+    </div>
+    <div class="flywheel-stage">
+      <svg id="flywheel" width="360" height="360" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="200" r="188" fill="none" stroke="#0a0a0a" stroke-width="3" opacity="0.5"/>
+        <g class="rim">
+          <circle cx="200" cy="200" r="150" fill="#0a0a0a"/>
+          <circle cx="200" cy="200" r="150" fill="none" stroke="#ffd400" stroke-width="6"/>
+          <!-- spokes -->
+          <g stroke="#ffd400" stroke-width="10" stroke-linecap="round">
+            <line x1="200" y1="70" x2="200" y2="330"/>
+            <line x1="70" y1="200" x2="330" y2="200"/>
+            <line x1="106" y1="106" x2="294" y2="294"/>
+            <line x1="294" y1="106" x2="106" y2="294"/>
+          </g>
+          <circle cx="200" cy="200" r="46" fill="#c31432" stroke="#ffd400" stroke-width="5"/>
+          <!-- tick marks around rim -->
+          <g fill="#fdfaf4">
+            <circle cx="200" cy="52" r="6"/>
+            <circle cx="348" cy="200" r="6"/>
+            <circle cx="200" cy="348" r="6"/>
+            <circle cx="52" cy="200" r="6"/>
+          </g>
+        </g>
+        <text x="200" y="207" text-anchor="middle" font-family="Archivo Black, sans-serif" font-size="22" fill="#ffd400">PUSH</text>
+      </svg>
+      <div class="flywheel-hint">Click the wheel — momentum compounds</div>
+    </div>
+  </div>
+</header>
+
+<section class="section-black">
+  <div class="wrap">
+    <span class="kicker reveal">Phase 01 — Disciplined People</span>
+    <h2 class="section-title reveal">Level 5 landing pages don't shout. They perform.</h2>
+    <p class="section-sub reveal">Collins found that breakthrough leaders are a paradox: fiercely ambitious for the mission, quietly humble about themselves. Your best landing page works the same way — no bloated animations begging for attention, no stock-photo ego. Just relentless clarity about getting your visitor to say yes.</p>
+    <div class="card-grid">
+      <div class="pcard reveal">
+        <h3>First message, then design</h3>
+        <p>Before EasyPageX opens a design file, we get the right words on the bus: who you serve, what you fix, why today. Layout is the seat you put them in — never the other way around.</p>
+      </div>
+      <div class="pcard reveal">
+        <h3>The wrong sections get off the bus</h3>
+        <p>Most template builders pile on sliders, stock testimonials, and filler copy. We remove anything that isn't earning its place next to your call-to-action.</p>
+      </div>
+      <div class="pcard reveal">
+        <h3>Fearless about your goal</h3>
+        <p>A booking form. A WhatsApp chat. A cart. We build toward one unmistakable action, and every pixel on the page is arranged to walk your visitor straight to it.</p>
+      </div>
+      <div class="pcard reveal">
+        <h3>Humble about decoration</h3>
+        <p>No mystery charisma, no "trust us" animations. Just a single self-contained HTML file that loads instantly and works everywhere — because that's what actually converts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hedgehog">
+  <div class="wrap">
+    <span class="kicker reveal">Phase 02 — Disciplined Thought</span>
+    <h2 class="section-title reveal">Your page's Hedgehog Concept</h2>
+    <p class="section-sub reveal">Great companies build strategy at the intersection of three questions. Great landing pages do too. Every EasyPageX build is pressure-tested against all three before it ships.</p>
+    <div class="hedgehog-wrap">
+      <svg width="100%" viewBox="0 0 420 340" xmlns="http://www.w3.org/2000/svg" class="reveal">
+        <circle cx="170" cy="140" r="115" fill="#ffd400" opacity="0.55"/>
+        <circle cx="250" cy="140" r="115" fill="#fdfaf4" opacity="0.5"/>
+        <circle cx="210" cy="230" r="115" fill="#0a0a0a" opacity="0.65"/>
+        <text x="120" y="105" font-family="Inter" font-weight="800" font-size="13" fill="#0a0a0a">PASSIONATE</text>
+        <text x="270" y="105" font-family="Inter" font-weight="800" font-size="13" fill="#0a0a0a">BEST AT</text>
+        <text x="185" y="300" font-family="Inter" font-weight="800" font-size="13" fill="#ffd400">DRIVES SALES</text>
+        <text x="197" y="200" font-family="Archivo Black" font-size="15" fill="#fdfaf4">YOUR</text>
+        <text x="185" y="220" font-family="Archivo Black" font-size="15" fill="#fdfaf4">PAGE</text>
+      </svg>
+      <div class="venn-legend reveal">
+        <div class="item">
+          <div class="dot" style="background:var(--yellow)"></div>
+          <div><h4>What you're deeply passionate about</h4><p>The craft, the story, the reason customers pick you over a chain — this is the copy that goes above the fold.</p></div>
+        </div>
+        <div class="item">
+          <div class="dot" style="background:var(--white)"></div>
+          <div><h4>What you can be best in the world at</h4><p>Your actual edge — faster delivery, a niche nobody else serves, a guarantee competitors won't make. We build the page around that edge, not a generic value prop.</p></div>
+        </div>
+        <div class="item">
+          <div class="dot" style="background:var(--black); border:2px solid var(--yellow)"></div>
+          <div><h4>What drives your economic engine</h4><p>Bookings, WhatsApp orders, foot traffic — the one metric the whole page is engineered to move.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stockdale reveal">
+      <div class="col">
+        <h4>Unwavering Faith</h4>
+        <p>You will get more customers from a page built with intent. That outcome isn't in question.</p>
+      </div>
+      <div class="col">
+        <h4>Brutal Facts</h4>
+        <p>The Stockdale Paradox, applied to your current site: if it's slow, generic, or missing a real call-to-action, no amount of "it looks fine" changes that visitors are leaving. EasyPageX starts by naming exactly what isn't working.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-black" id="flywheel-section">
+  <div class="wrap">
+    <span class="kicker reveal">Phase 03 — Disciplined Action</span>
+    <h2 class="section-title reveal">There is no launch-day miracle. There's a flywheel.</h2>
+    <p class="section-sub reveal">No landing page goes viral overnight by accident. Momentum compounds because every push — every visit, every share, every WhatsApp message — lands on a page built to convert the last one into the next.</p>
+    <div class="flywheel-steps">
+      <div class="fstep reveal"><div class="num">01</div><h4>First Push</h4><p>We ship a single, self-contained page. No plugins to break, no CMS to wait on. Live the same day.</p></div>
+      <div class="fstep reveal"><div class="num">02</div><h4>Second Push</h4><p>A floating WhatsApp button turns visitors into conversations instead of bounces.</p></div>
+      <div class="fstep reveal"><div class="num">03</div><h4>Third Push</h4><p>Fast load, clean structure, and real copy earn the shares and referrals that ads can't buy.</p></div>
+      <div class="fstep reveal"><div class="num">04</div><h4>Compounding</h4><p>Each visit strengthens the same wheel — your business's, not a template's. The technology accelerates it. It never drives it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <span class="kicker" style="color:var(--red); opacity:0.7;">Make the leap</span>
+      <h2>Good is comfortable. Great is one page away.</h2>
+      <p>Tell EasyPageX about your business and we'll build a single, fast, self-contained landing page engineered around your Hedgehog Concept — live in days, not months.</p>
+      <a href="#" class="btn-primary">Get My Landing Page →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">🚀<span>Easy</span>PageX</div>
+        <p>Disciplined landing pages for businesses making the leap from good to great. One page, one flywheel, built to push in a single direction.</p>
+      </div>
+      <a class="easypagex-btn" href="https://easypagex.github.io" target="_blank" rel="noopener">🚀 Built by EasyPageX</a>
+    </div>
+    <p class="foot-copy">© 2026 EasyPageX. Every leap starts with a push.</p>
+  </div>
+</footer>
+
+<div class="float-actions">
+  <a class="fab wa" href="https://wa.me/34609204298?text=Hola!%20Quiero%20mi%20landing%20page%20EasyPageX" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12.017 2C6.5 2 2.02 6.478 2.02 11.996c0 2.114.577 4.09 1.582 5.782L2 22l4.4-1.55a9.94 9.94 0 0 0 5.617 1.752h.005c5.517 0 9.997-4.478 9.997-9.996 0-5.518-4.48-10.206-9.999-10.206zm0 18.194h-.004a8.19 8.19 0 0 1-4.176-1.14l-.3-.178-3.096 1.09.83-3.038-.196-.313a8.185 8.185 0 0 1-1.255-4.395c0-4.53 3.685-8.215 8.213-8.215 2.193 0 4.254.854 5.803 2.404a8.17 8.17 0 0 1 2.406 5.812c0 4.53-3.686 8.215-8.225 8.215z"></path></svg>
+  </a>
+  <a class="fab ig" href="https://instagram.com/easypagex" target="_blank" rel="noopener" aria-label="Instagram">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.98-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"></path></svg>
+  </a>
+</div>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Web Audio flywheel "push" sound + spin momentum
+  let audioCtx;
+  function ensureAudio(){ if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)(); return audioCtx; }
+
+  function pushSound(strength){
+    const ctx = ensureAudio();
+    const t0 = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(90 + strength*40, t0);
+    osc.frequency.exponentialRampToValueAtTime(220 + strength*60, t0+0.18);
+    gain.gain.setValueAtTime(0.0001, t0);
+    gain.gain.exponentialRampToValueAtTime(0.18, t0+0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t0+0.35);
+    osc.connect(gain).connect(ctx.destination);
+    osc.start(t0); osc.stop(t0+0.4);
+
+    // metallic click layer
+    const bufferSize = ctx.sampleRate * 0.05;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for(let i=0;i<bufferSize;i++){ data[i] = (Math.random()*2-1) * (1 - i/bufferSize); }
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    const nGain = ctx.createGain();
+    nGain.gain.setValueAtTime(0.05, t0);
+    noise.connect(nGain).connect(ctx.destination);
+    noise.start(t0);
+  }
+
+  const wheel = document.getElementById('flywheel');
+  const rim = wheel.querySelector('.rim');
+  let momentum = 0; // degrees per second baseline
+  let rotation = 0;
+  let lastTime = null;
+
+  function animate(time){
+    if(lastTime === null) lastTime = time;
+    const dt = (time - lastTime)/1000;
+    lastTime = time;
+    momentum = Math.max(0, momentum - dt*8); // gentle decay
+    rotation += momentum*dt;
+    rim.style.transform = `rotate(${rotation}deg)`;
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+
+  let pushCount = 0;
+  wheel.addEventListener('click', ()=>{
+    pushCount++;
+    momentum = Math.min(momentum + 55, 620); // compounding momentum, capped
+    pushSound(Math.min(pushCount,6));
+    wheel.style.filter = 'drop-shadow(0 26px 46px rgba(0,0,0,0.5))';
+    setTimeout(()=>{ wheel.style.filter = 'drop-shadow(0 20px 40px rgba(0,0,0,0.35))'; }, 200);
+  });
+</script>
+</body>
+</html>

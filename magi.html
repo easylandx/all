@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧙 EasyPageX — The Grand Slam Offer Deal Memo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFEBE1;
+    --paper-dim:#E6E0D2;
+    --ink:#1C2340;
+    --ink-soft:#3A3F5C;
+    --gold:#A8822E;
+    --gold-bright:#C9A227;
+    --stamp-red:#9C3B2E;
+    --seal-green:#3F5D4E;
+    --line:rgba(28,35,64,0.18);
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.04em;
+  }
+  a{color:inherit;}
+  img,svg{display:block;max-width:100%;}
+
+  /* ---------- layout shells ---------- */
+  .wrap{
+    max-width:960px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+  section{
+    padding:96px 0;
+    border-bottom:1px solid var(--line);
+  }
+  section:last-of-type{border-bottom:none;}
+  .eyebrow{
+    font-size:12px;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.18em;
+    margin-bottom:16px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--gold);
+    display:inline-block;
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(239,235,225,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:960px;margin:0 auto;padding:16px 28px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:19px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .brand-mark{
+    width:10px;height:10px;
+    background:var(--stamp-red);
+    border-radius:50%;
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.04em;
+    padding:11px 20px;
+    border-radius:var(--radius);
+    text-decoration:none;
+    border:1px solid var(--ink);
+    transition:background .18s ease, color .18s ease, transform .18s ease;
+    cursor:pointer;
+  }
+  .btn:hover{
+    background:var(--gold-bright);
+    border-color:var(--gold-bright);
+    color:var(--ink);
+    transform:translateY(-1px);
+  }
+  .btn.small{padding:9px 14px;font-size:12px;}
+  .btn:focus-visible{outline:2px solid var(--stamp-red);outline-offset:3px;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:120px 0 90px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:28px;
+  }
+  .hero-tag .dot{width:6px;height:6px;background:var(--stamp-red);border-radius:50%;}
+  .hero h1{
+    font-size:clamp(2.4rem, 5.4vw, 4.1rem);
+    line-height:1.03;
+    font-weight:700;
+    max-width:820px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--stamp-red);
+    font-weight:500;
+  }
+  .hero p.lede{
+    margin-top:26px;
+    max-width:560px;
+    font-size:18px;
+    line-height:1.6;
+    color:var(--ink-soft);
+  }
+  .hero-cta{
+    margin-top:40px;
+    display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+  }
+  .hero-cta .fine{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;color:var(--ink-soft);
+  }
+  .stamp{
+    position:absolute;
+    right:0px;
+    top:60px;
+    width:150px;height:150px;
+    border:2px solid var(--seal-green);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+    color:var(--seal-green);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    transform:rotate(9deg);
+    opacity:0.9;
+  }
+  .stamp span{display:block;line-height:1.5;padding:0 14px;}
+  .stamp::before{
+    content:"";
+    position:absolute;
+    inset:8px;
+    border:1px dashed var(--seal-green);
+    border-radius:50%;
+  }
+
+  /* ---------- source line ---------- */
+  .source-strip{
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  /* ---------- value equation (signature element) ---------- */
+  .equation-card{
+    margin-top:56px;
+    background:var(--paper-dim);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:52px 44px;
+    position:relative;
+  }
+  .equation-card::before{
+    content:"EXHIBIT A";
+    position:absolute;
+    top:-11px;left:44px;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    padding:4px 10px;
+  }
+  .eq-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    color:var(--ink-soft);
+    margin-bottom:30px;
+  }
+  .eq-grid{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:36px;
+    flex-wrap:wrap;
+  }
+  .eq-value{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:clamp(2.4rem,5vw,3.4rem);
+    font-weight:600;
+  }
+  .eq-frac{
+    display:flex;flex-direction:column;align-items:center;gap:14px;
+    min-width:280px;
+  }
+  .eq-num, .eq-den{
+    display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
+  }
+  .eq-chip{
+    border:1px solid var(--ink);
+    padding:10px 16px;
+    font-size:14px;
+    background:var(--paper);
+  }
+  .eq-num .eq-chip{border-color:var(--seal-green);color:var(--seal-green);}
+  .eq-den .eq-chip{border-color:var(--stamp-red);color:var(--stamp-red);}
+  .eq-bar{width:100%;height:2px;background:var(--gold-bright);}
+  .eq-maximize, .eq-minimize{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+    margin-top:6px;
+  }
+  .eq-maximize{color:var(--seal-green);}
+  .eq-minimize{color:var(--stamp-red);}
+
+  /* ---------- criteria grid ---------- */
+  .grid-2{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-top:44px;
+  }
+  .grid-2 .cell{
+    background:var(--paper);
+    padding:32px;
+  }
+  .cell h3{font-size:19px;font-weight:600;margin-bottom:10px;}
+  .cell p{margin:0;color:var(--ink-soft);font-size:15px;line-height:1.6;}
+  .cell .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;color:var(--gold);
+    letter-spacing:0.1em;text-transform:uppercase;
+    margin-bottom:10px;display:block;
+  }
+
+  /* ---------- steps (real sequence -> numbering justified) ---------- */
+  .steps{margin-top:48px;}
+  .step{
+    display:grid;
+    grid-template-columns:80px 1fr;
+    gap:28px;
+    padding:30px 0;
+    border-top:1px solid var(--line);
+  }
+  .step:last-child{border-bottom:1px solid var(--line);}
+  .step-num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:2.6rem;
+    color:var(--gold-bright);
+    line-height:1;
+  }
+  .step h3{font-size:20px;font-weight:600;margin-bottom:8px;}
+  .step p{margin:0;color:var(--ink-soft);font-size:15px;line-height:1.65;max-width:560px;}
+  .step .arrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;color:var(--stamp-red);
+    margin-top:10px;display:inline-block;
+  }
+
+  /* ---------- enhancement cards ---------- */
+  .card-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-top:44px;
+  }
+  .enh-card{
+    border:1px solid var(--line);
+    padding:26px 20px;
+    background:var(--paper-dim);
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .enh-card .icon{
+    width:34px;height:34px;
+    border-radius:50%;
+    border:1.5px solid var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+  }
+  .enh-card h4{
+    font-family:'Fraunces', serif;
+    font-size:16.5px;font-weight:600;
+    margin:0;
+  }
+  .enh-card p{margin:0;font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+
+  /* ---------- MAGIC formula ---------- */
+  .magic{
+    margin-top:52px;
+    border:1px solid var(--ink);
+    padding:38px;
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .magic-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--gold-bright);margin-bottom:24px;
+  }
+  .magic-letters{
+    display:flex;gap:14px;flex-wrap:wrap;
+  }
+  .magic-letter{
+    flex:1 1 140px;
+    border:1px solid rgba(239,235,225,0.25);
+    padding:18px 16px;
+  }
+  .magic-letter .big{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:2rem;
+    color:var(--gold-bright);
+  }
+  .magic-letter .lbl{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+    margin-top:6px;color:var(--paper);
+  }
+  .magic-example{
+    margin-top:24px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--gold-bright);
+  }
+
+  /* ---------- final cta ---------- */
+  .final{
+    text-align:center;
+    padding:110px 0 120px;
+  }
+  .final h2{
+    font-size:clamp(2rem,4.6vw,3rem);
+    max-width:620px;
+    margin:0 auto 20px;
+  }
+  .final p{
+    max-width:480px;
+    margin:0 auto 36px;
+    color:var(--ink-soft);
+    font-size:16px;
+    line-height:1.6;
+  }
+  .final .btn{padding:16px 30px;font-size:14px;}
+
+  footer{
+    padding:32px 0 48px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:760px){
+    .grid-2{grid-template-columns:1fr;}
+    .card-row{grid-template-columns:repeat(2,1fr);}
+    .step{grid-template-columns:50px 1fr;}
+    .step-num{font-size:1.8rem;}
+    .stamp{display:none;}
+    .magic-letters{flex-direction:column;}
+  }
+  @media (max-width:480px){
+    .card-row{grid-template-columns:1fr;}
+    section{padding:64px 0;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .btn{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="brand-mark"></span>EasyPageX</div>
+    <a class="btn small" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX →</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="stamp"><span>Offer<br>Approved<br>No Refunds<br>Requested</span></div>
+    <div class="hero-tag"><span class="dot"></span>Deal Memo · Offer Construction</div>
+    <h1>Make an offer so good, people feel <em>stupid</em> saying no.</h1>
+    <p class="lede">A working breakdown of Alex Hormozi's <strong>Grand Slam Offer</strong> framework — turned into a page by EasyPageX.</p>
+    <div class="hero-cta">
+      <a class="btn" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX</a>
+      <span class="fine">Landing Pages, Fast & Easy.</span>
+    </div>
+  </section>
+
+  <div class="source-strip">
+    <span>Source: <em>Grand Slam Offers</em> — Alex Hormozi</span>
+    <span>Framework · Offer Design · Value Equation</span>
+  </div>
+
+  <section id="philosophy">
+    <div class="eyebrow">01 · The Core Philosophy</div>
+    <h2 style="font-size:clamp(1.7rem,3.4vw,2.4rem); font-weight:600; max-width:640px;">Stop competing on price. Compete in a category of one.</h2>
+    <p style="max-width:600px; color:var(--ink-soft); margin-top:18px; line-height:1.65; font-size:15.5px;">Racing to the bottom on price destroys margin and invites commodity comparison. The goal is a high-ticket offer so specific and so valuable that competitors become irrelevant to the conversation.</p>
+
+    <div class="equation-card">
+      <div class="eq-title">The Value Equation</div>
+      <div class="eq-grid">
+        <div class="eq-value">Value =</div>
+        <div class="eq-frac">
+          <div class="eq-num">
+            <div class="eq-chip">Dream Outcome</div>
+            <div class="eq-chip">Perceived Likelihood of Achievement</div>
+          </div>
+          <div class="eq-maximize">↑ maximize both</div>
+          <div class="eq-bar"></div>
+          <div class="eq-den">
+            <div class="eq-chip">Time Delay</div>
+            <div class="eq-chip">Perceived Effort &amp; Sacrifice</div>
+          </div>
+          <div class="eq-minimize">↓ minimize both</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="market">
+    <div class="eyebrow">02 · Identifying Your Dream Market</div>
+    <h2 style="font-size:clamp(1.7rem,3.4vw,2.4rem); font-weight:600; max-width:640px;">Pick the market before you pick the offer.</h2>
+    <div class="grid-2">
+      <div class="cell"><span class="tag">Criterion</span><h3>Massive pain</h3><p>The problem is urgent enough that people are already actively looking for a way out.</p></div>
+      <div class="cell"><span class="tag">Criterion</span><h3>Purchasing power</h3><p>The audience has the means to pay a premium for a real solution, not just interest in one.</p></div>
+      <div class="cell"><span class="tag">Criterion</span><h3>Easy to target</h3><p>You can find and reach this group through identifiable channels, communities, or platforms.</p></div>
+      <div class="cell"><span class="tag">Criterion</span><h3>Growing market</h3><p>The category is expanding, not shrinking — tailwind instead of headwind.</p></div>
+    </div>
+    <p style="margin-top:28px; color:var(--ink-soft); font-size:15px; max-width:600px; line-height:1.6;">Narrowing to a specific niche lets you customize the offer, charge meaningfully more, and speak directly to one audience's exact pain — instead of a diluted message for everyone.</p>
+  </section>
+
+  <section id="build">
+    <div class="eyebrow">03 · Step-by-Step Offer Creation</div>
+    <h2 style="font-size:clamp(1.7rem,3.4vw,2.4rem); font-weight:600; max-width:640px;">Four steps, in order, no skipping.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div><h3>Identify problems</h3><p>List every obstacle a customer faces before, during, and after trying to reach their goal — not just the obvious one.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div><h3>Generate solutions</h3><p>Convert each problem into a clear, corresponding solution feature. Every listed pain point earns a matching fix.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div><h3>Determine delivery vehicles</h3><p>Decide how each solution actually gets delivered — coaching, a course, done-for-you service, or software.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div><h3>Trim and stack</h3><p>Cut anything low-value and high-effort to fulfill. Stack the highest-value pieces into one irresistible package.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="enhance">
+    <div class="eyebrow">04 · Enhancing the Offer</div>
+    <h2 style="font-size:clamp(1.7rem,3.4vw,2.4rem); font-weight:600; max-width:640px;">The offer is built. Now make it undeniable.</h2>
+    <div class="card-row">
+      <div class="enh-card">
+        <div class="icon">S</div>
+        <h4>Scarcity &amp; urgency</h4>
+        <p>Limit available seats or set firm deadlines that force a real decision.</p>
+      </div>
+      <div class="enh-card">
+        <div class="icon">G</div>
+        <h4>Unbeatable guarantees</h4>
+        <p>Remove risk with conditional, unconditional, or anti-guarantees — pay them back if it doesn't work.</p>
+      </div>
+      <div class="enh-card">
+        <div class="icon">B</div>
+        <h4>Strategic bonuses</h4>
+        <p>Frame components as free, high-value bonuses instead of folding everything into one bundle.</p>
+      </div>
+      <div class="enh-card">
+        <div class="icon">N</div>
+        <h4>Naming secrets</h4>
+        <p>Use a formula to build a name people repeat back to you unprompted.</p>
+      </div>
+    </div>
+
+    <div class="magic">
+      <div class="magic-title">The M-A-G-I-C Naming Formula</div>
+      <div class="magic-letters">
+        <div class="magic-letter"><div class="big">M</div><div class="lbl">Reason</div></div>
+        <div class="magic-letter"><div class="big">A</div><div class="lbl">Avatar</div></div>
+        <div class="magic-letter"><div class="big">G</div><div class="lbl">Goal</div></div>
+        <div class="magic-letter"><div class="big">I</div><div class="lbl">Interval</div></div>
+        <div class="magic-letter"><div class="big">C</div><div class="lbl">Container</div></div>
+      </div>
+      <div class="magic-example">example → "6-Week Summer Shred Challenge"</div>
+    </div>
+  </section>
+
+  <section class="final" style="border-bottom:none;">
+    <div class="eyebrow" style="justify-content:center;">Ready to publish</div>
+    <h2>Your offer is drafted. Your page isn't built yet.</h2>
+    <p>EasyPageX, Landing Pages, Fast & Easy.</p>
+    <a class="btn" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX</a>
+  </section>
+
+  <footer>
+    <span>EasyPageX — landing pages, built fast</span>
+    <span>Framework: Grand Slam Offers, Alex Hormozi</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,504 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚢 EasyPageX — Landing pages built for both your brains</title>
+<meta name="description" content="EasyPageX designs landing pages for the two systems that judge them: the instant gut reaction and the slow, deliberate read.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1E1B4B;
+  --ink-soft:#25245F;
+  --paper:#EDE7DC;
+  --fast:#FF5A3C;
+  --slow:#2F6F6B;
+  --gold:#E7B23D;
+  --line: rgba(237,231,220,0.12);
+  --line-soft: rgba(30,27,75,0.15);
+}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.02em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:40;
+    background:rgba(20,22,31,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:68px;}
+  .logo{
+    font-family:'Fraunces',serif; font-weight:700; font-size:1.2rem; color:var(--paper);
+    display:flex; align-items:baseline; gap:4px;
+  }
+  .logo .x{color:var(--fast);}
+  .navlink{
+    font-size:0.85rem; color:var(--paper); opacity:0.7; text-decoration:none;
+    margin-left:28px; transition:opacity .2s;
+  }
+  .navlink:hover{opacity:1;}
+  .navcta{
+    display:none;
+  }
+  @media (min-width:720px){ .navcta{display:inline-block;} }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 26px;
+    border-radius:3px;
+    font-weight:600; font-size:0.92rem;
+    text-decoration:none;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{
+    background:var(--fast); color:#14161F;
+    box-shadow:0 0 0 rgba(255,90,60,0);
+  }
+  .btn-primary:hover{ box-shadow:0 6px 24px rgba(255,90,60,0.35); }
+  .btn-ghost{
+    background:transparent; border:1px solid var(--line); color:var(--paper); font-size:0.82rem; padding:10px 18px;
+  }
+  .btn-ghost:hover{border-color:var(--paper);}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:96px 0 64px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .eyebrow{
+    font-size:0.72rem; text-transform:uppercase; letter-spacing:0.16em;
+    color:var(--gold); margin-bottom:20px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:22px; height:1px; background:var(--gold); display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.4rem, 5.6vw, 4.4rem);
+    line-height:1.03;
+    max-width:15ch;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--fast);
+  }
+  .hero-sub{
+    max-width:46ch; margin-top:26px; font-size:1.08rem; line-height:1.6; color:rgba(237,231,220,0.78);
+  }
+  .hero-actions{ margin-top:38px; display:flex; gap:16px; flex-wrap:wrap; align-items:center;}
+  .hero-note{ font-size:0.78rem; color:rgba(237,231,220,0.5); }
+
+  /* split brain diagram in hero */
+  .brainrow{
+    margin-top:72px;
+    display:grid;
+    grid-template-columns:1fr 1px 1fr;
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .braincell{ padding:28px 30px; }
+  .braincell.f{ background:linear-gradient(180deg, rgba(255,90,60,0.08), transparent); }
+  .braincell.s{ background:linear-gradient(180deg, rgba(47,111,107,0.12), transparent); }
+  .brain-divider{ background:var(--line); }
+  .braintag{ font-size:0.7rem; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px; }
+  .braintag.f{ color:var(--fast); }
+  .braintag.s{ color:var(--slow); }
+  .brainline{ font-size:0.95rem; color:rgba(237,231,220,0.85); line-height:1.5; }
+  @media (max-width:680px){
+    .brainrow{ grid-template-columns:1fr; }
+    .brain-divider{ height:1px; }
+  }
+
+  /* ---------- SECTION shell ---------- */
+  section{ padding:88px 0; border-bottom:1px solid var(--line); }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head .eyebrow{ margin-bottom:14px; }
+  .section-head h2{ font-size:clamp(1.7rem,3.4vw,2.4rem); line-height:1.15; }
+  .section-head p{ margin-top:16px; color:rgba(237,231,220,0.72); line-height:1.6; font-size:1rem; }
+
+  /* ---------- TABLE (system comparison) ---------- */
+  .compare{
+    display:grid; grid-template-columns:1fr 1fr;
+    border:1px solid var(--line); border-radius:4px; overflow:hidden;
+  }
+  .compare-col{ padding:0; }
+  .compare-col + .compare-col{ border-left:1px solid var(--line); }
+  .compare-head{
+    padding:22px 26px; display:flex; align-items:center; gap:12px;
+    font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;
+  }
+  .dot{ width:9px; height:9px; border-radius:50%; }
+  .dot.f{ background:var(--fast); }
+  .dot.s{ background:var(--slow); }
+  .compare-head.f{ background:rgba(255,90,60,0.1); }
+  .compare-head.s{ background:rgba(47,111,107,0.14); }
+  .compare-row{
+    padding:18px 26px; border-top:1px solid var(--line); font-size:0.92rem; line-height:1.55; color:rgba(237,231,220,0.82);
+  }
+  .compare-row .k{
+    display:block; font-family:'JetBrains Mono',monospace; font-size:0.68rem;
+    text-transform:uppercase; letter-spacing:0.1em; color:rgba(237,231,220,0.45); margin-bottom:6px;
+  }
+  @media (max-width:680px){
+    .compare{ grid-template-columns:1fr; }
+    .compare-col + .compare-col{ border-left:none; border-top:1px solid var(--line); }
+  }
+
+  /* ---------- SIGNATURE: the toggle preview ---------- */
+  .toggle-shell{
+    border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--ink-soft);
+  }
+  .toggle-controls{
+    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    padding:20px 26px; border-bottom:1px solid var(--line);
+  }
+  .toggle-label{ font-size:0.82rem; color:rgba(237,231,220,0.65); }
+  .switch{
+    position:relative; width:220px; height:44px; background:var(--ink);
+    border:1px solid var(--line); border-radius:999px; display:flex; padding:4px; cursor:pointer;
+  }
+  .switch .knob{
+    position:absolute; top:4px; left:4px; width:calc(50% - 4px); height:calc(100% - 8px);
+    background:var(--fast); border-radius:999px; transition:transform .32s cubic-bezier(.65,0,.35,1), background .32s;
+    z-index:0;
+  }
+  .switch[data-mode="slow"] .knob{ transform:translateX(100%); background:var(--slow); }
+  .switch span{
+    position:relative; z-index:1; flex:1; text-align:center; font-size:0.78rem; font-weight:600;
+    line-height:36px; color:var(--paper); user-select:none;
+  }
+  .preview{ padding:40px 30px 46px; min-height:340px; }
+  .preview-mock{
+    border:1px solid var(--line-soft); border-radius:6px; background:var(--paper); color:var(--ink);
+    padding:34px; transition:all .3s ease;
+  }
+  .pm-eyebrow{ font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; opacity:0.5; margin-bottom:10px; }
+  .pm-h{ font-family:'Fraunces',serif; font-weight:600; transition:font-size .3s ease; }
+  .pm-body{ margin-top:14px; color:rgba(20,22,31,0.7); line-height:1.6; }
+  .pm-cta{
+    display:inline-block; margin-top:22px; padding:12px 26px; border-radius:3px; font-weight:600; font-size:0.85rem;
+    transition:background .3s ease;
+  }
+  .pm-detail{ margin-top:26px; border-top:1px dashed rgba(20,22,31,0.2); padding-top:20px; display:none; font-size:0.85rem; color:rgba(20,22,31,0.65); line-height:1.6;}
+  .pm-detail.show{ display:block; }
+  .preview-caption{ margin-top:20px; font-size:0.82rem; color:rgba(237,231,220,0.55); line-height:1.6; max-width:56ch; }
+
+  /* ---------- BIAS GRID ---------- */
+  .biasgrid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden; }
+  .biascard{ background:var(--ink); padding:30px 28px; }
+  .biascard .num{ font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--gold); margin-bottom:14px; display:block; }
+  .biascard h3{ font-size:1.15rem; margin-bottom:10px; }
+  .biascard p{ font-size:0.9rem; line-height:1.6; color:rgba(237,231,220,0.72); margin:0; }
+  @media (max-width:680px){ .biasgrid{ grid-template-columns:1fr; } }
+
+  /* ---------- SELVES / PEAK-END ---------- */
+  .peakend{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center; }
+  @media (max-width:840px){ .peakend{ grid-template-columns:1fr; } }
+  .curve-wrap{ border:1px solid var(--line); border-radius:6px; padding:26px; background:var(--ink-soft); }
+  .curve-cap{ margin-top:16px; font-size:0.82rem; color:rgba(237,231,220,0.6); line-height:1.6; }
+  .selflist{ display:flex; flex-direction:column; gap:22px; }
+  .selfitem{ display:flex; gap:16px; }
+  .selfitem .mark{ width:10px; height:10px; border-radius:50%; margin-top:7px; flex-shrink:0; }
+  .selfitem .mark.exp{ background:var(--fast); }
+  .selfitem .mark.rem{ background:var(--slow); }
+  .selfitem h3{ font-size:1.05rem; margin-bottom:6px; }
+  .selfitem p{ font-size:0.9rem; color:rgba(237,231,220,0.7); line-height:1.6; margin:0; }
+
+  /* ---------- CTA BAND ---------- */
+  .ctaband{
+    padding:96px 0; text-align:center; border-bottom:none;
+    background:radial-gradient(ellipse at 50% 0%, rgba(255,90,60,0.12), transparent 60%);
+  }
+  .ctaband h2{ font-size:clamp(2rem,4.2vw,3rem); max-width:18ch; margin:0 auto; }
+  .ctaband p{ margin:20px auto 0; max-width:48ch; color:rgba(237,231,220,0.72); font-size:1.02rem; line-height:1.6; }
+  .ctaband .hero-actions{ justify-content:center; margin-top:36px; }
+
+  footer{ padding:40px 0; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  footer p{ margin:0; font-size:0.78rem; color:rgba(237,231,220,0.45); }
+
+  ::selection{ background:var(--fast); color:var(--ink); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">EasyPage<span class="x">X</span></div>
+    <div style="display:flex; align-items:center;">
+      <a class="btn btn-primary navcta" style="margin-left:28px; padding:10px 20px; font-size:0.82rem;" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX</a>
+    </div>
+  </div>
+</nav>
+ 
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow mono">Landing pages, built on behavioral science</div>
+    <h1>Every visitor judges your page with <em>two brains</em>.<br>EasyPageX designs for both.</h1>
+    <p class="hero-sub">Daniel Kahneman spent decades proving that judgment runs on two systems: one instant, one deliberate. Your landing page gets read by both, in the same six seconds. EasyPageX builds pages that win the instant verdict and survive the slow read.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX →</a>
+      <a class="btn btn-ghost" href="#systems">See the framework</a>
+    </div>
+    <div class="hero-note mono">Live preview in under 24 hrs.</div>
+
+    <div class="brainrow">
+      <div class="braincell f">
+        <div class="braintag mono">System 1 · the scan</div>
+        <div class="brainline">Hero, headline, one visual, one button. Judged before a single word is read.</div>
+      </div>
+      <div class="brain-divider"></div>
+      <div class="braincell s">
+        <div class="braintag mono">System 2 · the read</div>
+        <div class="brainline">Pricing, proof, specifics, objections answered. Judged only if System 1 said "keep going."</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="systems">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow mono">01 · The core framework</div>
+      <h2>Your page has six seconds to pass an instant test — then a much slower one.</h2>
+      <p>Kahneman's System 1 is fast, automatic, and runs on gut feel. System 2 is slow, effortful, and checks the details. A landing page that only impresses one of them leaks conversions. EasyPageX pages are structured so both systems get what they came for.</p>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col">
+        <div class="compare-head f"><span class="dot f"></span>System 1 &nbsp;·&nbsp; the visitor's gut</div>
+        <div class="compare-row"><span class="k mono">Speed</span>Forms a verdict on your page before it finishes loading.</div>
+        <div class="compare-row"><span class="k mono">What it reads</span>Hero image, headline size, whitespace, button color, one number.</div>
+        <div class="compare-row"><span class="k mono">What EasyPageX gives it</span>A hero block engineered to say "this is for me" in under a second.</div>
+        <div class="compare-row"><span class="k mono">Failure mode</span>Bounces on clutter, small text, or a page that looks unsure of itself.</div>
+      </div>
+      <div class="compare-col">
+        <div class="compare-head s"><span class="dot s"></span>System 2 &nbsp;·&nbsp; the visitor's checklist</div>
+        <div class="compare-row"><span class="k mono">Speed</span>Only engages once System 1 gives the page permission to continue.</div>
+        <div class="compare-row"><span class="k mono">What it reads</span>Pricing tiers, comparison tables, FAQs, fine print, testimonials with names.</div>
+        <div class="compare-row"><span class="k mono">What EasyPageX gives it</span>Modular proof sections that answer objections in the order visitors raise them.</div>
+        <div class="compare-row"><span class="k mono">Failure mode</span>Abandons at checkout when the details don't match the promise up top.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="preview-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow mono">02 · See it in the layout</div>
+      <h2>Same page, two ways to read it.</h2>
+      <p>Toggle between how System 1 scans a page and how System 2 audits it. EasyPageX sections are built to survive both passes without a rewrite.</p>
+    </div>
+
+    <div class="toggle-shell">
+      <div class="toggle-controls">
+        <div class="toggle-label mono">Reading mode</div>
+        <div class="switch" id="modeSwitch" data-mode="fast" role="button" tabindex="0" aria-label="Toggle between fast scan and slow read">
+          <div class="knob"></div>
+          <span>Fast scan</span>
+          <span>Slow read</span>
+        </div>
+      </div>
+      <div class="preview">
+        <div class="preview-mock">
+          <div class="pm-eyebrow mono" id="pmEyebrow">System 1 · 0.4 seconds in</div>
+          <div class="pm-h" id="pmHeadline" style="font-size:1.9rem;">Ship landing pages that convert on instinct.</div>
+          <div class="pm-body" id="pmBody">A page built to pass the gut-check the moment it loads.</div>
+          <a class="pm-cta" id="pmCta" style="background:var(--fast); color:#14161F;">EasyPagex →</a>
+          <div class="pm-detail" id="pmDetail">
+            <strong>Special offer</strong> Starter $89<br>
+          </div>
+        </div>
+        <div class="preview-caption">Fast scan: one promise, one action. Slow read: the same page reveals pricing — nothing it said up top gets walked back.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="biases">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow mono">03 · Mental shortcuts, applied to pages</div>
+      <h2>Four biases every visitor brings to your page. EasyPageX designs around them, honestly.</h2>
+      <p>System 2 is lazy — it prefers to trust System 1's shortcuts rather than do the work itself. That's not a flaw to exploit; it's a constraint to design for.</p>
+    </div>
+
+    <div class="biasgrid">
+      <div class="biascard">
+        <span class="num mono">WYSIATI</span>
+        <h3>What's above the fold is the whole pitch</h3>
+        <p>Visitors build a full story from whatever's visible first — they don't scroll looking for missing context. EasyPageX hero blocks front-load the complete value proposition, not a teaser for it.</p>
+      </div>
+      <div class="biascard">
+        <span class="num mono">Anchoring</span>
+        <h3>The first price sets the scale for every price after it</h3>
+        <p>Whatever number a visitor sees first becomes the yardstick for everything that follows. EasyPageX pricing blocks let you choose which plan anchors the page, deliberately.</p>
+      </div>
+      <div class="biascard">
+        <span class="num mono">Availability</span>
+        <h3>Vivid proof outweighs average proof</h3>
+        <p>One specific, named testimonial with a real result feels more convincing than a stat sheet. EasyPageX proof sections are built around a small number of vivid, specific stories rather than a wall of logos.</p>
+      </div>
+      <div class="biascard">
+        <span class="num mono">Substitution</span>
+        <h3>"Should I buy this?" becomes "Do I like this button?"</h3>
+        <p>Faced with a hard question, visitors quietly answer an easier one. EasyPageX keeps the easy question and the real answer aligned, so a good gut feel about the page is also a good signal about the product.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="prospect">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow mono">04 · How visitors weigh risk</div>
+      <h2>People don't weigh outcomes. They weigh the frame you put around them.</h2>
+      <p>Prospect Theory says a loss hurts roughly twice as much as an equivalent gain feels good — and the same fact, framed two ways, produces two different decisions. Landing page copy is where this plays out line by line.</p>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col">
+        <div class="compare-head f"><span class="dot f"></span>Loss framing</div>
+        <div class="compare-row"><span class="k mono">Copy pattern</span>"Only 3 spots left at this price."</div>
+        <div class="compare-row"><span class="k mono">Why it works</span>The fear of losing the current price outweighs the appeal of getting it.</div>
+        <div class="compare-row"><span class="k mono">EasyPageX guardrail</span>Scarcity blocks only ship with a real, live count — never a fabricated timer.</div>
+      </div>
+      <div class="compare-col">
+        <div class="compare-head s"><span class="dot s"></span>Gain framing</div>
+        <div class="compare-row"><span class="k mono">Copy pattern</span>"98% of teams renew" instead of "2% churn."</div>
+        <div class="compare-row"><span class="k mono">Why it works</span>Identical fact, but the positive frame reads as confidence, not a warning label.</div>
+        <div class="compare-row"><span class="k mono">EasyPageX guardrail</span>Stat components let you preview both frames side by side before you publish either.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="selves" style="border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow mono">05 · What visitors remember</div>
+      <h2>They don't remember the whole visit. They remember the peak and the end.</h2>
+      <p>Kahneman's Peak-End Rule says an experience is judged by its most intense moment and how it finished — not its length or its average. A landing page isn't remembered scroll-by-scroll. It's remembered by its best moment and its last one.</p>
+    </div>
+
+    <div class="peakend">
+      <div class="curve-wrap">
+        <svg viewBox="0 0 480 220" width="100%" height="auto" role="img" aria-label="Peak-end curve of a landing page visit">
+          <line x1="20" y1="190" x2="460" y2="190" stroke="rgba(237,231,220,0.2)" stroke-width="1"/>
+          <path d="M20,150 C 90,140 120,150 150,110 C 190,55 210,60 240,95 C 280,140 320,150 350,60 C 385,10 410,40 460,30"
+                fill="none" stroke="var(--fast)" stroke-width="2.5"/>
+          <circle cx="360" cy="55" r="5" fill="var(--gold)"/>
+          <text x="330" y="38" fill="var(--gold)" font-size="11" font-family="JetBrains Mono, monospace">peak</text>
+          <circle cx="458" cy="31" r="5" fill="var(--slow)"/>
+          <text x="418" y="18" fill="var(--slow)" font-size="11" font-family="JetBrains Mono, monospace">the end</text>
+          <text x="20" y="210" fill="rgba(237,231,220,0.4)" font-size="11" font-family="JetBrains Mono, monospace">land</text>
+          <text x="430" y="210" fill="rgba(237,231,220,0.4)" font-size="11" font-family="JetBrains Mono, monospace">exit</text>
+        </svg>
+        <p class="curve-cap">The dip in the middle — a slow-loading section, a confusing pricing table — matters far less than one strong peak and a confident close.</p>
+      </div>
+
+      <div class="selflist">
+        <div class="selfitem">
+          <span class="mark exp"></span>
+          <div>
+            <h3>The experiencing visitor</h3>
+            <p>Feels the page in real time — every scroll, every load delay, every confusing label. EasyPageX keeps this self comfortable: fast loads, clear hierarchy, no dead ends.</p>
+          </div>
+        </div>
+        <div class="selfitem">
+          <span class="mark rem"></span>
+          <div>
+            <h3>The remembering visitor</h3>
+            <p>Decides whether to buy, bookmark, or share based on one peak moment and the final screen. EasyPageX gives every page one deliberate peak — a demo, a result, a proof point — and a closing section built to be the last thing they see, not an afterthought.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ctaband" style="border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="eyebrow mono" style="justify-content:center;">The takeaway</div>
+    <h2>You can't turn off System 1. You can design the page it sees first.</h2>
+    <p>EasyPageX gives every page a fast, honest hero for the gut check, and a well-ordered body for the follow-up questions — so the page that convinces someone in six seconds is the same one that holds up under a slow read.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX →</a>
+    </div>
+    <div class="hero-note mono" style="margin-top:16px;">easypagex.githu.io</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo" style="font-size:1rem;">EasyPage<span class="x">X</span></div>
+    <p>Landing pages, designed for how people actually decide.</p>
+  </div>
+</footer>
+
+<script>
+  const sw = document.getElementById('modeSwitch');
+  const eyebrow = document.getElementById('pmEyebrow');
+  const headline = document.getElementById('pmHeadline');
+  const body = document.getElementById('pmBody');
+  const cta = document.getElementById('pmCta');
+  const detail = document.getElementById('pmDetail');
+
+  function setMode(mode){
+    sw.dataset.mode = mode;
+    if(mode === 'fast'){
+      eyebrow.textContent = 'System 1 · 0.4 seconds in';
+      headline.textContent = 'Ship Landing pages that convert on instinct.';
+      headline.style.fontSize = '1.9rem';
+      body.textContent = 'A page built to pass the gut-check the moment it loads.';
+      cta.style.background = 'var(--fast)';
+      detail.classList.remove('show');
+    } else {
+      eyebrow.textContent = 'System 2 · 40 seconds in, reading closely';
+      headline.textContent = 'Ship landing pages that convert on instinct — and hold up under scrutiny.';
+      headline.style.fontSize = '1.5rem';
+      body.textContent = 'The same simple promise — now with total clarity and confidence.';
+      cta.style.background = 'var(--slow)';
+      detail.classList.add('show');
+    }
+  }
+
+  sw.addEventListener('click', () => setMode(sw.dataset.mode === 'fast' ? 'slow' : 'fast'));
+  sw.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      setMode(sw.dataset.mode === 'fast' ? 'slow' : 'fast');
+    }
+  });
+</script>
+
+</body>
+</html>

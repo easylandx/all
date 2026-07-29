@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>😉 EasyPageX — The Power of the First Blink</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EAF4FB;
+    --bg-deep: #D7ECFA;
+    --card: #FFFFFF;
+    --ink: #17293B;
+    --ink-soft: #4A6377;
+    --green: #57CC8A;
+    --green-deep: #2FA968;
+    --green-pale: #DFF6E8;
+    --line: rgba(23,41,59,0.10);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* NAV */
+  nav{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    background: rgba(234,244,251,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 16px 28px;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size: 1.25rem;
+    display:flex;
+    align-items:center;
+    gap: 8px;
+  }
+  .logo .dot{
+    width:10px; height:10px;
+    border-radius: 50%;
+    background: var(--green-deep);
+    display:inline-block;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background: var(--green-deep);
+    color: #fff;
+    text-decoration:none;
+    font-weight:600;
+    padding: 12px 22px;
+    border-radius: 999px;
+    box-shadow: 0 6px 18px rgba(47,169,104,0.28);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    border: none;
+    cursor:pointer;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+  }
+  .btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(47,169,104,0.36);
+    background: #279159;
+  }
+  .btn.small{ padding: 9px 18px; font-size: 0.85rem; }
+  .btn.ghost{
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--line);
+    box-shadow:none;
+  }
+  .btn.ghost:hover{
+    background: var(--green-pale);
+    border-color: var(--green-deep);
+    box-shadow:none;
+  }
+
+  /* HERO */
+  header.hero{
+    padding: 110px 0 90px;
+    position: relative;
+    overflow:hidden;
+  }
+  .hero-blob{
+    position:absolute;
+    width: 520px; height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--green-pale), transparent 70%);
+    top: -180px; right: -160px;
+    z-index:0;
+  }
+  .hero .wrap{ position:relative; z-index:1; }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background: var(--green-pale);
+    color: var(--green-deep);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 24px;
+  }
+  h1.title{
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1.05;
+    max-width: 780px;
+    margin: 0 0 22px;
+  }
+  h1.title em{
+    font-style: italic;
+    color: var(--green-deep);
+  }
+  .subtitle{
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin: 0 0 36px;
+  }
+  .hero-cta{
+    display:flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items:center;
+  }
+  .timer-badge{
+    font-family:'Fraunces', serif;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .timer-badge b{ color: var(--green-deep); font-size:1.1rem; }
+
+  /* SECTION SHARED */
+  section{ padding: 70px 0; }
+  section.alt{ background: var(--bg-deep); }
+  .kicker{
+    font-size: 0.8rem;
+    font-weight:700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    margin-bottom: 12px;
+  }
+  h2.section-title{
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    max-width: 700px;
+    margin: 0 0 18px;
+  }
+  .section-lead{
+    color: var(--ink-soft);
+    max-width: 680px;
+    font-size: 1.05rem;
+    margin-bottom: 44px;
+  }
+
+  /* CARD GRID */
+  .grid-2{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .card{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 30px;
+    position:relative;
+  }
+  .card .tag{
+    display:inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--green-deep);
+    background: var(--green-pale);
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .card h3{ font-size: 1.2rem; margin: 0 0 10px; }
+  .card p{ color: var(--ink-soft); margin:0; font-size: 0.97rem; }
+
+  /* DARK SIDE STRIP */
+  .warning-row{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .warn-card{
+    background: #fff;
+    border-left: 4px solid #E8A33D;
+    border-radius: 12px;
+    padding: 24px 26px;
+    box-shadow: 0 4px 18px rgba(23,41,59,0.05);
+  }
+  .warn-card h3{ margin: 0 0 8px; font-size: 1.05rem; }
+  .warn-card p{ margin:0; color: var(--ink-soft); font-size: 0.95rem; }
+
+  /* THREE SIGNAL / ER EXPERIMENT ANALOG */
+  .signal-panel{
+    background: var(--ink);
+    color: #fff;
+    border-radius: 22px;
+    padding: 46px 40px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items:center;
+  }
+  .signal-panel .kicker{ color: var(--green); }
+  .signal-panel h2{ color:#fff; }
+  .signal-panel p{ color: rgba(255,255,255,0.72); }
+  .signal-list{ list-style:none; margin: 26px 0 0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  .signal-list li{
+    display:flex; gap:14px; align-items:flex-start;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .signal-list .num{
+    font-family:'Fraunces', serif;
+    color: var(--green);
+    font-weight:700;
+    font-size:1.1rem;
+  }
+  .signal-list span.txt{ font-size: 0.93rem; color: rgba(255,255,255,0.88); }
+
+  /* TAKEAWAYS */
+  .take-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .take-card{
+    background: var(--card);
+    border-radius: 18px;
+    padding: 28px 24px;
+    border-top: 3px solid var(--green-deep);
+  }
+  .take-card .icon{
+    width: 42px; height:42px;
+    border-radius: 12px;
+    background: var(--green-pale);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom: 16px;
+    font-size: 1.2rem;
+  }
+  .take-card h3{ font-size: 1.05rem; margin: 0 0 8px; }
+  .take-card p{ color: var(--ink-soft); font-size: 0.93rem; margin:0; }
+
+  /* CTA BANNER */
+  .cta-banner{
+    background: linear-gradient(135deg, var(--green-deep), #3CBF7C);
+    border-radius: 24px;
+    padding: 56px 48px;
+    text-align:center;
+    color: #fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-banner::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: radial-gradient(circle at 80% 0%, rgba(255,255,255,0.18), transparent 55%);
+  }
+  .cta-banner h2{ color:#fff; margin:0 0 12px; position:relative; }
+  .cta-banner p{ color: rgba(255,255,255,0.9); max-width: 520px; margin: 0 auto 30px; position:relative; }
+  .cta-banner .btn{
+    background:#fff;
+    color: var(--green-deep);
+    position:relative;
+  }
+  .cta-banner .btn:hover{ background: #F3FBF6; }
+
+  footer{
+    padding: 40px 0 50px;
+    text-align:center;
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+  }
+  footer .logo{ justify-content:center; margin-bottom: 10px; }
+
+  @media (max-width: 760px){
+    .grid-2, .warning-row, .take-grid{ grid-template-columns: 1fr; }
+    .signal-panel{ grid-template-columns: 1fr; padding: 32px 24px; }
+    header.hero{ padding: 90px 0 60px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span class="dot"></span>EasyPageX</div>
+    <a class="btn small" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-blob"></div>
+  <div class="wrap">
+    <span class="eyebrow">● The 50-millisecond rule</span>
+    <h1 class="title">Visitors decide about your business in <em>one blink.</em></h1>
+    <p class="subtitle">Before anyone reads a word of your website, their brain has already rendered a verdict — trust or leave, buy or bounce. EasyPageX builds landing pages engineered for that first, unconscious judgment, so the blink works in your favor.</p>
+    <div class="hero-cta">
+      <a class="btn" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX →</a>
+      <span class="timer-badge">Most visitors judge a page in under <b>0.05 seconds</b></span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">The core concept</div>
+    <h2 class="section-title">Thin-slicing your landing page</h2>
+    <p class="section-lead">Just like a trained eye can spot a fake statue in an instant, or a psychologist can predict a relationship's future from fifteen minutes of footage, your visitors are thin-slicing your business from a handful of visual signals — before your copy ever gets read.</p>
+    <div class="grid-2">
+      <div class="card">
+        <span class="tag">The instant read</span>
+        <h3>The three-second verdict</h3>
+        <p>Research on first impressions of web pages shows visitors form an opinion on credibility in roughly the time it takes to blink — largely from layout, contrast, and whitespace, not words. EasyPageX designs every page to pass that verdict on sight.</p>
+      </div>
+      <div class="card">
+        <span class="tag">The tell</span>
+        <h3>One weak signal sinks the page</h3>
+        <p>The way a relationship expert can spot one toxic pattern and predict a breakup, visitors spot one broken signal — a cluttered header, a buried call-to-action, a generic stock photo — and their trust collapses instantly, no matter how good the rest of the page is.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">The dark side of a snap judgment</div>
+    <h2 class="section-title">When the blink works against you</h2>
+    <p class="section-lead">Left alone, a first impression isn't reliable — it's whatever surface signal is loudest. Most small business websites fail for the same two reasons.</p>
+    <div class="warning-row">
+      <div class="warn-card">
+        <h3>The "looks impressive" error</h3>
+        <p>A page stuffed with animations, sliders, and stock-photo carousels looks busy, not credible. Visitors read visual noise as a warning sign — the digital version of judging a leader by height alone, and getting it wrong.</p>
+      </div>
+      <div class="warn-card">
+        <h3>The generic-template tell</h3>
+        <p>Drag-and-drop builders produce pages visitors have unconsciously seen a hundred times. That familiarity reads as "template," and template reads as "not a real business" — even when the business behind it is excellent.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="signal-panel">
+      <div>
+        <div class="kicker">The overthinking problem</div>
+        <h2 class="section-title" style="max-width:none;">Fewer signals, better decisions</h2>
+        <p>Businesses often try to cram everything they offer onto one page — every service, every credential, every award. More information doesn't build more trust; it clutters the one instant that matters. EasyPageX strips each page down to the handful of signals that actually drive a decision.</p>
+      </div>
+      <ul class="signal-list">
+        <li><span class="num">01</span><span class="txt">One clear headline that states exactly what you do and for whom.</span></li>
+        <li><span class="num">02</span><span class="txt">One unmistakable call-to-action, repeated, never competing with anything else.</span></li>
+        <li><span class="num">03</span><span class="txt">One proof point — a result, a review, a number — placed where the eye lands first.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">Practical takeaways</div>
+    <h2 class="section-title">How EasyPageX protects your first impression</h2>
+    <p class="section-lead">A good instinct still needs guardrails. Here's how every EasyPageX page is built to make sure the blink lands right.</p>
+    <div class="take-grid">
+      <div class="take-card">
+        <div class="icon">◐</div>
+        <h3>Edit the environment</h3>
+        <p>Layout, color, and type are chosen deliberately for your business and audience — never a recycled template — so the first glance matches what you actually do.</p>
+      </div>
+      <div class="take-card">
+        <div class="icon">▢</div>
+        <h3>Block out the noise</h3>
+        <p>Like an audition held behind a curtain, every page cuts distracting elements so visitors judge you on the one thing that matters: your offer.</p>
+      </div>
+      <div class="take-card">
+        <div class="icon">↻</div>
+        <h3>Built to convert, tested to prove it</h3>
+        <p>Fast instinctive design for the first impression, backed by deliberate, conversion-focused structure underneath — the best of both speeds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-banner">
+      <h2 class="display">Give your business a first impression worth trusting.</h2>
+      <p>EasyPageX builds affordable, conversion-focused landing pages for small businesses, a page engineered for the blink.</p>
+      <a class="btn" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyPageX →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo"><span class="dot"></span>EasyPageX</div>
+    <p>Affordable, conversion-focused landing pages for small businesses.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧲 EasyPageX — Build the Page Where Your Customer Becomes the Hero</title>
+<meta name="description" content="EasyPageX helps you build landing pages on Donald Miller's StoryBrand framework — clear messaging that turns confused visitors into customers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12141c;
+    --bg-alt:#181c26;
+    --bg-card:#1c2130;
+    --ink:#ede6d6;
+    --ink-dim:#9aa0b4;
+    --ink-faint:#666c82;
+    --gold:#c9a227;
+    --gold-bright:#e0bd45;
+    --gold-soft:rgba(201,162,39,0.14);
+    --sage:#6b8f71;
+    --line:rgba(237,230,214,0.12);
+    --line-strong:rgba(237,230,214,0.22);
+    --shadow:0 20px 60px rgba(0,0,0,0.45);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;}
+
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    line-height:1.08;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:inline-flex;
+    align-items:center;
+    gap:0.6em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px;
+    height:1px;
+    background:var(--gold);
+    display:inline-block;
+  }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  a:focus-visible,button:focus-visible{
+    outline:2px solid var(--gold-bright);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.site-nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(18,20,28,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1120px;
+    margin:0 auto;
+    padding:18px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:1.15rem;
+    letter-spacing:-0.01em;
+  }
+  .logo span{color:var(--gold);}
+  .nav-links{display:flex;gap:28px;align-items:center;}
+  .nav-links a{
+    font-size:0.9rem;
+    color:var(--ink-dim);
+    text-decoration:none;
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  @media (max-width:720px){ .nav-links a.hide-mobile{display:none;} }
+
+  .btn{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:0.92rem;
+    border-radius:8px;
+    padding:12px 22px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn-gold{
+    background:linear-gradient(180deg,var(--gold-bright),var(--gold));
+    color:#1a1608;
+  }
+  .btn-gold:hover{
+    transform:translateY(-1px);
+    box-shadow:0 8px 24px rgba(201,162,39,0.35);
+  }
+  .btn-ghost{
+    background:transparent;
+    border-color:var(--line-strong);
+    color:var(--ink);
+  }
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold-bright);}
+  .btn-sm{padding:9px 16px;font-size:0.82rem;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:96px 0 88px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-140px;right:-160px;
+    width:520px;height:520px;
+    background:radial-gradient(circle, var(--gold-soft), transparent 70%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+    position:relative;
+  }
+  .hero h1{
+    font-size:clamp(2.3rem,4.6vw,3.6rem);
+    margin:18px 0 22px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold-bright);
+  }
+  .hero p.lede{
+    font-size:1.12rem;
+    color:var(--ink-dim);
+    max-width:46ch;
+    margin-bottom:34px;
+  }
+  .hero-cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+  .hero-note{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.76rem;
+    color:var(--ink-faint);
+    margin-top:14px;
+  }
+
+  /* hero side: one-liner card */
+  .oneliner-card{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:30px 28px;
+    box-shadow:var(--shadow);
+  }
+  .oneliner-card .eyebrow{margin-bottom:16px;}
+  .oneliner-line{
+    font-family:'Fraunces',serif;
+    font-size:1.05rem;
+    line-height:1.5;
+    padding:14px 0;
+    border-bottom:1px dashed var(--line-strong);
+  }
+  .oneliner-line:last-child{border-bottom:none;}
+  .oneliner-line b{color:var(--gold-bright);font-weight:600;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:96px 0;border-bottom:1px solid var(--line);}
+  section.no-border{border-bottom:none;}
+  .section-head{max-width:640px;margin-bottom:52px;}
+  .section-head h2{font-size:clamp(1.8rem,3.2vw,2.5rem);margin-top:16px;}
+  .section-head p{color:var(--ink-dim);margin-top:14px;font-size:1.02rem;}
+
+  /* ---------- CORE SHIFT ---------- */
+  .shift-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .shift-card{
+    background:var(--bg-alt);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:28px 26px;
+    position:relative;
+  }
+  .shift-card h3{font-size:1.18rem;margin-bottom:12px;}
+  .shift-card p{color:var(--ink-dim);font-size:0.96rem;}
+  .shift-card .glyph{
+    width:38px;height:38px;
+    border-radius:9px;
+    background:var(--gold-soft);
+    color:var(--gold-bright);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem;
+    margin-bottom:18px;
+  }
+
+  /* ---------- SB7 ARC ---------- */
+  .arc-wrap{
+    background:var(--bg-alt);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:44px 40px 20px;
+    margin-bottom:44px;
+  }
+  .arc-wrap svg{width:100%;height:auto;}
+  .arc-caption{
+    text-align:center;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.74rem;
+    color:var(--ink-faint);
+    letter-spacing:0.06em;
+    padding:6px 0 18px;
+  }
+
+  .beats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:20px;
+  }
+  .beat-card{
+    background:var(--bg-alt);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:24px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .beat-card:hover{border-color:var(--gold);transform:translateY(-3px);}
+  .beat-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.1em;
+    color:var(--gold);
+    text-transform:uppercase;
+  }
+  .beat-card h3{
+    font-size:1.08rem;
+    margin:10px 0 10px;
+  }
+  .beat-card p{color:var(--ink-dim);font-size:0.92rem;}
+  .beat-card ul{margin:10px 0 0;padding-left:18px;color:var(--ink-dim);font-size:0.88rem;}
+  .beat-card li{margin-bottom:4px;}
+
+  /* ---------- GRUNT TEST ---------- */
+  .grunt{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+    align-items:start;
+  }
+  .grunt-questions{list-style:none;margin:0;padding:0;}
+  .grunt-questions li{
+    display:flex;gap:16px;
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .grunt-questions li:last-child{border-bottom:none;}
+  .grunt-num{
+    font-family:'Fraunces',serif;
+    font-size:1.5rem;
+    color:var(--gold);
+    font-weight:600;
+    flex-shrink:0;
+    width:36px;
+  }
+  .grunt-questions h4{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    margin:0 0 4px;
+    font-size:1.02rem;
+  }
+  .grunt-questions p{margin:0;color:var(--ink-dim);font-size:0.92rem;}
+
+  .clarify-box{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:30px 28px;
+  }
+  .clarify-box h4{font-family:'Fraunces',serif;font-size:1.1rem;margin-bottom:14px;font-weight:600;}
+  .clarify-box ul{margin:0;padding-left:0;list-style:none;}
+  .clarify-box li{
+    display:flex;align-items:flex-start;gap:10px;
+    padding:9px 0;
+    color:var(--ink-dim);
+    font-size:0.93rem;
+    border-bottom:1px dashed var(--line);
+  }
+  .clarify-box li:last-child{border-bottom:none;}
+  .clarify-box li::before{
+    content:"×";
+    color:var(--sage);
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    flex-shrink:0;
+  }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    text-align:center;
+    padding:100px 0 110px;
+    position:relative;
+  }
+  .final-cta::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(ellipse at 50% 0%, var(--gold-soft), transparent 60%);
+    pointer-events:none;
+  }
+  .final-cta h2{
+    font-size:clamp(2rem,4vw,3rem);
+    max-width:16ch;
+    margin:0 auto 20px;
+  }
+  .final-cta p{
+    color:var(--ink-dim);
+    max-width:52ch;
+    margin:0 auto 36px;
+    font-size:1.05rem;
+  }
+
+  footer{
+    padding:36px 0;
+    text-align:center;
+  }
+  footer p{color:var(--ink-faint);font-size:0.82rem;}
+  footer a{color:var(--ink-dim);text-decoration:none;}
+  footer a:hover{color:var(--gold);}
+
+  @media (max-width:880px){
+    .hero-grid{grid-template-columns:1fr;}
+    .shift-grid{grid-template-columns:1fr;}
+    .grunt{grid-template-columns:1fr;gap:36px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; animation:none !important; scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <div class="logo">Easy<span>Page</span>X</div>
+    <nav class="nav-links">
+      <a href="#framework" class="hide-mobile">The Framework</a>
+      <a href="#clarify" class="hide-mobile">Clarify Your Site</a>
+      <a href="https://easypagex.github.io" class="btn btn-gold btn-sm" target="_blank" rel="noopener">EasyPageX</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">A note from the guide</span>
+      <h1>Nobody wants your story.<br>They want to win <em>theirs</em>.</h1>
+      <p class="lede">Donald Miller's StoryBrand framework treats your customer as the hero and your business as the guide. EasyPageX turns that framework into a landing page — so visitors understand what you offer in five seconds, not five paragraphs.</p>
+      <div class="hero-cta-row">
+        <a href="https://easypagex.github.io" class="btn btn-gold" target="_blank" rel="noopener">EasyPageX</a>
+        <a href="#framework" class="btn btn-ghost">See the framework ↓</a>
+      </div>
+      <p class="hero-note">Live in an afternoon</p>
+    </div>
+
+    <div class="oneliner-card">
+      <span class="eyebrow">The one-liner formula</span>
+      <div class="oneliner-line"><b>The problem —</b> what's stopping your customer right now.</div>
+      <div class="oneliner-line"><b>The solution —</b> what you do about it.</div>
+      <div class="oneliner-line"><b>The success —</b> what their life looks like after.</div>
+    </div>
+  </div>
+</section>
+
+<section class="no-border">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The core shift</span>
+      <h2>Your business is not Luke Skywalker. It's Yoda.</h2>
+      <p>Customers don't care how your company started. They care about their own survival and success — and whether you can help them get there.</p>
+    </div>
+    <div class="shift-grid">
+      <div class="shift-card">
+        <div class="glyph">01</div>
+        <h3>Stop talking about yourself</h3>
+        <p>Your origin story, your mission statement, your awards — none of it matters until the customer knows you understand their problem.</p>
+      </div>
+      <div class="shift-card">
+        <div class="glyph">02</div>
+        <h3>Define what they want</h3>
+        <p>Get specific. Name the one thing your customer wants that relates directly to what you sell — not a vague aspiration, a concrete desire.</p>
+      </div>
+      <div class="shift-card">
+        <div class="glyph">03</div>
+        <h3>Position your brand correctly</h3>
+        <p>The hero doesn't need another hero. They need a guide — someone with the empathy to understand their pain and the authority to solve it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The SB7 framework</span>
+      <h2>Seven beats. One story your customer already wants to be in.</h2>
+      <p>Every landing page EasyPageX generates follows the same arc that's driven storytelling for millennia — reworked as a path from confusion to a "buy now" click.</p>
+    </div>
+
+    <div class="arc-wrap">
+      <svg viewBox="0 0 1000 300" role="img" aria-hidden="true">
+        <!-- failure branch (the road not taken) -->
+        <path d="M 640 120 C 700 160, 740 200, 770 235 C 790 258, 820 262, 850 250"
+              fill="none" stroke="#666c82" stroke-width="2" stroke-dasharray="5 7" opacity="0.6"/>
+        <!-- main story arc -->
+        <path d="M 60 175 C 130 195, 170 235, 205 235 C 260 215, 300 200, 345 195 C 405 165, 445 150, 490 145 C 550 125, 590 118, 640 120 C 720 100, 830 65, 930 40"
+              fill="none" stroke="url(#arcGrad)" stroke-width="3"/>
+        <defs>
+          <linearGradient id="arcGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#9aa0b4"/>
+            <stop offset="0.55" stop-color="#c9a227"/>
+            <stop offset="1" stop-color="#e0bd45"/>
+          </linearGradient>
+        </defs>
+        <!-- nodes -->
+        <g fill="#e0bd45">
+          <circle cx="60" cy="175" r="6"/>
+          <circle cx="205" cy="235" r="6"/>
+          <circle cx="345" cy="195" r="6"/>
+          <circle cx="490" cy="145" r="6"/>
+          <circle cx="640" cy="120" r="6"/>
+          <circle cx="850" cy="250" r="5" fill="#666c82"/>
+          <circle cx="930" cy="40" r="7"/>
+        </g>
+      </svg>
+      <p class="arc-caption">THE HERO'S ARC — FROM DESIRE, THROUGH CONFLICT, TO A GUIDED SUCCESS (DASHED PATH = THE FAILURE THEY AVOID)</p>
+    </div>
+
+    <div class="beats">
+      <div class="beat-card">
+        <span class="beat-tag">Beat 01 — A Character</span>
+        <h3>Your customer</h3>
+        <p>Has a clear, specific desire related to what you sell. Everything on the page starts from that desire, not from your product.</p>
+      </div>
+      <div class="beat-card">
+        <span class="beat-tag">Beat 02 — Has a Problem</span>
+        <h3>The conflict</h3>
+        <p>Gets in the way of what they want, on three levels:</p>
+        <ul>
+          <li><strong>External</strong> — the physical problem</li>
+          <li><strong>Internal</strong> — how it makes them feel</li>
+          <li><strong>Philosophical</strong> — why it's plain wrong</li>
+        </ul>
+      </div>
+      <div class="beat-card">
+        <span class="beat-tag">Beat 03 — Meets a Guide</span>
+        <h3>Your brand</h3>
+        <p>Steps in with empathy — understanding their pain — and authority: competence and proof that you've solved this before.</p>
+      </div>
+      <div class="beat-card">
+        <span class="beat-tag">Beat 04 — Gives a Plan</span>
+        <h3>A clear path</h3>
+        <p>Dispels fear with a simple process — often three steps — or an agreement that removes the customer's risk.</p>
+      </div>
+      <div class="beat-card">
+        <span class="beat-tag">Beat 05 — Calls to Action</span>
+        <h3>A clear invitation</h3>
+        <p>A primary call to action ("Buy Now") plus a lower-stakes transitional one ("Download the Free PDF") for those not ready yet.</p>
+      </div>
+      <div class="beat-card">
+        <span class="beat-tag">Beat 06 — Avoids Failure</span>
+        <h3>What's at stake</h3>
+        <p>The page names the negative consequences of doing nothing — the road the hero doesn't want to walk down.</p>
+      </div>
+      <div class="beat-card">
+        <span class="beat-tag">Beat 07 — Ends in Success</span>
+        <h3>The after</h3>
+        <p>A vivid, specific picture of what the customer's life looks like once your product has done its job.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="clarify">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Implementing the framework</span>
+      <h2>The grunt test</h2>
+      <p>Within five seconds on your site, a visitor — even one distracted enough to be called a caveman — needs to answer three questions. If they can't, EasyPageX helps you rebuild until they can.</p>
+    </div>
+
+    <div class="grunt">
+      <ol class="grunt-questions">
+        <li>
+          <span class="grunt-num">1</span>
+          <div>
+            <h4>What do you offer?</h4>
+            <p>Stated plainly, above the fold, in words a distracted person recognizes on first read.</p>
+          </div>
+        </li>
+        <li>
+          <span class="grunt-num">2</span>
+          <div>
+            <h4>How will it make my life better?</h4>
+            <p>The benefit, not the feature list — tied to the success beat of the framework above.</p>
+          </div>
+        </li>
+        <li>
+          <span class="grunt-num">3</span>
+          <div>
+            <h4>How do I buy it?</h4>
+            <p>One obvious next step, not three competing buttons and a maze of navigation.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="clarify-box">
+        <h4>What EasyPageX strips out for you</h4>
+        <ul>
+          <li>Insider jargon that reads clearly to your team and nobody else</li>
+          <li>Vague taglines that could belong to any company in your industry</li>
+          <li>Cluttered layouts competing for the same five seconds of attention</li>
+          <li>Multiple calls to action with no clear primary choice</li>
+          <li>A hero section that talks about you before it talks about them</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta no-border">
+  <div class="wrap">
+    <span class="eyebrow" style="justify-content:center;">Ready when you are</span>
+    <h2>Give your customer a guide. Give your guide a page.</h2>
+    <p>EasyPageX builds StoryBrand-clear landing pages from your one-liner — the character, the problem, the plan, and the ending your customers actually want.</p>
+    <a href="https://easypagex.github.io" class="btn btn-gold" target="_blank" rel="noopener">EasyPageX</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>EasyPageX — landing pages built on a story your customers already know. · <a href="https://easypagex.com" target="_blank" rel="noopener">easypagex.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

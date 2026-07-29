@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 EasyPageX — The Disciplined Pursuit of Fewer, Better Pages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --paper:#fbfbfb;
+    --ink:#0d0d0d;
+    --ink-soft:#3d3d3d;
+    --red:#d1132a;
+    --red-deep:#9c0d1f;
+    --red-tint:#fdeced;
+    --line:#e9e9e9;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--white);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.eyebrow,.logo,.big-num{
+    font-family:'Space Grotesk',sans-serif;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--red);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1120px; margin:0 auto;
+  }
+  .logo{
+    font-weight:700; font-size:19px; display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{width:9px;height:9px;background:var(--red);border-radius:50%;display:inline-block;}
+  .nav-links{display:flex;gap:32px;font-size:14px;font-weight:500;color:var(--ink-soft);}
+  .nav-links a{position:relative; padding:4px 0;}
+  .nav-links a:hover{color:var(--ink);}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--red); color:var(--white);
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600; font-size:15px;
+    padding:13px 26px; border-radius:var(--radius);
+    border:1px solid var(--red);
+    cursor:pointer; transition:transform .15s ease, background .15s ease, box-shadow .15s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{background:var(--red-deep); border-color:var(--red-deep); transform:translateY(-1px); box-shadow:0 6px 16px rgba(209,19,42,0.28);}
+  .btn.ghost{
+    background:transparent; color:var(--ink); border:1px solid var(--ink);
+  }
+  .btn.ghost:hover{background:var(--ink); color:var(--white); box-shadow:none;}
+  .btn.small{padding:10px 18px; font-size:13px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:96px 0 60px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12.5px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--red-deep); margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";width:20px;height:2px;background:var(--red);display:inline-block;}
+  h1{
+    font-size:clamp(34px, 5vw, 54px);
+    font-weight:700; line-height:1.06;
+    margin-bottom:22px;
+  }
+  h1 em{
+    font-style:normal; color:var(--red);
+  }
+  .lede{
+    font-size:18px; color:var(--ink-soft); max-width:480px; margin-bottom:34px;
+  }
+  .hero-actions{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .hero-note{font-size:13px; color:#8a8a8a; margin-top:16px;}
+
+  /* Signature visual: scattered arrows converging into one */
+  .signature{
+    position:relative; aspect-ratio:1/1; max-width:460px; justify-self:end;
+  }
+  .signature svg{width:100%; height:100%;}
+  .scatter-arrow{
+    transform-origin:center;
+    animation:scatterFloat 4.5s ease-in-out infinite;
+  }
+  .scatter-arrow:nth-child(2){animation-delay:.3s;}
+  .scatter-arrow:nth-child(3){animation-delay:.6s;}
+  .scatter-arrow:nth-child(4){animation-delay:.9s;}
+  .scatter-arrow:nth-child(5){animation-delay:1.2s;}
+  .scatter-arrow:nth-child(6){animation-delay:1.5s;}
+  @keyframes scatterFloat{
+    0%,100%{opacity:.32; transform:translateY(0);}
+    50%{opacity:.55; transform:translateY(-4px);}
+  }
+  .channel-arrow{
+    transform-origin:center;
+    animation:channelPulse 2.6s ease-in-out infinite;
+  }
+  @keyframes channelPulse{
+    0%,100%{transform:scaleX(1); opacity:1;}
+    50%{transform:scaleX(1.04); opacity:.92;}
+  }
+
+  section{padding:88px 0;}
+  .section-head{max-width:620px; margin-bottom:52px;}
+  .section-head h2{font-size:clamp(26px,3.4vw,36px); font-weight:700; margin-bottom:14px;}
+  .section-head p{font-size:16.5px; color:var(--ink-soft);}
+
+  /* ---------- THESIS: diffused vs channeled ---------- */
+  .thesis{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .thesis-grid{display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--line); background:var(--white);}
+  .thesis-col{padding:44px 40px; position:relative;}
+  .thesis-col:first-child{border-right:1px solid var(--line);}
+  .thesis-tag{font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin-bottom:18px; display:inline-block;}
+  .thesis-col.bad .thesis-tag{color:#9a9a9a;}
+  .thesis-col.good .thesis-tag{color:var(--red-deep);}
+  .thesis-visual{height:150px; margin-bottom:22px;}
+  .thesis-col h3{font-size:20px; font-weight:700; margin-bottom:10px;}
+  .thesis-col p{font-size:15px; color:var(--ink-soft);}
+
+  /* ---------- PROCESS ---------- */
+  .process-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .process-card{background:var(--white); padding:38px 32px;}
+  .process-mark{
+    width:38px; height:38px; border-radius:50%;
+    border:2px solid var(--ink); display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:15px; margin-bottom:20px;
+    font-family:'Space Grotesk',sans-serif;
+  }
+  .process-card:nth-child(3) .process-mark{background:var(--red); border-color:var(--red); color:var(--white);}
+  .process-card h3{font-size:19px; font-weight:700; margin-bottom:12px;}
+  .process-card p{font-size:14.5px; color:var(--ink-soft);}
+  .process-card .tag{
+    display:inline-block; margin-top:16px; font-size:12px; font-weight:600;
+    color:var(--red-deep); letter-spacing:.03em;
+  }
+
+  /* ---------- RULES / FRAMEWORKS ---------- */
+  .rules{background:var(--ink);}
+  .rules .section-head h2, .rules .section-head p{color:var(--white);}
+  .rules .section-head p{color:#b8b8b8;}
+  .rules-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .rule-card{
+    background:#161616; border:1px solid #2a2a2a; padding:32px 28px; border-radius:var(--radius);
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .rule-card:hover{border-color:var(--red); transform:translateY(-3px);}
+  .rule-num{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--red); font-weight:700; margin-bottom:16px; letter-spacing:.05em;}
+  .rule-card h3{color:var(--white); font-size:18px; font-weight:700; margin-bottom:10px;}
+  .rule-card p{color:#b8b8b8; font-size:14.5px;}
+
+  /* ---------- PROOF / STATS STRIP ---------- */
+  .strip{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .strip .wrap{display:grid; grid-template-columns:repeat(3,1fr); text-align:center; padding:44px 32px;}
+  .strip .stat{padding:0 20px;}
+  .strip .stat:not(:last-child){border-right:1px solid var(--line);}
+  .big-num{font-size:clamp(30px,4vw,42px); font-weight:700; color:var(--red);}
+  .stat-label{font-size:13.5px; color:var(--ink-soft); margin-top:6px;}
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    text-align:center; padding:100px 0;
+  }
+  .final-cta h2{font-size:clamp(28px,4vw,42px); font-weight:700; max-width:640px; margin:0 auto 18px;}
+  .final-cta p{font-size:17px; color:var(--ink-soft); max-width:480px; margin:0 auto 36px;}
+  .final-cta .btn{padding:16px 34px; font-size:16px;}
+
+  footer{
+    border-top:1px solid var(--line); padding:36px 0; 
+  }
+  footer .wrap{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;}
+  footer .logo{font-size:16px;}
+  footer .foot-links{display:flex; gap:24px; font-size:13.5px; color:var(--ink-soft);}
+  footer .foot-links a:hover{color:var(--red);}
+  footer .copy{font-size:12.5px; color:#9a9a9a; width:100%; margin-top:20px;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr; gap:40px;}
+    .signature{justify-self:start; max-width:340px;}
+    .thesis-grid{grid-template-columns:1fr;}
+    .thesis-col:first-child{border-right:none; border-bottom:1px solid var(--line);}
+    .process-grid{grid-template-columns:1fr;}
+    .rules-grid{grid-template-columns:1fr;}
+    .strip .wrap{grid-template-columns:1fr; gap:28px;}
+    .strip .stat:not(:last-child){border-right:none; border-bottom:1px solid var(--line); padding-bottom:24px;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><span class="dot"></span>EasyPageX</div>
+    <div class="nav-links">
+      <a href="#thesis">The Thesis</a>
+      <a href="#process">Our Process</a>
+      <a href="#rules">The Rules</a>
+    </div>
+    <a class="btn small" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">The Disciplined Pursuit of Fewer, Better Pages</span>
+      <h1>Most websites try to say everything. <em>The ones that convert say one thing.</em></h1>
+      <p class="lede">EasyPageX builds landing pages on a simple, unfashionable belief: a small business doesn't need more pages, more tabs, or more features. It needs one page, built around one goal, that a visitor can't misunderstand.</p>
+      <div class="hero-actions">
+        <a class="btn" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX →</a>
+        <a class="btn ghost" href="#thesis">See the thinking</a>
+      </div>
+      <p class="hero-note"></p>
+    </div>
+    <div class="signature" aria-hidden="true">
+      <svg viewBox="0 0 400 400" fill="none">
+        <!-- scattered faint arrows -->
+        <g class="scatter-arrow">
+          <line x1="70" y1="90" x2="30" y2="50" stroke="#c9c9c9" stroke-width="3" stroke-linecap="round"/>
+          <path d="M30 50 L40 50 M30 50 L30 60" stroke="#c9c9c9" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <g class="scatter-arrow">
+          <line x1="80" y1="140" x2="20" y2="160" stroke="#c9c9c9" stroke-width="3" stroke-linecap="round"/>
+          <path d="M20 160 L28 154 M20 160 L26 168" stroke="#c9c9c9" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <g class="scatter-arrow">
+          <line x1="90" y1="200" x2="330" y2="60" stroke="#d9d9d9" stroke-width="2" stroke-linecap="round"/>
+        </g>
+        <g class="scatter-arrow">
+          <line x1="120" y1="270" x2="340" y2="330" stroke="#c9c9c9" stroke-width="3" stroke-linecap="round"/>
+          <path d="M340 330 L332 324 M340 330 L336 338" stroke="#c9c9c9" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <g class="scatter-arrow">
+          <line x1="100" y1="310" x2="60" y2="350" stroke="#c9c9c9" stroke-width="3" stroke-linecap="round"/>
+          <path d="M60 350 L68 346 M60 350 L64 358" stroke="#c9c9c9" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <g class="scatter-arrow">
+          <line x1="130" y1="230" x2="360" y2="180" stroke="#d9d9d9" stroke-width="2" stroke-linecap="round"/>
+        </g>
+
+        <!-- convergence point -->
+        <circle cx="110" cy="200" r="7" fill="var(--ink)"/>
+
+        <!-- single bold channeled arrow -->
+        <g class="channel-arrow">
+          <line x1="110" y1="200" x2="330" y2="200" stroke="var(--red)" stroke-width="7" stroke-linecap="round"/>
+          <path d="M330 200 L305 182 M330 200 L305 218" stroke="var(--red)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <text x="110" y="240" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#9a9a9a" text-anchor="middle">every idea for your site</text>
+        <text x="330" y="235" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="var(--red-deep)" text-anchor="end">one page that converts</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="thesis" id="thesis">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Diffused effort vs. channeled effort</h2>
+      <p>Give a business ten pages, a blog, three sliders, and a chatbot, and its message spreads thin across all of it. Give that same budget to one page, one headline, and one action — and it moves.</p>
+    </div>
+    <div class="thesis-grid">
+      <div class="thesis-col bad">
+        <span class="thesis-tag">The scattered site</span>
+        <div class="thesis-visual">
+          <svg viewBox="0 0 220 150" width="100%" height="100%">
+            <circle cx="30" cy="75" r="6" fill="#9a9a9a"/>
+            <line x1="30" y1="75" x2="70" y2="20" stroke="#c9c9c9" stroke-width="2"/>
+            <line x1="30" y1="75" x2="90" y2="55" stroke="#c9c9c9" stroke-width="2"/>
+            <line x1="30" y1="75" x2="95" y2="90" stroke="#c9c9c9" stroke-width="2"/>
+            <line x1="30" y1="75" x2="75" y2="130" stroke="#c9c9c9" stroke-width="2"/>
+            <line x1="30" y1="75" x2="60" y2="55" stroke="#c9c9c9" stroke-width="2"/>
+            <line x1="30" y1="75" x2="55" y2="100" stroke="#c9c9c9" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>Trying to cover everything</h3>
+        <p>A homepage, an about page, a shop, a blog, three CTAs competing for the same click. Every visitor lands somewhere different — and leaves confused about what to do next.</p>
+      </div>
+      <div class="thesis-col good">
+        <span class="thesis-tag">The EasyPageX page</span>
+        <div class="thesis-visual">
+          <svg viewBox="0 0 220 150" width="100%" height="100%">
+            <circle cx="30" cy="75" r="6" fill="var(--ink)"/>
+            <line x1="30" y1="75" x2="190" y2="75" stroke="var(--red)" stroke-width="6" stroke-linecap="round"/>
+            <path d="M190 75 L172 62 M190 75 L172 88" stroke="var(--red)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Aiming at one outcome</h3>
+        <p>One headline, one offer, one button. Every word on the page exists to move a visitor toward that single action — booking, buying, or calling.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How we build your page</h2>
+      <p>Every EasyPageX project runs through the same disciplined loop — a constant filter for what stays and what goes.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-card">
+        <div class="process-mark">1</div>
+        <h3>Explore</h3>
+        <p>Before we design anything, we ask what your business actually needs a visitor to do. We push back on "just add it" requests until we're both certain what the one job of this page is.</p>
+        <span class="tag">15-minute discovery call</span>
+      </div>
+      <div class="process-card">
+        <div class="process-mark">2</div>
+        <h3>Eliminate</h3>
+        <p>We cut the extra nav items, the stock-photo carousel, the fourth CTA. If a section doesn't move someone closer to your one goal, it doesn't make the page — no matter how nice it looks.</p>
+        <span class="tag">A page with nothing to trip over</span>
+      </div>
+      <div class="process-card">
+        <div class="process-mark">3</div>
+        <h3>Execute</h3>
+        <p>We build the page, wire up the form or booking flow, and hand you something that works the day it launches.</p>
+        <span class="tag">Live in 1 day.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="strip">
+  <div class="wrap">
+    <div class="stat">
+      <div class="big-num">1</div>
+      <div class="stat-label">Goal per page — never two competing for attention</div>
+    </div>
+    <div class="stat">
+      <div class="big-num">0</div>
+      <div class="stat-label">Templates or drag-and-drop builders involved</div>
+    </div>
+    <div class="stat">
+      <div class="big-num">1 Day</div>
+      <div class="stat-label">From first call to a live, working page</div>
+    </div>
+  </div>
+</section>
+
+<section class="rules" id="rules">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The rules we build by</h2>
+      <p>A few working principles keep us from turning your page into a junk drawer.</p>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-card">
+        <div class="rule-num">RULE 01</div>
+        <h3>The 90% rule</h3>
+        <p>Every feature request gets scored: does it clearly help this page hit its one goal? Anything short of a definite yes is treated as a no. "Might be nice" doesn't make the cut.</p>
+      </div>
+      <div class="rule-card">
+        <div class="rule-num">RULE 02</div>
+        <h3>Don't patch a sinking site</h3>
+        <p>If your current website has been rebuilt, re-plugged, and re-themed for three years running, the question isn't what to add next — it's whether you'd choose that site again, starting from zero.</p>
+      </div>
+      <div class="rule-card">
+        <div class="rule-num">RULE 03</div>
+        <h3>Protect the first impression</h3>
+        <p>The page a stranger sees first is not a place to save money on slow-loading, cluttered guesswork. It's the asset your whole marketing budget depends on — worth building right, once.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Start saying the one thing that converts.</h2>
+    <p>Tell us the single outcome you need your page to drive — a call, a booking, a sale — and we'll build the page that does only that, well.</p>
+    <a class="btn" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo"><span class="dot"></span>EasyPageX</div>
+    <div class="foot-links">
+      <a href="#thesis">The Thesis</a>
+      <a href="#process">Our Process</a>
+      <a href="#rules">The Rules</a>
+      <a href="https://easypagex.github.io" target="_blank" rel="noopener">easypagex.github.io</a>
+    </div>
+    <div class="copy">© 2026 EasyPageX. Affordable, conversion-focused landing pages for small businesses.</div>
+  </div>
+</footer>
+
+</body>
+</html>

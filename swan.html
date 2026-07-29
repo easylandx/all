@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦢 EasyPageX — Field Report: The Black Swans of Landing Pages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper: #1A1D24;
+  --paper-card: #23272F;
+  --ink: #EDE9E0;
+  --ink-soft: #B8B5A9;
+  --rule: #3F4450;
+  
+  /* Original accents */
+  --amber: #E8C46A;
+  --amber-deep: #D4A23F;
+  --sage: #8FB9A6;
+  
+  /* Red & Blue accents */
+  --red: #FF5A5F;
+  --red-deep: #E83D44;
+  --blue: #4A9EFF;
+  --blue-deep: #2B7ED9;
+  
+  --mono-grey: #9A9684;
+  --max: 1080px;
+}
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{ background:var(--blue); color:#ffffff; }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--mono-grey);
+    display:flex;
+    align-items:center;
+    gap:0.6em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:6px; height:6px;
+    background:var(--blue);
+    border-radius:50%;
+    display:inline-block;
+    flex:none;
+  }
+
+  .wrap{ max-width:var(--max); margin:0 auto; padding:0 28px; }
+
+  header.top{
+    position:sticky; top:0; z-index:20;
+    background:rgba(28,31,38,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--rule);
+  }
+  .topbar{
+    max-width:var(--max); margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:500; font-size:0.95rem; letter-spacing:0.02em;
+  }
+  .logo span{ color:var(--blue); }
+  .nav-cta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    text-decoration:none;
+    color:var(--ink);
+    border:1px solid var(--rule);
+    padding:8px 16px;
+    border-radius:2px;
+    transition:background 0.15s ease, border-color 0.15s ease;
+  }
+  .nav-cta:hover{ background:var(--paper-card); border-color:var(--blue); color:var(--blue); }
+
+  .scatter-card,
+  .card,
+  .domain-col{
+    background:var(--paper-card);
+    border:1px solid var(--rule);
+  }
+
+  .domain-col.extremistan{
+    background:#2A2125;
+  }
+
+  /* Utility classes */
+  .accent-red   { color: var(--red); }
+  .accent-blue  { color: var(--blue); }
+  .bg-red       { background: var(--red); }
+  .bg-blue      { background: var(--blue); }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:88px 0 60px; }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 4vw, 3.15rem);
+    line-height:1.08;
+    margin:18px 0 22px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--red);
+  }
+  .hero p.lede{
+    font-size:1.08rem;
+    color:var(--ink-soft);
+    max-width:46ch;
+    margin-bottom:32px;
+  }
+  .hero-actions{ display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
+
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--blue);
+    color:#ffffff;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    letter-spacing:0.04em;
+    text-decoration:none;
+    padding:15px 26px;
+    border-radius:2px;
+    border:1px solid var(--blue);
+    transition:transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-primary:hover{ background:var(--blue-deep); border-color:var(--blue-deep); transform:translateY(-1px); }
+  .btn-primary svg{ width:14px; height:14px; }
+
+  .btn-secondary{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--red);
+    color:#ffffff;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    letter-spacing:0.04em;
+    text-decoration:none;
+    padding:15px 26px;
+    border-radius:2px;
+    border:1px solid var(--red);
+    transition:transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-secondary:hover{ background:var(--red-deep); border-color:var(--red-deep); transform:translateY(-1px); }
+
+  .hero-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--mono-grey);
+  }
+
+  /* ---------- SIGNATURE SCATTER ---------- */
+  .scatter-card{
+    border-radius:3px;
+    padding:22px 22px 14px;
+  }
+  .scatter-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    color:var(--mono-grey);
+    display:flex; justify-content:space-between;
+    margin-bottom:6px;
+  }
+  .scatter-caption{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    color:var(--mono-grey);
+    text-align:center;
+    margin-top:6px;
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding:64px 0; border-top:1px solid var(--rule); }
+  .section-head{ max-width:62ch; margin-bottom:36px; }
+  .section-head .eyebrow{ margin-bottom:14px; }
+  .section-head h2{ font-size:clamp(1.5rem, 2.6vw, 2.05rem); line-height:1.18; }
+  .section-head p{ color:var(--ink-soft); margin-top:14px; font-size:1rem; }
+
+  /* ---------- DOMAINS TABLE ---------- */
+  .domains{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--rule);
+    border:1px solid var(--rule);
+    border-radius:3px;
+    overflow:hidden;
+  }
+  .domain-col{ padding:26px 26px 30px; }
+  .domain-col h3{
+    font-size:1.05rem;
+    margin-bottom:4px;
+  }
+  .domain-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    color:var(--blue);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:16px;
+    display:block;
+  }
+  .domain-col ul{ margin:0; padding-left:0; list-style:none; }
+  .domain-col li{
+    position:relative;
+    padding-left:18px;
+    margin-bottom:10px;
+    font-size:0.95rem;
+    color:var(--ink-soft);
+  }
+  .domain-col li::before{
+    content:"–";
+    position:absolute; left:0; color:var(--mono-grey);
+  }
+  .domain-col.extremistan .domain-tag{ color:var(--red); }
+
+  /* ---------- TURKEY ---------- */
+  .turkey-visual{
+    display:flex; align-items:flex-end; gap:5px; height:110px;
+    margin:26px 0 6px; padding:0 4px;
+  }
+  .turkey-bar{
+    flex:1; background:var(--blue); opacity:0.4; border-radius:2px 2px 0 0;
+  }
+  .turkey-bar.spike{ background:var(--red) !important; opacity:1 !important; }
+  .turkey-axis{
+    display:flex; justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.65rem; color:var(--mono-grey);
+    padding:0 4px;
+  }
+
+  /* ---------- BLIND SPOT CARDS ---------- */
+  .cards{ display:grid; grid-template-columns:repeat(3, 1fr); gap:22px; }
+  .card{
+    border-radius:3px;
+    padding:24px;
+  }
+  .card .exhibit{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    color:var(--red);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+    display:block;
+  }
+  .card h3{ font-size:1.08rem; margin-bottom:10px; }
+  .card p{ color:var(--ink-soft); font-size:0.92rem; margin:0; }
+
+  /* ---------- BARBELL ---------- */
+  .barbell-visual{
+    display:flex; align-items:center; margin:34px 0 10px;
+  }
+  .bb-weight{
+    width:96px; height:96px; border-radius:50%;
+    background:var(--blue);
+    display:flex; align-items:center; justify-content:center;
+    flex:none;
+  }
+  .bb-weight.small{ width:52px; height:52px; background:var(--red); }
+  .bb-weight span{
+    font-family:'IBM Plex Mono', monospace;
+    color:#ffffff;
+    font-size:0.85rem;
+    font-weight:600;
+  }
+  .bb-weight.small span{ font-size:0.7rem; color:#ffffff; }
+  .bb-bar{
+    flex:1; height:6px; background:var(--rule); margin:0 -6px;
+  }
+  .barbell-caption{
+    display:flex; justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem; color:var(--mono-grey);
+    max-width:520px;
+  }
+
+  /* ---------- TWO COL ---------- */
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+  .two-col .block h3{ font-size:1.1rem; margin-bottom:12px; }
+  .two-col .block p{ color:var(--ink-soft); font-size:0.95rem; }
+  .two-col .block .exhibit{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem; color:var(--blue);
+    letter-spacing:0.08em; text-transform:uppercase;
+    display:block; margin-bottom:10px;
+  }
+  .two-col .block:nth-child(2) .exhibit{
+    color:var(--red);
+  }
+
+  /* ---------- FINAL CTA ---------- */
+  .final{
+    text-align:center;
+    padding:80px 0 96px;
+  }
+  .final h2{
+    font-size:clamp(1.7rem, 3.4vw, 2.4rem);
+    max-width:20ch; margin:0 auto 18px;
+    line-height:1.15;
+  }
+  .final p{ color:var(--ink-soft); max-width:48ch; margin:0 auto 34px; }
+
+  footer{
+    border-top:1px solid var(--rule);
+    padding:26px 0;
+  }
+  .foot-row{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem; color:var(--mono-grey);
+    flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width: 760px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .domains{ grid-template-columns:1fr; }
+    .cards{ grid-template-columns:1fr; }
+    .two-col{ grid-template-columns:1fr; }
+    .hero{ padding-top:48px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .btn-primary, .btn-secondary{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="topbar">
+    <div class="logo">easy<span>page</span>x</div>
+    <a class="nav-cta" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX →</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none; padding-top:88px;">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Field Report No. 1 — On Landing Pages</div>
+        <h1>Most of your page tests are noise.<br>One will be a <em>black swan</em>.</h1>
+        <p class="lede">Nassim Taleb spent a book explaining why rare, extreme, hard-to-predict events run the world. Landing pages work the same way — and EasyPageX builds the page you haven't shipped yet, not just the one that worked last quarter.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">
+            EasyPageX
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <span class="hero-note">Get your page delivered.</span>
+        </div>
+      </div>
+
+      <div class="scatter-card">
+        <div class="scatter-label"><span>EXHIBIT A</span><span>412 pages, last 90 days</span></div>
+        <svg viewBox="0 0 460 260" width="100%" height="auto" role="img" aria-label="Scatter plot of landing page conversion rates, clustered near average, with one outlier far to the right">
+          <line x1="30" y1="220" x2="440" y2="220" stroke="#3F4450" stroke-width="1"/>
+          <line x1="30" y1="20" x2="30" y2="220" stroke="#3F4450" stroke-width="1"/>
+          <!-- clustered ordinary pages using blue tint -->
+          <g fill="#4A9EFF" opacity="0.6">
+            <circle cx="55" cy="205" r="3"/><circle cx="70" cy="198" r="3"/><circle cx="60" cy="212" r="3"/>
+            <circle cx="85" cy="200" r="3"/><circle cx="95" cy="208" r="3"/><circle cx="100" cy="195" r="3"/>
+            <circle cx="110" cy="205" r="3"/><circle cx="120" cy="199" r="3"/><circle cx="130" cy="210" r="3"/>
+            <circle cx="75" cy="190" r="3"/><circle cx="140" cy="203" r="3"/><circle cx="150" cy="197" r="3"/>
+            <circle cx="160" cy="208" r="3"/><circle cx="90" cy="215" r="3"/><circle cx="105" cy="188" r="3"/>
+            <circle cx="170" cy="201" r="3"/><circle cx="180" cy="206" r="3"/><circle cx="65" cy="203" r="3"/>
+            <circle cx="190" cy="196" r="3"/><circle cx="200" cy="209" r="3"/><circle cx="115" cy="192" r="3"/>
+            <circle cx="210" cy="200" r="3"/><circle cx="135" cy="214" r="3"/><circle cx="80" cy="204" r="3"/>
+            <circle cx="220" cy="204" r="3"/><circle cx="145" cy="190" r="3"/><circle cx="225" cy="197" r="3"/>
+            <circle cx="50" cy="200" r="3"/><circle cx="165" cy="212" r="3"/><circle cx="195" cy="203" r="3"/>
+          </g>
+          <!-- the black swan highlighted in red -->
+          <line x1="420" y1="60" x2="420" y2="150" stroke="#FF5A5F" stroke-width="1" stroke-dasharray="2 3"/>
+          <circle cx="420" cy="52" r="6" fill="#FF5A5F"/>
+          <text x="420" y="38" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#FF5A5F">34× avg</text>
+          <text x="30" y="238" font-family="IBM Plex Mono, monospace" font-size="9" fill="#9A9684">conversion rate →</text>
+        </svg>
+        <div class="scatter-caption">411 pages inside normal range · 1 pays for the rest</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEDIOCRISTAN VS EXTREMISTAN -->
+  <section id="domains">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Two Worlds</div>
+        <h2>Button-color tests live in Mediocristan. Breakout pages live in Extremistan.</h2>
+        <p>Taleb split the world into Mediocristan, where no single data point moves the average much, and Extremistan, where one outlier dominates everything else combined. Landing pages sit in both at once — and confusing which world you're testing in is where most page-optimization programs quietly fail.</p>
+      </div>
+      <div class="domains">
+        <div class="domain-col">
+          <span class="domain-tag">Mediocristan</span>
+          <h3>Incremental page tweaks</h3>
+          <ul>
+            <li>Headline rewording, button color, form field order</li>
+            <li>Gains cluster in a narrow, predictable band</li>
+            <li>Safe to A/B test with modest traffic</li>
+            <li>Compounds slowly — worth doing, rarely worth headlines</li>
+          </ul>
+        </div>
+        <div class="domain-col extremistan">
+          <span class="domain-tag">Extremistan</span>
+          <h3>The breakout page</h3>
+          <ul>
+            <li>A new offer, a new audience, a new format entirely</li>
+            <li>One page can outperform the other 400 combined</li>
+            <li>Impossible to forecast from past test data</li>
+            <li>You find it by shipping variants, not by refining one</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TURKEY PROBLEM -->
+  <section id="turkey">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">The Turkey Problem</div>
+        <h2>Your page converted beautifully for 999 days. Then traffic changed.</h2>
+        <p>A page that performs well under steady, familiar traffic builds a false confidence — right up until a launch, a press mention, or a holiday sends a load and an audience it was never tested against. History of good performance is not evidence of future safety; it's evidence you haven't met your Thanksgiving yet.</p>
+      </div>
+      <div class="turkey-visual" aria-hidden="true">
+        <div class="turkey-bar" style="height:38%"></div>
+        <div class="turkey-bar" style="height:41%"></div>
+        <div class="turkey-bar" style="height:36%"></div>
+        <div class="turkey-bar" style="height:44%"></div>
+        <div class="turkey-bar" style="height:39%"></div>
+        <div class="turkey-bar" style="height:42%"></div>
+        <div class="turkey-bar" style="height:40%"></div>
+        <div class="turkey-bar" style="height:37%"></div>
+        <div class="turkey-bar" style="height:43%"></div>
+        <div class="turkey-bar" style="height:41%"></div>
+        <div class="turkey-bar" style="height:38%"></div>
+        <div class="turkey-bar spike" style="height:100%"></div>
+      </div>
+      <div class="turkey-axis">
+        <span>day 1</span><span>day 500</span><span>day 1,000</span><span style="color:var(--red);">the spike</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLIND SPOTS -->
+  <section id="blindspots">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Cognitive Traps</div>
+        <h2>Three ways teams fool themselves about a page that worked</h2>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <span class="exhibit">Exhibit B</span>
+          <h3>The Narrative Fallacy</h3>
+          <p>After a page converts well, everyone agrees on a tidy story for why. That story is usually invented after the fact — and it quietly becomes the template for the next twelve pages, whether or not it was ever the real cause.</p>
+        </div>
+        <div class="card">
+          <span class="exhibit">Exhibit C</span>
+          <h3>Silent Evidence</h3>
+          <p>You see the competitor's page that took off. You never see the eleven near-identical pages they quietly killed first. Studying only the survivors makes any style look like a formula.</p>
+        </div>
+        <div class="card">
+          <span class="exhibit">Exhibit D</span>
+          <h3>The Ludic Fallacy</h3>
+          <p>A clean dashboard with confidence intervals makes testing feel like a controlled game. The real market — real people, real devices, real timing — has no fixed rules and no capped downside.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BARBELL -->
+  <section id="barbell">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">The Barbell Strategy</div>
+        <h2>Don't spread your pages evenly. Split them to the ends.</h2>
+        <p>Put most of your pages on proven, safe designs — fast, tested, unlikely to embarrass you. Put a small slice of your effort into genuinely strange variants with almost nothing to lose and a real shot at the outlier. Skip the comfortable middle: the "slightly different" page that's expensive to build and too safe to break out.</p>
+      </div>
+      <div class="barbell-visual">
+        <div class="bb-weight"><span>90%</span></div>
+        <div class="bb-bar"></div>
+        <div class="bb-weight small"><span>10%</span></div>
+      </div>
+      <div class="barbell-caption">
+        <span>Proven design, low-risk copy</span>
+        <span>Wild variants, capped cost, open upside</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERENDIPITY / VULNERABILITY -->
+  <section id="strategy">
+    <div class="wrap two-col">
+      <div class="block">
+        <span class="exhibit">Maximize Serendipity</span>
+        <h3>Ship more pages to meet more black swans</h3>
+        <p>You can't predict which audience, channel, or offer will produce the breakout. You can control how many honest shots you take. EasyPageX is built so a new page takes minutes, not a sprint — so shipping ten variants costs what one used to.</p>
+      </div>
+      <div class="block">
+        <span class="exhibit">Focus on Vulnerability</span>
+        <h3>Stop forecasting. Start fixing what would break you</h3>
+        <p>Instead of guessing which page will spike, make sure every page survives a spike: fast load under sudden traffic, clean on any device, no dependency that quietly fails at scale. EasyPageX pages are built to take the hit, not to predict when it lands.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <div class="wrap">
+      <h2>You won't know which page is the outlier. Build enough of them to find out.</h2>
+      <p>At EasyPageX we deliver extraordinary landing pages, so testing for your black swan costs what one safe page used to.</p>
+      <a class="btn-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">
+        EasyPageX
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>EasyPageX — landing pages, built for the improbable</span>
+    <span>Field Report No. 1, adapted from risk theory</span>
+  </div>
+</footer>
+
+</body>
+</html>

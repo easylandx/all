@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚀 EasyPageX — Fewer Choices. Better Pages.</title>
+<style>
+  :root{
+    --yellow: #F5C518;
+    --yellow-deep: #E8B800;
+    --red: #D62828;
+    --red-deep: #B01E1E;
+    --blue: #8ECAE6;
+    --blue-deep: #5FA8CB;
+    --ink: #1D1A0F;
+    --paper: #FFFBEF;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:var(--yellow);
+    color:var(--ink);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height:1.55;
+  }
+
+  h1,h2,h3, .display{
+    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+    letter-spacing:-0.02em;
+    line-height:1.05;
+    margin:0;
+  }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav.top{
+    position:sticky; top:0; z-index:50;
+    background:var(--yellow);
+    border-bottom:3px solid var(--ink);
+  }
+  nav.top .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px;
+  }
+  .logo{
+    font-family:'Arial Black', sans-serif;
+    font-size:22px;
+    display:flex; align-items:center; gap:4px;
+  }
+  .logo .x{ color:var(--red); }
+  .nav-cta{
+    background:var(--red);
+    color:var(--paper);
+    padding:10px 20px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:14px;
+    text-decoration:none;
+    border:2px solid var(--ink);
+    box-shadow:3px 3px 0 var(--ink);
+    transition:transform .15s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{ transform:translate(-2px,-2px); }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:90px 0 70px;
+    overflow:hidden;
+    position:relative;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:50px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-block;
+    background:var(--blue);
+    color:var(--ink);
+    border:2px solid var(--ink);
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    margin-bottom:22px;
+  }
+  h1.display{
+    font-size:clamp(38px, 5.4vw, 64px);
+    margin-bottom:22px;
+  }
+  h1.display .accent{ color:var(--red); }
+  .hero p.lede{
+    font-size:19px;
+    max-width:46ch;
+    margin-bottom:32px;
+  }
+  .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+
+  .btn-primary{
+    background:var(--red);
+    color:var(--paper);
+    padding:16px 30px;
+    border-radius:10px;
+    font-weight:800;
+    font-size:17px;
+    text-decoration:none;
+    border:3px solid var(--ink);
+    box-shadow:5px 5px 0 var(--ink);
+    transition:transform .15s ease, box-shadow .15s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{
+    transform:translate(-3px,-3px);
+    box-shadow:8px 8px 0 var(--ink);
+  }
+  .btn-ghost{
+    color:var(--ink);
+    font-weight:700;
+    text-decoration:underline;
+    text-decoration-color:var(--blue-deep);
+    text-underline-offset:4px;
+    text-decoration-thickness:3px;
+  }
+
+  /* ---------- Hero visual: card stack collapsing into one ---------- */
+  .stack-visual{
+    position:relative;
+    height:340px;
+  }
+  .card{
+    position:absolute;
+    width:220px;
+    height:150px;
+    border:3px solid var(--ink);
+    border-radius:12px;
+    background:var(--paper);
+    box-shadow:6px 6px 0 rgba(29,26,15,.15);
+  }
+  .card .bar{ height:10px; border-radius:6px; background:var(--blue); margin:16px 16px 10px; width:60%; }
+  .card .line{ height:6px; border-radius:4px; background:#e7e2ce; margin:0 16px 8px; }
+  .card .line:nth-child(3){ width:80%; }
+  .card .line:nth-child(4){ width:55%; }
+
+  .card.c1{ top:0; left:10px; transform:rotate(-10deg); opacity:.55; }
+  .card.c2{ top:20px; left:70px; transform:rotate(-4deg); opacity:.75; }
+  .card.c3{ top:40px; left:130px; transform:rotate(3deg); opacity:.9; }
+  .card.c4{
+    top:70px; left:60px;
+    transform:rotate(0deg);
+    border-color:var(--red);
+    box-shadow:6px 6px 0 var(--red);
+    z-index:5;
+  }
+  .card.c4 .bar{ background:var(--red); }
+  .card.c4::after{
+    content:"PUBLISHED";
+    position:absolute;
+    bottom:10px; right:14px;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.06em;
+    color:var(--red);
+  }
+
+  /* ---------- Section shared ---------- */
+  section{ padding:70px 0; }
+  .section-head{ max-width:640px; margin-bottom:44px; }
+  .section-head .kicker{
+    font-weight:800;
+    color:var(--red);
+    text-transform:uppercase;
+    font-size:13px;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+    display:block;
+  }
+  h2.display{ font-size:clamp(28px,3.6vw,42px); }
+  section.alt{ background:var(--paper); border-top:3px solid var(--ink); border-bottom:3px solid var(--ink); }
+
+  /* ---------- Problem grid ---------- */
+  .problem-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:24px;
+  }
+  .problem-card{
+    background:var(--yellow);
+    border:3px solid var(--ink);
+    border-radius:14px;
+    padding:26px;
+    position:relative;
+  }
+  section.alt .problem-card{ background:#fff; }
+  .problem-card .tag{
+    display:inline-block;
+    background:var(--blue);
+    border:2px solid var(--ink);
+    border-radius:8px;
+    padding:2px 10px;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:14px;
+  }
+  .problem-card h3{ font-size:19px; margin-bottom:8px; }
+  .problem-card p{ font-size:15px; margin:0; }
+
+  /* ---------- Two types ---------- */
+  .types{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    border:3px solid var(--ink);
+    border-radius:16px;
+    overflow:hidden;
+  }
+  .type-col{ padding:40px 34px; }
+  .type-col.maximizer{ background:var(--red); color:var(--paper); }
+  .type-col.satisficer{ background:var(--blue); color:var(--ink); }
+  .type-col h3{ font-size:24px; margin-bottom:14px; }
+  .type-col .stat{
+    font-family:'Arial Black', sans-serif;
+    font-size:44px;
+    margin-bottom:6px;
+  }
+  .type-col ul{ padding-left:20px; margin:16px 0 0; font-size:15px; }
+  .type-col li{ margin-bottom:8px; }
+
+  /* ---------- Takeaways ---------- */
+  .takeaways{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:20px;
+  }
+  .takeaway{
+    border:3px solid var(--ink);
+    border-radius:14px;
+    padding:24px 20px;
+    background:var(--paper);
+  }
+  section:not(.alt) .takeaway{ background:#fff; }
+  .takeaway .num{
+    font-family:'Arial Black', sans-serif;
+    color:var(--red);
+    font-size:15px;
+    margin-bottom:12px;
+  }
+  .takeaway h3{ font-size:17px; margin-bottom:8px; }
+  .takeaway p{ font-size:14px; margin:0; }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:24px;
+    padding:64px 44px;
+    text-align:center;
+    margin:20px 0 0;
+  }
+  .final-cta h2{ font-size:clamp(28px,4vw,40px); margin-bottom:16px; color:var(--paper); }
+  .final-cta p{ font-size:17px; max-width:50ch; margin:0 auto 30px; opacity:.85; }
+  .final-cta .btn-primary{
+    box-shadow:5px 5px 0 var(--blue);
+    border-color:var(--blue);
+  }
+  .final-cta .btn-primary:hover{ box-shadow:8px 8px 0 var(--blue); }
+
+  footer{
+    padding:34px 0 50px;
+    text-align:center;
+    font-size:13px;
+    color:#6b6144;
+  }
+
+  @media (max-width: 860px){
+    .hero .wrap{ grid-template-columns:1fr; }
+    .stack-visual{ height:220px; margin-top:10px; }
+    .problem-grid{ grid-template-columns:1fr; }
+    .types{ grid-template-columns:1fr; }
+    .takeaways{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width: 520px){
+    .takeaways{ grid-template-columns:1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+
+  :focus-visible{
+    outline:3px solid var(--blue-deep);
+    outline-offset:2px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <div class="logo">EasyPage<span class="x">X</span></div>
+    <a class="nav-cta" href="https://easypagex.github.io" target="_blank" rel="noopener">Start →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">The Landing Page Paradox</span>
+      <h1 class="display">Fewer Choices. Better Pages.<br><span class="accent"></span></h1>
+      <p class="lede">Every builder promises limitless customization. What it actually delivers is decision fatigue. EasyPageX gives you one obvious path from idea to live page — and a "good enough" that's actually great.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX</a>
+        <a class="btn-ghost" href="#problem">See why ↓</a>
+      </div>
+    </div>
+    <div class="stack-visual" aria-hidden="true">
+      <div class="card c1"><div class="bar"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+      <div class="card c2"><div class="bar"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+      <div class="card c3"><div class="bar"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+      <div class="card c4"><div class="bar"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </div>
+  </div>
+</header>
+
+<section class="alt" id="problem">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">The Problem</span>
+      <h2 class="display">Why unlimited options quietly wreck your launch</h2>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <span class="tag">Regret</span>
+        <h3>The template you didn't pick</h3>
+        <p>Faced with 400 templates, it's easy to imagine the one you skipped would have converted better. That doubt shows up before you've even published.</p>
+      </div>
+      <div class="problem-card">
+        <span class="tag">Opportunity Cost</span>
+        <h3>Every unused feature nags at you</h3>
+        <p>Choosing a layout means giving up every other layout's strengths. A drag-and-drop builder with infinite blocks turns "done" into a moving target.</p>
+      </div>
+      <div class="problem-card">
+        <span class="tag">Escalation</span>
+        <h3>Pixel-perfect or nothing</h3>
+        <p>When a tool can theoretically do anything, "good" no longer feels good enough. You keep tweaking spacing instead of shipping the page.</p>
+      </div>
+      <div class="problem-card">
+        <span class="tag">Self-Blame</span>
+        <h3>Low conversions feel personal</h3>
+        <p>With one simple option, a slow launch is the tool's fault. With a thousand settings, a weak page feels like a failure of your own judgment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Two Kinds of Builders</span>
+      <h2 class="display">Which one are you — before EasyPageX?</h2>
+    </div>
+    <div class="types">
+      <div class="type-col maximizer">
+        <div class="stat">14 tabs</div>
+        <h3>The Maximizer</h3>
+        <ul>
+          <li>Compares every template before touching one</li>
+          <li>Rewrites the hero headline for the tenth time</li>
+          <li>Publishes late, second-guesses immediately after</li>
+        </ul>
+      </div>
+      <div class="type-col satisficer">
+        <div class="stat">1 page</div>
+        <h3>The Satisficer</h3>
+        <ul>
+          <li>Picks the first layout that fits the goal</li>
+          <li>Fills in the blanks and hits publish</li>
+          <li>Lets real visitors judge it, not their own doubt</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">How EasyPageX Fixes It</span>
+      <h2 class="display">Built for satisficers, on purpose</h2>
+    </div>
+    <div class="takeaways">
+      <div class="takeaway">
+        <div class="num">01</div>
+        <h3>Curated, not endless</h3>
+        <p>A short list of proven layouts per goal, so "good enough" is already very good.</p>
+      </div>
+      <div class="takeaway">
+        <div class="num">02</div>
+        <h3>Publish is final</h3>
+        <p>One clear publish action. No infinite draft states pulling you back to tinker.</p>
+      </div>
+      <div class="takeaway">
+        <div class="num">03</div>
+        <h3>Focus over features</h3>
+        <p>We hide the settings that don't move conversions, instead of listing every one.</p>
+      </div>
+      <div class="takeaway">
+        <div class="num">04</div>
+        <h3>Set the bar, then ship</h3>
+        <p>Define your goal first, pick the first match, and move on to running your business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="final-cta">
+      <h2 class="display">Start shipping.</h2>
+      <p>Your best landing page is the one that's actually live. EasyPageX gets you there today.</p>
+      <a class="btn-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">EasyPageX gets you there today.</div>
+</footer>
+
+</body>
+</html>

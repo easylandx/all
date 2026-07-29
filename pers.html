@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧠 EasyPageX — Persuade Before the Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFD400;
+    --orange:#FF7A1A;
+    --crimson:#E8420C;
+    --ink:#241205;
+    --ink-soft:#4a2c12;
+    --cream:#FFF8E9;
+    --white:#ffffff;
+    --line: rgba(36,18,5,0.14);
+    --shadow: 6px 6px 0 rgba(36,18,5,0.9);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Work Sans', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Archivo Black', sans-serif;
+    line-height:1.05;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.04em;
+  }
+  a{color:inherit;}
+  img,svg{display:block;}
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--ink);
+    color:var(--yellow);
+    border-bottom:4px solid var(--crimson);
+  }
+  .nav-inner{
+    max-width:1080px;
+    margin:0 auto;
+    padding:14px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    font-family:'Archivo Black', sans-serif;
+    font-size:1.05rem;
+    color:var(--yellow);
+    text-decoration:none;
+  }
+  .brand span{color:var(--white);}
+  .nav-cta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    font-weight:600;
+    background:var(--orange);
+    color:var(--ink);
+    padding:9px 16px;
+    border-radius:999px;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    background:
+      linear-gradient(115deg, var(--yellow) 0%, var(--yellow) 46%, var(--orange) 46%, var(--orange) 100%);
+    padding:96px 0 120px;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:2;
+    max-width:760px;
+  }
+  .eyebrow{
+    display:inline-block;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.8rem;
+    font-weight:600;
+    background:var(--ink);
+    color:var(--yellow);
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.4rem);
+    color:var(--ink);
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:var(--ink);
+    color:var(--yellow);
+    padding:0 10px;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
+  }
+  .hero p.lede{
+    margin-top:26px;
+    font-size:1.15rem;
+    max-width:560px;
+    color:var(--ink-soft);
+  }
+  .hero-cta-row{
+    margin-top:38px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .btn-primary{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:600;
+    font-size:0.95rem;
+    background:var(--crimson);
+    color:var(--white);
+    padding:16px 30px;
+    border-radius:8px;
+    text-decoration:none;
+    box-shadow:var(--shadow);
+    border:2px solid var(--ink);
+    display:inline-block;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary:hover{
+    transform:translate(-2px,-2px);
+    box-shadow:8px 8px 0 rgba(36,18,5,0.9);
+  }
+  .hero-note{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+  }
+  .hero-shapes{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+  }
+  .float{
+    position:absolute;
+    animation:bob 6s ease-in-out infinite;
+    opacity:0.9;
+  }
+  @keyframes bob{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-14px);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .float{animation:none;}
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block{
+    padding:88px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .block-head{
+    display:flex;
+    gap:22px;
+    align-items:baseline;
+    margin-bottom:36px;
+  }
+  .num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.95rem;
+    font-weight:600;
+    color:var(--crimson);
+    border:2px solid var(--crimson);
+    border-radius:999px;
+    width:44px;
+    height:44px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex:none;
+  }
+  .block-head h2{
+    font-size:clamp(1.6rem, 3.4vw, 2.3rem);
+  }
+  .block-sub{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    margin-top:6px;
+  }
+  .cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  @media (max-width:800px){
+    .cols{grid-template-columns:1fr;}
+  }
+  .card{
+    background:var(--white);
+    border:2px solid var(--ink);
+    border-radius:14px;
+    padding:26px;
+    box-shadow:var(--shadow);
+  }
+  .card + .card{margin-top:20px;}
+  .card h3{font-size:1.05rem; margin-bottom:8px;}
+  .card p{margin:0; color:var(--ink-soft); font-size:0.97rem;}
+  .tag{
+    display:inline-block;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    font-weight:600;
+    background:var(--yellow);
+    border:1.5px solid var(--ink);
+    padding:3px 10px;
+    border-radius:999px;
+    margin-bottom:10px;
+  }
+
+  /* ---------- SECTION 1: Sofa demo ---------- */
+  .demo-frame{
+    border:2px solid var(--ink);
+    border-radius:16px;
+    overflow:hidden;
+    background:var(--white);
+    box-shadow:var(--shadow);
+  }
+  .demo-toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 16px;
+    background:var(--ink);
+  }
+  .demo-toolbar .dots{display:flex; gap:6px;}
+  .demo-toolbar .dot{width:9px; height:9px; border-radius:50%; background:var(--yellow);}
+  .demo-toggle{
+    display:flex;
+    gap:4px;
+    background:rgba(255,255,255,0.12);
+    border-radius:999px;
+    padding:3px;
+  }
+  .demo-toggle button{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    font-weight:600;
+    border:none;
+    background:transparent;
+    color:var(--yellow);
+    padding:6px 12px;
+    border-radius:999px;
+    cursor:pointer;
+  }
+  .demo-toggle button.active{
+    background:var(--yellow);
+    color:var(--ink);
+  }
+  .demo-stage{
+    position:relative;
+    min-height:280px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background 0.5s ease;
+    padding:32px;
+  }
+  .demo-stage.clouds{background:linear-gradient(180deg,#eaf4ff,#ffffff);}
+  .demo-stage.coins{background:linear-gradient(180deg,#fff3d6,#ffffff);}
+  .demo-mock{
+    background:var(--white);
+    border:2px solid var(--ink);
+    border-radius:12px;
+    width:100%;
+    max-width:380px;
+    padding:24px;
+    text-align:center;
+  }
+  .demo-mock .headline{
+    font-family:'Archivo Black', sans-serif;
+    font-size:1.25rem;
+    transition:opacity .3s ease;
+  }
+  .demo-mock .sub{
+    font-family:'Work Sans', sans-serif;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    margin-top:8px;
+  }
+  .demo-mock .btn-mini{
+    display:inline-block;
+    margin-top:16px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    font-weight:600;
+    background:var(--crimson);
+    color:var(--white);
+    padding:9px 18px;
+    border-radius:6px;
+  }
+  .demo-caption{
+    padding:16px 20px 22px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    background:var(--cream);
+  }
+  .float-icon{
+    position:absolute;
+    opacity:0.5;
+  }
+
+  /* ---------- SECTION 2: chute / anchor ---------- */
+  .chute-btn{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    font-weight:600;
+    background:var(--ink);
+    color:var(--yellow);
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+  }
+  .chute-reveal{
+    margin-top:16px;
+    padding:16px;
+    border-left:4px solid var(--crimson);
+    background:var(--cream);
+    display:none;
+    font-size:0.95rem;
+  }
+  .chute-reveal.show{display:block;}
+  .price-row{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-top:10px;
+  }
+  .price-old{
+    font-family:'JetBrains Mono', monospace;
+    text-decoration:line-through;
+    color:#a08060;
+    font-size:1.1rem;
+  }
+  .price-new{
+    font-family:'Archivo Black', sans-serif;
+    font-size:2rem;
+    color:var(--crimson);
+  }
+
+  /* ---------- SECTION 3: Zeigarnik checklist ---------- */
+  .checklist{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .checklist li{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px dashed var(--line);
+    font-size:0.97rem;
+  }
+  .checklist li:last-child{border-bottom:none;}
+  .checkbox{
+    width:22px;
+    height:22px;
+    border:2px solid var(--ink);
+    border-radius:6px;
+    flex:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.8rem;
+    background:var(--white);
+  }
+  .checkbox.done{
+    background:var(--orange);
+  }
+  .progress-track{
+    height:10px;
+    border:2px solid var(--ink);
+    border-radius:999px;
+    background:var(--white);
+    margin-top:18px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background:var(--crimson);
+    width:33%;
+    transition:width .35s ease;
+  }
+  .progress-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    margin-top:8px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- SECTION 4: advice vs opinion ---------- */
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  @media (max-width:700px){.compare{grid-template-columns:1fr;}}
+  .compare .card.bad{border-color:#a08060;}
+  .compare .card.good{border-color:var(--crimson); background:#fff3ea;}
+  .field-mock{
+    margin-top:12px;
+    border:1.5px solid var(--ink);
+    border-radius:8px;
+    padding:12px 14px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.82rem;
+    background:var(--white);
+  }
+
+  /* ---------- TAKEAWAY ---------- */
+  .takeaway{
+    background:var(--ink);
+    color:var(--cream);
+    padding:100px 0;
+    text-align:center;
+  }
+  .takeaway .mono{color:var(--yellow);}
+  .takeaway blockquote{
+    font-family:'Archivo Black', sans-serif;
+    font-size:clamp(1.6rem, 4vw, 2.6rem);
+    max-width:760px;
+    margin:26px auto 0;
+    color:var(--white);
+  }
+
+  /* ---------- FINAL CTA ---------- */
+  .final{
+    background:linear-gradient(100deg, var(--orange), var(--yellow));
+    padding:100px 0;
+    text-align:center;
+  }
+  .final h2{
+    font-size:clamp(2rem, 5vw, 3rem);
+    max-width:640px;
+    margin:0 auto;
+  }
+  .final p{
+    max-width:480px;
+    margin:18px auto 34px;
+    color:var(--ink-soft);
+    font-size:1.05rem;
+  }
+
+footer{
+  background:var(--ink);
+  color: var(--yellow);           /* Changed from --ink-soft */
+  text-align:center;
+  padding:28px 0;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.78rem;
+}
+footer span{color:var(--yellow);} /* optional, already yellow */
+
+  :focus-visible{
+    outline:3px solid var(--crimson);
+    outline-offset:2px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">Easy<span>PageX</span></a>
+    <a class="nav-cta" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX →</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-shapes" aria-hidden="true">
+    <svg class="float-icon float" style="top:14%; right:8%; width:70px;" viewBox="0 0 64 64" style="animation-delay:0s;">
+      <circle cx="20" cy="34" r="14" fill="#241205" opacity="0.12"/>
+      <circle cx="34" cy="24" r="18" fill="#241205" opacity="0.12"/>
+      <circle cx="46" cy="36" r="12" fill="#241205" opacity="0.12"/>
+    </svg>
+    <svg class="float-icon float" style="bottom:10%; right:16%; width:44px; animation-delay:1.4s;" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="18" fill="none" stroke="#241205" stroke-width="2" opacity="0.25"/>
+      <text x="20" y="26" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="#241205" opacity="0.4">¢</text>
+    </svg>
+  </div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow mono">BASED ON CIALDINI'S "PRE-SUASION" — APPLIED TO LANDING PAGES</span>
+    <h1>The pitch doesn't win.<br>The <em>moment before it</em> does.</h1>
+    <p class="lede">Robert Cialdini's research shows persuasion isn't decided in your copy — it's decided in the seconds before someone reads it. EasyPageX is where you get delivered that moment on purpose, page by page.</p>
+    <div class="hero-cta-row">
+      <a class="btn-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX →</a>
+      <span class="hero-note"></span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- SECTION 1 -->
+  <section class="block" id="privileged-moments">
+    <div class="wrap">
+      <div class="block-head">
+        <div class="num">01</div>
+        <div>
+          <h2>Privileged moments</h2>
+          <div class="block-sub">the split-second window where attention decides the outcome</div>
+        </div>
+      </div>
+      <div class="cols">
+        <div>
+          <p>Cialdini's most famous example is a furniture site that changed one thing: the background image. Visitors who saw fluffy clouds went on to prioritize comfort when shopping for a sofa. Visitors who saw a background of pennies prioritized price. Nobody asked them a question — the environment quietly picked their buying criteria for them.</p>
+          <p style="margin-top:14px;">On a landing page, the "background" is everything that loads before your headline registers: the hero image, the first icon, the color your eye lands on. Whatever you put there becomes the lens your visitor reads the rest of the page through.</p>
+        </div>
+        <div class="demo-frame">
+          <div class="demo-toolbar">
+            <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <div class="demo-toggle" role="group" aria-label="Switch background cue">
+              <button type="button" id="btn-clouds" class="active" onclick="setSofa('clouds')">☁ Clouds</button>
+              <button type="button" id="btn-coins" onclick="setSofa('coins')">¢ Coins</button>
+            </div>
+          </div>
+          <div class="demo-stage clouds" id="sofa-stage">
+            <div class="demo-mock">
+              <div class="headline" id="sofa-headline">Sink into it.</div>
+              <div class="sub" id="sofa-sub">The softest sofa we've ever shipped.</div>
+              <span class="btn-mini">Shop comfort</span>
+            </div>
+          </div>
+          <div class="demo-caption">Same product, same page. Only the cue behind it changed — and so did what "matters."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section class="block" id="priming">
+    <div class="wrap">
+      <div class="block-head">
+        <div class="num">02</div>
+        <div>
+          <h2>Priming &amp; the psychological chute</h2>
+          <div class="block-sub">the question you ask first decides the answer you get later</div>
+        </div>
+      </div>
+      <div class="cols">
+        <div class="card">
+          <span class="tag">The chute</span>
+          <h3>Ask the identity question first</h3>
+          <p>Ask "Do you consider yourself an adventurous person?" before pitching a new product, and the mind goes hunting for proof that the answer is yes. By the time the offer arrives, saying yes to it just keeps the story straight.</p>
+          <button class="chute-btn" onclick="revealChute()">Try the question →</button>
+          <div class="chute-reveal" id="chute-reveal">
+            <strong>Q: Are you the kind of team that ships fast?</strong><br>
+            Most people quietly answer "yes" in their head. Now show them EasyPageX's publish-in-minutes flow — they're not being sold speed, they're confirming who they already said they are.
+          </div>
+        </div>
+        <div class="card">
+          <span class="tag">The anchor</span>
+          <h3>Set a ridiculous number first</h3>
+          <p>A consultant who jokes "I won't be charging you a million dollars for this" makes the real invoice feel modest by comparison — before a single feature is discussed.</p>
+          <div class="price-row">
+            <span class="price-old">$1,200</span>
+            <span class="price-new">$89</span>
+          </div>
+          <p style="margin-top:10px; font-size:0.85rem;">Show the "agency retainer" number before EasyPageX's price. The real figure doesn't need to be cheap — it needs to be a relief.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section class="block" id="attention">
+    <div class="wrap">
+      <div class="block-head">
+        <div class="num">03</div>
+        <div>
+          <h2>Mechanics of attention</h2>
+          <div class="block-sub">what actually stops the scroll, and what keeps it from leaving</div>
+        </div>
+      </div>
+      <div class="cols">
+        <div class="card">
+          <span class="tag">What hijacks a scroll</span>
+          <h3>Novelty, threat, and stakes</h3>
+          <p>Human attention is wired to snap toward survival-relevant cues: danger, novelty, anything unresolved. A hero section that promises a real stake — a deadline, a risk avoided, a genuinely new idea — earns the first three seconds. A generic "welcome to our site" doesn't.</p>
+        </div>
+        <div class="card">
+          <span class="tag">The Zeigarnik effect</span>
+          <h3>An unfinished task is a magnet</h3>
+          <p>The brain dislikes loose ends. A visible, almost-finished checklist creates a pull toward closure that a paragraph of copy never will.</p>
+          <ul class="checklist" id="checklist">
+            <li><span class="checkbox done" data-i="0">✓</span> Connect your domain</li>
+            <li><span class="checkbox done" data-i="1">✓</span> Add your first section</li>
+            <li><span class="checkbox" data-i="2"></span> Publish your page</li>
+          </ul>
+          <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+          <div class="progress-label" id="progress-label">2 of 3 steps done — click the last box</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section class="block" id="unity">
+    <div class="wrap">
+      <div class="block-head">
+        <div class="num">04</div>
+        <div>
+          <h2>Unity — the 7th principle</h2>
+          <div class="block-sub">people don't just like you, they can feel like they made this with you</div>
+        </div>
+      </div>
+      <p style="max-width:620px; margin-bottom:26px;">Cialdini's original six weapons of influence were Reciprocity, Liking, Social Proof, Authority, Scarcity, and Consistency. In <em>Pre-Suasion</em> he adds a seventh: Unity — the feeling of belonging to the same "we." Ask someone their <strong>opinion</strong> and they evaluate you from the outside. Ask for their <strong>advice</strong> and they step inside the project as a co-creator.</p>
+      <div class="compare">
+        <div class="card bad">
+          <span class="tag">Judged from outside</span>
+          <h3>Asks for an opinion</h3>
+          <div class="field-mock">"What's your opinion on our new page design?"</div>
+        </div>
+        <div class="card good">
+          <span class="tag">Co-created from inside</span>
+          <h3>Asks for advice</h3>
+          <div class="field-mock">"We'd love your advice on our new page design."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<section class="takeaway">
+  <div class="wrap">
+    <span class="mono">KEY TAKEAWAY</span>
+    <blockquote>You don't need to change what someone believes. You only need to change what they're focused on right before they decide.</blockquote>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Build the moment. Not just the page.</h2>
+    <p>EasyPageX gives you the hero cues, the sequencing, and the copy structure to put pre-suasion to work — no psychology degree required.</p>
+    <a class="btn-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX →</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 <span>EasyPageX</span>. Concepts adapted from Robert Cialdini's <em>Pre-Suasion</em> (2016), applied to landing page design.
+</footer>
+
+<script>
+  function setSofa(mode){
+    var stage = document.getElementById('sofa-stage');
+    var headline = document.getElementById('sofa-headline');
+    var sub = document.getElementById('sofa-sub');
+    var btnClouds = document.getElementById('btn-clouds');
+    var btnCoins = document.getElementById('btn-coins');
+    stage.classList.remove('clouds','coins');
+    stage.classList.add(mode);
+    if(mode === 'clouds'){
+      headline.textContent = 'Sink into it.';
+      sub.textContent = "The softest sofa we've ever shipped.";
+      btnClouds.classList.add('active');
+      btnCoins.classList.remove('active');
+    } else {
+      headline.textContent = 'Priced to win.';
+      sub.textContent = 'The same sofa, for less than you think.';
+      btnCoins.classList.add('active');
+      btnClouds.classList.remove('active');
+    }
+  }
+
+  function revealChute(){
+    document.getElementById('chute-reveal').classList.toggle('show');
+  }
+
+  document.querySelectorAll('.checkbox').forEach(function(box){
+    box.addEventListener('click', function(){
+      box.classList.toggle('done');
+      box.textContent = box.classList.contains('done') ? '✓' : '';
+      var total = document.querySelectorAll('.checkbox').length;
+      var doneCount = document.querySelectorAll('.checkbox.done').length;
+      document.getElementById('progress-fill').style.width = (doneCount/total*100) + '%';
+      var label = document.getElementById('progress-label');
+      label.textContent = doneCount === total
+        ? 'All steps done — your page is live.'
+        : doneCount + ' of ' + total + ' steps done' + (doneCount === total - 1 ? ' — click the last box' : '');
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌊 EasyPageX — From Conversion Chaos to Conversion Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#071a35;
+    --bg-mid:#0e2a52;
+    --bg-mid-2:#123765;
+    --cyan:#22d3ee;
+    --cyan-bright:#67e8f9;
+    --yellow:#fbbf24;
+    --yellow-bright:#fde047;
+    --ink:#eaf6ff;
+    --ink-dim:#9fc0dd;
+    --line:rgba(103,232,249,0.18);
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 600px at 15% -10%, rgba(34,211,238,0.16), transparent 60%),
+      radial-gradient(900px 500px at 100% 10%, rgba(251,191,36,0.08), transparent 55%),
+      linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 55%, var(--bg-deep) 100%);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    letter-spacing:-0.01em;
+    margin:0 0 0.4em 0;
+    color:#fff;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    font-size:0.72rem;
+    color:var(--cyan-bright);
+  }
+
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--yellow-bright); outline-offset:3px; border-radius:4px;}
+
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(7,26,53,0.72);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+    max-width:1080px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:1.15rem;
+    color:#fff;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo-dot{width:9px; height:9px; border-radius:50%; background:var(--yellow-bright); box-shadow:0 0 12px var(--yellow-bright);}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    padding:12px 22px;
+    border-radius:999px;
+    text-decoration:none;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:linear-gradient(90deg, var(--yellow) 0%, var(--yellow-bright) 100%);
+    color:#0a1730;
+    box-shadow:0 0 0 rgba(253,224,71,0);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 24px rgba(253,224,71,0.28);}
+  .btn-ghost{
+    border:1px solid var(--line);
+    color:var(--ink);
+    font-size:0.85rem;
+    padding:9px 16px;
+  }
+  .btn-ghost:hover{border-color:var(--cyan-bright); color:var(--cyan-bright);}
+
+  @media (max-width:640px){
+    .nav-inner .btn-ghost{display:none;}
+  }
+
+  /* ---------- SIGNAL WAVE (signature element) ---------- */
+  .wave-row{width:100%; overflow:hidden; line-height:0;}
+  .wave-row svg{width:100%; height:auto; display:block;}
+  .wave-path{
+    fill:none;
+    stroke-width:2.5;
+    stroke-linecap:round;
+  }
+  .wave-chaos{stroke:var(--cyan);}
+  .wave-smooth{stroke:var(--yellow-bright);}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:72px 0 40px;}
+  .hero-inner{max-width:760px;}
+  .hero h1{font-size:clamp(2.1rem, 5vw, 3.4rem); line-height:1.08; font-weight:700;}
+  .hero .lede{font-size:1.15rem; color:var(--ink-dim); max-width:620px; margin:18px 0 32px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; align-items:center;}
+  .hero-note{margin-top:16px; font-size:0.85rem; color:var(--ink-dim);}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:64px 0;}
+  .section-head{max-width:640px; margin-bottom:36px;}
+  .section-head .mono{display:block; margin-bottom:10px;}
+  .section-head h2{font-size:clamp(1.5rem, 3vw, 2.1rem);}
+  .section-head p{color:var(--ink-dim); font-size:1.02rem;}
+
+  /* thesis: two states */
+  .states{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:760px){.states{grid-template-columns:1fr;}}
+  .state-card{
+    border-radius:var(--radius);
+    padding:28px;
+    border:1px solid var(--line);
+  }
+  .state-entropy{
+    background:linear-gradient(160deg, rgba(34,211,238,0.05), rgba(7,26,53,0.4));
+  }
+  .state-flow{
+    background:linear-gradient(160deg, rgba(251,191,36,0.10), rgba(7,26,53,0.4));
+    border-color:rgba(251,191,36,0.3);
+  }
+  .state-card h3{font-size:1.15rem; margin-bottom:12px;}
+  .state-card p{color:var(--ink-dim); font-size:0.98rem; margin:0;}
+  .state-tag{display:inline-block; margin-bottom:14px;}
+
+  /* three conditions */
+  .conditions-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:820px){.conditions-grid{grid-template-columns:1fr;}}
+  .cond-card{
+    background:rgba(255,255,255,0.02);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 22px;
+    position:relative;
+  }
+  .cond-card .num{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--yellow-bright);
+    font-size:0.8rem;
+    margin-bottom:14px;
+    display:block;
+  }
+  .cond-card h3{font-size:1.05rem; margin-bottom:10px;}
+  .cond-card p{color:var(--ink-dim); font-size:0.92rem; margin:0;}
+
+  /* four characteristics - alternating rows */
+  .char-list{display:flex; flex-direction:column; gap:0;}
+  .char-row{
+    display:grid; grid-template-columns:200px 1fr; gap:28px;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .char-list .char-row:last-child{border-bottom:1px solid var(--line);}
+  @media (max-width:640px){.char-row{grid-template-columns:1fr; gap:8px;}}
+  .char-label{font-family:'Space Grotesk', sans-serif; font-weight:600; color:var(--cyan-bright); font-size:1.05rem;}
+  .char-row p{margin:0; color:var(--ink-dim);}
+
+  /* practical application */
+  .practical-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;}
+  @media (max-width:820px){.practical-grid{grid-template-columns:1fr;}}
+  .practical-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:18px;}
+  .practical-list li{
+    display:flex; gap:14px; align-items:flex-start;
+    background:rgba(255,255,255,0.02);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px 18px;
+  }
+  .practical-list .marker{
+    flex:0 0 auto;
+    width:26px; height:26px; border-radius:50%;
+    background:rgba(251,191,36,0.15);
+    border:1px solid rgba(251,191,36,0.4);
+    color:var(--yellow-bright);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace; font-size:0.72rem;
+  }
+  .practical-list strong{color:#fff; display:block; margin-bottom:2px; font-family:'Space Grotesk', sans-serif;}
+  .practical-list span{color:var(--ink-dim); font-size:0.92rem;}
+
+  .signal-panel{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px;
+    background:linear-gradient(160deg, rgba(34,211,238,0.06), rgba(7,26,53,0.5));
+  }
+  .signal-panel .mono{margin-bottom:14px; display:block;}
+  .signal-panel svg{width:100%; height:auto;}
+
+  /* final CTA */
+  .cta-final{
+    text-align:center;
+    padding:76px 0 90px;
+  }
+  .cta-final h2{font-size:clamp(1.7rem, 4vw, 2.6rem); max-width:600px; margin:0 auto 14px;}
+  .cta-final p{color:var(--ink-dim); max-width:480px; margin:0 auto 30px; font-size:1.02rem;}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:32px 0;
+  }
+  .footer-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+  .footer-inner .mono{color:var(--ink-dim);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  @keyframes drift{
+    0%{stroke-dashoffset:0;}
+    100%{stroke-dashoffset:-240;}
+  }
+  .wave-anim{animation:drift 7s linear infinite;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-dot"></span>EasyPageX</div>
+    <a class="btn btn-ghost" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <span class="mono">Landing pages that hold attention</span>
+    <h1>Most sites cause psychic entropy.<br>A good landing page puts your visitor in flow.</h1>
+    <p class="lede">Unstructured pages let a visitor's attention drift — into doubt, into the back button, into another tab. EasyPageX builds small business pages engineered around one thing: a clear path from headline to action.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Get your EasyPageX page →</a>
+      <a class="btn btn-ghost" href="#thesis">How it works</a>
+    </div>
+    <p class="hero-note">Affordable, conversion-focused pages — built for small businesses.</p>
+  </div>
+</header>
+
+<div class="wave-row">
+  <svg viewBox="0 0 1200 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path wave-chaos" d="M0,45 L20,20 L40,68 L60,15 L80,60 L100,25 L120,55 L140,10 L160,50 L180,30 L200,45 Q 400,45 600,45 Q 800,45 1000,45 Q 1100,45 1200,45"
+      stroke-dasharray="6 8" opacity="0.55"/>
+    <path class="wave-path wave-smooth wave-anim" d="M0,45 Q 60,45 120,45 Q 300,10 480,45 T 840,45 Q 1020,80 1200,45"
+      stroke-dasharray="10 6"/>
+  </svg>
+</div>
+
+<section id="thesis">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">The core idea</span>
+      <h2>Conversion chaos, meet conversion flow</h2>
+      <p>Csikszentmihalyi found that an unstructured mind drifts into anxiety — "psychic entropy." A visitor's attention behaves the same way. Left to wander a cluttered page, it drifts too: into hesitation, comparison, and the exit button. Flow, for a landing page, means giving that attention nowhere to go but forward.</p>
+    </div>
+    <div class="states">
+      <div class="state-card state-entropy">
+        <span class="mono state-tag">Before · entropy</span>
+        <h3>The average small business site</h3>
+        <p>Five menu items, three competing offers, a stock photo carousel, and a contact form buried on page two. The visitor arrives with a question and leaves with three more.</p>
+      </div>
+      <div class="state-card state-flow">
+        <span class="mono state-tag">After · flow</span>
+        <h3>An EasyPageX page</h3>
+        <p>One offer. One next step. Every line of copy answers the question the visitor actually came with, in the order they need it, ending exactly at the button.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="conditions">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Three conditions</span>
+      <h2>What a page needs to earn flow</h2>
+      <p>Flow only appears when three conditions hold at once. Miss one, and the visitor's attention slips out the side door. We check all three before a page ships.</p>
+    </div>
+    <div class="conditions-grid">
+      <div class="cond-card">
+        <span class="num">Condition — Goal</span>
+        <h3>One clear goal</h3>
+        <p>A single offer and a single call to action. No page competes with itself for the visitor's decision.</p>
+      </div>
+      <div class="cond-card">
+        <span class="num">Condition — Feedback</span>
+        <h3>Immediate feedback</h3>
+        <p>Fast load times, visible confirmation on every click, and proof — reviews, results, specifics — right where doubt would otherwise creep in.</p>
+      </div>
+      <div class="cond-card">
+        <span class="num">Condition — Balance</span>
+        <h3>Matched to the visitor</h3>
+        <p>Just enough explanation for a first-time visitor, not so much that a ready buyer has to dig for the button. The page meets people where they are.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="characteristics">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">What it feels like</span>
+      <h2>Signs a page is working</h2>
+      <p>When these conditions hold, the experience of scrolling the page changes in specific, noticeable ways — for the visitor, and in the numbers.</p>
+    </div>
+    <div class="char-list">
+      <div class="char-row">
+        <span class="char-label">One continuous path</span>
+        <p>Headline, proof, and offer read as a single line of thought — nothing pulls the eye sideways or asks the visitor to backtrack.</p>
+      </div>
+      <div class="char-row">
+        <span class="char-label">No second-guessing</span>
+        <p>Clear pricing, plain language, and visible proof remove the small hesitations that make a visitor pause and reconsider.</p>
+      </div>
+      <div class="char-row">
+        <span class="char-label">It loads like it means it</span>
+        <p>A page that appears instantly doesn't give attention time to wander before the message lands.</p>
+      </div>
+      <div class="char-row">
+        <span class="char-label">The click feels obvious</span>
+        <p>By the time a visitor reaches the button, taking the next step feels like the natural conclusion — not a decision they're being pushed into.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="practical">
+  <div class="wrap practical-grid">
+    <div>
+      <div class="section-head" style="margin-bottom:24px;">
+        <span class="mono">How we build it</span>
+        <h2>The conversion engine, in practice</h2>
+        <p>Getting a page into flow isn't luck — it's a small, repeatable process.</p>
+      </div>
+      <ul class="practical-list">
+        <li>
+          <span class="marker">1</span>
+          <div><strong>Set the one micro-goal</strong><span>Scroll, click, or submit — every section of the page is built around a single next action.</span></div>
+        </li>
+        <li>
+          <span class="marker">2</span>
+          <div><strong>Treat copy like a game of skill</strong><span>Headlines and offers get tested and refined against real visitor behavior, not guessed at once and left alone.</span></div>
+        </li>
+        <li>
+          <span class="marker">3</span>
+          <div><strong>Control the attention, not just the layout</strong><span>Every element that doesn't serve the one goal gets cut, so nothing competes for the visitor's focus.</span></div>
+        </li>
+      </ul>
+    </div>
+    <div class="signal-panel">
+      <span class="mono">Signal, before / after</span>
+      <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+        <path class="wave-path wave-chaos" d="M0,40 L15,15 L30,55 L45,10 L60,50 L75,20 L90,45 L105,8 L120,42 L135,25 L150,40" opacity="0.6"/>
+        <path class="wave-path wave-smooth wave-anim" d="M0,120 Q 40,90 80,120 Q 120,150 160,120 Q 200,90 240,120 Q 280,150 320,120" stroke-dasharray="10 6"/>
+        <text x="0" y="35" fill="#9fc0dd" font-family="JetBrains Mono, monospace" font-size="10">scattered attention</text>
+        <text x="0" y="185" fill="#fde047" font-family="JetBrains Mono, monospace" font-size="10">one clear path to the button</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <h2>Give your visitors a page that feels natural and effortlessly guides them forward.</h2>
+    <p>Affordable, conversion-focused landing pages for small businesses — built with the flow.</p>
+    <a class="btn btn-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Get your EasyPageX page →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="logo"><span class="logo-dot"></span>EasyPageX</div>
+    <span class="mono">easypagex.github.io</span>
+  </div>
+</footer>
+
+</body>
+</html>
