@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Landing pages built for the 8-second brain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red-bg: #C1121F;
+    --red-deep: #7A0C14;
+    --red-shadow: #55070E;
+    --yellow: #FFD400;
+    --yellow-soft: #FFF3B0;
+    --cream: #FCEFD8;
+    --ink: #200404;
+    --ink-soft: rgba(32,4,4,0.7);
+    --paper: #FFF9EC;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--red-bg);
+    color: var(--cream);
+    font-family: 'Work Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1,h2,h3{
+    font-family: 'Archivo Black', sans-serif;
+    line-height: 0.98;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+  .eyebrow{
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--yellow);
+  }
+  a{ color: inherit; }
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky; top:0; z-index: 50;
+    background: var(--red-bg);
+    border-bottom: 3px solid var(--yellow);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height: 68px;
+  }
+  .logo{
+    font-family:'Archivo Black', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+  }
+  .logo span{ color: var(--yellow); }
+  .nav-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background: var(--yellow);
+    color: var(--ink);
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size:0.78rem;
+    letter-spacing:0.03em;
+    text-transform: uppercase;
+    text-decoration:none;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 2px solid var(--ink);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .nav-btn:hover{ transform: translate(-2px,-2px); box-shadow: 3px 3px 0 var(--ink); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 0 72px;
+    position: relative;
+  }
+  .hero .wrap{ position: relative; }
+  .hero h1{
+    font-size: clamp(2.6rem, 6.4vw, 5rem);
+    color: var(--paper);
+    margin-top: 18px;
+  }
+  .hero h1 em{
+    font-style: normal;
+    color: var(--yellow);
+    -webkit-text-stroke: 1.5px var(--ink);
+  }
+  .hero p.lede{
+    max-width: 560px;
+    font-size: 1.15rem;
+    color: var(--cream);
+    margin-top: 22px;
+    line-height: 1.55;
+  }
+  .hero-ctas{
+    display:flex; flex-wrap:wrap; gap:14px;
+    margin-top: 34px;
+  }
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:10px;
+    background: var(--yellow);
+    color: var(--ink);
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size:0.85rem;
+    letter-spacing:0.03em;
+    text-transform: uppercase;
+    text-decoration:none;
+    padding: 15px 26px;
+    border-radius: 10px;
+    border: 2px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--ink);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary:hover{ transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--ink); }
+  .btn-ghost{
+    display:inline-flex; align-items:center;
+    color: var(--paper);
+    font-family:'JetBrains Mono', monospace;
+    font-weight:600;
+    font-size:0.85rem;
+    text-decoration:none;
+    padding: 15px 6px;
+    border-bottom: 2px solid var(--yellow);
+  }
+
+  /* Attention meter signature element */
+  .meter{
+    margin-top: 56px;
+    background: var(--red-deep);
+    border: 2px solid var(--yellow);
+    border-radius: 14px;
+    padding: 22px 24px;
+    max-width: 620px;
+  }
+  .meter-top{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:'JetBrains Mono', monospace;
+  }
+  .meter-label{ font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color: var(--yellow); }
+  .meter-count{ font-size:1.4rem; font-weight:700; color: var(--paper); }
+  .meter-track{
+    position:relative;
+    height: 10px;
+    background: var(--red-shadow);
+    border-radius: 6px;
+    margin-top: 12px;
+    overflow: hidden;
+  }
+  .meter-fill{
+    position:absolute; left:0; top:0; bottom:0;
+    width: 100%;
+    background: var(--yellow);
+    border-radius: 6px;
+    animation: drain 8s linear infinite;
+    transform-origin: left;
+  }
+  @keyframes drain{
+    0%{ transform: scaleX(1); }
+    100%{ transform: scaleX(0); }
+  }
+  .meter-note{
+    font-size: 0.85rem;
+    color: var(--cream);
+    margin-top: 12px;
+    line-height:1.5;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .meter-fill{ animation: none; width: 35%; }
+  }
+
+  /* ---------- SECTION SHELLS ---------- */
+  section{ padding: 84px 0; }
+  .section-head{ max-width: 640px; margin-bottom: 46px; }
+  .section-head h2{
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+    color: var(--paper);
+    margin-top: 14px;
+  }
+  .section-head p{ color: var(--cream); font-size: 1.02rem; margin-top: 14px; line-height:1.6; }
+
+  /* ---------- COST OF CLUTTER (dark panel with scan demo) ---------- */
+  .clutter{ background: var(--red-deep); }
+  .scan-demo{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 10px;
+  }
+  @media (max-width: 760px){ .scan-demo{ grid-template-columns: 1fr; } }
+  .demo-card{
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 14px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+    min-height: 230px;
+  }
+  .demo-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase;
+    font-weight:700;
+  }
+  .tag-bad{ color: #A8151F; }
+  .tag-good{ color: #7A5E00; }
+  .demo-line{ height: 9px; background: #E9DAC0; border-radius: 4px; margin-top: 14px; }
+  .demo-line.short{ width: 55%; }
+  .demo-line.mid{ width: 78%; }
+  .demo-cluster{ display:flex; gap:8px; margin-top: 14px; flex-wrap:wrap; }
+  .demo-chip{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 0.62rem; font-weight:700;
+    background: #F3E2C4; color: #A8151F;
+    padding: 5px 9px; border-radius: 999px;
+    border: 1px solid #D9BE8F;
+  }
+  .scanline{
+    position:absolute; left:0; right:0; height: 3px;
+    background: linear-gradient(90deg, transparent, #A8151F, transparent);
+    animation: fpattern 5s ease-in-out infinite;
+    opacity:0.75;
+  }
+  @keyframes fpattern{
+    0%{ top: 14%; left:0; width: 92%; }
+    18%{ top: 14%; left:0; width: 92%; }
+    26%{ top: 40%; left:0; width: 55%; }
+    44%{ top: 40%; left:0; width: 55%; }
+    52%{ top: 68%; left:0; width: 30%; }
+    70%{ top: 68%; left:0; width: 30%; }
+    100%{ top: 14%; left:0; width: 92%; }
+  }
+  @media (prefers-reduced-motion: reduce){ .scanline{ animation:none; top:14%; width:92%; } }
+
+  .good-cta{
+    margin-top: 28px;
+    display:inline-block;
+    background: var(--yellow);
+    color: var(--ink);
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700; font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase;
+    padding: 11px 18px; border-radius: 8px;
+  }
+
+  /* ---------- HOW WE BUILD (numbered, real sequence) ---------- */
+  .steps{
+    display:grid; gap: 2px;
+    background: var(--yellow);
+    border-radius: 16px;
+    overflow:hidden;
+    margin-top: 8px;
+  }
+  .step{
+    background: var(--red-bg);
+    padding: 26px 28px;
+    display:grid; grid-template-columns: 64px 1fr; gap: 18px; align-items:start;
+  }
+  .step-num{
+    font-family:'Archivo Black', sans-serif;
+    font-size: 2rem; color: var(--yellow);
+  }
+  .step h3{ font-size: 1.05rem; color: var(--paper); text-transform:none; }
+  .step p{ margin: 8px 0 0; color: var(--cream); font-size: 0.95rem; line-height:1.55; }
+
+  /* ---------- PROOF STRIP ---------- */
+  .stats{
+    display:grid; grid-template-columns: repeat(3,1fr); gap: 20px;
+  }
+  @media (max-width: 700px){ .stats{ grid-template-columns: 1fr; } }
+  .stat{
+    background: var(--yellow-soft);
+    color: var(--ink);
+    border-radius: 14px;
+    padding: 26px;
+    border: 2px solid var(--ink);
+  }
+  .stat .num{ font-family:'Archivo Black', sans-serif; font-size: 2.4rem; }
+  .stat .desc{ font-family:'Work Sans'; font-size:0.9rem; margin-top:6px; color: var(--ink-soft); }
+
+  /* ---------- FINAL CTA ---------- */
+  .final{
+    background: var(--ink);
+    text-align:center;
+    padding: 100px 0;
+  }
+  .final h2{
+    color: var(--paper);
+    font-size: clamp(2rem, 5vw, 3.4rem);
+  }
+  .final h2 span{ color: var(--yellow); }
+  .final p{ color: rgba(255,249,236,0.75); max-width: 480px; margin: 18px auto 0; }
+  .final .btn-primary{ margin-top: 34px; font-size: 0.95rem; padding: 18px 34px; }
+
+  footer{
+    background: var(--red-shadow);
+    padding: 28px 0;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: rgba(255,249,236,0.6);
+    text-align:center;
+  }
+  footer a{ color: var(--yellow); text-decoration:none; }
+
+  :focus-visible{ outline: 3px solid var(--yellow); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">easyland<span>x</span></div>
+    <a class="nav-btn" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit easylandx →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">// landing pages, built for how people actually read online</div>
+    <h1>Your visitor gives you <em>8 seconds.</em><br>We design every one of them.</h1>
+    <p class="lede">The internet rewired how people read — fast, fractured, skimming for the next decision. Most small business websites still write like it's 1999. easylandx builds landing pages for the brain your customer actually brings to the page: distracted, impatient, ready to leave.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Get your landing page →</a>
+      <a class="btn-ghost" href="#clutter">See the problem ↓</a>
+    </div>
+
+    <div class="meter">
+      <div class="meter-top">
+        <span class="meter-label">Visitor attention remaining</span>
+        <span class="meter-count">8.0s</span>
+      </div>
+      <div class="meter-track"><div class="meter-fill"></div></div>
+      <p class="meter-note">This is the real budget. Every menu item, popup, and paragraph on your site spends it. easylandx spends it on one thing: getting your visitor to say yes.</p>
+    </div>
+  </div>
+</header>
+
+<section class="clutter" id="clutter">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">01 — the cost of clutter</div>
+      <h2>Every extra link is a decision your visitor has to make.</h2>
+      <p>Years of scrolling feeds and clicking links trained the brain to scan, not read — eyes moving in a rough "F," grabbing headlines and bailing on dense paragraphs. A cluttered homepage forces a decision at every link: click this, skip that, is this relevant to me? Multiply that by twenty nav items and a wall of text, and most visitors leave before they ever see your offer.</p>
+    </div>
+
+    <div class="scan-demo">
+      <div class="demo-card">
+        <div class="scanline"></div>
+        <span class="demo-tag tag-bad">Typical small business site</span>
+        <div class="demo-cluster">
+          <span class="demo-chip">Home</span><span class="demo-chip">About</span><span class="demo-chip">Services</span><span class="demo-chip">Blog</span><span class="demo-chip">Team</span><span class="demo-chip">FAQ</span><span class="demo-chip">Careers</span>
+        </div>
+        <div class="demo-line mid"></div>
+        <div class="demo-line"></div>
+        <div class="demo-line short"></div>
+        <div class="demo-line mid"></div>
+        <div class="demo-line"></div>
+      </div>
+      <div class="demo-card">
+        <span class="demo-tag tag-good">easylandx landing page</span>
+        <div class="demo-line" style="width:70%; height:16px; margin-top:18px;"></div>
+        <div class="demo-line short"></div>
+        <div class="demo-line" style="width:64%;"></div>
+        <span class="good-cta">Book a free call →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">02 — how we build</div>
+      <h2>We remove the decisions. You keep the sale.</h2>
+      <p>No template dump, no twelve-page site you'll never finish writing. Just the page that gets a stranger from "who is this" to "I want this," in the order they actually think.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <div>
+          <h3>One offer, one page</h3>
+          <p>We start with the single thing you want a visitor to do — book, buy, or call — and build backward from it. No competing links pulling attention away from the goal.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div>
+          <h3>Written for skimming, not reading</h3>
+          <p>Short headlines carry the argument on their own. Anyone scanning in five seconds still gets the pitch — the paragraphs are there for the visitor who wants more, not the one who needs it.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div>
+          <h3>Built and live in days</h3>
+          <p>Affordable, fixed pricing and a fast turnaround — because a small business can't afford a six-week build for a page that should exist next week.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">04</span>
+        <div>
+          <h3>One call-to-action, repeated on purpose</h3>
+          <p>The same button, same words, same place your eye expects it — every scroll down the page is another chance to convert, not another decision to make.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="clutter">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">03 — why it works</div>
+      <h2>Conversion-focused isn't a buzzword. It's the whole page.</h2>
+      <p>A landing page has one job. When everything on the page serves that job — the headline, the layout, the single button — visitors don't have to think about where to look or what to do next. That's the difference between a site people admire and a site that gets them to say yes.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num">1</div><div class="desc">Clear call-to-action per page — no competing links</div></div>
+      <div class="stat"><div class="num">&lt;8s</div><div class="desc">Time your headline has to earn the scroll</div></div>
+      <div class="stat"><div class="num">$</div><div class="desc">Priced for small businesses, not enterprise budgets</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--yellow);">ready when you are</div>
+    <h2>Stop fighting for attention. <span>Design for it.</span></h2>
+    <p>Tell us what you sell and who you sell it to. We'll build the page that gets them to say yes before they scroll away.</p>
+    <a class="btn-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit easylandx →</a>
+  </div>
+</section>
+
+<footer>
+  easylandx — affordable, conversion-focused landing pages · <a href="https://easypagex.github.io" target="_blank" rel="noopener">easypagex.github.io</a>
+</footer>
+
+</body>
+</html>
