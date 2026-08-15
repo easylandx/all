@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing pages that talk like a real person</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1E293B;
+    --bg-deep:#151F2E;
+    --card:#25334A;
+    --card-hi:#2C3D59;
+    --border:rgba(148,163,184,0.16);
+    --blue:#0EA5E9;
+    --yellow:#FBBF24;
+    --text:#E7ECF3;
+    --text-dim:#93A2B8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3, .mono{
+    font-family:'JetBrains Mono', monospace;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(21,31,46,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
+  .logo{font-family:'JetBrains Mono', monospace; font-weight:800; font-size:1.05rem; letter-spacing:-0.02em;}
+  .logo span{color:var(--blue);}
+  .nav-cta{
+    background:var(--blue); color:var(--bg-deep); font-weight:700; font-size:0.85rem;
+    padding:9px 18px; border-radius:6px; font-family:'JetBrains Mono', monospace;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .nav-cta:hover{transform:translateY(-1px); box-shadow:0 6px 20px rgba(14,165,233,0.35);}
+
+  /* HERO */
+  header.hero{padding:100px 0 90px; position:relative;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--yellow);
+    background:rgba(251,191,36,0.08); border:1px solid rgba(251,191,36,0.25);
+    padding:6px 12px; border-radius:100px; margin-bottom:28px;
+  }
+  .hero h1{
+    font-size:clamp(2.3rem, 5.5vw, 4rem);
+    font-weight:800; line-height:1.08; letter-spacing:-0.02em;
+    max-width:820px;
+  }
+  .hero h1 .toggle-word{
+    color:var(--blue);
+    border-bottom:3px dotted rgba(14,165,233,0.5);
+    cursor:pointer;
+  }
+  .hero p.sub{
+    margin-top:24px; font-size:1.1rem; color:var(--text-dim); max-width:600px;
+  }
+  .hero-actions{margin-top:36px; display:flex; gap:16px; flex-wrap:wrap; align-items:center;}
+  .btn-primary{
+    background:var(--blue); color:var(--bg-deep); font-weight:700;
+    padding:14px 26px; border-radius:8px; font-family:'JetBrains Mono', monospace; font-size:0.95rem;
+    display:inline-block; transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(14,165,233,0.4);}
+  .btn-ghost{
+    color:var(--text-dim); font-size:0.9rem; font-family:'JetBrains Mono', monospace;
+    border-bottom:1px solid var(--border); padding-bottom:2px;
+  }
+
+  /* TONE DEMO — signature interactive element */
+  .tone-demo{
+    margin-top:64px; background:var(--card); border:1px solid var(--border);
+    border-radius:14px; padding:28px 30px; max-width:640px;
+  }
+  .tone-demo .demo-label{
+    font-family:'JetBrains Mono', monospace; font-size:0.72rem; color:var(--text-dim);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:14px;
+  }
+  .demo-line{
+    display:flex; align-items:baseline; gap:14px; padding:10px 0;
+    border-bottom:1px dashed var(--border);
+  }
+  .demo-line:last-child{border-bottom:none;}
+  .demo-tag{
+    font-family:'JetBrains Mono', monospace; font-size:0.7rem; padding:2px 8px;
+    border-radius:100px; white-space:nowrap;
+  }
+  .demo-tag.cold{background:rgba(148,163,184,0.15); color:var(--text-dim);}
+  .demo-tag.warm{background:rgba(251,191,36,0.15); color:var(--yellow);}
+  .demo-text{font-size:1.02rem;}
+  .demo-text.cold{color:var(--text-dim); font-style:italic;}
+  .demo-text.warm{color:var(--text); font-weight:600;}
+
+  /* SECTION shell */
+  section{padding:90px 0; border-top:1px solid var(--border);}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .kicker{
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--blue);
+    text-transform:uppercase; letter-spacing:0.1em; margin-bottom:14px; display:block;
+  }
+  .section-head h2{font-size:clamp(1.6rem, 3.4vw, 2.4rem); font-weight:800; letter-spacing:-0.01em;}
+  .section-head p{margin-top:16px; color:var(--text-dim); font-size:1.02rem;}
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* PUNCTUATION SHOWCASE */
+  .punct-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;}
+  .punct-card{
+    background:var(--card); border:1px solid var(--border); border-radius:12px; padding:26px 22px;
+  }
+  .punct-mark{font-family:'JetBrains Mono', monospace; font-size:2rem; color:var(--yellow); font-weight:800; margin-bottom:14px; display:block;}
+  .punct-card h3{font-size:1.02rem; margin-bottom:10px;}
+  .punct-card p{color:var(--text-dim); font-size:0.92rem;}
+  .punct-example{
+    margin-top:14px; font-family:'JetBrains Mono', monospace; font-size:0.85rem;
+    background:var(--bg-deep); border:1px solid var(--border); border-radius:8px; padding:10px 12px;
+    color:var(--blue);
+  }
+
+  /* GESTURES / EMOJI SECTION */
+  .gesture-row{display:flex; gap:48px; align-items:center; flex-wrap:wrap;}
+  .gesture-visual{
+    flex:1; min-width:280px; background:var(--card); border:1px solid var(--border);
+    border-radius:16px; padding:36px; text-align:center;
+  }
+  .gesture-visual .big-emoji-row{font-size:2.6rem; letter-spacing:12px; margin-bottom:18px;}
+  .gesture-visual .caption{font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--text-dim);}
+  .gesture-text{flex:1.2; min-width:280px;}
+  .gesture-text ul{list-style:none; margin-top:20px;}
+  .gesture-text li{
+    padding:12px 0 12px 28px; position:relative; color:var(--text-dim); border-bottom:1px solid var(--border);
+  }
+  .gesture-text li:before{
+    content:"→"; position:absolute; left:0; color:var(--yellow); font-family:'JetBrains Mono', monospace;
+  }
+  .gesture-text li strong{color:var(--text); font-weight:600;}
+
+  /* FIVE KINDS TABLE */
+  .kinds-table{width:100%; border-collapse:collapse; margin-top:8px;}
+  .kinds-table th{
+    text-align:left; font-family:'JetBrains Mono', monospace; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.08em; color:var(--text-dim);
+    padding:14px 16px; border-bottom:1px solid var(--border);
+  }
+  .kinds-table td{padding:18px 16px; border-bottom:1px solid var(--border); vertical-align:top;}
+  .kinds-table tr.highlight td{background:rgba(14,165,233,0.07);}
+  .kinds-table tr.highlight td:first-child{border-left:3px solid var(--blue);}
+  .kind-name{font-weight:700; font-size:0.98rem;}
+  .kind-name .dot{color:var(--yellow);}
+  .kinds-table td{color:var(--text-dim); font-size:0.92rem;}
+  .kinds-table td.kind-name-cell{color:var(--text);}
+  .tag-pill{
+    display:inline-block; font-family:'JetBrains Mono', monospace; font-size:0.68rem;
+    background:rgba(251,191,36,0.15); color:var(--yellow); padding:3px 9px; border-radius:100px;
+  }
+
+  /* SPREAD / NETWORK SECTION */
+  .spread-wrap{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;}
+  .spread-diagram{
+    background:var(--card); border:1px solid var(--border); border-radius:16px; padding:40px 30px;
+    position:relative; min-height:280px; display:flex; align-items:center; justify-content:center;
+  }
+  .node-center{
+    width:64px; height:64px; border-radius:50%; background:var(--blue); color:var(--bg-deep);
+    display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono', monospace;
+    font-weight:800; font-size:0.75rem; text-align:center; position:relative; z-index:2;
+  }
+  .node{
+    width:36px; height:36px; border-radius:50%; background:var(--card-hi); border:1px solid var(--border);
+    position:absolute; display:flex; align-items:center; justify-content:center; font-size:0.9rem;
+  }
+  .n1{top:14%; left:18%;} .n2{top:20%; right:14%;} .n3{bottom:16%; left:14%;}
+  .n4{bottom:22%; right:18%;} .n5{top:50%; left:6%;} .n6{top:48%; right:6%;}
+  .spread-diagram svg{position:absolute; inset:0; width:100%; height:100%;}
+
+  /* FOOTER CTA */
+  .cta-final{
+    text-align:center; padding:110px 0 100px;
+    background:linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+    border-top:1px solid var(--border);
+  }
+  .cta-final h2{font-size:clamp(1.8rem, 4vw, 2.8rem); font-weight:800; max-width:680px; margin:0 auto; letter-spacing:-0.02em;}
+  .cta-final p{color:var(--text-dim); margin:20px auto 36px; max-width:480px;}
+  footer{
+    padding:32px 0; text-align:center; color:var(--text-dim); font-size:0.82rem;
+    font-family:'JetBrains Mono', monospace; border-top:1px solid var(--border);
+  }
+  footer a{color:var(--blue);}
+
+  @media (max-width:760px){
+    .punct-grid{grid-template-columns:1fr;}
+    .spread-wrap{grid-template-columns:1fr;}
+    .gesture-row{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">easy<span>land</span>x</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">See the site →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">🟡 landing pages, in plain human</span>
+    <h1>Your business talks in DMs.<br>Your website still talks like a <span class="toggle-word" id="toggleWord">memo.</span></h1>
+    <p class="sub">EasyLandX builds fast, affordable, conversion-focused landing pages for small businesses — written the way your customers actually read, not the way a brochure was written in 1998.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Get your EasyLandX page →</a>
+      <a class="btn-ghost" href="#voice">See what "tone" even means ↓</a>
+    </div>
+
+    <div class="tone-demo">
+      <div class="demo-label">// same landing page. two ways to write it.</div>
+      <div class="demo-line">
+        <span class="demo-tag cold">Generic site</span>
+        <span class="demo-text cold">"Our company provides quality services to clients."</span>
+      </div>
+      <div class="demo-line">
+        <span class="demo-tag warm">EasyLandX</span>
+        <span class="demo-text warm">"Book your first class in 2 taps 👋"</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="voice">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker">01 — the evolution of the landing page</span>
+      <h2>The internet didn't ruin business writing. It just made "formal" optional.</h2>
+      <p>For decades, a business had two voices: the formal one (brochures, contracts, "Dear Sir or Madam") and the spoken one, saved for the actual phone call. The internet collapsed that gap — customers now expect a business to sound like a person typing back, fast, on their phone. A landing page that still sounds like a brochure reads as slow, distant, and expensive. That's the gap EasyLandX writes for.</p>
+    </div>
+
+    <div class="punct-grid">
+      <div class="punct-card reveal">
+        <span class="punct-mark">.</span>
+        <h3>The period</h3>
+        <p>On a landing page, a flat "Contact us." feels closed. Drop the full stop on a CTA and it reads open, easy, low-friction.</p>
+        <div class="punct-example">"Book a class." → "Book a class"</div>
+      </div>
+      <div class="punct-card reveal">
+        <span class="punct-mark">Aa</span>
+        <h3>Caps &amp; lowercase</h3>
+        <p>ALL CAPS headlines shout "SALE." lowercase headlines feel handmade and personal — right for a ceramics studio, wrong for a clinic.</p>
+        <div class="punct-example">book now. today only.</div>
+      </div>
+      <div class="punct-card reveal">
+        <span class="punct-mark">aaa</span>
+        <h3>Stretched letters</h3>
+        <p>A stretched word in a headline ("yesss, we deliver") signals energy — a small, deliberate wink that a template never uses.</p>
+        <div class="punct-example">fresh coffee, dailyyy ☕</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="gesture-row">
+      <div class="gesture-visual reveal">
+        <div class="big-emoji-row">👋 🐾 ☕ 💪 ✨</div>
+        <div class="caption">not decoration — digital gestures</div>
+      </div>
+      <div class="gesture-text reveal">
+        <span class="kicker">02 — icons as digital gestures</span>
+        <h2>An emoji isn't a picture. It's a wave hello.</h2>
+        <p style="color:var(--text-dim); margin-top:14px;">On a landing page, a small emoji or icon next to a button does the job your hand would do in person — it softens a request, signals warmth, or says "relax, this is easy" before the customer reads a word.</p>
+        <ul>
+          <li><strong>Next to a WhatsApp button</strong> — a wave says "we'll actually reply."</li>
+          <li><strong>Next to a price</strong> — a paw, a cup, a flower — tells the customer what kind of business this is, instantly.</li>
+          <li><strong>Next to a form</strong> — a checkmark reduces the "will this actually work" hesitation.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker">03 — five kinds of small business websites</span>
+      <h2>Where EasyLandX fits, compared to what you probably have now.</h2>
+      <p>Every small business is somewhere on this map. Most of the cost and speed problems come from being one step behind where the business actually needs to be.</p>
+    </div>
+    <table class="kinds-table reveal">
+      <tr>
+        <th>Type</th>
+        <th>What it looks like</th>
+        <th>The problem</th>
+      </tr>
+      <tr>
+        <td class="kind-name-cell"><span class="kind-name">The Business Card <span class="dot">·</span></span></td>
+        <td>A phone number, an address, nothing online.</td>
+        <td>Invisible to anyone searching before they call.</td>
+      </tr>
+      <tr>
+        <td class="kind-name-cell"><span class="kind-name">The Social-Only Page</span></td>
+        <td>An Instagram bio and a "message us" link.</td>
+        <td>No real place to send an ad or a Google search.</td>
+      </tr>
+      <tr>
+        <td class="kind-name-cell"><span class="kind-name">The DIY Builder</span></td>
+        <td>A drag-and-drop template site, half-finished.</td>
+        <td>Slow to load, generic copy, no clear next step.</td>
+      </tr>
+      <tr>
+        <td class="kind-name-cell"><span class="kind-name">The Agency Brochure</span></td>
+        <td>A polished site that took months and a lot of money.</td>
+        <td>Formal, stiff, and expensive to change later.</td>
+      </tr>
+      <tr class="highlight">
+        <td class="kind-name-cell"><span class="kind-name">The EasyLandX Page <span class="tag-pill">this one</span></span></td>
+        <td>Live in days, written in your customer's voice, one clear action.</td>
+        <td>Built to convert, priced for a small business.</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="spread-wrap">
+      <div class="reveal">
+        <span class="kicker">04 — how a good page spreads</span>
+        <h2>Word of mouth is just a network with weak ties.</h2>
+        <p style="color:var(--text-dim); margin-top:14px;">A good landing page doesn't need to go viral — it needs to be easy to forward. One customer sends the link in a WhatsApp group. A follower screenshots the price list to a friend. That's the whole growth engine for most small businesses, and it only works if the page is quick to read, easy to share, and clear about the one action to take.</p>
+      </div>
+      <div class="spread-diagram reveal">
+        <svg viewBox="0 0 300 260">
+          <line x1="150" y1="130" x2="55" y2="40" stroke="#0EA5E9" stroke-opacity="0.35" stroke-width="1.5"/>
+          <line x1="150" y1="130" x2="245" y2="52" stroke="#0EA5E9" stroke-opacity="0.35" stroke-width="1.5"/>
+          <line x1="150" y1="130" x2="45" y2="220" stroke="#0EA5E9" stroke-opacity="0.35" stroke-width="1.5"/>
+          <line x1="150" y1="130" x2="255" y2="205" stroke="#0EA5E9" stroke-opacity="0.35" stroke-width="1.5"/>
+          <line x1="150" y1="130" x2="18" y2="130" stroke="#0EA5E9" stroke-opacity="0.35" stroke-width="1.5"/>
+          <line x1="150" y1="130" x2="282" y2="130" stroke="#0EA5E9" stroke-opacity="0.35" stroke-width="1.5"/>
+        </svg>
+        <div class="node-center">your<br>page</div>
+        <div class="node n1">💬</div>
+        <div class="node n2">📲</div>
+        <div class="node n3">☕</div>
+        <div class="node n4">✂️</div>
+        <div class="node n5">🐶</div>
+        <div class="node n6">🧘</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final" style="border-top:1px solid var(--border);">
+  <div class="wrap">
+    <h2 class="reveal">Let's write the version people actually read.</h2>
+    <p class="reveal">Affordable, conversion-focused, live fast — that's the whole pitch.</p>
+    <a class="btn-primary reveal" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx.github.io →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">easylandx · affordable landing pages, written like people talk · <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a></div>
+</footer>
+
+<script>
+  // Hero word toggle — formal vs informal, the whole thesis in one click
+  const words = ["memo.", "memo", "brochure.", "PDF."];
+  let wi = 0;
+  const toggleEl = document.getElementById('toggleWord');
+  toggleEl.addEventListener('click', () => {
+    wi = (wi + 1) % words.length;
+    toggleEl.textContent = words[wi];
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
