@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>EasyLandX — Landing Page Therapy</title>
+<meta name="description" content="Your landing page isn't broken, it's just thinking negatively. EasyLandX helps small businesses reframe distorted beliefs about their website into a page that converts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky-light:#EAF6FB;
+    --sky:#CDEAF4;
+    --sky-deep:#9DD3E6;
+    --amber:#E8A23A;
+    --amber-deep:#C67A1E;
+    --sage:#8FAE87;
+    --sage-deep:#5E7D57;
+    --ink:#1E3A45;
+    --ink-soft:#3E5A66;
+    --paper:#FFFDF6;
+    --paper-line:#D8E9EE;
+    --radius:18px;
+    --shadow: 0 18px 40px -20px rgba(30,58,69,0.35);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% 8%, rgba(255,255,255,0.55), transparent 45%),
+      linear-gradient(180deg, var(--sky-light) 0%, var(--sky) 55%, var(--sky-deep) 100%);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    margin:0;
+  }
+  p{margin:0;}
+  a{color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 clamp(20px, 5vw, 48px);
+  }
+  ::selection{background:var(--amber); color:#fff;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.is-visible{opacity:1; transform:translateY(0);}
+
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--amber-deep);
+    outline-offset:3px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.site-nav{
+    position:sticky; top:0; z-index:40;
+    backdrop-filter: blur(10px);
+    background:rgba(234,246,251,0.78);
+    border-bottom:1px solid rgba(30,58,69,0.08);
+  }
+  .nav-inner{
+    max-width:1100px; margin:0 auto;
+    padding:14px clamp(20px, 5vw, 48px);
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-weight:700; font-size:1.15rem;
+    text-decoration:none; color:var(--ink);
+  }
+  .brand-mark{
+    width:34px; height:34px; border-radius:9px;
+    background:linear-gradient(135deg, var(--amber), var(--sage));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:0.95rem; font-weight:700;
+    box-shadow:0 6px 14px -6px rgba(30,58,69,0.5);
+  }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--ink); color:#fff !important;
+    padding:10px 18px; border-radius:999px;
+    font-weight:600; font-size:0.92rem; text-decoration:none;
+    transition:transform .2s ease, background .2s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--amber-deep); transform:translateY(-1px);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:clamp(56px, 9vw, 108px) 0 clamp(40px, 7vw, 72px);
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:clamp(32px, 6vw, 64px);
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Work Sans', sans-serif; font-weight:600;
+    font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--sage-deep);
+    background:rgba(143,174,135,0.16);
+    padding:6px 14px; border-radius:999px;
+    margin-bottom:20px;
+  }
+  .eyebrow::before{content:"◐"; color:var(--amber-deep); font-size:0.9rem;}
+  .hero h1{
+    font-size:clamp(2.3rem, 5vw, 3.4rem);
+    line-height:1.08;
+    max-width:14ch;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--amber-deep);
+  }
+  .hero p.lede{
+    margin-top:22px;
+    font-size:1.1rem;
+    color:var(--ink-soft);
+    max-width:46ch;
+  }
+  .hero-actions{
+    margin-top:32px;
+    display:flex; flex-wrap:wrap; gap:14px; align-items:center;
+  }
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--amber);
+    color:#fff !important;
+    text-decoration:none;
+    padding:15px 26px;
+    border-radius:999px;
+    font-weight:700; font-size:1rem;
+    box-shadow:0 14px 26px -12px rgba(198,122,30,0.65);
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    border:none; cursor:pointer;
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    background:var(--amber-deep);
+    box-shadow:0 18px 30px -12px rgba(198,122,30,0.75);
+  }
+  .btn-ghost{
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--ink-soft) !important;
+    text-decoration:none;
+    font-weight:600; font-size:0.95rem;
+    padding:14px 6px;
+    border-bottom:2px solid transparent;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .btn-ghost:hover{border-color:var(--sage-deep); color:var(--sage-deep) !important;}
+
+  /* index card (signature element) */
+  .index-card{
+    background:var(--paper);
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    padding:28px 26px 24px;
+    transform:rotate(2.5deg);
+    position:relative;
+    border:1px solid rgba(30,58,69,0.06);
+  }
+  .index-card::before{
+    content:"";
+    position:absolute; left:26px; right:26px; top:52px; bottom:22px;
+    background-image:repeating-linear-gradient(
+      to bottom, transparent, transparent 27px, var(--paper-line) 28px
+    );
+    pointer-events:none;
+    opacity:0.9;
+  }
+  .index-card .pin{
+    position:absolute; top:-12px; left:50%; transform:translateX(-50%) rotate(-6deg);
+    width:34px; height:34px; border-radius:50%;
+    background:radial-gradient(circle at 32% 30%, #fff, var(--sage) 45%, var(--sage-deep) 100%);
+    box-shadow:0 6px 10px -4px rgba(30,58,69,0.5);
+  }
+  .index-card-label{
+    font-size:0.72rem; letter-spacing:0.09em; text-transform:uppercase;
+    color:var(--amber-deep); font-weight:700; margin-bottom:6px; position:relative;
+  }
+  .index-card h3{
+    font-size:1.15rem; position:relative; margin-bottom:16px;
+  }
+  .index-row{
+    position:relative;
+    display:flex; justify-content:space-between; gap:10px;
+    font-size:0.88rem;
+    padding:5px 0;
+    color:var(--ink-soft);
+  }
+  .index-row b{color:var(--ink); font-weight:600;}
+  .index-row .tag{
+    font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;
+    color:var(--sage-deep);
+  }
+
+  /* ---------- SECTION shared ---------- */
+  section{padding:clamp(56px, 8vw, 96px) 0;}
+  .section-head{
+    max-width:60ch; margin-bottom:clamp(32px, 5vw, 52px);
+  }
+  .section-eyebrow{
+    font-size:0.78rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase;
+    color:var(--sage-deep); margin-bottom:10px; display:block;
+  }
+  .section-head h2{font-size:clamp(1.7rem, 3.4vw, 2.4rem); line-height:1.15;}
+  .section-head p{margin-top:14px; color:var(--ink-soft); font-size:1.03rem;}
+
+  /* thesis strip */
+  .thesis{
+    background:var(--ink);
+    color:var(--sky-light);
+    border-radius:22px;
+    padding:clamp(30px, 5vw, 46px);
+    display:grid;
+    grid-template-columns: 1fr auto;
+    gap:24px;
+    align-items:center;
+  }
+  .thesis p{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:clamp(1.2rem, 2.4vw, 1.6rem);
+    line-height:1.4;
+    max-width:34ch;
+  }
+  .thesis .thesis-sub{
+    font-family:'Work Sans', sans-serif;
+    font-style:normal;
+    font-size:0.92rem;
+    color:rgba(234,246,251,0.7);
+    margin-top:12px;
+    max-width:36ch;
+  }
+  .thesis-arrow{
+    width:56px; height:56px; border-radius:50%;
+    background:var(--amber);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink); font-size:1.4rem; font-weight:700;
+    flex-shrink:0;
+  }
+
+  /* distortions grid */
+  .distortion-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(255px, 1fr));
+    gap:18px;
+  }
+  .distortion-card{
+    background:var(--paper);
+    border-radius:16px;
+    padding:22px 22px 20px;
+    border:1px solid rgba(30,58,69,0.07);
+    box-shadow:0 10px 24px -18px rgba(30,58,69,0.4);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .distortion-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 18px 30px -16px rgba(30,58,69,0.45);
+  }
+  .distortion-num{
+    font-family:'Fraunces', serif;
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--amber-deep);
+    margin-bottom:10px;
+    display:block;
+  }
+  .distortion-card h3{
+    font-size:1.05rem; margin-bottom:8px; line-height:1.3;
+  }
+  .distortion-quote{
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    border-left:3px solid var(--sage);
+    padding-left:12px;
+    margin:10px 0 12px;
+  }
+  .distortion-fix{
+    font-size:0.88rem;
+    color:var(--ink);
+    background:rgba(143,174,135,0.14);
+    border-radius:10px;
+    padding:10px 12px;
+  }
+  .distortion-fix b{color:var(--sage-deep);}
+
+  /* worksheet section */
+  .worksheet-wrap{
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap:clamp(28px, 5vw, 56px);
+    align-items:start;
+  }
+  .worksheet{
+    background:var(--paper);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    border:1px solid rgba(30,58,69,0.07);
+  }
+  .worksheet-head{
+    background:var(--sky-deep);
+    padding:18px 22px;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:10px;
+  }
+  .worksheet-head span{
+    font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em;
+    font-weight:700; color:var(--ink);
+  }
+  .worksheet-body{padding:6px 4px;}
+  .worksheet-row{
+    display:grid;
+    grid-template-columns: 0.9fr 0.7fr 1.4fr;
+    gap:0;
+    border-bottom:1px dashed var(--paper-line);
+  }
+  .worksheet-row:last-child{border-bottom:none;}
+  .worksheet-row > div{
+    padding:16px 16px;
+  }
+  .worksheet-row .col-thought{border-right:1px dashed var(--paper-line);}
+  .worksheet-row .col-distortion{border-right:1px dashed var(--paper-line);}
+  .worksheet-row .col-label{
+    font-size:0.68rem; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--amber-deep); font-weight:700; display:block; margin-bottom:6px;
+  }
+  .worksheet-row .col-distortion .col-label{color:var(--sage-deep);}
+  .worksheet-row .col-fix .col-label{color:var(--ink-soft);}
+  .worksheet-row p{font-size:0.92rem; color:var(--ink);}
+  .worksheet-row.header-row{background:rgba(30,58,69,0.03);}
+  .worksheet-row.header-row div{
+    font-size:0.72rem; text-transform:uppercase; letter-spacing:0.07em;
+    font-weight:700; color:var(--ink-soft); padding:12px 16px;
+  }
+
+  .worksheet-copy h2{font-size:clamp(1.6rem, 3vw, 2.1rem); margin-bottom:16px;}
+  .worksheet-copy p{color:var(--ink-soft); margin-bottom:14px; font-size:1.02rem;}
+  .worksheet-copy .mini-cta{margin-top:10px;}
+
+  /* three-step / do-nothingism */
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:18px;
+    counter-reset:step;
+  }
+  .step-card{
+    position:relative;
+    background:var(--sky-light);
+    border:1px solid rgba(30,58,69,0.08);
+    border-radius:16px;
+    padding:24px 20px 20px;
+  }
+  .step-card::before{
+    counter-increment:step;
+    content: counter(step);
+    display:flex; align-items:center; justify-content:center;
+    width:36px; height:36px; border-radius:50%;
+    background:var(--amber); color:#fff; font-weight:700;
+    font-family:'Fraunces', serif;
+    margin-bottom:14px;
+  }
+  .step-card h3{font-size:1rem; margin-bottom:8px;}
+  .step-card p{font-size:0.9rem; color:var(--ink-soft);}
+
+  /* perfectionism band */
+  .band{
+    background:linear-gradient(120deg, var(--sage) 0%, var(--sage-deep) 100%);
+    border-radius:24px;
+    padding:clamp(32px, 6vw, 56px);
+    color:#fff;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:clamp(24px, 5vw, 44px);
+  }
+  .band h2{color:#fff; font-size:clamp(1.6rem, 3vw, 2.1rem); margin-bottom:14px;}
+  .band p{color:rgba(255,255,255,0.88); font-size:0.98rem;}
+  .band-col ul{
+    list-style:none; margin:16px 0 0; padding:0;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .band-col li{
+    display:flex; gap:10px; align-items:flex-start;
+    font-size:0.95rem;
+    color:rgba(255,255,255,0.94);
+  }
+  .band-col li::before{
+    content:"✓"; font-weight:700; color:var(--amber);
+    background:rgba(255,255,255,0.18);
+    width:22px; height:22px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; font-size:0.75rem; margin-top:2px;
+  }
+
+  /* final cta */
+  .final-cta{
+    text-align:center;
+    padding:clamp(60px, 9vw, 100px) 0 clamp(70px, 9vw, 110px);
+  }
+  .final-cta h2{
+    font-size:clamp(2rem, 4.2vw, 2.9rem);
+    max-width:18ch;
+    margin:0 auto 18px;
+  }
+  .final-cta p{
+    color:var(--ink-soft); max-width:46ch; margin:0 auto 32px; font-size:1.05rem;
+  }
+
+  footer{
+    border-top:1px solid rgba(30,58,69,0.1);
+    padding:28px 0 40px;
+  }
+  .footer-inner{
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+    gap:14px; font-size:0.85rem; color:var(--ink-soft);
+  }
+  .footer-inner a{text-decoration:none; font-weight:600; color:var(--ink);}
+
+  @media (max-width: 860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .index-card{transform:rotate(0); max-width:420px; margin:0 auto;}
+    .thesis{grid-template-columns:1fr;}
+    .thesis-arrow{transform:rotate(90deg);}
+    .worksheet-wrap{grid-template-columns:1fr;}
+    .worksheet-row{grid-template-columns:1fr;}
+    .worksheet-row .col-thought, .worksheet-row .col-distortion{border-right:none; border-bottom:1px dashed var(--paper-line);}
+    .worksheet-row.header-row{display:none;}
+    .band{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    .distortion-card:hover, .btn-primary:hover, .nav-cta:hover{transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">EX</span>
+      EasyLandX
+    </a>
+    <a class="nav-cta" href="https://easypagex.github.io/easy/" target="_blank" rel="noopener">
+      Start my page →
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Landing page therapy</span>
+        <h1>Your website isn't broken. <em>It's just thinking negatively.</em></h1>
+        <p class="lede">Most small businesses don't have a design problem — they have a distorted-belief problem. EasyLandX borrows the oldest trick in cognitive therapy: catch the automatic thought, name the distortion, replace it with something true. Then we build the page around the truth.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="https://easypagex.github.io/easy/" target="_blank" rel="noopener">
+            Book my EasyLandX session
+          </a>
+          <a class="btn-ghost" href="#distortions">See the 10 distortions ↓</a>
+        </div>
+      </div>
+
+      <div class="index-card reveal">
+        <div class="pin" aria-hidden="true"></div>
+        <span class="index-card-label">Session notes · client file</span>
+        <h3>Before EasyLandX</h3>
+        <div class="index-row"><span>Belief</span><b>"It has to be perfect first."</b></div>
+        <div class="index-row"><span class="tag">Distortion</span><span>All-or-nothing thinking</span></div>
+        <div class="index-row"><span>Result</span><b>Nine months, still unlaunched.</b></div>
+        <div class="index-row"><span class="tag">Rx</span><span>One honest page, live by Friday.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THESIS / CORE EQUATION -->
+  <section>
+    <div class="wrap">
+      <div class="thesis reveal">
+        <div>
+          <p>"You don't feel stuck because your business is failing. You feel stuck because of what you're telling yourself about a page that doesn't exist yet."</p>
+          <p class="thesis-sub">The core idea behind CBT — thoughts shape feelings, not the other way around — applies just as well to the thing keeping your business offline.</p>
+        </div>
+        <div class="thesis-arrow" aria-hidden="true">→</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 DISTORTIONS -->
+  <section id="distortions">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">The 10 landing page distortions</span>
+        <h2>The thoughts keeping good businesses off the internet</h2>
+        <p>Every distortion below is a real belief we hear from clients before their first EasyLandX page goes live — reframed from the ten classic cognitive distortions.</p>
+      </div>
+
+      <div class="distortion-grid">
+
+        <div class="distortion-card reveal">
+          <span class="distortion-num">01 · All-or-Nothing Design</span>
+          <h3>"If it isn't perfect, it's worthless."</h3>
+          <p class="distortion-quote">One imperfect section means the whole page shouldn't exist.</p>
+          <p class="distortion-fix"><b>Rational response:</b> A clear, honest page live today outperforms a flawless one still sitting in drafts.</p>
+        </div>
+
+        <div class="distortion-card reveal">
+          <span class="distortion-num">02 · Overgeneralization</span>
+          <h3>"Nobody clicked yesterday, so nobody ever will."</h3>
+          <p class="distortion-quote">One quiet day becomes a permanent verdict on the business.</p>
+          <p class="distortion-fix"><b>Rational response:</b> One data point is weather, not climate. We look at trends across weeks, not hours.</p>
+        </div>
+
+        <div class="distortion-card reveal">
+          <span class="distortion-num">03 · Mental Filter</span>
+          <h3>"That one bounce ruined everything."</h3>
+          <p class="distortion-quote">One drop-off gets replayed on loop, five inquiries get ignored.</p>
+          <p class="distortion-fix"><b>Rational response:</b> We look at the whole funnel, not the one visitor who left in three seconds.</p>
+        </div>
+
+        <div class="distortion-card reveal">
+          <span class="distortion-num">04 · Disqualifying the Positive</span>
+          <h3>"That sale doesn't count, they already knew me."</h3>
+          <p class="distortion-quote">Every win gets explained away instead of counted.</p>
+          <p class="distortion-fix"><b>Rational response:</b> A sale is a sale. Warm leads are still leads your page helped close.</p>
+        </div>
+
+        <div class="distortion-card reveal">
+          <span class="distortion-num">05 · Mind Reading & Fortune Telling</span>
+          <h3>"They'll think my prices are too high."</h3>
+          <p class="distortion-quote">Predicting rejection before a single visitor arrives.</p>
+          <p class="distortion-fix"><b>Rational response:</b> We let the page state your value clearly and let real visitors answer — not your imagination.</p>
+        </div>
+
+        <div class="distortion-card reveal">
+          <span class="distortion-num">06 · Magnification & Minimization</span>
+          <h3>"That typo is a disaster."</h3>
+          <p class="distortion-quote">Small flaws get catastrophized, real wins get shrunk to "just luck."</p>
+          <p class="distortion-fix"><b>Rational response:</b> Fixable things get fixed in minutes. Real wins get logged and repeated.</p>
+        </div>
+
+        <div class="distortion-card reveal">
+          <span class="distortion-num">07 · Emotional Reasoning</span>
+          <h3>"I feel invisible online, so I must be invisible."</h3>
+          <p class="distortion-quote">A feeling gets treated as a fact about the business.</p>
+          <p class="distortion-fix"><b>Rational response:</b> Feelings are data about you, not verdicts on your traffic. We check the actual numbers together.</p>
+        </div>
+
+        <div class="distortion-card reveal">
+          <span class="distortion-num">08 · "Should" Statements</span>
+          <h3>"I should have a site like my competitor's."</h3>
+          <p class="distortion-quote">Comparison becomes a source of guilt instead of direction.</p>
+          <p class="distortion-fix"><b>Rational response:</b> Your page should do one job well: turn your visitors into customers. Nobody else's page has to.</p>
+        </div>
+
+        <div class="distortion-card reveal">
+          <span class="distortion-num">09 · Labeling</span>
+          <h3>"I'm just not techy."</h3>
+          <p class="distortion-quote">A skipped step becomes a permanent identity.</p>
+          <p class="distortion-fix"><b>Rational response:</b> "I haven't launched yet" is a status, not a trait. EasyLandX handles the technical part entirely.</p>
+        </div>
+
+        <div class="distortion-card reveal">
+          <span class="distortion-num">10 · Personalization</span>
+          <h3>"Slow season is my fault."</h3>
+          <p class="distortion-quote">Industry-wide dips get taken personally.</p>
+          <p class="distortion-fix"><b>Rational response:</b> Some slowdowns belong to the season, not to you. We build the page so it's ready when demand returns.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKSHEET -->
+  <section>
+    <div class="wrap worksheet-wrap">
+      <div class="worksheet-copy reveal">
+        <span class="section-eyebrow">The EasyLandX session</span>
+        <h2>The three-column technique, rebuilt for websites</h2>
+        <p>Every EasyLandX project starts with the same worksheet used in cognitive therapy: write the automatic thought, name the distortion, then answer it with something true. From there, we build the page around the true version.</p>
+        <p>No templates, no builder tool, no drag-and-drop kit to figure out. You tell us the thought behind the delay — we hand back a finished, single page ready to publish.</p>
+        <a class="btn-primary mini-cta" href="https://easypagex.github.io/easy/" target="_blank" rel="noopener">Bring us your automatic thought</a>
+      </div>
+
+      <div class="worksheet reveal">
+        <div class="worksheet-head">
+          <span>Client worksheet</span>
+          <span>EasyLandX · 2026</span>
+        </div>
+        <div class="worksheet-body">
+          <div class="worksheet-row header-row">
+            <div>Automatic thought</div>
+            <div>Distortion</div>
+            <div>EasyLandX response</div>
+          </div>
+          <div class="worksheet-row">
+            <div class="col-thought"><span class="col-label">Thought</span><p>"My page has to be perfect before I launch it."</p></div>
+            <div class="col-distortion"><span class="col-label">Distortion</span><p>All-or-nothing thinking</p></div>
+            <div class="col-fix"><span class="col-label">Response</span><p>Live-and-honest beats perfect-and-hidden. We ship it Friday.</p></div>
+          </div>
+          <div class="worksheet-row">
+            <div class="col-thought"><span class="col-label">Thought</span><p>"No one will read this far down the page."</p></div>
+            <div class="col-distortion"><span class="col-label">Distortion</span><p>Fortune telling</p></div>
+            <div class="col-fix"><span class="col-label">Response</span><p>We put your one strongest offer where every visitor lands first.</p></div>
+          </div>
+          <div class="worksheet-row">
+            <div class="col-thought"><span class="col-label">Thought</span><p>"A website like this costs more than I can justify."</p></div>
+            <div class="col-distortion"><span class="col-label">Distortion</span><p>Catastrophizing</p></div>
+            <div class="col-fix"><span class="col-label">Response</span><p>One page, one flat price, done in days — built to earn its cost back fast.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DO-NOTHINGISM -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="section-eyebrow">Defeating "do-nothingism"</span>
+        <h2>Action first, motivation second</h2>
+        <p>Waiting to "feel ready" keeps a launch stuck indefinitely. We break the project into small, finishable steps — so momentum builds before confidence does.</p>
+      </div>
+      <div class="steps">
+        <div class="step-card reveal">
+          <h3>Tell us the one thing</h3>
+          <p>What your business does, who it's for, and the single action you want a visitor to take.</p>
+        </div>
+        <div class="step-card reveal">
+          <h3>We draft the page</h3>
+          <p>A complete, single-file page built around your real content — no placeholder text to dread filling in.</p>
+        </div>
+        <div class="step-card reveal">
+          <h3>You react, not create</h3>
+          <p>Reacting to a draft is easier than staring at a blank page. Tell us what to adjust.</p>
+        </div>
+        <div class="step-card reveal">
+          <h3>It goes live</h3>
+          <p>No lingering "someday" folder. Your page launches on a real, working link.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERFECTIONISM / APPROVAL -->
+  <section>
+    <div class="wrap">
+      <div class="band reveal">
+        <div class="band-col">
+          <h2>Excellent beats perfect</h2>
+          <p>Perfectionism promises that flawless work guarantees flawless results. It doesn't — it mostly guarantees nothing ships. EasyLandX aims for pages that are clear, fast, and genuinely good, not pages that chase an illusion.</p>
+        </div>
+        <div class="band-col">
+          <h2 style="visibility:hidden; height:0; margin:0;">.</h2>
+          <ul>
+            <li>You don't need everyone's approval to publish — just your customers' attention.</li>
+            <li>One clear offer beats ten hedged ones.</li>
+            <li>A page that's live and 90% right will out-earn one that's unfinished and 100% right.</li>
+            <li>Your worth isn't the website. The website is just a tool for the work you already do.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="wrap">
+      <h2 class="reveal">Stop rehearsing the launch. Have the session.</h2>
+      <p class="reveal">One conversation, one page, built around what's actually true about your business — not what your worst thoughts say about it.</p>
+      <a class="btn-primary reveal" href="https://easypagex.github.io/easy/" target="_blank" rel="noopener">
+        Start with EasyLandX →
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 EasyLandX. Built by EasyLandX.</span>
+    <a href="https://easypagex.github.io/easy/" target="_blank" rel="noopener">easypagex.github.io</a>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      els.forEach(function(el){ el.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
