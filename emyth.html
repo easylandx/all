@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Page Systems for Small Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest-deep:#122720;
+    --forest:#1B3A2E;
+    --forest-light:#2C5240;
+    --forest-line: rgba(185,174,139,0.22);
+    --khaki:#B9AE8B;
+    --khaki-pale:#E7E0C8;
+    --khaki-dim: rgba(231,224,200,0.62);
+    --brass:#C9A036;
+    --brass-bright:#E7BE50;
+    --brass-deep:#8C6E1F;
+    --radius: 3px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background: var(--forest-deep);
+    color: var(--khaki-pale);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* faint blueprint grid backdrop */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(var(--forest-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--forest-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity:0.35;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  .wrap{max-width:1120px; margin:0 auto; padding:0 32px; position:relative; z-index:1;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color: var(--brass);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background: var(--brass);
+    display:inline-block;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+    color: var(--khaki-pale);
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background: rgba(18,39,32,0.86);
+    backdrop-filter: blur(8px);
+    border-bottom:1px solid var(--forest-line);
+  }
+  .nav-inner{
+    max-width:1120px; margin:0 auto; padding:18px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif;
+    font-weight:700; font-size:19px;
+    color:var(--khaki-pale);
+    letter-spacing:-0.01em;
+  }
+  .brand .mark{
+    width:26px; height:26px;
+    position:relative;
+    flex-shrink:0;
+  }
+  .brand .mark span{
+    position:absolute;
+    border:1.6px solid var(--brass);
+  }
+  .brand .mark span:nth-child(1){ inset:0 6px 8px 0; }
+  .brand .mark span:nth-child(2){ inset:5px 0 3px 6px; border-color: var(--khaki);}
+  .brand .mark span:nth-child(3){ inset:10px 0px 0 11px; border-color: var(--brass-bright);}
+
+  nav.links{display:flex; gap:32px; font-size:14px; color:var(--khaki-dim);}
+  nav.links a:hover{color:var(--brass-bright);}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
+    padding:13px 24px;
+    border-radius: var(--radius);
+    border:1px solid var(--brass);
+    background: var(--brass);
+    color: var(--forest-deep);
+    font-weight:500;
+    cursor:pointer;
+    transition: all .2s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{ background:var(--brass-bright); border-color:var(--brass-bright); transform:translateY(-1px); box-shadow:0 6px 18px rgba(201,160,54,0.25);}
+  .btn.ghost{
+    background:transparent; color:var(--khaki-pale); border:1px solid var(--forest-line);
+  }
+  .btn.ghost:hover{ border-color:var(--khaki); color:var(--brass-bright); background:transparent; box-shadow:none;}
+  .btn.small{ padding:10px 18px; font-size:12px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:100px 0 90px;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(36px, 5vw, 58px);
+    line-height:1.06;
+    margin:18px 0 22px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--brass);
+    font-weight:600;
+  }
+  .hero p.lead{
+    font-size:17px;
+    color:var(--khaki-dim);
+    max-width:480px;
+    margin-bottom:34px;
+  }
+  .hero-ctas{ display:flex; gap:14px; align-items:center; flex-wrap:wrap;}
+  .hero-note{
+    margin-top:16px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color: var(--khaki-dim);
+  }
+
+  /* signature visual: blueprint -> stamped pages */
+  .stamp-visual{
+    position:relative;
+    height:380px;
+  }
+  .blueprint{
+    position:absolute; left:0; top:30px;
+    width:180px; height:230px;
+    border:1.4px dashed var(--khaki);
+    border-radius:2px;
+    background: rgba(185,174,139,0.03);
+    padding:14px;
+    opacity:0.85;
+  }
+  .blueprint .bp-line{ height:6px; background: rgba(185,174,139,0.35); margin-bottom:9px; border-radius:1px;}
+  .blueprint .bp-line.short{ width:55%;}
+  .blueprint .bp-box{ height:52px; border:1px dashed rgba(185,174,139,0.5); margin:12px 0; border-radius:2px;}
+  .blueprint .bp-tag{
+    position:absolute; bottom:-11px; left:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px; letter-spacing:0.08em;
+    background:var(--forest-deep); padding:0 6px;
+    color:var(--khaki-dim); text-transform:uppercase;
+  }
+
+  .stamp-arrow{
+    position:absolute; left:196px; top:150px;
+    width:54px; height:1px; background:var(--brass);
+  }
+  .stamp-arrow::after{
+    content:"";
+    position:absolute; right:-1px; top:-4px;
+    width:0; height:0;
+    border-top:4px solid transparent;
+    border-bottom:4px solid transparent;
+    border-left:7px solid var(--brass);
+  }
+
+  .stamp-cards{
+    position:absolute; right:0; top:0;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .stamp-card{
+    width:190px; height:112px;
+    background: var(--forest);
+    border:1px solid var(--brass);
+    border-radius:3px;
+    padding:12px;
+    opacity:0;
+    transform: scale(0.85);
+    animation: stampIn .55s cubic-bezier(.2,.9,.3,1.3) forwards;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.28);
+  }
+  .stamp-card:nth-child(1){ animation-delay:.15s; }
+  .stamp-card:nth-child(2){ animation-delay:.5s; margin-left:16px;}
+  .stamp-card:nth-child(3){ animation-delay:.85s;}
+  @keyframes stampIn{
+    0%{ opacity:0; transform:scale(0.8);}
+    60%{ opacity:1; transform:scale(1.04);}
+    100%{ opacity:1; transform:scale(1);}
+  }
+  .stamp-card .sc-line{ height:5px; background:var(--khaki); opacity:0.8; margin-bottom:7px; border-radius:1px;}
+  .stamp-card .sc-line.w60{width:60%;}
+  .stamp-card .sc-line.w40{width:40%; background:var(--brass-bright);}
+  .stamp-card .sc-btn{
+    margin-top:10px;
+    width:52px; height:14px;
+    background:var(--brass);
+    border-radius:2px;
+  }
+
+  /* ---------- SECTION shared ---------- */
+  section{ padding:96px 0; position:relative; }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head h2{ font-size:clamp(28px,3.4vw,40px); margin-top:14px; line-height:1.15;}
+  .section-head p{ color:var(--khaki-dim); margin-top:16px; font-size:16px; max-width:560px;}
+
+  .divider{ height:1px; background:var(--forest-line); width:100%; }
+
+  /* ---------- Myth section ---------- */
+  .myth-panel{
+    background: var(--forest);
+    border:1px solid var(--forest-light);
+    border-radius:4px;
+    padding:44px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:44px;
+  }
+  .myth-col h3{ font-size:20px; color:var(--brass); margin-bottom:12px; font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:0.04em; font-weight:500;}
+  .myth-col p{ color:var(--khaki-dim); font-size:15px;}
+
+  /* ---------- Three egos ---------- */
+  .ego-grid{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:1px;
+    background: var(--forest-line);
+    border:1px solid var(--forest-line);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .ego-card{
+    background: var(--forest-deep);
+    padding:34px 28px;
+    position:relative;
+  }
+  .ego-card .ego-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--khaki-dim);
+    margin-bottom:14px;
+    display:block;
+  }
+  .ego-card h3{
+    font-size:22px; margin-bottom:12px; color:var(--khaki-pale);
+  }
+  .ego-card p{ font-size:14.5px; color:var(--khaki-dim);}
+  .ego-card.brass-accent{ border-top:2px solid var(--brass); }
+  .ego-card.khaki-accent{ border-top:2px solid var(--khaki); }
+  .ego-card.dim-accent{ border-top:2px solid var(--forest-light); }
+
+  /* ---------- stages timeline ---------- */
+  .stage-row{
+    display:grid;
+    grid-template-columns: 90px 1fr;
+    gap:24px;
+    padding:28px 0;
+    border-top:1px solid var(--forest-line);
+  }
+  .stage-row:last-child{ border-bottom:1px solid var(--forest-line); }
+  .stage-num{
+    font-family:'Fraunces', serif;
+    font-size:15px;
+    color:var(--khaki-dim);
+    letter-spacing:0.05em;
+  }
+  .stage-num span{ display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--brass); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;}
+  .stage-body h3{ font-size:20px; margin-bottom:8px;}
+  .stage-body p{ color:var(--khaki-dim); font-size:15px; max-width:640px;}
+  .stage-row.mature .stage-body h3{ color:var(--brass-bright);}
+
+  /* ---------- prototype callout ---------- */
+  .prototype{
+    background: linear-gradient(135deg, var(--forest) 0%, var(--forest-deep) 100%);
+    border:1px solid var(--forest-light);
+    border-radius:6px;
+    padding:56px;
+    display:grid;
+    grid-template-columns: 1fr 340px;
+    gap:48px;
+    align-items:center;
+  }
+  .prototype blockquote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:22px;
+    color:var(--khaki-pale);
+    line-height:1.45;
+    border-left:2px solid var(--brass);
+    padding-left:22px;
+    margin-top:18px;
+  }
+  .prototype-stats{ display:flex; flex-direction:column; gap:22px;}
+  .stat{ border-top:1px solid var(--forest-line); padding-top:14px;}
+  .stat b{ display:block; font-family:'Fraunces', serif; font-size:30px; color:var(--brass-bright);}
+  .stat span{ font-size:13px; color:var(--khaki-dim);}
+
+  /* ---------- system grid (7-step condensed) ---------- */
+  .sys-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:24px;
+  }
+  .sys-card{
+    padding:30px 26px;
+    border:1px solid var(--forest-line);
+    border-radius:4px;
+    background: rgba(43,90,64,0.12);
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .sys-card:hover{ border-color:var(--brass); transform:translateY(-3px);}
+  .sys-card .sys-index{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--brass);
+    letter-spacing:0.08em;
+  }
+  .sys-card h3{ font-size:18px; margin:12px 0 10px;}
+  .sys-card p{ font-size:14px; color:var(--khaki-dim);}
+
+  /* ---------- final CTA ---------- */
+  .final-cta{
+    text-align:center;
+    padding:110px 0 120px;
+    border-top:1px solid var(--forest-line);
+  }
+  .final-cta h2{
+    font-size:clamp(30px,4.4vw,48px);
+    max-width:720px;
+    margin:0 auto 20px;
+    line-height:1.12;
+  }
+  .final-cta p{ color:var(--khaki-dim); max-width:480px; margin:0 auto 36px; font-size:16px;}
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--forest-line);
+    padding:40px 0;
+  }
+  .footer-inner{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  .footer-inner .brand{ font-size:16px;}
+  footer p{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--khaki-dim); letter-spacing:0.04em;}
+
+  @media (max-width:860px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .stamp-visual{ height:300px; margin-top:20px;}
+    .myth-panel{ grid-template-columns:1fr; }
+    .ego-grid{ grid-template-columns:1fr; }
+    .sys-grid{ grid-template-columns:1fr; }
+    .prototype{ grid-template-columns:1fr; padding:36px 26px;}
+    nav.links{ display:none; }
+  }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .stamp-card{ transition:none !important; animation:none !important; opacity:1 !important; transform:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <span class="mark"><span></span><span></span><span></span></span>
+      EasyLandX
+    </a>
+    <nav class="links">
+      <a href="#myth">The Myth</a>
+      <a href="#stages">Stages</a>
+      <a href="#prototype">The Prototype</a>
+      <a href="#system">The System</a>
+    </nav>
+    <a class="btn small" href="https://easylandx.com" target="_blank" rel="noopener">Get EasyLandX</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Landing page systems for small business</div>
+        <h1>Your landing page isn't a task.<br>It's a <em>system</em> waiting to be built.</h1>
+        <p class="lead">Most small-business owners build their landing page the same way they build everything else — alone, at midnight, by hand. EasyLandX replaces the one-off page with a proven system engineered to convert.</p>
+        <div class="hero-ctas">
+          <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Get Your EasyLandX Page →</a>
+          <a class="btn ghost" href="#myth">See how it works</a>
+        </div>
+        <div class="hero-note">FIG. 00 — ONE PROTOTYPE, BUILT TO REPLICATE</div>
+      </div>
+
+      <div class="stamp-visual">
+        <div class="blueprint">
+          <div class="bp-line" style="width:70%"></div>
+          <div class="bp-line short"></div>
+          <div class="bp-box"></div>
+          <div class="bp-line" style="width:85%"></div>
+          <div class="bp-line" style="width:50%"></div>
+          <div class="bp-tag">Draft — v1</div>
+        </div>
+        <div class="stamp-arrow"></div>
+        <div class="stamp-cards">
+          <div class="stamp-card">
+            <div class="sc-line w60"></div>
+            <div class="sc-line w40"></div>
+            <div class="sc-line" style="width:80%"></div>
+            <div class="sc-btn"></div>
+          </div>
+          <div class="stamp-card">
+            <div class="sc-line w60"></div>
+            <div class="sc-line w40"></div>
+            <div class="sc-line" style="width:80%"></div>
+            <div class="sc-btn"></div>
+          </div>
+          <div class="stamp-card">
+            <div class="sc-line w60"></div>
+            <div class="sc-line w40"></div>
+            <div class="sc-line" style="width:80%"></div>
+            <div class="sc-btn"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- THE MYTH -->
+  <section id="myth">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Fig. 01 — The problem</div>
+        <h2>The landing page myth</h2>
+        <p>Most small-business landing pages aren't built by someone who understands conversion. They're built by whoever's willing to stay up late and figure it out — the same person already running the business.</p>
+      </div>
+      <div class="myth-panel reveal">
+        <div class="myth-col">
+          <h3>What actually happens</h3>
+          <p>An electrician who's brilliant with wiring decides to also be brilliant at web copy, layout, and split-testing — because it's their business and no one else is going to do it. They know the trade. They don't know the page. So the page becomes whatever's fastest to ship, not what's built to convert.</p>
+        </div>
+        <div class="myth-col">
+          <h3>What EasyLandX does instead</h3>
+          <p>We separate the craft of your business from the craft of your landing page. You stay the expert in what you do. EasyLandX becomes the expert in the page that sells it — a system built once, correctly, and left to run.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- THREE EGOS -->
+  <section id="egos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Fig. 02 — Three forces, one homepage</div>
+        <h2>Every DIY page has three people arguing over it</h2>
+        <p>Before a system takes over, three instincts fight for control of your page — and usually, the wrong one wins.</p>
+      </div>
+      <div class="ego-grid reveal">
+        <div class="ego-card brass-accent">
+          <span class="ego-tag">Wants growth</span>
+          <h3>The Entrepreneur</h3>
+          <p>Wants a page that opens new markets, runs new campaigns, and scales past what one person can hand-build. Lives in what the business could become.</p>
+        </div>
+        <div class="ego-card khaki-accent">
+          <span class="ego-tag">Wants order</span>
+          <h3>The Manager</h3>
+          <p>Wants the page on-brand, tracked, and consistent every time it's updated. Lives in whether last month's version is still holding up.</p>
+        </div>
+        <div class="ego-card dim-accent">
+          <span class="ego-tag">Wants it live</span>
+          <h3>The Technician</h3>
+          <p>Wants the page done tonight so they can get back to the actual work — the job that pays. Lives in "good enough, ship it."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- STAGES -->
+  <section id="stages">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Fig. 03 — Growth stages</div>
+        <h2>Every landing page goes through the same three stages</h2>
+        <p>Where your page sits on this line determines whether it grows your business or quietly caps it.</p>
+      </div>
+
+      <div class="reveal">
+        <div class="stage-row">
+          <div class="stage-num"><span>Stage 1</span>Infancy</div>
+          <div class="stage-body">
+            <h3>The DIY page</h3>
+            <p>Built by the owner, in a page builder, over a weekend. Works fine until the offer changes, the season changes, or the owner gets busy — then it quietly goes stale.</p>
+          </div>
+        </div>
+        <div class="stage-row">
+          <div class="stage-num"><span>Stage 2</span>Adolescence</div>
+          <div class="stage-body">
+            <h3>The freelancer page</h3>
+            <p>A designer builds something better-looking — but no one owns it after launch. Nothing gets tested, nothing gets improved, and it stalls at whatever it was the day it shipped.</p>
+          </div>
+        </div>
+        <div class="stage-row mature">
+          <div class="stage-num"><span>Stage 3</span>Maturity</div>
+          <div class="stage-body">
+            <h3>The EasyLandX page</h3>
+            <p>Engineered from day one as a system: proven structure, on-brand by default, built to keep converting without you touching a single section again.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROTOTYPE -->
+  <section id="prototype">
+    <div class="wrap">
+      <div class="prototype reveal">
+        <div>
+          <div class="eyebrow">Fig. 04 — The franchise prototype, applied to pages</div>
+          <h2 style="margin-top:16px; font-size:28px;">Build it once like you'll deploy it 5,000 times</h2>
+          <blockquote>"The system converts. You don't have to rebuild it every time you run a new offer, a new season, or a new campaign."</blockquote>
+        </div>
+        <div class="prototype-stats">
+          <div class="stat"><b>1</b><span>Prototype page structure, engineered for conversion</span></div>
+          <div class="stat"><b>∞</b><span>Campaigns it can be re-skinned for, without starting over</span></div>
+          <div class="stat"><b>0</b><span>Late nights spent rebuilding it yourself</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- SYSTEM -->
+  <section id="system">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Fig. 05 — What EasyLandX actually builds</div>
+        <h2>A page built on a system, not a guess</h2>
+        <p>Every EasyLandX page is built through the same disciplined process — so the result is engineered, not improvised.</p>
+      </div>
+      <div class="sys-grid reveal">
+        <div class="sys-card">
+          <div class="sys-index">01 — Primary Aim</div>
+          <h3>Starts with your goal</h3>
+          <p>We define what the page needs to do for your business — calls, bookings, or sales — before a single word is written.</p>
+        </div>
+        <div class="sys-card">
+          <div class="sys-index">02 — Strategic Objective</div>
+          <h3>One clear conversion target</h3>
+          <p>Every page is built around a single measurable outcome, so success is never a matter of opinion.</p>
+        </div>
+        <div class="sys-card">
+          <div class="sys-index">03 — Structure</div>
+          <h3>Every section earns its place</h3>
+          <p>Headline, proof, offer, and button — placed with intent, in the order that actually moves someone to act.</p>
+        </div>
+        <div class="sys-card">
+          <div class="sys-index">04 — Hard System</div>
+          <h3>Fast, reliable, always on</h3>
+          <p>Built on infrastructure that loads instantly and never quietly breaks the week you need it most.</p>
+        </div>
+        <div class="sys-card">
+          <div class="sys-index">05 — Soft System</div>
+          <h3>Proven copy and flow</h3>
+          <p>Messaging built from what converts your specific customer — not a generic template with your logo on it.</p>
+        </div>
+        <div class="sys-card">
+          <div class="sys-index">06 — Information System</div>
+          <h3>Built-in tracking</h3>
+          <p>Know what's working the moment it happens, instead of guessing whether last month's changes helped.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="wrap">
+      <div class="eyebrow" style="justify-content:center;">Fig. 06 — Get started</div>
+      <h2 style="margin-top:18px;">Work on your business.<br>Not on your homepage.</h2>
+      <p>Let EasyLandX build the system so you can go back to the work only you can do.</p>
+      <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Get Your EasyLandX Page →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <a href="#top" class="brand">
+      <span class="mark"><span></span><span></span><span></span></span>
+      EasyLandX
+    </a>
+    <p>SYSTEMS, NOT SIDE JOBS. © 2026 EASYLANDX.</p>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

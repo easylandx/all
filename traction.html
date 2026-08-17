@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages Built to Convert</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #0B1B2E;
+    --navy-deep: #071322;
+    --navy-raised: #10233A;
+    --slate: #7C8BA0;
+    --slate-light: #B7C1CE;
+    --orange: #FF6A2B;
+    --orange-soft: #FFA36C;
+    --white: #F4F6F8;
+    --line: rgba(124,139,160,0.22);
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--navy);
+    color:var(--white);
+    font-family:var(--body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+
+  /* subtle background grid texture */
+  .bg-grid{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity:0.35;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 20%, transparent 75%);
+  }
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,27,46,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1120px; margin:0 auto;
+  }
+  .logo{
+    font-family:var(--display); font-weight:700; font-size:1.25rem;
+    letter-spacing:-0.01em;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{color:var(--orange);}
+  .nav-links{display:flex; gap:32px; font-size:0.92rem; color:var(--slate-light);}
+  .nav-links a:hover{color:var(--orange-soft);}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--orange);
+    color:#1A0900;
+    font-weight:600;
+    font-family:var(--body);
+    padding:11px 22px;
+    border-radius:6px;
+    font-size:0.92rem;
+    border:1px solid var(--orange);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    box-shadow: 0 0 0 0 rgba(255,106,43,0);
+  }
+  .btn:hover{
+    background:var(--orange-soft);
+    transform:translateY(-1px);
+    box-shadow: 0 8px 24px -8px rgba(255,106,43,0.6);
+  }
+  .btn-outline{
+    background:transparent;
+    color:var(--white);
+    border:1px solid var(--line);
+  }
+  .btn-outline:hover{
+    border-color:var(--orange);
+    color:var(--orange-soft);
+    background:transparent;
+    box-shadow:none;
+  }
+
+  /* HERO */
+  .hero{
+    position:relative; z-index:1;
+    padding:120px 0 100px;
+    text-align:left;
+  }
+  .eyebrow{
+    font-family:var(--mono); font-size:0.78rem; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--orange-soft);
+    display:flex; align-items:center; gap:10px; margin-bottom:24px;
+  }
+  .eyebrow::before{
+    content:''; width:22px; height:1px; background:var(--orange);
+  }
+  h1{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(2.4rem, 5.5vw, 4.4rem);
+    line-height:1.04; letter-spacing:-0.02em;
+    max-width:820px;
+    color:var(--white);
+  }
+  h1 em{
+    font-style:normal; color:var(--orange);
+    position:relative;
+  }
+  .hero p.lead{
+    margin-top:26px; font-size:1.15rem; color:var(--slate-light);
+    max-width:560px; font-weight:400;
+  }
+  .hero-cta{ display:flex; gap:16px; margin-top:40px; flex-wrap:wrap; align-items:center;}
+  .hero-meta{
+    margin-top:56px; display:flex; gap:40px; flex-wrap:wrap;
+    padding-top:32px; border-top:1px solid var(--line);
+    max-width:760px;
+  }
+  .hero-meta div{font-family:var(--mono); font-size:0.78rem; color:var(--slate);}
+  .hero-meta strong{
+    display:block; font-family:var(--display); font-size:1.6rem; color:var(--white);
+    font-weight:600; margin-bottom:4px;
+  }
+
+  /* mock browser visual */
+  .hero-visual{
+    position:relative; z-index:1;
+    margin-top:64px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:var(--navy-raised);
+    overflow:hidden;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6);
+  }
+  .browser-bar{
+    display:flex; align-items:center; gap:8px;
+    padding:12px 16px; border-bottom:1px solid var(--line);
+    background:var(--navy-deep);
+  }
+  .browser-bar span{width:9px; height:9px; border-radius:50%; background:var(--slate); opacity:0.4;}
+  .browser-bar .url{
+    margin-left:12px; font-family:var(--mono); font-size:0.72rem; color:var(--slate);
+    background:rgba(255,255,255,0.03); padding:4px 12px; border-radius:4px; flex:1; max-width:280px;
+  }
+  .mock-content{padding:40px; display:grid; grid-template-columns:1.2fr 0.8fr; gap:32px; align-items:center;}
+  .mock-content .mline{height:12px; background:var(--slate); opacity:0.25; border-radius:3px; margin-bottom:12px;}
+  .mock-content .mline.short{width:60%;}
+  .mock-content .mline.orange{background:var(--orange); opacity:0.85; width:140px; height:34px; border-radius:6px; margin-top:20px;}
+  .mock-box{
+    aspect-ratio:4/3; border-radius:10px;
+    background: linear-gradient(135deg, var(--orange) 0%, #7A2E00 100%);
+    opacity:0.85;
+  }
+
+  @media(max-width:720px){
+    .mock-content{grid-template-columns:1fr;}
+    .mock-box{display:none;}
+  }
+
+  /* SECTION shared */
+  section{position:relative; z-index:1; padding:100px 0;}
+  .section-head{max-width:640px; margin-bottom:64px;}
+  .section-head .eyebrow{margin-bottom:18px;}
+  h2{
+    font-family:var(--display); font-weight:600;
+    font-size:clamp(1.8rem, 3.2vw, 2.6rem);
+    letter-spacing:-0.01em; color:var(--white);
+  }
+  .section-head p{color:var(--slate-light); margin-top:16px; font-size:1.05rem;}
+
+  /* METHOD grid - the signature element */
+  .method{
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+  }
+  .method-item{
+    border-bottom:1px solid var(--line);
+    border-right:1px solid var(--line);
+    padding:36px 32px;
+    transition: background 0.2s ease;
+  }
+  .method-item:hover{background:var(--navy-raised);}
+  .method-num{
+    font-family:var(--mono); font-size:0.78rem; color:var(--orange);
+    margin-bottom:20px; display:block;
+  }
+  .method-item h3{
+    font-family:var(--display); font-weight:600; font-size:1.2rem;
+    margin-bottom:12px; color:var(--white);
+  }
+  .method-item p{color:var(--slate-light); font-size:0.94rem;}
+
+  @media(max-width:860px){
+    .method{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:560px){
+    .method{grid-template-columns:1fr;}
+  }
+
+  /* PROCESS timeline */
+  .timeline{display:flex; flex-direction:column; max-width:760px;}
+  .tl-row{
+    display:grid; grid-template-columns:80px 1fr;
+    gap:24px; padding:28px 0; border-bottom:1px solid var(--line);
+  }
+  .tl-row:first-child{border-top:1px solid var(--line);}
+  .tl-day{font-family:var(--mono); color:var(--orange-soft); font-size:0.85rem; padding-top:4px;}
+  .tl-row h4{font-family:var(--display); font-size:1.1rem; font-weight:600; margin-bottom:6px;}
+  .tl-row p{color:var(--slate-light); font-size:0.94rem;}
+
+  /* CTA band */
+  .cta-band{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    text-align:center;
+    padding:100px 32px;
+  }
+  .cta-band h2{max-width:600px; margin:0 auto 16px;}
+  .cta-band p{color:var(--slate-light); max-width:480px; margin:0 auto 40px;}
+
+  footer{
+    padding:48px 32px; text-align:center;
+    color:var(--slate); font-size:0.85rem;
+  }
+  footer a{color:var(--orange-soft);}
+
+  ::selection{background:var(--orange); color:#1A0900;}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<header>
+  <nav>
+    <div class="logo">easylandx<span class="dot">.</span></div>
+    <div class="nav-links">
+      <a href="#method">Method</a>
+      <a href="#process">Process</a>
+    </div>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Landing pages for small business</div>
+      <h1>Websites that don't just <em>exist</em> — they close.</h1>
+      <p class="lead">EasyLandX builds fast, affordable, conversion-focused landing pages for small businesses. No drag-and-drop builder. No recycled template. A page built around one goal: turning your visitors into customers.</p>
+      <div class="hero-cta">
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your EasyLandX Site</a>
+        <a class="btn btn-outline" href="#method">See the method</a>
+      </div>
+
+      <div class="hero-meta">
+        <div><strong>100%</strong>hand-built, zero templates</div>
+        <div><strong>1</strong>clear goal per page</div>
+        <div><strong>Days</strong>not months to launch</div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="browser-bar">
+          <span></span><span></span><span></span>
+          <div class="url">easylandx.github.io</div>
+        </div>
+        <div class="mock-content">
+          <div>
+            <div class="mline" style="width:85%; height:20px;"></div>
+            <div class="mline" style="width:65%; height:20px;"></div>
+            <div class="mline short"></div>
+            <div class="mline orange"></div>
+          </div>
+          <div class="mock-box"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">The EasyLandX method</div>
+        <h2>Six disciplines behind every page we build</h2>
+        <p>Most sites fail for the same handful of reasons — a vague goal, generic design, no way to measure what's working. Every EasyLandX build runs through the same six checks before it ever goes live.</p>
+      </div>
+
+      <div class="method">
+        <div class="method-item">
+          <span class="method-num">01 · Clarity</span>
+          <h3>One goal, stated plainly</h3>
+          <p>Before a single pixel is placed, we agree on the single action the page needs a visitor to take — book a call, buy, sign up. Everything on the page serves that one job.</p>
+        </div>
+        <div class="method-item">
+          <span class="method-num">02 · Fit</span>
+          <h3>Built for your customer</h3>
+          <p>Copy, layout and tone are shaped around who actually buys from you — not a generic small-business template stretched to fit.</p>
+        </div>
+        <div class="method-item">
+          <span class="method-num">03 · Proof</span>
+          <h3>Measured, not guessed</h3>
+          <p>Every page ships with basic conversion tracking, so you know what's working from week one instead of relying on gut feel.</p>
+        </div>
+        <div class="method-item">
+          <span class="method-num">04 · Feedback</span>
+          <h3>We fix what's leaking</h3>
+          <p>If visitors are landing but not converting, we treat that as a solvable problem — we diagnose the friction point and correct it fast.</p>
+        </div>
+        <div class="method-item">
+          <span class="method-num">05 · Process</span>
+          <h3>A repeatable build</h3>
+          <p>Our build process is documented and consistent, so quality doesn't depend on luck — every client gets the same disciplined approach.</p>
+        </div>
+        <div class="method-item">
+          <span class="method-num">06 · Momentum</span>
+          <h3>Shipped, not stalled</h3>
+          <p>Small, fast milestones keep your project moving. No six-month agency timelines — you see progress in days.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">How a project runs</div>
+        <h2>From first call to live site</h2>
+        <p>A straightforward, four-step timeline — built to get you a working, conversion-ready page without the back-and-forth of a big agency.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-row">
+          <div class="tl-day">Day 1</div>
+          <div>
+            <h4>Discovery call</h4>
+            <p>We talk through your business, your customer, and the one action you want your page to drive.</p>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-day">Day 2–3</div>
+          <div>
+            <h4>Design & copy draft</h4>
+            <p>You get a first look at layout and messaging, built specifically for your business — not pulled from a template library.</p>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-day">Day 4</div>
+          <div>
+            <h4>Revisions</h4>
+            <p>We tighten copy, adjust design, and make sure every section is pulling its weight toward the page's one goal.</p>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-day">Day 5</div>
+          <div>
+            <h4>Launch</h4>
+            <p>Your page goes live with conversion tracking in place, so results start showing up immediately.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="eyebrow" style="justify-content:center;">Ready when you are</div>
+    <h2>Stop losing visitors to a page that isn't working for you</h2>
+    <p>Tell us about your business and we'll show you exactly what a conversion-focused page looks like for it.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your EasyLandX Site →</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    EasyLandX — affordable, conversion-focused landing pages for small business.<br>
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>
