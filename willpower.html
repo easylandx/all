@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — You don’t lack motivation, you lack a prefrontal cortex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue: #12213D;
+    --blue-2: #1C3260;
+    --blue-3: #24406F;
+    --amber: #F5A623;
+    --amber-soft: #FFC868;
+    --alabaster: #F3EFE6;
+    --ink: #D9DCE8;
+    --ink-dim: #93A0C0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--blue);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    color:var(--alabaster);
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:6px;height:6px;
+    background:var(--amber);
+    border-radius:50%;
+    display:inline-block;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(18,33,61,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;
+  }
+  .logo{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:1.15rem;
+    color:var(--alabaster);
+  }
+  .logo span{color:var(--amber);}
+  .btn-easylandx{
+    background:var(--amber);
+    color:var(--blue);
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    font-size:0.82rem;
+    padding:11px 20px;
+    border-radius:100px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    box-shadow:0 6px 20px rgba(245,166,35,0.25);
+    white-space:nowrap;
+  }
+  .btn-easylandx:hover{
+    transform:translateY(-2px);
+    background:var(--amber-soft);
+    box-shadow:0 10px 28px rgba(245,166,35,0.35);
+  }
+  .btn-ghost{
+    border:1px solid rgba(217,220,232,0.25);
+    color:var(--ink);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.8rem;
+    padding:10px 18px;
+    border-radius:100px;
+    transition:border-color 0.2s ease, color 0.2s ease;
+  }
+  .btn-ghost:hover{ border-color:var(--amber); color:var(--amber-soft); }
+
+  /* HERO */
+  .hero{
+    padding:100px 0 70px;
+    position:relative;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 4.2vw, 3.4rem);
+    line-height:1.08;
+    margin:18px 0 22px;
+  }
+  .hero h1 em{ color:var(--amber); font-style:normal; }
+  .hero p.lead{
+    font-size:1.05rem;
+    color:var(--ink);
+    max-width:46ch;
+    margin-bottom:30px;
+  }
+  .cta-row{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+  .cta-row .btn-easylandx{ padding:14px 26px; font-size:0.88rem; }
+  .microcopy{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    color:var(--ink-dim);
+    margin-top:14px;
+  }
+
+  /* Willpower reserve chart - signature element */
+  .chart-card{
+    background:var(--blue-2);
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:18px;
+    padding:24px 22px 18px;
+  }
+  .chart-card .cc-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:6px;
+  }
+  .chart-card .cc-title{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    color:var(--ink-dim);
+    text-transform:uppercase;
+  }
+  .chart-card .cc-val{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.78rem;
+    color:var(--amber);
+  }
+  svg#reserveChart{ width:100%; height:auto; display:block; }
+  .chart-legend{
+    display:flex; justify-content:space-between;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.65rem;
+    color:var(--ink-dim);
+    margin-top:6px;
+  }
+  .marker-note{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.68rem;
+    color:var(--amber-soft);
+    text-align:right;
+    margin-top:10px;
+    opacity:0;
+    transform:translateY(6px);
+    transition:opacity 0.5s ease, transform 0.5s ease;
+  }
+  .marker-note.show{ opacity:1; transform:translateY(0); }
+
+  /* SECTION generic */
+  section{ padding:76px 0; position:relative; }
+  .section-head{ max-width:60ch; margin-bottom:44px; }
+  .section-head h2{ font-size:clamp(1.6rem,3vw,2.2rem); margin-top:14px; }
+  .section-head p{ color:var(--ink-dim); margin-top:12px; font-size:0.98rem; }
+  .divider{
+    height:1px;
+    background:linear-gradient(90deg, rgba(245,166,35,0.35), rgba(255,255,255,0.04));
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* THREE POWERS */
+  .powers{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+  }
+  .power-card{
+    background:var(--blue-2);
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:16px;
+    padding:26px 22px;
+    cursor:pointer;
+    transition:border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .power-card:hover{ transform:translateY(-4px); border-color:rgba(245,166,35,0.4); }
+  .power-card .tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.68rem;
+    color:var(--amber);
+    letter-spacing:0.06em;
+  }
+  .power-card h3{ font-size:1.3rem; margin:10px 0 12px; }
+  .power-card .short{ color:var(--ink-dim); font-size:0.9rem; }
+  .power-card .full{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.4s ease, margin-top 0.4s ease;
+    font-size:0.9rem;
+    color:var(--alabaster);
+  }
+  .power-card.open .full{ max-height:220px; margin-top:14px; }
+  .power-card .expand-hint{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.66rem;
+    color:var(--ink-dim);
+    margin-top:16px;
+  }
+
+  /* PHYSIOLOGY */
+  .physio{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .hrv-box{
+    background:var(--blue-2);
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:18px;
+    padding:24px;
+  }
+  .hrv-toggle{
+    display:flex;
+    gap:8px;
+    margin-bottom:18px;
+  }
+  .hrv-toggle button{
+    flex:1;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    padding:9px 8px;
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,0.1);
+    background:transparent;
+    color:var(--ink-dim);
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .hrv-toggle button.active{
+    background:var(--amber);
+    color:var(--blue);
+    border-color:var(--amber);
+    font-weight:600;
+  }
+  svg#hrvWave{ width:100%; height:auto; display:block; }
+  .hrv-read{
+    display:flex; justify-content:space-between;
+    margin-top:14px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.75rem;
+  }
+  .hrv-read .num{ color:var(--amber-soft); font-size:1.3rem; display:block; }
+
+  /* TRAPS */
+  .traps{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+  .trap-card{
+    background:var(--blue-2);
+    border-left:3px solid var(--amber);
+    border-radius:4px 14px 14px 4px;
+    padding:26px 24px;
+  }
+  .trap-card h3{ font-size:1.15rem; margin-bottom:10px; }
+  .trap-card p{ color:var(--ink-dim); font-size:0.92rem; margin-bottom:10px; }
+  .trap-card .fix{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    color:var(--amber-soft);
+    border-top:1px solid rgba(255,255,255,0.08);
+    padding-top:10px;
+    margin-top:10px;
+  }
+
+  /* DOPAMINE */
+  .dopamine-block{
+    background:linear-gradient(135deg, var(--blue-3), var(--blue-2));
+    border-radius:20px;
+    padding:44px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:36px;
+    align-items:center;
+  }
+  .dopamine-block h3{ font-size:1.5rem; margin-bottom:14px; }
+  .dopamine-block p{ color:var(--ink); font-size:0.95rem; }
+  svg#dopamineCurve{ width:100%; height:auto; }
+
+  /* TACTICS + TIMER */
+  .tactics{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+  .tactic-card{
+    background:var(--blue-2);
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:16px;
+    padding:24px;
+  }
+  .tactic-card .num{
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--amber);
+    font-size:0.75rem;
+  }
+  .tactic-card h3{ font-size:1.15rem; margin:8px 0 10px; }
+  .tactic-card p{ color:var(--ink-dim); font-size:0.9rem; }
+
+  .timer-card{
+    grid-column:1 / -1;
+    background:radial-gradient(circle at 30% 20%, rgba(245,166,35,0.14), transparent 60%), var(--blue-2);
+    border:1px solid rgba(245,166,35,0.25);
+    border-radius:18px;
+    padding:32px;
+    display:flex;
+    align-items:center;
+    gap:36px;
+    flex-wrap:wrap;
+  }
+  .timer-face{
+    width:130px;height:130px;
+    border-radius:50%;
+    border:3px solid rgba(255,255,255,0.1);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    flex-shrink:0;
+  }
+  .timer-face svg{ position:absolute; top:0; left:0; width:100%; height:100%; transform:rotate(-90deg); }
+  .timer-face .t-num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:1.5rem;
+    color:var(--alabaster);
+    z-index:2;
+  }
+  .timer-info{ flex:1; min-width:220px; }
+  .timer-info h3{ font-size:1.2rem; margin-bottom:8px; }
+  .timer-info p{ color:var(--ink-dim); font-size:0.9rem; margin-bottom:16px; }
+  .timer-controls{ display:flex; gap:10px; }
+  .btn-timer{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.78rem;
+    padding:10px 18px;
+    border-radius:100px;
+    border:1px solid rgba(255,255,255,0.15);
+    background:transparent;
+    color:var(--ink);
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .btn-timer.primary{ background:var(--amber); color:var(--blue); border-color:var(--amber); font-weight:600; }
+  .btn-timer:hover{ border-color:var(--amber-soft); }
+
+  /* FINAL CTA */
+  .final-cta{
+    text-align:center;
+    background:var(--blue-2);
+    border-radius:24px;
+    padding:70px 30px;
+    margin:0 24px;
+  }
+  .final-cta .eyebrow{ justify-content:center; }
+  .final-cta h2{ font-size:clamp(1.8rem,4vw,2.6rem); margin:16px auto 18px; max-width:22ch; }
+  .final-cta p{ color:var(--ink-dim); max-width:48ch; margin:0 auto 30px; }
+  .final-cta .btn-easylandx{ padding:16px 32px; font-size:0.95rem; }
+
+  footer{
+    padding:40px 24px 50px;
+    text-align:center;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    color:var(--ink-dim);
+  }
+  footer a{ color:var(--amber-soft); }
+
+  /* Floating action button */
+  .fab{
+    position:fixed;
+    bottom:24px; right:24px;
+    z-index:60;
+    background:var(--amber);
+    color:var(--blue);
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    font-size:0.8rem;
+    padding:14px 22px;
+    border-radius:100px;
+    box-shadow:0 10px 30px rgba(245,166,35,0.35);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:transform 0.2s ease;
+  }
+  .fab:hover{ transform:translateY(-3px) scale(1.03); }
+
+  @media (max-width:860px){
+    .hero .wrap{ grid-template-columns:1fr; }
+    .powers{ grid-template-columns:1fr; }
+    .physio{ grid-template-columns:1fr; }
+    .traps{ grid-template-columns:1fr; }
+    .dopamine-block{ grid-template-columns:1fr; padding:30px 24px; }
+    .tactics{ grid-template-columns:1fr; }
+    nav .logo{ font-size:1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener" class="btn-easylandx">Launch my page →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Self-control science applied to your business</span>
+      <h1>You don’t lack motivation.<br>You lack an available <em>prefrontal cortex</em>.</h1>
+      <p class="lead">Stanford psychologist Kelly McGonigal showed that willpower gets depleted like a muscle. Launching your business website is, right now, one of the tasks that demands the most willpower from you — which is why it keeps sitting on your to-do list. EasyLandX removes that requirement: we build it, you just approve it.</p>
+      <div class="cta-row">
+        <a href="https://easylandx.github.io" target="_blank" rel="noopener" class="btn-easylandx">See EasyLandX →</a>
+        <a href="#tacticas" class="btn-ghost">How it works</a>
+      </div>
+      <p class="microcopy">No designing, no deciding, no draining today’s willpower reserve.</p>
+    </div>
+
+    <div class="chart-card">
+      <div class="cc-head">
+        <span class="cc-title">Willpower reserve — today</span>
+        <span class="cc-val" id="reserveNow">62%</span>
+      </div>
+      <svg id="reserveChart" viewBox="0 0 400 180" preserveAspectRatio="none"></svg>
+      <div class="chart-legend">
+        <span>7:00</span><span>12:00</span><span>16:00</span><span>20:00</span>
+      </div>
+      <div class="marker-note" id="markerNote">↑ this is when you delegate your website to EasyLandX</div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The three powers</span>
+      <h2>All self-control uses three different muscles</h2>
+      <p>McGonigal identifies three forces, all managed by the prefrontal cortex. Applied to launching your business online, they look like this:</p>
+    </div>
+
+    <div class="powers reveal">
+      <div class="power-card" onclick="this.classList.toggle('open')">
+        <span class="tag">"I WILL"</span>
+        <h3>The power to start</h3>
+        <p class="short">Doing what needs to be done, even when part of you is avoiding it.</p>
+        <div class="full">Publishing your website is the classic “I will”: you know you need it, but every day you find a reason to postpone it. EasyLandX turns that decision into a single WhatsApp message — we do the “will” for you.</div>
+        <div class="expand-hint">+ tap to expand</div>
+      </div>
+
+      <div class="power-card" onclick="this.classList.toggle('open')">
+        <span class="tag">"I WON'T"</span>
+        <h3>The power to stop</h3>
+        <p class="short">Resisting the temptation to keep “perfecting” before publishing.</p>
+        <div class="full">The web version of “I won’t” is stopping yourself from tweaking the logo, copy, or color for the tenth time. Our process has a defined endpoint: we deliver, you publish, done. No endless redesigning.</div>
+        <div class="expand-hint">+ tap to expand</div>
+      </div>
+
+      <div class="power-card" onclick="this.classList.toggle('open')">
+        <span class="tag">"I WANT"</span>
+        <h3>The power to remember why</h3>
+        <p class="short">Remembering your long-term goal when faced with immediate temptation.</p>
+        <div class="full">You started your business to make a living from it, not to spend your nights editing a template. Every week without a website is a week without new customers. That is your “I want” — we simply help you keep it in sight.</div>
+        <div class="expand-hint">+ tap to expand</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section>
+  <div class="wrap">
+    <div class="physio">
+      <div class="reveal">
+        <span class="eyebrow">The physical foundation</span>
+        <h2>Your willpower depends on your body, not your character</h2>
+        <p style="color:var(--ink-dim); margin-top:14px; font-size:0.95rem;">Stress, lack of sleep, and poor nutrition directly reduce your prefrontal cortex’s ability to regulate impulses. A key indicator is <strong style="color:var(--alabaster)">heart rate variability (HRV)</strong>: high HRV means a relaxed nervous system ready for self-control; low HRV means your body is in “fight or flight” mode — and at that point, there is not enough willpower to launch anything.</p>
+        <p style="color:var(--ink-dim); margin-top:14px; font-size:0.95rem;">That is why so many businesses postpone their website for months: it is not laziness, it is accumulated physiological exhaustion. Outsourcing the task is, literally, a mental energy conservation strategy.</p>
+      </div>
+
+      <div class="hrv-box reveal">
+        <div class="hrv-toggle">
+          <button class="active" onclick="setHRV('calm', this)">High HRV — calm</button>
+          <button onclick="setHRV('stress', this)">Low HRV — stress</button>
+        </div>
+        <svg id="hrvWave" viewBox="0 0 400 120" preserveAspectRatio="none"></svg>
+        <div class="hrv-read">
+          <span>Nervous system: <span class="num" id="hrvLabel">Relaxed</span></span>
+          <span>Self-control: <span class="num" id="hrvControl">High</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Two mental traps</span>
+      <h2>Why “I’ll do it tomorrow” never comes</h2>
+    </div>
+
+    <div class="traps reveal">
+      <div class="trap-card">
+        <h3>Moral licensing</h3>
+        <p>You did something virtuous today — served customers, paid bills, closed a sale — and your brain uses that virtue as permission to postpone the uncomfortable thing: “I’ve done enough for the business today, the website can wait.”</p>
+        <div class="fix">You confuse a single action with your permanent identity. The website is not “just one more thing” to do well — it is the foundation that supports everything else.</div>
+      </div>
+
+      <div class="trap-card">
+        <h3>The “what’s the point” effect</h3>
+        <p>You postponed the website for a week, feel guilty, and to soothe that guilt you keep postponing it: “I’ve already left it this long, a few more weeks won’t make a difference.”</p>
+        <div class="fix">The solution is not more discipline, it is breaking the cycle: delegate the entire task to EasyLandX and eliminate the guilt at its root instead of prolonging it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section>
+  <div class="wrap">
+    <div class="dopamine-block reveal">
+      <div>
+        <span class="eyebrow">The dopamine mirage</span>
+        <h3>Dopamine promises, never delivers</h3>
+        <p>Dopamine is the neurotransmitter of anticipation, not satisfaction: it spikes when you imagine your finished website, but that surge fades within seconds and builds nothing. It is the same signal that makes you open Instagram “just for a moment” instead of writing your page content.</p>
+        <p style="margin-top:14px;">Recognizing the mirage gives you a pause before reacting — and in that pause you decide to delegate instead of getting distracted again.</p>
+      </div>
+      <svg id="dopamineCurve" viewBox="0 0 380 200"></svg>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section id="tacticas">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Tactics that actually work</span>
+      <h2>How to increase your willpower — and when to stop trying alone</h2>
+    </div>
+
+    <div class="tactics reveal">
+      <div class="tactic-card">
+        <span class="num">01</span>
+        <h3>Five minutes outdoors</h3>
+        <p>Walking outdoors for five minutes reduces stress and gets your body out of “fight or flight” mode, immediately increasing your available willpower.</p>
+      </div>
+
+      <div class="tactic-card">
+        <span class="num">02</span>
+        <h3>Meet your future self</h3>
+        <p>We treat our “future self” like a stranger, so we leave all the burden to it. Imagine your business six months from now still without a website — and decide for it today.</p>
+      </div>
+
+      <div class="timer-card">
+        <div class="timer-face">
+          <svg viewBox="0 0 130 130">
+            <circle cx="65" cy="65" r="58" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"/>
+            <circle id="timerRing" cx="65" cy="65" r="58" fill="none" stroke="#F5A623" stroke-width="6" stroke-linecap="round" stroke-dasharray="364" stroke-dashoffset="0"/>
+          </svg>
+          <span class="t-num" id="timerNum">10:00</span>
+        </div>
+        <div class="timer-info">
+          <span class="num tag" style="font-family:'IBM Plex Mono',monospace;color:var(--amber);font-size:0.75rem;">03 · the 10-minute rule</span>
+          <h3>Before postponing the website again, wait 10 minutes</h3>
+          <p>When you feel the urge to postpone the launch — or distract yourself with anything else — start this timer. If the urge is still there when it ends, go ahead. Almost always, the pause breaks the dopamine cycle and what remains is the right decision: message EasyLandX.</p>
+          <div class="timer-controls">
+            <button class="btn-timer primary" onclick="startTimer()">Start</button>
+            <button class="btn-timer" onclick="resetTimer()">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="final-cta reveal">
+      <span class="eyebrow">End of the unfinished task</span>
+      <h2>Stop spending willpower on your website. Spend it on your business.</h2>
+      <p>EasyLandX designs and publishes your landing page for you — conversion-focused and ready to receive customers via WhatsApp or Instagram, without demanding another drop of willpower from you.</p>
+      <a href="https://easylandx.github.io" target="_blank" rel="noopener" class="btn-easylandx">Talk to EasyLandX →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>EasyLandX — Landing pages that launch themselves. <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a></p>
+  <p style="margin-top:6px; opacity:0.7;">Content inspired by “The Willpower Instinct” by Kelly McGonigal, adapted for businesses that have not yet launched their website.</p>
+</footer>
+
+<a href="https://easylandx.github.io" target="_blank" rel="noopener" class="fab">EasyLandX →</a>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el=>io.observe(el));
+
+  // ---- Reserve chart (willpower depletion through the day) ----
+  function drawReserveChart(){
+    const svg = document.getElementById('reserveChart');
+    const points = [
+      [0,20],[60,28],[120,55],[180,70],[220,95],[260,120],[300,100],[340,130],[400,150]
+    ];
+    let path = "M "+points.map(p=>p.join(',')).join(' L ');
+    const area = path + ` L 400,180 L 0,180 Z`;
+
+    svg.innerHTML = `
+      <defs>
+        <linearGradient id="fillGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#F5A623" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#F5A623" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path d="${area}" fill="url(#fillGrad)"/>
+      <path d="${path}" fill="none" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="260" cy="120" r="5" fill="#F5A623" stroke="#12213D" stroke-width="2"/>
+      <line x1="260" y1="0" x2="260" y2="180" stroke="#F5A623" stroke-opacity="0.25" stroke-dasharray="4 4"/>
+    `;
+  }
+  drawReserveChart();
+  setTimeout(()=>document.getElementById('markerNote').classList.add('show'), 900);
+
+  // ---- HRV wave toggle ----
+  function drawWave(mode){
+    const svg = document.getElementById('hrvWave');
+    let d = "M0,60 ";
+    if(mode === 'calm'){
+      for(let x=0; x<=400; x+=10){
+        const y = 60 + Math.sin(x/28) * 16;
+        d += `L${x},${y.toFixed(1)} `;
+      }
+    } else {
+      for(let x=0; x<=400; x+=6){
+        const y = 60 + (Math.sin(x/6) * 24) * (0.6 + Math.random()*0.5);
+        d += `L${x},${y.toFixed(1)} `;
+      }
+    }
+    const color = mode === 'calm' ? '#F5A623' : '#E9744F';
+    svg.innerHTML = `<path d="${d}" fill="none" stroke="${color}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>`;
+  }
+  drawWave('calm');
+
+  function setHRV(mode, btn){
+    document.querySelectorAll('.hrv-toggle button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    drawWave(mode);
+    document.getElementById('hrvLabel').textContent = mode === 'calm' ? 'Relaxed' : 'Alert';
+    document.getElementById('hrvControl').textContent = mode === 'calm' ? 'High' : 'Low';
+  }
+
+  // ---- Dopamine curve: anticipation spike vs satisfaction ----
+  function drawDopamine(){
+    const svg = document.getElementById('dopamineCurve');
+    svg.innerHTML = `
+      <text x="10" y="20" fill="#93A0C0" font-family="IBM Plex Mono" font-size="10">DOPAMINE (ANTICIPATION)</text>
+      <path d="M10,150 C 80,150 100,30 140,30 C 170,30 180,140 220,145" fill="none" stroke="#F5A623" stroke-width="2.5"/>
+      <text x="230" y="150" fill="#93A0C0" font-family="IBM Plex Mono" font-size="10">REAL SATISFACTION</text>
+      <path d="M10,170 C 100,170 150,168 220,166 C 280,164 320,160 370,158" fill="none" stroke="#F3EFE6" stroke-width="2" stroke-dasharray="3 4" opacity="0.6"/>
+      <circle cx="140" cy="30" r="4" fill="#F5A623"/>
+      <text x="120" y="20" fill="#F5A623" font-family="IBM Plex Mono" font-size="9">peak</text>
+    `;
+  }
+  drawDopamine();
+
+  // ---- 10-minute rule timer (compressed to 10 seconds for demo pacing) ----
+  let timerInterval = null;
+  let totalSeconds = 10; // demo speed: represents the 10-minute rule
+  let remaining = totalSeconds;
+  const ring = document.getElementById('timerRing');
+  const CIRC = 364;
+
+  function renderTimer(){
+    document.getElementById('timerNum').textContent = `0:${remaining.toString().padStart(2,'0')}`;
+    const pct = remaining/totalSeconds;
+    ring.setAttribute('stroke-dashoffset', (CIRC*(1-pct)).toFixed(1));
+  }
+  renderTimer();
+
+  function startTimer(){
+    if(timerInterval) return;
+    timerInterval = setInterval(()=>{
+      remaining--;
+      if(remaining <= 0){
+        remaining = 0;
+        renderTimer();
+        clearInterval(timerInterval);
+        timerInterval = null;
+        document.getElementById('timerNum').textContent = "Done";
+        return;
+      }
+      renderTimer();
+    }, 1000);
+  }
+  function resetTimer(){
+    clearInterval(timerInterval);
+    timerInterval = null;
+    remaining = totalSeconds;
+    renderTimer();
+  }
+</script>
+
+</body>
+</html>
