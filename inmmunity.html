@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Ship the page your immunity is blocking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal-deep:   #0d3638;
+    --teal-darker: #082425;
+    --teal-mid:    #124a4c;
+    --parchment:   #f3e8d2;
+    --parchment-dim: #d9c9a4;
+    --orange:      #ff6a3d;
+    --orange-soft: #ff8a5c;
+    --ink:         #eaf2ef;
+    --ink-dim:     #a9c4bf;
+    --line:        rgba(243,232,210,0.14);
+    --line-strong: rgba(243,232,210,0.28);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--teal-deep);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(circle at 15% 8%, rgba(255,106,61,0.09), transparent 45%),
+      radial-gradient(circle at 85% 92%, rgba(243,232,210,0.06), transparent 40%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; position:relative; z-index:1; }
+
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    color:var(--parchment);
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--orange-soft);
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--orange);
+    border-radius:50%;
+    box-shadow:0 0 0 3px rgba(255,106,61,0.2);
+    flex-shrink:0;
+  }
+
+  a{ color:inherit; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(13,54,56,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:20px;
+    font-weight:600;
+    color:var(--parchment);
+    letter-spacing:-0.01em;
+  }
+  .logo span{ color:var(--orange); }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.04em;
+    font-weight:500;
+    padding:12px 22px;
+    border-radius:3px;
+    text-decoration:none;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--orange);
+    color:var(--teal-darker);
+    box-shadow:0 0 0 1px rgba(255,106,61,0.4);
+  }
+  .btn-primary:hover{
+    background:var(--orange-soft);
+    transform:translateY(-1px);
+    box-shadow:0 6px 18px rgba(255,106,61,0.35);
+  }
+  .btn-ghost{
+    border:1px solid var(--line-strong);
+    color:var(--parchment);
+    background:transparent;
+  }
+  .btn-ghost:hover{ border-color:var(--orange); color:var(--orange-soft); }
+  .btn-small{ padding:9px 16px; font-size:12px; }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:100px 0 90px;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(38px, 5vw, 60px);
+    line-height:1.06;
+    margin:22px 0 26px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--orange-soft);
+  }
+  .hero p.lede{
+    font-size:17px;
+    color:var(--ink-dim);
+    max-width:52ch;
+    margin-bottom:34px;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+
+  /* diagnostic readout card */
+  .chart-card{
+    background:var(--parchment);
+    color:var(--teal-darker);
+    border-radius:6px;
+    padding:26px 26px 22px;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,0,0,0.04);
+    position:relative;
+    transform:rotate(1.2deg);
+  }
+  .chart-card::after{
+    content:"";
+    position:absolute; inset:10px;
+    border:1px dashed rgba(13,54,56,0.18);
+    border-radius:3px;
+    pointer-events:none;
+  }
+  .chart-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:rgba(13,54,56,0.55);
+    border-bottom:1px solid rgba(13,54,56,0.15);
+    padding-bottom:12px; margin-bottom:16px;
+  }
+  .chart-head b{ color:var(--orange); }
+  .vital-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:10px 0;
+    border-bottom:1px solid rgba(13,54,56,0.1);
+    font-size:14px;
+  }
+  .vital-row:last-child{ border-bottom:none; }
+  .vital-label{ color:rgba(13,54,56,0.65); font-size:13px; }
+  .vital-value{ font-family:'IBM Plex Mono', monospace; font-weight:600; }
+  .vital-value.crit{ color:var(--orange); }
+  .vital-value.ok{ color:#1e6b5c; }
+  .pulse-line{
+    margin-top:18px;
+    height:38px;
+    display:flex; align-items:flex-end; gap:3px;
+  }
+  .pulse-line span{
+    flex:1;
+    background:var(--orange);
+    opacity:0.35;
+    border-radius:1px;
+  }
+  .pulse-line span:nth-child(4),
+  .pulse-line span:nth-child(9){ opacity:1; }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:90px 0; position:relative; }
+  .section-head{ max-width:620px; margin-bottom:52px; }
+  .section-head h2{ font-size:clamp(28px,3.4vw,38px); margin-top:14px; }
+  .section-head p{ color:var(--ink-dim); margin-top:14px; font-size:16px; }
+
+  .divider{
+    border:none; height:1px;
+    background:var(--line);
+  }
+
+  /* ---------- TECHNICAL VS ADAPTIVE ---------- */
+  .split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .split-panel{
+    background:var(--teal-deep);
+    padding:34px 32px;
+  }
+  .split-panel.orange-tint{ background:var(--teal-mid); }
+  .split-panel .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-dim);
+    margin-bottom:14px;
+    display:inline-block;
+  }
+  .split-panel.orange-tint .tag{ color:var(--orange-soft); }
+  .split-panel h3{ font-size:22px; margin-bottom:12px; }
+  .split-panel ul{ list-style:none; margin-top:16px; }
+  .split-panel li{
+    font-size:14.5px; color:var(--ink-dim);
+    padding:8px 0 8px 20px;
+    position:relative;
+    border-top:1px solid var(--line);
+  }
+  .split-panel li:first-of-type{ border-top:none; }
+  .split-panel li::before{
+    content:"—";
+    position:absolute; left:0; color:var(--orange-soft);
+  }
+
+  /* ---------- IMMUNITY MAP ---------- */
+  .map-card{
+    background:var(--parchment);
+    color:var(--teal-darker);
+    border-radius:6px;
+    padding:6px;
+    box-shadow:0 30px 70px -30px rgba(0,0,0,0.55);
+  }
+  .map-inner{
+    border:1px dashed rgba(13,54,56,0.2);
+    border-radius:3px;
+    padding:8px;
+  }
+  .map-table-head{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
+  }
+  .map-table-head div{
+    padding:14px 16px;
+    color:rgba(13,54,56,0.5);
+    border-bottom:2px solid rgba(13,54,56,0.15);
+  }
+  .map-table-head div b{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size:14px;
+    text-transform:none;
+    color:var(--teal-darker);
+    margin-top:4px;
+    letter-spacing:0;
+  }
+  .map-table-head div:nth-child(3){ color:var(--orange); }
+  .map-table-head div:nth-child(3) b{ color:var(--orange); }
+
+  .map-table-row{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+  }
+  .map-table-row div{
+    padding:18px 16px;
+    font-size:13.6px;
+    line-height:1.55;
+    color:rgba(13,54,56,0.82);
+    border-top:1px solid rgba(13,54,56,0.1);
+  }
+  .map-table-row div:nth-child(3){
+    background:rgba(255,106,61,0.06);
+    border-left:2px solid var(--orange);
+    border-right:2px solid var(--orange);
+    font-weight:500;
+  }
+
+  @media (max-width:820px){
+    .map-table-head, .map-table-row{ grid-template-columns:1fr; }
+    .map-table-head div{ border-bottom:1px solid rgba(13,54,56,0.15); }
+    .map-table-row div{ border-top:1px solid rgba(13,54,56,0.1) !important; border-left:none !important; border-right:none !important; }
+    .map-table-row div:nth-child(3){ border-top:2px solid var(--orange) !important; border-bottom:2px solid var(--orange) !important; }
+  }
+
+  /* ---------- EXPERIMENTS / HOW EASYLANDX HELPS ---------- */
+  .experiment-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .experiment-card{
+    background:var(--teal-mid);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:30px 26px;
+    position:relative;
+  }
+  .experiment-card .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--orange-soft);
+    letter-spacing:0.08em;
+  }
+  .experiment-card h3{
+    font-size:19px;
+    margin:14px 0 10px;
+  }
+  .experiment-card p{
+    color:var(--ink-dim);
+    font-size:14.5px;
+  }
+
+  @media (max-width:900px){
+    .experiment-grid, .split{ grid-template-columns:1fr; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .chart-card{ transform:none; }
+  }
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{
+    background:linear-gradient(135deg, var(--teal-mid), var(--teal-darker));
+    border:1px solid var(--line-strong);
+    border-radius:10px;
+    padding:60px 50px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-band::before{
+    content:"";
+    position:absolute; top:-60px; right:-60px;
+    width:220px; height:220px;
+    background:radial-gradient(circle, rgba(255,106,61,0.25), transparent 70%);
+  }
+  .cta-band h2{ font-size:clamp(26px,3.4vw,36px); margin-bottom:16px; }
+  .cta-band p{ color:var(--ink-dim); max-width:46ch; margin:0 auto 30px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:40px 0;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+  }
+  footer .fine{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-dim);
+    letter-spacing:0.02em;
+  }
+
+  ::selection{ background:var(--orange); color:var(--teal-darker); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">easyland<span>x</span></div>
+    <a class="btn btn-primary btn-small" href="https://easylandx.com" target="_blank" rel="noopener">Start diagnosing →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Diagnosis, not discipline</div>
+      <h1>Your landing page isn't stuck because you lack a tool. <em>It's stuck because you have an immune system.</em></h1>
+      <p class="lede">Most unshipped landing pages don't fail from laziness or bad copy. They fail because a hidden, well-meaning part of you is quietly protecting itself — and no amount of willpower fixes that. easylandx is built to run the small, safe experiment that finally shows your brain the coast is clear.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Build with easylandx →</a>
+        <a class="btn btn-ghost" href="#map">See the diagnostic map</a>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-head"><span>Immunity Readout</span><b>LIVE</b></div>
+      <div class="vital-row"><span class="vital-label">Stated commitment</span><span class="vital-value ok">Ship it</span></div>
+      <div class="vital-row"><span class="vital-label">Actual behavior</span><span class="vital-value crit">Redesign #11</span></div>
+      <div class="vital-row"><span class="vital-label">Hidden commitment</span><span class="vital-value crit">Look flawless</span></div>
+      <div class="vital-row"><span class="vital-label">Big assumption</span><span class="vital-value">Untested</span></div>
+      <div class="pulse-line">
+        <span style="height:30%"></span><span style="height:55%"></span><span style="height:40%"></span>
+        <span style="height:90%"></span><span style="height:35%"></span><span style="height:60%"></span>
+        <span style="height:25%"></span><span style="height:50%"></span><span style="height:95%"></span>
+        <span style="height:38%"></span><span style="height:62%"></span><span style="height:44%"></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<hr class="divider">
+
+<!-- TECHNICAL VS ADAPTIVE -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The core problem</div>
+      <h2>You keep treating an adaptive problem with a technical fix.</h2>
+      <p>Kegan and Lahey's research on change applies almost exactly to why teams stall on landing pages: the obstacle isn't the builder, the template, or the copy deck. It's a mindset shift you haven't made yet — and no new tool substitutes for that.</p>
+    </div>
+
+    <div class="split">
+      <div class="split-panel">
+        <span class="tag">Technical challenge</span>
+        <h3>What you keep buying</h3>
+        <ul>
+          <li>A prettier template or a new page builder</li>
+          <li>Another A/B testing plugin</li>
+          <li>A faster hosting stack</li>
+          <li>More stock photography, more icons, more sections</li>
+        </ul>
+      </div>
+      <div class="split-panel orange-tint">
+        <span class="tag">Adaptive challenge</span>
+        <h3>What actually needs to change</h3>
+        <ul>
+          <li>Trusting a page at 80% instead of hunting for 100%</li>
+          <li>Letting real visitors judge the page instead of you</li>
+          <li>Publishing before every stakeholder signs off</li>
+          <li>Treating "live" as a starting point, not a verdict</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- IMMUNITY MAP -->
+<section id="map">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The immunity map, applied</div>
+      <h2>Four columns explain why the page in your drafts folder never goes live.</h2>
+      <p>Run this exercise honestly and the pattern behind every stalled launch becomes visible — not as a character flaw, but as a system quietly doing its job.</p>
+    </div>
+
+    <div class="map-card">
+      <div class="map-inner">
+        <div class="map-table-head">
+          <div>Col. 01<b>The commitment</b></div>
+          <div>Col. 02<b>What I do instead</b></div>
+          <div>Col. 03<b>Hidden commitment</b></div>
+          <div>Col. 04<b>The big assumption</b></div>
+        </div>
+        <div class="map-table-row">
+          <div>"I'm committed to launching a landing page for the new offer this month."</div>
+          <div>Rewriting the headline for the tenth time. Waiting on "one more" testimonial. Tweaking the hero image instead of publishing.</div>
+          <div>Secretly committed to never putting out anything that could be picked apart or criticized.</div>
+          <div>If I publish something imperfect, visitors will judge the whole brand — and I won't get a second chance.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- HOW EASYLANDX BREAKS THE LOOP -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The way out</div>
+      <h2>You don't out-discipline your immune system. You run a safer experiment than it expects.</h2>
+      <p>Willpower loses to Column 3 every time. What works is a small, low-stakes test that proves your Column 4 assumption wrong — which is exactly what easylandx is built to make effortless.</p>
+    </div>
+
+    <div class="experiment-grid">
+      <div class="experiment-card">
+        <div class="num">01 / Build</div>
+        <h3>Ship an 80% page in an afternoon</h3>
+        <p>easylandx turns a landing page from a weeks-long perfection project into a same-day draft you can actually publish — lowering the stakes enough to act.</p>
+      </div>
+      <div class="experiment-card">
+        <div class="num">02 / Publish</div>
+        <h3>Put it live, quietly, to a small slice</h3>
+        <p>Route a fraction of real traffic to the new page instead of your whole audience. It's live — but it's the "48-hour experiment," not a irreversible verdict.</p>
+      </div>
+      <div class="experiment-card">
+        <div class="num">03 / Observe</div>
+        <h3>Let the data outvote the anxiety</h3>
+        <p>Built-in analytics show what actually happened, not what you feared would happen — the exact evidence that dismantles a Big Assumption.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FINAL CTA -->
+<section>
+  <div class="wrap">
+    <div class="cta-band">
+      <div class="eyebrow" style="justify-content:center; margin-bottom:16px;">Ready when you are</div>
+      <h2>Stop redesigning the page. Start diagnosing why it isn't live.</h2>
+      <p>easylandx is the safe, small experiment your immune system can't argue with — build, publish, and read the results in one afternoon.</p>
+      <a class="btn btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Build my landing page →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo" style="font-size:16px;">easyland<span>x</span></div>
+    <div class="fine">Ideas adapted from "Immunity to Change" — R. Kegan &amp; L. L. Lahey · applied to landing pages by easylandx</div>
+  </div>
+</footer>
+
+</body>
+</html>
