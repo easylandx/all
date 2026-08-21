@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Conversion First</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cash-flow-green:      #0E3B2E;
+    --cash-flow-green-mid:  #14503F;
+    --cash-flow-green-soft: #1B6349;
+    --cash-flow-tint:       #EAF5EE;
+    --treasury-blue:        #1F4E79;
+    --treasury-blue-light:  #4A7FAD;
+    --opex-slate:           #58636D;
+    --opex-slate-light:     #93A0AA;
+    --paper:                #F5F8F5;
+    --ink:                  #0C1A15;
+    --line: rgba(234,245,238,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cash-flow-green);
+    color:var(--cash-flow-tint);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .label{
+    font-family:'IBM Plex Mono',monospace;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.72rem;
+    color:var(--treasury-blue-light);
+  }
+  a{color:inherit;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(14,59,46,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px;}
+  .wordmark{font-family:'Fraunces',serif;font-weight:700;font-size:1.25rem;color:var(--cash-flow-tint);}
+  .wordmark span{color:var(--treasury-blue-light);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.82rem;font-weight:500;
+    text-transform:uppercase;letter-spacing:0.08em;
+    padding:13px 24px;border-radius:3px;
+    text-decoration:none;
+    border:1px solid transparent;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn-primary{background:var(--treasury-blue);color:var(--cash-flow-tint);box-shadow:0 1px 0 rgba(0,0,0,0.15);}
+  .btn-primary:hover{background:var(--treasury-blue-light);transform:translateY(-1px);}
+  .btn-ghost{border-color:var(--opex-slate-light);color:var(--cash-flow-tint);}
+  .btn-ghost:hover{border-color:var(--cash-flow-tint);}
+  .btn-small{padding:10px 18px;font-size:0.74rem;}
+
+  /* HERO */
+  header.hero{padding:120px 0 96px;position:relative;overflow:hidden;}
+  header.hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 82% 12%, rgba(31,78,121,0.35), transparent 45%),
+      repeating-linear-gradient(180deg, transparent 0, transparent 39px, var(--line) 40px);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative;max-width:760px;}
+  .eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
+  .eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--treasury-blue-light);}
+  h1.display{font-size:clamp(2.6rem,5.4vw,4.4rem);line-height:1.04;color:var(--paper);}
+  h1.display em{font-style:italic;color:var(--treasury-blue-light);}
+  .hero p.sub{
+    margin-top:26px;max-width:560px;font-size:1.14rem;color:rgba(234,245,238,0.78);
+  }
+  .hero-actions{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap;}
+
+  /* LEDGER STRIP (signature element preview in hero) */
+  .ledger-preview{
+    margin-top:64px;
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:6px;
+    padding:22px 26px;
+    max-width:620px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.86rem;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.5);
+  }
+  .ledger-preview .ledger-title{
+    display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:1px solid rgba(12,26,21,0.14);padding-bottom:12px;margin-bottom:12px;
+  }
+  .ledger-preview .ledger-title strong{font-family:'Fraunces',serif;font-size:1rem;font-weight:600;}
+  .ledger-row{display:flex;justify-content:space-between;padding:6px 0;color:rgba(12,26,21,0.72);}
+  .ledger-row b{color:var(--treasury-blue);}
+  .ledger-row.total{border-top:1px dashed rgba(12,26,21,0.2);margin-top:6px;padding-top:10px;color:var(--ink);font-weight:600;}
+
+  /* SECTIONS */
+  section{padding:88px 0;border-top:1px solid var(--line);}
+  .section-head{max-width:640px;margin-bottom:52px;}
+  .section-head .label{margin-bottom:14px;display:block;}
+  .section-head h2{font-size:clamp(1.8rem,3vw,2.5rem);color:var(--paper);}
+  .section-head p{margin-top:16px;color:rgba(234,245,238,0.72);font-size:1.03rem;}
+
+  /* FORMULA */
+  .formula-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  @media (max-width:760px){.formula-grid{grid-template-columns:1fr;}}
+  .formula-card{
+    background:var(--cash-flow-green-mid);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:30px 28px;
+  }
+  .formula-card .label{color:var(--opex-slate-light);}
+  .formula-card.flip .label{color:var(--treasury-blue-light);}
+  .formula-eq{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:1.28rem;
+    margin:16px 0 14px;
+    color:var(--paper);
+  }
+  .formula-eq .strike{text-decoration:line-through;opacity:0.45;}
+  .formula-card p{color:rgba(234,245,238,0.68);font-size:0.96rem;margin:0;}
+  .formula-card.flip{background:var(--treasury-blue);border-color:transparent;}
+  .formula-card.flip .formula-eq{color:#fff;}
+  .formula-card.flip p{color:rgba(255,255,255,0.82);}
+
+  /* ACCOUNTS / LEDGER LIST */
+  .accounts{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+  @media (max-width:760px){.accounts{grid-template-columns:1fr;}}
+  .account{background:var(--cash-flow-green);padding:32px 30px;}
+  .account .num{font-family:'IBM Plex Mono',monospace;color:var(--treasury-blue-light);font-size:0.78rem;letter-spacing:0.1em;}
+  .account h3{color:var(--paper);font-size:1.22rem;margin-top:10px;}
+  .account p{color:rgba(234,245,238,0.68);font-size:0.94rem;margin-top:10px;}
+  .account .tag{
+    display:inline-block;margin-top:16px;
+    font-family:'IBM Plex Mono',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;
+    color:var(--opex-slate-light);border:1px solid var(--opex-slate);border-radius:20px;padding:5px 12px;
+  }
+
+  /* PRINCIPLES */
+  .principles{display:flex;flex-direction:column;border-top:1px solid var(--line);}
+  .principle{
+    display:grid;grid-template-columns:64px 1fr;gap:22px;
+    padding:26px 0;border-bottom:1px solid var(--line);
+  }
+  .principle .idx{font-family:'Fraunces',serif;font-size:1.6rem;color:var(--opex-slate-light);font-weight:500;}
+  .principle h3{font-size:1.12rem;color:var(--paper);margin-bottom:6px;}
+  .principle p{color:rgba(234,245,238,0.68);font-size:0.96rem;margin:0;max-width:560px;}
+
+  /* TAPs / ALLOCATION BAR */
+  .allocation-card{
+    background:var(--paper);color:var(--ink);
+    border-radius:8px;padding:34px 34px 30px;
+  }
+  .allocation-card .label{color:var(--treasury-blue);margin-bottom:6px;display:block;}
+  .allocation-card h3{font-size:1.3rem;color:var(--ink);margin-bottom:24px;}
+  .bar{display:flex;width:100%;height:34px;border-radius:4px;overflow:hidden;border:1px solid rgba(12,26,21,0.1);}
+  .bar span{height:100%;}
+  .bar .cta{width:5%;background:var(--treasury-blue);}
+  .bar .hero{width:50%;background:var(--cash-flow-green-soft);}
+  .bar .trust{width:15%;background:var(--opex-slate);}
+  .bar .content{width:30%;background:#C7D6CD;}
+  .legend{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px;}
+  @media (max-width:640px){.legend{grid-template-columns:repeat(2,1fr);}}
+  .legend-item{font-family:'IBM Plex Mono',monospace;font-size:0.78rem;}
+  .legend-item .sw{width:10px;height:10px;display:inline-block;border-radius:2px;margin-right:8px;vertical-align:middle;}
+  .legend-item .pct{display:block;margin-top:4px;font-size:1.1rem;font-family:'Fraunces',serif;font-weight:600;}
+
+  /* CTA / FOOTER */
+  .cta-section{text-align:center;padding:110px 0;}
+  .cta-section h2{font-size:clamp(2rem,4vw,3rem);color:var(--paper);max-width:680px;margin:0 auto;}
+  .cta-section p{margin-top:18px;color:rgba(234,245,238,0.7);}
+  .cta-section .btn{margin-top:34px;}
+
+  footer{border-top:1px solid var(--line);padding:36px 0;}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+  footer .fine{font-family:'IBM Plex Mono',monospace;font-size:0.76rem;color:var(--opex-slate-light);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .btn{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="wordmark">Easy<span>Land</span>X</div>
+    <a class="btn btn-primary btn-small" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your Page →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow"><span class="eyebrow-dot"></span><span class="label">EasyLandX · Conversion First</span></div>
+    <h1 class="display">Every landing page has a leftover. We just refuse to let it be the <em>conversion</em>.</h1>
+    <p class="sub">Most small-business websites are built the traditional way: pile on pages, sections and copy, and hope a sale falls out the bottom. EasyLandX builds every page the other way around — conversion is allocated first, and everything else is built around what's left.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start With EasyLandX</a>
+      <a class="btn btn-ghost" href="#accounts">See The Method</a>
+    </div>
+
+    <div class="ledger-preview">
+      <div class="ledger-title"><strong>Page Ledger — Draft 01</strong><span>EasyLandX</span></div>
+      <div class="ledger-row"><span>Traffic In</span><b>100%</b></div>
+      <div class="ledger-row"><span>− Call-to-Action (funded first)</span><b>5%</b></div>
+      <div class="ledger-row"><span>− Hero &amp; Value Proposition</span><b>50%</b></div>
+      <div class="ledger-row"><span>− Trust &amp; Proof</span><b>15%</b></div>
+      <div class="ledger-row total"><span>Remaining for supporting content</span><b>30%</b></div>
+    </div>
+  </div>
+</header>
+
+<section id="formula">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">The Flawed Formula</span>
+      <h2>Conversions shouldn't be a leftover.</h2>
+      <p>Traditional site-building treats conversion as whatever's left after design, content and features are done. Because attention and budget always get spent on what's in front of you, that leftover is usually nothing.</p>
+    </div>
+    <div class="formula-grid">
+      <div class="formula-card">
+        <span class="label">How most sites get built</span>
+        <div class="formula-eq">Traffic − Content = <span class="strike">Conversions</span></div>
+        <p>Pages, sections and features are added until the budget runs out — and conversion, the actual goal, is whatever's left over. Usually that's close to zero.</p>
+      </div>
+      <div class="formula-card flip">
+        <span class="label">The EasyLandX way</span>
+        <div class="formula-eq">Traffic − Conversions = Content</div>
+        <p>We decide what makes a visitor act, build and fund that first, and let everything else — copy, imagery, extra pages — fill in what's left. It's a small flip that changes every design decision that follows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="accounts">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">The Four Page Accounts</span>
+      <h2>Instead of one messy page, four dedicated ones.</h2>
+      <p>A single sprawling page tempts you to spend attention wherever there's room. EasyLandX splits every build into separate, purpose-built "accounts" — so nothing steals space from the job it's supposed to do.</p>
+    </div>
+    <div class="accounts">
+      <div class="account">
+        <span class="num">01 — Traffic In</span>
+        <h3>The Landing Account</h3>
+        <p>Every visitor arrives here first, no matter where they clicked from. Nothing gets spent from this account directly — it exists to route attention, not hold it.</p>
+        <span class="tag">Entry point</span>
+      </div>
+      <div class="account">
+        <span class="num">02 — Funded First</span>
+        <h3>The Call-to-Action Account</h3>
+        <p>The one button or form that matters is designed, placed and tested before anything else on the page. If it isn't working, nothing downstream can save the page.</p>
+        <span class="tag">Non-negotiable</span>
+      </div>
+      <div class="account">
+        <span class="num">03 — Credibility</span>
+        <h3>The Trust Account</h3>
+        <p>Reviews, guarantees, real photos and clear pricing — held in reserve and spent deliberately, right where doubt is most likely to appear.</p>
+        <span class="tag">Reserved</span>
+      </div>
+      <div class="account">
+        <span class="num">04 — What's Left</span>
+        <h3>The Content Account</h3>
+        <p>Extra sections, longer copy and secondary pages are built from whatever budget remains — never the other way around.</p>
+        <span class="tag">Discretionary</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="principles">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">Four Working Principles</span>
+      <h2>How we keep a page honest.</h2>
+    </div>
+    <div class="principles">
+      <div class="principle">
+        <span class="idx">01</span>
+        <div>
+          <h3>Build smaller pages</h3>
+          <p>A page with room for ten ideas will eventually hold ten ideas — and lose the one that mattered. We size every page to fit only what earns its place, so there's nowhere for the important thing to hide.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <span class="idx">02</span>
+        <div>
+          <h3>Serve sequentially</h3>
+          <p>The call-to-action is designed before the hero copy, and the hero before the footer. Build in the other order and the last thing built — usually the thing that should convert — gets whatever attention is left.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <span class="idx">03</span>
+        <div>
+          <h3>Remove the temptation</h3>
+          <p>No stray navigation, no competing offers, no third link out of the page. If it doesn't support the one action you want taken, it doesn't belong above the fold — or anywhere else.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <span class="idx">04</span>
+        <div>
+          <h3>Keep a rhythm</h3>
+          <p>Pages aren't tweaked daily on a whim. We review performance on a fixed cadence, so changes come from real patterns in the numbers — not from chasing every small fluctuation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="taps">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">Target Allocation</span>
+      <h2>Where the page's attention actually goes.</h2>
+      <p>Every EasyLandX build starts from the same target split, then adjusts to the business. It's the default we design against, not a rule we're precious about.</p>
+    </div>
+    <div class="allocation-card">
+      <span class="label">Default Page Allocation</span>
+      <h3>100% of a visitor's attention, budgeted in advance</h3>
+      <div class="bar" role="img" aria-label="Page attention allocation: 5% call to action, 50% hero and value proposition, 15% trust and proof, 30% supporting content">
+        <span class="cta"></span><span class="hero"></span><span class="trust"></span><span class="content"></span>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><span class="sw" style="background:var(--treasury-blue)"></span>Call-to-Action<span class="pct">5%</span></div>
+        <div class="legend-item"><span class="sw" style="background:var(--cash-flow-green-soft)"></span>Hero &amp; Value Prop<span class="pct">50%</span></div>
+        <div class="legend-item"><span class="sw" style="background:var(--opex-slate)"></span>Trust &amp; Proof<span class="pct">15%</span></div>
+        <div class="legend-item"><span class="sw" style="background:#C7D6CD"></span>Supporting Content<span class="pct">30%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="wrap">
+    <span class="label">Ready When You Are</span>
+    <h2 style="margin-top:14px;">A conversion-focused page, built the EasyLandX way — affordably, and fast.</h2>
+    <p>No templates. No page builders. Just a page designed around the one thing you actually need it to do.</p>
+    <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="fine">EasyLandX — affordable, conversion-focused landing pages</span>
+    <a class="btn btn-ghost btn-small" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>

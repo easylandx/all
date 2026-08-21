@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Straight Talk, Real Conversions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --straight-talk-blue:      #10273F;
+    --straight-talk-blue-mid:  #17324F;
+    --straight-talk-blue-deep: #0A1B2C;
+    --true-profit-green:       #1F9D6B;
+    --true-profit-green-dim:   #14603F;
+    --unbiased-white:          #F4F6F4;
+    --unbiased-white-dim:      rgba(244,246,244,0.66);
+    --line: rgba(244,246,244,0.14);
+    --fail-red: #B5533E;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--straight-talk-blue);
+    color:var(--unbiased-white);
+    font-family:'Public Sans',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Newsreader',serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.005em;
+  }
+  .num{font-family:'IBM Plex Mono',monospace;}
+  .label{
+    font-family:'IBM Plex Mono',monospace;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.7rem;
+    color:var(--true-profit-green);
+  }
+  a{color:inherit;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(16,39,63,0.92);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;}
+  .wordmark{font-family:'Newsreader',serif;font-weight:700;font-size:1.2rem;letter-spacing:-0.01em;}
+  .wordmark span{color:var(--true-profit-green);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.78rem;font-weight:500;
+    text-transform:uppercase;letter-spacing:0.08em;
+    padding:13px 22px;border-radius:0;
+    text-decoration:none;
+    border:1px solid transparent;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn-primary{background:var(--true-profit-green);color:var(--straight-talk-blue-deep);}
+  .btn-primary:hover{background:#2AB57C;transform:translateY(-1px);}
+  .btn-ghost{border-color:var(--unbiased-white-dim);color:var(--unbiased-white);}
+  .btn-ghost:hover{border-color:var(--unbiased-white);}
+  .btn-small{padding:10px 16px;font-size:0.7rem;}
+
+  /* HERO */
+  header.hero{padding:110px 0 90px;border-bottom:1px solid var(--line);}
+  .kicker{display:flex;align-items:center;gap:10px;margin-bottom:24px;}
+  .kicker .bar{width:22px;height:2px;background:var(--true-profit-green);}
+  h1.display{font-size:clamp(2.4rem,5vw,4rem);line-height:1.08;max-width:760px;}
+  h1.display .strike{color:var(--fail-red);text-decoration:line-through;text-decoration-thickness:2px;}
+  h1.display em{font-style:italic;color:var(--true-profit-green);}
+  .hero p.sub{margin-top:24px;max-width:580px;font-size:1.12rem;color:var(--unbiased-white-dim);}
+  .hero-actions{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;}
+
+  /* REALITY CHECK BLOCK */
+  .reality{
+    margin-top:60px;
+    border:1px solid var(--line);
+    display:grid;grid-template-columns:1fr 1fr;
+    max-width:680px;
+  }
+  @media (max-width:600px){.reality{grid-template-columns:1fr;}}
+  .reality > div{padding:24px 26px;}
+  .reality .fake{border-right:1px solid var(--line);}
+  @media (max-width:600px){.reality .fake{border-right:none;border-bottom:1px solid var(--line);}}
+  .reality .tag{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;}
+  .reality .fake .tag{color:var(--fail-red);}
+  .reality .true .tag{color:var(--true-profit-green);}
+  .reality .figure{font-family:'IBM Plex Mono',monospace;font-size:2rem;margin-top:10px;}
+  .reality .fake .figure{color:var(--fail-red);text-decoration:line-through;opacity:0.6;}
+  .reality .true .figure{color:var(--true-profit-green);}
+  .reality .cap{margin-top:8px;font-size:0.82rem;color:var(--unbiased-white-dim);}
+
+  /* SECTIONS */
+  section{padding:88px 0;border-bottom:1px solid var(--line);}
+  .section-head{max-width:640px;margin-bottom:52px;}
+  .section-head .label{margin-bottom:14px;display:block;}
+  .section-head h2{font-size:clamp(1.8rem,3vw,2.4rem);}
+  .section-head p{margin-top:16px;color:var(--unbiased-white-dim);font-size:1.02rem;}
+
+  /* KEYS */
+  .keys{display:flex;flex-direction:column;}
+  .key{
+    display:grid;grid-template-columns:120px 1fr;gap:30px;
+    padding:36px 0;border-top:1px solid var(--line);
+  }
+  .key:last-child{border-bottom:none;}
+  @media (max-width:700px){.key{grid-template-columns:1fr;gap:12px;}}
+  .key .kn{font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:var(--true-profit-green);}
+  .key .kn strong{display:block;font-family:'Newsreader',serif;font-size:2.4rem;color:var(--unbiased-white);font-weight:600;margin-top:4px;}
+  .key h3{font-size:1.24rem;margin-bottom:10px;}
+  .key p{color:var(--unbiased-white-dim);font-size:0.98rem;max-width:600px;margin:0 0 12px;}
+  .key .rule{
+    font-family:'IBM Plex Mono',monospace;font-size:0.82rem;
+    color:var(--true-profit-green);
+    border-left:2px solid var(--true-profit-green);
+    padding-left:12px;margin-top:14px;
+  }
+
+  /* CER CARD */
+  .cer-card{
+    background:var(--straight-talk-blue-mid);
+    border:1px solid var(--line);
+    padding:36px 34px;
+    margin-top:10px;
+  }
+  .cer-card .label{margin-bottom:10px;display:block;}
+  .cer-formula{
+    font-family:'IBM Plex Mono',monospace;font-size:1.5rem;
+    color:var(--unbiased-white);margin:14px 0 18px;
+  }
+  .cer-formula .top{color:var(--true-profit-green);}
+  .cer-card p{color:var(--unbiased-white-dim);font-size:0.96rem;margin:0;max-width:600px;}
+
+  /* LAYERS */
+  .layers{border:1px solid var(--line);}
+  .layer{
+    display:grid;grid-template-columns:180px 1fr;
+    border-bottom:1px solid var(--line);
+  }
+  .layer:last-child{border-bottom:none;}
+  @media (max-width:700px){.layer{grid-template-columns:1fr;}}
+  .layer .lname{
+    background:var(--straight-talk-blue-mid);
+    padding:22px 24px;
+    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;
+    text-transform:uppercase;letter-spacing:0.08em;
+    color:var(--true-profit-green);
+    display:flex;align-items:center;
+    border-right:1px solid var(--line);
+  }
+  @media (max-width:700px){.layer .lname{border-right:none;border-bottom:1px solid var(--line);}}
+  .layer .ldesc{padding:22px 26px;}
+  .layer .ldesc h4{font-family:'Newsreader',serif;font-weight:600;font-size:1.08rem;margin:0 0 6px;}
+  .layer .ldesc p{margin:0;color:var(--unbiased-white-dim);font-size:0.94rem;}
+
+  /* TAKEAWAYS */
+  .takeaways{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media (max-width:700px){.takeaways{grid-template-columns:1fr;}}
+  .takeaway{background:var(--straight-talk-blue);padding:32px 30px;}
+  .takeaway .label{margin-bottom:12px;display:block;}
+  .takeaway h3{font-size:1.1rem;margin-bottom:10px;}
+  .takeaway p{color:var(--unbiased-white-dim);font-size:0.95rem;margin:0;}
+
+  /* CTA */
+  .cta-section{text-align:center;padding:110px 0;border-bottom:none;}
+  .cta-section h2{font-size:clamp(2rem,4vw,2.9rem);max-width:680px;margin:0 auto;}
+  .cta-section p{margin-top:18px;color:var(--unbiased-white-dim);}
+  .cta-section .btn{margin-top:32px;}
+
+  footer{padding:36px 0;}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+  footer .fine{font-family:'IBM Plex Mono',monospace;font-size:0.74rem;color:var(--unbiased-white-dim);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .btn{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="wordmark">Easy<span>Land</span>X</div>
+    <a class="btn btn-primary btn-small" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your Page →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker"><span class="bar"></span><span class="label">EasyLandX · Straight Talk</span></div>
+    <h1 class="display">Your "free" DIY page isn't <span class="strike">free</span>. It's <em>costing you every sale it doesn't close.</em></h1>
+    <p class="sub">Most small businesses never find out if their site actually works — they just assume it does because it exists. EasyLandX starts by looking at the number that matters: what your current page is really costing you in lost customers, no accounting tricks included.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start With EasyLandX</a>
+      <a class="btn btn-ghost" href="#keys">See The Numbers</a>
+    </div>
+
+    <div class="reality">
+      <div class="fake">
+        <span class="tag">What it looks like</span>
+        <div class="figure">$0 <span style="font-size:1rem;">/mo</span></div>
+        <p class="cap">A free template, built yourself over a weekend.</p>
+      </div>
+      <div class="true">
+        <span class="tag">What it actually costs</span>
+        <div class="figure">$0 <span style="font-size:1rem;">→ ???</span></div>
+        <p class="cap">Every visitor who leaves without converting, month after month.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="reality-check">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">The Central Problem</span>
+      <h2>You don't know if your page is profitable — because you've never actually measured it.</h2>
+      <p>Just like a business owner who pays themselves nothing and calls the leftover "profit," a business owner who builds their own page and calls it "done" is skipping the one number that tells the truth: what did this page actually cost you in customers who didn't convert?</p>
+    </div>
+  </div>
+</section>
+
+<section id="keys">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">Four Keys To The Real Numbers</span>
+      <h2>The framework we build every page against.</h2>
+    </div>
+    <div class="keys">
+      <div class="key">
+        <div class="kn">Key <strong>01</strong></div>
+        <div>
+          <h3>The Real Cost of "Free"</h3>
+          <p>Building your own page yourself feels free because no invoice ever arrives. But your time has a market rate, and every week the page underperforms has a cost too — you're just not the one writing it down.</p>
+          <div class="rule">Rule: price your own time and your lost conversions at market rate, or you don't actually know your page's cost.</div>
+        </div>
+      </div>
+      <div class="key">
+        <div class="kn">Key <strong>02</strong></div>
+        <div>
+          <h3>The Traffic Black Hole</h3>
+          <p>Between a trickle of visitors and real scale sits a dangerous stretch: enough traffic to expose a weak page, not enough to make the losses obvious. Businesses pour money into ads here and never notice the page is the leak.</p>
+        </div>
+      </div>
+      <div class="key">
+        <div class="kn">Key <strong>03</strong></div>
+        <div>
+          <h3>Conversion Efficiency Ratio</h3>
+          <div class="cer-card">
+            <span class="label">The Metric That Matters</span>
+            <div class="cer-formula"><span class="top">Revenue From The Page</span> ÷ What You Spent Building It</div>
+            <p>Forget vanity numbers like page views or time-on-site. This ratio tells you exactly how many dollars come back for every dollar spent on the page — and whether it's time to invest more, hold steady, or rebuild.</p>
+          </div>
+        </div>
+      </div>
+      <div class="key">
+        <div class="kn">Key <strong>04</strong></div>
+        <div>
+          <h3>The Order Results Get Used</h3>
+          <p>Once a page is actually converting, the payoff doesn't get spent randomly — it gets used in a strict order:</p>
+          <div class="layers">
+            <div class="layer">
+              <div class="lname">Layer 1</div>
+              <div class="ldesc"><h4>Fix what's broken</h4><p>Dead links, slow load times, unclear offers — resolved immediately, before anything else.</p></div>
+            </div>
+            <div class="layer">
+              <div class="lname">Layer 2</div>
+              <div class="ldesc"><h4>Retire the old page</h4><p>Fully replace outdated templates and copy — no half-migrated, half-old pages left live.</p></div>
+            </div>
+            <div class="layer">
+              <div class="lname">Layer 3</div>
+              <div class="ldesc"><h4>Build a testing buffer</h4><p>Bank a reserve of tested headline, CTA and layout variants before spending more on traffic.</p></div>
+            </div>
+            <div class="layer">
+              <div class="lname">Layer 4</div>
+              <div class="ldesc"><h4>Scale spend</h4><p>Only once Layers 1–3 are handled does it make sense to put real budget behind driving more visitors.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="takeaways">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">Straight Talk Takeaways</span>
+      <h2>What this means for your page.</h2>
+    </div>
+    <div class="takeaways">
+      <div class="takeaway">
+        <span class="label">Conversions Are A Sign Of Health</span>
+        <h3>Stop adding sections just to look finished</h3>
+        <p>Extra pages and features that don't move the one number that matters are trading real budget for the appearance of effort — a bad trade, every time.</p>
+      </div>
+      <div class="takeaway">
+        <span class="label">Be Fully Funded</span>
+        <h3>Don't test a new offer on your core page</h3>
+        <p>Launching a new product or promotion straight onto the page your whole business depends on means one bad idea can drag your best customers down with it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="wrap">
+    <span class="label">Ready When You Are</span>
+    <h2 style="margin-top:14px;">Get the real number your current page is hiding from you.</h2>
+    <p>Affordable, conversion-focused landing pages — no templates, no guesswork, no accounting tricks.</p>
+    <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="fine">EasyLandX — affordable, conversion-focused landing pages</span>
+    <a class="btn btn-ghost btn-small" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>
