@@ -1,0 +1,598 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Landing pages, built on how people actually decide</title>
+<meta name="description" content="easylandx helps you build landing pages using the same predictable psychology that shapes every buying decision.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --terracotta:        #b5552f;
+    --terracotta-deep:   #8a3f22;
+    --terracotta-shadow: #6e3119;
+    --steel:             #3c5f73;
+    --steel-light:       #7ea0b3;
+    --parchment:         #f6efe0;
+    --parchment-dim:     #e9dfc8;
+    --ink:               #2a2015;
+    --ink-soft:          #4a3d2c;
+
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:var(--terracotta);
+    color:var(--parchment);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; }
+  img,svg{ display:block; max-width:100%; }
+
+  :focus-visible{
+    outline:3px solid var(--parchment);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- texture backdrop ---------- */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(246,239,224,0.05), transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(60,95,115,0.12), transparent 45%);
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:relative; z-index:5;
+    padding:26px 0;
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.35rem;
+    letter-spacing:-0.01em;
+    text-decoration:none;
+    color:var(--parchment);
+  }
+  .logo span{ color:var(--steel-light); }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:0.95rem;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:3px;
+    border:1.5px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{
+    background:var(--steel);
+    color:var(--parchment);
+  }
+  .btn-primary:hover{ background:var(--steel-light); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--parchment);
+    border-color:rgba(246,239,224,0.4);
+  }
+  .btn-ghost:hover{ border-color:var(--parchment); }
+  .btn-small{ padding:9px 16px; font-size:0.85rem; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; z-index:1;
+    padding:88px 0 96px;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.75rem;
+    color:var(--parchment-dim);
+    margin:0 0 22px;
+  }
+  .eyebrow::before{ content:"— "; color:var(--steel-light); }
+
+  h1{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(2.5rem, 5.6vw, 4.4rem);
+    line-height:1.04;
+    letter-spacing:-0.015em;
+    margin:0 0 28px;
+    max-width:14ch;
+  }
+  h1 em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--steel-light);
+  }
+
+  .hero-sub{
+    font-size:1.15rem;
+    color:var(--parchment-dim);
+    max-width:46ch;
+    margin:0 0 40px;
+  }
+
+  .hero-actions{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:64px;
+  }
+  .hero-note{
+    font-size:0.85rem;
+    color:var(--parchment-dim);
+    font-family:var(--font-mono);
+  }
+
+  /* ---------- decoy demo (signature element) ---------- */
+  .decoy-card{
+    background:var(--parchment);
+    color:var(--ink);
+    border-radius:6px;
+    padding:34px clamp(20px,4vw,44px);
+    box-shadow:0 30px 60px -20px var(--terracotta-shadow);
+  }
+  .decoy-label{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .decoy-title{
+    font-family:var(--font-display);
+    font-size:1.4rem;
+    font-weight:600;
+    margin:0 0 4px;
+  }
+  .decoy-sub{
+    color:var(--ink-soft);
+    font-size:0.95rem;
+    margin:0 0 26px;
+  }
+  .decoy-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+  }
+  .decoy-plan{
+    border:1.5px solid var(--parchment-dim);
+    border-radius:5px;
+    padding:20px 18px;
+    text-align:left;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .decoy-plan h3{
+    font-family:var(--font-body);
+    font-size:0.95rem;
+    font-weight:700;
+    margin:0 0 8px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  .decoy-plan .price{
+    font-family:var(--font-display);
+    font-size:1.9rem;
+    font-weight:600;
+    margin:0 0 10px;
+  }
+  .decoy-plan .price span{ font-size:0.9rem; font-weight:400; color:var(--ink-soft); }
+  .decoy-plan p{ font-size:0.85rem; color:var(--ink-soft); margin:0; }
+  .decoy-plan.decoy{
+    opacity:0.55;
+  }
+  .decoy-plan.target{
+    border-color:var(--steel);
+    background:linear-gradient(180deg, rgba(60,95,115,0.06), transparent);
+    transform:translateY(-6px);
+    box-shadow:0 14px 28px -14px rgba(42,32,21,0.35);
+  }
+  .decoy-plan.target .tag{
+    display:inline-block;
+    background:var(--steel);
+    color:var(--parchment);
+    font-family:var(--font-mono);
+    font-size:0.65rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    padding:3px 8px;
+    border-radius:2px;
+    margin-bottom:10px;
+  }
+  .decoy-caption{
+    margin-top:22px;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    border-top:1px solid var(--parchment-dim);
+    padding-top:16px;
+  }
+  .decoy-caption strong{ color:var(--ink); }
+
+  @media (max-width:640px){
+    .decoy-grid{ grid-template-columns:1fr; }
+    .decoy-plan.target{ transform:none; order:-1; }
+  }
+
+  /* ---------- sections ---------- */
+  section.principles{
+    position:relative; z-index:1;
+    background:var(--parchment);
+    color:var(--ink);
+    padding:100px 0 40px;
+    border-radius:28px 28px 0 0;
+  }
+  .section-head{
+    max-width:60ch;
+    margin:0 0 64px;
+  }
+  .section-head .eyebrow{ color:var(--steel); }
+  .section-head .eyebrow::before{ color:var(--terracotta); }
+  .section-head h2{
+    font-family:var(--font-display);
+    font-size:clamp(1.9rem,3.4vw,2.6rem);
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0 0 16px;
+  }
+  .section-head p{
+    color:var(--ink-soft);
+    font-size:1.05rem;
+    margin:0;
+  }
+
+  .law{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:32px;
+    padding:44px 0;
+    border-top:1px solid var(--parchment-dim);
+  }
+  .law:last-child{ border-bottom:1px solid var(--parchment-dim); }
+  .law-num{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:3rem;
+    color:var(--terracotta);
+    line-height:1;
+  }
+  .law-body h3{
+    font-family:var(--font-display);
+    font-size:1.5rem;
+    font-weight:600;
+    margin:0 0 6px;
+  }
+  .law-body .kicker{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--steel);
+    margin:0 0 14px;
+  }
+  .law-body p{
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 14px;
+  }
+  .law-body .applied{
+    background:var(--parchment-dim);
+    border-left:3px solid var(--steel);
+    padding:14px 18px;
+    border-radius:0 4px 4px 0;
+    font-size:0.95rem;
+    max-width:62ch;
+  }
+  .law-body .applied strong{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--steel);
+    margin-bottom:6px;
+  }
+
+  @media (max-width:680px){
+    .law{ grid-template-columns:1fr; gap:10px; }
+    .law-num{ font-size:2rem; }
+  }
+
+  /* ---------- takeaways ---------- */
+  .takeaways{
+    background:var(--parchment);
+    color:var(--ink);
+    padding:20px 0 100px;
+  }
+  .takeaways-inner{
+    background:var(--steel);
+    color:var(--parchment);
+    border-radius:16px;
+    padding:52px clamp(24px,5vw,56px);
+  }
+  .takeaways h2{
+    font-family:var(--font-display);
+    font-size:clamp(1.7rem,3vw,2.2rem);
+    font-weight:600;
+    margin:0 0 34px;
+  }
+  .take-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+  .take-item .num{
+    font-family:var(--font-mono);
+    font-size:0.75rem;
+    color:var(--parchment-dim);
+    margin-bottom:10px;
+  }
+  .take-item h4{
+    font-family:var(--font-body);
+    font-size:1.05rem;
+    font-weight:700;
+    margin:0 0 8px;
+  }
+  .take-item p{
+    font-size:0.92rem;
+    color:rgba(246,239,224,0.82);
+    margin:0;
+  }
+  @media (max-width:760px){ .take-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- final CTA ---------- */
+  .cta{
+    position:relative; z-index:1;
+    background:var(--terracotta-deep);
+    padding:100px 0;
+    text-align:center;
+  }
+  .cta h2{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(2rem,4.4vw,3.1rem);
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+    max-width:20ch;
+    margin-left:auto; margin-right:auto;
+  }
+  .cta p{
+    color:var(--parchment-dim);
+    font-size:1.05rem;
+    max-width:44ch;
+    margin:0 auto 40px;
+  }
+  .cta .btn-primary{
+    font-size:1.05rem;
+    padding:16px 34px;
+  }
+
+  footer{
+    background:var(--terracotta-deep);
+    padding:32px 0 44px;
+    text-align:center;
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    color:var(--parchment-dim);
+  }
+  footer a{ text-decoration:underline; text-underline-offset:3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+
+  /* ---------- page gutters ---------- */
+  header, main, footer{
+    margin-left:16px;
+    margin-right:16px;
+  }
+  @media (max-width:640px){
+    header, main, footer{ margin-left:10px; margin-right:10px; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo">easyland<span>x</span></a>
+    <a class="btn btn-ghost btn-small" href="https://easylandx.com/signin" target="_blank" rel="noopener">Sign in</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <p class="eyebrow">Landing page builder</p>
+    <h1>People don't decide rationally.<br>They decide <em>predictably.</em></h1>
+    <p class="hero-sub">
+      easylandx builds landing pages around the same mental shortcuts that shape every buying decision —
+      the ones Dan Ariely mapped in <em>Predictably Irrational.</em> Not tricks. Patterns.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://easylandx.com/start" target="_blank" rel="noopener">Start building free →</a>
+      <span class="hero-note">no card · live in minutes</span>
+    </div>
+
+    <!-- Signature element: the decoy effect, live -->
+    <div class="decoy-card">
+      <p class="decoy-label">Live example — the decoy effect</p>
+      <h2 class="decoy-title">A pricing block built on easylandx</h2>
+      <p class="decoy-sub">Watch what one extra column does to which plan feels obvious.</p>
+      <div class="decoy-grid">
+        <div class="decoy-plan">
+          <h3>Starter</h3>
+          <div class="price">€9<span>/mo</span></div>
+          <p>1 page, basic blocks, easylandx badge</p>
+        </div>
+        <div class="decoy-plan decoy">
+          <h3>Standard</h3>
+          <div class="price">€39<span>/mo</span></div>
+          <p>5 pages, no A/B testing, no custom domain</p>
+        </div>
+        <div class="decoy-plan target">
+          <span class="tag">Most picked</span>
+          <h3>Growth</h3>
+          <div class="price">€45<span>/mo</span></div>
+          <p>Unlimited pages, A/B testing, custom domain</p>
+        </div>
+      </div>
+      <p class="decoy-caption"><strong>Standard</strong> isn't there to sell itself — it's there to make <strong>Growth</strong> look like the only sane choice at only €6 more. That's the decoy effect, built into the layout, not the copy.</p>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section class="principles">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The six patterns</p>
+        <h2>Every landing page is already using behavioral psychology. Most just do it by accident.</h2>
+        <p>easylandx builds these six patterns into the blocks themselves, so your page is arguing your case even when you're not in the room.</p>
+      </div>
+
+      <div class="law">
+        <div class="law-num">01</div>
+        <div class="law-body">
+          <h3>Nothing is judged alone</h3>
+          <p class="kicker">The relativity trap</p>
+          <p>Visitors don't know what your product is worth. They only know what it's worth <em>next to</em> the other options on the page — which is why a bare price, shown with nothing to compare it to, is the weakest thing you can put on a landing page.</p>
+          <div class="applied"><strong>In easylandx</strong>Pricing and feature blocks ship with a built-in comparison layout, so your best plan is always shown beside a deliberate decoy — not floating alone.</div>
+        </div>
+      </div>
+
+      <div class="law">
+        <div class="law-num">02</div>
+        <div class="law-body">
+          <h3>"Free" isn't a price, it's an emotion</h3>
+          <p class="kicker">The zero-price effect</p>
+          <p>€1 and €0 are not one euro apart. Free triggers a different part of the brain — visitors will hand over an email, sit through a demo, or start a trial for something free that they'd never pay a cent for.</p>
+          <div class="applied"><strong>In easylandx</strong>The lead-capture block is tuned around a free-first offer — free trial, free template, free audit — with the paid step introduced only after that first "yes."</div>
+        </div>
+      </div>
+
+      <div class="law">
+        <div class="law-num">03</div>
+        <div class="law-body">
+          <h3>The first number sets the ceiling</h3>
+          <p class="kicker">Anchoring</p>
+          <p>Whatever price a visitor sees first becomes the yardstick for every price after it. Show the highest plan first, or a "usually €199" struck through, and every number after it gets judged against that anchor — not against some absolute sense of fair value.</p>
+          <div class="applied"><strong>In easylandx</strong>The pricing block defaults to showing your premium tier and any "was / now" pricing above the fold, so the anchor is set before visitors reach your actual offer.</div>
+        </div>
+      </div>
+
+      <div class="law">
+        <div class="law-num">04</div>
+        <div class="law-body">
+          <h3>Warm copy and a hard sell can't share a page</h3>
+          <p class="kicker">Social vs. market norms</p>
+          <p>A landing page that sounds like a friend giving advice, then suddenly hits with "BUY NOW — LIMITED STOCK," breaks the spell instantly. Once market logic shows up, the social warmth is gone for good — visitors read the rest of the page as a transaction, not a relationship.</p>
+          <div class="applied"><strong>In easylandx</strong>Copy blocks are split into "social" sections (story, testimonials, guides) and "market" sections (pricing, checkout), styled distinctly so the tone shift is deliberate, not accidental.</div>
+        </div>
+      </div>
+
+      <div class="law">
+        <div class="law-num">05</div>
+        <div class="law-body">
+          <h3>Let them touch it before they buy it</h3>
+          <p class="kicker">The endowment effect</p>
+          <p>The moment someone customizes something — drags a block, picks a color, previews their own logo on it — they start valuing it like it's already theirs. Losing it now costs more, psychologically, than paying for it would.</p>
+          <div class="applied"><strong>In easylandx</strong>The builder lets visitors edit a live preview of their own page before any signup — by the time the paywall appears, they're not buying a tool, they're keeping a page they've already made.</div>
+        </div>
+      </div>
+
+      <div class="law">
+        <div class="law-num">06</div>
+        <div class="law-body">
+          <h3>Your visitor's future self needs help now</h3>
+          <p class="kicker">Procrastination &amp; self-control</p>
+          <p>Visitors arrive calm and rational, fully intending to "come back later." Later rarely comes. The page has to do the committing for them, in the moment, while they're still willing.</p>
+          <div class="applied"><strong>In easylandx</strong>Countdown blocks, one-click publish, and autosaved drafts turn a vague intention into a page that's already live — the commitment device does the work self-control usually fails at.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TAKEAWAYS -->
+  <section class="takeaways">
+    <div class="wrap">
+      <div class="takeaways-inner">
+        <h2>Building a page this week? Check it against three things.</h2>
+        <div class="take-grid">
+          <div class="take-item">
+            <p class="num">Check 01</p>
+            <h4>Is there a decoy?</h4>
+            <p>If you'd still pick your target plan with the middle option removed, the decoy isn't doing its job — or you don't need three tiers at all.</p>
+          </div>
+          <div class="take-item">
+            <p class="num">Check 02</p>
+            <h4>Where's the free step?</h4>
+            <p>Every page needs one zero-cost action before the paid one — a template, a trial, a checklist — or the first ask is too big.</p>
+          </div>
+          <div class="take-item">
+            <p class="num">Check 03</p>
+            <h4>What commits them now?</h4>
+            <p>Don't rely on visitors coming back. Give their "cold state" intention a deadline, a draft, or a one-click action before they leave.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta">
+    <div class="wrap">
+      <h2>Build the page. Let the psychology already be in it.</h2>
+      <p>easylandx ships every block with these patterns built in — you write the words, the layout does the rest.</p>
+      <a class="btn btn-primary" href="https://easylandx.com/start" target="_blank" rel="noopener">Try easylandx free →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    easylandx — landing pages built on how people actually decide · <a href="https://easylandx.com" target="_blank" rel="noopener">easylandx.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
