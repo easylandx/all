@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasyLandX Article Roulette</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #f59e0b;
+      --accent-hover: #d97706;
+      --border: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .roulette-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Pointer arrow */
+    .pointer {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-top: 30px solid #ef4444;
+      z-index: 10;
+      filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.5));
+    }
+
+    canvas {
+      border-radius: 50%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      border: 6px solid var(--border);
+    }
+
+    .spin-btn {
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f59e0b, #b45309);
+      border: 4px solid var(--text);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s, background-color 0.2s;
+      z-index: 5;
+    }
+
+    .spin-btn:hover:not(:disabled) {
+      transform: scale(1.08);
+    }
+
+    .spin-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    /* Result Box */
+    .result-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .result-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: #facc15;
+    }
+
+    .result-card p {
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .result-card a {
+      display: inline-block;
+      background-color: var(--accent);
+      color: #0f172a;
+      font-weight: 700;
+      padding: 0.6rem 1.4rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+
+    .result-card a:hover {
+      background-color: var(--accent-hover);
+    }
+
+    /* History section */
+    .history {
+      width: 100%;
+      max-width: 500px;
+      margin-top: 1rem;
+    }
+
+    .history h3 {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .history ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+
+    .history li {
+      background: var(--card-bg);
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      border-left: 3px solid var(--accent);
+    }
+
+    .history li a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 500px) {
+      canvas {
+        width: 320px;
+        height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>EasyLandX Roulette</h1>
+    <p>Click the wheel to discover a random module from the library!</p>
+  </header>
+
+  <div class="container">
+    <div class="roulette-wrapper">
+      <div class="pointer"></div>
+      <canvas id="wheel" width="420" height="420"></canvas>
+      <button id="spinBtn" class="spin-btn">SPIN</button>
+    </div>
+
+    <div class="result-card" id="resultCard">
+      <p>🎯 Press <strong>SPIN</strong> to discover your next read!</p>
+    </div>
+
+    <div class="history">
+      <h3>Previous Spins</h3>
+      <ul id="historyList"></ul>
+    </div>
+  </div>
+
+  <script>
+    // Complete article database from easylandx.github.io/all/
+    const articles = [
+      { icon: "🍕", title: "We write the ending first", desc: "Start with the result you want and work backwards.", url: "https://easylandx.github.io/all/work.html" },
+      { icon: "🛠️", title: "How people actually use the web", desc: "Real user behavior beats best practices.", url: "https://easylandx.github.io/all/make.html" },
+      { icon: "🏗️", title: "Why people say yes", desc: "The psychology behind conversion decisions.", url: "https://easylandx.github.io/all/how.html" },
+      { icon: "🧲", title: "Give your customer a guide", desc: "Make the journey obvious and effortless.", url: "https://easylandx.github.io/all/give.html" },
+      { icon: "🚢", title: "Built on behavioral science", desc: "Principles that actually work on human brains.", url: "https://easylandx.github.io/all/brai.html" },
+      { icon: "🧙", title: "Magic", desc: "The moments that feel effortless and delightful.", url: "https://easylandx.github.io/all/magi.html" },
+      { icon: "🦢", title: "Build enough of them to find out", desc: "Iteration beats perfection.", url: "https://easylandx.github.io/all/swan.html" },
+      { icon: "✍️", title: "Landing pages worth talking about", desc: "Create shareable, remarkable experiences.", url: "https://easylandx.github.io/all/rebe.html" },
+      { icon: "👀", title: "Mechanics of attention", desc: "How to capture and keep focus.", url: "https://easylandx.github.io/all/pers.html" },
+      { icon: "🚀", title: "Start shipping", desc: "Momentum is everything.", url: "https://easylandx.github.io/all/parad.html" },
+      { icon: "🎯", title: "Start saying the one thing that converts", desc: "Clarity over cleverness.", url: "https://easylandx.github.io/all/disc.html" },
+      { icon: "🌊", title: "Put your visitor in flow", desc: "Remove friction. Create momentum.", url: "https://easylandx.github.io/all/flow.html" },
+      { icon: "😉", title: "One blink", desc: "What people understand in the first second.", url: "https://easylandx.github.io/all/blin.html" },
+      { icon: "🖱️", title: "Just click", desc: "Make the next step obvious.", url: "https://easylandx.github.io/all/clic.html" },
+      { icon: "⭐️", title: "The Volume Rule", desc: "More attempts = more learning.", url: "https://easylandx.github.io/all/core.html" },
+      { icon: "🤱🏻", title: "Action", desc: "Turn interest into movement.", url: "https://easylandx.github.io/all/proo.html" },
+      { icon: "🚀", title: "Push Momentum", desc: "Keep the energy going.", url: "https://easylandx.github.io/all/grea.html" },
+      { icon: "⚜️", title: "Scout Mindset", desc: "Stay curious and open to what works.", url: "https://easylandx.github.io/all/scou.html" },
+      { icon: "🙋‍♂️", title: "Microcopy rules", desc: "A mini voice guide.", url: "https://easylandx.github.io/all/copy.html" },
+      { icon: "👉", title: "The Mechanism", desc: "Turning a visitor into a customer.", url: "https://easylandx.github.io/all/trig.html" },
+      { icon: "🧠", title: "Digital consumption", desc: "One call to action.", url: "https://easylandx.github.io/all/cognitive.html" },
+      { icon: "📰", title: "The Medium", desc: "The Medium is the Message.", url: "https://easylandx.github.io/all/medium.html" },
+      { icon: "🧑🏻", title: "Human", desc: "Instinct in web design.", url: "https://easylandx.github.io/all/human.html" },
+      { icon: "👋", title: "Writing", desc: "Icons as digital gestures.", url: "https://easylandx.github.io/all/writing.html" },
+      { icon: "📙", title: "Almanack", desc: "The Almanack of Landing Pages.", url: "https://easylandx.github.io/all/almanack.html" },
+      { icon: "👩🏼‍⚕️", title: "Therapy", desc: "Your website isn't broken.", url: "https://easylandx.github.io/all/therapy.html" },
+      { icon: "🤳", title: "Traction", desc: "Six disciplines.", url: "https://easylandx.github.io/all/traction.html" },
+      { icon: "🤳", title: "E-Myth", desc: "The landing page myth.", url: "https://easylandx.github.io/all/emyth.html" },
+      { icon: "🤳", title: "Social Animal", desc: "The Social Animal.", url: "https://easylandx.github.io/all/animal.html" },
+      { icon: "🤳", title: "Quiet", desc: "Silence.", url: "https://easylandx.github.io/all/quiet.html" },
+      { icon: "🤳", title: "Predict", desc: "Predictably.", url: "https://easylandx.github.io/all/predict.html" },
+      { icon: "🤳", title: "Influence", desc: "Argument.", url: "https://easylandx.github.io/all/influence.html" },
+      { icon: "🤳", title: "Change", desc: "Behavioral science.", url: "https://easylandx.github.io/all/change.html" },
+      { icon: "🤳", title: "Autopilot", desc: "Decision-making.", url: "https://easylandx.github.io/all/automatic.html" },
+      { icon: "🤳", title: "Inmmunity", desc: "Inmmune system.", url: "https://easylandx.github.io/all/inmmunity.html" },
+      { icon: "🤳", title: "Rethink", desc: "Research on motivation.", url: "https://easylandx.github.io/all/rethink.html" },
+      { icon: "🤳", title: "Willpower", desc: "Prefrontal cortex.", url: "https://easylandx.github.io/all/willpower.html" }
+    ];
+
+    const canvas = document.getElementById("wheel");
+    const ctx = canvas.getContext("2d");
+    const spinBtn = document.getElementById("spinBtn");
+    const resultCard = document.getElementById("resultCard");
+    const historyList = document.getElementById("historyList");
+
+    const numArticles = articles.length;
+    const arcSize = (2 * Math.PI) / numArticles;
+    let currentAngle = 0;
+    let isSpinning = false;
+
+    // Web Audio API tick generator
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playClickSound() {
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.03);
+      gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.03);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.03);
+    }
+
+    // Color palette generator
+    const colors = ["#1e293b", "#334155", "#475569", "#0f172a", "#1e1b4b", "#312e81"];
+
+    function drawWheel() {
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const radius = canvas.width / 2 - 10;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < numArticles; i++) {
+        const angle = currentAngle + i * arcSize;
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, angle, angle + arcSize);
+        ctx.lineTo(centerX, centerY);
+        ctx.fillStyle = colors[i % colors.length];
+        ctx.fill();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "#0f172a";
+        ctx.stroke();
+
+        // Labels
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(angle + arcSize / 2);
+        ctx.textAlign = "right";
+        ctx.fillStyle = "#f8fafc";
+        ctx.font = "bold 11px sans-serif";
+        const label = articles[i].icon + " " + articles[i].title;
+        const truncated = label.length > 18 ? label.substring(0, 16) + "…" : label;
+        ctx.fillText(truncated, radius - 15, 4);
+        ctx.restore();
+      }
+    }
+
+    drawWheel();
+
+    function spin() {
+      if (isSpinning) return;
+      isSpinning = true;
+      spinBtn.disabled = true;
+
+      // Random revolutions between 5 and 10 + extra slice offset
+      const extraSpin = (Math.floor(Math.random() * 5) + 5) * 360;
+      const randomOffset = Math.random() * 360;
+      const totalDegrees = extraSpin + randomOffset;
+      const totalRadians = (totalDegrees * Math.PI) / 180;
+
+      const startAngle = currentAngle;
+      const duration = 4000; // 4 seconds
+      const startTime = performance.now();
+      let lastSlicePassed = -1;
+
+      function animate(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Cubic ease-out formula
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        
+        currentAngle = startAngle + easeOut * totalRadians;
+        drawWheel();
+
+        // Calculate slice detection for sound effects
+        const normalizedAngle = (currentAngle % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+        const currentSlice = Math.floor(normalizedAngle / arcSize);
+        if (currentSlice !== lastSlicePassed) {
+          playClickSound();
+          lastSlicePassed = currentSlice;
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          isSpinning = false;
+          spinBtn.disabled = false;
+          determineWinner();
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    function determineWinner() {
+      // Top pointer corresponds to 270 degrees (or -90 deg / 1.5 * PI)
+      const pointerAngle = (1.5 * Math.PI);
+      
+      // Calculate selected slice index
+      let normalizedAngle = (pointerAngle - currentAngle) % (2 * Math.PI);
+      if (normalizedAngle < 0) normalizedAngle += 2 * Math.PI;
+
+      const selectedIndex = Math.floor(normalizedAngle / arcSize);
+      const selectedArticle = articles[selectedIndex];
+
+      // Render Result
+      resultCard.innerHTML = `
+        <div class="icon">${selectedArticle.icon}</div>
+        <h2>${selectedArticle.title}</h2>
+        <p>${selectedArticle.desc}</p>
+        <a href="${selectedArticle.url}" target="_blank">Read Article →</a>
+      `;
+
+      // Add to history
+      const li = document.createElement("li");
+      li.innerHTML = `<span>${selectedArticle.icon} <strong>${selectedArticle.title}</strong></span> <a href="${selectedArticle.url}" target="_blank">Open</a>`;
+      historyList.prepend(li);
+    }
+
+    spinBtn.addEventListener("click", spin);
+  </script>
+
+</body>
+</html>
