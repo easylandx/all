@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Truth Over Polite Lies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Sora:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --amber-1: #155CE8;
+    --amber-2: #0E3FAE;
+    --amber-3: #082B78;
+    --indigo: #EAB308;
+    --indigo-deep: #7A5806;
+    --indigo-glow: #F6C838;
+    --ivory: #F8FAFC;
+    --ivory-dim: #C9D6E8;
+    --ivory-soft: rgba(248,250,252,0.78);
+    --line: rgba(248,250,252,0.18);
+    --serif: 'Fraunces', serif;
+    --sans: 'Sora', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background: radial-gradient(120% 90% at 15% 0%, var(--amber-1) 0%, var(--amber-2) 45%, var(--amber-3) 100%);
+    color: var(--ivory);
+    font-family: var(--sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(90,56,25,0.72);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:18px;
+    padding-bottom:18px;
+  }
+  .brand{
+    font-family: var(--serif);
+    font-weight:600;
+    font-size: 1.25rem;
+    letter-spacing: 0.01em;
+  }
+  .brand span{color: var(--indigo-glow);}
+  .nav-cta{
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--indigo);
+    color: var(--amber-3);
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(8,43,120,0.15);
+    transition: background 0.25s ease, transform 0.2s ease;
+    display:inline-block;
+  }
+  .nav-cta:hover{ background: var(--indigo-glow); transform: translateY(-1px); }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding: 120px 0 100px;
+    position: relative;
+  }
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ivory-dim);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom: 28px;
+  }
+  .eyebrow::before{
+    content:'';
+    width: 28px;
+    height: 1px;
+    background: var(--indigo-glow);
+  }
+  h1{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    line-height: 1.04;
+    max-width: 780px;
+    letter-spacing: -0.01em;
+  }
+  h1 em{
+    font-style: italic;
+    font-weight: 500;
+    color: var(--indigo-glow);
+    -webkit-text-stroke: 0.3px var(--ivory);
+  }
+  .hero-sub{
+    margin-top: 28px;
+    max-width: 560px;
+    font-size: 1.12rem;
+    color: var(--ivory-soft);
+  }
+  .hero-actions{
+    margin-top: 44px;
+    display:flex;
+    gap: 18px;
+    align-items:center;
+    flex-wrap: wrap;
+  }
+  .btn-primary{
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    background: var(--indigo);
+    color: var(--amber-3);
+    padding: 16px 30px;
+    border-radius: 100px;
+    border: 1px solid rgba(8,43,120,0.15);
+    box-shadow: 0 12px 30px -10px rgba(8,43,120,0.7);
+    transition: background 0.25s ease, transform 0.2s ease;
+  }
+  .btn-primary:hover{ background: var(--indigo-glow); transform: translateY(-2px); }
+  .btn-ghost{
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ivory-dim);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 4px;
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding: 90px 0; border-top: 1px solid var(--line); }
+  .section-head{ max-width: 620px; margin-bottom: 56px; }
+  .section-head .eyebrow{ margin-bottom: 18px; }
+  h2{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+    line-height: 1.15;
+  }
+  .section-head p{
+    margin-top: 18px;
+    color: var(--ivory-soft);
+    font-size: 1.02rem;
+    max-width: 520px;
+  }
+
+  .reveal{ opacity:0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  /* ---------- RULES ---------- */
+  .rules{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .rule-card{
+    background: rgba(29,31,61,0.32);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 32px 26px;
+  }
+  .rule-num{
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--indigo-glow);
+    letter-spacing: 0.1em;
+  }
+  .rule-card h3{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.28rem;
+    margin: 14px 0 12px;
+  }
+  .rule-card p{ color: var(--ivory-soft); font-size: 0.96rem; }
+
+  /* ---------- TRANSCRIPT / SIGNATURE ---------- */
+  .transcript-list{ display:flex; flex-direction:column; gap: 26px; }
+  .transcript-card{
+    background: var(--ivory);
+    color: #1E293B;
+    border-radius: 4px;
+    padding: 28px 30px;
+    position: relative;
+    box-shadow: 0 20px 40px -20px rgba(29,31,61,0.55);
+  }
+  .transcript-card:nth-child(odd){ transform: rotate(-0.6deg); }
+  .transcript-card:nth-child(even){ transform: rotate(0.5deg); }
+  .transcript-tab{
+    position:absolute;
+    top: -12px;
+    left: 28px;
+    background: var(--indigo);
+    color: var(--amber-3);
+    font-weight: 600;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 4px;
+  }
+  .line-row{ display:flex; gap: 12px; margin-top: 10px; align-items: baseline; }
+  .line-row:first-of-type{ margin-top: 22px; }
+  .line-tag{
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    width: 78px;
+    flex-shrink: 0;
+    padding-top: 3px;
+  }
+  .line-tag.bad{ color: #92680B; }
+  .line-tag.good{ color: var(--amber-2); }
+  .line-text.bad{ text-decoration: line-through; text-decoration-color: rgba(146,104,11,0.55); color: rgba(30,41,59,0.5); font-size: 0.98rem; }
+  .line-text.good{ color: var(--amber-3); font-weight: 500; font-size: 1.02rem; }
+  .why-note{
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(30,41,59,0.2);
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: rgba(30,41,59,0.6);
+  }
+
+  /* ---------- TACTICS ---------- */
+  .tactics{ display:flex; flex-direction:column; gap: 0; }
+  .tactic-row{
+    display:grid;
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+    padding: 30px 0;
+    border-top: 1px solid var(--line);
+  }
+  .tactic-row:last-child{ border-bottom: 1px solid var(--line); }
+  .tactic-mark{ font-family: var(--serif); font-style: italic; font-size: 1.6rem; color: var(--indigo-glow); }
+  .tactic-row h3{ font-family: var(--serif); font-weight: 600; font-size: 1.3rem; margin-bottom: 10px; }
+  .tactic-row p{ color: var(--ivory-soft); max-width: 620px; }
+
+  /* ---------- COMMITMENT ---------- */
+  .commit-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .commit-card{
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 28px 24px;
+    background: linear-gradient(160deg, rgba(234,179,8,0.16), rgba(234,179,8,0.02));
+  }
+  .commit-card .k{ font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--indigo-glow); }
+  .commit-card h4{ font-family: var(--serif); font-weight: 600; font-size: 1.2rem; margin: 10px 0 10px; }
+  .commit-card p{ font-size: 0.92rem; color: var(--ivory-soft); }
+
+  /* ---------- CTA FOOTER ---------- */
+  .cta-final{
+    text-align:center;
+    padding: 110px 0 100px;
+  }
+  .cta-final h2{ max-width: 640px; margin: 0 auto 26px; }
+  .cta-final p{ color: var(--ivory-soft); max-width: 480px; margin: 0 auto 40px; }
+
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 40px 0;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap: 16px;
+  }
+  footer .fine{ font-family: var(--mono); font-size: 0.76rem; color: var(--ivory-dim); letter-spacing: 0.03em; }
+
+  @media (max-width: 860px){
+    .rules{ grid-template-columns: 1fr; }
+    .commit-grid{ grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px){
+    .wrap{ padding: 0 20px; }
+    header.hero{ padding: 90px 0 70px; }
+    section{ padding: 64px 0; }
+    .tactic-row{ grid-template-columns: 40px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">easyland<span>x</span></div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">See easylandx →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Field note — 2026</div>
+    <h1>We don't ask if your idea is good.<br>We ask what's <em>actually</em> happening.</h1>
+    <p class="hero-sub">Most landing pages get built around a hunch: a founder's opinion of what visitors want to hear. easylandx builds around evidence — the real workflows, frustrations, and past behavior of the people you're trying to reach. That's the difference between a page that feels nice and a page that converts.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+      <a class="btn-ghost" href="#method">See the method ↓</a>
+    </div>
+  </div>
+</header>
+
+<section id="method">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">The discipline</div>
+      <h2>Three rules we run every page through</h2>
+      <p>Before we design a single pixel, every easylandx page is filtered through the same three questions journalists and researchers have used for decades to separate real signal from polite noise.</p>
+    </div>
+    <div class="rules">
+      <div class="rule-card reveal">
+        <div class="rule-num">Rule 01</div>
+        <h3>Speak to their life, not our template</h3>
+        <p>A page copied from a template talks about the business. A page that converts talks about the visitor's Tuesday afternoon — the exact moment they searched for a fix.</p>
+      </div>
+      <div class="rule-card reveal">
+        <div class="rule-num">Rule 02</div>
+        <h3>Build on what happened, not what might</h3>
+        <p>We don't ask "would you like this?" We ask what you're doing right now, what it's costing you, and what you've already tried. Hypotheticals don't build good headlines. History does.</p>
+      </div>
+      <div class="rule-card reveal">
+        <div class="rule-num">Rule 03</div>
+        <h3>Listen longer than we design</h3>
+        <p>The best line on the page is rarely one we wrote first. It's usually something a real customer said, almost word for word, that we simply gave a home.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Diagnostic</div>
+      <h2>The question you ask decides the page you get</h2>
+      <p>Small business owners get asked "do you like it?" constantly — by friends, by builders, by their own team. That question is almost useless. Here's what we ask instead, and why it changes what ends up on the page.</p>
+    </div>
+
+    <div class="transcript-list">
+      <div class="transcript-card reveal">
+        <div class="transcript-tab">Homepage headline</div>
+        <div class="line-row">
+          <div class="line-tag bad">Common</div>
+          <div class="line-text bad">"Do you think a nicer website would help your business?"</div>
+        </div>
+        <div class="line-row">
+          <div class="line-tag good">easylandx</div>
+          <div class="line-text good">"Where do most customers drop off right now — the DM, the call, or the price?"</div>
+        </div>
+        <div class="why-note">// The first invites a polite "sure." The second names the exact sentence that has to go on the page.</div>
+      </div>
+
+      <div class="transcript-card reveal">
+        <div class="transcript-tab">Pricing &amp; offer</div>
+        <div class="line-row">
+          <div class="line-tag bad">Common</div>
+          <div class="line-text bad">"What would you pay for a page like this?"</div>
+        </div>
+        <div class="line-row">
+          <div class="line-tag good">easylandx</div>
+          <div class="line-text good">"What are you spending right now trying to get customers — ads, a builder, a freelancer?"</div>
+        </div>
+        <div class="why-note">// Hypothetical prices are invented on the spot. Existing spend tells us the problem is real and already funded.</div>
+      </div>
+
+      <div class="transcript-card reveal">
+        <div class="transcript-tab">Feature requests</div>
+        <div class="line-row">
+          <div class="line-tag bad">Common</div>
+          <div class="line-text bad">"Add a chat widget, a countdown, and a video — just in case."</div>
+        </div>
+        <div class="line-row">
+          <div class="line-tag good">easylandx</div>
+          <div class="line-text good">"Walk me through the last customer you actually lost. What happened right before that?"</div>
+        </div>
+        <div class="why-note">// A feature request is a guess at a fix. The story behind it is the actual problem worth solving.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">In practice</div>
+      <h2>How this shows up in the build</h2>
+    </div>
+    <div class="tactics">
+      <div class="tactic-row reveal">
+        <div class="tactic-mark">i.</div>
+        <div>
+          <h3>Keep the first call casual, not a pitch</h3>
+          <p>We don't open a discovery call with "let's review your requirements." We open with "tell me what happened the last time someone almost bought from you, and didn't." Defenses stay down. The real answers come out.</p>
+        </div>
+      </div>
+      <div class="tactic-row reveal">
+        <div class="tactic-mark">ii.</div>
+        <div>
+          <h3>Chase the reason, not the request</h3>
+          <p>When a client asks for a specific section, banner, or badge, we ask why — once, sometimes twice. Often the real fix is a clearer sentence higher up the page, not another element competing for attention.</p>
+        </div>
+      </div>
+      <div class="tactic-row reveal">
+        <div class="tactic-mark">iii.</div>
+        <div>
+          <h3>Design the page to earn a real action</h3>
+          <p>A page succeeds when someone books a call, sends a deposit, or replies with a real question — not when someone says "looks nice." Every easylandx page is built around one clear, specific action, not a vague "learn more."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">What we build toward</div>
+      <h2>Every page ends on a real commitment</h2>
+      <p>A visitor who feels good about your page hasn't done anything yet. A page is only working when it earns one of these.</p>
+    </div>
+    <div class="commit-grid">
+      <div class="commit-card reveal">
+        <div class="k">Time</div>
+        <h4>A booked call</h4>
+        <p>A visitor gives up a real slot on their calendar — the clearest sign the page moved them.</p>
+      </div>
+      <div class="commit-card reveal">
+        <div class="k">Reputation</div>
+        <h4>A referral or share</h4>
+        <p>They send the page to a partner, a boss, or a friend — putting their own name behind it.</p>
+      </div>
+      <div class="commit-card reveal">
+        <div class="k">Money</div>
+        <h4>A deposit or order</h4>
+        <p>The strongest signal of all: they pay something, even small, before the conversation is over.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;">Ready when you are</div>
+    <h2 class="reveal">Stop guessing what belongs on your page. Let's find out what your customers already told you.</h2>
+    <p class="reveal">Custom-built, conversion-focused landing pages for small businesses — no templates, no guesswork, one page built specifically for you.</p>
+    <a class="btn-primary reveal" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-size:1rem;">easyland<span>x</span></div>
+    <div class="fine">© 2026 easylandx — built on listening, not guessing.</div>
+  </div>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  els.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
