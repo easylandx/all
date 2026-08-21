@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Build Small. Stay Independent.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal: #18151d;
+    --charcoal-raised: #221d29;
+    --charcoal-raised-2: #2a2331;
+    --line: rgba(244,238,223,0.12);
+    --line-strong: rgba(244,238,223,0.22);
+    --purple: #9d6fff;
+    --purple-deep: #6d3fd1;
+    --purple-dim: rgba(157,111,255,0.16);
+    --ivory: #f4eedf;
+    --ivory-dim: #cdc4b3;
+    --ivory-faint: #8f8779;
+    --serif: 'Instrument Serif', serif;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--charcoal);
+    color: var(--ivory-dim);
+    font-family: var(--sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  ::selection{ background: var(--purple); color: var(--charcoal); }
+
+  a{ color: inherit; }
+
+  .wrap{ max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+  /* background texture */
+  body::before{
+    content:'';
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 8%, rgba(157,111,255,0.10), transparent 40%),
+      radial-gradient(circle at 85% 92%, rgba(157,111,255,0.08), transparent 45%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after{
+    content:'';
+    position: fixed; inset:0;
+    background-image: linear-gradient(rgba(244,238,223,0.025) 1px, transparent 1px),
+                       linear-gradient(90deg, rgba(244,238,223,0.025) 1px, transparent 1px);
+    background-size: 42px 42px;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: radial-gradient(ellipse at 50% 0%, black, transparent 70%);
+  }
+
+  /* Nav */
+  nav{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(24,21,29,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content: space-between;
+    padding-top: 18px; padding-bottom: 18px;
+  }
+  .logo{
+    font-family: var(--mono); font-weight: 700; font-size: 15px;
+    letter-spacing: 0.02em; color: var(--ivory);
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{ width:8px; height:8px; border-radius: 50%; background: var(--purple); box-shadow: 0 0 12px var(--purple); }
+  .nav-cta{
+    font-family: var(--mono); font-size: 12.5px; font-weight: 600;
+    padding: 9px 16px; border-radius: 6px;
+    background: var(--purple); color: var(--charcoal);
+    text-decoration: none; letter-spacing: 0.01em;
+    transition: transform .15s ease, box-shadow .15s ease;
+    border: 1px solid var(--purple);
+  }
+  .nav-cta:hover{ transform: translateY(-1px); box-shadow: 0 6px 20px rgba(157,111,255,0.35); }
+
+  section{ position: relative; z-index: 1; }
+
+  /* Hero */
+  .hero{ padding: 110px 0 90px; }
+  .eyebrow{
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.14em;
+    color: var(--purple); text-transform: uppercase;
+    display:flex; align-items:center; gap:10px; margin-bottom: 26px;
+  }
+  .eyebrow::before{ content:''; width: 22px; height:1px; background: var(--purple); }
+  h1{
+    font-family: var(--serif); font-weight: 400; font-size: clamp(44px, 7vw, 84px);
+    color: var(--ivory); line-height: 1.02; letter-spacing: -0.01em;
+    max-width: 820px;
+  }
+  h1 em{ font-style: italic; color: var(--purple); }
+  .hero-sub{
+    max-width: 560px; margin-top: 26px; font-size: 17.5px; color: var(--ivory-dim);
+  }
+  .hero-cta-row{ display:flex; align-items:center; gap:22px; margin-top: 40px; flex-wrap: wrap; }
+
+  .btn-primary{
+    font-family: var(--mono); font-weight: 600; font-size: 14px;
+    background: var(--purple); color: var(--charcoal);
+    padding: 15px 26px; border-radius: 8px; text-decoration: none;
+    display:inline-flex; align-items:center; gap:10px;
+    border: 1px solid var(--purple);
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px rgba(157,111,255,0.4); background: #b087ff; }
+  .btn-primary .arrow{ transition: transform .15s ease; }
+  .btn-primary:hover .arrow{ transform: translateX(3px); }
+
+  .hero-note{ font-family: var(--mono); font-size: 12.5px; color: var(--ivory-faint); }
+
+  /* Staircase signature graphic */
+  .stair-wrap{ margin-top: 78px; }
+  .stair-svg{ width: 100%; height: auto; display:block; }
+  .step-fill{ transition: opacity 1.4s ease, transform 1.4s ease; opacity: 0; transform: translateY(18px); }
+  .step-fill.show{ opacity: 1; transform: translateY(0); }
+  .stair-label{ font-family: var(--mono); }
+  .mrr-num{ font-family: var(--mono); font-weight: 700; }
+
+  /* Section shared */
+  .section-pad{ padding: 90px 0; border-top: 1px solid var(--line); }
+  .section-head{ max-width: 620px; margin-bottom: 54px; }
+  .section-head .eyebrow{ margin-bottom: 18px; }
+  h2{
+    font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 4vw, 46px);
+    color: var(--ivory); line-height: 1.08;
+  }
+  h2 em{ font-style: italic; color: var(--purple); }
+  .section-head p{ margin-top: 16px; font-size: 16px; color: var(--ivory-dim); }
+
+  .reveal{ opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.show{ opacity: 1; transform: translateY(0); }
+
+  /* mindset split */
+  .split{ display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .split > div{ background: var(--charcoal-raised); padding: 38px 34px; }
+  .split .tag{
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 100px; display: inline-block; margin-bottom: 18px;
+  }
+  .tag.trap{ color: #e8927c; background: rgba(232,146,124,0.12); border: 1px solid rgba(232,146,124,0.3); }
+  .tag.fix{ color: var(--purple); background: var(--purple-dim); border: 1px solid rgba(157,111,255,0.35); }
+  .split h3{ font-family: var(--serif); font-size: 27px; font-weight: 400; color: var(--ivory); margin-bottom: 12px; }
+  .split .pct{ font-family: var(--mono); font-size: 13px; color: var(--ivory-faint); margin-top: 18px; display:flex; gap: 14px; }
+  .barbox{ display:flex; align-items:center; gap: 8px; }
+  .bar{ height: 7px; border-radius: 4px; background: var(--charcoal-raised-2); overflow:hidden; width: 90px; }
+  .bar > span{ display:block; height:100%; background: var(--purple); }
+  .tag.trap ~ .pct .bar > span{ background: #e8927c; }
+
+  @media (max-width: 720px){ .split{ grid-template-columns: 1fr; } }
+
+  /* framework cards */
+  .grid4{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .card{
+    background: var(--charcoal-raised); border: 1px solid var(--line);
+    border-radius: 14px; padding: 30px 28px; transition: border-color .2s ease, transform .2s ease;
+  }
+  .card:hover{ border-color: var(--line-strong); transform: translateY(-3px); }
+  .card .num{ font-family: var(--mono); font-size: 12.5px; color: var(--purple); letter-spacing: 0.08em; margin-bottom: 16px; }
+  .card h3{ font-family: var(--serif); font-size: 24px; font-weight: 400; color: var(--ivory); margin-bottom: 10px; }
+  .card p{ font-size: 14.5px; color: var(--ivory-dim); }
+  @media (max-width: 720px){ .grid4{ grid-template-columns: 1fr; } }
+
+  /* footer cta */
+  .cta-band{
+    text-align: center; padding: 110px 0 100px; border-top: 1px solid var(--line);
+    position: relative;
+  }
+  .cta-band h2{ max-width: 640px; margin: 0 auto; }
+  .cta-band .hero-cta-row{ justify-content: center; margin-top: 34px; }
+  footer{ border-top: 1px solid var(--line); padding: 30px 0; }
+  footer .wrap{ display:flex; justify-content: space-between; align-items:center; flex-wrap: wrap; gap: 12px; }
+  footer .fmono{ font-family: var(--mono); font-size: 12px; color: var(--ivory-faint); }
+
+  @media (max-width: 640px){
+    .hero{ padding: 80px 0 60px; }
+    .section-pad{ padding: 60px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo"><span class="dot"></span>EASYLANDX</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Build my page →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Playbook 001 — Start Small, Stay Small, for landing pages</div>
+    <h1>Build small.<br>Stay <em>independent</em>.</h1>
+    <p class="hero-sub">EasyLandX ships one focused landing page at a time — validated against a real niche, built for a single offer, and live before you've touched a color palette you don't need yet.</p>
+    <div class="hero-cta-row">
+      <a class="btn-primary" id="heroCta" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch my landing page <span class="arrow">→</span></a>
+      <span class="hero-note">no funding round required</span>
+    </div>
+
+    <div class="stair-wrap">
+      <svg class="stair-svg" viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg" id="stairSvg">
+        <!-- baseline -->
+        <line x1="40" y1="270" x2="960" y2="270" stroke="rgba(244,238,223,0.14)" stroke-width="1"/>
+
+        <!-- Step 1 -->
+        <g class="step-fill" data-step="1">
+          <rect x="90" y="196" width="190" height="74" rx="6" fill="#221d29" stroke="rgba(244,238,223,0.14)"/>
+          <text x="110" y="222" class="stair-label" font-size="11" fill="#8f8779" letter-spacing="1.5">STEP 01</text>
+          <text x="110" y="245" class="stair-label" font-size="14" fill="#f4eedf">The Niche Page</text>
+          <text x="110" y="263" class="mrr-num" font-size="13" fill="#9d6fff" data-target="1500" data-prefix="$">$0</text>
+        </g>
+
+        <!-- Step 2 -->
+        <g class="step-fill" data-step="2">
+          <rect x="330" y="140" width="190" height="130" rx="6" fill="#221d29" stroke="rgba(244,238,223,0.14)"/>
+          <text x="350" y="166" class="stair-label" font-size="11" fill="#8f8779" letter-spacing="1.5">STEP 02</text>
+          <text x="350" y="189" class="stair-label" font-size="14" fill="#f4eedf">The Portfolio</text>
+          <text x="350" y="207" class="stair-label" font-size="12" fill="#cdc4b3">a few niche pages, stacked</text>
+          <text x="350" y="248" class="mrr-num" font-size="15" fill="#9d6fff" data-target="4200" data-prefix="$">$0</text>
+        </g>
+
+        <!-- Step 3 -->
+        <g class="step-fill" data-step="3">
+          <rect x="570" y="70" width="230" height="200" rx="6" fill="#2a2331" stroke="rgba(157,111,255,0.4)"/>
+          <text x="590" y="98" class="stair-label" font-size="11" fill="#9d6fff" letter-spacing="1.5">STEP 03</text>
+          <text x="590" y="123" class="stair-label" font-size="16" fill="#f4eedf">Go Full-Time</text>
+          <text x="590" y="144" class="stair-label" font-size="12" fill="#cdc4b3">quit the day job. scale for real.</text>
+          <text x="590" y="182" class="mrr-num" font-size="20" fill="#f4eedf" data-target="8000" data-prefix="$">$0</text>
+          <text x="590" y="200" class="stair-label" font-size="11" fill="#8f8779">MRR replaces salary</text>
+        </g>
+
+        <!-- arrow up -->
+        <path d="M 850 60 L 890 20 L 930 60" stroke="#9d6fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">The mindset shift</div>
+      <h2>You already know how to <em>build</em>. That's the trap.</h2>
+      <p>Most people building landing pages spend their energy backwards — polishing pixels for an offer nobody's confirmed wants to exist. Flip the ratio before you flip a single toggle in the editor.</p>
+    </div>
+    <div class="split reveal">
+      <div>
+        <span class="tag trap">The trap</span>
+        <h3>90% design,<br>10% proof.</h3>
+        <p>Perfect typography, animated hero, five color revisions — for an offer with zero confirmed demand. The page ships polished and dies quiet.</p>
+        <div class="pct">
+          <div class="barbox">Design <div class="bar"><span style="width:90%"></span></div></div>
+        </div>
+        <div class="pct">
+          <div class="barbox">Validation <div class="bar"><span style="width:10%"></span></div></div>
+        </div>
+      </div>
+      <div>
+        <span class="tag fix">The fix</span>
+        <h3>Prove it first,<br>then design it.</h3>
+        <p>Confirm the keyword, the niche, and the willingness to pay before you open EasyLandX. A landing page's first job is proof — polish comes after.</p>
+        <div class="pct">
+          <div class="barbox">Validation <div class="bar"><span style="width:70%"></span></div></div>
+        </div>
+        <div class="pct">
+          <div class="barbox">Design <div class="bar"><span style="width:30%"></span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Execution frameworks</div>
+      <h2>Four rules that keep a <em>one-person</em> studio profitable.</h2>
+      <p>None of this requires a team. It requires picking the right niche, the right channel, and knowing what to hand off.</p>
+    </div>
+    <div class="grid4">
+      <div class="card reveal">
+        <div class="num">01 — VALIDATION</div>
+        <h3>Find the market first</h3>
+        <p>Never open the editor before you've found a keyword with real search intent, low competition, and a visitor who's already looking for exactly this page.</p>
+      </div>
+      <div class="card reveal">
+        <div class="num">02 — AUDIENCE</div>
+        <h3>Build for businesses, not browsers</h3>
+        <p>Skip the consumer trend chasers. A booked-out contractor, a local clinic, a SaaS tool — businesses pay to fix a specific, painful bottleneck.</p>
+      </div>
+      <div class="card reveal">
+        <div class="num">03 — TRAFFIC</div>
+        <h3>The stair-step channel strategy</h3>
+        <p>No ad budget required. Find the niche ecosystem your buyer already lives in — a directory, a marketplace, an industry forum — and land them on the one page built for that exact search.</p>
+      </div>
+      <div class="card reveal">
+        <div class="num">04 — LEVERAGE</div>
+        <h3>Outsource the moment it pays</h3>
+        <p>The instant page one earns, hand off copy tweaks and support replies to a VA. Write the SOP once. Never re-explain the same fix twice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;">Ready when you are</div>
+    <h2>One niche. One page. <em>One less excuse.</em></h2>
+    <div class="hero-cta-row">
+      <a class="btn-primary" id="footerCta" href="https://easylandx.github.io" target="_blank" rel="noopener">Build my landing page <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="fmono">EASYLANDX — independent software, one page at a time.</span>
+    <span class="fmono">© 2026</span>
+  </div>
+</footer>
+
+<script>
+  // ---------- Web Audio: soft UI tick ----------
+  let actx;
+  function tick(freq){
+    try{
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      const o = actx.createOscillator();
+      const g = actx.createGain();
+      o.type = 'sine';
+      o.frequency.value = freq;
+      g.gain.value = 0.0001;
+      o.connect(g); g.connect(actx.destination);
+      const now = actx.currentTime;
+      g.gain.exponentialRampToValueAtTime(0.05, now + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+      o.start(now); o.stop(now + 0.2);
+    }catch(e){}
+  }
+  ['heroCta','footerCta'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('click', ()=> tick(660));
+  });
+
+  // ---------- scroll reveal ----------
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ---------- staircase steps + mrr count-up ----------
+  function animateCount(textEl, target, prefix, duration){
+    const start = performance.now();
+    function frame(now){
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = Math.round(target * eased);
+      textEl.textContent = prefix + val.toLocaleString();
+      if(p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  const stepEls = document.querySelectorAll('.step-fill');
+  const stairObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const step = entry.target;
+        const delay = (parseInt(step.dataset.step) - 1) * 260;
+        setTimeout(()=>{
+          step.classList.add('show');
+          tick(420 + parseInt(step.dataset.step) * 90);
+          const numEl = step.querySelector('.mrr-num');
+          if(numEl){
+            const target = parseInt(numEl.dataset.target, 10);
+            const prefix = numEl.dataset.prefix || '';
+            animateCount(numEl, target, prefix, 1100);
+          }
+        }, delay);
+        stairObserver.unobserve(step);
+      }
+    });
+  }, { threshold: 0.35 });
+  stepEls.forEach(el => stairObserver.observe(el));
+</script>
+
+</body>
+</html>
