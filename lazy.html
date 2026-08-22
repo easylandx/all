@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Art of the Effortless Launch — EasyLandX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --focus-blue: #14315C;
+    --focus-blue-deep: #0C2140;
+    --focus-blue-soft: #1E4278;
+    --comfort-yellow: #F2C14E;
+    --comfort-yellow-soft: #F7D77E;
+    --canvas-white: #FAF9F4;
+    --canvas-dim: rgba(250,249,244,0.65);
+    --canvas-faint: rgba(250,249,244,0.14);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--focus-blue);
+    color:var(--canvas-white);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    font-size:0.72rem;
+  }
+
+  a{ color:inherit; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.1rem 6vw;
+    background:rgba(12,33,64,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--canvas-faint);
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.15rem;
+    font-weight:600;
+    display:flex; align-items:center; gap:0.5rem;
+  }
+  .logo-dot{
+    width:9px; height:9px; border-radius:50%;
+    background:var(--comfort-yellow);
+    display:inline-block;
+  }
+  .nav-links{ display:flex; gap:2.2rem; }
+  .nav-links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--canvas-dim);
+    text-decoration:none;
+    transition:color .25s ease;
+  }
+  .nav-links a:hover{ color:var(--comfort-yellow); }
+  .nav-cta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    background:var(--comfort-yellow);
+    color:var(--focus-blue-deep);
+    padding:0.55rem 1.2rem;
+    border-radius:100px;
+    text-decoration:none;
+    font-weight:500;
+    white-space:nowrap;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .nav-cta:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(242,193,78,0.35); }
+  @media (max-width:800px){ .nav-links{ display:none; } }
+
+  section{ padding:7rem 6vw; position:relative; }
+  .wrap{ max-width:1080px; margin:0 auto; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding-top:6rem;
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:4rem;
+    align-items:center;
+  }
+  @media (max-width:900px){ .hero{ grid-template-columns:1fr; padding-top:3.5rem; } }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:0.6rem;
+    color:var(--comfort-yellow);
+    margin-bottom:1.6rem;
+  }
+  .eyebrow::before{
+    content:''; width:22px; height:1px; background:var(--comfort-yellow);
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 4.6vw, 3.8rem);
+    line-height:1.08;
+    color:var(--canvas-white);
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--comfort-yellow-soft);
+  }
+  .hero p.lede{
+    margin-top:1.6rem;
+    font-size:1.08rem;
+    color:var(--canvas-dim);
+    max-width:46ch;
+  }
+  .hero-actions{
+    margin-top:2.4rem;
+    display:flex; gap:1rem; align-items:center; flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:var(--comfort-yellow);
+    color:var(--focus-blue-deep);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    padding:0.95rem 1.8rem;
+    border-radius:100px;
+    text-decoration:none;
+    font-weight:500;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 26px rgba(242,193,78,0.35); }
+  .btn-ghost{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--canvas-white);
+    text-decoration:none;
+    border-bottom:1px solid var(--canvas-faint);
+    padding-bottom:2px;
+  }
+
+  /* ---------- SIGNATURE TOGGLE ---------- */
+  .toggle-card{
+    background:var(--focus-blue-deep);
+    border:1px solid var(--canvas-faint);
+    border-radius:18px;
+    padding:1.6rem;
+  }
+  .toggle-row{
+    display:flex; align-items:center; justify-content:center;
+    gap:1rem; margin-bottom:1.4rem;
+  }
+  .toggle-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--canvas-dim);
+    transition:color .3s ease;
+  }
+  .toggle-label.active{ color:var(--comfort-yellow); }
+  .switch{
+    position:relative;
+    width:56px; height:30px;
+    background:rgba(250,249,244,0.15);
+    border-radius:100px;
+    cursor:pointer;
+    border:none;
+  }
+  .switch::after{
+    content:'';
+    position:absolute; top:3px; left:3px;
+    width:24px; height:24px; border-radius:50%;
+    background:var(--comfort-yellow);
+    transition:left .35s cubic-bezier(.5,0,.2,1);
+  }
+  .switch.is-focus::after{ left:29px; background:var(--canvas-white); }
+
+  .mock-screen{
+    position:relative;
+    height:280px;
+    border-radius:12px;
+    overflow:hidden;
+    background:#0A1B33;
+    border:1px solid rgba(250,249,244,0.08);
+  }
+  .mock-layer{
+    position:absolute; inset:0;
+    padding:1.2rem;
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  /* Comfort zone (cluttered / stalled) state */
+  .layer-comfort{ opacity:1; transform:scale(1); }
+  .layer-focus{ opacity:0; transform:scale(0.97); pointer-events:none; }
+  .mock-screen.is-focus .layer-comfort{ opacity:0; transform:scale(1.02); }
+  .mock-screen.is-focus .layer-focus{ opacity:1; transform:scale(1); pointer-events:auto; }
+
+  .sticky-note{
+    position:absolute;
+    width:78px; height:60px;
+    background:var(--comfort-yellow-soft);
+    color:var(--focus-blue-deep);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.58rem;
+    padding:6px;
+    box-shadow:0 6px 14px rgba(0,0,0,0.35);
+    line-height:1.3;
+  }
+  .sn1{ top:14px; left:16px; transform:rotate(-6deg); }
+  .sn2{ top:40px; left:130px; transform:rotate(4deg); background:#E8B84B; }
+  .sn3{ top:130px; left:40px; transform:rotate(-3deg); background:#FCE4A8; }
+  .sn4{ top:100px; right:20px; transform:rotate(7deg); background:#E8B84B; }
+  .scribble{
+    position:absolute; bottom:18px; left:18px; right:18px;
+    height:1px; background:repeating-linear-gradient(90deg, rgba(250,249,244,0.35) 0 6px, transparent 6px 12px);
+  }
+  .comfort-caption{
+    position:absolute; bottom:44px; left:18px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.62rem; color:var(--canvas-dim);
+    letter-spacing:0.05em;
+  }
+
+  /* Focus (published page) state */
+  .fake-nav{ display:flex; gap:6px; margin-bottom:14px; }
+  .fake-dot{ width:7px; height:7px; border-radius:50%; background:rgba(250,249,244,0.25); }
+  .fake-hero-bar{
+    width:70%; height:14px; border-radius:4px;
+    background:var(--comfort-yellow); margin-bottom:10px;
+  }
+  .fake-sub-bar{
+    width:88%; height:8px; border-radius:4px;
+    background:rgba(250,249,244,0.3); margin-bottom:6px;
+  }
+  .fake-sub-bar.short{ width:55%; }
+  .fake-cta{
+    margin-top:20px;
+    width:130px; height:30px; border-radius:100px;
+    background:var(--canvas-white);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.55rem; color:var(--focus-blue-deep);
+    letter-spacing:0.05em; text-transform:uppercase;
+  }
+  .focus-caption{
+    position:absolute; bottom:16px; left:18px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.62rem; color:var(--comfort-yellow-soft);
+    letter-spacing:0.05em;
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-head{ max-width:640px; margin-bottom:3.4rem; }
+  .section-head .mono{ color:var(--comfort-yellow); margin-bottom:0.9rem; display:block; }
+  .section-head h2{ font-size:clamp(1.7rem, 3vw, 2.4rem); color:var(--canvas-white); }
+  .section-head p{ color:var(--canvas-dim); margin-top:1rem; max-width:52ch; }
+
+  .divider{
+    height:1px; background:var(--canvas-faint);
+    max-width:1080px; margin:0 auto;
+  }
+
+  /* ---------- MINDSET GRID ---------- */
+  .mindset-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:1.4rem;
+  }
+  @media (max-width:800px){ .mindset-grid{ grid-template-columns:1fr; } }
+  .mindset-card{
+    background:var(--focus-blue-soft);
+    border:1px solid var(--canvas-faint);
+    border-radius:14px;
+    padding:1.8rem;
+    opacity:0; transform:translateY(18px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .mindset-card.revealed{ opacity:1; transform:translateY(0); }
+  .mindset-card h3{
+    font-size:1.15rem; margin-bottom:0.7rem; color:var(--comfort-yellow-soft);
+  }
+  .mindset-card p{ color:var(--canvas-dim); font-size:0.94rem; }
+
+  /* ---------- FRAMEWORK ROWS ---------- */
+  .framework-row{
+    display:grid; grid-template-columns:110px 1fr; gap:1.6rem;
+    padding:1.9rem 0;
+    border-bottom:1px solid var(--canvas-faint);
+    opacity:0; transform:translateX(-14px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .framework-row.revealed{ opacity:1; transform:translateX(0); }
+  .framework-row:last-child{ border-bottom:none; }
+  .framework-num{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--comfort-yellow);
+    font-size:0.85rem;
+  }
+  .framework-row h3{ font-size:1.2rem; margin-bottom:0.5rem; }
+  .framework-row p{ color:var(--canvas-dim); max-width:60ch; }
+  @media (max-width:700px){ .framework-row{ grid-template-columns:1fr; } }
+
+  /* ---------- PHILOSOPHY GRID ---------- */
+  .philo-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:1px;
+    background:var(--canvas-faint);
+    border-radius:14px;
+    overflow:hidden;
+  }
+  @media (max-width:900px){ .philo-grid{ grid-template-columns:repeat(2, 1fr); } }
+  @media (max-width:520px){ .philo-grid{ grid-template-columns:1fr; } }
+  .philo-cell{
+    background:var(--focus-blue-deep);
+    padding:1.8rem 1.4rem;
+    opacity:0; transform:scale(0.96);
+    transition:opacity .5s ease, transform .5s ease, background .3s ease;
+  }
+  .philo-cell.revealed{ opacity:1; transform:scale(1); }
+  .philo-cell:hover{ background:var(--focus-blue-soft); }
+  .philo-jp{
+    font-family:'Fraunces', serif; font-style:italic;
+    color:var(--comfort-yellow-soft);
+    font-size:1.15rem; margin-bottom:0.5rem;
+  }
+  .philo-en{ font-family:'IBM Plex Mono', monospace; font-size:0.62rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--canvas-dim); margin-bottom:0.8rem; }
+  .philo-cell p{ font-size:0.87rem; color:var(--canvas-dim); }
+
+  /* ---------- FINAL CTA ---------- */
+  .final{
+    text-align:center;
+    background:linear-gradient(180deg, var(--focus-blue) 0%, var(--focus-blue-deep) 100%);
+  }
+  .final h2{
+    font-size:clamp(2rem, 4vw, 3rem);
+    max-width:16ch; margin:0 auto 1.4rem;
+    color:var(--canvas-white);
+  }
+  .final p{ color:var(--canvas-dim); max-width:48ch; margin:0 auto 2.4rem; }
+
+  footer{
+    padding:2.4rem 6vw;
+    display:flex; justify-content:space-between; align-items:center;
+    border-top:1px solid var(--canvas-faint);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem; color:var(--canvas-dim);
+    text-transform:uppercase; letter-spacing:0.08em;
+  }
+  @media (max-width:600px){ footer{ flex-direction:column; gap:0.8rem; } }
+
+  /* ---------- FLOATING CTA ---------- */
+  .floating-cta{
+    position:fixed; bottom:1.6rem; right:1.6rem; z-index:200;
+    background:var(--comfort-yellow);
+    color:var(--focus-blue-deep);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem; text-transform:uppercase; letter-spacing:0.06em;
+    padding:0.9rem 1.4rem;
+    border-radius:100px;
+    text-decoration:none; font-weight:500;
+    box-shadow:0 10px 28px rgba(0,0,0,0.35);
+    display:flex; align-items:center; gap:0.5rem;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .floating-cta:hover{ transform:translateY(-3px); box-shadow:0 14px 32px rgba(242,193,78,0.4); }
+  .floating-cta .dot{ width:6px; height:6px; border-radius:50%; background:var(--focus-blue-deep); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="logo-dot"></span>EasyLandX</div>
+  <div class="nav-links">
+    <a href="#mindset">Mindset</a>
+    <a href="#frameworks">Frameworks</a>
+    <a href="#philosophy">Philosophy</a>
+  </div>
+  <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Build my page</a>
+</nav>
+
+<section class="hero">
+  <div>
+    <span class="eyebrow mono">The art of the effortless launch</span>
+    <h1>Your page isn't stuck because you're tired.<br><em>It's stuck because it's safe not to publish.</em></h1>
+    <p class="lede">Putting off your landing page has nothing to do with lacking time or energy. It's a comfort zone — and EasyLandX is the shortest, calmest path out of it: one self-contained page, built from what you already have, live today.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start your page →</a>
+      <a class="btn-ghost" href="#mindset">See the mindset shift</a>
+    </div>
+  </div>
+
+  <div class="toggle-card">
+    <div class="toggle-row">
+      <span class="toggle-label active" id="labelComfort">Comfort Zone</span>
+      <button class="switch" id="stateSwitch" aria-label="Toggle between comfort zone and focus state"></button>
+      <span class="toggle-label" id="labelFocus">Focus</span>
+    </div>
+    <div class="mock-screen" id="mockScreen">
+      <div class="mock-layer layer-comfort">
+        <div class="sticky-note sn1">write bio</div>
+        <div class="sticky-note sn2">fix later</div>
+        <div class="sticky-note sn3">ask cousin re: website</div>
+        <div class="sticky-note sn4">tomorrow!</div>
+        <div class="comfort-caption">12 open tabs. 0 pages live.</div>
+        <div class="scribble"></div>
+      </div>
+      <div class="mock-layer layer-focus">
+        <div class="fake-nav"><span class="fake-dot"></span><span class="fake-dot"></span><span class="fake-dot"></span></div>
+        <div class="fake-hero-bar"></div>
+        <div class="fake-sub-bar"></div>
+        <div class="fake-sub-bar short"></div>
+        <div class="fake-cta">View page</div>
+        <div class="focus-caption">1 page. Live in one sitting.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="mindset">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Part one — mindset</span>
+      <h2>Reshape the habit before you touch the schedule</h2>
+      <p>The instinct to delay a launch is a defense mechanism, not a character flaw. These four shifts are what turn "later" into "live."</p>
+    </div>
+    <div class="mindset-grid">
+      <div class="mindset-card">
+        <h3>Radical ownership</h3>
+        <p>Your visibility online is your call, not the algorithm's, not a "someday" project for a nephew who knows code. The moment you own that, you also own the power to fix it — today, in one sitting.</p>
+      </div>
+      <div class="mindset-card">
+        <h3>Rest vs. the loop</h3>
+        <p>Rewriting your bio for the eleventh time isn't progress, and neither is another evening of research. Real rest is intentional. A published page — even a simple one — is what actually lets you stop thinking about it.</p>
+      </div>
+      <div class="mindset-card">
+        <h3>Action over polish</h3>
+        <p>Perfectionism is fear wearing a to-do list. EasyLandX builds from what you already have — your Instagram bio, your photos, your voice — and gets you to something real, then refines it in the open.</p>
+      </div>
+      <div class="mindset-card">
+        <h3>Reversible by design</h3>
+        <p>A landing page is not a tattoo. Content, colors, and copy can all change after launch. Save your deliberation for the decisions that actually can't be undone — and publish this one now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="frameworks">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Part two — frameworks</span>
+      <h2>Turn clarity into a live page</h2>
+      <p>Once the mindset shifts, momentum needs a system. Here's the one EasyLandX runs on for every client page it builds.</p>
+    </div>
+
+    <div class="framework-row">
+      <span class="framework-num">01</span>
+      <div>
+        <h3>The one-sitting rule</h3>
+        <p>If the first draft would take less than five minutes to start, start it now. EasyLandX takes your existing bio and photos and turns them into a working page in a single sitting — the friction of the blank page never gets a chance to set in.</p>
+      </div>
+    </div>
+    <div class="framework-row">
+      <span class="framework-num">02</span>
+      <div>
+        <h3>The vital 20%</h3>
+        <p>Most of what a visitor needs to decide to message you lives in a handful of lines: what you offer, who it's for, and how to reach you. EasyLandX pages are built around that 20% and cut everything else, with a short, clear deadline for going live.</p>
+      </div>
+    </div>
+    <div class="framework-row">
+      <span class="framework-num">03</span>
+      <div>
+        <h3>Single focus, single page</h3>
+        <p>One page. One goal. One action for the visitor to take — usually a message on WhatsApp or Instagram. No competing menus, no scattered links, just a floating button that stays exactly where a visitor expects it.</p>
+      </div>
+    </div>
+    <div class="framework-row">
+      <span class="framework-num">04</span>
+      <div>
+        <h3>Guarding your focus</h3>
+        <p>Every extra plugin, theme setting, and tutorial video is a claim on energy you'd rather spend on your actual business. EasyLandX guards that focus for you — one finished page, not ten half-open tabs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="philosophy">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Working philosophy</span>
+      <h2>Eight ideas behind every EasyLandX page</h2>
+      <p>Long-term focus needs a quieter kind of discipline. These principles shape how EasyLandX designs, ships, and grows a page over time.</p>
+    </div>
+    <div class="philo-grid">
+      <div class="philo-cell"><div class="philo-jp">Ikigai</div><div class="philo-en">Purpose</div><p>Your page sits where what you love, what you're good at, and what your customers need actually meet.</p></div>
+      <div class="philo-cell"><div class="philo-jp">Kaizen</div><div class="philo-en">Small steps</div><p>Pages improve in small, steady updates — a new photo, a sharper line — instead of a full redesign every year.</p></div>
+      <div class="philo-cell"><div class="philo-jp">Shoshin</div><div class="philo-en">Beginner's mind</div><p>Every page is written for a first-time visitor: no jargon, no assumed context, an easy way in.</p></div>
+      <div class="philo-cell"><div class="philo-jp">Hara Hachi Bu</div><div class="philo-en">80% full</div><p>A page stays light on purpose — enough content to convert, with room left for the reader to breathe.</p></div>
+      <div class="philo-cell"><div class="philo-jp">Shinrin-Yoku</div><div class="philo-en">Forest bathing</div><p>Whitespace is not empty space — it's where the Minimalist Canvas White gives the eye somewhere to rest.</p></div>
+      <div class="philo-cell"><div class="philo-jp">Wabi-Sabi</div><div class="philo-en">Beautifully unfinished</div><p>A live page with room to grow beats a perfect one still sitting in a folder somewhere.</p></div>
+      <div class="philo-cell"><div class="philo-jp">Ganbaru</div><div class="philo-en">Patient persistence</div><p>Traffic and messages build gradually. The page keeps showing up, quietly, while that happens.</p></div>
+      <div class="philo-cell"><div class="philo-jp">Gaman</div><div class="philo-en">Steady endurance</div><p>The slow early weeks after launch are part of the process, not a sign that something went wrong.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Your page doesn't need more thinking. It needs one sitting.</h2>
+    <p>Bring your Instagram bio, a few photos, and the five minutes it takes to start. EasyLandX builds the rest into a page you can share today.</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build my page with EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <span>EasyLandX — one page, one focus</span>
+  <span>easylandx.github.io</span>
+</footer>
+
+<a class="floating-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">
+  <span class="dot"></span> easylandx.github.io
+</a>
+
+<script>
+  // Comfort Zone / Focus toggle
+  const switchBtn = document.getElementById('stateSwitch');
+  const mockScreen = document.getElementById('mockScreen');
+  const labelComfort = document.getElementById('labelComfort');
+  const labelFocus = document.getElementById('labelFocus');
+
+  switchBtn.addEventListener('click', () => {
+    const isFocus = mockScreen.classList.toggle('is-focus');
+    switchBtn.classList.toggle('is-focus', isFocus);
+    labelComfort.classList.toggle('active', !isFocus);
+    labelFocus.classList.toggle('active', isFocus);
+  });
+
+  // Auto-demo once on load, then leave it interactive
+  setTimeout(() => { switchBtn.click(); }, 1400);
+
+  // Scroll reveal
+  const revealTargets = document.querySelectorAll('.mindset-card, .framework-row, .philo-cell');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting){
+        setTimeout(() => entry.target.classList.add('revealed'), i * 60);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealTargets.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

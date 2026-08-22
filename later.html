@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Later Is a Myth. Launch Now.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --amber-deep:#B85C00;
+    --amber-glow:#FF9F1C;
+    --amber-light:#FFD98E;
+    --sky:#4FC3E8;
+    --sky-deep:#2E93B8;
+    --ivory:#FFFCF5;
+    --ink:#33210F;
+    --ink-soft:#5C4326;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--ivory);
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Fraunces', serif;font-weight:500;line-height:1.05;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--sky-deep);
+    font-weight:500;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.1rem 5%;
+    background:rgba(255,252,245,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(184,92,0,0.15);
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.25rem;
+    font-weight:600;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  .logo span{color:var(--amber-glow);}
+  .nav-links{display:flex;gap:2rem;align-items:center;}
+  .nav-links a{
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:0.9rem;
+    font-weight:500;
+    transition:color 0.25s ease;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--amber-deep);}
+  .nav-cta{
+    background:var(--ink);
+    color:var(--ivory) !important;
+    padding:0.55rem 1.2rem;
+    border-radius:100px;
+    font-size:0.85rem !important;
+  }
+  .nav-cta:hover{background:var(--amber-deep) !important;}
+  @media (max-width:720px){ .nav-links a:not(.nav-cta){display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:6rem 6% 4rem;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 20%, rgba(255,159,28,0.55), transparent 60%),
+      radial-gradient(ellipse 80% 60% at 80% 90%, rgba(79,195,232,0.25), transparent 55%),
+      linear-gradient(180deg, #FFF3DC 0%, #FFE3AE 55%, #FFD98E 100%);
+    overflow:hidden;
+  }
+  .ember{
+    position:absolute;
+    width:420px;height:420px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,159,28,0.9) 0%, rgba(255,159,28,0.25) 45%, transparent 72%);
+    top:8%; left:50%; transform:translateX(-50%);
+    filter:blur(6px);
+    animation:glow 6s ease-in-out infinite;
+    z-index:0;
+  }
+  @keyframes glow{
+    0%,100%{opacity:0.75;transform:translateX(-50%) scale(1);}
+    50%{opacity:1;transform:translateX(-50%) scale(1.08);}
+  }
+  .hero-content{position:relative;z-index:1;max-width:780px;}
+  .hero .eyebrow{margin-bottom:1.4rem;display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.2rem, 5.5vw, 4rem);
+    color:var(--ink);
+    margin-bottom:1.5rem;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--sky-deep);
+  }
+  .hero p{
+    font-size:1.1rem;
+    color:var(--ink-soft);
+    max-width:560px;
+    margin:0 auto 2.4rem;
+    line-height:1.6;
+  }
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:0.6rem;
+    background:var(--ink);
+    color:var(--ivory);
+    text-decoration:none;
+    padding:1rem 2rem;
+    border-radius:100px;
+    font-weight:600;
+    font-size:1rem;
+    box-shadow:0 8px 24px rgba(51,33,15,0.25);
+    transition:transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  }
+  .btn-primary:hover, .btn-primary:focus-visible{
+    background:var(--amber-deep);
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px rgba(184,92,0,0.35);
+  }
+  .btn-primary svg{width:16px;height:16px;transition:transform 0.25s ease;}
+  .btn-primary:hover svg{transform:translateX(3px);}
+
+  /* ---------- SECTIONS ---------- */
+  section.part{
+    padding:7rem 6%;
+    position:relative;
+  }
+  .part-inner{max-width:920px;margin:0 auto;}
+  .part-header{max-width:640px;margin-bottom:3.5rem;}
+  .part-header h2{
+    font-size:clamp(1.8rem, 4vw, 2.6rem);
+    margin-top:0.6rem;
+    color:var(--ink);
+  }
+  .part-one{
+    background:
+      radial-gradient(ellipse 70% 50% at 15% 10%, rgba(255,159,28,0.28), transparent 60%),
+      var(--ivory);
+  }
+  .part-two{
+    background:linear-gradient(180deg, #FFFCF5 0%, #EAF7FC 100%);
+  }
+  .part-three{
+    background:
+      radial-gradient(ellipse 60% 60% at 85% 20%, rgba(79,195,232,0.22), transparent 60%),
+      var(--ivory);
+  }
+
+  .card-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:1.6rem;}
+  @media (max-width:900px){.card-grid{grid-template-columns:1fr;}}
+
+  .card{
+    background:rgba(255,255,255,0.6);
+    border:1px solid rgba(184,92,0,0.14);
+    border-radius:18px;
+    padding:1.8rem 1.6rem;
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .card.visible{opacity:1;transform:translateY(0);}
+  .card .mark{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    color:var(--sky-deep);
+    background:rgba(79,195,232,0.15);
+    display:inline-block;
+    padding:0.25rem 0.6rem;
+    border-radius:6px;
+    margin-bottom:1rem;
+  }
+  .card h3{
+    font-size:1.25rem;
+    margin-bottom:0.6rem;
+    color:var(--ink);
+  }
+  .card p{
+    font-size:0.95rem;
+    color:var(--ink-soft);
+    line-height:1.55;
+  }
+
+  /* question callout */
+  .callout{
+    margin-top:3rem;
+    padding:2rem 2.2rem;
+    border-radius:20px;
+    background:linear-gradient(135deg, rgba(255,159,28,0.16), rgba(79,195,232,0.14));
+    border-left:4px solid var(--amber-glow);
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .callout.visible{opacity:1;transform:translateY(0);}
+  .callout p{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.25rem;
+    color:var(--ink);
+    line-height:1.5;
+  }
+
+  /* rule banner part two */
+  .rule-banner{
+    margin-top:1rem;
+    text-align:center;
+    padding:3rem 2rem;
+    border-radius:24px;
+    background:var(--ink);
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .rule-banner.visible{opacity:1;transform:translateY(0);}
+  .rule-banner p{
+    font-family:'Fraunces', serif;
+    color:var(--ivory);
+    font-size:clamp(1.4rem, 3.2vw, 2rem);
+    max-width:640px;
+    margin:0 auto;
+  }
+  .rule-banner p em{color:var(--amber-light);font-style:italic;}
+
+  /* part three list */
+  .now-later{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.5rem;
+    margin-top:1rem;
+  }
+  @media (max-width:720px){.now-later{grid-template-columns:1fr;}}
+  .panel{
+    border-radius:18px;
+    padding:1.8rem;
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .panel.visible{opacity:1;transform:translateY(0);}
+  .panel.now{
+    background:rgba(79,195,232,0.14);
+    border:1px solid rgba(79,195,232,0.35);
+  }
+  .panel.later{
+    background:rgba(255,159,28,0.10);
+    border:1px solid rgba(255,159,28,0.28);
+  }
+  .panel .eyebrow{margin-bottom:0.8rem;}
+  .panel h3{font-size:1.15rem;margin-bottom:0.6rem;}
+  .panel p{font-size:0.95rem;color:var(--ink-soft);line-height:1.55;}
+
+  /* ---------- CLOSING ---------- */
+  .closing{
+    padding:6rem 6% 7rem;
+    text-align:center;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 30%, rgba(255,159,28,0.4), transparent 65%),
+      linear-gradient(180deg, #FFE3AE 0%, #FFD98E 100%);
+  }
+  .closing h2{
+    font-size:clamp(1.8rem, 4.5vw, 2.8rem);
+    max-width:640px;
+    margin:0.8rem auto 1.4rem;
+    color:var(--ink);
+  }
+  .closing p{
+    color:var(--ink-soft);
+    max-width:520px;
+    margin:0 auto 2.2rem;
+    font-size:1.05rem;
+  }
+
+  footer{
+    padding:2.5rem 6%;
+    text-align:center;
+    background:var(--ink);
+    color:rgba(255,252,245,0.6);
+    font-size:0.85rem;
+  }
+  footer span{color:var(--amber-light);}
+
+  /* floating CTA */
+  .float-cta{
+    position:fixed;
+    bottom:1.6rem;
+    right:1.6rem;
+    z-index:200;
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+    background:var(--ink);
+    color:var(--ivory);
+    text-decoration:none;
+    padding:0.9rem 1.3rem;
+    border-radius:100px;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:0.9rem;
+    box-shadow:0 10px 28px rgba(51,33,15,0.35);
+    transition:transform 0.25s ease, background 0.25s ease;
+  }
+  .float-cta:hover, .float-cta:focus-visible{
+    background:var(--amber-deep);
+    transform:translateY(-2px);
+  }
+  .float-cta .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--sky);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(79,195,232,0.5);}
+    50%{opacity:0.6;box-shadow:0 0 0 6px rgba(79,195,232,0);}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+    html{scroll-behavior:auto;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--sky-deep);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Easy<span>Land</span>X</div>
+  <div class="nav-links">
+    <a href="#present">The Present</a>
+    <a href="#mindset">Mindset</a>
+    <a href="#build-well">Build Well</a>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch my page</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="ember"></div>
+  <div class="hero-content">
+    <span class="eyebrow">A reflection on time, in three parts</span>
+    <h1>"Later" is a story you tell yourself.<br><em>Now</em> is where your business lives.</h1>
+    <p>Every day your business waits for the right moment to go online, someone is already searching for exactly what you offer. EasyLandX turns today into launch day — an affordable, conversion-focused page, live in days, not someday.</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">
+      Build my page today
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="part part-one" id="present">
+  <div class="part-inner">
+    <div class="part-header">
+      <span class="eyebrow">Part One — The Present</span>
+      <h2>You have less time than you think</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="mark">01</span>
+        <h3>The Attention Window</h3>
+        <p>Customers decide to trust you in seconds — and they're deciding right now. Without a page to meet them, you're invisible during the exact moment someone is searching for you.</p>
+      </div>
+      <div class="card">
+        <span class="mark">02</span>
+        <h3>No One Is Building It For You</h3>
+        <p>Waiting for more followers, more time, or more budget doesn't build your page — it just quietly postpones the customers who were ready to find you today.</p>
+      </div>
+      <div class="card">
+        <span class="mark">03</span>
+        <h3>The One Question</h3>
+        <p>If this were the only year you had to reach your customers, would your business still be waiting on a page that doesn't exist yet?</p>
+      </div>
+    </div>
+    <div class="callout">
+      <p>"Later" isn't a plan. It's the name we give to the present we're avoiding.</p>
+    </div>
+  </div>
+</section>
+
+<section class="part part-two" id="mindset">
+  <div class="part-inner">
+    <div class="part-header">
+      <span class="eyebrow">Part Two — Mindset</span>
+      <h2>The barriers are not real — they're rehearsed</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="mark">04</span>
+        <h3>Preparation in Disguise</h3>
+        <p>Endless planning, another round of "just one more tweak," waiting to feel fully ready — it feels productive, but it's perfectionism wearing a work outfit.</p>
+      </div>
+      <div class="card">
+        <span class="mark">05</span>
+        <h3>Momentum Comes After</h3>
+        <p>Motivation doesn't arrive first and inspire action — action arrives first and creates the motivation. A live page today builds the momentum for everything after it.</p>
+      </div>
+      <div class="card">
+        <span class="mark">06</span>
+        <h3>What Changes Things</h3>
+        <p>Your reach changes the moment your choices do. A page that exists brings customers a page that's "almost ready" never will.</p>
+      </div>
+    </div>
+    <div class="rule-banner">
+      <p>The rule that doesn't bend: <em>if nothing changes, nothing changes.</em></p>
+    </div>
+  </div>
+</section>
+
+<section class="part part-three" id="build-well">
+  <div class="part-inner">
+    <div class="part-header">
+      <span class="eyebrow">Part Three — How to Build Well</span>
+      <h2>Small, real, and live beats big, perfect, and imaginary</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="mark">07</span>
+        <h3>Shrink the Launch</h3>
+        <p>You don't need a five-year roadmap or a twelve-page site. You need one page, built well, live today — and EasyLandX makes that the whole plan.</p>
+      </div>
+      <div class="card">
+        <span class="mark">08</span>
+        <h3>Answer Today</h3>
+        <p>The customer messaging you right now deserves a page to point to today, not after "the real site" is finally finished.</p>
+      </div>
+      <div class="card">
+        <span class="mark">09</span>
+        <h3>Real vs. Someday</h3>
+        <p>A simple page that's live outperforms a perfect page that only exists in a folder. Real, present, and working beats polished, future, and imaginary.</p>
+      </div>
+    </div>
+    <div class="now-later">
+      <div class="panel now">
+        <span class="eyebrow">Now</span>
+        <h3>Messy, live, and finding customers</h3>
+        <p>An affordable, conversion-focused page built with EasyLandX — working for you while you keep improving it.</p>
+      </div>
+      <div class="panel later">
+        <span class="eyebrow">Someday</span>
+        <h3>Polished, perfect, and invisible</h3>
+        <p>A flawless vision of a website that exists only in notes and good intentions — reaching exactly zero customers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <span class="eyebrow">EasyLandX</span>
+  <h2>Your business's now is EasyLandX's now.</h2>
+  <p>Affordable, conversion-focused landing pages for small businesses — built fast, built well, live today.</p>
+  <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">
+    Start my page now
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</section>
+
+<footer>
+  EasyLandX — Affordable, conversion-focused landing pages. <span>easylandx.github.io</span>
+</footer>
+
+<a class="float-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">
+  <span class="dot"></span> EasyLandX
+</a>
+
+<script>
+  const revealEls = document.querySelectorAll('.card, .callout, .rule-banner, .panel');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
