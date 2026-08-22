@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — The Lean Launch Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#059669;
+    --green-deep:#047857;
+    --amber:#D97706;
+    --amber-light:#FDE9CE;
+    --canvas:#F8FAFC;
+    --ink:#0F172A;
+    --ink-soft:#475569;
+    --line:#E2E8F0;
+    --paper:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:100%;overflow-x:hidden;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--canvas);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Archivo Black', sans-serif; font-weight:400; letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{width:min(1080px, calc(100% - 48px)); max-width:1080px; margin:0 auto; padding-left:0; padding-right:0;}
+  section{padding:96px 0;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(248,250,252,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .logo{
+    font-family:'Archivo Black', sans-serif;
+    font-size:1.15rem;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{
+    width:10px; height:10px; border-radius:2px;
+    background:var(--amber);
+    display:inline-block;
+  }
+  .nav-cta{
+    background:var(--green);
+    color:#fff;
+    padding:10px 20px;
+    border-radius:6px;
+    font-size:0.88rem;
+    font-weight:600;
+    letter-spacing:0.01em;
+    transition:background 0.15s ease, transform 0.15s ease;
+    display:inline-block;
+  }
+  .nav-cta:hover{background:var(--green-deep); transform:translateY(-1px);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-width:0;
+    padding:88px 0 80px;
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--green-deep);
+    background:#ECFDF5;
+    border:1px solid #A7F3D0;
+    padding:6px 12px;
+    border-radius:999px;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem, 4.2vw, 3.4rem);
+    line-height:1.06;
+    margin-bottom:22px;
+  }
+  .hero h1 .amber{color:var(--amber);}
+  .hero p.lede{
+    font-size:1.08rem;
+    color:var(--ink-soft);
+    max-width:46ch;
+    margin-bottom:32px;
+  }
+  .hero-actions{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--amber);
+    color:#fff;
+    padding:15px 28px;
+    border-radius:6px;
+    font-weight:700;
+    font-size:0.98rem;
+    box-shadow:0 4px 0 #B45C04;
+    transition:transform 0.12s ease, box-shadow 0.12s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{transform:translateY(2px); box-shadow:0 2px 0 #B45C04;}
+  .btn-secondary{
+    font-size:0.95rem;
+    font-weight:600;
+    color:var(--ink);
+    border-bottom:2px solid var(--ink);
+    padding-bottom:2px;
+  }
+
+  /* Receipt / index-card signature element */
+  .receipt{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:28px 26px 24px;
+    box-shadow:0 18px 40px -20px rgba(15,23,42,0.25);
+    position:relative;
+    transform:rotate(1.4deg);
+  }
+  .receipt::before{
+    content:"";
+    position:absolute; inset:0;
+    border-radius:4px;
+    background-image: radial-gradient(circle, transparent 5px, var(--canvas) 5.5px);
+    background-size: 14px 14px;
+    background-position: -7px 100%;
+    height:14px; top:auto; bottom:-7px;
+    background-repeat:repeat-x;
+  }
+  .receipt-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    border-bottom:1px dashed var(--line);
+    padding-bottom:14px; margin-bottom:14px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .receipt-head .biz{font-weight:600; font-size:0.95rem;}
+  .receipt-head .tag{font-size:0.72rem; color:var(--ink-soft);}
+  .receipt-line{
+    display:flex; justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.86rem;
+    padding:9px 0;
+    border-bottom:1px dotted var(--line);
+    gap:10px;
+  }
+  .receipt-line:last-of-type{border-bottom:none;}
+  .receipt-line .check{color:var(--green); font-weight:700; margin-right:8px;}
+  .receipt-total{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:16px; padding-top:14px;
+    border-top:2px solid var(--ink);
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .receipt-total .label{font-size:0.78rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.08em;}
+  .receipt-total .value{font-size:1.4rem; font-weight:600; color:var(--green-deep);}
+  .stamp{
+    position:absolute; top:-14px; right:-10px;
+    background:var(--amber-light);
+    border:2px solid var(--amber);
+    color:var(--amber);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    font-weight:600;
+    padding:6px 10px;
+    border-radius:999px;
+    transform:rotate(8deg);
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--amber);
+    margin-bottom:12px;
+    display:block;
+  }
+  .section-head h2{font-size:clamp(1.7rem, 3vw, 2.3rem); margin-bottom:14px;}
+  .section-head p{color:var(--ink-soft); font-size:1.02rem;}
+
+  /* ---------- CONVERGENCE ---------- */
+  .converge{
+    background:var(--paper);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .converge-grid{
+    min-width:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+  }
+  .venn{
+    position:relative;
+    height:320px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .venn .circle{
+    position:absolute;
+    width:230px; height:230px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    padding:20px;
+    font-weight:600;
+  }
+  .venn .c1{
+    background:rgba(5,150,105,0.14);
+    border:2px solid var(--green);
+    color:var(--green-deep);
+    left:34px;
+  }
+  .venn .c2{
+    background:rgba(217,119,6,0.14);
+    border:2px solid var(--amber);
+    color:#8A4B04;
+    right:34px;
+  }
+  .venn .sweet{
+    position:absolute;
+    background:var(--ink);
+    color:#fff;
+    font-family:'Archivo Black', sans-serif;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    padding:10px 14px;
+    border-radius:4px;
+    z-index:3;
+    box-shadow:0 10px 20px -8px rgba(15,23,42,0.4);
+  }
+  .converge-copy ul{list-style:none; margin-top:24px;}
+  .converge-copy li{
+    display:flex; gap:12px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    font-size:0.98rem;
+  }
+  .converge-copy li:last-child{border-bottom:none;}
+  .converge-copy li .num{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--amber);
+    font-weight:600;
+    flex-shrink:0;
+  }
+
+  /* ---------- 3 ELEMENTS ---------- */
+  .elements-grid{
+    min-width:0;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .element-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:30px 26px;
+    position:relative;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .element-card:hover{transform:translateY(-4px); box-shadow:0 16px 32px -18px rgba(15,23,42,0.25);}
+  .element-card .glyph{
+    width:44px; height:44px;
+    border-radius:8px;
+    background:var(--green);
+    color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:700;
+    margin-bottom:18px;
+  }
+  .element-card:nth-child(2) .glyph{background:var(--amber);}
+  .element-card:nth-child(3) .glyph{background:var(--ink);}
+  .element-card h3{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.15rem; margin-bottom:10px;}
+  .element-card p{color:var(--ink-soft); font-size:0.94rem;}
+
+  /* ---------- TRANSFORMATION ---------- */
+  .transform-block{
+    background:var(--ink);
+    color:#fff;
+  }
+  .transform-block .section-head h2{color:#fff;}
+  .transform-block .section-head p{color:#CBD5E1;}
+  .transform-grid{
+    min-width:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:rgba(255,255,255,0.14);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .transform-col{
+    background:#111C33;
+    padding:32px 28px;
+  }
+  .transform-col.after{background:#0B2E23;}
+  .transform-col .tlabel{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:#94A3B8;
+    margin-bottom:16px;
+    display:block;
+  }
+  .transform-col.after .tlabel{color:#6EE7B7;}
+  .transform-col p{
+    font-size:1.02rem;
+    padding:10px 0;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    color:#E2E8F0;
+  }
+  .transform-col p:last-child{border-bottom:none;}
+  .transform-col.after p{color:#fff; font-weight:500;}
+
+  /* ---------- 1-PAGE PLAN ---------- */
+  .plan-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:8px;
+  }
+  .plan-row{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:24px;
+    padding:26px 24px;
+    border-bottom:1px dashed var(--line);
+    align-items:start;
+  }
+  .plan-row:last-child{border-bottom:none;}
+  .plan-q{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.9rem;
+    color:var(--green-deep);
+    font-weight:600;
+  }
+  .plan-a{font-size:1.02rem; color:var(--ink);}
+  .plan-a strong{color:var(--amber);}
+
+  /* ---------- LAUNCH TIMER ---------- */
+  .launch{
+    background:var(--paper);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .launch-grid{
+    min-width:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .launch-track{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    position:relative;
+    padding-left:28px;
+  }
+  .launch-track::before{
+    content:"";
+    position:absolute; left:9px; top:10px; bottom:10px;
+    width:2px;
+    background:var(--line);
+  }
+  .launch-step{
+    position:relative;
+    padding:18px 0;
+  }
+  .launch-step::before{
+    content:"";
+    position:absolute; left:-28px; top:22px;
+    width:12px; height:12px;
+    border-radius:50%;
+    background:var(--green);
+    border:3px solid var(--canvas);
+    box-shadow:0 0 0 2px var(--green);
+  }
+  .launch-step .day{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--amber);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:4px;
+  }
+  .launch-step h4{font-size:1.05rem; font-weight:700; margin-bottom:4px;}
+  .launch-step p{color:var(--ink-soft); font-size:0.92rem;}
+
+  /* ---------- STAIR-STEP PRICING ---------- */
+  .pricing{background:var(--canvas);}
+  .stairs{
+    min-width:0;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    align-items:end;
+    gap:20px;
+  }
+  .stair{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px 10px 0 0;
+    padding:30px 24px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+  .stair.basic{transform:translateY(40px);}
+  .stair.upgraded{transform:translateY(0px); border-color:var(--green); box-shadow:0 16px 40px -20px rgba(5,150,105,0.35);}
+  .stair.premium{transform:translateY(-40px); border-color:var(--amber);}
+  .stair .tier-name{
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase;
+    font-size:0.76rem;
+    letter-spacing:0.1em;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+  .stair .tier-price{
+    font-family:'Archivo Black', sans-serif;
+    font-size:2rem;
+    margin-bottom:6px;
+  }
+  .stair.upgraded .tier-price{color:var(--green-deep);}
+  .stair.premium .tier-price{color:var(--amber);}
+  .stair .tier-desc{color:var(--ink-soft); font-size:0.88rem; margin-bottom:18px;}
+  .stair ul{list-style:none; margin-bottom:22px; flex-grow:1;}
+  .stair li{
+    font-size:0.88rem;
+    padding:7px 0;
+    display:flex; gap:8px;
+    color:var(--ink);
+  }
+  .stair li::before{content:"+"; color:var(--green); font-weight:700;}
+  .stair .badge{
+    position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+    background:var(--green);
+    color:#fff;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    padding:4px 10px;
+    border-radius:999px;
+    letter-spacing:0.04em;
+  }
+  .stair-btn{
+    text-align:center;
+    padding:11px;
+    border-radius:6px;
+    font-weight:600;
+    font-size:0.9rem;
+    border:1.5px solid var(--ink);
+  }
+  .stair.upgraded .stair-btn{background:var(--green); color:#fff; border-color:var(--green);}
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    background:var(--green);
+    color:#fff;
+    text-align:center;
+  }
+  .final-cta h2{color:#fff; font-size:clamp(1.9rem, 3.6vw, 2.6rem); margin-bottom:18px;}
+  .final-cta p{color:#D1FAE5; font-size:1.05rem; max-width:52ch; margin:0 auto 34px;}
+  .btn-cream{
+    background:var(--canvas);
+    color:var(--ink);
+    padding:16px 32px;
+    border-radius:6px;
+    font-weight:700;
+    font-size:1rem;
+    display:inline-block;
+    box-shadow:0 4px 0 #C7D2DE;
+    transition:transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .btn-cream:hover{transform:translateY(2px); box-shadow:0 2px 0 #C7D2DE;}
+
+  footer{
+    padding:36px 0;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity 0.6s ease, transform 0.6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .wrap{width:calc(100% - 32px);}
+    .hero{
+    min-width:0;grid-template-columns:1fr; gap:44px; padding-top:56px;}
+    .converge-grid{
+    min-width:0;grid-template-columns:1fr;}
+    .venn{height:260px;}
+    .elements-grid{
+    min-width:0;grid-template-columns:1fr;}
+    .transform-grid{
+    min-width:0;grid-template-columns:1fr;}
+    .plan-row{grid-template-columns:1fr; gap:8px;}
+    .launch-grid{
+    min-width:0;grid-template-columns:1fr;}
+    .stairs{
+    min-width:0;grid-template-columns:1fr; gap:56px;}
+    .stair.basic, .stair.upgraded, .stair.premium{transform:none;}
+    section{padding:64px 0;}
+  }
+  @media (max-width: 480px){
+    .wrap{width:calc(100% - 28px);}
+    .receipt{padding:22px 18px 20px;}
+    .receipt-head{gap:10px; flex-wrap:wrap;}
+    .receipt-line{font-size:0.78rem;}
+    .btn-primary{width:100%; text-align:center;}
+    .venn .circle{width:190px;height:190px;font-size:0.72rem;}
+    .venn .c1{left:0;}
+    .venn .c2{right:0;}
+  }
+  }
+
+  :focus-visible{outline:3px solid var(--amber); outline-offset:2px;}
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; scroll-behavior:auto !important;}
+    .reveal{opacity:1; transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo"><span class="dot"></span>easylandx</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">View the portfolio →</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero wrap">
+  <div>
+    <span class="eyebrow">Built on the $100 Startup playbook</span>
+    <h1>You don't need a business plan.<br>You need a page that <span class="amber">sells.</span></h1>
+    <p class="lede">easylandx builds affordable, conversion-focused landing pages for micro-entrepreneurs — the tarot reader, the Pilates studio, the ceramic artist. One custom page. No templates. No bloated budget. Just the tool that turns visitors into customers.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch my page — easylandx.github.io</a>
+      <a class="btn-secondary" href="#plan">See the 1-page plan</a>
+    </div>
+  </div>
+
+  <div class="receipt reveal">
+    <div class="stamp">imperfect &amp; live</div>
+    <div class="receipt-head">
+      <span class="biz">EASYLANDX — LEAN LAUNCH RECEIPT</span>
+      <span class="tag">no.2026</span>
+    </div>
+    <div class="receipt-line"><span><span class="check">✓</span>Custom landing page</span><span>1</span></div>
+    <div class="receipt-line"><span><span class="check">✓</span>WhatsApp / Instagram CTA</span><span>1</span></div>
+    <div class="receipt-line"><span><span class="check">✓</span>Mobile-first build</span><span>1</span></div>
+    <div class="receipt-line"><span><span class="check">✓</span>Zero template, zero builder</span><span>1</span></div>
+    <div class="receipt-line"><span><span class="check">✓</span>Overhead avoided</span><span>$0</span></div>
+    <div class="receipt-total">
+      <span class="label">Time to first customer</span>
+      <span class="value">days, not months</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONVERGENCE -->
+<section class="converge">
+  <div class="wrap converge-grid">
+    <div class="venn reveal">
+      <div class="circle c1">What your business<br>is actually good at</div>
+      <div class="circle c2">What customers are<br>ready to pay for</div>
+      <div class="sweet">the landing page</div>
+    </div>
+    <div class="converge-copy">
+      <span class="section-tag">The Rule of Convergence</span>
+      <h2 style="font-size:1.8rem; margin-bottom:12px;">Passion alone is a hobby. Convergence is a business.</h2>
+      <p style="color:var(--ink-soft);">Chris Guillebeau's <em>The $100 Startup</em> found the pattern across 1,500+ founders: the businesses that worked sat at the exact overlap of skill and demand. A website is no different — a page only works when it sits at the overlap of who you are and what your customer is trying to solve.</p>
+      <ul>
+        <li><span class="num">01</span> A page built from a generic template speaks to no one in particular.</li>
+        <li><span class="num">02</span> easylandx starts from your real service, your real customer, your real objection.</li>
+        <li><span class="num">03</span> The result: a page built for conversion, not decoration.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 3 ELEMENTS -->
+<section class="wrap">
+  <div class="section-head reveal">
+    <span class="section-tag">Every microbusiness needs three things</span>
+    <h2>Product. People. A way to get paid.</h2>
+    <p>Guillebeau strips every successful solo business down to three components. easylandx exists to build the piece most founders get stuck on: the bridge between the three.</p>
+  </div>
+  <div class="elements-grid">
+    <div class="element-card reveal">
+      <div class="glyph">01</div>
+      <h3>Your product or service</h3>
+      <p>What you already do well. easylandx turns it into a clear, specific offer instead of a vague "about us" page.</p>
+    </div>
+    <div class="element-card reveal">
+      <div class="glyph">02</div>
+      <h3>People ready to buy</h3>
+      <p>A landing page written for one micro-niche and one pain point — not everyone, which means it actually speaks to someone.</p>
+    </div>
+    <div class="element-card reveal">
+      <div class="glyph">03</div>
+      <h3>A way to get paid</h3>
+      <p>WhatsApp, Instagram, Stripe, a booking link — whatever gets your customer from "interested" to "paid," built directly into the page.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFORMATION -->
+<section class="transform-block">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag" style="color:#6EE7B7;">From features to transformation</span>
+      <h2>Nobody buys a landing page. They buy what it changes.</h2>
+      <p>Customers don't care about your process. They care about how their day, their income, their stress level changes after they find you.</p>
+    </div>
+    <div class="transform-grid reveal">
+      <div class="transform-col before">
+        <span class="tlabel">What a template says</span>
+        <p>"We build responsive, modern websites."</p>
+        <p>"Fully customizable design blocks."</p>
+        <p>"Drag-and-drop builder included."</p>
+        <p>"SEO-optimized architecture."</p>
+      </div>
+      <div class="transform-col after">
+        <span class="tlabel">What easylandx says</span>
+        <p>Stop losing customers to a page that doesn't explain what you do.</p>
+        <p>Book more sessions without answering the same DM twice.</p>
+        <p>Look established the moment someone finds you.</p>
+        <p>One page. One clear next step. Built around your actual customer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 1-PAGE PLAN -->
+<section class="wrap" id="plan">
+  <div class="section-head reveal">
+    <span class="section-tag">The 1-Page Plan, applied to your website</span>
+    <h2>Four questions. One page. No 40-slide deck required.</h2>
+    <p>Guillebeau's antidote to over-planning is one page of clear answers. Here's what that looks like when the "business" you're launching is your online presence.</p>
+  </div>
+  <div class="plan-card reveal">
+    <div class="plan-row">
+      <div class="plan-q">What are you selling, and to whom?</div>
+      <div class="plan-a">A custom landing page built around <strong>your real customer</strong> — not a generic small-business template.</div>
+    </div>
+    <div class="plan-row">
+      <div class="plan-q">What does it cost, and what does it return?</div>
+      <div class="plan-a">A low, fixed price with <strong>no ongoing builder fees</strong> — the page pays for itself with your first few new bookings.</div>
+    </div>
+    <div class="plan-row">
+      <div class="plan-q">What's the next action?</div>
+      <div class="plan-a">Send easylandx what you offer and who you serve. <strong>That's the entire brief.</strong></div>
+    </div>
+    <div class="plan-row">
+      <div class="plan-q">How fast can it go live?</div>
+      <div class="plan-a">Days — see the launch timeline below.</div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPERFECT LAUNCH TIMELINE -->
+<section class="launch">
+  <div class="wrap launch-grid">
+    <div class="reveal">
+      <span class="section-tag">The art of the imperfect launch</span>
+      <h2 style="font-size:1.8rem; margin-bottom:14px;">Live beats perfect. Every time.</h2>
+      <p style="color:var(--ink-soft); font-size:1.02rem;">Waiting for a flawless page is the most common way a small business stays invisible. easylandx ships a working, conversion-ready page fast — then improves it using real visitor behavior, not guesswork.</p>
+    </div>
+    <div class="launch-track reveal">
+      <div class="launch-step">
+        <div class="day">Day 1</div>
+        <h4>You send the brief</h4>
+        <p>What you offer, who you serve, how customers reach you.</p>
+      </div>
+      <div class="launch-step">
+        <div class="day">Day 2–3</div>
+        <h4>easylandx builds the page</h4>
+        <p>Custom copy, custom layout, built for your one micro-niche.</p>
+      </div>
+      <div class="launch-step">
+        <div class="day">Day 4</div>
+        <h4>It goes live</h4>
+        <p>Real customers can find you and take action — no more waiting.</p>
+      </div>
+      <div class="launch-step">
+        <div class="day">Ongoing</div>
+        <h4>Iterate on real feedback</h4>
+        <p>Payment and inquiries are the only validation that matters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAIR-STEP PRICING -->
+<section class="pricing wrap">
+  <div class="section-head reveal">
+    <span class="section-tag">The stair-step approach</span>
+    <h2>One offer, three ways in</h2>
+    <p>Price against the value you get back, not a guess. Three tiers, same lean philosophy — start where it makes sense and step up when you're ready.</p>
+  </div>
+  <div class="stairs">
+    <div class="stair basic reveal">
+      <span class="tier-name">Basic</span>
+      <div class="tier-price">Launch</div>
+      <p class="tier-desc">One page, one clear offer — get found and get contacted.</p>
+      <ul>
+        <li>Single custom landing page</li>
+        <li>Mobile-first build</li>
+        <li>WhatsApp / Instagram CTA</li>
+      </ul>
+      <a class="stair-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Start here</a>
+    </div>
+    <div class="stair upgraded reveal">
+      <span class="badge">Most convergence</span>
+      <span class="tier-name">Upgraded</span>
+      <div class="tier-price">Grow</div>
+      <p class="tier-desc">Everything in Basic, plus the details that build trust fast.</p>
+      <ul>
+        <li>Custom animations &amp; visual identity</li>
+        <li>Scroll-reveal storytelling</li>
+        <li>Photo / gallery section</li>
+        <li>Copy refined for conversion</li>
+      </ul>
+      <a class="stair-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Most popular</a>
+    </div>
+    <div class="stair premium reveal">
+      <span class="tier-name">Premium</span>
+      <div class="tier-price">Scale</div>
+      <p class="tier-desc">For businesses ready to turn one page into a full presence.</p>
+      <ul>
+        <li>Everything in Upgraded</li>
+        <li>Payment integration</li>
+        <li>Multi-section site</li>
+        <li>Priority revisions</li>
+      </ul>
+      <a class="stair-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Go premium</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap reveal">
+    <h2>Your $100 startup deserves more than a template.</h2>
+    <p>See real pages built for real micro-entrepreneurs — then start yours.</p>
+    <a class="btn-cream" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx.github.io →</a>
+  </div>
+</section>
+
+<footer>
+  easylandx — custom, conversion-focused landing pages · 2026
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
