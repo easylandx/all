@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Stay Small. Convert Big.</title>
+<style>
+  :root{
+    --freedom-blue:#123A5E;
+    --freedom-blue-dark:#0B2740;
+    --margin-green:#2E9E6B;
+    --margin-green-dark:#1F7A51;
+    --studio-white:#F7F8F6;
+    --studio-white-dim:#E7EAE6;
+    --text-soft: rgba(247,248,246,0.78);
+    --text-faint: rgba(247,248,246,0.5);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--freedom-blue);
+    color:var(--studio-white);
+    font-family:'IBM Plex Sans', Georgia, serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,.serif{
+    font-family:'Newsreader', Georgia, 'Times New Roman', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    font-size:0.72rem;
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 6vw;
+    background:rgba(11,39,64,0.0);
+    backdrop-filter:blur(0px);
+    transition:background 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease;
+    border-bottom:1px solid transparent;
+  }
+  nav.scrolled{
+    background:rgba(11,39,64,0.86);
+    backdrop-filter:blur(10px);
+    padding:14px 6vw;
+    border-bottom:1px solid rgba(247,248,246,0.08);
+  }
+  .logo{
+    font-family:'Newsreader', serif;
+    font-size:1.3rem;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .logo .dot{
+    width:8px; height:8px;
+    background:var(--margin-green);
+    border-radius:50%;
+    display:inline-block;
+  }
+  .nav-links{
+    display:flex;
+    gap:2.2rem;
+    align-items:center;
+  }
+  .nav-links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--text-soft);
+    transition:color 0.2s ease;
+  }
+  .nav-links a:hover{color:var(--margin-green);}
+  .nav-cta{
+    background:var(--margin-green);
+    color:var(--freedom-blue-dark) !important;
+    padding:9px 18px;
+    border-radius:3px;
+    font-weight:600;
+  }
+  .nav-cta:hover{background:#3fb87e;}
+
+  @media (max-width:760px){
+    .nav-links{display:none;}
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{
+    padding:140px 6vw 100px;
+    max-width:1100px;
+    margin:0 auto;
+    position:relative;
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding-top:180px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    min-height:92vh;
+    justify-content:center;
+  }
+  .eyebrow{
+    color:var(--margin-green);
+    margin-bottom:22px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px; height:1px;
+    background:var(--margin-green);
+    display:inline-block;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.6rem);
+    line-height:1.05;
+    max-width:900px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--margin-green);
+  }
+  .hero p{
+    margin-top:28px;
+    max-width:560px;
+    font-size:1.15rem;
+    color:var(--text-soft);
+  }
+  .hero-actions{
+    margin-top:42px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:var(--margin-green);
+    color:var(--freedom-blue-dark);
+    padding:15px 30px;
+    border-radius:3px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    font-weight:600;
+    transition:transform 0.2s ease, background 0.2s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{
+    background:#3fb87e;
+    transform:translateY(-2px);
+  }
+  .btn-ghost{
+    border:1px solid rgba(247,248,246,0.25);
+    color:var(--studio-white);
+    padding:15px 30px;
+    border-radius:3px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    transition:border-color 0.2s ease, background 0.2s ease;
+    display:inline-block;
+  }
+  .btn-ghost:hover{
+    border-color:var(--margin-green);
+    background:rgba(46,158,107,0.08);
+  }
+
+  /* ---------- ENOUGH SECTION ---------- */
+  .enough{
+    background:var(--freedom-blue-dark);
+    border-top:1px solid rgba(247,248,246,0.06);
+    border-bottom:1px solid rgba(247,248,246,0.06);
+  }
+  .enough-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:start;
+  }
+  @media (max-width:800px){
+    .enough-grid{grid-template-columns:1fr;}
+  }
+  .enough h2{
+    font-size:clamp(1.9rem,4vw,2.6rem);
+    max-width:420px;
+  }
+  .enough-copy p{
+    color:var(--text-soft);
+    margin-bottom:1.1rem;
+  }
+  .enough-copy strong{
+    color:var(--studio-white);
+  }
+  .signature-box{
+    border:1px solid rgba(46,158,107,0.35);
+    background:rgba(46,158,107,0.05);
+    padding:28px;
+    border-radius:4px;
+  }
+  .signature-box .mono{
+    color:var(--margin-green);
+    display:block;
+    margin-bottom:12px;
+  }
+  .enough-line{
+    font-family:'Newsreader', serif;
+    font-style:italic;
+    font-size:1.25rem;
+    color:var(--studio-white);
+  }
+
+  /* ---------- PILLARS ---------- */
+  .pillars-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 70px;
+  }
+  .pillars-head h2{
+    font-size:clamp(2rem,4.5vw,2.8rem);
+  }
+  .pillars-head p{
+    color:var(--text-soft);
+    margin-top:16px;
+  }
+  .pillar-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1px;
+    background:rgba(247,248,246,0.08);
+    border:1px solid rgba(247,248,246,0.08);
+  }
+  @media (max-width:760px){
+    .pillar-grid{grid-template-columns:1fr;}
+  }
+  .pillar{
+    background:var(--freedom-blue);
+    padding:44px;
+  }
+  .pillar .num{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--margin-green);
+    font-size:0.8rem;
+    display:block;
+    margin-bottom:18px;
+  }
+  .pillar h3{
+    font-size:1.4rem;
+    margin-bottom:12px;
+  }
+  .pillar p{
+    color:var(--text-soft);
+    font-size:0.98rem;
+  }
+
+  /* ---------- METRICS STRIP ---------- */
+  .metrics{
+    background:var(--margin-green);
+    padding:70px 6vw;
+  }
+  .metrics-inner{
+    max-width:1100px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+    text-align:center;
+  }
+  @media (max-width:700px){
+    .metrics-inner{grid-template-columns:1fr; gap:36px;}
+  }
+  .metric .big{
+    font-family:'Newsreader', serif;
+    font-size:clamp(2.2rem,5vw,3.2rem);
+    color:var(--freedom-blue-dark);
+    line-height:1;
+  }
+  .metric .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--freedom-blue-dark);
+    opacity:0.75;
+    margin-top:10px;
+  }
+
+  /* ---------- TAKEAWAYS ---------- */
+  .takeaways{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .takeaway-row{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:40px;
+    padding:34px 0;
+    border-bottom:1px solid rgba(247,248,246,0.08);
+  }
+  @media (max-width:700px){
+    .takeaway-row{grid-template-columns:1fr; gap:10px;}
+  }
+  .takeaway-row .mono{color:var(--margin-green);}
+  .takeaway-row h3{font-size:1.3rem; margin-bottom:8px;}
+  .takeaway-row p{color:var(--text-soft);}
+
+  /* ---------- BUFFER / CTA SECTION ---------- */
+  .buffer{
+    background:var(--studio-white);
+    color:var(--freedom-blue-dark);
+    border-radius:6px;
+    padding:70px 6vw;
+    max-width:1100px;
+    margin:0 auto 140px;
+    text-align:center;
+  }
+  .buffer h2{
+    font-size:clamp(1.9rem,4.5vw,2.6rem);
+    color:var(--freedom-blue-dark);
+    max-width:700px;
+    margin:0 auto 20px;
+  }
+  .buffer p{
+    color:rgba(11,39,64,0.7);
+    max-width:560px;
+    margin:0 auto 34px;
+  }
+  .buffer .btn-primary{
+    background:var(--freedom-blue-dark);
+    color:var(--studio-white);
+  }
+  .buffer .btn-primary:hover{
+    background:var(--freedom-blue);
+  }
+
+  /* ---------- FLOATING CTA ---------- */
+  .floating-cta{
+    position:fixed;
+    bottom:28px;
+    right:28px;
+    z-index:200;
+    background:var(--margin-green);
+    color:var(--freedom-blue-dark);
+    padding:15px 24px;
+    border-radius:50px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    font-weight:600;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transform:translateY(120px);
+    transition:transform 0.5s ease, background 0.2s ease;
+  }
+  .floating-cta.show{transform:translateY(0);}
+  .floating-cta:hover{background:#3fb87e;}
+  .floating-cta .arrow{transition:transform 0.2s ease;}
+  .floating-cta:hover .arrow{transform:translateX(3px);}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:60px 6vw 50px;
+    border-top:1px solid rgba(247,248,246,0.08);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:20px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--text-faint);
+  }
+  footer a{color:var(--margin-green);}
+
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="logo"><span class="dot"></span>EasyLandX</div>
+  <div class="nav-links">
+    <a href="#philosophy">Philosophy</a>
+    <a href="#pillars">Pillars</a>
+    <a href="#takeaways">How it works</a>
+    <a href="https://easylandx.github.io" class="nav-cta">Get your page</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow mono">A landing page company, run the way it preaches</div>
+  <h1 class="reveal">Stay <em>small</em>.<br>Convert big.</h1>
+  <p class="reveal">EasyLandX builds a single, focused landing page for your business — enough to convert, nothing to maintain. No dev team, no CMS, no monthly bloat. Just one page doing exactly what it needs to do.</p>
+  <div class="hero-actions reveal">
+    <a href="https://easylandx.github.io" class="btn-primary">Get your page →</a>
+    <a href="#philosophy" class="btn-ghost">See the philosophy</a>
+  </div>
+</section>
+
+<section class="enough" id="philosophy">
+  <div class="enough-grid">
+    <div class="reveal">
+      <div class="eyebrow mono">The Enough Point</div>
+      <h2>Growth isn't the goal. Conversion is.</h2>
+    </div>
+    <div class="enough-copy reveal">
+      <p>Most business websites grow the way most companies do — automatically, and past the point of usefulness. More pages, more plugins, more people to keep it all running. That's a trap.</p>
+      <p>A landing page built the EasyLandX way asks a different question: not <strong>"how do we make this bigger?"</strong> but <strong>"how do we make this exactly enough to turn a visitor into a client?"</strong></p>
+      <p>One page. Clear offer. Real automation behind it. That's the whole system — and it's built to last.</p>
+      <div class="signature-box">
+        <span class="mono">EasyLandX Standard</span>
+        <p class="enough-line">"Success isn't measured in headcount or page count. It's measured in autonomy."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pillars">
+  <div class="pillars-head reveal">
+    <div class="eyebrow mono" style="justify-content:center;">The four pillars</div>
+    <h2>Built like a Company of One</h2>
+    <p>Every EasyLandX page is designed around the same principles that keep small businesses resilient, profitable, and free.</p>
+  </div>
+  <div class="pillar-grid reveal">
+    <div class="pillar">
+      <span class="num">01</span>
+      <h3>Autonomy First</h3>
+      <p>Your page serves your business — not the other way around. No agency retainer, no ticket queue. You own the file, you own the freedom.</p>
+    </div>
+    <div class="pillar">
+      <span class="num">02</span>
+      <h3>Efficiency over Headcount</h3>
+      <p>When demand grows, you don't need to hire a web team. One well-built page, backed by automation, absorbs the surge for you.</p>
+    </div>
+    <div class="pillar">
+      <span class="num">03</span>
+      <h3>Trust over Scale</h3>
+      <p>A focused page speaks directly to the right clients — building deep trust with a smaller audience instead of chasing everyone at once.</p>
+    </div>
+    <div class="pillar">
+      <span class="num">04</span>
+      <h3>Financial Resilience</h3>
+      <p>One flat cost, zero recurring dev overhead. Your break-even point stays low, so your business can flex with the market, not against it.</p>
+    </div>
+  </div>
+</section>
+
+<div class="metrics reveal">
+  <div class="metrics-inner">
+    <div class="metric">
+      <div class="big">1</div>
+      <div class="label">Page. That's it.</div>
+    </div>
+    <div class="metric">
+      <div class="big">0</div>
+      <div class="label">Recurring dev costs</div>
+    </div>
+    <div class="metric">
+      <div class="big">Days</div>
+      <div class="label">Not months, to launch</div>
+    </div>
+  </div>
+</div>
+
+<section id="takeaways">
+  <div class="pillars-head reveal">
+    <div class="eyebrow mono" style="justify-content:center;">Key takeaways</div>
+    <h2>What "enough" looks like in practice</h2>
+  </div>
+  <div class="takeaways reveal">
+    <div class="takeaway-row">
+      <span class="mono">Generalist offer</span>
+      <div>
+        <h3>One page, every angle covered</h3>
+        <p>Your page carries the sales pitch, the proof, the contact path, and the booking flow — every function a bigger site would split across ten pages.</p>
+      </div>
+    </div>
+    <div class="takeaway-row">
+      <span class="mono">Capital buffer</span>
+      <div>
+        <h3>A low-cost foundation you can build on</h3>
+        <p>A single flat build cost, instead of an ongoing retainer, means your marketing budget stretches further — leaving room to say yes to the right clients on your own terms.</p>
+      </div>
+    </div>
+    <div class="takeaway-row">
+      <span class="mono">Self-contained</span>
+      <div>
+        <h3>No platform lock-in</h3>
+        <p>Every EasyLandX page is a single, self-contained file. It's yours — host it anywhere, hand it to anyone, keep it running for years.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="buffer reveal">
+  <div class="eyebrow mono" style="justify-content:center; color:var(--margin-green-dark);">Ready when you are</div>
+  <h2>Your business already knows its "enough." Let's build the page that proves it.</h2>
+  <p>One conversation, one page, one link you can share today.</p>
+  <a href="https://easylandx.github.io" class="btn-primary">Start with EasyLandX →</a>
+</div>
+
+<footer>
+  <div>© 2026 EasyLandX — Company of One, by design.</div>
+  <div><a href="https://easylandx.github.io">easylandx.github.io</a></div>
+</footer>
+
+<a href="https://easylandx.github.io" class="floating-cta" id="floatingCta">
+  Get your page <span class="arrow">→</span>
+</a>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  const floatingCta = document.getElementById('floatingCta');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 60){
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+    if(window.scrollY > 500){
+      floatingCta.classList.add('show');
+    } else {
+      floatingCta.classList.remove('show');
+    }
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages Built for Hyperfocus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep: #0B1E3D;
+    --deep-2: #0F2748;
+    --deep-3: #143061;
+    --amber: #F5A623;
+    --amber-soft: #FFCF7A;
+    --slate: #EDEFF3;
+    --slate-dim: #A9B4C6;
+    --line: rgba(237,239,243,0.14);
+    --radius: 14px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--deep);
+    color: var(--slate);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  h1,h2,h3,h4{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    margin: 0 0 0.5em 0;
+    letter-spacing: -0.01em;
+  }
+  .mono{
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  a{ color: inherit; }
+  section{ position: relative; }
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(11,30,61,0.86);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--slate);
+  }
+  .logo .dot{
+    width: 10px; height:10px; border-radius:50%;
+    background: var(--amber);
+    box-shadow: 0 0 0 4px rgba(245,166,35,0.18);
+  }
+  .nav-links{
+    display:flex;
+    gap: 28px;
+    font-size: 0.85rem;
+  }
+  .nav-links a{
+    text-decoration:none;
+    color: var(--slate-dim);
+    transition: color .2s ease;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .nav-links a:hover{ color: var(--amber-soft); }
+  @media (max-width: 720px){ .nav-links{ display:none; } }
+
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background: var(--amber);
+    color: var(--deep);
+    font-weight: 600;
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration:none;
+    font-size: 0.88rem;
+    border: none;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background .2s ease;
+    box-shadow: 0 8px 24px rgba(245,166,35,0.22);
+  }
+  .btn-primary:hover{
+    transform: translateY(-2px);
+    background: var(--amber-soft);
+    box-shadow: 0 12px 30px rgba(245,166,35,0.32);
+  }
+  .btn-ghost{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background: transparent;
+    color: var(--slate);
+    border: 1px solid var(--line);
+    padding: 11px 20px;
+    border-radius: 999px;
+    text-decoration:none;
+    font-size: 0.88rem;
+    transition: border-color .2s ease, color .2s ease;
+  }
+  .btn-ghost:hover{ border-color: var(--amber); color: var(--amber-soft); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 120px 0 100px;
+    text-align:center;
+    background:
+      radial-gradient(600px 300px at 15% 0%, rgba(245,166,35,0.08), transparent 60%),
+      radial-gradient(700px 400px at 85% 20%, rgba(20,48,97,0.9), transparent 60%);
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber-soft);
+    border: 1px solid rgba(245,166,35,0.35);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 28px;
+    opacity:0;
+    animation: fadeUp .7s ease forwards;
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 5.6vw, 4.4rem);
+    line-height: 1.05;
+    max-width: 880px;
+    margin: 0 auto 24px;
+    opacity:0;
+    animation: fadeUp .8s ease .1s forwards;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--amber-soft);
+  }
+  .hero p.lead{
+    max-width: 620px;
+    margin: 0 auto 40px;
+    color: var(--slate-dim);
+    font-size: 1.08rem;
+    opacity:0;
+    animation: fadeUp .8s ease .2s forwards;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:14px;
+    justify-content:center;
+    flex-wrap:wrap;
+    opacity:0;
+    animation: fadeUp .8s ease .3s forwards;
+  }
+  @keyframes fadeUp{
+    from{ opacity:0; transform: translateY(16px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  .section{ padding: 100px 0; }
+  .section-head{
+    max-width: 640px;
+    margin: 0 0 56px;
+  }
+  .section-head .mono{
+    color: var(--amber-soft);
+    font-size: 0.72rem;
+    display:block;
+    margin-bottom: 14px;
+  }
+  .section-head h2{
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  }
+  .section-head p{
+    color: var(--slate-dim);
+    font-size: 1.02rem;
+    margin-top: 14px;
+  }
+  .section-alt{
+    background: var(--deep-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .reveal{
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- QUADRANTS ---------- */
+  .quad-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 720px){ .quad-grid{ grid-template-columns: 1fr; } }
+  .quad-card{
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px;
+    background: linear-gradient(160deg, var(--deep-3), var(--deep-2));
+    position: relative;
+    overflow:hidden;
+  }
+  .quad-card.emphasis{
+    border-color: rgba(245,166,35,0.4);
+    background: linear-gradient(160deg, rgba(245,166,35,0.1), var(--deep-2));
+  }
+  .quad-card .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color: var(--slate-dim);
+    display:block;
+    margin-bottom: 12px;
+  }
+  .quad-card.emphasis .tag{ color: var(--amber-soft); }
+  .quad-card h3{ font-size: 1.2rem; margin-bottom: 8px; }
+  .quad-card p{ color: var(--slate-dim); font-size: 0.94rem; margin:0; }
+
+  /* ---------- SIGNATURE: ATTENTION BOARD ---------- */
+  .board-wrap{
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--deep-3);
+    padding: 36px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items:center;
+  }
+  @media (max-width: 860px){ .board-wrap{ grid-template-columns: 1fr; } }
+  .board-copy h3{ font-size: 1.5rem; margin-bottom: 14px; }
+  .board-copy p{ color: var(--slate-dim); margin-bottom: 22px; }
+  .board-toggle{
+    display:inline-flex;
+    background: rgba(237,239,243,0.06);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px;
+  }
+  .board-toggle button{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.74rem;
+    letter-spacing:0.06em;
+    text-transform: uppercase;
+    background: transparent;
+    border: none;
+    color: var(--slate-dim);
+    padding: 10px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all .25s ease;
+  }
+  .board-toggle button.active{
+    background: var(--amber);
+    color: var(--deep);
+    font-weight: 600;
+  }
+
+  .board-stage{
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: 14px;
+    background: #081226;
+    border: 1px solid var(--line);
+    overflow:hidden;
+  }
+  .clutter-item{
+    position:absolute;
+    border-radius: 8px;
+    background: rgba(237,239,243,0.1);
+    border: 1px solid rgba(237,239,243,0.18);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--slate-dim);
+    transition: opacity .5s ease, transform .5s ease;
+    text-align:center;
+    padding: 6px;
+  }
+  .stage-focus{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap: 14px;
+    opacity: 0;
+    transition: opacity .6s ease .1s;
+  }
+  .board-stage.is-focused .stage-focus{ opacity: 1; }
+  .board-stage.is-focused .clutter-item{
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  .focus-pulse{
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--amber) 0%, rgba(245,166,35,0.15) 70%);
+    box-shadow: 0 0 40px rgba(245,166,35,0.4);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .focus-pulse::after{
+    content:'';
+    width: 14px; height:14px;
+    border-radius:50%;
+    background: var(--deep);
+  }
+  .stage-focus .cta-mini{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+    background: rgba(237,239,243,0.08);
+    border: 1px solid var(--amber);
+    padding: 8px 18px;
+    border-radius: 999px;
+  }
+
+  /* ---------- RITUAL STEPS ---------- */
+  .ritual{
+    display:flex;
+    flex-direction:column;
+    gap: 0;
+  }
+  .ritual-step{
+    display:grid;
+    grid-template-columns: 90px 1fr;
+    gap: 24px;
+    padding: 30px 0;
+    border-top: 1px solid var(--line);
+  }
+  .ritual-step:last-child{ border-bottom: 1px solid var(--line); }
+  .ritual-step .num{
+    font-family:'Fraunces', serif;
+    font-size: 2.2rem;
+    color: var(--amber);
+    font-weight: 300;
+  }
+  .ritual-step h3{ font-size: 1.15rem; margin-bottom:6px; }
+  .ritual-step p{ color: var(--slate-dim); margin:0; max-width: 620px; }
+
+  /* ---------- SCATTERFOCUS / DISCOVERY ---------- */
+  .modes-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 860px){ .modes-grid{ grid-template-columns: 1fr; } }
+  .mode-card{
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px;
+    background: var(--deep-2);
+  }
+  .mode-card .icon{
+    width: 40px; height:40px;
+    border-radius: 10px;
+    background: rgba(245,166,35,0.12);
+    border: 1px solid rgba(245,166,35,0.3);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom: 18px;
+  }
+  .mode-card h4{ font-size: 1.05rem; margin-bottom: 8px; }
+  .mode-card p{ color: var(--slate-dim); font-size: 0.92rem; margin:0; }
+
+  /* ---------- STATS BAR ---------- */
+  .stats-bar{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 24px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 44px 0;
+  }
+  @media (max-width: 720px){ .stats-bar{ grid-template-columns: 1fr; } }
+  .stat{ text-align:center; }
+  .stat .num{
+    font-family:'Fraunces', serif;
+    font-size: 2.6rem;
+    color: var(--amber-soft);
+    font-weight: 600;
+  }
+  .stat .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing:0.08em;
+    text-transform: uppercase;
+    color: var(--slate-dim);
+  }
+
+  /* ---------- CTA BLOCK ---------- */
+  .cta-block{
+    text-align:center;
+    padding: 110px 0 130px;
+    background: radial-gradient(700px 340px at 50% 0%, rgba(245,166,35,0.1), transparent 65%);
+  }
+  .cta-block h2{ font-size: clamp(2rem, 4vw, 3rem); max-width: 700px; margin: 0 auto 20px; }
+  .cta-block p{ color: var(--slate-dim); max-width: 520px; margin: 0 auto 36px; }
+
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 40px 0;
+    font-size: 0.82rem;
+    color: var(--slate-dim);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap: 12px;
+  }
+  footer .logo{ font-size: 1rem; }
+
+  /* ---------- FLOATING CTA ---------- */
+  .floating-cta{
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    z-index: 200;
+    opacity: 0;
+    transform: translateY(14px);
+    pointer-events:none;
+    transition: opacity .3s ease, transform .3s ease;
+  }
+  .floating-cta.show{
+    opacity:1;
+    transform: translateY(0);
+    pointer-events:auto;
+  }
+  .floating-cta a{
+    box-shadow: 0 14px 32px rgba(245,166,35,0.35);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><span class="dot"></span>EasyLandX</div>
+    <div class="nav-links">
+      <a href="#quadrants">The Quadrants</a>
+      <a href="#board">The Board</a>
+      <a href="#ritual">The Ritual</a>
+      <a href="#discovery">Discovery</a>
+    </div>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your Page →</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow mono">● Attention, engineered</span>
+    <h1>Your visitors have room for <em>one</em> idea.<br>We build the page that earns it.</h1>
+    <p class="lead">EasyLandX designs single-page sites that hold a customer's attention in one place, long enough for them to act. No scrolling maze. No competing messages. One clear focus, built to convert.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build My Page</a>
+      <a class="btn-ghost" href="#board">See the difference ↓</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="stats-bar reveal">
+    <div class="stat"><div class="num">1</div><div class="label">Primary Action Per Page</div></div>
+    <div class="stat"><div class="num">&lt;3s</div><div class="label">Time To First Focus</div></div>
+    <div class="stat"><div class="num">100%</div><div class="label">Self-Contained, Fast-Loading</div></div>
+  </div>
+</div>
+
+<section class="section" id="quadrants">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="mono">The Attention Map</span>
+      <h2>Every element on a page earns its place — or it goes.</h2>
+      <p>Before we design anything, we sort every idea a business wants on its page into four groups. Only two of them make it to launch.</p>
+    </div>
+    <div class="quad-grid reveal">
+      <div class="quad-card emphasis">
+        <span class="tag">Keep — Purposeful</span>
+        <h3>The headline that names the offer</h3>
+        <p>Attractive and productive: the hero message, the price, the one button. This is what a visitor came for.</p>
+      </div>
+      <div class="quad-card emphasis">
+        <span class="tag">Keep — Necessary</span>
+        <h3>Speed, clarity, mobile fit</h3>
+        <p>Unglamorous but load-bearing: fast load times, readable type, a page that works on any phone screen.</p>
+      </div>
+      <div class="quad-card">
+        <span class="tag">Set Aside — Scattering</span>
+        <h3>The auto-playing video</h3>
+        <p>Attractive but unproductive: animations, pop-ups, and menus that pull eyes away from the one action that matters.</p>
+      </div>
+      <div class="quad-card">
+        <span class="tag">Set Aside — Excess</span>
+        <h3>The extra menu tab</h3>
+        <p>Unattractive and unproductive: filler pages and stock copy that add clicks between a visitor and a decision.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="board">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="mono">The Attention Board</span>
+      <h2>Picture a small chalkboard. That's all the attention a visitor brings.</h2>
+      <p>Fill it with ten things and nothing lands. Clear it down to one, and that one thing gets remembered. Toggle the board below.</p>
+    </div>
+    <div class="board-wrap reveal">
+      <div class="board-copy">
+        <h3>Scattered site vs. EasyLandX page</h3>
+        <p>Most small-business sites hand a visitor five menus, three offers, and a chat popup — all competing for the same small chalkboard. EasyLandX clears the board down to a single, glowing next step.</p>
+        <div class="board-toggle">
+          <button id="btn-scattered" class="active">Scattered</button>
+          <button id="btn-focused">EasyLandX</button>
+        </div>
+      </div>
+      <div class="board-stage" id="stage">
+        <div class="clutter-item" style="top:8%; left:10%; width:26%; height:20%;">POPUP<br>OFFER</div>
+        <div class="clutter-item" style="top:12%; right:8%; width:22%; height:16%;">CHAT<br>WIDGET</div>
+        <div class="clutter-item" style="bottom:10%; left:8%; width:24%; height:18%;">NEWS<br>BANNER</div>
+        <div class="clutter-item" style="bottom:14%; right:10%; width:26%; height:20%;">SOCIAL<br>ICONS ×6</div>
+        <div class="clutter-item" style="top:42%; left:38%; width:24%; height:16%;">AUTOPLAY<br>VIDEO</div>
+        <div class="stage-focus">
+          <div class="focus-pulse"></div>
+          <div class="cta-mini">One Clear Action</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ritual">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="mono">The Build Ritual</span>
+      <h2>How we get a page from idea to hyperfocus.</h2>
+      <p>The same four moves, every time, so nothing pulls attention away from the goal you hired the page to do.</p>
+    </div>
+    <div class="ritual reveal">
+      <div class="ritual-step">
+        <div class="num">01</div>
+        <div><h3>Choose the one action</h3><p>Book a call, place an order, send a message — we pick the single outcome the page exists to drive, before a single pixel is placed.</p></div>
+      </div>
+      <div class="ritual-step">
+        <div class="num">02</div>
+        <div><h3>Clear the distractions</h3><p>We remove the extra menus, the auto-playing media, the competing offers — anything that could split a visitor's attention.</p></div>
+      </div>
+      <div class="ritual-step">
+        <div class="num">03</div>
+        <div><h3>Build toward that one action</h3><p>Every section — headline, proof, pricing — leads a visitor forward, in order, toward the button that matters.</p></div>
+      </div>
+      <div class="ritual-step">
+        <div class="num">04</div>
+        <div><h3>Bring wandering eyes back</h3><p>A floating action button keeps the one next step in view, gently, wherever a visitor scrolls to.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="discovery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="mono">Before We Build</span>
+      <h2>We start wide, then narrow to one focus.</h2>
+      <p>Great pages need a moment of open thinking before the clearing-out begins. Here's how we use that time with every client.</p>
+    </div>
+    <div class="modes-grid reveal">
+      <div class="mode-card">
+        <div class="icon">📝</div>
+        <h4>Capture</h4>
+        <p>We gather everything a business wants to say — every idea, offer, and story — before deciding what stays.</p>
+      </div>
+      <div class="mode-card">
+        <div class="icon">🧩</div>
+        <h4>Work the problem</h4>
+        <p>We sit with the real question — what should a visitor do here? — until the answer becomes obvious.</p>
+      </div>
+      <div class="mode-card">
+        <div class="icon">🔁</div>
+        <h4>Recharge & refine</h4>
+        <p>A short pause between drafts keeps the page sharp — we return with fresh eyes for the final pass.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-block">
+  <div class="wrap">
+    <h2 class="reveal">Give your customers one thing to focus on.</h2>
+    <p class="reveal">A single, self-contained landing page — fast to load, easy to update, built around the one action that grows your business.</p>
+    <a class="btn-primary reveal" href="https://easylandx.github.io" target="_blank" rel="noopener">Start With EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; width:100%;">
+    <div class="logo"><span class="dot"></span>EasyLandX</div>
+    <div class="mono" style="font-size:0.7rem; color:var(--slate-dim);">Built for one clear focus</div>
+  </div>
+</footer>
+
+<div class="floating-cta" id="floatCta">
+  <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your Page →</a>
+</div>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Attention board toggle
+  const stage = document.getElementById('stage');
+  const btnScattered = document.getElementById('btn-scattered');
+  const btnFocused = document.getElementById('btn-focused');
+  function setFocused(isFocused){
+    stage.classList.toggle('is-focused', isFocused);
+    btnScattered.classList.toggle('active', !isFocused);
+    btnFocused.classList.toggle('active', isFocused);
+  }
+  btnScattered.addEventListener('click', () => setFocused(false));
+  btnFocused.addEventListener('click', () => setFocused(true));
+
+  // Auto-demo once on scroll into view
+  let demoed = false;
+  const boardIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !demoed){
+        demoed = true;
+        setTimeout(() => setFocused(true), 900);
+      }
+    });
+  }, { threshold: 0.5 });
+  boardIo.observe(stage);
+
+  // Floating CTA visibility
+  const floatCta = document.getElementById('floatCta');
+  const heroEl = document.querySelector('.hero');
+  window.addEventListener('scroll', () => {
+    const heroBottom = heroEl.getBoundingClientRect().bottom;
+    floatCta.classList.toggle('show', heroBottom < 0);
+  });
+</script>
+
+</body>
+</html>
