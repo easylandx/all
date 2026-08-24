@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing pages people actually remember</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violet:        #23112f;   /* Peak Snapshot Violet — background */
+    --violet-deep:    #170a20;
+    --violet-card:    #331a41;
+    --violet-line:    #4a2b5c;
+    --red:            #e64a3f;  /* Negative Bias Red — accent */
+    --red-dim:        #c73c33;
+    --ivory:          #f4ecd8;  /* Social Proof Ivory — accent */
+    --ivory-dim:      #cdc0a2;
+    --ivory-faint:    #a2947f;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--violet);
+    color:var(--ivory);
+    font-family:'Inter', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  ::selection{ background:var(--red); color:var(--ivory); }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.72rem;
+    color:var(--red);
+    display:flex;
+    align-items:center;
+    gap:0.5em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:14px; height:1px;
+    background:var(--red);
+    display:inline-block;
+  }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(23,10,32,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--violet-line);
+  }
+  header .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:20px; padding-bottom:20px;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.3rem;
+    letter-spacing:-0.01em;
+  }
+  .logo span{ color:var(--red); }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    padding:13px 24px;
+    border-radius:100px;
+    text-decoration:none;
+    transition:transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--red);
+    color:var(--ivory);
+    box-shadow:0 0 0 0 rgba(230,74,63,0.5);
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 24px -6px rgba(230,74,63,0.65);
+    background:var(--red-dim);
+  }
+  .btn-ghost{
+    border:1px solid var(--violet-line);
+    color:var(--ivory-dim);
+    padding:12px 22px;
+  }
+  .btn-ghost:hover{ border-color:var(--ivory-dim); color:var(--ivory); }
+  .btn-small{ padding:10px 18px; font-size:0.85rem; }
+
+  header nav{ display:flex; align-items:center; gap:14px; }
+  .nav-links{ display:flex; gap:28px; margin-right:8px; font-size:0.92rem; color:var(--ivory-dim); }
+  .nav-links a:hover{ color:var(--ivory); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:100px 0 70px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5vw, 4.1rem);
+    line-height:1.03;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--red);
+    font-weight:500;
+  }
+  .hero p.lede{
+    margin-top:26px;
+    font-size:1.15rem;
+    color:var(--ivory-dim);
+    max-width:46ch;
+    line-height:1.6;
+  }
+  .hero .eyebrow{ margin-bottom:22px; }
+  .hero-cta{
+    margin-top:38px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .proof-line{
+    margin-top:34px;
+    font-family:'Space Mono', monospace;
+    font-size:0.82rem;
+    color:var(--ivory-faint);
+    letter-spacing:0.02em;
+  }
+  .proof-line strong{ color:var(--ivory); font-weight:700; }
+
+  .hero-visual{
+    background:var(--violet-card);
+    border:1px solid var(--violet-line);
+    border-radius:20px;
+    padding:36px 30px 26px;
+    position:relative;
+  }
+  .hero-visual .cap{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--ivory-faint);
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:6px;
+  }
+  .hero-visual svg{ width:100%; height:auto; display:block; }
+
+  /* ---------- Section shell ---------- */
+  section{ padding:88px 0; position:relative; }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head h2{
+    font-size:clamp(1.9rem, 3vw, 2.6rem);
+    margin-top:18px;
+    line-height:1.12;
+  }
+  .section-head p{
+    margin-top:16px;
+    color:var(--ivory-dim);
+    font-size:1.05rem;
+    max-width:52ch;
+  }
+
+  .divider{
+    border:none;
+    height:1px;
+    background:var(--violet-line);
+    margin:0;
+  }
+
+  /* ---------- Curse of knowledge intro ---------- */
+  .cok{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:60px;
+    align-items:start;
+  }
+  .cok blockquote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.5rem;
+    line-height:1.4;
+    color:var(--ivory);
+    border-left:2px solid var(--red);
+    padding-left:26px;
+  }
+  .cok blockquote cite{
+    display:block;
+    margin-top:18px;
+    font-style:normal;
+    font-family:'Space Mono', monospace;
+    font-size:0.75rem;
+    color:var(--ivory-faint);
+    letter-spacing:0.04em;
+  }
+  .cok .side p{ color:var(--ivory-dim); font-size:1.02rem; }
+  .cok .side p + p{ margin-top:16px; }
+
+  /* ---------- Bias grid ---------- */
+  .bias-list{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--violet-line);
+    border:1px solid var(--violet-line);
+    border-radius:18px;
+    overflow:hidden;
+  }
+  .bias-card{
+    background:var(--violet-deep);
+    padding:34px 30px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    min-height:250px;
+  }
+  .bias-card .name{
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--ivory-faint);
+  }
+  .bias-card h3{
+    font-size:1.28rem;
+    font-weight:600;
+    line-height:1.25;
+    color:var(--ivory);
+  }
+  .bias-card p{
+    color:var(--ivory-dim);
+    font-size:0.95rem;
+    line-height:1.55;
+    flex-grow:1;
+  }
+  .bias-card .tag{
+    align-self:flex-start;
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--red);
+    border:1px solid rgba(230,74,63,0.45);
+    padding:5px 10px;
+    border-radius:100px;
+  }
+
+  /* ---------- Practices ---------- */
+  .practices{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+  }
+  .practice{
+    background:var(--violet-card);
+    border:1px solid var(--violet-line);
+    border-radius:18px;
+    padding:34px;
+  }
+  .practice .num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1rem;
+    color:var(--ivory-faint);
+  }
+  .practice h3{
+    margin-top:10px;
+    font-size:1.4rem;
+    color:var(--ivory);
+  }
+  .practice p{
+    margin-top:14px;
+    color:var(--ivory-dim);
+    font-size:0.98rem;
+    line-height:1.6;
+  }
+
+  /* ---------- CTA banner ---------- */
+  .cta-banner{
+    background:var(--red);
+    border-radius:24px;
+    padding:64px 56px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+    flex-wrap:wrap;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-banner::after{
+    content:"";
+    position:absolute;
+    right:-60px; top:-60px;
+    width:220px; height:220px;
+    border-radius:50%;
+    background:rgba(244,236,216,0.08);
+  }
+  .cta-banner h2{
+    color:var(--ivory);
+    font-size:clamp(1.8rem,3vw,2.4rem);
+    max-width:16ch;
+    line-height:1.1;
+  }
+  .cta-banner .btn-primary{
+    background:var(--ivory);
+    color:var(--violet-deep);
+  }
+  .cta-banner .btn-primary:hover{
+    background:#fff;
+    box-shadow:0 8px 24px -6px rgba(244,236,216,0.5);
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--violet-line);
+    padding:40px 0;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  footer .foot-links{
+    display:flex; gap:24px;
+    font-size:0.85rem;
+    color:var(--ivory-faint);
+  }
+  footer .foot-links a:hover{ color:var(--ivory-dim); }
+  footer .copy{ font-size:0.82rem; color:var(--ivory-faint); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .cok{ grid-template-columns:1fr; }
+    .bias-list{ grid-template-columns:1fr 1fr; }
+    .practices{ grid-template-columns:1fr; }
+    .nav-links{ display:none; }
+  }
+  @media (max-width:560px){
+    .bias-list{ grid-template-columns:1fr; }
+    .cta-banner{ flex-direction:column; align-items:flex-start; padding:44px 28px; }
+    section{ padding:64px 0; }
+    .hero{ padding:70px 0 50px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <nav>
+      <div class="nav-links">
+        <a href="#biases">The science</a>
+        <a href="#practices">Best practices</a>
+      </div>
+      <a class="btn btn-primary btn-small" href="https://easylandx.com" target="_blank" rel="noopener">Start free</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Behavioral design for landing pages</div>
+        <h1>Visitors don't read pages.<br>They <em>feel</em> them, then decide.</h1>
+        <p class="lede">EasyLandX builds landing pages on the same principles behavioral scientists use to explain why people buy: not logic, but shortcuts. Every block, price and button is arranged to work with those shortcuts — not against them.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Build your page on EasyLandX →</a>
+          <a class="btn btn-ghost" href="#biases">See the science</a>
+        </div>
+        <div class="proof-line">Join <strong>12,400+</strong> founders already publishing with EasyLandX</div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="cap"><span>Visitor experience</span><span>peak → end</span></div>
+        <svg viewBox="0 0 460 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="190" x2="440" y2="190" stroke="#4a2b5c" stroke-width="1"/>
+          <path d="M20 160 C 90 150, 120 60, 170 50 C 210 43, 230 120, 270 130 C 320 142, 340 70, 390 60 C 410 56, 425 74, 440 90"
+                stroke="#cdc0a2" stroke-width="2" fill="none" opacity="0.55"/>
+          <circle cx="170" cy="50" r="5" fill="#e64a3f"/>
+          <text x="170" y="34" text-anchor="middle" fill="#f4ecd8" font-family="Space Mono, monospace" font-size="10">PEAK</text>
+          <circle cx="440" cy="90" r="5" fill="#f4ecd8"/>
+          <text x="410" y="112" text-anchor="middle" fill="#cdc0a2" font-family="Space Mono, monospace" font-size="10">END</text>
+          <text x="20" y="208" fill="#a2947f" font-family="Space Mono, monospace" font-size="9">LANDS ON PAGE</text>
+          <text x="440" y="208" text-anchor="end" fill="#a2947f" font-family="Space Mono, monospace" font-size="9">CONVERTS</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CURSE OF KNOWLEDGE -->
+  <section>
+    <div class="wrap cok">
+      <blockquote>
+        "Buyers choose what is mentally easiest, fastest and least risky to purchase."
+        <cite>— The curse of knowledge, The Choice Factory</cite>
+      </blockquote>
+      <div class="side">
+        <p>Most landing pages are written by people who know the product too well. Feature lists pile up, jargon creeps in, and the page starts selling to the founder instead of the visitor.</p>
+        <p>EasyLandX strips that friction out by default: one message per screen, one action per section, and layouts pre-tested to reduce the mental effort of saying yes. You bring the offer — the template carries the psychology.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIX BIASES -->
+  <section id="biases">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Applied research</div>
+        <h2>Six shortcuts, rebuilt for landing pages</h2>
+        <p>Every EasyLandX block maps to a documented bias in consumer decision-making. Here's what each one looks like on a real page.</p>
+      </div>
+
+      <div class="bias-list">
+
+        <div class="bias-card">
+          <div class="name">Pratfall Effect</div>
+          <h3>Let one honest flaw sell the rest</h3>
+          <p>A pricing page that admits "no free trial, but we answer support in under an hour" reads as more trustworthy than one claiming to be perfect. EasyLandX's pricing block has a built-in slot for one honest caveat.</p>
+          <span class="tag">Trust block</span>
+        </div>
+
+        <div class="bias-card">
+          <div class="name">Social Proof</div>
+          <h3>Show the crowd, not the shame</h3>
+          <p>"12,400 pages published this month" converts. "Only 3% of sites convert well" backfires — it normalizes failure. EasyLandX's proof widget only ever counts up, never down.</p>
+          <span class="tag">Proof widget</span>
+        </div>
+
+        <div class="bias-card">
+          <div class="name">Framing Effect</div>
+          <h3>Move the anchor, not the price</h3>
+          <p>$29/month feels steep alone, and cheap next to a $99 tier, or reframed as "under $1 a day." EasyLandX's pricing block auto-generates the daily-cost and tier-comparison framing for you.</p>
+          <span class="tag">Pricing block</span>
+        </div>
+
+        <div class="bias-card">
+          <div class="name">Habit</div>
+          <h3>Target the moment, not the mood</h3>
+          <p>People rarely switch tools out of the blue — they switch after a launch, a rebrand, a new role. EasyLandX pages are built to be shipped fast, so you can publish the moment a "life shock" opens the door.</p>
+          <span class="tag">Fast publish</span>
+        </div>
+
+        <div class="bias-card">
+          <div class="name">Peak-End Rule</div>
+          <h3>Design the last five seconds</h3>
+          <p>Visitors forget most of a page but remember its best moment and its very last one. EasyLandX's confirmation screens are built as a designed "peak," not a default thank-you page.</p>
+          <span class="tag">Confirmation screen</span>
+        </div>
+
+        <div class="bias-card">
+          <div class="name">Price Relativity</div>
+          <h3>Choose your own comparison</h3>
+          <p>A tool priced against "a full-time designer" looks cheap; priced against "a free template" it looks expensive. EasyLandX lets you set the reference point your price is judged against.</p>
+          <span class="tag">Comparison table</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- BEST PRACTICES -->
+  <section id="practices">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Ship checklist</div>
+        <h2>Two habits before you hit publish</h2>
+      </div>
+
+      <div class="practices">
+        <div class="practice">
+          <div class="num">i.</div>
+          <h3>Cut before you add</h3>
+          <p>Every extra field, sentence or menu item is a small tax on attention. Before publishing, remove one thing from your EasyLandX page — the one that only makes sense to you.</p>
+        </div>
+        <div class="practice">
+          <div class="num">ii.</div>
+          <h3>Time your biggest ask</h3>
+          <p>People buy more freely when relaxed than when rushed. Schedule your highest-stakes campaigns — new pricing, a big launch — for Friday evenings or weekend mornings using EasyLandX's built-in scheduler.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section>
+    <div class="wrap">
+      <div class="cta-banner">
+        <h2>Your next landing page is one honest flaw and one good ending away from converting.</h2>
+        <a class="btn btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Start building on EasyLandX →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="copy">© 2026 EasyLandX. Landing pages, built on behavioral science.</div>
+    <div class="foot-links">
+      <a href="https://easylandx.com" target="_blank" rel="noopener">easylandx.com</a>
+      <a href="#biases">The science</a>
+      <a href="#practices">Best practices</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages That Channel Desire</title>
+<style>
+  :root{
+    --mass-desire-red: #9E2F2F;
+    --mass-desire-red-deep: #6E1F1F;
+    --channeling-teal: #2E7D74;
+    --channeling-teal-bright: #3FA396;
+    --ad-copy-alabaster: #F3ECE0;
+    --gold: #D4AF37;
+    --gold-soft: #F0C040;
+    --ink: #2A1414;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--mass-desire-red);
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(212,175,55,0.10), transparent 45%),
+      radial-gradient(circle at 85% 90%, rgba(63,163,150,0.14), transparent 50%);
+    color: var(--ad-copy-alabaster);
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  .eyebrow{
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    color: var(--gold-soft);
+  }
+  h1,h2,h3{
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+    font-weight: 700;
+  }
+  .accent-sans{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+  a{color:inherit;}
+
+  /* Header */
+  header{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.2rem 1.5rem 1rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .logo{
+    font-size: 1.3rem;
+    font-weight:700;
+    letter-spacing: 0.02em;
+  }
+  .logo span{color: var(--gold-soft);}
+  .nav-cta{
+    background: var(--channeling-teal);
+    color: var(--ad-copy-alabaster);
+    border: 1px solid rgba(240,192,64,0.5);
+    padding: 0.55rem 1.2rem;
+    border-radius: 3px;
+    text-decoration:none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.25s ease, transform 0.2s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{ background: var(--channeling-teal-bright); transform: translateY(-1px);}
+
+  /* Hero */
+  .hero{
+    max-width: 900px;
+    margin: 3.5rem auto 5rem;
+    padding: 0 1.5rem;
+    text-align:center;
+  }
+  .hero .eyebrow{display:block; margin-bottom: 1.4rem;}
+  .hero h1{
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.15;
+    margin-bottom: 1.4rem;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--gold-soft);
+  }
+  .hero p.sub{
+    font-size: 1.15rem;
+    max-width: 620px;
+    margin: 0 auto 2.2rem;
+    color: rgba(243,236,224,0.88);
+  }
+  .cta-row{
+    display:flex;
+    gap: 1rem;
+    justify-content:center;
+    flex-wrap: wrap;
+  }
+  .btn-primary, .btn-ghost{
+    display:inline-block;
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 0.98rem;
+    text-decoration:none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-primary{
+    background: var(--channeling-teal);
+    color: var(--ad-copy-alabaster);
+    box-shadow: 0 6px 18px rgba(46,125,116,0.4);
+    border: 1px solid var(--gold);
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(46,125,116,0.55);}
+  .btn-ghost{
+    background: transparent;
+    color: var(--ad-copy-alabaster);
+    border: 1px solid rgba(243,236,224,0.4);
+  }
+  .btn-ghost:hover{ border-color: var(--gold-soft); color: var(--gold-soft);}
+
+  /* Section shell */
+  section.block{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 4.5rem 1.5rem;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  section.block.visible{ opacity:1; transform:translateY(0); }
+  .section-head{
+    text-align:center;
+    max-width: 640px;
+    margin: 0 auto 3rem;
+  }
+  .section-head h2{
+    font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+    margin: 0.6rem 0 1rem;
+  }
+  .section-head p{
+    color: rgba(243,236,224,0.82);
+    font-size: 1.02rem;
+  }
+  .divider{
+    width: 60px; height: 2px;
+    background: var(--gold);
+    margin: 1.6rem auto 0;
+  }
+
+  /* Awareness ladder — signature element */
+  .ladder{
+    display:flex;
+    flex-direction:column;
+    gap: 0.9rem;
+  }
+  .rung{
+    display:grid;
+    grid-template-columns: 64px 1fr;
+    gap: 1.2rem;
+    align-items:start;
+    background: rgba(243,236,224,0.05);
+    border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 6px;
+    padding: 1.3rem 1.5rem;
+    position: relative;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+  .rung:hover{ border-color: var(--gold); background: rgba(243,236,224,0.09); }
+  .rung::before{
+    content: '';
+    position:absolute;
+    left: 32px; top: 100%;
+    width: 1px; height: 0.9rem;
+    background: rgba(212,175,55,0.35);
+  }
+  .rung:last-child::before{display:none;}
+  .rung-num{
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold-soft);
+    text-align:center;
+  }
+  .rung h3{
+    font-size: 1.12rem;
+    margin-bottom: 0.35rem;
+    color: var(--ad-copy-alabaster);
+  }
+  .rung p{
+    font-size: 0.96rem;
+    color: rgba(243,236,224,0.78);
+  }
+  .rung .tag{
+    display:inline-block;
+    margin-top: 0.6rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--channeling-teal-bright);
+    border: 1px solid var(--channeling-teal-bright);
+    border-radius: 20px;
+    padding: 0.2rem 0.7rem;
+  }
+
+  /* Sophistication scale */
+  .scale{
+    display:grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 0.7rem;
+  }
+  .level{
+    background: rgba(46,125,116,0.14);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 6px;
+    padding: 1.2rem 0.9rem;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    min-height: 210px;
+  }
+  .level .lvl-num{
+    font-family: 'Courier New', monospace;
+    color: var(--gold-soft);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+  .level h4{
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .level p{
+    font-size: 0.82rem;
+    color: rgba(243,236,224,0.75);
+  }
+  .level.gold-edge{ border-color: var(--gold); box-shadow: 0 0 0 1px rgba(212,175,55,0.15) inset; }
+
+  @media (max-width: 820px){
+    .scale{ grid-template-columns: repeat(2,1fr); }
+  }
+
+  /* Devices cards */
+  .devices{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1.3rem;
+  }
+  .device{
+    background: var(--ad-copy-alabaster);
+    color: var(--ink);
+    border-radius: 8px;
+    padding: 1.8rem 1.6rem;
+    border-bottom: 4px solid var(--gold);
+  }
+  .device .icon{
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    display:block;
+  }
+  .device h3{
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+    color: var(--mass-desire-red-deep);
+  }
+  .device p{
+    font-size: 0.92rem;
+    color: rgba(42,20,20,0.82);
+  }
+  @media (max-width: 820px){
+    .devices{ grid-template-columns: 1fr; }
+  }
+
+  /* Sample strip */
+  .sample-strip{
+    background: rgba(243,236,224,0.06);
+    border: 1px dashed rgba(212,175,55,0.35);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align:center;
+  }
+  .sample-strip .headline-demo{
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--gold-soft);
+    margin: 0.8rem 0;
+  }
+
+  /* Final CTA */
+  .final-cta{
+    text-align:center;
+    background: var(--channeling-teal);
+    border-radius: 14px;
+    padding: 3.5rem 2rem;
+    margin: 2rem auto 4rem;
+    max-width: 1000px;
+    border: 1px solid var(--gold);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  }
+  .final-cta h2{
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    margin-bottom: 1rem;
+  }
+  .final-cta p{
+    max-width: 560px;
+    margin: 0 auto 1.8rem;
+    color: rgba(243,236,224,0.9);
+  }
+  .final-cta .btn-primary{
+    background: var(--gold);
+    color: var(--mass-desire-red-deep);
+    border-color: var(--ad-copy-alabaster);
+  }
+  .final-cta .btn-primary:hover{ background: var(--gold-soft); }
+
+  footer{
+    text-align:center;
+    padding: 2rem 1.5rem 3rem;
+    font-size: 0.82rem;
+    color: rgba(243,236,224,0.55);
+  }
+  footer a{ color: var(--gold-soft); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Easy<span>Land</span>X</div>
+  <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your Page</a>
+</header>
+
+<section class="hero">
+  <span class="eyebrow">The Copywriter's Secret, Applied to Landing Pages</span>
+  <h1>You don't create desire. <br><em>You channel it.</em></h1>
+  <p class="sub">Every visitor who lands on your page already wants something — relief, status, savings, belonging. EasyLandX builds the page that meets them exactly where they stand, and walks them straight to "yes."</p>
+  <div class="cta-row">
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build My EasyLandX Page →</a>
+    <a class="btn-ghost" href="#awareness">See How It Works</a>
+  </div>
+</section>
+
+<section class="block" id="awareness">
+  <div class="section-head">
+    <span class="eyebrow">Framework One</span>
+    <h2>The 5 Stages of Visitor Awareness</h2>
+    <p>A landing page succeeds or fails on one thing: whether it speaks to your visitor's actual state of mind. EasyLandX pages are built rung by rung, so the right message reaches the right visitor.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="ladder">
+    <div class="rung">
+      <div class="rung-num">01</div>
+      <div><h3>Unaware</h3><p>They don't know they have a problem yet. EasyLandX opens with a story, a striking fact, or a scroll-stopping visual — never a sales pitch.</p><span class="tag">Hook first</span></div>
+    </div>
+    <div class="rung">
+      <div class="rung-num">02</div>
+      <div><h3>Problem Aware</h3><p>They feel the pain but have no fix in mind. Your headline names it precisely — clients tell us it feels like we read their minds.</p><span class="tag">Name the pain</span></div>
+    </div>
+    <div class="rung">
+      <div class="rung-num">03</div>
+      <div><h3>Solution Aware</h3><p>They know solutions exist, just not yours. EasyLandX frames your category — the landing page itself — as the obvious fix.</p><span class="tag">Frame the fix</span></div>
+    </div>
+    <div class="rung">
+      <div class="rung-num">04</div>
+      <div><h3>Product Aware</h3><p>They know you exist and are weighing you against others. This is where proof, testimonials, and side-by-side comparisons do the heavy lifting.</p><span class="tag">Prove it</span></div>
+    </div>
+    <div class="rung">
+      <div class="rung-num">05</div>
+      <div><h3>Most Aware</h3><p>Warm leads and returning clients. No warm-up needed — just a clear offer and a single, confident button.</p><span class="tag">Just ask</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="sophistication">
+  <div class="section-head">
+    <span class="eyebrow">Framework Two</span>
+    <h2>The 5 Levels of Market Sophistication</h2>
+    <p>Every niche gets more crowded over time. EasyLandX evolves your page's core promise to match how much marketing your visitors have already seen.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="scale">
+    <div class="level">
+      <span class="lvl-num">LVL 1</span>
+      <h4>The First Claim</h4>
+      <p>A brand-new niche. State the promise plainly: "Get a landing page in 48 hours."</p>
+    </div>
+    <div class="level">
+      <span class="lvl-num">LVL 2</span>
+      <h4>The Enlarged Claim</h4>
+      <p>Competitors match the promise. Push it further: "A page that converts from day one, not month three."</p>
+    </div>
+    <div class="level gold-edge">
+      <span class="lvl-num">LVL 3</span>
+      <h4>The Mechanism</h4>
+      <p>Visitors are numb to promises. Reveal the "how": our conversion-first layout system, tuned per industry.</p>
+    </div>
+    <div class="level">
+      <span class="lvl-num">LVL 4</span>
+      <h4>The Advanced Mechanism</h4>
+      <p>Others copy the mechanism. Upgrade it: real client data, live WhatsApp buttons, scroll-reveal psychology, built in.</p>
+    </div>
+    <div class="level">
+      <span class="lvl-num">LVL 5</span>
+      <h4>Identity</h4>
+      <p>The market is fatigued by mechanisms. EasyLandX becomes a statement: "This is a business that takes itself seriously."</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="devices">
+  <div class="section-head">
+    <span class="eyebrow">The Copywriting Devices</span>
+    <h2>Built Into Every EasyLandX Page</h2>
+    <p>Beyond structure, Schwartz's core devices for driving belief are woven straight into your copy.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="devices">
+    <div class="device">
+      <span class="icon">🪜</span>
+      <h3>Gradualization</h3>
+      <p>We open with a truth your visitor already accepts — "your website is your first impression" — then lead them, step by step, to the page that proves it.</p>
+    </div>
+    <div class="device">
+      <span class="icon">🔁</span>
+      <h3>Redefinition</h3>
+      <p>Before price ever comes up, we reframe the page as an investment that pays for itself in booked clients — not a cost to weigh.</p>
+    </div>
+    <div class="device">
+      <span class="icon">🎯</span>
+      <h3>Concentration</h3>
+      <p>We highlight exactly what generic templates and DIY builders leave out, so your page's advantages speak for themselves.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="sample">
+  <div class="section-head">
+    <span class="eyebrow">In Practice</span>
+    <h2>What This Sounds Like</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="sample-strip">
+    <p class="accent-sans">Problem Aware headline for a wellness studio client:</p>
+    <p class="headline-demo">"Your Class Schedule Deserves More Than a Linktree."</p>
+    <p class="accent-sans">One page. One clear ask. Built to feel like it was made just for them.</p>
+  </div>
+</section>
+
+<div class="final-cta">
+  <h2>Ready to Channel Your Visitors' Desire?</h2>
+  <p>EasyLandX builds the page that meets every visitor exactly where they are — and moves them, one honest step at a time, toward yes.</p>
+  <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start With EasyLandX →</a>
+</div>
+
+<footer>
+  Inspired by Eugene Schwartz's <em>Breakthrough Advertising</em> · Built by <a href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</footer>
+
+<script>
+  const blocks = document.querySelectorAll('section.block');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, {threshold: 0.15});
+  blocks.forEach(b=>io.observe(b));
+</script>
+
+</body>
+</html>
