@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Turn Pro on the Web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crimson: #7A1220;
+    --crimson-dark: #4A0D14;
+    --crimson-deep: #300810;
+    --slate: #3B4048;
+    --slate-light: #7A828C;
+    --page: #F3ECDC;
+    --page-dim: #D8CCB4;
+    --font-display: 'Anton', sans-serif;
+    --font-body: 'Lora', serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--crimson);
+    color: var(--page);
+    font-family: var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  ::selection{ background: var(--page); color: var(--crimson-deep); }
+
+  a{ color:inherit; }
+
+  .noise{
+    position:fixed; inset:0; pointer-events:none; z-index:1; opacity:0.05;
+    background-image: repeating-linear-gradient(0deg, var(--page) 0px, transparent 1px, transparent 2px, var(--page) 3px);
+  }
+
+  header{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 6vw;
+    background: linear-gradient(180deg, var(--crimson-deep) 0%, rgba(48,8,16,0.85) 80%, transparent);
+    backdrop-filter: blur(4px);
+  }
+
+  .brand{
+    font-family: var(--font-display);
+    letter-spacing:0.06em;
+    font-size: clamp(18px, 2.2vw, 24px);
+    color: var(--page);
+  }
+  .brand span{ color: var(--slate-light); }
+
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background: var(--page);
+    color: var(--crimson-deep);
+    font-family: var(--font-display);
+    letter-spacing:0.04em;
+    font-size:13px;
+    padding: 10px 20px;
+    border-radius:2px;
+    text-decoration:none;
+    border: 1px solid var(--page);
+    transition: transform .2s ease, background .2s ease, color .2s ease;
+  }
+  .nav-cta:hover{
+    background:transparent;
+    color: var(--page);
+    transform: translateY(-2px);
+  }
+
+  section{ padding: 10vh 6vw; position:relative; z-index:2; }
+
+  /* HERO */
+  .hero{
+    min-height:92vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding-top: 6vh;
+    border-bottom: 1px solid rgba(243,236,220,0.15);
+  }
+  .eyebrow{
+    font-family: var(--font-display);
+    font-size:13px; letter-spacing:0.3em; text-transform:uppercase;
+    color: var(--slate-light);
+    margin-bottom: 20px;
+  }
+  .hero h1{
+    font-family: var(--font-display);
+    font-size: clamp(48px, 9vw, 118px);
+    line-height:0.95;
+    letter-spacing: 0.005em;
+    max-width: 15ch;
+    color: var(--page);
+  }
+  .hero h1 em{
+    font-style: normal;
+    color: var(--slate-light);
+    text-decoration: line-through;
+    text-decoration-thickness: 6px;
+    text-decoration-color: var(--crimson-dark);
+    -webkit-text-decoration-color: var(--crimson-dark);
+  }
+  .hero p.lede{
+    max-width: 58ch;
+    font-size: clamp(16px, 1.6vw, 20px);
+    margin-top: 32px;
+    color: var(--page-dim);
+    font-style: italic;
+  }
+  .hero .actions{
+    margin-top: 48px;
+    display:flex; gap:20px; flex-wrap:wrap; align-items:center;
+  }
+  .btn-primary{
+    background: var(--page);
+    color: var(--crimson-deep);
+    font-family: var(--font-display);
+    letter-spacing:0.04em;
+    font-size:16px;
+    padding: 18px 34px;
+    border-radius:2px;
+    text-decoration:none;
+    display:inline-block;
+    border: 2px solid var(--page);
+    transition: all .25s ease;
+  }
+  .btn-primary:hover{
+    background: transparent;
+    color: var(--page);
+    transform: translateY(-3px);
+  }
+  .scroll-hint{ font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color: var(--slate-light); }
+
+  /* CHAPTER SECTIONS */
+  .chapter{
+    display:grid;
+    grid-template-columns: 0.9fr 1.6fr;
+    gap: 6vw;
+    align-items:start;
+    border-bottom: 1px solid rgba(243,236,220,0.12);
+  }
+  .chapter .numeral{
+    font-family: var(--font-display);
+    font-size: clamp(80px, 10vw, 160px);
+    color: rgba(243,236,220,0.08);
+    line-height:0.8;
+    position:sticky;
+    top: 120px;
+  }
+  .chapter .content h2{
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.4vw, 46px);
+    color: var(--page);
+    letter-spacing:0.01em;
+    margin-bottom: 8px;
+  }
+  .chapter .content .sub{
+    color: var(--slate-light);
+    font-size:14px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    font-family: var(--font-display);
+    margin-bottom: 26px;
+  }
+  .chapter .content p{
+    max-width: 62ch;
+    font-size: 17px;
+    color: var(--page-dim);
+    margin-bottom: 22px;
+  }
+
+  .cards{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin-top: 30px;
+  }
+  .card{
+    background: var(--crimson-dark);
+    border: 1px solid rgba(243,236,220,0.15);
+    border-left: 3px solid var(--slate);
+    padding: 22px;
+    border-radius: 2px;
+  }
+  .card h3{
+    font-family: var(--font-display);
+    font-size:16px;
+    color: var(--page);
+    margin-bottom:8px;
+    letter-spacing:0.02em;
+  }
+  .card p{ font-size:14.5px; color: var(--page-dim); margin:0; max-width:none; }
+
+  .quote-block{
+    border-left: 4px solid var(--page);
+    padding: 6px 0 6px 24px;
+    margin: 30px 0;
+    font-style: italic;
+    color: var(--page);
+    font-size: 19px;
+    max-width: 58ch;
+  }
+
+  /* SIGNATURE: Amateur / Pro toggle */
+  .signature{
+    background: var(--crimson-deep);
+    border-top: 1px solid rgba(243,236,220,0.12);
+    border-bottom: 1px solid rgba(243,236,220,0.12);
+    text-align:center;
+  }
+  .signature .sub-heading{
+    font-family: var(--font-display);
+    font-size:14px; letter-spacing:0.3em; text-transform:uppercase;
+    color: var(--slate-light);
+    margin-bottom:14px;
+  }
+  .signature h2{
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4vw, 52px);
+    color: var(--page);
+    margin-bottom: 40px;
+  }
+  .toggle-wrap{
+    display:flex; flex-direction:column; align-items:center; gap:36px;
+  }
+  .toggle{
+    position:relative;
+    width: 260px;
+    height: 60px;
+    background: var(--slate);
+    border-radius: 40px;
+    display:flex;
+    align-items:center;
+    cursor:pointer;
+    border: 1px solid rgba(243,236,220,0.3);
+    user-select:none;
+  }
+  .toggle .knob{
+    position:absolute;
+    top:5px; left:5px;
+    width: 120px; height: 48px;
+    background: var(--page);
+    border-radius: 30px;
+    transition: transform .35s cubic-bezier(.65,0,.35,1);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-display);
+    font-size:13px;
+    letter-spacing:0.05em;
+    color: var(--crimson-deep);
+  }
+  .toggle.is-pro .knob{ transform: translateX(128px); }
+  .toggle .label{
+    flex:1; text-align:center;
+    font-family: var(--font-display);
+    font-size:13px; letter-spacing:0.05em;
+    color: var(--page-dim);
+    z-index:0;
+  }
+
+  .display-panel{
+    max-width: 620px;
+    min-height: 190px;
+    background: var(--crimson-dark);
+    border: 1px solid rgba(243,236,220,0.15);
+    padding: 34px 40px;
+    border-radius: 3px;
+    text-align:left;
+  }
+  .display-panel .row{ display:flex; gap:16px; align-items:flex-start; margin-bottom:16px; }
+  .display-panel .row:last-child{ margin-bottom:0; }
+  .display-panel .tag{
+    font-family: var(--font-display);
+    font-size:11px;
+    letter-spacing:0.1em;
+    padding: 4px 10px;
+    border-radius:2px;
+    white-space:nowrap;
+    margin-top:2px;
+  }
+  .tag.amateur{ background: rgba(122,18,32,0.5); color: var(--page-dim); border:1px solid var(--slate); }
+  .tag.pro{ background: var(--page); color: var(--crimson-deep); }
+  .display-panel p{ font-size:16px; color: var(--page-dim); margin:0; }
+  .display-panel strong{ color: var(--page); }
+
+  /* TERRITORY / FINAL SECTION */
+  .territory{
+    text-align:center;
+  }
+  .territory .sub-heading{
+    font-family: var(--font-display);
+    font-size:13px; letter-spacing:0.3em; text-transform:uppercase;
+    color: var(--slate-light);
+    margin-bottom:20px;
+  }
+  .territory h2{
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4.4vw, 58px);
+    max-width: 18ch;
+    margin: 0 auto 26px;
+    color: var(--page);
+  }
+  .territory p{
+    max-width: 60ch;
+    margin: 0 auto 40px;
+    color: var(--page-dim);
+    font-size:17px;
+  }
+  .territory .compare{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 760px;
+    margin: 0 auto 50px;
+    text-align:left;
+  }
+  .territory .box{
+    padding: 26px;
+    border-radius:2px;
+  }
+  .territory .box.hier{
+    background: transparent;
+    border: 1px dashed var(--slate);
+  }
+  .territory .box.terr{
+    background: var(--crimson-dark);
+    border: 1px solid var(--page-dim);
+  }
+  .territory .box h4{
+    font-family: var(--font-display);
+    font-size:14px; letter-spacing:0.08em; text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .territory .box.hier h4{ color: var(--slate-light); }
+  .territory .box.terr h4{ color: var(--page); }
+  .territory .box p{ margin:0; font-size:14.5px; max-width:none; }
+
+  /* FINAL CTA */
+  .final-cta{
+    text-align:center;
+    padding-top: 4vh;
+  }
+  .final-cta h2{
+    font-family: var(--font-display);
+    font-size: clamp(34px, 6vw, 74px);
+    color: var(--page);
+    margin-bottom: 22px;
+  }
+  .final-cta p{
+    max-width: 52ch;
+    margin: 0 auto 40px;
+    color: var(--page-dim);
+    font-size: 17px;
+  }
+  .btn-lg{
+    background: var(--page);
+    color: var(--crimson-deep);
+    font-family: var(--font-display);
+    font-size: 20px;
+    letter-spacing:0.03em;
+    padding: 22px 50px;
+    border-radius: 2px;
+    text-decoration:none;
+    display:inline-block;
+    border: 2px solid var(--page);
+    transition: all .25s ease;
+  }
+  .btn-lg:hover{ background:transparent; color: var(--page); transform: translateY(-3px); }
+
+  footer{
+    text-align:center;
+    padding: 40px 6vw 60px;
+    color: var(--slate-light);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    border-top: 1px solid rgba(243,236,220,0.1);
+  }
+  footer a{ text-decoration: underline; }
+
+  @media (max-width: 800px){
+    .chapter{ grid-template-columns: 1fr; }
+    .chapter .numeral{ position:static; font-size: 56px; opacity:0.15; }
+    .territory .compare{ grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="noise"></div>
+
+<header>
+  <div class="brand">EASY<span>LAND</span>X</div>
+  <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your Page</a>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">A Field Manual for Small Business Owners</div>
+  <h1>Something is holding your business back from <em>looking real</em> online.</h1>
+  <p class="lede">War of Art author Steven Pressfield calls it Resistance — the invisible force that talks you out of the work that matters. For a small business, it usually shows up disguised as "I'll build a website later."</p>
+  <div class="actions">
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Turn Pro with EasyLandX</a>
+    <span class="scroll-hint">Three chapters below ↓</span>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="numeral">I</div>
+  <div class="content">
+    <div class="sub">Book One</div>
+    <h2>Resistance: Naming the Force That Stalls You</h2>
+    <p>Every business owner feels it the moment they consider building something better: a landing page that actually converts, instead of a bio link and a hope. Pressfield's Resistance is invisible, internal, and impersonal — it doesn't know your business, it just wants your potential to stay frozen.</p>
+    <p>Its favorite weapon is rationalization. It hands you perfectly logical reasons to wait: "my Instagram is enough for now," "I'll do it once things slow down," "a real site can come next quarter." Meanwhile the customer searching for you tonight lands on a profile grid instead of a place built to earn their trust.</p>
+    <div class="quote-block">"The more fear you feel about a specific project, the more certain you can be that it's exactly the work you need to do."</div>
+    <div class="cards">
+      <div class="card"><h3>Procrastination</h3><p>The page stays "next month's project" for eighteen months running.</p></div>
+      <div class="card"><h3>Self-Doubt</h3><p>"I'm not a designer" becomes the excuse for never having a home online.</p></div>
+      <div class="card"><h3>Seeking Comfort</h3><p>Another logo tweak feels productive; publishing something real feels risky.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="numeral">II</div>
+  <div class="content">
+    <div class="sub">Book Two</div>
+    <h2>Turning Pro: What Separates the Two Kinds of Owners</h2>
+    <p>Pressfield's line between amateur and professional isn't talent — it's whether you treat the work as optional. The amateur waits for the perfect moment to build a proper site. The professional treats a real landing page as a non-negotiable part of running a business, and ships it.</p>
+    <p>EasyLandX exists for the professional move: a page built around your real content — your Instagram, your menu, your services — live and working while the amateur mindset is still deciding on a font.</p>
+    <div class="cards">
+      <div class="card"><h3>The Amateur</h3><p>Waits for inspiration, a bigger budget, or "more time" before building a page that represents the business well.</p></div>
+      <div class="card"><h3>The Professional</h3><p>Shows up, ships the page, and lets the work start earning trust and bookings immediately.</p></div>
+      <div class="card"><h3>Playing for Money</h3><p>A page that converts visits into messages and bookings is how the work gets taken seriously — by customers and by the owner.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="numeral">III</div>
+  <div class="content">
+    <div class="sub">Book Three</div>
+    <h2>Beyond Resistance: What Shows Up Once You Start</h2>
+    <p>Pressfield's final claim is almost spiritual: once you sit down and do the work, order arrives out of chaos and support turns up from unexpected places. For a small business, that support looks like referrals, repeat customers, and a search result that finally does justice to the work.</p>
+    <div class="quote-block">"When we sit down and confront our own resistance, we invoke a mysterious support that begins to work in our favor."</div>
+    <p>The owners who publish a real page first are the ones who get to discover this. The page becomes the territory — the one place online that belongs to the business, built on its own terms.</p>
+  </div>
+</section>
+
+<section class="signature">
+  <div class="sub-heading">The Signature Move</div>
+  <h2>Amateur or Professional — which one runs your business today?</h2>
+  <div class="toggle-wrap">
+    <div class="toggle" id="proToggle" role="button" tabindex="0" aria-pressed="false">
+      <span class="label" style="text-align:left; padding-left:18px;">Amateur</span>
+      <span class="label" style="text-align:right; padding-right:18px;">Professional</span>
+      <div class="knob" id="knobLabel">Amateur</div>
+    </div>
+
+    <div class="display-panel" id="displayPanel">
+      <div class="row">
+        <span class="tag amateur">Says</span>
+        <p><strong>"I'll build a real page once business picks up."</strong></p>
+      </div>
+      <div class="row">
+        <span class="tag amateur">Does</span>
+        <p>Keeps sending new customers to a scrolling feed with no way to book.</p>
+      </div>
+      <div class="row">
+        <span class="tag amateur">Result</span>
+        <p>Interested customers drift off before they find a reason to stay.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="territory">
+  <div class="sub-heading">Book Three, Applied</div>
+  <h2>Look inward at your territory, not outward at everyone else's</h2>
+  <p>Pressfield draws a line between the hierarchical mindset — measuring yourself against every competitor's follower count — and the territorial mindset: tending your own dedicated ground for the sake of the work itself.</p>
+  <div class="compare">
+    <div class="box hier">
+      <h4>Hierarchical</h4>
+      <p>Comparing likes, followers, and competitors' pages. Anxiety rises, the work stays undone, and Resistance quietly wins.</p>
+    </div>
+    <div class="box terr">
+      <h4>Territorial</h4>
+      <p>Your own landing page: a place customers land on, built around your work, judged on its own terms — not a feed's algorithm.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <h2>Claim your territory.</h2>
+  <p>EasyLandX builds the professional page your business already deserves — fast, affordable, and built around what you already do well.</p>
+  <a class="btn-lg" href="https://easylandx.github.io" target="_blank" rel="noopener">Turn Pro with EasyLandX</a>
+</section>
+
+<footer>
+  EasyLandX — Affordable, conversion-focused landing pages. <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+</footer>
+
+<script>
+  const toggle = document.getElementById('proToggle');
+  const knob = document.getElementById('knobLabel');
+  const panel = document.getElementById('displayPanel');
+
+  const amateurContent = `
+    <div class="row">
+      <span class="tag amateur">Says</span>
+      <p><strong>"I'll build a real page once business picks up."</strong></p>
+    </div>
+    <div class="row">
+      <span class="tag amateur">Does</span>
+      <p>Keeps sending new customers to a scrolling feed with no way to book.</p>
+    </div>
+    <div class="row">
+      <span class="tag amateur">Result</span>
+      <p>Interested customers drift off before they find a reason to stay.</p>
+    </div>
+  `;
+
+  const proContent = `
+    <div class="row">
+      <span class="tag pro">Says</span>
+      <p><strong>"The page goes live today, then we improve it."</strong></p>
+    </div>
+    <div class="row">
+      <span class="tag pro">Does</span>
+      <p>Publishes a fast, focused EasyLandX page built around real content and a clear call to action.</p>
+    </div>
+    <div class="row">
+      <span class="tag pro">Result</span>
+      <p>Every visit lands somewhere built to turn interest into a message, a booking, or a sale.</p>
+    </div>
+  `;
+
+  function setPro(isPro){
+    toggle.classList.toggle('is-pro', isPro);
+    toggle.setAttribute('aria-pressed', isPro);
+    knob.textContent = isPro ? 'Professional' : 'Amateur';
+    panel.innerHTML = isPro ? proContent : amateurContent;
+  }
+
+  toggle.addEventListener('click', () => setPro(!toggle.classList.contains('is-pro')));
+  toggle.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      setPro(!toggle.classList.contains('is-pro'));
+    }
+  });
+</script>
+
+</body>
+</html>

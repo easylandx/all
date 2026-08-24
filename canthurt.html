@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — The 40% Rule for Small Business Websites</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --slate: #ff6a00;
+    --slate-2: #e85f00;
+    --slate-3: #cc5100;
+    --red: #c81d25;
+    --red-dim: #8c1319;
+    --silver: #4a2c12;
+    --silver-dim: #7a4a1e;
+    --white: #1c1006;
+    --font-display: 'Oswald', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--slate);
+    color: var(--white);
+    font-family: var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  ::selection{ background: var(--red); color: var(--white); }
+
+  /* ---------- shared ---------- */
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .eyebrow{
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 12px;
+    color: var(--red);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:24px; height:2px;
+    background: var(--red);
+    display:inline-block;
+  }
+
+  h1,h2,h3{
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+  }
+
+  section{ padding: 110px 0; border-top: 1px solid var(--slate-3); }
+
+  .reveal{
+    opacity:0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  .cta-button{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    background: var(--red);
+    color: var(--white);
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 18px 34px;
+    border: 2px solid var(--red);
+    transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease;
+  }
+  .cta-button:hover{
+    background: transparent;
+    color: var(--red);
+    transform: translateY(-2px);
+  }
+  .cta-button.ghost{
+    background: transparent;
+    color: var(--silver);
+    border: 2px solid var(--silver-dim);
+  }
+  .cta-button.ghost:hover{
+    color: var(--white);
+    border-color: var(--white);
+    background: transparent;
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(255,106,0,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--slate-3);
+  }
+  nav{
+    max-width:1080px; margin:0 auto; padding: 20px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight:700;
+    letter-spacing: 0.03em;
+    text-transform:uppercase;
+  }
+  .logo span{ color: var(--red); }
+  nav .cta-button{ padding: 11px 22px; font-size: 12px; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding-top: 130px;
+    padding-bottom: 100px;
+    border-top:none;
+    position:relative;
+  }
+  .hero .wrap{ position:relative; z-index:2; }
+  .hero-grid-line{
+    position:absolute; inset:0;
+    background-image: linear-gradient(var(--slate-3) 1px, transparent 1px), linear-gradient(90deg, var(--slate-3) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity:0.35;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+  }
+  .hero h1{
+    font-size: clamp(40px, 6vw, 78px);
+    max-width: 820px;
+    margin-bottom: 26px;
+  }
+  .hero h1 em{
+    font-style: normal;
+    color: var(--red);
+  }
+  .hero p.lead{
+    max-width: 560px;
+    font-size: 18px;
+    color: var(--silver);
+    margin-bottom: 40px;
+  }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 64px; }
+
+  .stat-bar{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    border-top: 1px solid var(--slate-3);
+    padding-top: 34px;
+  }
+  .stat-bar .stat b{
+    display:block;
+    font-family: var(--font-display);
+    font-size: 40px;
+    color: var(--red);
+  }
+  .stat-bar .stat span{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--silver-dim);
+  }
+
+  /* ---------- section headers ---------- */
+  .section-head{ max-width: 640px; margin-bottom: 56px; }
+  .section-head h2{ font-size: clamp(30px, 4vw, 46px); margin-bottom: 20px; }
+  .section-head p{ color: var(--silver); font-size: 17px; }
+
+  /* ---------- Accountability Mirror ---------- */
+  .mirror-frame{
+    background: var(--slate-2);
+    border: 1px solid var(--slate-3);
+    padding: 52px;
+    position: relative;
+  }
+  .mirror-frame::before{
+    content: "ACCOUNTABILITY MIRROR";
+    position:absolute;
+    top: -13px; left: 40px;
+    background: var(--slate);
+    padding: 0 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--silver-dim);
+  }
+  .notes-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+  }
+  .note{
+    background: var(--slate);
+    border: 1px solid var(--slate-3);
+    border-left: 3px solid var(--red);
+    padding: 22px 20px;
+    cursor:pointer;
+    min-height: 148px;
+    perspective: 800px;
+    position:relative;
+  }
+  .note .face{
+    transition: opacity 0.3s ease;
+  }
+  .note .excuse{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--silver-dim);
+    margin-bottom: 10px;
+  }
+  .note .line{
+    font-size: 16px;
+    color: var(--white);
+    font-weight: 500;
+  }
+  .note .flip{
+    display:none;
+    font-size: 15px;
+    color: var(--silver);
+    border-top: 1px dashed var(--slate-3);
+    margin-top: 14px;
+    padding-top: 14px;
+  }
+  .note.open .flip{ display:block; }
+  .note.open{ border-left-color: var(--silver); }
+  .note .tap-hint{
+    position:absolute;
+    bottom: 12px; right: 16px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--silver-dim);
+    letter-spacing: 0.1em;
+  }
+  .note.open .tap-hint{ display:none; }
+
+  /* ---------- 40% rule ---------- */
+  .rule-40{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items:center;
+  }
+  .gauge-wrap{ display:flex; flex-direction:column; align-items:center; }
+  .gauge{ width: 260px; height:260px; }
+  .gauge-label{
+    text-align:center; margin-top: 18px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--silver-dim);
+    text-transform:uppercase;
+  }
+  .rule-copy p{ color: var(--silver); margin-bottom: 18px; font-size: 16px; }
+  .rule-copy strong{ color: var(--white); }
+
+  /* ---------- cookie jar ---------- */
+  .jar-scroll{
+    display:flex;
+    gap: 20px;
+    overflow-x:auto;
+    padding-bottom: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--red) var(--slate-2);
+  }
+  .jar-scroll::-webkit-scrollbar{ height:6px; }
+  .jar-scroll::-webkit-scrollbar-thumb{ background: var(--red); }
+  .jar-scroll::-webkit-scrollbar-track{ background: var(--slate-2); }
+  .jar-card{
+    min-width: 260px;
+    background: var(--slate-2);
+    border: 1px solid var(--slate-3);
+    padding: 26px;
+    flex-shrink:0;
+  }
+  .jar-card .tag{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--red);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    margin-bottom: 12px;
+    display:block;
+  }
+  .jar-card h4{
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+  .jar-card p{ color: var(--silver); font-size: 14.5px; }
+
+  /* ---------- calloused mind ---------- */
+  .callous-list{ display:flex; flex-direction:column; }
+  .callous-item{
+    display:grid;
+    grid-template-columns: 90px 1fr;
+    gap: 26px;
+    padding: 28px 0;
+    border-top: 1px solid var(--slate-3);
+    align-items:start;
+  }
+  .callous-item:last-child{ border-bottom: 1px solid var(--slate-3); }
+  .callous-item .day{
+    font-family: var(--font-mono);
+    color: var(--silver-dim);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    padding-top: 4px;
+  }
+  .callous-item h4{
+    font-family: var(--font-display);
+    text-transform:uppercase;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .callous-item p{ color: var(--silver); font-size: 15.5px; max-width: 560px; }
+
+  /* ---------- taking souls ---------- */
+  .souls{
+    background: var(--slate-2);
+    border: 1px solid var(--red-dim);
+    padding: 64px 52px;
+    text-align:center;
+    position:relative;
+  }
+  .souls::after{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(200,29,37,0.06), transparent 60%);
+    pointer-events:none;
+  }
+  .souls h2{ font-size: clamp(28px,4vw,42px); margin-bottom: 20px; }
+  .souls p{ color: var(--silver); max-width: 560px; margin: 0 auto 34px; font-size: 17px; }
+
+  /* ---------- final cta ---------- */
+  .final{
+    text-align:center;
+    padding: 130px 0 100px;
+  }
+  .final h2{ font-size: clamp(34px,5vw,58px); margin-bottom: 22px; }
+  .final p{ color: var(--silver); max-width: 520px; margin: 0 auto 40px; font-size: 17px; }
+
+  footer{
+    border-top: 1px solid var(--slate-3);
+    padding: 36px 0;
+    text-align:center;
+    color: var(--silver-dim);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 780px){
+    section{ padding: 72px 0; }
+    .rule-40{ grid-template-columns: 1fr; }
+    .stat-bar{ grid-template-columns: 1fr; gap: 24px; }
+    .callous-item{ grid-template-columns: 1fr; gap: 8px; }
+    nav .cta-button span{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">EASY<span>LAND</span>X</div>
+    <a class="cta-button" href="https://easylandx.github.io" target="_blank" rel="noopener">
+      <span>Build my page</span> →
+    </a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-grid-line"></div>
+  <div class="wrap">
+    <div class="eyebrow reveal">Master your mind. Then master your market.</div>
+    <h1 class="reveal">Most businesses only launch <em>40%</em> of the website they're capable of.</h1>
+    <p class="lead reveal">EasyLandX exists for the other 60% — the founders willing to look in the mirror, stop making excuses about "getting to it eventually," and ship a landing page that actually converts.</p>
+    <div class="hero-ctas reveal">
+      <a class="cta-button" href="https://easylandx.github.io" target="_blank" rel="noopener">Get my EasyLandX page →</a>
+      <a class="cta-button ghost" href="#mirror">Take the Accountability Mirror test</a>
+    </div>
+    <div class="stat-bar reveal">
+      <div class="stat">
+        <b>40%</b>
+        <span>Of true potential most sites use</span>
+      </div>
+      <div class="stat">
+        <b>24H</b>
+        <span>From order to live page</span>
+      </div>
+      <div class="stat">
+        <b>1</b>
+        <span>File. Fast, self-contained, yours</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mirror">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Framework 01 — The Accountability Mirror</div>
+      <h2>Look your business in the eye.</h2>
+      <p>Every founder has a note taped to their own mental mirror. Tap each one and be honest about what it's really costing you.</p>
+    </div>
+    <div class="mirror-frame reveal">
+      <div class="notes-grid">
+        <div class="note" data-note>
+          <div class="face">
+            <div class="excuse">Excuse 01</div>
+            <div class="line">"My Instagram bio is basically my website."</div>
+          </div>
+          <div class="flip">A bio link can't take payments, can't rank on Google, and disappears the second the algorithm changes. A landing page is yours — permanently.</div>
+          <div class="tap-hint">Tap to be honest →</div>
+        </div>
+        <div class="note" data-note>
+          <div class="face">
+            <div class="excuse">Excuse 02</div>
+            <div class="line">"I'll build a real site once business picks up."</div>
+          </div>
+          <div class="flip">Business picks up because of the site, not after it. EasyLandX gets you live in a day, so the order of operations finally works in your favor.</div>
+          <div class="tap-hint">Tap to be honest →</div>
+        </div>
+        <div class="note" data-note>
+          <div class="face">
+            <div class="excuse">Excuse 03</div>
+            <div class="line">"I don't know how to explain what I do online."</div>
+          </div>
+          <div class="flip">You don't have to. Send EasyLandX your story and your offer — the words, structure, and design get built around exactly what makes you different.</div>
+          <div class="tap-hint">Tap to be honest →</div>
+        </div>
+        <div class="note" data-note>
+          <div class="face">
+            <div class="excuse">Excuse 04</div>
+            <div class="line">"A good website is expensive and slow."</div>
+          </div>
+          <div class="flip">Not this one. EasyLandX is built for small businesses — affordable, fast, and finished in a single conversation, not a six-week agency process.</div>
+          <div class="tap-hint">Tap to be honest →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap rule-40">
+    <div class="gauge-wrap reveal">
+      <svg class="gauge" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="86" fill="none" stroke="#cc5100" stroke-width="16"/>
+        <circle id="gaugeArc" cx="100" cy="100" r="86" fill="none" stroke="#c81d25" stroke-width="16"
+          stroke-dasharray="540.35" stroke-dashoffset="540.35" stroke-linecap="butt"
+          transform="rotate(-90 100 100)"/>
+        <text x="100" y="94" text-anchor="middle" fill="#1c1006" font-family="Oswald" font-size="46" font-weight="600">40%</text>
+        <text x="100" y="120" text-anchor="middle" fill="#7a4a1e" font-family="Space Mono" font-size="11" letter-spacing="1">CURRENT ONLINE PRESENCE</text>
+      </svg>
+      <div class="gauge-label">Scroll to break through the wall</div>
+    </div>
+    <div class="rule-copy reveal">
+      <div class="eyebrow">Framework 02 — The 40% Rule</div>
+      <h2 style="font-size:36px; margin-bottom:22px;">The remaining 60% is sitting behind a page you haven't built yet.</h2>
+      <p>When a business feels "maxed out" on marketing — posting daily, chasing referrals, hoping word of mouth holds — it usually hasn't touched <strong>the other 60%</strong>: a page built to convert visitors the moment they land.</p>
+      <p>That 60% isn't extra effort. It's a single, focused landing page doing the job your feed, your flyers, and your word-of-mouth can't do alone.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Framework 03 — The Cookie Jar</div>
+      <h2>Every business has proof. Put it to work.</h2>
+      <p>When doubt creeps in, reach into the jar. These are the kinds of wins an EasyLandX page is built to hold onto and show off — proof that turns a browser into a customer.</p>
+    </div>
+    <div class="jar-scroll reveal">
+      <div class="jar-card">
+        <span class="tag">Win 01</span>
+        <h4>The first sale</h4>
+        <p>The moment a stranger became a customer because the page made the offer impossible to misunderstand.</p>
+      </div>
+      <div class="jar-card">
+        <span class="tag">Win 02</span>
+        <h4>The five-star review</h4>
+        <p>Real words from a real client, placed exactly where a new visitor needs the reassurance most.</p>
+      </div>
+      <div class="jar-card">
+        <span class="tag">Win 03</span>
+        <h4>The fully booked week</h4>
+        <p>A calendar link on the page that quietly filled every open slot without a single follow-up DM.</p>
+      </div>
+      <div class="jar-card">
+        <span class="tag">Win 04</span>
+        <h4>The recognized brand</h4>
+        <p>A palette and type system distinct enough that customers remember the business, not just the product.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Framework 04 — The Calloused Mind</div>
+      <h2>Discipline, applied to your page — not just your workouts.</h2>
+      <p>A page doesn't get tougher by accident. It gets tougher through the same small, repeated decisions that build a calloused mind.</p>
+    </div>
+    <div class="callous-list reveal">
+      <div class="callous-item">
+        <div class="day">Day one</div>
+        <div><h4>Ship the page, not the perfect plan</h4><p>Waiting for the "right" moment is how most businesses stay invisible. EasyLandX gets a working page live first, then sharpens it.</p></div>
+      </div>
+      <div class="callous-item">
+        <div class="day">Every week</div>
+        <div><h4>Rewrite the weak line</h4><p>Copy that doesn't convert gets rebuilt, not defended. Small, consistent edits toughen the page the way daily reps toughen a body.</p></div>
+      </div>
+      <div class="callous-item">
+        <div class="day">Every month</div>
+        <div><h4>Test the uncomfortable version</h4><p>The bolder headline. The higher price. The direct ask. EasyLandX pages are built to try the version that feels risky, because that's usually the one that works.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="souls reveal">
+      <div class="eyebrow" style="justify-content:center;">Framework 05 — Taking Souls</div>
+      <h2>Out-build the competitor who hasn't launched yet.</h2>
+      <p>While other businesses in your space are still debating fonts or waiting on a developer's calendar, your EasyLandX page is already live, already loading fast, and already earning trust.</p>
+      <a class="cta-button" href="https://easylandx.github.io" target="_blank" rel="noopener">Take the lead →</a>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;">No excuses. One page. Full effort.</div>
+    <h2>Your business already has the story. EasyLandX builds the page that proves it.</h2>
+    <p>Affordable, conversion-focused, and yours in a single file — built the way you'd build anything worth finishing: honestly, and all the way through.</p>
+    <a class="cta-button" href="https://easylandx.github.io" target="_blank" rel="noopener">Build my EasyLandX page →</a>
+  </div>
+</section>
+
+<footer>
+  EASYLANDX — AFFORDABLE, CONVERSION-FOCUSED LANDING PAGES
+</footer>
+
+<script>
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el=>io.observe(el));
+
+  // accountability mirror notes
+  document.querySelectorAll('[data-note]').forEach(note=>{
+    note.addEventListener('click', ()=>{
+      note.classList.toggle('open');
+    });
+  });
+
+  // 40% gauge animation on scroll into view
+  const gauge = document.getElementById('gaugeArc');
+  const gaugeSection = gauge.closest('section');
+  const gaugeIO = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        gauge.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(0.65,0,0.35,1)';
+        gauge.style.strokeDashoffset = (540.35 * 0.6).toString();
+        gaugeIO.unobserve(gaugeSection);
+      }
+    });
+  }, { threshold: 0.4 });
+  gaugeIO.observe(gaugeSection);
+</script>
+
+</body>
+</html>

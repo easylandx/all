@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — One Must Imagine Your Landing Page Happy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --earth-green: #37432F;
+    --earth-green-soft: #4C5A3E;
+    --earth-green-deep: #262E20;
+    --friction-red: #A83C2C;
+    --friction-red-soft: #C4573F;
+    --ivory: #F4EEDF;
+    --ivory-dim: #E4DCC6;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--earth-green);
+    color: var(--ivory);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  a{ color: inherit; }
+
+  .eyebrow{
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.75rem;
+    color: var(--friction-red-soft);
+    font-weight: 600;
+  }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(38, 46, 32, 0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(244,238,223,0.08);
+  }
+  nav .wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .brand{
+    font-family: 'Newsreader', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+  }
+  .nav-cta{
+    background: var(--friction-red);
+    color: var(--ivory);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+  .nav-cta:hover{ background: var(--friction-red-soft); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 110px 0 90px;
+    position: relative;
+    border-bottom: 1px solid rgba(244,238,223,0.08);
+  }
+  .hero .eyebrow{ margin-bottom: 22px; display:block; }
+  .hero h1{
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    max-width: 820px;
+    line-height: 1.08;
+    margin-bottom: 28px;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--friction-red-soft);
+  }
+  .hero p.lede{
+    max-width: 560px;
+    font-size: 1.1rem;
+    color: var(--ivory-dim);
+    margin-bottom: 40px;
+  }
+  .hero-actions{
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-primary{
+    display: inline-block;
+    background: var(--friction-red);
+    color: var(--ivory);
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .btn-primary:hover{ background: var(--friction-red-soft); transform: translateY(-2px); }
+  .btn-ghost{
+    color: var(--ivory-dim);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(244,238,223,0.35);
+    padding-bottom: 2px;
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{
+    padding: 90px 0;
+    border-bottom: 1px solid rgba(244,238,223,0.08);
+  }
+  .section-head{
+    max-width: 640px;
+    margin-bottom: 56px;
+  }
+  .section-head h2{
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+    margin-top: 14px;
+  }
+
+  /* ---------- THE ABSURD (two columns) ---------- */
+  .absurd-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .absurd-col{
+    background: var(--earth-green-deep);
+    border: 1px solid rgba(244,238,223,0.1);
+    border-radius: 4px;
+    padding: 34px;
+  }
+  .absurd-col h3{
+    font-size: 1.25rem;
+    margin-bottom: 14px;
+  }
+  .absurd-col p{
+    color: var(--ivory-dim);
+    font-size: 0.98rem;
+  }
+  .absurd-vs{
+    text-align: center;
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    color: var(--friction-red-soft);
+    font-size: 1.4rem;
+    margin: 26px 0;
+  }
+
+  /* ---------- THREE RESPONSES ---------- */
+  .responses{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+  }
+  .response-card{
+    background: var(--earth-green-deep);
+    border: 1px solid rgba(244,238,223,0.1);
+    border-radius: 4px;
+    padding: 30px 26px;
+    position: relative;
+  }
+  .response-card.rejected{ opacity: 0.62; }
+  .response-card.rejected h3::after{
+    content: "— rejected";
+    display: block;
+    color: var(--friction-red-soft);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 6px;
+    font-weight: 600;
+  }
+  .response-card.chosen{
+    background: var(--friction-red);
+    border-color: var(--friction-red);
+  }
+  .response-card.chosen h3::after{
+    content: "— the path we build";
+    display: block;
+    color: var(--ivory);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 6px;
+    font-weight: 700;
+  }
+  .response-card h3{ font-size: 1.15rem; margin-bottom: 4px; }
+  .response-card p{
+    font-size: 0.93rem;
+    color: var(--ivory-dim);
+    margin-top: 12px;
+  }
+  .response-card.chosen p{ color: rgba(244,238,223,0.92); }
+
+  /* ---------- SISYPHUS SIGNATURE ---------- */
+  .sisyphus{
+    padding: 100px 0 60px;
+  }
+  .sisyphus-inner{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .sisyphus-copy p{
+    color: var(--ivory-dim);
+    margin-bottom: 18px;
+    font-size: 1rem;
+  }
+  .sisyphus-copy p:last-child{ margin-bottom: 0; }
+  .maxim{
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--ivory);
+    border-left: 3px solid var(--friction-red);
+    padding-left: 18px;
+    margin-top: 26px;
+  }
+
+  .hill-stage{
+    position: relative;
+    height: 300px;
+  }
+  .hill-svg{ width: 100%; height: 100%; display: block; }
+  .boulder{
+    animation: pushCycle 5.5s ease-in-out infinite;
+    transform-origin: center;
+  }
+  @keyframes pushCycle{
+    0%   { transform: translate(-2px, 0px); }
+    45%  { transform: translate(0px, -78px); }
+    50%  { transform: translate(2px, -80px); }
+    55%  { transform: translate(0px, -78px); }
+    100% { transform: translate(-2px, 0px); }
+  }
+  .hill-caption{
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--ivory-dim);
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .boulder{ animation: none; }
+  }
+
+  /* ---------- FINAL CTA ---------- */
+  .final{
+    text-align: center;
+    padding: 110px 0 130px;
+    border-bottom: none;
+  }
+  .final .eyebrow{ display:block; margin-bottom: 18px; }
+  .final h2{
+    font-size: clamp(2rem, 4.6vw, 3.1rem);
+    max-width: 720px;
+    margin: 0 auto 22px;
+    line-height: 1.15;
+  }
+  .final p{
+    color: var(--ivory-dim);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    font-size: 1.05rem;
+  }
+
+  footer{
+    padding: 34px 0;
+    text-align: center;
+    color: var(--ivory-dim);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 820px){
+    .absurd-grid, .responses, .sisyphus-inner{
+      grid-template-columns: 1fr;
+    }
+    .absurd-vs{ margin: 10px 0; }
+    .hero{ padding: 80px 0 60px; }
+    section{ padding: 64px 0; }
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--friction-red-soft);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">EasyLandX</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">See EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">On the absurdity of building a website</span>
+    <h1>Every business owner pushes a boulder uphill. <em>Yours can finally reach the top.</em></h1>
+    <p class="lede">A landing page is supposed to bring people in the door. Too often it becomes its own eternal task — rebuilt, abandoned, rebuilt again. EasyLandX turns that climb into something you actually choose, and finish.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build my landing page</a>
+      <a class="btn-ghost" href="#absurd">Read the case for it ↓</a>
+    </div>
+  </div>
+</header>
+
+<section id="absurd">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Chapter One</span>
+      <h2>The gap every small business feels</h2>
+    </div>
+    <div class="absurd-grid">
+      <div class="absurd-col">
+        <h3>What you want</h3>
+        <p>A page that looks like it belongs to a real, thriving business. One link you can send a customer that actually turns their interest into a booking, a sale, or a message.</p>
+      </div>
+      <div class="absurd-col">
+        <h3>What usually shows up</h3>
+        <p>Drag-and-drop builders that demand hours you don't have, agencies that quote enterprise prices for a single page, and templates that look like everyone else's.</p>
+      </div>
+    </div>
+    <div class="absurd-vs">— the friction between the two is where EasyLandX steps in —</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Chapter Two</span>
+      <h2>Three ways to face the climb</h2>
+    </div>
+    <div class="responses">
+      <div class="response-card rejected">
+        <h3>Go without one</h3>
+        <p>Skip the landing page entirely and rely on word of mouth or a social profile alone. It quietly caps how many customers ever find you.</p>
+      </div>
+      <div class="response-card rejected">
+        <h3>Chase a shortcut</h3>
+        <p>A cheap template promising instant results, or a "guru" course that sells the dream instead of the page. Comfortable for a moment, empty by the second week.</p>
+      </div>
+      <div class="response-card chosen">
+        <h3>Build it, own it</h3>
+        <p>Work with EasyLandX to get a page built around your actual business — fast, affordable, and genuinely yours from the first visitor onward.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sisyphus">
+  <div class="wrap">
+    <div class="sisyphus-inner">
+      <div class="sisyphus-copy">
+        <span class="eyebrow">Chapter Three</span>
+        <h2 style="margin: 14px 0 20px; font-size: clamp(1.8rem, 3.2vw, 2.5rem);">The moment the boulder settles</h2>
+        <p>Every founder knows the walk back down the hill: the page goes live, then needs fixing, then needs updating, then needs rebuilding from scratch. It can feel endless.</p>
+        <p>EasyLandX changes what that climb costs you. The page gets built once, built well, and built to hold — so the only thing you push forward from here is your business.</p>
+        <p class="maxim">"The struggle itself toward the heights is enough to fill a man's heart." Yours can be filled with customers instead.</p>
+      </div>
+      <div>
+        <div class="hill-stage">
+          <svg class="hill-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 20 260 Q 200 40 380 260" stroke="#E4DCC6" stroke-opacity="0.35" stroke-width="2" fill="none"/>
+            <circle cx="200" cy="150" r="5" fill="#A83C2C"/>
+            <g class="boulder">
+              <circle cx="200" cy="252" r="16" fill="#A83C2C"/>
+              <circle cx="195" cy="247" r="4" fill="#C4573F" opacity="0.6"/>
+            </g>
+          </svg>
+          <div class="hill-caption">the same climb, chosen on purpose</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="eyebrow">One must imagine your landing page happy</span>
+    <h2>Your business deserves a page that reaches the top of the hill and stays there.</h2>
+    <p>EasyLandX builds affordable, conversion-focused landing pages for small businesses — so the climb becomes worth taking.</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start with EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    EasyLandX — affordable landing pages built with intention.
+  </div>
+</footer>
+
+</body>
+</html>

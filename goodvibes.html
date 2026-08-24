@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Good Vibes, Good Landing Pages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold-1: #F0AE3C;
+    --gold-2: #D6901F;
+    --gold-deep: #A8690F;
+    --emerald: #0E6B4C;
+    --emerald-bright: #168A62;
+    --alabaster: #FBF6EA;
+    --alabaster-dim: #EDE3CB;
+    --ink: #2B2013;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:'Work Sans', sans-serif;
+    background: var(--gold-1);
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:700; line-height:1.05; }
+  .eyebrow{
+    font-family:'Work Sans', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    font-size:0.75rem;
+    font-weight:600;
+    color: var(--emerald);
+  }
+  a{ text-decoration:none; color:inherit; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 6vh 6vw 8vh;
+    position:relative;
+    background: radial-gradient(ellipse at 50% -10%, var(--gold-1) 0%, var(--gold-2) 55%, var(--gold-deep) 100%);
+    overflow:hidden;
+  }
+  .glow-orb{
+    position:absolute;
+    border-radius:50%;
+    filter: blur(60px);
+    opacity:0.35;
+    background: var(--emerald-bright);
+    animation: drift 14s ease-in-out infinite;
+  }
+  .glow-orb.o1{ width:340px; height:340px; top:8%; left:-6%; }
+  .glow-orb.o2{ width:260px; height:260px; bottom:6%; right:-4%; animation-delay:3s; background: var(--alabaster); opacity:0.25; }
+  @keyframes drift{
+    0%,100%{ transform: translateY(0) scale(1); }
+    50%{ transform: translateY(30px) scale(1.08); }
+  }
+  .hero .eyebrow{ background: var(--alabaster); padding:6px 16px; border-radius:999px; margin-bottom:1.6rem; }
+  .hero h1{
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    color: var(--alabaster);
+    max-width: 16ch;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  }
+  .hero h1 em{ font-style: italic; color: var(--emerald); }
+  .hero p.sub{
+    margin-top:1.6rem;
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    max-width: 42ch;
+    color: var(--ink);
+    opacity:0.85;
+  }
+  .cta-row{
+    margin-top: 2.6rem;
+    display:flex;
+    gap:1rem;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .btn-easylandx{
+    background: var(--emerald);
+    color: var(--alabaster);
+    font-weight:600;
+    padding: 1rem 2.2rem;
+    border-radius: 999px;
+    font-size:1rem;
+    letter-spacing:0.01em;
+    border: 2px solid var(--emerald);
+    transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 10px 30px rgba(14,107,76,0.35);
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+  }
+  .btn-easylandx:hover{
+    transform: translateY(-3px);
+    background: var(--emerald-bright);
+    box-shadow: 0 14px 36px rgba(14,107,76,0.45);
+  }
+  .btn-ghost{
+    padding: 1rem 2.2rem;
+    border-radius:999px;
+    border: 2px solid var(--ink);
+    color: var(--ink);
+    font-weight:600;
+    opacity:0.75;
+    transition: opacity 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-ghost:hover{ opacity:1; border-color: var(--emerald); color: var(--emerald); }
+  .scroll-cue{
+    position:absolute;
+    bottom: 2.2rem;
+    font-size:0.75rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color: var(--alabaster);
+    opacity:0.7;
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(8px);} }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding: 7rem 8vw; position:relative; }
+  .section-head{ max-width: 640px; margin: 0 auto 3.4rem; text-align:center; }
+  .section-head h2{ font-size: clamp(1.8rem, 3.4vw, 2.8rem); margin-top:0.8rem; }
+  .section-head p{ margin-top:1rem; opacity:0.85; font-size:1.05rem; }
+
+  /* ---------- VIBRATION SECTION ---------- */
+  .vibration{
+    background: var(--alabaster);
+    color: var(--ink);
+    border-radius: 40px;
+    margin: 0 3vw;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+  }
+  .vibe-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width:1000px;
+    margin: 0 auto;
+    align-items:center;
+  }
+  @media (max-width: 820px){ .vibe-grid{ grid-template-columns: 1fr; } }
+
+  /* Vibe meter — signature interactive element */
+  .vibe-meter-wrap{
+    background: linear-gradient(160deg, var(--gold-1), var(--gold-2));
+    border-radius: 28px;
+    padding: 2.4rem;
+    text-align:center;
+  }
+  .meter-track{
+    position:relative;
+    height: 16px;
+    border-radius: 999px;
+    background: rgba(43,32,19,0.18);
+    margin: 2.2rem 0 1.2rem;
+    overflow:visible;
+  }
+  .meter-fill{
+    position:absolute; left:0; top:0; bottom:0;
+    width: 22%;
+    border-radius:999px;
+    background: linear-gradient(90deg, var(--emerald), var(--emerald-bright));
+    transition: width 0.6s cubic-bezier(.2,.8,.2,1);
+    box-shadow: 0 0 24px rgba(14,107,76,0.6);
+  }
+  .meter-dot{
+    position:absolute;
+    top:50%; transform: translate(-50%,-50%);
+    width: 30px; height:30px;
+    border-radius:50%;
+    background: var(--alabaster);
+    border: 4px solid var(--emerald);
+    left: 22%;
+    transition: left 0.6s cubic-bezier(.2,.8,.2,1);
+  }
+  .meter-label{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.4rem;
+    color: var(--ink);
+    min-height: 1.8em;
+  }
+  .meter-caption{
+    font-size:0.9rem;
+    opacity:0.75;
+    margin-bottom:1.4rem;
+  }
+  .meter-btn{
+    margin-top:1.4rem;
+    background: var(--emerald);
+    color: var(--alabaster);
+    border:none;
+    padding: 0.9rem 1.8rem;
+    border-radius:999px;
+    font-weight:600;
+    cursor:pointer;
+    font-size:0.95rem;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .meter-btn:hover{ transform: translateY(-2px); background: var(--emerald-bright); }
+  .mock-preview{
+    margin-top:1.6rem;
+    border-radius:16px;
+    padding: 1.2rem;
+    background: var(--alabaster);
+    transition: box-shadow 0.6s ease;
+    text-align:left;
+    font-size:0.85rem;
+  }
+  .mock-preview .mock-top{
+    display:flex; gap:6px; margin-bottom:0.8rem;
+  }
+  .mock-preview .mock-top span{ width:9px; height:9px; border-radius:50%; background: var(--ink); opacity:0.25; }
+  .mock-bar{ height:10px; border-radius:6px; background: var(--ink); opacity:0.15; margin-bottom:8px; }
+  .mock-bar.short{ width:55%; }
+  .mock-cta{
+    margin-top:10px; height:26px; width:40%; border-radius:999px;
+    background: var(--ink); opacity:0.15;
+    transition: background 0.5s ease, opacity 0.5s ease;
+  }
+
+  .vibe-copy ul{ list-style:none; margin-top:1.4rem; display:flex; flex-direction:column; gap:1.1rem; }
+  .vibe-copy li{ padding-left: 1.6rem; position:relative; }
+  .vibe-copy li::before{
+    content:'●';
+    position:absolute; left:0; top:0.15em;
+    color: var(--emerald);
+    font-size:0.7rem;
+  }
+  .vibe-copy strong{ color: var(--emerald); }
+
+  /* ---------- PILLARS ---------- */
+  .pillars{ background: transparent; }
+  .pillars .section-head h2, .pillars .eyebrow{ color: var(--alabaster); }
+  .pillars .section-head p{ color: var(--ink); }
+  .pillar-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  @media (max-width: 900px){ .pillar-grid{ grid-template-columns:1fr; } }
+  .pillar-card{
+    background: var(--alabaster);
+    border-radius: 24px;
+    padding: 2.4rem 2rem;
+    border: 2px solid transparent;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .pillar-card:hover{ transform: translateY(-6px); border-color: var(--emerald); }
+  .pillar-num{
+    font-family:'Fraunces', serif;
+    font-size:0.85rem;
+    color: var(--emerald);
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    margin-bottom:0.6rem;
+  }
+  .pillar-card h3{ font-size:1.35rem; margin-bottom:0.8rem; }
+  .pillar-card p{ font-size:0.95rem; opacity:0.85; }
+
+  /* ---------- FORMULA ---------- */
+  .formula{
+    background: var(--emerald);
+    color: var(--alabaster);
+    border-radius: 40px;
+    margin: 0 3vw;
+    text-align:center;
+  }
+  .formula .eyebrow{ color: var(--alabaster); opacity:0.8; }
+  .formula h2{ color: var(--alabaster); }
+  .formula-row{
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+    gap:1.2rem; margin: 2.6rem auto 0; max-width: 900px;
+  }
+  .formula-chip{
+    background: rgba(251,246,234,0.1);
+    border: 1px solid rgba(251,246,234,0.35);
+    padding: 1.1rem 1.6rem;
+    border-radius: 16px;
+    font-weight:600;
+    font-size:1rem;
+    min-width: 160px;
+  }
+  .formula-plus, .formula-eq{
+    font-family:'Fraunces', serif;
+    font-size:1.6rem;
+    opacity:0.7;
+  }
+  .formula p.note{ max-width:52ch; margin: 2.4rem auto 0; opacity:0.85; font-size:1rem; }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    text-align:center;
+    padding-bottom: 9rem;
+  }
+  .final-cta h2{ font-size: clamp(2rem, 4vw, 3.2rem); color: var(--alabaster); }
+  .final-cta p{ margin:1.2rem auto 2.4rem; max-width:44ch; opacity:0.85; }
+
+  footer{
+    text-align:center;
+    padding: 2.4rem 8vw 3rem;
+    font-size:0.85rem;
+    opacity:0.7;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.01ms !important; animation-iteration-count:1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  :focus-visible{ outline: 3px solid var(--emerald); outline-offset: 3px; }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="glow-orb o1"></div>
+  <div class="glow-orb o2"></div>
+  <p class="eyebrow">EasyLandX</p>
+  <h1>Good Vibes, <em>Good Landing Pages</em></h1>
+  <p class="sub">A high-converting page starts long before the code — it starts with the energy your brand puts out. EasyLandX turns that energy into a page that works while you sleep.</p>
+  <div class="cta-row">
+    <a class="btn-easylandx" href="https://easylandx.github.io" target="_blank" rel="noopener">Start your EasyLandX page →</a>
+    <a class="btn-ghost" href="#vibration">See how it works</a>
+  </div>
+  <div class="scroll-cue">Scroll to raise the vibe ↓</div>
+</section>
+
+<section class="vibration" id="vibration">
+  <div class="section-head">
+    <p class="eyebrow">The Law of Vibration</p>
+    <h2>You don't attract customers by chance.<br>You attract what your page radiates.</h2>
+    <p>Every visitor decides how they feel about your business in seconds — before they read a single word. That first frequency is set by your colors, your clarity, and your speed. Raise it, and the right customers find their way in.</p>
+  </div>
+
+  <div class="vibe-grid">
+    <div class="vibe-meter-wrap">
+      <div class="meter-label" id="meterLabel">Low-vibe page</div>
+      <div class="meter-caption">Cluttered · slow · unclear</div>
+      <div class="meter-track">
+        <div class="meter-fill" id="meterFill"></div>
+        <div class="meter-dot" id="meterDot"></div>
+      </div>
+      <div class="mock-preview" id="mockPreview">
+        <div class="mock-top"><span></span><span></span><span></span></div>
+        <div class="mock-bar" style="width:80%"></div>
+        <div class="mock-bar short"></div>
+        <div class="mock-bar" style="width:65%"></div>
+        <div class="mock-cta" id="mockCta"></div>
+      </div>
+      <button class="meter-btn" id="vibeBtn">Raise the vibe ✦</button>
+    </div>
+
+    <div class="vibe-copy">
+      <ul>
+        <li><strong>High-vibe pages</strong> feel warm, fast, and effortless to read — visitors relax, trust builds, and the "yes" comes naturally.</li>
+        <li><strong>Low-vibe pages</strong> feel heavy: too much text, too many choices, a slow load. Visitors bounce before they ever meet your offer.</li>
+        <li>The golden rule of landing pages: <strong>you don't attract the customers you want — you attract the page you built.</strong></li>
+        <li>EasyLandX starts every page at the highest setting: clear, warm, and built to convert from the first scroll.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="pillars">
+  <div class="section-head">
+    <p class="eyebrow">Three Pillars of a High-Vibe Page</p>
+    <h2>What EasyLandX takes care of, so your page stays magnetic</h2>
+  </div>
+  <div class="pillar-grid">
+    <div class="pillar-card">
+      <div class="pillar-num">01 — Curate the environment</div>
+      <h3>A clean, focused space</h3>
+      <p>We filter out the clutter — the extra menus, the noisy pop-ups, the distractions — and keep only what earns its place on the page. Every section is chosen to support the one action you want a visitor to take.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">02 — Master the narrative</div>
+      <h3>A story that flows</h3>
+      <p>Your words shape how people feel about your business. EasyLandX shapes your message around warmth and clarity, so visitors move naturally from curiosity to confidence to "yes."</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">03 — Real confidence, not noise</div>
+      <h3>Boundaries that protect your brand</h3>
+      <p>A great page says no to anything that dilutes it. We help you set the boundary between what belongs on your page and what belongs elsewhere — so the final result stays sharp, honest, and entirely you.</p>
+    </div>
+  </div>
+</section>
+
+<section class="formula">
+  <p class="eyebrow">The Manifesting Formula</p>
+  <h2>Vibe alone doesn't launch a page</h2>
+  <div class="formula-row">
+    <div class="formula-chip">High-Vibe Design</div>
+    <span class="formula-plus">+</span>
+    <div class="formula-chip">Clear Message</div>
+    <span class="formula-plus">+</span>
+    <div class="formula-chip">Fast Launch</div>
+    <span class="formula-eq">=</span>
+    <div class="formula-chip">Real Conversions</div>
+  </div>
+  <p class="note">Once your page is live, let go of the technical worry. EasyLandX handles the building, the hosting, and the details — so you can put your energy where it belongs: your customers.</p>
+</section>
+
+<section class="final-cta">
+  <p class="eyebrow">Ready when you are</p>
+  <h2>Give your business the page it deserves</h2>
+  <p>A page built with EasyLandX carries your brand's best frequency from the very first visit — warm, clear, and ready to convert.</p>
+  <a class="btn-easylandx" href="https://easylandx.github.io" target="_blank" rel="noopener">Build your EasyLandX page →</a>
+</section>
+
+<footer>
+  EasyLandX — high-vibe landing pages for small businesses.
+</footer>
+
+<script>
+  const stages = [
+    { pct: 22, label: 'Low-vibe page', ctaOpacity: 0.15, ctaColor: null, cardShadow: 'none' },
+    { pct: 55, label: 'Warming up', ctaOpacity: 0.4, ctaColor: null, cardShadow: '0 8px 24px rgba(14,107,76,0.12)' },
+    { pct: 100, label: 'High-vibe EasyLandX page', ctaOpacity: 1, ctaColor: 'var(--emerald)', cardShadow: '0 16px 40px rgba(14,107,76,0.28)' }
+  ];
+  let stage = 0;
+  const fill = document.getElementById('meterFill');
+  const dot = document.getElementById('meterDot');
+  const label = document.getElementById('meterLabel');
+  const cta = document.getElementById('mockCta');
+  const preview = document.getElementById('mockPreview');
+  const btn = document.getElementById('vibeBtn');
+
+  function render(){
+    const s = stages[stage];
+    fill.style.width = s.pct + '%';
+    dot.style.left = s.pct + '%';
+    label.textContent = s.label;
+    cta.style.opacity = s.ctaOpacity;
+    if(s.ctaColor){ cta.style.background = 'var(--emerald)'; } else { cta.style.background = 'var(--ink)'; }
+    preview.style.boxShadow = s.cardShadow;
+    btn.textContent = stage === stages.length - 1 ? 'Feel that? That is EasyLandX ✦' : 'Raise the vibe ✦';
+  }
+
+  btn.addEventListener('click', () => {
+    stage = (stage + 1) % stages.length;
+    render();
+  });
+
+  render();
+</script>
+
+</body>
+</html>
