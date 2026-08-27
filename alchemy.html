@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — The Alchemy of a Landing Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violet: #241129;
+    --violet-deep: #150819;
+    --violet-raise: #33193C;
+    --amber: #F5A623;
+    --amber-soft: #FFCB73;
+    --parchment: #F1E6C9;
+    --parchment-dim: rgba(241,230,201,0.66);
+    --parchment-faint: rgba(241,230,201,0.12);
+    --ink: #2A1330;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--violet);
+    color:var(--parchment-dim);
+    font-family:'Inter', sans-serif;
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+
+  a{ color:inherit; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 32px; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:28px 0;
+  }
+  .brand{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:1.5rem;
+    color:var(--parchment);
+    letter-spacing:0.01em;
+  }
+  .brand span{ color:var(--amber); }
+  .nav-cta{
+    border:1px solid var(--parchment-faint);
+    padding:9px 18px;
+    border-radius:2px;
+    font-size:0.78rem;
+    font-family:'Space Mono', monospace;
+    text-decoration:none;
+    color:var(--parchment);
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .nav-cta:hover{ border-color:var(--amber); color:var(--amber); }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:80px 0 60px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+  }
+  @media (max-width:860px){ header.hero{ grid-template-columns:1fr; } }
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.76rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:24px;
+  }
+  .eyebrow::before{ content:""; width:22px; height:1px; background:var(--amber); display:inline-block; }
+
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:clamp(2.3rem, 5vw, 3.9rem);
+    color:var(--parchment);
+    line-height:1.08;
+  }
+  h1 em{ font-style:italic; color:var(--amber); }
+
+  .hero-sub{
+    margin-top:26px;
+    max-width:50ch;
+    font-size:1.06rem;
+    color:var(--parchment-dim);
+  }
+
+  .hero-actions{ margin-top:40px; display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--amber);
+    color:var(--ink);
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    font-size:0.9rem;
+    padding:16px 28px;
+    border-radius:2px;
+    text-decoration:none;
+    display:inline-block;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    background:var(--amber-soft);
+    box-shadow:0 12px 32px -10px rgba(245,166,35,0.55);
+  }
+  .hero-note{ font-family:'Space Mono', monospace; font-size:0.76rem; color:var(--parchment-faint); }
+
+  /* ---------- SIGNATURE: transmutation circle ---------- */
+  .circle-wrap{ display:flex; justify-content:center; align-items:center; position:relative; }
+  .circle-wrap svg{ width:100%; max-width:340px; height:auto; }
+  .ring-slow{ animation:spin 60s linear infinite; transform-origin:200px 200px; }
+  .ring-slow-rev{ animation:spinrev 90s linear infinite; transform-origin:200px 200px; }
+  @keyframes spin{ from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+  @keyframes spinrev{ from{transform:rotate(0deg);} to{transform:rotate(-360deg);} }
+  @media (prefers-reduced-motion:reduce){ .ring-slow, .ring-slow-rev{ animation:none; } }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:84px 0; border-top:1px solid var(--parchment-faint); }
+  .section-head{ max-width:60ch; margin-bottom:52px; }
+  .kicker{
+    font-family:'Space Mono', monospace;
+    font-size:0.74rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--amber); margin-bottom:16px;
+  }
+  h2{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:clamp(1.7rem, 3.2vw, 2.3rem);
+    color:var(--parchment);
+  }
+  .section-head p{ margin-top:16px; color:var(--parchment-dim); font-size:1.02rem; }
+
+  /* ---------- FORMULARY (4 principles) ---------- */
+  .formulary{ display:flex; flex-direction:column; gap:22px; }
+  .formula{
+    background:var(--violet-raise);
+    border:1px solid var(--parchment-faint);
+    border-radius:4px;
+    padding:34px 36px;
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:30px;
+    align-items:start;
+    opacity:0; transform:translateY(14px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .formula.in-view{ opacity:1; transform:translateY(0); }
+  .formula-eq{
+    font-family:'Space Mono', monospace;
+    font-size:0.92rem;
+    color:var(--amber);
+    line-height:1.7;
+    border-right:1px solid var(--parchment-faint);
+    padding-right:24px;
+  }
+  .formula-eq .from{ color:var(--parchment-faint); display:block; }
+  .formula-eq .arrow{ color:var(--parchment-dim); display:block; margin:2px 0; }
+  .formula-body h3{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:1.36rem;
+    color:var(--parchment);
+    margin-bottom:10px;
+  }
+  .formula-body p{ color:var(--parchment-dim); font-size:0.98rem; max-width:58ch; }
+
+  @media (max-width:700px){
+    .formula{ grid-template-columns:1fr; }
+    .formula-eq{ border-right:none; border-bottom:1px solid var(--parchment-faint); padding-right:0; padding-bottom:16px; }
+  }
+
+  /* ---------- MAXIMS (parchment cards, scattered) ---------- */
+  .maxims{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  @media (max-width:860px){ .maxims{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:600px){ .maxims{ grid-template-columns:1fr; } }
+
+  .maxim{
+    background:var(--parchment);
+    color:var(--ink);
+    padding:26px 24px;
+    border-radius:2px;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.14rem;
+    line-height:1.45;
+    box-shadow:0 18px 40px -22px rgba(0,0,0,0.55);
+  }
+  .maxim:nth-child(2){ transform:rotate(-1.2deg); }
+  .maxim:nth-child(4){ transform:rotate(1deg); }
+  .maxim:nth-child(6){ transform:rotate(-0.8deg); }
+  .maxim span{
+    display:block;
+    margin-top:14px;
+    font-family:'Space Mono', monospace;
+    font-style:normal;
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--violet-raise);
+    opacity:0.7;
+  }
+
+  /* ---------- PROOF STRIP ---------- */
+  .proof{ background:var(--violet-deep); border-top:1px solid var(--parchment-faint); border-bottom:1px solid var(--parchment-faint); }
+  .proof .wrap{ padding:60px 32px; text-align:center; }
+  .proof p{
+    font-family:'Cormorant Garamond', serif; font-style:italic;
+    font-size:clamp(1.25rem, 2.4vw, 1.7rem); color:var(--parchment);
+    max-width:38ch; margin:0 auto;
+  }
+  .proof .who{ margin-top:18px; font-family:'Space Mono', monospace; font-size:0.76rem; color:var(--amber); letter-spacing:0.05em; }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{ text-align:center; padding:100px 0; }
+  .final-cta h2{ max-width:22ch; margin:0 auto 18px; }
+  .final-cta p{ max-width:44ch; margin:0 auto 36px; color:var(--parchment-dim); }
+
+  footer{
+    border-top:1px solid var(--parchment-faint);
+    padding:34px 0;
+    font-family:'Space Mono', monospace;
+    font-size:0.76rem;
+    color:var(--parchment-faint);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  }
+  footer .brand{ font-size:0.98rem; }
+
+  :focus-visible{ outline:2px solid var(--amber); outline-offset:3px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <div class="brand">EasyLand<span>X</span></div>
+    <a class="nav-cta" href="https://easylandx.com" target="_blank" rel="noopener">Get your page</a>
+  </nav>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Psycho-logic, not spec sheets</div>
+      <h1>Nobody buys a landing page. They buy what it makes them <em>feel</em>.</h1>
+      <p class="hero-sub">Most agencies sell you load times and SEO scores — logical answers to a psychological question. EasyLandX builds pages around the real reason a stranger decides to trust you in eight seconds. That's not decoration. That's the whole job.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Turn visitors into gold →</a>
+        <span class="hero-note">Live in days · Priced to make sense · Built to convert</span>
+      </div>
+    </div>
+    <div class="circle-wrap" aria-hidden="true">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="200" r="150" fill="none" stroke="#F5A623" stroke-width="1" opacity="0.55"/>
+        <g class="ring-slow">
+          <circle cx="200" cy="200" r="118" fill="none" stroke="#F1E6C9" stroke-width="1" opacity="0.35" stroke-dasharray="2 8"/>
+        </g>
+        <g class="ring-slow-rev">
+          <polygon points="200,90 292,255 108,255" fill="none" stroke="#F5A623" stroke-width="1.2" opacity="0.7"/>
+        </g>
+        <g class="ring-slow">
+          <polygon points="200,310 108,145 292,145" fill="none" stroke="#F1E6C9" stroke-width="1" opacity="0.4"/>
+        </g>
+        <circle cx="200" cy="200" r="46" fill="none" stroke="#F5A623" stroke-width="1.4"/>
+        <text x="200" y="207" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="18" font-style="italic" fill="#F1E6C9">psycho-logic</text>
+      </svg>
+    </div>
+  </header>
+</div>
+
+<section id="formulary">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The EasyLandX formulary</div>
+      <h2>Four transmutations, borrowed from Rory Sutherland</h2>
+      <p><em>Alchemy</em> argues that the biggest wins come from reframing, not rebuilding. We apply the same four moves to every page we build.</p>
+    </div>
+
+    <div class="formulary">
+      <div class="formula">
+        <div class="formula-eq">
+          <span class="from">Feature list</span>
+          <span class="arrow">↦</span>
+          Real reason
+        </div>
+        <div class="formula-body">
+          <h3>Write for the real reason, not the logical excuse</h3>
+          <p>Ask customers why they buy and they'll hand you a rational cover story. We don't write your headline around specs — we write it around the status, relief, or ambition actually driving the click, then let the features back it up underneath.</p>
+        </div>
+      </div>
+
+      <div class="formula">
+        <div class="formula-eq">
+          <span class="from">Wrong baseline</span>
+          <span class="arrow">↦</span>
+          Right comparison
+        </div>
+        <div class="formula-body">
+          <h3>Reframe what your price is compared against</h3>
+          <p>A landing page priced against a free template looks expensive. Priced against a missed sale, a churned lead, or an agency invoice, it looks like the cheapest decision you'll make all quarter. We build the page — and the framing — around the comparison that actually favors you.</p>
+        </div>
+      </div>
+
+      <div class="formula">
+        <div class="formula-eq">
+          <span class="from">Slow perception</span>
+          <span class="arrow">↦</span>
+          Fixed experience
+        </div>
+        <div class="formula-body">
+          <h3>Fix the feeling of friction, not just the infrastructure</h3>
+          <p>You don't always need a rebuild — you need the waiting removed. A visible launch timeline, instant previews, no back-and-forth with a developer: we fix the experience of getting a page live, which is usually the actual pain point.</p>
+        </div>
+      </div>
+
+      <div class="formula">
+        <div class="formula-eq">
+          <span class="from">Cheap look</span>
+          <span class="arrow">↦</span>
+          Visible intent
+        </div>
+        <div class="formula-body">
+          <h3>Let quality signal that you're serious</h3>
+          <p>People subconsciously read a well-made page as proof a business intends to stick around. A considered layout and clean copy do real sales work before anyone reads a word — it's the cheapest trust signal you can buy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proof-section">
+  <div class="proof">
+    <div class="wrap">
+      <p>"If there were a logical answer to a problem, we would have already found it."</p>
+      <div class="who">— from Alchemy, on why the obvious fix is rarely the one that works</div>
+    </div>
+  </div>
+</section>
+
+<section id="maxims">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">From the alchemist's notebook</div>
+      <h2>Six maxims we design pages by</h2>
+      <p>Rapid-fire counter-intuitions, borrowed straight from the book, that quietly shape every page EasyLandX ships.</p>
+    </div>
+    <div class="maxims">
+      <div class="maxim">Don't design for the average visitor — the average visitor does not exist.<span>Principle 02</span></div>
+      <div class="maxim">A change in perspective is worth eighty IQ points.<span>Principle 05</span></div>
+      <div class="maxim">Never solve a problem with infrastructure if you can solve it with psychology.<span>Principle 08</span></div>
+      <div class="maxim">People don't want what they say they want, and they don't say what they want.<span>Principle 10</span></div>
+      <div class="maxim">Friction can be a good thing, if it makes the experience feel earned.<span>Principle 09</span></div>
+      <div class="maxim">Dare to look stupid. Truly original ideas often look ridiculous, at first.<span>Principle 11</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <div class="kicker" style="text-align:center;">Ready when you are</div>
+    <h2>Give your page the psycho-logic it's missing</h2>
+    <p>No templates, no six-week build. Just a fast, affordable landing page written around the real reason people say yes.</p>
+    <a class="btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Get your EasyLandX page →</a>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <div class="brand">EasyLand<span style="color:var(--amber);">X</span></div>
+    <div>Affordable, conversion-focused landing pages, built on a little bit of alchemy.</div>
+  </footer>
+</div>
+
+<script>
+  const formulas = document.querySelectorAll('.formula');
+  const io = new IntersectionObserver((items)=>{
+    items.forEach(item=>{
+      if(item.isIntersecting){
+        item.target.classList.add('in-view');
+        io.unobserve(item.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  formulas.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

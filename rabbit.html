@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Built to Bounce Back</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #0B1E36;
+    --navy-deep: #071322;
+    --navy-raise: #122A48;
+    --green: #17B978;
+    --green-dim: #0E7A50;
+    --ledger: #F4F1E8;
+    --ledger-dim: rgba(244,241,232,0.62);
+    --ledger-faint: rgba(244,241,232,0.14);
+    --ledger-line: rgba(244,241,232,0.09);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--navy);
+    color:var(--ledger-dim);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+    background-image:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 43px,
+        var(--ledger-line) 43px,
+        var(--ledger-line) 44px
+      );
+  }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:28px 0;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-size:1.3rem;
+    color:var(--ledger);
+    letter-spacing:0.01em;
+  }
+  .brand span{ color:var(--green); }
+  .nav-cta{
+    border:1px solid var(--ledger-faint);
+    padding:9px 18px;
+    border-radius:2px;
+    font-size:0.82rem;
+    font-family:'IBM Plex Mono', monospace;
+    text-decoration:none;
+    color:var(--ledger);
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .nav-cta:hover{ border-color:var(--green); color:var(--green); }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:96px 0 120px;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--green);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:26px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;
+    height:1px;
+    background:var(--green);
+    display:inline-block;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(2.4rem, 5.4vw, 4.4rem);
+    color:var(--ledger);
+    line-height:1.06;
+    max-width:16ch;
+  }
+  h1 em{
+    font-style:italic;
+    color:var(--green);
+  }
+  .hero-sub{
+    margin-top:28px;
+    max-width:52ch;
+    font-size:1.08rem;
+    color:var(--ledger-dim);
+  }
+  .hero-actions{
+    margin-top:44px;
+    display:flex;
+    align-items:center;
+    gap:22px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:var(--green);
+    color:var(--navy-deep);
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:500;
+    font-size:0.92rem;
+    padding:16px 30px;
+    border-radius:2px;
+    text-decoration:none;
+    display:inline-block;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    box-shadow:0 0 0 rgba(23,185,120,0);
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    background:#22CE86;
+    box-shadow:0 10px 30px -8px rgba(23,185,120,0.55);
+  }
+  .hero-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--ledger-faint);
+  }
+
+  /* ---------- LEDGER STAMP (signature element) ---------- */
+  .stamp-rail{
+    position:absolute;
+    right:32px;
+    top:100px;
+    width:150px;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--green);
+    border:1.5px solid var(--green);
+    padding:14px 6px;
+    border-radius:3px;
+    transform:rotate(6deg);
+    opacity:0.85;
+    letter-spacing:0.08em;
+    font-size:0.72rem;
+  }
+  .stamp-rail strong{
+    display:block;
+    font-size:1rem;
+    margin-bottom:4px;
+  }
+  @media (max-width:760px){ .stamp-rail{ display:none; } }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:88px 0; border-top:1px solid var(--ledger-line); }
+  .section-head{ max-width:60ch; margin-bottom:56px; }
+  .kicker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.76rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--green);
+    margin-bottom:16px;
+  }
+  h2{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(1.7rem, 3.2vw, 2.4rem);
+    color:var(--ledger);
+  }
+  .section-head p{
+    margin-top:16px;
+    color:var(--ledger-dim);
+    font-size:1.02rem;
+  }
+
+  /* ---------- LEDGER ENTRIES (4 pillars) ---------- */
+  .ledger{
+    border-top:1px solid var(--ledger-faint);
+  }
+  .entry{
+    display:grid;
+    grid-template-columns:64px 1fr 190px;
+    gap:28px;
+    align-items:start;
+    padding:32px 0;
+    border-bottom:1px solid var(--ledger-faint);
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .entry.in-view{ opacity:1; transform:translateY(0); }
+  .entry-no{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--green);
+    font-size:0.85rem;
+    padding-top:4px;
+  }
+  .entry-body h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.32rem;
+    color:var(--ledger);
+    margin-bottom:10px;
+  }
+  .entry-body p{ color:var(--ledger-dim); font-size:0.98rem; max-width:56ch; }
+  .entry-tally{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    text-align:right;
+    color:var(--ledger-faint);
+    padding-top:6px;
+  }
+  .entry-tally .credit{ color:var(--green); display:block; margin-top:4px; }
+
+  @media (max-width:700px){
+    .entry{ grid-template-columns:40px 1fr; }
+    .entry-tally{ grid-column:1 / -1; text-align:left; margin-top:8px; }
+  }
+
+  /* ---------- TAKEAWAYS ---------- */
+  .takeaways{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--ledger-line);
+    border:1px solid var(--ledger-line);
+  }
+  .takeaway{
+    background:var(--navy);
+    padding:36px;
+  }
+  .takeaway .kicker{ margin-bottom:12px; }
+  .takeaway h3{
+    font-family:'Fraunces', serif;
+    font-size:1.2rem;
+    color:var(--ledger);
+    font-weight:500;
+    margin-bottom:12px;
+  }
+  .takeaway p{ color:var(--ledger-dim); font-size:0.95rem; }
+  @media (max-width:700px){ .takeaways{ grid-template-columns:1fr; } }
+
+  /* ---------- QUOTE / PROOF STRIP ---------- */
+  .proof{
+    background:var(--navy-raise);
+    border-top:1px solid var(--ledger-line);
+    border-bottom:1px solid var(--ledger-line);
+  }
+  .proof .wrap{ padding:64px 32px; text-align:center; }
+  .proof p{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:clamp(1.3rem, 2.6vw, 1.8rem);
+    color:var(--ledger);
+    max-width:36ch;
+    margin:0 auto;
+  }
+  .proof .who{
+    margin-top:20px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--green);
+    letter-spacing:0.05em;
+  }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{ text-align:center; padding:110px 0; }
+  .final-cta h2{ max-width:20ch; margin:0 auto 20px; }
+  .final-cta p{ max-width:44ch; margin:0 auto 40px; color:var(--ledger-dim); }
+
+  footer{
+    border-top:1px solid var(--ledger-line);
+    padding:36px 0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--ledger-faint);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  footer .brand{ font-size:1rem; }
+
+  :focus-visible{ outline:2px solid var(--green); outline-offset:3px; }
+
+  @media (prefers-reduced-motion:reduce){
+    .entry{ transition:none; opacity:1; transform:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <div class="brand">EasyLand<span>X</span></div>
+    <a class="nav-cta" href="https://easylandx.com" target="_blank" rel="noopener">Get your page</a>
+  </nav>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="stamp-rail">
+      <strong>REDEEMED</strong>
+      NOT<br>LIQUIDATED
+    </div>
+    <div class="eyebrow">Built for the comeback</div>
+    <h1>Every business hits the rabbit hole. <em>EasyLandX</em> is how you climb back out.</h1>
+    <p class="hero-sub">Wall Street learned it the hard way in 2008: you don't survive a crisis with a flawless plan — you survive it by moving fast, cutting the fat, and telling your people the truth. A landing page is the cheapest, fastest way to do all three. That's the only thing we build.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Launch your EasyLandX page →</a>
+      <span class="hero-note">Live in days · No retainer · No template lock-in</span>
+    </div>
+  </div>
+</header>
+
+<section id="playbook">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The four-entry ledger</div>
+      <h2>What a crisis actually teaches a small business</h2>
+      <p>Anthony Scaramucci nearly lost his fund in 2008. He rebuilt it on four rules. We built EasyLandX so any small business can run the same playbook — without the hedge fund.</p>
+    </div>
+
+    <div class="ledger">
+      <div class="entry">
+        <div class="entry-no">01</div>
+        <div class="entry-body">
+          <h3>Face it in public, first</h3>
+          <p>The instinct in a downturn is to go quiet. That's the mistake. Scaramucci's rule was to call clients before they called him. Your landing page is that call, automated: an honest, current statement of who you are and what you offer, live the moment things change — not three weeks after your last update.</p>
+        </div>
+        <div class="entry-tally">
+          DR: silence &amp; delay
+          <span class="credit">CR: same-day transparency</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-no">02</div>
+        <div class="entry-body">
+          <h3>Protect your cash, ruthlessly</h3>
+          <p>Businesses rarely die from a bad idea — they die from running out of runway. A bloated website with a developer on retainer is fixed overhead you can't afford in a crunch. EasyLandX pages are priced to survive a bad quarter, so your marketing line item never becomes the reason you can't make payroll.</p>
+        </div>
+        <div class="entry-tally">
+          DR: agency retainers
+          <span class="credit">CR: flat, affordable pages</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-no">03</div>
+        <div class="entry-body">
+          <h3>Speak straight to your core</h3>
+          <p>Scaramucci held his team together by over-communicating, not by projecting false confidence. Your landing page does the same job for your customers and your best people: one clear place that says what's true right now, so no one is left guessing or filling the silence with worse assumptions.</p>
+        </div>
+        <div class="entry-tally">
+          DR: mixed messages
+          <span class="credit">CR: one source of truth</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-no">04</div>
+        <div class="entry-body">
+          <h3>Pivot on the same foundation</h3>
+          <p>When the old model stops working, you don't rebuild from zero — you redeploy what you already have toward what's working now. That's exactly what EasyLandX is built for: swap the offer, the copy, the audience, and relaunch in days, not months, on infrastructure you already own.</p>
+        </div>
+        <div class="entry-tally">
+          DR: full rebuilds
+          <span class="credit">CR: fast, cheap relaunch</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proof-section">
+  <div class="proof">
+    <div class="wrap">
+      <p>"A business doesn't fail because the idea was bad. It fails because it ran out of cash and out of trust at the same time."</p>
+      <div class="who">— adapted from Hopping Over the Rabbit Hole, on the case for building lean and telling the truth</div>
+    </div>
+  </div>
+</section>
+
+<section id="moat">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The relationship moat</div>
+      <h2>Your page is the front door to every relationship you're building</h2>
+      <p>Long-term business survival is relational, not transactional — and every relationship starts at the same door: the page someone lands on before they decide to trust you.</p>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaway">
+        <div class="kicker">Build the moat</div>
+        <h3>Deliver value before you need anything back</h3>
+        <p>The clients and partners who show up for you in a crisis are the ones you gave value to first. Your landing page is the easiest place to start: a clear, useful, no-pressure first impression, not a hard pitch.</p>
+      </div>
+      <div class="takeaway">
+        <div class="kicker">Own the scars</div>
+        <h3>Authenticity is leverage, not liability</h3>
+        <p>A polished, generic page builds no trust at all. Say plainly what you do, who it's for, and what changed since the crisis — that honesty is what makes someone want to back your next move.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <div class="kicker" style="text-align:center;">Ready when you are</div>
+    <h2>Your comeback needs a front door. Let's build it.</h2>
+    <p>No templates. No long build. Just a fast, affordable, conversion-focused page that tells your story straight — while you handle the rest.</p>
+    <a class="btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Get your EasyLandX page →</a>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <div class="brand">EasyLand<span style="color:var(--green);">X</span></div>
+    <div>Affordable, conversion-focused landing pages for businesses built to bounce back.</div>
+  </footer>
+</div>
+
+<script>
+  const entries = document.querySelectorAll('.entry');
+  const io = new IntersectionObserver((items)=>{
+    items.forEach(item=>{
+      if(item.isIntersecting){
+        item.target.classList.add('in-view');
+        io.unobserve(item.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  entries.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
