@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — The Slight Edge of Landing Pages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest-deep:#0B2318;
+    --forest:#173A28;
+    --forest-light:#245038;
+    --gold:#D4AF37;
+    --gold-bright:#EFCB68;
+    --offwhite:#F6F2E7;
+    --offwhite-dim:#CFC9B6;
+    --line:rgba(246,242,231,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--forest);
+    color:var(--offwhite);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--offwhite);
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.72rem;
+    color:var(--gold);
+  }
+  a{color:inherit;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 32px;}
+  section{padding:110px 0;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,35,24,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.3rem;
+    letter-spacing:-0.01em;
+  }
+  .logo span{color:var(--gold);}
+  .nav-cta{
+    display:inline-block;
+    padding:10px 20px;
+    border-radius:3px;
+    background:var(--gold);
+    color:var(--forest-deep);
+    font-weight:600;
+    font-size:0.88rem;
+    text-decoration:none;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .nav-cta:hover{background:var(--gold-bright); transform:translateY(-1px);}
+
+  /* HERO */
+  .hero{
+    padding:130px 0 90px;
+    position:relative;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:60px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 4.4vw, 3.6rem);
+    line-height:1.08;
+    margin:18px 0 24px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold-bright);
+  }
+  .hero p.lead{
+    color:var(--offwhite-dim);
+    font-size:1.08rem;
+    max-width:46ch;
+    margin-bottom:34px;
+  }
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--gold);
+    color:var(--forest-deep);
+    font-weight:600;
+    padding:15px 28px;
+    border-radius:3px;
+    text-decoration:none;
+    font-size:0.98rem;
+    transition:background .2s ease, transform .2s ease, box-shadow .2s ease;
+    box-shadow:0 0 0 1px rgba(212,175,55,0.0);
+  }
+  .btn-primary:hover{
+    background:var(--gold-bright);
+    transform:translateY(-2px);
+    box-shadow:0 10px 24px -8px rgba(212,175,55,0.5);
+  }
+  .btn-primary svg{width:16px; height:16px;}
+  .hero-note{
+    margin-top:16px;
+    font-size:0.82rem;
+    color:var(--offwhite-dim);
+  }
+
+  /* compound curve svg */
+  .curve-card{
+    background:var(--forest-light);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:28px 26px 20px;
+  }
+  .curve-card .curve-label{
+    display:flex; justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--offwhite-dim);
+    margin-bottom:14px;
+  }
+  #curvePath{
+    fill:none;
+    stroke:var(--gold);
+    stroke-width:2.5;
+    stroke-linecap:round;
+    stroke-dasharray:900;
+    stroke-dashoffset:900;
+    animation:draw 2.4s ease forwards 0.4s;
+  }
+  #curveFill{opacity:0; animation:fadeIn 1.2s ease forwards 1.6s;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes fadeIn{to{opacity:1;}}
+  .curve-readout{
+    display:flex; justify-content:space-between;
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px solid var(--line);
+  }
+  .curve-readout div{text-align:left;}
+  .curve-readout .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:1.4rem;
+    color:var(--gold-bright);
+  }
+  .curve-readout .cap{
+    font-size:0.72rem;
+    color:var(--offwhite-dim);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+
+  /* section headers */
+  .sec-head{max-width:640px; margin-bottom:56px;}
+  .sec-head h2{font-size:clamp(1.7rem, 3vw, 2.3rem); margin-top:10px;}
+  .sec-head p{color:var(--offwhite-dim); margin-top:14px; font-size:1.02rem;}
+
+  /* alt bg */
+  .alt{background:var(--forest-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+
+  /* two-path */
+  .paths{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .path-card{
+    background:var(--forest);
+    padding:34px 30px;
+  }
+  .path-card.down{background:var(--forest-deep);}
+  .path-card .pct{
+    font-family:'Fraunces', serif;
+    font-size:2.6rem;
+    font-weight:600;
+  }
+  .path-card.up .pct{color:var(--gold-bright);}
+  .path-card.down .pct{color:var(--offwhite-dim);}
+  .path-card h3{font-size:1.05rem; margin:6px 0 12px;}
+  .path-card p{color:var(--offwhite-dim); font-size:0.95rem;}
+
+  /* daily disciplines list */
+  .disciplines{
+    display:grid;
+    gap:0;
+    border-top:1px solid var(--line);
+  }
+  .discipline-row{
+    display:grid;
+    grid-template-columns:220px 1fr 1fr;
+    gap:24px;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .discipline-row .name{font-weight:600; font-size:1rem; color:var(--offwhite);}
+  .discipline-row .colhead{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--gold);
+    margin-bottom:6px;
+    display:block;
+  }
+  .discipline-row p{font-size:0.9rem; color:var(--offwhite-dim);}
+
+  /* allies grid */
+  .allies{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .ally{
+    background:var(--forest);
+    padding:32px;
+  }
+  .ally .icon{
+    width:34px; height:34px;
+    margin-bottom:16px;
+    color:var(--gold);
+  }
+  .ally h3{font-size:1.1rem; margin-bottom:8px;}
+  .ally p{color:var(--offwhite-dim); font-size:0.92rem;}
+
+  /* framework steps */
+  .steps{counter-reset:stepnum;}
+  .step{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:22px;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .step:first-child{border-top:1px solid var(--line);}
+  .step .stepnum{
+    font-family:'Fraunces', serif;
+    font-size:1.8rem;
+    color:var(--gold);
+    opacity:0.55;
+  }
+  .step h3{font-size:1.08rem; margin-bottom:6px;}
+  .step p{color:var(--offwhite-dim); font-size:0.94rem; max-width:56ch;}
+
+  /* closing cta */
+  .closing{
+    text-align:center;
+    padding:130px 0 140px;
+    background:linear-gradient(180deg, var(--forest) 0%, var(--forest-deep) 100%);
+  }
+  .closing .eyebrow{display:block; margin-bottom:16px;}
+  .closing h2{
+    font-size:clamp(2rem, 4vw, 2.8rem);
+    max-width:16ch;
+    margin:0 auto 22px;
+  }
+  .closing p{color:var(--offwhite-dim); max-width:48ch; margin:0 auto 36px;}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:36px 0;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:0.82rem;
+    color:var(--offwhite-dim);
+  }
+  footer .logo{font-size:1rem;}
+
+  @media (max-width: 860px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .paths{grid-template-columns:1fr;}
+    .allies{grid-template-columns:1fr;}
+    .discipline-row{grid-template-columns:1fr; gap:6px;}
+    section{padding:76px 0;}
+  }
+
+  /* scroll reveal */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  :focus-visible{outline:2px solid var(--gold-bright); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">easyland<span>x</span></div>
+    <a class="nav-cta" href="https://easylandx.com/get-started" target="_blank" rel="noopener">Get Started</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Landing pages, compounded daily</span>
+      <h1>Great landing pages aren't built in a leap. <em>They're built in an edge.</em></h1>
+      <p class="lead">easylandx turns small, five-minute edits — a sharper headline, a faster load, a clearer button — into landing pages that quietly outperform everyone still waiting for the big redesign.</p>
+      <a class="btn-primary" href="https://easylandx.com/get-started" target="_blank" rel="noopener">
+        Build your first page with easylandx
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+      <p class="hero-note">No redesign required. Start with the page you have today.</p>
+    </div>
+
+    <div class="curve-card">
+      <div class="curve-label">
+        <span>CONVERSION RATE</span>
+        <span>DAY 1 → DAY 30</span>
+      </div>
+      <svg viewBox="0 0 340 160" width="100%" height="auto" aria-hidden="true">
+        <defs>
+          <linearGradient id="fillGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path id="curveFill" d="M10,150 C120,148 220,140 260,110 C290,88 300,50 320,15 L320,155 L10,155 Z" fill="url(#fillGrad)"/>
+        <path id="curvePath" d="M10,150 C120,148 220,140 260,110 C290,88 300,50 320,15"/>
+      </svg>
+      <div class="curve-readout">
+        <div>
+          <div class="num">+2%</div>
+          <div class="cap">Day 1 edit</div>
+        </div>
+        <div>
+          <div class="num">+2%</div>
+          <div class="cap">Day 15 edit</div>
+        </div>
+        <div>
+          <div class="num">+2%</div>
+          <div class="cap">Day 30 edit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The myth of the perfect page</span>
+      <h2>There is no quantum leap. There's just Tuesday's edit.</h2>
+      <p>Every founder waits for the "real" redesign — the one with the new brand, the new photography, the new everything. Meanwhile, the page sitting live right now is losing visitors it could easily be keeping. easylandx is built on a different premise: the page you ship today, refined every day, will beat the perfect page you never launch.</p>
+    </div>
+
+    <div class="paths reveal">
+      <div class="path-card up">
+        <div class="pct">5%</div>
+        <h3>Ship, then sharpen</h3>
+        <p>A small group of builders publish an imperfect page this week, then spend ten minutes a day making it 1% clearer. Within a month, the page barely resembles where it started — and it converts like it.</p>
+      </div>
+      <div class="path-card down">
+        <div class="pct">95%</div>
+        <h3>Wait for the redesign</h3>
+        <p>Most pages sit in a drafts folder waiting to be "ready." No traffic, no data, no compounding — just a perfect page that never meets a single visitor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Easy to do. Easy not to do.</span>
+      <h2>The edits that build a page nobody skips — until they do.</h2>
+      <p>None of these take more than a few minutes in easylandx. None of them will sink your page if you skip them today. That's exactly why most people skip them — and why the pages that don't are the ones still converting six months from now.</p>
+    </div>
+
+    <div class="disciplines reveal">
+      <div class="discipline-row">
+        <div class="name">Headline test</div>
+        <div><span class="colhead">Easy to do</span><p>Swap one word in your headline and let easylandx show you which version visitors respond to.</p></div>
+        <div><span class="colhead">Easy to skip</span><p>Leave the first headline you wrote in place, forever, because it "seems fine."</p></div>
+      </div>
+      <div class="discipline-row">
+        <div class="name">Load speed pass</div>
+        <div><span class="colhead">Easy to do</span><p>Compress one hero image. Thirty seconds, done inside the editor.</p></div>
+        <div><span class="colhead">Easy to skip</span><p>Let the page slow down, one uncompressed asset at a time, until visitors bounce before it loads.</p></div>
+      </div>
+      <div class="discipline-row">
+        <div class="name">Button clarity</div>
+        <div><span class="colhead">Easy to do</span><p>Rewrite your button from "Submit" to what it actually does — "Get my quote."</p></div>
+        <div><span class="colhead">Easy to skip</span><p>Leave a generic label on the one element every visitor has to click.</p></div>
+      </div>
+      <div class="discipline-row">
+        <div class="name">Read the numbers</div>
+        <div><span class="colhead">Easy to do</span><p>Open the easylandx dashboard for two minutes and see what changed this week.</p></div>
+        <div><span class="colhead">Easy to skip</span><p>Never look — and keep guessing at what's actually working.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Four allies, built into the workflow</span>
+      <h2>Everything easylandx nudges you toward, every time you log in.</h2>
+    </div>
+
+    <div class="allies reveal">
+      <div class="ally">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 18L10 12L14 16L20 6"/><path d="M14 6h6v6"/></svg>
+        <h3>Momentum</h3>
+        <p>A weekly publish streak keeps your page moving instead of stalled in a drafts tab. The hardest edit is always the first one — easylandx keeps that one small.</p>
+      </div>
+      <div class="ally">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+        <h3>Completion</h3>
+        <p>Unfinished sections and half-written copy quietly drain a page's performance. A simple checklist closes every open loop before you hit publish.</p>
+      </div>
+      <div class="ally">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6z"/><circle cx="12" cy="12" r="2.6"/></svg>
+        <h3>Reflection</h3>
+        <p>A weekly digest shows exactly which edits moved your conversion rate — and which ones didn't. No guessing, no vanity metrics.</p>
+      </div>
+      <div class="ally">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v4M5 7l2.5 2.5M19 7l-2.5 2.5M4 17h16M7 17a5 5 0 0110 0"/></svg>
+        <h3>Celebration</h3>
+        <p>Every milestone — first hundred visitors, first lift in conversion — gets a small, visible marker on your dashboard. Small wins, acknowledged, repeat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The four-step framework</span>
+      <h2>How every page inside easylandx gets built.</h2>
+    </div>
+
+    <div class="steps reveal">
+      <div class="step">
+        <div class="stepnum">01</div>
+        <div>
+          <h3>Write the goal down</h3>
+          <p>Every page starts with one number — the conversion rate you're aiming for, and the date you want to hit it by. easylandx pins it to your dashboard so it's the first thing you see.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="stepnum">02</div>
+        <div>
+          <h3>Look at it every day</h3>
+          <p>Your goal and your current numbers sit side by side, every time you log in — so the gap between them stays impossible to ignore.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="stepnum">03</div>
+        <div>
+          <h3>Start with a plan, not a perfect page</h3>
+          <p>Pick a template, drop in your copy, and publish. It won't be finished. It just needs to be live so the edits that follow have something to improve.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="stepnum">04</div>
+        <div>
+          <h3>Pay the small price, daily</h3>
+          <p>Ten minutes today. A different headline tomorrow. That's the entire cost — paid consistently, it's the only cost that compounds in your favor.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <span class="eyebrow">Start where you are</span>
+    <h2>Your best landing page isn't the one you'll build someday. It's the one you edit today.</h2>
+    <p>easylandx gives you the page, the data, and the daily nudge. The compounding is up to you.</p>
+    <a class="btn-primary" href="https://easylandx.com/get-started" target="_blank" rel="noopener">
+      Get started with easylandx
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">easyland<span style="color:var(--gold);">x</span></div>
+    <div>&copy; 2026 easylandx. Small pages, compounded.</div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.15});
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

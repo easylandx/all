@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Build the Page, Not the Panic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#F4551D;
+    --orange-deep:#C93E0F;
+    --charcoal:#262420;
+    --charcoal-2:#332F29;
+    --grey:#8A8378;
+    --grey-line:rgba(38,36,32,0.18);
+    --grey-line-dark:rgba(251,243,227,0.14);
+    --cream:#FBF3E3;
+    --gold:#D9A441;
+    --gold-bright:#F0C572;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--orange);
+    color:var(--charcoal);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.015em;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.13em;
+    font-size:0.72rem;
+    color:var(--charcoal);
+    opacity:0.75;
+  }
+  .eyebrow.on-dark{color:var(--gold-bright); opacity:1;}
+  a{color:inherit;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 32px;}
+  section{padding:104px 0;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(244,85,29,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--grey-line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .logo{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:1.3rem;
+    color:var(--charcoal);
+  }
+  .logo span{color:var(--gold);}
+  .nav-cta{
+    display:inline-block;
+    padding:10px 20px;
+    border-radius:3px;
+    background:var(--charcoal);
+    color:var(--gold-bright);
+    font-weight:600;
+    font-size:0.86rem;
+    text-decoration:none;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .nav-cta:hover{background:var(--charcoal-2); transform:translateY(-1px);}
+
+  /* HERO */
+  .hero{padding:120px 0 90px;}
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.3rem, 4.2vw, 3.4rem);
+    line-height:1.1;
+    margin:18px 0 22px;
+    color:var(--charcoal);
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--cream);
+    -webkit-text-stroke:1px var(--charcoal);
+  }
+  .hero p.lead{
+    color:var(--charcoal);
+    opacity:0.82;
+    font-size:1.06rem;
+    max-width:46ch;
+    margin-bottom:32px;
+  }
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--charcoal);
+    color:var(--gold-bright);
+    font-weight:600;
+    padding:15px 28px;
+    border-radius:3px;
+    text-decoration:none;
+    font-size:0.98rem;
+    transition:background .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary:hover{
+    background:var(--charcoal-2);
+    transform:translateY(-2px);
+    box-shadow:0 10px 26px -8px rgba(38,36,32,0.4);
+  }
+  .btn-primary svg{width:16px; height:16px;}
+  .hero-note{
+    margin-top:16px;
+    font-size:0.82rem;
+    color:var(--charcoal);
+    opacity:0.68;
+  }
+
+  /* switch visual */
+  .switch-card{
+    background:var(--charcoal);
+    border-radius:6px;
+    padding:30px 28px;
+    color:var(--cream);
+  }
+  .switch-card .switch-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--grey);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    margin-bottom:22px;
+  }
+  .switch-row{
+    display:flex; align-items:center; gap:16px;
+    padding:14px 0;
+    border-bottom:1px solid var(--grey-line-dark);
+  }
+  .switch-row:last-of-type{border-bottom:none;}
+  .switch-track{
+    width:46px; height:24px; border-radius:20px;
+    position:relative; flex-shrink:0;
+  }
+  .switch-track.off{background:rgba(251,243,227,0.14);}
+  .switch-track.on{background:var(--orange);}
+  .switch-knob{
+    position:absolute; top:3px; width:18px; height:18px; border-radius:50%;
+    background:var(--cream);
+    transition:left .2s ease;
+  }
+  .switch-track.off .switch-knob{left:3px;}
+  .switch-track.on .switch-knob{left:25px; background:var(--charcoal);}
+  .switch-text .t1{font-size:0.94rem; font-weight:500;}
+  .switch-text .t2{font-size:0.8rem; color:var(--grey); margin-top:2px;}
+
+  /* section headers */
+  .sec-head{max-width:660px; margin-bottom:52px;}
+  .sec-head h2{font-size:clamp(1.7rem, 3vw, 2.25rem); margin-top:10px;}
+  .sec-head p{opacity:0.82; margin-top:14px; font-size:1.02rem;}
+
+  /* dark alt sections */
+  .dark{background:var(--charcoal); color:var(--cream);}
+  .dark .sec-head p{color:var(--cream); opacity:0.72;}
+
+  /* myths grid */
+  .myths{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--grey-line-dark);
+    border:1px solid var(--grey-line-dark);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .myth-card{
+    background:var(--charcoal-2);
+    padding:30px 28px;
+  }
+  .myth-card .num{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--gold);
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+  }
+  .myth-card .myth{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.08rem;
+    font-weight:600;
+    margin:8px 0 10px;
+    color:var(--cream);
+  }
+  .myth-card .fact{
+    font-size:0.9rem;
+    color:var(--grey);
+  }
+  .myth-card .fact b{color:var(--gold-bright); font-weight:600;}
+
+  /* skills grid (6 ACT skills) */
+  .skills{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--grey-line);
+    border:1px solid var(--grey-line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .skill{
+    background:var(--orange-deep);
+    padding:28px 26px;
+    color:var(--cream);
+  }
+  .skill .icon{width:30px; height:30px; margin-bottom:14px; color:var(--gold-bright);}
+  .skill h3{font-size:1rem; margin-bottom:8px; color:var(--cream);}
+  .skill p{font-size:0.86rem; color:var(--cream); opacity:0.78;}
+
+  /* observing self split */
+  .split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--grey-line-dark);
+    border:1px solid var(--grey-line-dark);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .split-card{padding:34px 30px;}
+  .split-card.thinking{background:var(--charcoal-2);}
+  .split-card.observing{background:var(--gold); color:var(--charcoal);}
+  .split-card .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    margin-bottom:16px;
+    display:block;
+  }
+  .split-card.thinking .label{color:var(--grey);}
+  .split-card.observing .label{color:var(--charcoal); opacity:0.65;}
+  .split-card blockquote{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.15rem;
+    line-height:1.4;
+    margin-bottom:14px;
+  }
+  .split-card.thinking blockquote{color:var(--cream);}
+  .split-card p.small{font-size:0.86rem;}
+  .split-card.thinking p.small{color:var(--grey);}
+  .split-card.observing p.small{opacity:0.75;}
+
+  /* values list */
+  .values{border-top:1px solid var(--grey-line-dark);}
+  .value-row{
+    display:grid;
+    grid-template-columns:44px 1fr;
+    gap:20px;
+    padding:24px 0;
+    border-bottom:1px solid var(--grey-line-dark);
+    align-items:baseline;
+  }
+  .value-row .mark{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.4rem;
+    color:var(--gold);
+  }
+  .value-row h3{font-size:1.02rem; margin-bottom:4px; color:var(--cream);}
+  .value-row p{font-size:0.9rem; color:var(--grey);}
+
+  /* closing */
+  .closing{
+    text-align:center;
+    padding:130px 0 140px;
+    background:var(--orange-deep);
+    color:var(--cream);
+  }
+  .closing .eyebrow{display:block; margin-bottom:16px; color:var(--gold-bright); opacity:1;}
+  .closing h2{
+    font-size:clamp(2rem, 4vw, 2.7rem);
+    max-width:18ch;
+    margin:0 auto 20px;
+    color:var(--cream);
+  }
+  .closing p{opacity:0.78; max-width:48ch; margin:0 auto 34px;}
+
+  footer{border-top:1px solid var(--grey-line-dark); background:var(--orange-deep); padding:34px 0;}
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:0.82rem; color:var(--cream); opacity:0.7;
+  }
+  footer .logo{font-size:1rem; color:var(--cream);}
+  footer .logo span{color:var(--gold-bright);}
+
+  @media (max-width: 900px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .myths{grid-template-columns:1fr;}
+    .skills{grid-template-columns:1fr 1fr;}
+    .split{grid-template-columns:1fr;}
+    section{padding:72px 0;}
+  }
+  @media (max-width: 560px){
+    .skills{grid-template-columns:1fr;}
+  }
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  :focus-visible{outline:2px solid var(--charcoal); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">easyland<span>x</span></div>
+    <a class="nav-cta" href="https://easylandx.com/get-started" target="_blank" rel="noopener">Get Started</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Stop fighting your bounce rate</span>
+      <h1>Your landing page doesn't need to feel perfect. <em>It needs to ship.</em></h1>
+      <p class="lead">Most builders flip on the perfection switch: they spot one flaw, panic, and freeze the whole launch. easylandx is built around a different move — accept the page you have, look at it clearly, and take the next small action anyway.</p>
+      <a class="btn-primary" href="https://easylandx.com/get-started" target="_blank" rel="noopener">
+        Build your page with easylandx
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+      <p class="hero-note">Publish first. Refine with the page live, not stuck in a draft.</p>
+    </div>
+
+    <div class="switch-card">
+      <div class="switch-label">The Perfection Switch</div>
+      <div class="switch-row">
+        <div class="switch-track on"><div class="switch-knob"></div></div>
+        <div class="switch-text">
+          <div class="t1">Switch on</div>
+          <div class="t2">One flaw spotted → redesign everything → nothing ships</div>
+        </div>
+      </div>
+      <div class="switch-row">
+        <div class="switch-track off"><div class="switch-knob"></div></div>
+        <div class="switch-text">
+          <div class="t1">Switch off — easylandx mode</div>
+          <div class="t2">Flaw noted → page stays live → fixed in the next small pass</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow on-dark">The four myths of the perfect page</span>
+      <h2>What everyone believes about launching a page — and what's actually true.</h2>
+    </div>
+
+    <div class="myths reveal">
+      <div class="myth-card">
+        <div class="num">MYTH 01</div>
+        <div class="myth">A good page converts perfectly from day one.</div>
+        <div class="fact"><b>Fact:</b> Low early conversion is the norm, not a red flag. Every page you admire looked worse in its first week.</div>
+      </div>
+      <div class="myth-card">
+        <div class="num">MYTH 02</div>
+        <div class="myth">If your page isn't converting, something's broken.</div>
+        <div class="fact"><b>Fact:</b> A quiet dashboard is normal early data, not proof your offer or design has failed.</div>
+      </div>
+      <div class="myth-card">
+        <div class="num">MYTH 03</div>
+        <div class="myth">You have to eliminate every flaw before you publish.</div>
+        <div class="fact"><b>Fact:</b> Chasing flawless costs more visitors than any single flaw ever would.</div>
+      </div>
+      <div class="myth-card">
+        <div class="num">MYTH 04</div>
+        <div class="myth">You should be able to control how every visitor reacts.</div>
+        <div class="fact"><b>Fact:</b> You control what you publish and test — not what any one visitor decides. easylandx focuses you on the part you can act on.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Six skills, built into the editor</span>
+      <h2>What easylandx nudges you toward instead of panic.</h2>
+      <p>Each one is a small shift in how you relate to your page — not a bigger to-do list.</p>
+    </div>
+
+    <div class="skills reveal">
+      <div class="skill">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v4M12 16v4M4 12h4M16 12h4"/><circle cx="12" cy="12" r="3"/></svg>
+        <h3>Defusion</h3>
+        <p>"This page isn't good enough" is a thought, not a verdict. Note it, then keep editing.</p>
+      </div>
+      <div class="skill">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12a8 8 0 0116 0"/><path d="M4 12a8 8 0 0016 0" opacity="0.5"/></svg>
+        <h3>Expansion</h3>
+        <p>Let a slow first week exist without hiding the dashboard. Room for a bad number is room to fix it.</p>
+      </div>
+      <div class="skill">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+        <h3>Connection</h3>
+        <p>Judge this week's visitors on this week's page — not last quarter's traffic or next year's rebrand.</p>
+      </div>
+      <div class="skill">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="2.4"/></svg>
+        <h3>Observing self</h3>
+        <p>Your analytics view watches the numbers without judging them. That's the vantage point to build from.</p>
+      </div>
+      <div class="skill">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l2.4 5.5L20 9l-4.3 3.9L17 19l-5-3-5 3 1.3-6.1L4 9l5.6-.5z"/></svg>
+        <h3>Values</h3>
+        <p>Set what your page stands for — clarity, honesty, usefulness — not just a conversion target to hit and forget.</p>
+      </div>
+      <div class="skill">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h11M13 6l6 6-6 6"/></svg>
+        <h3>Committed action</h3>
+        <p>One edit, published, this week — repeated, whether or not it feels ready.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow on-dark">Two voices, one dashboard</span>
+      <h2>The doubt in your head vs. what your page is actually doing.</h2>
+    </div>
+
+    <div class="split reveal">
+      <div class="split-card thinking">
+        <span class="label">The thinking self says</span>
+        <blockquote>"Nobody's clicking. This whole page is wrong. Start over."</blockquote>
+        <p class="small">Loud, urgent, and rarely specific about what to actually change.</p>
+      </div>
+      <div class="split-card observing">
+        <span class="label">The easylandx dashboard shows</span>
+        <blockquote>412 visits · 3.1% click-through · headline B testing +0.4%</blockquote>
+        <p class="small">Quiet, exact, and specific enough to act on — no panic required.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Values, not vanity metrics</span>
+      <h2>What we build easylandx pages toward.</h2>
+      <p style="color:var(--charcoal);">Values aren't a finish line — they're the direction every edit should move in.</p>
+    </div>
+
+    <div class="values reveal" style="color:var(--charcoal);">
+      <div class="value-row" style="border-bottom-color:var(--grey-line);">
+        <div class="mark">01</div>
+        <div><h3 style="color:var(--charcoal);">Clarity over cleverness</h3><p style="color:var(--charcoal); opacity:0.68;">A visitor should understand what you offer in the first five seconds, not the fifth read.</p></div>
+      </div>
+      <div class="value-row" style="border-bottom-color:var(--grey-line);">
+        <div class="mark">02</div>
+        <div><h3 style="color:var(--charcoal);">Honesty over hype</h3><p style="color:var(--charcoal); opacity:0.68;">Say what the product actually does. Trust converts better than exaggeration.</p></div>
+      </div>
+      <div class="value-row" style="border-bottom-color:var(--grey-line);">
+        <div class="mark">03</div>
+        <div><h3 style="color:var(--charcoal);">Usefulness over vanity metrics</h3><p style="color:var(--charcoal); opacity:0.68;">Traffic that doesn't help a real visitor isn't a win — build for the person, not the pageview count.</p></div>
+      </div>
+      <div class="value-row">
+        <div class="mark">04</div>
+        <div><h3 style="color:var(--charcoal);">Progress over perfect</h3><p style="color:var(--charcoal); opacity:0.68;">A page that ships and improves beats a page that waits to be flawless.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <span class="eyebrow">Turn the switch off</span>
+    <h2>The page doesn't have to feel ready. It just has to be live.</h2>
+    <p>easylandx gives you the editor, the honest dashboard, and the next small step — every time you log in.</p>
+    <a class="btn-primary" href="https://easylandx.com/get-started" target="_blank" rel="noopener" style="background:var(--gold); color:var(--charcoal);">
+      Get started with easylandx
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">easyland<span>x</span></div>
+    <div>&copy; 2026 easylandx. Publish the page you have.</div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.15});
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

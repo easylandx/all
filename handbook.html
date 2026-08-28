@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — The Landing Page Handbook</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --marble-100:#f4f1e9;
+    --marble-200:#eae4d4;
+    --marble-300:#ddd5bd;
+    --ink-900:#2a2620;
+    --ink-700:#4a4438;
+    --rust-600:#a8461f;
+    --rust-700:#8a3717;
+    --rust-100:#f0d9cc;
+    --olive-600:#5b6b3a;
+    --olive-700:#48582c;
+    --olive-100:#dfe3cd;
+    --line: rgba(42,38,32,0.15);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -5%, rgba(168,70,31,0.05), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 90% 10%, rgba(91,107,58,0.06), transparent 55%),
+      repeating-linear-gradient(100deg, rgba(42,38,32,0.012) 0px, rgba(42,38,32,0.012) 1px, transparent 1px, transparent 90px),
+      var(--marble-100);
+    color:var(--ink-900);
+    font-family:'Source Serif 4', serif;
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+
+  h1,h2,h3{font-family:'Cinzel', serif; font-weight:600; letter-spacing:0.01em;}
+
+  a{color:inherit;}
+
+  .label{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.14em;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(244,241,233,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex; align-items:center; justify-content:space-between; padding:20px 28px; max-width:1040px; margin:0 auto;}
+  .logo{
+    font-family:'Cinzel', serif; font-weight:600; font-size:1.1rem; letter-spacing:0.03em;
+    text-decoration:none; color:var(--ink-900); display:flex; align-items:center; gap:9px;
+  }
+  .logo .mark{
+    width:9px; height:9px; background:var(--rust-600); transform:rotate(45deg);
+  }
+  .nav-cta{
+    background:var(--ink-900); color:var(--marble-100); padding:10px 22px;
+    text-decoration:none; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; font-weight:600;
+    letter-spacing:0.04em; transition:background 0.25s ease;
+  }
+  .nav-cta:hover{background:var(--rust-600);}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:110px 0 80px; text-align:center;}
+  .hero .label{color:var(--rust-600); display:block; margin-bottom:22px;}
+  .hero .label::before, .hero .label::after{content:"—"; margin:0 10px; opacity:0.5;}
+
+  h1.hero-title{
+    font-size:clamp(2.2rem, 5vw, 3.8rem); line-height:1.15; max-width:760px; margin:0 auto;
+    color:var(--ink-900);
+  }
+  h1.hero-title .accent{color:var(--rust-600);}
+
+  .hero-sub{
+    max-width:560px; margin:26px auto 0; font-size:1.08rem; color:var(--ink-700);
+    font-style:italic;
+  }
+
+  .hero-actions{display:flex; gap:16px; margin-top:42px; justify-content:center; flex-wrap:wrap;}
+
+  .btn-primary{
+    background:var(--rust-600); color:var(--marble-100); padding:15px 30px;
+    text-decoration:none; font-family:'IBM Plex Mono', monospace; font-size:0.82rem; font-weight:600;
+    letter-spacing:0.05em; display:inline-flex; align-items:center; gap:10px;
+    transition:background 0.25s ease, transform 0.25s ease;
+  }
+  .btn-primary:hover{background:var(--rust-700); transform:translateY(-2px);}
+  .btn-primary svg{width:15px; height:15px;}
+
+  .btn-ghost{
+    padding:15px 26px; text-decoration:none; font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem; font-weight:600; letter-spacing:0.05em; color:var(--ink-900);
+    border:1px solid var(--ink-900); transition:background 0.25s ease, color 0.25s ease;
+  }
+  .btn-ghost:hover{background:var(--ink-900); color:var(--marble-100);}
+
+  /* ---------- CHAPTER STRIP ---------- */
+  .strip{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:22px 0;}
+  .strip .wrap{
+    display:flex; justify-content:center; gap:40px; flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace; font-size:0.76rem; letter-spacing:0.06em; color:var(--ink-700); opacity:0.8;
+  }
+  .strip span{color:var(--rust-600); font-weight:600; margin-right:6px;}
+
+  /* ---------- DICHOTOMY TABLET (signature) ---------- */
+  .tablet-section{padding:110px 0 90px;}
+  .section-head{max-width:640px; margin:0 auto 60px; text-align:center;}
+  .section-head .label{color:var(--rust-600); margin-bottom:16px; display:block;}
+  .section-head h2{font-size:clamp(1.7rem, 3.2vw, 2.4rem);}
+  .section-head p{margin-top:16px; color:var(--ink-700); font-size:1.02rem;}
+
+  .tablet{
+    background:var(--marble-200);
+    border:1px solid var(--line);
+    box-shadow:0 24px 50px -30px rgba(42,38,32,0.35), inset 0 0 0 1px rgba(255,255,255,0.4);
+    max-width:900px; margin:0 auto;
+    display:grid; grid-template-columns:1fr 1fr;
+    position:relative;
+  }
+  .tablet::after{
+    content:""; position:absolute; top:6%; bottom:6%; left:50%;
+    width:1px; background:linear-gradient(180deg, transparent, var(--ink-900) 20%, var(--ink-900) 80%, transparent);
+    opacity:0.25;
+  }
+  @media (max-width:680px){
+    .tablet{grid-template-columns:1fr;}
+    .tablet::after{display:none;}
+  }
+
+  .tablet-col{padding:44px 40px;}
+  .tablet-col.rust h3{color:var(--rust-600);}
+  .tablet-col.olive h3{color:var(--olive-600);}
+  .tablet-col h3{font-size:1.05rem; margin-bottom:6px;}
+  .tablet-col .sub{font-family:'IBM Plex Mono', monospace; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-700); opacity:0.6; margin-bottom:24px; display:block;}
+
+  .tablet-item{display:flex; gap:12px; margin-bottom:16px; font-size:0.94rem; color:var(--ink-700);}
+  .tablet-item .mark{flex-shrink:0; margin-top:7px; width:6px; height:6px;}
+  .rust .mark{background:var(--rust-600);}
+  .olive .mark{background:var(--olive-600);}
+
+  .tablet-note{
+    max-width:640px; margin:34px auto 0; text-align:center; font-style:italic;
+    color:var(--ink-700); font-size:0.95rem;
+  }
+
+  /* ---------- CHAPTERS ---------- */
+  .chapters{padding:100px 0;}
+  .chapter{
+    display:grid; grid-template-columns:130px 1fr; gap:32px;
+    padding:46px 0; border-top:1px solid var(--line);
+    opacity:0; transform:translateY(22px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .chapter.visible{opacity:1; transform:translateY(0);}
+  .chapter:last-child{border-bottom:1px solid var(--line);}
+
+  .chapter-num{font-family:'Cinzel', serif; font-size:2.3rem; font-weight:600; color:var(--rust-600); line-height:1;}
+  .chapter-part{font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--olive-600); display:block; margin-top:12px;}
+
+  .chapter-body h3{font-size:1.4rem; margin-bottom:12px; color:var(--ink-900);}
+  .chapter-body p{color:var(--ink-700); max-width:620px; font-size:1rem;}
+
+  /* ---------- QUOTE BAND ---------- */
+  .quote-band{
+    background:var(--ink-900); color:var(--marble-100);
+    padding:90px 0; text-align:center;
+  }
+  .quote-band .label{color:var(--rust-100); margin-bottom:24px; display:inline-block;}
+  .quote-band blockquote{
+    font-family:'Cinzel', serif; font-size:clamp(1.4rem, 3vw, 2.1rem); font-weight:500;
+    max-width:740px; margin:0 auto; line-height:1.4;
+  }
+  .quote-band cite{
+    display:block; margin-top:26px; font-family:'IBM Plex Mono', monospace; font-size:0.8rem;
+    font-style:normal; opacity:0.6; letter-spacing:0.05em;
+  }
+
+  /* ---------- CHARACTER GRID ---------- */
+  .character{padding:100px 0;}
+  .character-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  @media (max-width:680px){.character-grid{grid-template-columns:1fr;}}
+  .character-card{background:var(--marble-100); padding:38px;}
+  .character-card .label{color:var(--olive-600); display:block; margin-bottom:14px;}
+  .character-card h4{font-size:1.15rem; margin-bottom:10px; color:var(--ink-900);}
+  .character-card p{font-size:0.94rem; color:var(--ink-700);}
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{padding:120px 0 130px; text-align:center;}
+  .final-cta .label{color:var(--rust-600); margin-bottom:20px; display:block;}
+  .final-cta h2{font-size:clamp(1.9rem, 3.8vw, 2.7rem); max-width:640px; margin:0 auto 20px;}
+  .final-cta p{max-width:480px; margin:0 auto 38px; color:var(--ink-700);}
+
+  footer{
+    border-top:1px solid var(--line); padding:32px 0; text-align:center;
+    font-family:'IBM Plex Mono', monospace; font-size:0.76rem; color:var(--ink-700); opacity:0.6;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="https://easylandx.github.io" class="logo" target="_blank" rel="noopener">
+      <span class="mark"></span> easylandx
+    </a>
+    <a href="https://easylandx.github.io" class="nav-cta" target="_blank" rel="noopener">VISIT EASYLANDX</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="label">A HANDBOOK, NOT A MANIFESTO</span>
+    <h1 class="hero-title">The <span class="accent">Landing Page</span> Handbook</h1>
+    <p class="hero-sub">Short, practical rules for a page that holds its ground — regardless of traffic, trends, or whether today's visitor was ever going to buy.</p>
+    <div class="hero-actions">
+      <a href="https://easylandx.github.io" class="btn-primary" target="_blank" rel="noopener">
+        SEE EASYLANDX
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#tablet" class="btn-ghost">READ THE HANDBOOK</a>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <div><span>I.</span>Control</div>
+    <div><span>II.</span>Judgment</div>
+    <div><span>III.</span>Discipline</div>
+    <div><span>IV.</span>Character</div>
+  </div>
+</div>
+
+<section class="tablet-section" id="tablet">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">CHAPTER I — THE DIVIDING LINE</span>
+      <h2>What is up to you, and what never was.</h2>
+      <p>Every landing page owner wastes energy on one side of this line while neglecting the other. easylandx starts every build by sorting the two.</p>
+    </div>
+
+    <div class="tablet">
+      <div class="tablet-col rust">
+        <span class="sub">Yours to command</span>
+        <h3>Up to you</h3>
+        <div class="tablet-item"><span class="mark"></span>The headline and the offer it makes</div>
+        <div class="tablet-item"><span class="mark"></span>How fast the page loads</div>
+        <div class="tablet-item"><span class="mark"></span>Whether the call-to-action is obvious</div>
+        <div class="tablet-item"><span class="mark"></span>Whether it works on a cracked phone screen</div>
+        <div class="tablet-item"><span class="mark"></span>The honesty of the photos you show</div>
+      </div>
+      <div class="tablet-col olive">
+        <span class="sub">Never yours to begin with</span>
+        <h3>Not up to you</h3>
+        <div class="tablet-item"><span class="mark"></span>Whether today's visitor was ready to buy</div>
+        <div class="tablet-item"><span class="mark"></span>What a competitor charges this month</div>
+        <div class="tablet-item"><span class="mark"></span>An algorithm's mood on any given day</div>
+        <div class="tablet-item"><span class="mark"></span>A stranger's first impression of your industry</div>
+        <div class="tablet-item"><span class="mark"></span>The wifi speed at the café they're sitting in</div>
+      </div>
+    </div>
+    <p class="tablet-note">Almost every complaint about a landing page — "it's not converting," "nobody's buying" — is a right-hand-column problem being blamed on left-hand-column choices. Fix what's yours. Let the rest go.</p>
+  </div>
+</section>
+
+<section class="chapters">
+  <div class="wrap">
+    <div class="section-head" style="text-align:left; margin-bottom:56px;">
+      <span class="label">CHAPTER II — THE DISCIPLINE OF NUMBERS</span>
+      <h2>A bounce is not a verdict.</h2>
+    </div>
+
+    <div class="chapter">
+      <div><div class="chapter-num">01</div><span class="chapter-part">Judgment</span></div>
+      <div class="chapter-body">
+        <h3>It's the page, not the person</h3>
+        <p>A visitor leaving in four seconds isn't a verdict on your business — it's data about four seconds of a page. Before assuming your offer is weak, check the plainer explanations first: slow load, unclear headline, invisible button. Most "we're not converting" panic is solved in the left-hand column, not the right.</p>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div><div class="chapter-num">02</div><span class="chapter-part">Judgment</span></div>
+      <div class="chapter-body">
+        <h3>Test the number before you react to it</h3>
+        <p>A dip in visits, a slow week, a quiet inbox — treat each as a reading, not a crisis, until you've checked it against something solid: is the page still fast, still correct, still clear? If yes, the dip is a fact about the week. If no, you've just found the actual fix.</p>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div><div class="chapter-num">03</div><span class="chapter-part">Judgment</span></div>
+      <div class="chapter-body">
+        <h3>Blame neither the visitor nor yourself</h3>
+        <p>It's tempting to either blame "bad traffic" or spiral into rebuilding everything overnight. Neither helps. A calm, specific look at what the page actually does — and doesn't — beats both every time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote-band">
+  <div class="wrap">
+    <span class="label">CHAPTER III — ON PERMANENCE</span>
+    <blockquote>A landing page is not a monument. It's a room you're renting from your own business — furnish it well, and be ready to change the furniture.</blockquote>
+    <cite>— easylandx, on why we never call a page "finished"</cite>
+  </div>
+</section>
+
+<section class="chapters">
+  <div class="wrap">
+    <div class="chapter">
+      <div><div class="chapter-num">04</div><span class="chapter-part">Discipline</span></div>
+      <div class="chapter-body">
+        <h3>Rehearse the rough conditions</h3>
+        <p>We build every easylandx page expecting the worst network, the smallest screen, and the most distracted reader — not the ideal one. Plan for friction before it happens, and it stops being a crisis when it does.</p>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div><div class="chapter-num">05</div><span class="chapter-part">Discipline</span></div>
+      <div class="chapter-body">
+        <h3>Play the role you were given, fully</h3>
+        <p>You don't get to choose whether you're a one-person studio or a five-location franchise, a niche craft or a crowded market. You do get to choose how well the page performs the role you actually have. A small business page built with total discipline outperforms a big-budget page built carelessly, every time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="character">
+  <div class="wrap">
+    <div class="section-head" style="text-align:left; margin-bottom:0;">
+      <span class="label">CHAPTER IV — CHARACTER, NOT CLAIMS</span>
+      <h2>Don't tell them. Show them.</h2>
+      <p>The last habit isn't a design rule — it's a posture. Prove your professionalism the way the page behaves, not the way it describes itself.</p>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:50px;">
+    <div class="character-grid">
+      <div class="character-card">
+        <span class="label">EMBODY IT</span>
+        <h4>Don't explain it. Load fast.</h4>
+        <p>A page that claims "we're fast and reliable" while taking six seconds to load has already lost the argument. Let the page's own behavior make the case — speed, clarity, and a working button say more than any headline can.</p>
+      </div>
+      <div class="character-card">
+        <span class="label">EXPECT DOUBT</span>
+        <h4>Some will question the investment</h4>
+        <p>Free builders and templates will always look cheaper on paper. A page built with real discipline — fast, custom, honestly written — earns that difference back the first week it starts turning visitors into messages.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <span class="label">CLOSING NOTE</span>
+    <h2>A page built on the right side of the line — from day one.</h2>
+    <p>easylandx builds one custom landing page at a time, sorted, disciplined, and ready to hold its ground.</p>
+    <a href="https://easylandx.github.io" class="btn-primary" target="_blank" rel="noopener">
+      START WITH EASYLANDX
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 EASYLANDX — CUSTOM-BUILT LANDING PAGES, ONE BUSINESS AT A TIME.</div>
+</footer>
+
+<script>
+  const chapters = document.querySelectorAll('.chapter');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  chapters.forEach(c=>io.observe(c));
+</script>
+
+</body>
+</html>

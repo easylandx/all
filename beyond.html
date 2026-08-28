@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Your Landing Page Doesn't Need More Effort. It Needs a Different Belief.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violet-deep:#1F1147;
+    --violet-mid:#341C6B;
+    --violet-glow:#5B3A9E;
+    --orange:#FF7A1A;
+    --orange-soft:#FFB37A;
+    --yellow:#FFCF3F;
+    --cream:#F5EFE6;
+    --text-dim:#C6BBE0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--violet-deep);
+    color:var(--cream);
+    font-family:'Manrope',sans-serif;
+    overflow-x:hidden;
+    line-height:1.65;
+  }
+  h1,h2,h3{font-family:'Newsreader',serif;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:0.72rem;
+    color:var(--orange);
+    display:inline-block;
+    margin-bottom:1rem;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(31,17,71,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,122,26,0.18);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;}
+  .logo{font-family:'Newsreader',serif;font-weight:700;font-size:1.3rem;color:var(--cream);}
+  .logo span{color:var(--orange);}
+  .nav-cta{
+    background:var(--orange);color:var(--violet-deep);font-weight:700;
+    padding:10px 20px;border-radius:8px;text-decoration:none;font-size:0.9rem;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;display:inline-block;
+  }
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(255,122,26,0.3);}
+
+  /* HERO */
+  .hero{padding:110px 0 80px;position:relative;overflow:hidden;}
+  .hero::before{
+    content:"";position:absolute;top:-220px;left:-180px;width:600px;height:600px;
+    background:radial-gradient(circle, var(--violet-glow) 0%, transparent 70%);
+    opacity:0.55;pointer-events:none;
+  }
+  .hero .wrap{position:relative;z-index:2;}
+  .hero h1{
+    font-size:clamp(2.3rem,5.6vw,4rem);
+    font-weight:600;line-height:1.12;max-width:820px;letter-spacing:-0.01em;
+  }
+  .hero h1 em{font-style:italic;color:var(--yellow);}
+  .hero h1 .strike{
+    text-decoration:line-through;
+    text-decoration-color:var(--orange);
+    text-decoration-thickness:3px;
+    color:var(--text-dim);
+  }
+  .hero p.lead{margin-top:26px;font-size:1.12rem;color:var(--text-dim);max-width:560px;}
+  .hero-ctas{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+  .btn-primary{
+    background:var(--orange);color:var(--violet-deep);font-weight:800;
+    padding:16px 32px;border-radius:10px;text-decoration:none;font-size:1rem;
+    box-shadow:0 10px 30px rgba(255,122,26,0.25);
+    transition:transform 0.2s ease, box-shadow 0.2s ease;display:inline-block;
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(255,122,26,0.4);}
+  .btn-ghost{color:var(--cream);text-decoration:none;font-weight:600;font-size:0.95rem;border-bottom:1px solid var(--yellow);padding-bottom:2px;}
+
+  /* KEYHOLE STAT STRIP */
+  .keyhole-strip{
+    margin-top:56px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+    background:var(--violet-mid);border:1px solid rgba(255,122,26,0.2);
+    border-radius:16px;padding:24px 28px;max-width:680px;
+  }
+  .keyhole-num{font-family:'Newsreader',serif;font-weight:700;font-size:2.2rem;color:var(--orange);line-height:1;}
+  .keyhole-num small{display:block;font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-top:6px;font-weight:400;}
+  .keyhole-divider{width:1px;height:44px;background:rgba(255,255,255,0.15);}
+  .keyhole-copy{font-size:0.92rem;color:var(--text-dim);flex:1;min-width:220px;}
+  .keyhole-copy strong{color:var(--cream);}
+
+  section{padding:88px 0;position:relative;}
+  .section-head{max-width:680px;margin-bottom:52px;}
+  .section-head h2{font-size:clamp(1.75rem,3.8vw,2.5rem);font-weight:600;line-height:1.16;}
+  .section-head p{margin-top:16px;color:var(--text-dim);font-size:1.03rem;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  /* MAGIC THINKING vs REAL DESIGN */
+  .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .compare-card{border-radius:18px;padding:30px;}
+  .compare-fake{background:rgba(255,255,255,0.03);border:1px dashed rgba(255,255,255,0.2);}
+  .compare-real{background:var(--violet-mid);border:1px solid rgba(255,207,63,0.35);}
+  .compare-card .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:0.68rem;text-transform:uppercase;
+    letter-spacing:0.08em;padding:5px 12px;border-radius:999px;display:inline-block;margin-bottom:14px;
+  }
+  .compare-fake .tag{background:rgba(255,255,255,0.08);color:var(--text-dim);}
+  .compare-real .tag{background:var(--yellow);color:var(--violet-deep);}
+  .compare-card h3{font-size:1.2rem;margin-bottom:10px;font-weight:600;}
+  .compare-card ul{list-style:none;margin-top:14px;}
+  .compare-card li{font-size:0.92rem;padding:6px 0 6px 20px;position:relative;color:var(--text-dim);}
+  .compare-fake li::before{content:"✕";position:absolute;left:0;color:#8a7fa8;}
+  .compare-real li::before{content:"✓";position:absolute;left:0;color:var(--yellow);}
+
+  /* THREE POWERS */
+  .powers{display:flex;flex-direction:column;gap:1px;background:rgba(255,122,26,0.15);border-radius:20px;overflow:hidden;}
+  .power-row{background:var(--violet-deep);padding:32px;display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:start;}
+  .power-label{
+    font-family:'IBM Plex Mono',monospace;font-size:0.72rem;text-transform:uppercase;
+    letter-spacing:0.08em;color:var(--orange);
+  }
+  .power-label .big{display:block;font-family:'Newsreader',serif;font-style:italic;font-size:1.5rem;color:var(--cream);text-transform:none;letter-spacing:0;margin-top:6px;}
+  .power-row h3{font-size:1.1rem;margin-bottom:8px;font-weight:600;}
+  .power-row p{color:var(--text-dim);font-size:0.95rem;}
+
+  /* EFFORT-BELIEF CHART */
+  .chart-card{
+    margin-top:56px;background:var(--violet-mid);border-radius:20px;padding:36px;
+    border:1px solid rgba(255,122,26,0.2);
+  }
+  .chart-card h3{font-size:1.25rem;margin-bottom:6px;font-weight:600;}
+  .chart-card .sub{color:var(--text-dim);font-size:0.9rem;margin-bottom:24px;}
+  .chart-legend{display:flex;gap:24px;margin-bottom:16px;flex-wrap:wrap;}
+  .chart-legend span{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;color:var(--text-dim);display:flex;align-items:center;gap:8px;}
+  .chart-legend .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
+  .slider-row{margin-top:22px;display:flex;align-items:center;gap:16px;}
+  .slider-row label{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-dim);white-space:nowrap;}
+  input[type="range"]{flex:1;accent-color:var(--orange);}
+  .chart-readout{margin-top:18px;font-size:0.92rem;color:var(--cream);min-height:24px;}
+  .chart-readout strong{color:var(--yellow);}
+
+  /* IF THEN / APPLIED */
+  .applied{margin-top:0;}
+  .applied-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .applied-card{background:var(--violet-mid);border-radius:16px;padding:24px;border-top:3px solid var(--yellow);}
+  .applied-card h4{font-size:1rem;margin-bottom:8px;font-weight:700;}
+  .applied-card p{color:var(--text-dim);font-size:0.9rem;}
+
+  /* AGING / LONGEVITY-STYLE PROOF */
+  .proof-banner{
+    background:linear-gradient(135deg, var(--violet-glow), var(--violet-mid));
+    border-radius:26px;padding:52px;text-align:center;
+  }
+  .proof-banner h2{font-size:clamp(1.6rem,3.8vw,2.2rem);margin-bottom:18px;}
+  .proof-banner p{color:var(--text-dim);max-width:600px;margin:0 auto 30px;}
+  .stat-row{display:flex;justify-content:center;gap:44px;flex-wrap:wrap;margin-top:28px;}
+  .stat{text-align:center;}
+  .stat .num{font-family:'Newsreader',serif;font-size:2.3rem;font-weight:700;color:var(--orange);}
+  .stat .cap{font-size:0.82rem;color:var(--text-dim);margin-top:4px;}
+
+  .final-cta{text-align:center;padding:96px 0 116px;}
+  .final-cta h2{font-size:clamp(1.9rem,4.6vw,3rem);max-width:760px;margin:0 auto;line-height:1.18;}
+  .final-cta h2 .accent{color:var(--yellow);font-style:italic;}
+  .final-cta p{color:var(--text-dim);max-width:520px;margin:22px auto 36px;font-size:1.03rem;}
+
+  footer{border-top:1px solid rgba(255,122,26,0.14);padding:30px 0;text-align:center;font-size:0.84rem;color:var(--text-dim);}
+  footer a{color:var(--orange);text-decoration:none;}
+
+  @media (max-width: 780px){
+    .compare-grid{grid-template-columns:1fr;}
+    .power-row{grid-template-columns:1fr;}
+    .applied-grid{grid-template-columns:1fr;}
+    .proof-banner{padding:36px 22px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="nav-cta" href="https://easypagex.github.io" target="_blank" rel="noopener">Get your page</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Behavioral Design · Landing Page Psychology</span>
+    <h1>Your landing page doesn't need <span class="strike">more effort</span>. It needs a visitor who <em>believes</em> they can act.</h1>
+    <p class="lead">A visitor's brain takes in millions of signals and consciously processes almost none of them. It fills the gap with a belief about you — trustworthy or sketchy, easy or confusing — in seconds. EasyLandX designs the page so that belief works in your favor.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Build my landing page →</a>
+      <a class="btn-ghost" href="#keyhole">See the science</a>
+    </div>
+
+    <div class="keyhole-strip">
+      <div class="keyhole-num">11M<small>bits seen</small></div>
+      <div class="keyhole-divider"></div>
+      <div class="keyhole-num">50<small>bits processed</small></div>
+      <div class="keyhole-copy"><strong>Your page is the filter.</strong> A visitor never sees everything on your site — only what you make impossible to miss.</div>
+    </div>
+  </div>
+</header>
+
+<section id="keyhole">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Brain's Keyhole</span>
+      <h2>Visitors don't see your business. They see your page's version of it.</h2>
+      <p>Every visitor hallucinates a version of your business from a handful of signals: load speed, layout, photos, the first sentence they read. If those signals are muddled, they don't dig deeper to find the "real" you — they just leave believing you're not worth the effort.</p>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card compare-fake reveal">
+        <span class="tag">Magic thinking</span>
+        <h3>Fake urgency, empty promises</h3>
+        <ul>
+          <li>Countdown timers that reset on refresh</li>
+          <li>"Best in the city!" with nothing to back it</li>
+          <li>Stock photos that could be any business</li>
+          <li>Vague calls to action — "Learn more"</li>
+        </ul>
+      </div>
+      <div class="compare-card compare-real reveal">
+        <span class="tag">Belief that forces action</span>
+        <h3>Real signals, real next step</h3>
+        <ul>
+          <li>Real photos of the actual work or space</li>
+          <li>One specific, named action — "Book a fitting"</li>
+          <li>Visible proof: results, reviews, real clients</li>
+          <li>A page fast enough to not test their patience</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="powers">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Three Powers, Applied</span>
+      <h2>What a landing page controls in a visitor's mind</h2>
+      <p>Three levers decide whether a visitor stays, trusts you, and clicks. A landing page built without them is asking the visitor to do all the believing on their own.</p>
+    </div>
+    <div class="powers">
+      <div class="power-row reveal">
+        <div class="power-label">Attention<span class="big">what they see</span></div>
+        <div>
+          <h3>One focal point, not ten</h3>
+          <p>A page with five competing banners forces the visitor's brain to filter for you. Give it one clear headline and one button, and there's nothing left to filter — the important thing is the only thing.</p>
+        </div>
+      </div>
+      <div class="power-row reveal">
+        <div class="power-label">Anticipation<span class="big">what they feel</span></div>
+        <div>
+          <h3>Design sets the price tag in their head</h3>
+          <p>The same service on a cluttered, dated page feels cheap; on a clean, considered one, it feels worth paying for — before they've read a single word of your pricing.</p>
+        </div>
+      </div>
+      <div class="power-row reveal">
+        <div class="power-label">Agency<span class="big">what they do</span></div>
+        <div>
+          <h3>Make the next step feel possible</h3>
+          <p>If booking looks like a five-step form, most visitors quietly decide it's not worth it — no matter how much they wanted your product a moment ago. One visible, one-tap action keeps their effort above zero.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card reveal">
+      <h3>The effort–belief curve</h3>
+      <div class="sub">Drag the slider to see what happens to conversions as visitor confidence in your page drops.</div>
+      <div class="chart-legend">
+        <span><i class="dot" style="background:var(--text-dim);"></i>Traditional model — effort alone</span>
+        <span><i class="dot" style="background:var(--orange);"></i>Belief blueprint — effort × confidence</span>
+      </div>
+      <svg id="beliefChart" viewBox="0 0 600 220" style="width:100%;height:auto;">
+        <line x1="40" y1="10" x2="40" y2="190" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        <line x1="40" y1="190" x2="580" y2="190" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        <polyline id="lineTraditional" fill="none" stroke="var(--text-dim)" stroke-width="3" stroke-dasharray="6 5" points="40,150 580,50"/>
+        <polyline id="lineBelief" fill="none" stroke="var(--orange)" stroke-width="3" points="40,150 200,110 320,70 420,150 580,188"/>
+        <circle id="dotBelief" cx="420" cy="150" r="6" fill="var(--yellow)"/>
+      </svg>
+      <div class="slider-row">
+        <label>Confidence</label>
+        <input type="range" id="beliefSlider" min="0" max="100" value="65">
+      </div>
+      <div class="chart-readout" id="chartReadout">
+        At <strong>65% confidence</strong>, execution is already slipping — the visitor is still trying, but doubt has started pulling the curve down, no matter how much "effort" your copy demands of them.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="applied">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Applied to your business</span>
+      <h2>Belief-forward pages, by category</h2>
+      <p>We don't rewrite this formula for each client — we translate it into the one thing your specific visitor needs to believe before they act.</p>
+    </div>
+    <div class="applied-grid">
+      <div class="applied-card reveal">
+        <h4>Wellness & coaching</h4>
+        <p>The belief to build: "This person can actually help me." Real portrait, real testimonials, a booking button before any biography.</p>
+      </div>
+      <div class="applied-card reveal">
+        <h4>Food & handmade goods</h4>
+        <p>The belief to build: "This looks and tastes as good as it seems." High-resolution photos of the actual product, ordering one tap away.</p>
+      </div>
+      <div class="applied-card reveal">
+        <h4>Local & pet services</h4>
+        <p>The belief to build: "This is close, real, and easy to reach." Map, hours, and a direct message button, visible immediately.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="wrap">
+    <div class="proof-banner reveal">
+      <span class="eyebrow">Expectation changes outcomes</span>
+      <h2>People who expect a good result work harder to get one</h2>
+      <p>The same principle that makes a confident visitor stay a little longer, click a little sooner, and trust a little faster — a page designed to earn belief, not demand willpower from the person reading it.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="num">1</div><div class="cap">clear belief per page</div></div>
+        <div class="stat"><div class="num">0</div><div class="cap">templates used</div></div>
+        <div class="stat"><div class="num">2026</div><div class="cap">built for how people believe now</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <span class="eyebrow">No extra willpower required</span>
+    <h2 class="reveal">Stop asking visitors to believe in you on faith. <span class="accent">Give them a page that proves it.</span></h2>
+    <p class="reveal">EasyLandX builds custom, conversion-focused landing pages for small businesses — designed around what a visitor needs to believe before they'll ever click.</p>
+    <a class="btn-primary reveal" href="https://easypagex.github.io" target="_blank" rel="noopener">Get your EasyLandX page →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Built by <a href="https://easypagex.github.io" target="_blank" rel="noopener">EasyLandX</a> · &copy; 2026
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el=>io.observe(el));
+
+  // Effort-belief chart
+  const slider = document.getElementById('beliefSlider');
+  const lineBelief = document.getElementById('lineBelief');
+  const dotBelief = document.getElementById('dotBelief');
+  const readout = document.getElementById('chartReadout');
+
+  function updateChart(val){
+    const c = val / 100; // confidence 0..1
+    // x positions fixed, y positions depend on confidence
+    const xs = [40, 200, 320, 420, 580];
+    const baseY = 150;
+    const peakY = 150 - (90 * c);       // higher confidence -> curve rises more
+    const crashY = 150 + (35 * (1 - c)) + (c < 0.35 ? 0 : 0);
+    const finalY = c > 0.3 ? (190 - (170 * c)) : 190; // low confidence crashes to baseline
+    const ys = [
+      baseY,
+      baseY - (60 * c),
+      peakY,
+      c > 0.3 ? peakY + (20 * (1-c)) : 178,
+      finalY
+    ];
+    const points = xs.map((x,i)=>`${x},${Math.max(8, Math.min(190, ys[i]))}`).join(' ');
+    lineBelief.setAttribute('points', points);
+    dotBelief.setAttribute('cx', xs[3]);
+    dotBelief.setAttribute('cy', Math.max(8, Math.min(190, ys[3])));
+
+    let msg;
+    if(val >= 70){
+      msg = `At <strong>${val}% confidence</strong>, the curve keeps climbing — the visitor trusts the page enough to follow through, and effort pays off.`;
+    } else if(val >= 35){
+      msg = `At <strong>${val}% confidence</strong>, execution is already slipping — the visitor is still trying, but doubt has started pulling the curve down, no matter how much "effort" your copy demands of them.`;
+    } else {
+      msg = `At <strong>${val}% confidence</strong>, agency collapses to zero. It doesn't matter how good the offer is — a confusing or untrustworthy page makes the brain quietly decide it's not worth the click.`;
+    }
+    readout.innerHTML = msg;
+  }
+
+  slider.addEventListener('input', (e)=> updateChart(parseInt(e.target.value)));
+  updateChart(parseInt(slider.value));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — There's No Perfect Landing Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --good-place-blue: #1F4E68;
+    --good-place-blue-deep: #163B50;
+    --good-place-blue-panel: #2C6785;
+    --golden-mean-yellow: #F0B429;
+    --golden-mean-yellow-dim: #C6931A;
+    --philosophers-sage: #9CB08E;
+    --philosophers-sage-deep: #6C8460;
+    --cream: #F4EFE3;
+    --cream-dim: #C9D6D9;
+    --ink: #16252B;
+    --line: rgba(244,239,227,0.14);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--good-place-blue);
+    color:var(--cream);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin:0;
+    color:var(--cream);
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--golden-mean-yellow);
+    margin-bottom:0.9rem;
+    display:inline-block;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(22,59,80,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 32px;
+    max-width:1120px;
+    margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.25rem;
+    letter-spacing:0.01em;
+  }
+  .logo span{color:var(--golden-mean-yellow);}
+
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 24px;
+    border-radius:3px;
+    border:1.5px solid var(--golden-mean-yellow);
+    background:var(--golden-mean-yellow);
+    color:var(--ink);
+    font-weight:600;
+    cursor:pointer;
+    transition:transform 0.2s ease, background 0.2s ease, box-shadow 0.25s ease;
+  }
+  .btn:hover{
+    background:#FFC94D;
+    transform:translateY(-2px);
+    box-shadow:0 10px 24px -8px rgba(240,180,41,0.55);
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--cream);
+    border:1.5px solid var(--line);
+  }
+  .btn-ghost:hover{
+    background:rgba(244,239,227,0.06);
+    border-color:var(--philosophers-sage);
+    box-shadow:none;
+    transform:translateY(-2px);
+  }
+  .nav .btn{padding:10px 18px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:120px 0 60px;
+    position:relative;
+  }
+  .hero .wrap{
+    display:grid;
+    gap:28px;
+    max-width:760px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5.6vw, 4rem);
+    line-height:1.06;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--golden-mean-yellow);
+  }
+  .hero p.lede{
+    font-size:1.15rem;
+    color:var(--cream-dim);
+    max-width:600px;
+  }
+  .hero .cta-row{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-top:6px;
+  }
+  .cta-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--philosophers-sage);
+  }
+
+  /* ---------- GOLDEN MEAN SLIDER (signature element) ---------- */
+  .mean-section{
+    padding:20px 0 100px;
+  }
+  .mean-frame{
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:40px 32px 32px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.03), transparent);
+  }
+  .mean-frame h3{
+    font-size:1.5rem;
+    margin-bottom:8px;
+  }
+  .mean-frame p.desc{
+    color:var(--cream-dim);
+    max-width:640px;
+    margin-bottom:36px;
+    font-size:0.98rem;
+  }
+  .mean-track{
+    position:relative;
+    height:6px;
+    border-radius:4px;
+    background:linear-gradient(90deg, var(--good-place-blue-deep), var(--philosophers-sage) 50%, var(--good-place-blue-deep));
+    margin:0 20px 0;
+  }
+  .mean-points{
+    display:flex;
+    justify-content:space-between;
+    position:relative;
+    padding:0 20px;
+    margin-top:-3px;
+  }
+  .mean-point{
+    position:relative;
+    width:33%;
+    text-align:center;
+    cursor:default;
+  }
+  .mean-point .dot{
+    width:12px;height:12px;
+    border-radius:50%;
+    background:var(--good-place-blue-deep);
+    border:2px solid var(--cream-dim);
+    margin:0 auto 18px;
+    position:relative;
+    z-index:2;
+    transition:transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .mean-point.center .dot{
+    width:20px;height:20px;
+    background:var(--golden-mean-yellow);
+    border-color:var(--golden-mean-yellow);
+    box-shadow:0 0 0 6px rgba(240,180,41,0.16);
+  }
+  .mean-point:hover .dot{
+    transform:scale(1.25);
+    border-color:var(--philosophers-sage);
+  }
+  .mean-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--cream-dim);
+    margin-bottom:6px;
+  }
+  .mean-point.center .mean-label{color:var(--golden-mean-yellow);}
+  .mean-text{
+    font-size:0.88rem;
+    color:var(--cream-dim);
+    max-width:220px;
+    margin:0 auto;
+  }
+  .mean-point.center .mean-text{color:var(--cream);}
+
+  /* ---------- GENERIC SECTION ---------- */
+  section{padding:90px 0;}
+  .section-head{
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .section-head h2{
+    font-size:clamp(1.8rem, 3.6vw, 2.6rem);
+    margin-bottom:16px;
+  }
+  .section-head p{
+    color:var(--cream-dim);
+    font-size:1.02rem;
+  }
+
+  .divider{
+    border:none;
+    border-top:1px solid var(--line);
+    margin:0;
+  }
+
+  /* ---------- FRAMEWORK CARDS ---------- */
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .card{
+    background:var(--good-place-blue);
+    padding:34px 28px 30px;
+  }
+  .card .eyebrow{margin-bottom:14px;}
+  .card h3{
+    font-size:1.28rem;
+    margin-bottom:14px;
+  }
+  .card p{
+    color:var(--cream-dim);
+    font-size:0.96rem;
+  }
+
+  /* ---------- PART TWO ---------- */
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    margin-bottom:48px;
+  }
+  .two-col-item h3{
+    font-size:1.3rem;
+    margin-bottom:14px;
+  }
+  .two-col-item p{
+    color:var(--cream-dim);
+    font-size:0.98rem;
+  }
+
+  .exhaustion-panel{
+    background:var(--philosophers-sage);
+    color:var(--ink);
+    border-radius:6px;
+    padding:38px 36px;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:28px;
+    align-items:start;
+  }
+  .exhaustion-panel .eyebrow{color:var(--good-place-blue-deep);}
+  .exhaustion-panel h3{color:var(--ink); font-size:1.35rem; margin-bottom:10px;}
+  .exhaustion-panel p{color:rgba(22,37,43,0.82); font-size:0.98rem;}
+  .exhaustion-mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:3.4rem;
+    line-height:1;
+    color:rgba(22,37,43,0.5);
+  }
+
+  /* ---------- PART THREE ---------- */
+  .fail-grid{
+    display:grid;
+    grid-template-columns:1fr 1.2fr 1fr;
+    gap:40px;
+  }
+  .fail-item h3{
+    font-size:1.2rem;
+    margin-bottom:14px;
+  }
+  .fail-item p{
+    color:var(--cream-dim);
+    font-size:0.94rem;
+  }
+  .apology-box{
+    border:1px solid var(--golden-mean-yellow);
+    border-radius:6px;
+    padding:24px 24px 20px;
+    background:rgba(240,180,41,0.05);
+  }
+  .apology-list{
+    list-style:none;
+    margin:0; padding:0;
+    display:grid;
+    gap:10px;
+  }
+  .apology-list li{
+    display:flex;
+    gap:12px;
+    align-items:baseline;
+    font-size:0.92rem;
+    color:var(--cream);
+  }
+  .apology-list .num{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--golden-mean-yellow);
+    font-size:0.82rem;
+  }
+
+  .motif{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.9rem;
+    color:var(--philosophers-sage);
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- FOOTER CTA ---------- */
+  .footer-cta{
+    padding:100px 0 70px;
+    text-align:center;
+    background:var(--good-place-blue-deep);
+    border-top:1px solid var(--line);
+  }
+  .footer-cta h2{
+    font-size:clamp(2rem, 4.6vw, 3rem);
+    max-width:680px;
+    margin:0 auto 26px;
+  }
+  .footer-cta .btn{
+    padding:16px 34px;
+    font-size:0.85rem;
+  }
+  footer{
+    padding:34px 0 44px;
+    text-align:center;
+    background:var(--good-place-blue-deep);
+  }
+  footer p{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--cream-dim);
+    letter-spacing:0.02em;
+  }
+  footer .brand{color:var(--golden-mean-yellow);}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .cards{grid-template-columns:1fr;}
+    .two-col{grid-template-columns:1fr; gap:32px;}
+    .fail-grid{grid-template-columns:1fr; gap:36px;}
+    .exhaustion-panel{grid-template-columns:1fr; gap:12px;}
+    .mean-point .mean-text{max-width:none;}
+  }
+  @media (max-width: 560px){
+    .hero{padding:96px 0 40px;}
+    .nav{padding:16px 20px;}
+    .wrap{padding:0 20px;}
+    .mean-points{flex-direction:column; gap:28px; align-items:flex-start;}
+    .mean-track{display:none;}
+    .mean-point{width:100%; text-align:left;}
+    .mean-point .dot{margin:0 0 10px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1; transform:none; transition:none;}
+    .btn:hover, .mean-point:hover .dot{transform:none;}
+  }
+
+  :focus-visible{
+    outline:2px solid var(--golden-mean-yellow);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Start Your Page</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow reveal">A Theory of Landing Pages</span>
+    <h1 class="reveal">There's no perfect landing page. <em>Only a better one.</em></h1>
+    <p class="lede reveal">Twenty-four centuries of moral philosophy keep arriving at the same conclusion: perfection was never the point. Trying, falling short, and improving is what actually moves things forward. We built EasyLandX on the same idea &mdash; for pages, not people.</p>
+    <div class="cta-row reveal">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Build Yours With EasyLandX</a>
+      <span class="cta-note">No cost of perfection. Just progress.</span>
+    </div>
+  </div>
+</section>
+
+<section class="mean-section">
+  <div class="wrap">
+    <div class="mean-frame reveal">
+      <span class="eyebrow">The Signature Idea</span>
+      <h3>The Golden Mean of a landing page</h3>
+      <p class="desc">Aristotle placed every virtue between two failures. Courage sits between cowardice and recklessness. A landing page has its own mean &mdash; between saying too little and saying too much.</p>
+      <div class="mean-track"></div>
+      <div class="mean-points">
+        <div class="mean-point">
+          <div class="dot"></div>
+          <div class="mean-label">Deficiency</div>
+          <div class="mean-text">A blank hero, no headline, no button. The visitor guesses and leaves.</div>
+        </div>
+        <div class="mean-point center">
+          <div class="dot"></div>
+          <div class="mean-label">Golden Mean</div>
+          <div class="mean-text">One message, one proof point, one action. Nothing missing, nothing extra.</div>
+        </div>
+        <div class="mean-point">
+          <div class="dot"></div>
+          <div class="mean-label">Excess</div>
+          <div class="mean-text">Three popups, a chatbot, and a countdown timer before the headline loads.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part One</span>
+      <h2>Three ways to judge a page</h2>
+      <p>Moral philosophy tests an action against three big frameworks before calling it good. We test a landing page the same way.</p>
+    </div>
+    <div class="cards reveal">
+      <div class="card">
+        <span class="eyebrow">Virtue</span>
+        <h3>The Golden Mean</h3>
+        <p>Aristotle argued that character is built by finding the sweet spot between extremes. EasyLandX pages are deliberately built in that middle &mdash; enough to convince, nothing to trip over.</p>
+      </div>
+      <div class="card">
+        <span class="eyebrow">Duty</span>
+        <h3>The Non-Negotiables</h3>
+        <p>Kant believed some rules hold regardless of outcome. We hold a few, too: your price is never hidden, your form never sells your inbox, your load time is never sacrificed for a stock photo.</p>
+      </div>
+      <div class="card">
+        <span class="eyebrow">Outcome</span>
+        <h3>What Actually Works</h3>
+        <p>Utilitarians measured goodness by results. A landing page's only real virtue is whether a visitor acts. Every layout and headline earns its place by that single test.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part Two</span>
+      <h2>Where it gets complicated</h2>
+      <p>As choices scale from one page to a whole web presence, the simple rules start to strain.</p>
+    </div>
+
+    <div class="two-col reveal">
+      <div class="two-col-item">
+        <span class="eyebrow">Contractualism</span>
+        <h3>What we owe every visitor</h3>
+        <p>The philosopher T.M. Scanlon asked what rules no reasonable person could object to. Applied to the web: a page that loads fast, that says what it's selling before it asks for anything, that never traps a visitor in a popup with no way out. That's the deal, before a single word of copy.</p>
+      </div>
+      <div class="two-col-item">
+        <span class="eyebrow">Ubuntu</span>
+        <h3>A page is a page through other people</h3>
+        <p>The Southern African philosophy of Ubuntu holds that a person becomes a person only through other people. A landing page works the same way &mdash; a headline alone rarely convinces anyone. It's the testimonial, the client logo, the proof that someone else already trusted this, that finishes the sentence.</p>
+      </div>
+    </div>
+
+    <div class="exhaustion-panel reveal">
+      <div class="exhaustion-mark">"</div>
+      <div>
+        <span class="eyebrow">Moral Exhaustion, Reframed</span>
+        <h3>Digital fatigue is real</h3>
+        <p>Every builder promises simplicity, then buries you in themes, plugins, and settings panels. By the time you've picked a template, you're too tired to write the headline. EasyLandX exists to remove that tax, not add to it &mdash; a page, not a puzzle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part Three</span>
+      <h2>How to fail better</h2>
+      <p class="motif">Try. Fail. Fail better. That's the whole method &mdash; for a moral life, and for a landing page.</p>
+    </div>
+
+    <div class="fail-grid reveal">
+      <div class="fail-item">
+        <span class="eyebrow">Moral Luck</span>
+        <h3>Luck isn't skill</h3>
+        <p>A page that converts once might just be lucky traffic. A page that converts consistently is designed well. We build for the second kind, not the first.</p>
+      </div>
+
+      <div class="fail-item apology-box">
+        <span class="eyebrow">How to Apologize</span>
+        <h3>When something breaks, we say so</h3>
+        <ul class="apology-list">
+          <li><span class="num">01</span> Own it, plainly.</li>
+          <li><span class="num">02</span> Name the exact harm.</li>
+          <li><span class="num">03</span> Offer a real fix.</li>
+          <li><span class="num">04</span> Ask for nothing back.</li>
+        </ul>
+      </div>
+
+      <div class="fail-item">
+        <span class="eyebrow">Progress, Not Perfection</span>
+        <h3>Ship, then improve</h3>
+        <p>Chasing a flawless launch delays every good one. A page that goes live today and gets better next week beats a perfect page that never ships.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="footer-cta">
+  <div class="wrap">
+    <h2 class="reveal">Ready to try, fail a little, and get better?</h2>
+    <a class="btn reveal" href="https://easylandx.github.io" target="_blank" rel="noopener">Start With EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  <p><span class="brand">EasyLandX</span> &mdash; landing pages, not moral monsters.</p>
+</footer>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>

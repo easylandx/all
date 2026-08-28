@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Your Landing Page Doesn't Need Willpower. It Needs Design.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple-deep:#241238;
+    --purple-mid:#3B1F63;
+    --purple-glow:#5E3A9E;
+    --yellow:#FFD23F;
+    --yellow-soft:#FFE9A8;
+    --red:#E63950;
+    --cream:#F6EFE3;
+    --text-dim:#C9BBE0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--purple-deep);
+    color:var(--cream);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    line-height:1.6;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif;}
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    font-size:0.75rem;
+    color:var(--yellow);
+    display:inline-block;
+    margin-bottom:1rem;
+  }
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(36,18,56,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,210,63,0.15);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-top:16px;padding-bottom:16px;
+  }
+  .logo{
+    font-family:'Fraunces',serif;
+    font-weight:800;
+    font-size:1.3rem;
+    color:var(--cream);
+    letter-spacing:-0.02em;
+  }
+  .logo span{color:var(--yellow);}
+  .nav-cta{
+    background:var(--yellow);
+    color:var(--purple-deep);
+    font-weight:700;
+    padding:10px 20px;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:0.9rem;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+    display:inline-block;
+  }
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(255,210,63,0.3);}
+
+  /* HERO */
+  .hero{
+    padding:110px 0 90px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-200px;right:-200px;
+    width:600px;height:600px;
+    background:radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
+    opacity:0.5;
+    pointer-events:none;
+  }
+  .hero .wrap{position:relative;z-index:2;}
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.2rem);
+    font-weight:700;
+    line-height:1.08;
+    max-width:820px;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--red);
+    background:linear-gradient(180deg, transparent 62%, rgba(230,57,80,0.35) 62%);
+  }
+  .hero h1 .accent-yellow{color:var(--yellow);font-style:italic;}
+  .hero p.lead{
+    margin-top:28px;
+    font-size:1.15rem;
+    color:var(--text-dim);
+    max-width:560px;
+  }
+  .hero-ctas{
+    margin-top:40px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .btn-primary{
+    background:var(--yellow);
+    color:var(--purple-deep);
+    font-weight:800;
+    padding:16px 32px;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:1rem;
+    box-shadow:0 10px 30px rgba(255,210,63,0.25);
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(255,210,63,0.4);}
+  .btn-ghost{
+    color:var(--cream);
+    text-decoration:none;
+    font-weight:600;
+    font-size:0.95rem;
+    border-bottom:1px solid var(--red);
+    padding-bottom:2px;
+  }
+
+  /* SIGNATURE: WILLPOWER GAUGE SWITCH */
+  .gauge-card{
+    margin-top:64px;
+    background:var(--purple-mid);
+    border:1px solid rgba(255,210,63,0.2);
+    border-radius:24px;
+    padding:32px;
+    max-width:640px;
+    position:relative;
+  }
+  .gauge-toggle{
+    display:flex;
+    background:rgba(0,0,0,0.25);
+    border-radius:999px;
+    padding:4px;
+    margin-bottom:24px;
+    width:fit-content;
+  }
+  .gauge-toggle button{
+    border:none;background:transparent;
+    font-family:'Space Mono',monospace;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--text-dim);
+    padding:9px 18px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:all 0.3s ease;
+  }
+  .gauge-toggle button.active{
+    background:var(--yellow);
+    color:var(--purple-deep);
+    font-weight:700;
+  }
+  .gauge-bar-track{
+    height:14px;
+    background:rgba(0,0,0,0.3);
+    border-radius:999px;
+    overflow:hidden;
+    margin-bottom:14px;
+  }
+  .gauge-bar-fill{
+    height:100%;
+    border-radius:999px;
+    transition:width 1s cubic-bezier(.4,0,.2,1), background 0.6s ease;
+  }
+  .gauge-caption{
+    font-size:0.95rem;
+    color:var(--text-dim);
+    min-height:44px;
+  }
+  .gauge-caption strong{color:var(--cream);}
+
+  /* SECTIONS */
+  section{padding:90px 0;position:relative;}
+  .section-head{max-width:680px;margin-bottom:56px;}
+  .section-head h2{
+    font-size:clamp(1.8rem,4vw,2.6rem);
+    font-weight:600;
+    line-height:1.15;
+  }
+  .section-head p{
+    margin-top:16px;
+    color:var(--text-dim);
+    font-size:1.05rem;
+  }
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  /* PART 1 - myth grid */
+  .myth-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .myth-card{
+    background:var(--purple-mid);
+    border-radius:20px;
+    padding:28px;
+    border-top:3px solid var(--red);
+  }
+  .myth-card h3{
+    font-size:1.15rem;
+    font-weight:600;
+    margin-bottom:12px;
+    color:var(--cream);
+  }
+  .myth-card p{color:var(--text-dim);font-size:0.95rem;}
+
+  /* PART 2 - environment zones */
+  .zones{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .zone-card{
+    border-radius:20px;
+    padding:32px;
+    position:relative;
+    overflow:hidden;
+  }
+  .zone-focus{
+    background:linear-gradient(160deg, var(--purple-mid), var(--purple-glow));
+    border:1px solid rgba(255,210,63,0.3);
+  }
+  .zone-trust{
+    background:var(--purple-mid);
+    border:1px solid rgba(230,57,80,0.35);
+  }
+  .zone-card .tag{
+    font-family:'Space Mono',monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    padding:6px 12px;
+    border-radius:999px;
+    display:inline-block;
+    margin-bottom:16px;
+  }
+  .zone-focus .tag{background:var(--yellow);color:var(--purple-deep);}
+  .zone-trust .tag{background:var(--red);color:var(--cream);}
+  .zone-card h3{font-size:1.3rem;margin-bottom:10px;}
+  .zone-card p{color:var(--text-dim);font-size:0.95rem;}
+  .zone-card ul{margin-top:16px;padding-left:0;list-style:none;}
+  .zone-card li{
+    font-size:0.9rem;color:var(--cream);
+    padding-left:20px;position:relative;margin-bottom:8px;
+  }
+  .zone-card li::before{
+    content:"—";position:absolute;left:0;color:var(--yellow);
+  }
+  .zone-trust li::before{color:var(--red);}
+
+  .dead-weight-strip{
+    margin-top:24px;
+    background:rgba(230,57,80,0.08);
+    border:1px dashed rgba(230,57,80,0.4);
+    border-radius:16px;
+    padding:24px 28px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .dead-weight-strip .label{
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--red);
+    white-space:nowrap;
+  }
+  .dead-weight-strip .items{
+    display:flex;gap:10px;flex-wrap:wrap;
+  }
+  .dead-weight-strip .item{
+    font-size:0.85rem;
+    color:var(--text-dim);
+    background:rgba(0,0,0,0.2);
+    padding:6px 14px;
+    border-radius:999px;
+    text-decoration:line-through;
+    text-decoration-color:var(--red);
+  }
+
+  /* PART 3 - forcing functions */
+  .ff-list{display:flex;flex-direction:column;gap:1px;background:rgba(255,210,63,0.15);border-radius:20px;overflow:hidden;}
+  .ff-row{
+    background:var(--purple-deep);
+    padding:28px 32px;
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:24px;
+    align-items:start;
+  }
+  .ff-num{
+    font-family:'Fraunces',serif;
+    font-size:2rem;
+    font-weight:700;
+    color:var(--yellow);
+    opacity:0.7;
+  }
+  .ff-row h3{font-size:1.15rem;margin-bottom:8px;}
+  .ff-row p{color:var(--text-dim);font-size:0.95rem;}
+
+  .if-then{
+    margin-top:56px;
+    background:var(--purple-mid);
+    border-radius:20px;
+    padding:36px;
+  }
+  .if-then h3{font-size:1.3rem;margin-bottom:20px;}
+  .if-then-row{
+    display:flex;gap:16px;align-items:flex-start;
+    padding:16px 0;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    flex-wrap:wrap;
+  }
+  .if-then-row:last-child{border-bottom:none;}
+  .if-tag,.then-tag{
+    font-family:'Space Mono',monospace;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    padding:4px 10px;
+    border-radius:6px;
+    flex-shrink:0;
+    margin-top:2px;
+  }
+  .if-tag{background:rgba(230,57,80,0.2);color:#ff8fa0;}
+  .then-tag{background:rgba(255,210,63,0.2);color:var(--yellow);}
+  .if-then-row span.text{color:var(--cream);font-size:0.95rem;flex:1;min-width:200px;}
+
+  /* PYGMALION / SOCIAL PROOF */
+  .pygmalion{
+    background:linear-gradient(135deg, var(--purple-glow), var(--purple-mid));
+    border-radius:28px;
+    padding:56px;
+    text-align:center;
+  }
+  .pygmalion h2{font-size:clamp(1.7rem,4vw,2.3rem);margin-bottom:20px;}
+  .pygmalion p{color:var(--text-dim);max-width:600px;margin:0 auto 32px;}
+  .stat-row{
+    display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-top:32px;
+  }
+  .stat{text-align:center;}
+  .stat .num{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:var(--yellow);}
+  .stat .cap{font-size:0.85rem;color:var(--text-dim);margin-top:4px;}
+
+  /* FINAL CTA */
+  .final-cta{
+    text-align:center;
+    padding:100px 0 120px;
+  }
+  .final-cta .eyebrow{display:block;}
+  .final-cta h2{
+    font-size:clamp(2rem,5vw,3.2rem);
+    max-width:760px;
+    margin:0 auto;
+    line-height:1.15;
+  }
+  .final-cta h2 .accent-red{color:var(--red);}
+  .final-cta p{
+    color:var(--text-dim);
+    max-width:520px;
+    margin:24px auto 40px;
+    font-size:1.05rem;
+  }
+
+  footer{
+    border-top:1px solid rgba(255,210,63,0.12);
+    padding:32px 0;
+    text-align:center;
+    font-size:0.85rem;
+    color:var(--text-dim);
+  }
+  footer a{color:var(--yellow);text-decoration:none;}
+
+  @media (max-width: 780px){
+    .myth-grid{grid-template-columns:1fr;}
+    .zones{grid-template-columns:1fr;}
+    .ff-row{grid-template-columns:40px 1fr;padding:22px;}
+    .pygmalion{padding:36px 24px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="nav-cta" href="https://easypagex.github.io" target="_blank" rel="noopener">Get your page</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Applied Psychology · Landing Page Design</span>
+    <h1>Willpower doesn't convert visitors. <em>Design</em> does. <span class="accent-yellow">And most pages are designed to fail.</span></h1>
+    <p class="lead">Your landing page is an environment. Every confusing menu, slow load, and buried button is friction that forces a visitor to rely on their own willpower to keep going. Most don't. EasyLandX builds pages where the easiest thing to do is exactly what you want them to do.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Build my landing page →</a>
+      <a class="btn-ghost" href="#myth">See the psychology behind it</a>
+    </div>
+
+    <div class="gauge-card">
+      <div class="gauge-toggle">
+        <button class="active" data-mode="willpower">Willpower page</button>
+        <button data-mode="designed">Designed page</button>
+      </div>
+      <div class="gauge-bar-track">
+        <div class="gauge-bar-fill" id="gaugeFill" style="width:82%; background:var(--red);"></div>
+      </div>
+      <div class="gauge-caption" id="gaugeCaption">
+        <strong>82% visitor effort required.</strong> Cluttered layout, unclear CTA, no next step — the visitor has to want it badly enough to fight your page.
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="myth">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part 1</span>
+      <h2>The myth of the "convincing" landing page</h2>
+      <p>Most businesses try to write their way to a sale — more persuasive copy, more urgency, more exclamation points. That's asking the visitor's willpower to do the work. It won't. Environment always wins.</p>
+    </div>
+    <div class="myth-grid">
+      <div class="myth-card reveal">
+        <h3>Attention is a finite resource</h3>
+        <p>A visitor's focus depletes with every scroll, every pop-up, every second of load time. By the third distraction, they're gone — no matter how good your offer is.</p>
+      </div>
+      <div class="myth-card reveal">
+        <h3>Internal conflict kills conversion</h3>
+        <p>"Is this legit? Where do I even click? What happens next?" Every unanswered question is friction fighting against the sale you're trying to make.</p>
+      </div>
+      <div class="myth-card reveal">
+        <h3>Your page is the environment</h3>
+        <p>You can't out-write a bad structure. If the layout is chaotic, no headline will save it. Fix the environment first — the words come second.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="zones">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part 2</span>
+      <h2>Designing a high-performance page</h2>
+      <p>A landing page needs distinct zones, just like a well-designed life: one built to drive action, one built to build trust — never both fighting for attention at once.</p>
+    </div>
+    <div class="zones">
+      <div class="zone-card zone-focus reveal">
+        <span class="tag">Focus zone</span>
+        <h3>The hero</h3>
+        <p>One message, one action, zero competition. This is where we push for the click — nothing else lives here.</p>
+        <ul>
+          <li>Single clear headline</li>
+          <li>One primary button</li>
+          <li>No distracting menus above the fold</li>
+        </ul>
+      </div>
+      <div class="zone-card zone-trust reveal">
+        <span class="tag">Trust zone</span>
+        <h3>The proof</h3>
+        <p>Where visitors slow down to verify you're real: reviews, photos, results — calm, credible, unhurried.</p>
+        <ul>
+          <li>Real client results</li>
+          <li>Photos over stock imagery</li>
+          <li>Direct contact links, always visible</li>
+        </ul>
+      </div>
+    </div>
+    <div class="dead-weight-strip reveal">
+      <span class="label">We remove the dead weight —</span>
+      <div class="items">
+        <span class="item">Slow-loading templates</span>
+        <span class="item">Five confusing menus</span>
+        <span class="item">Generic stock photos</span>
+        <span class="item">Buried contact info</span>
+        <span class="item">Auto-play sound</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="forcing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part 3</span>
+      <h2>Forcing functions, built into the page</h2>
+      <p>A forcing function removes the choice not to act. On a landing page, that's not a trick — it's just good design that makes the next step obvious and easy.</p>
+    </div>
+    <div class="ff-list">
+      <div class="ff-row reveal">
+        <span class="ff-num">01</span>
+        <div>
+          <h3>The button follows the visitor</h3>
+          <p>A sticky call-to-action means there's never a moment where taking action requires scrolling back to find it.</p>
+        </div>
+      </div>
+      <div class="ff-row reveal">
+        <span class="ff-num">02</span>
+        <div>
+          <h3>One path, not five</h3>
+          <p>Every link on the page leads toward the same outcome — booking, buying, or messaging you. No competing exits.</p>
+        </div>
+      </div>
+      <div class="ff-row reveal">
+        <span class="ff-num">03</span>
+        <div>
+          <h3>Direct line, no forms to abandon</h3>
+          <p>A WhatsApp or Instagram button replaces a contact form nobody finishes. Say hello in one tap.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="if-then reveal">
+      <h3>Implementation intentions, applied to your business</h3>
+      <div class="if-then-row">
+        <span class="if-tag">If</span>
+        <span class="text">you run a wellness or coaching practice</span>
+        <span class="then-tag">Then</span>
+        <span class="text">your page opens with a booking button, not a biography.</span>
+      </div>
+      <div class="if-then-row">
+        <span class="if-tag">If</span>
+        <span class="text">you sell food or handmade goods</span>
+        <span class="then-tag">Then</span>
+        <span class="text">the menu or catalog is one scroll away, with an order link on every section.</span>
+      </div>
+      <div class="if-then-row">
+        <span class="if-tag">If</span>
+        <span class="text">you run a pet, local, or community service</span>
+        <span class="then-tag">Then</span>
+        <span class="text">a map, hours, and a message button sit above the fold — no digging required.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="wrap">
+    <div class="pygmalion reveal">
+      <span class="eyebrow">Part 4 · The Pygmalion Effect</span>
+      <h2>You rise to the standard of the pages around you</h2>
+      <p>Businesses that look like they take themselves seriously get taken seriously. A page built to a high standard raises what visitors expect from you before you say a word.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="num">1</div><div class="cap">clear action per page</div></div>
+        <div class="stat"><div class="num">0</div><div class="cap">templates used</div></div>
+        <div class="stat"><div class="num">2026</div><div class="cap">built for how people browse now</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <span class="eyebrow">No willpower required</span>
+    <h2 class="reveal">Stop hoping visitors have the willpower to find you. <span class="accent-red">Design the page that makes it easy.</span></h2>
+    <p class="reveal">EasyLandX builds custom, conversion-focused landing pages for small businesses — no templates, no builders, just a page engineered around how your visitors actually behave.</p>
+    <a class="btn-primary reveal" href="https://easypagex.github.io" target="_blank" rel="noopener">Get your EasyLandX page →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Built by <a href="https://easypagex.github.io" target="_blank" rel="noopener">EasyLandX</a> · &copy; 2026
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el=>io.observe(el));
+
+  // Willpower gauge toggle
+  const toggleBtns = document.querySelectorAll('.gauge-toggle button');
+  const gaugeFill = document.getElementById('gaugeFill');
+  const gaugeCaption = document.getElementById('gaugeCaption');
+  const states = {
+    willpower: {
+      width: '82%',
+      color: 'var(--red)',
+      caption: '<strong>82% visitor effort required.</strong> Cluttered layout, unclear CTA, no next step — the visitor has to want it badly enough to fight your page.'
+    },
+    designed: {
+      width: '8%',
+      color: 'var(--yellow)',
+      caption: '<strong>8% visitor effort required.</strong> One message, one button, one obvious next step — the environment does the convincing.'
+    }
+  };
+  toggleBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      toggleBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const mode = btn.dataset.mode;
+      const s = states[mode];
+      gaugeFill.style.width = s.width;
+      gaugeFill.style.background = s.color;
+      gaugeCaption.innerHTML = s.caption;
+    });
+  });
+</script>
+
+</body>
+</html>
