@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Antifragile Landing Pages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --neon: #B6FF3D;
+    --neon-deep: #7ECF12;
+    --neon-dim: rgba(182,255,61,0.14);
+    --black: #0A0A0B;
+    --black-soft: #17181A;
+    --gray: #8A8D91;
+    --gray-light: #C7C9CC;
+    --gray-dark: #3A3D40;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--neon);
+    color:var(--black);
+    font-family:'IBM Plex Mono', monospace;
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+
+  .tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.7rem;
+    font-weight:700;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    padding:5px 12px;
+    border-radius:3px;
+  }
+  .tag::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;}
+
+  .eyebrow{
+    font-size:0.72rem;
+    font-weight:700;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:60;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 32px;
+    background:rgba(10,10,11,0.85);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--gray-dark);
+  }
+  .nav-mark{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:900;
+    font-size:1.3rem;
+    text-transform:uppercase;
+    color:var(--neon);
+    letter-spacing:0.02em;
+  }
+  .nav-mark span{color:var(--gray-light);}
+  .nav-btn{
+    border:1px solid var(--neon);
+    color:var(--neon);
+    padding:9px 18px;
+    font-size:0.75rem;
+    font-weight:700;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    transition:background .2s ease, color .2s ease;
+  }
+  .nav-btn:hover{background:var(--neon);color:var(--black);}
+
+  /* ---------- HAZARD DIVIDER ---------- */
+  .hazard{
+    height:14px;
+    background:repeating-linear-gradient(
+      -45deg,
+      var(--black) 0 18px,
+      var(--neon) 18px 36px
+    );
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:150px 32px 80px;
+  }
+  .hero-inner{max-width:820px; margin:0 auto; text-align:center; position:relative; z-index:2;}
+  .hero .eyebrow{color:var(--black); opacity:0.75; margin-bottom:18px; display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.4rem,6vw,4.6rem);
+    line-height:0.98;
+    color:var(--black);
+    margin-bottom:24px;
+  }
+  .hero h1 .flip{
+    color:var(--neon);
+    background:var(--black);
+    padding:0 10px;
+    display:inline-block;
+  }
+  .hero p{
+    font-size:1.02rem;
+    color:var(--black-soft);
+    max-width:560px;
+    margin:0 auto 40px;
+    font-weight:500;
+  }
+
+  .btn-easylandx{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--black);
+    color:var(--neon);
+    padding:16px 32px;
+    font-weight:700;
+    font-size:0.85rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    border:1px solid var(--black);
+    box-shadow:6px 6px 0 0 var(--black-soft);
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-easylandx:hover{
+    transform:translate(-3px,-3px);
+    box-shadow:9px 9px 0 0 var(--gray-dark);
+  }
+  .btn-easylandx svg{width:15px;height:15px;flex-shrink:0;}
+
+  /* ---------- CHART ---------- */
+  .chart-wrap{
+    margin:56px auto 0;
+    max-width:900px;
+    background:var(--black);
+    border-radius:6px;
+    padding:28px 26px 18px;
+    position:relative;
+    overflow:hidden;
+  }
+  .chart-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .chart-head .eyebrow{color:var(--gray-light); opacity:1;}
+  .legend{display:flex; gap:18px; flex-wrap:wrap;}
+  .legend-item{display:flex; align-items:center; gap:7px; font-size:0.68rem; color:var(--gray-light); letter-spacing:0.06em; text-transform:uppercase;}
+  .legend-dot{width:10px;height:10px;border-radius:2px;}
+  .chart-wrap svg{display:block; width:100%; height:auto;}
+  .shock-line{
+    stroke:var(--gray-light);
+    stroke-dasharray:4 5;
+    animation: shockMove 4.5s linear infinite;
+    opacity:0.7;
+  }
+  @keyframes shockMove{
+    0%{ transform:translateX(0); opacity:0;}
+    8%{opacity:0.7;}
+    92%{opacity:0.7;}
+    100%{ transform:translateX(760px); opacity:0;}
+  }
+  .curve-antifragile{ filter:drop-shadow(0 0 6px rgba(182,255,61,0.55)); }
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:110px 0;}
+  .on-black{background:var(--black); color:var(--gray-light);}
+  .on-black h2{color:var(--neon);}
+  .on-black .eyebrow{color:var(--gray);}
+  .on-neon .eyebrow{color:var(--black); opacity:0.7;}
+  .on-neon h2{color:var(--black);}
+
+  .section-head{max-width:660px; margin:0 auto 60px; text-align:center;}
+  .section-head h2{font-size:clamp(1.9rem,4vw,3rem); margin-top:12px; line-height:1.02;}
+  .section-head p{margin-top:16px; font-size:0.98rem; font-weight:500;}
+
+  /* ---------- TRIAD CARDS ---------- */
+  .triad-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--gray-dark);}
+  .triad-card{
+    background:var(--black);
+    padding:38px 30px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .triad-card .tag{align-self:flex-start;}
+  .tag-fragile{background:rgba(180,80,60,0.15); color:#E06B4F;}
+  .tag-robust{background:rgba(138,141,145,0.15); color:var(--gray-light);}
+  .tag-antifragile{background:var(--neon-dim); color:var(--neon);}
+  .triad-card h3{font-size:1.5rem; color:#F2F2F0;}
+  .triad-card p{font-size:0.92rem; color:var(--gray-light); font-weight:400;}
+  .triad-visual{height:70px; display:flex; align-items:center;}
+  .triad-visual svg{width:100%;height:100%;}
+
+  /* ---------- HORMESIS ROWS ---------- */
+  .h-row{
+    display:grid;
+    grid-template-columns:90px 1fr;
+    gap:30px;
+    padding:32px 0;
+    border-bottom:1px solid rgba(10,10,11,0.15);
+    align-items:flex-start;
+  }
+  .h-row:last-child{border-bottom:none;}
+  .h-icon{
+    width:64px;height:64px;
+    background:var(--black);
+    border-radius:6px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .h-icon svg{width:32px;height:32px;}
+  .h-row h3{font-size:1.25rem; margin-bottom:10px; color:var(--black);}
+  .h-row p{font-size:0.95rem; color:var(--black-soft); font-weight:500; max-width:620px;}
+
+  /* ---------- BARBELL ---------- */
+  .barbell-wrap{
+    background:var(--black-soft);
+    border:1px solid var(--gray-dark);
+    border-radius:8px;
+    padding:44px 36px;
+    margin-top:8px;
+  }
+  .barbell-svg{width:100%; height:auto; display:block; margin-bottom:26px;}
+  .barbell-labels{display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+  .bl-block{flex:1; min-width:220px;}
+  .bl-block .pct{font-family:'Big Shoulders Display'; font-weight:900; font-size:2.4rem; color:var(--neon); line-height:1;}
+  .bl-block.right .pct{color:var(--gray-light);}
+  .bl-block h4{font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:#F2F2F0; margin:8px 0 8px;}
+  .bl-block p{font-size:0.88rem; color:var(--gray-light); font-weight:400;}
+  .barbell-result{
+    margin-top:26px;
+    padding-top:22px;
+    border-top:1px dashed var(--gray-dark);
+    font-family:'Big Shoulders Display';
+    font-weight:800;
+    font-size:1.2rem;
+    color:var(--neon);
+    text-transform:uppercase;
+    text-align:center;
+  }
+
+  /* ---------- SKIN IN THE GAME ---------- */
+  .skin-grid{display:grid; grid-template-columns:1fr 1fr; gap:2px; background:rgba(10,10,11,0.2);}
+  .skin-card{background:var(--neon); padding:40px 34px;}
+  .skin-card.dark{background:var(--black); color:var(--gray-light);}
+  .skin-card .tag{margin-bottom:16px;}
+  .skin-card h3{font-size:1.35rem; margin-bottom:14px; color:var(--black);}
+  .skin-card.dark h3{color:var(--neon);}
+  .skin-card p{font-size:0.94rem; font-weight:500; color:var(--black-soft);}
+  .skin-card.dark p{color:var(--gray-light); font-weight:400;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--black); padding:120px 0 50px; text-align:center;}
+  footer .eyebrow{color:var(--gray);}
+  footer h2{
+    font-size:clamp(2rem,5vw,3.4rem);
+    color:var(--neon);
+    max-width:700px;
+    margin:16px auto 18px;
+    line-height:1;
+  }
+  footer p.sub{color:var(--gray-light); max-width:500px; margin:0 auto 40px; font-weight:400; font-size:0.95rem;}
+  .foot-bottom{
+    margin-top:100px;
+    padding-top:26px;
+    border-top:1px solid var(--gray-dark);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:0.72rem;
+    letter-spacing:0.05em;
+    color:var(--gray);
+    text-transform:uppercase;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width:820px){
+    .triad-grid{grid-template-columns:1fr;}
+    .skin-grid{grid-template-columns:1fr;}
+    .h-row{grid-template-columns:56px 1fr; gap:18px;}
+    .h-icon{width:48px;height:48px;}
+    .h-icon svg{width:24px;height:24px;}
+    .foot-bottom{flex-direction:column; text-align:center;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  :focus-visible{outline:2px solid var(--black); outline-offset:3px;}
+  .on-black :focus-visible, footer :focus-visible{outline-color:var(--neon);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-mark">easyland<span>x</span></div>
+  <a class="nav-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Systems Theory, Applied to the Web</span>
+    <h1>Most landing pages<br>are <span class="flip">fragile.</span><br>Build one that <span class="flip">gains</span> from stress.</h1>
+    <p>easylandx doesn't ship a page and walk away. We build pages the way antifragile systems are built — light, tested constantly, and stronger for every bit of real traffic they survive.</p>
+    <a class="btn-easylandx" id="ctaHero" href="https://easylandx.github.io" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      Stress-test your page
+    </a>
+
+    <div class="chart-wrap">
+      <div class="chart-head">
+        <span class="eyebrow">Fig. 01 — System Performance vs Stress Intensity</span>
+        <div class="legend">
+          <span class="legend-item"><span class="legend-dot" style="background:#E06B4F;"></span>Fragile</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#8A8D91;"></span>Robust</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#B6FF3D;"></span>Antifragile</span>
+        </div>
+      </div>
+      <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg">
+        <line x1="50" y1="20" x2="50" y2="300" stroke="#3A3D40" stroke-width="1"/>
+        <line x1="50" y1="300" x2="850" y2="300" stroke="#3A3D40" stroke-width="1"/>
+        <text x="50" y="316" font-family="IBM Plex Mono" font-size="11" fill="#8A8D91">LOW STRESS</text>
+        <text x="760" y="316" font-family="IBM Plex Mono" font-size="11" fill="#8A8D91">HIGH STRESS</text>
+        <path d="M50 120 C 300 145 520 240 850 300" fill="none" stroke="#E06B4F" stroke-width="3" stroke-linecap="round"/>
+        <path d="M50 210 C 300 208 520 214 850 205" fill="none" stroke="#8A8D91" stroke-width="3" stroke-linecap="round"/>
+        <path class="curve-antifragile" d="M50 250 C 300 235 520 120 850 30" fill="none" stroke="#B6FF3D" stroke-width="4" stroke-linecap="round"/>
+        <line class="shock-line" x1="60" y1="20" x2="60" y2="300" stroke-width="2"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<div class="hazard"></div>
+
+<!-- ================= PART 1: THE TRIAD ================= -->
+<section class="on-black" id="triad">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part One</span>
+      <h2>The Triad of Landing Pages</h2>
+      <p>Every page falls into one of three categories, depending on what happens to it when real, chaotic traffic finally shows up.</p>
+    </div>
+  </div>
+
+  <div class="triad-grid reveal">
+    <div class="triad-card">
+      <span class="tag tag-fragile">Risk: Breaks Under Load</span>
+      <h3>The Rigid Template</h3>
+      <div class="triad-visual">
+        <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 15 L100 15 L100 45 L180 45" stroke="#E06B4F" stroke-width="2" fill="none"/>
+          <path d="M60 10 L75 30 L55 28 L70 48" stroke="#E06B4F" stroke-width="2" fill="none" opacity="0.7"/>
+        </svg>
+      </div>
+      <p>Polished once in a mockup, never touched again. The first real spike in traffic, one confused user, one harsh review — and it cracks. Built for a calm day that never comes.</p>
+    </div>
+    <div class="triad-card">
+      <span class="tag tag-robust">Risk: Indifferent to Stress</span>
+      <h3>The Concrete Page</h3>
+      <div class="triad-visual">
+        <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="15" width="140" height="30" fill="none" stroke="#8A8D91" stroke-width="2"/>
+        </svg>
+      </div>
+      <p>Solid, plain, unbreakable. It survives whatever traffic throws at it — and it also never improves. Safe, and permanently mediocre.</p>
+    </div>
+    <div class="triad-card">
+      <span class="tag tag-antifragile">Risk: Grows From Stress</span>
+      <h3>The easylandx Page</h3>
+      <div class="triad-visual">
+        <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 45 L60 45 L60 30 L100 30 L100 15 L140 15 L140 5 L180 5" stroke="#B6FF3D" stroke-width="2.5" fill="none"/>
+        </svg>
+      </div>
+      <p>Built to take real hits — abandoned forms, confused clicks, blunt feedback — and come back stronger. Every stressor is data. Every failure is a rep.</p>
+    </div>
+  </div>
+</section>
+
+<div class="hazard"></div>
+
+<!-- ================= PART 2: HORMESIS ================= -->
+<section class="on-neon" id="hormesis">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part Two</span>
+      <h2>Small Doses, Built On Purpose</h2>
+      <p>A page gets stronger the same way a body does — through small, repeated stress, not through being sealed off from it.</p>
+    </div>
+
+    <div class="reveal">
+      <div class="h-row">
+        <div class="h-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#B6FF3D" stroke-width="2"><path d="M4 12h2m12 0h2M8 12h8M7 9v6m10-6v6"/></svg></div>
+        <div>
+          <h3>Micro-Tests Build Strength</h3>
+          <p>Continuous small A/B tests are the landing-page equivalent of lifting weights: each one tears something small, and the page rebuilds stronger. A page that's never stress-tested never adapts.</p>
+        </div>
+      </div>
+      <div class="h-row">
+        <div class="h-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#B6FF3D" stroke-width="2"><path d="M12 3c2 4-2 5-2 9a2 2 0 004 0c0-2-1-3-1-5 3 2 4 5 4 7a5 5 0 01-10 0c0-5 3-6 5-11z"/></svg></div>
+        <div>
+          <h3>The Danger of the Static Page</h3>
+          <p>Shield a page from small friction — never testing copy, never touching layout, never reading the drop-off data — and you're not protecting it. You're stockpiling dry wood. The volatility doesn't vanish; it waits for the one campaign that can't afford to fail.</p>
+        </div>
+      </div>
+      <div class="h-row">
+        <div class="h-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#B6FF3D" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg></div>
+        <div>
+          <h3>Naive Intervention</h3>
+          <p>The opposite failure: over-fixing. Bolting on another popup, another banner, another "growth hack" for a minor dip in conversion usually does more damage than the dip itself. Sometimes the page doesn't need a fix — it needs to be left alone.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hazard"></div>
+
+<!-- ================= PART 3: BARBELL ================= -->
+<section class="on-black" id="barbell">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part Three</span>
+      <h2>The Barbell Approach</h2>
+      <p>Asymmetry beats "medium risk." Instead of a page that's moderately tested in every direction, easylandx splits resources to opposite extremes.</p>
+    </div>
+
+    <div class="barbell-wrap reveal">
+      <svg class="barbell-svg" viewBox="0 0 900 90" xmlns="http://www.w3.org/2000/svg">
+        <rect x="30" y="15" width="130" height="60" rx="6" fill="#B6FF3D"/>
+        <rect x="160" y="40" width="580" height="10" fill="#3A3D40"/>
+        <rect x="740" y="30" width="60" height="30" rx="5" fill="#8A8D91"/>
+      </svg>
+      <div class="barbell-labels">
+        <div class="bl-block">
+          <div class="pct">90%</div>
+          <h4>Foundation — Hyper-Conservative</h4>
+          <p>Speed, accessibility, working forms, clear copy. Zero tolerance for downside. This part of the page is never the experiment.</p>
+        </div>
+        <div class="bl-block right">
+          <div class="pct">10%</div>
+          <h4>Experiments — Hyper-Aggressive</h4>
+          <p>A wild headline variant, an unproven format, a bold CTA test. Cost is capped, but the upside if it lands is not.</p>
+        </div>
+      </div>
+      <div class="barbell-result">Downside capped. Upside open.</div>
+    </div>
+  </div>
+</section>
+
+<div class="hazard"></div>
+
+<!-- ================= PART 4: SKIN IN THE GAME ================= -->
+<section class="on-neon" id="skin">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part Four</span>
+      <h2>Skin in the Game</h2>
+      <p>Antifragility isn't just technical — it's a question of who absorbs the consequences when a page underperforms.</p>
+    </div>
+  </div>
+
+  <div class="skin-grid reveal">
+    <div class="skin-card">
+      <span class="tag tag-fragile" style="background:rgba(10,10,11,0.1); color:var(--black);">The Old Way</span>
+      <h3>Transfer of Fragility</h3>
+      <p>Some agencies ship a flashy page, collect the invoice, and vanish before the real traffic — and the real consequences — ever arrive. The client absorbs every bug, every bounce, every missed lead alone.</p>
+    </div>
+    <div class="skin-card dark">
+      <span class="tag tag-antifragile">The easylandx Rule</span>
+      <h3>Consequences Travel With the Decision</h3>
+      <p>We stay attached to what we build. If a page underperforms, that's our problem to fix — not a ticket to close and forget. Decisions and their outcomes don't get separated.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER / CTA ================= -->
+<footer>
+  <div class="wrap">
+    <span class="eyebrow">Begin the Stress Test</span>
+    <h2>Stop building pages that break.</h2>
+    <p class="sub">easylandx designs landing pages to gain from disorder — light on unnecessary weight, tested constantly, and stronger for every bit of real-world chaos they survive.</p>
+    <a class="btn-easylandx" id="ctaFooter" href="https://easylandx.github.io" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      Visit easylandx
+    </a>
+
+    <div class="foot-bottom">
+      <span>easylandx — antifragile landing pages</span>
+      <span>Inspired by Antifragile, Nassim Nicholas Taleb</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Synthesized "system ready" beep on CTA click
+  let audioCtx;
+  function playBeep(){
+    try{
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      const now = audioCtx.currentTime;
+      [ [220, 0], [440, 0.09], [660, 0.18] ].forEach(([freq, delay]) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'square';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.0001, now + delay);
+        gain.gain.exponentialRampToValueAtTime(0.06, now + delay + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + delay + 0.14);
+        osc.connect(gain).connect(audioCtx.destination);
+        osc.start(now + delay);
+        osc.stop(now + delay + 0.16);
+      });
+    }catch(e){ /* audio unsupported, fail silently */ }
+  }
+  document.getElementById('ctaHero').addEventListener('click', playBeep);
+  document.getElementById('ctaFooter').addEventListener('click', playBeep);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Stop Waiting. Ship the Page.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red: #E31C13;
+    --red-deep: #A81410;
+    --red-dim: rgba(227,28,19,0.14);
+    --charcoal: #1E1E1E;
+    --charcoal-soft: #2A2A2A;
+    --charcoal-line: #3D3D3D;
+    --off: #F5F3EE;
+    --off-dim: #C9C6BE;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--red);
+    color:var(--off);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+
+  .mono{font-family:'Space Mono', monospace;}
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    font-weight:700;
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:60;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 32px;
+    background:rgba(30,30,30,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--charcoal-line);
+  }
+  .nav-mark{
+    font-family:'Anton', sans-serif;
+    font-size:1.35rem;
+    text-transform:uppercase;
+    color:var(--off);
+    letter-spacing:0.02em;
+  }
+  .nav-mark span{color:var(--red);}
+  .nav-btn{
+    background:var(--red);
+    color:var(--off);
+    padding:10px 20px;
+    font-family:'Space Mono',monospace;
+    font-size:0.74rem;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .nav-btn:hover{background:var(--red-deep); transform:translateY(-1px);}
+
+  /* ---------- BUTTON ---------- */
+  .btn-easylandx{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--charcoal);
+    color:var(--off);
+    padding:18px 34px;
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    font-size:0.85rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    border:2px solid var(--charcoal);
+    transition:transform .18s ease, background .18s ease, color .18s ease;
+  }
+  .btn-easylandx:hover{
+    background:var(--off);
+    color:var(--charcoal);
+    transform:translateY(-2px);
+  }
+  .btn-easylandx svg{width:15px;height:15px;flex-shrink:0;}
+  .on-charcoal .btn-easylandx{background:var(--red); border-color:var(--red);}
+  .on-charcoal .btn-easylandx:hover{background:var(--off); border-color:var(--off); color:var(--charcoal);}
+
+  /* ---------- STAMP ---------- */
+  .stamp{
+    position:absolute;
+    font-family:'Anton', sans-serif;
+    font-size:2.4rem;
+    color:var(--charcoal);
+    border:5px solid var(--charcoal);
+    padding:6px 22px;
+    transform:rotate(-9deg);
+    opacity:0.9;
+  }
+  .stamp::after{
+    content:"";
+    position:absolute;
+    left:-4px; right:-4px; top:48%;
+    height:5px;
+    background:var(--charcoal);
+    transform:translateY(-50%);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:150px 32px 80px;
+  }
+  .hero-inner{max-width:840px; margin:0 auto; text-align:center; position:relative; z-index:2;}
+  .hero .eyebrow{color:var(--charcoal); opacity:0.85; margin-bottom:16px; display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.5rem,7vw,5.2rem);
+    line-height:0.98;
+    color:var(--charcoal);
+    margin-bottom:26px;
+  }
+  .hero h1 .out{
+    color:var(--off);
+    -webkit-text-stroke:2px var(--charcoal);
+  }
+  .hero p{
+    font-size:1.05rem;
+    color:var(--charcoal);
+    font-weight:600;
+    max-width:560px;
+    margin:0 auto 40px;
+  }
+  .hero .stamp{ top:-10px; right:-6px; display:none; }
+  @media(min-width:900px){ .hero .stamp{ display:block; } }
+
+  /* ---------- LIFE BAR (signature) ---------- */
+  .lifebar-wrap{
+    margin:56px auto 0;
+    max-width:900px;
+    background:var(--charcoal);
+    padding:26px 26px 22px;
+    text-align:left;
+  }
+  .lifebar-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .lifebar-head .eyebrow{color:var(--off-dim);}
+  .lifebar-num{font-family:'Anton'; font-size:1.6rem; color:var(--red);}
+  #lifeBar{width:100%; height:46px;}
+  .lifebar-caption{
+    margin-top:14px;
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem;
+    color:var(--off-dim);
+  }
+  .ticker{
+    margin-top:18px;
+    padding-top:16px;
+    border-top:1px dashed var(--charcoal-line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .ticker-label{font-family:'Space Mono'; font-size:0.72rem; color:var(--off-dim); letter-spacing:0.06em; text-transform:uppercase;}
+  #secondsCount{font-family:'Anton'; font-size:1.9rem; color:var(--off);}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:110px 0;}
+  .on-charcoal{background:var(--charcoal); color:var(--off-dim);}
+  .on-charcoal h2{color:var(--off);}
+  .on-charcoal .eyebrow{color:var(--red);}
+  .on-red .eyebrow{color:var(--charcoal); opacity:0.75;}
+  .on-red h2{color:var(--charcoal);}
+
+  .section-head{max-width:660px; margin:0 auto 60px; text-align:center;}
+  .section-head h2{font-size:clamp(2rem,4.4vw,3.3rem); margin-top:12px; line-height:0.98;}
+  .section-head p{margin-top:16px; font-size:1rem; font-weight:500;}
+
+  /* ---------- DEATH CARDS ---------- */
+  .death-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--charcoal-line);}
+  .death-card{background:var(--charcoal); padding:38px 30px;}
+  .death-card .mono{font-size:0.7rem; letter-spacing:0.14em; color:var(--red); text-transform:uppercase; display:block; margin-bottom:14px;}
+  .death-card h3{font-size:1.4rem; color:var(--off); margin-bottom:14px; line-height:1.05;}
+  .death-card p{font-size:0.93rem; color:var(--off-dim);}
+  .death-card blockquote{
+    margin-top:16px;
+    font-family:'Space Mono', monospace;
+    font-size:0.86rem;
+    color:var(--off);
+    border-left:2px solid var(--red);
+    padding-left:12px;
+  }
+
+  /* ---------- MINDSET ROWS ---------- */
+  .m-row{
+    display:grid;
+    grid-template-columns:70px 1fr;
+    gap:26px;
+    padding:30px 0;
+    border-bottom:1px solid rgba(30,30,30,0.15);
+    align-items:flex-start;
+  }
+  .m-row:last-child{border-bottom:none;}
+  .m-num{
+    font-family:'Anton';
+    font-size:2.4rem;
+    color:var(--charcoal);
+    line-height:1;
+  }
+  .m-row h3{font-size:1.3rem; margin-bottom:10px; color:var(--charcoal);}
+  .m-row p{font-size:0.96rem; color:var(--charcoal); font-weight:500; max-width:640px;}
+
+  /* ---------- LOUD VS ESSENTIAL ---------- */
+  .compare-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2px;
+    background:var(--charcoal-line);
+    margin-top:8px;
+  }
+  .compare-col{background:var(--charcoal); padding:34px 30px;}
+  .compare-col h4{
+    font-family:'Anton';
+    font-size:1.1rem;
+    letter-spacing:0.03em;
+    margin-bottom:18px;
+  }
+  .compare-col.loud h4{color:var(--off-dim);}
+  .compare-col.essential h4{color:var(--red);}
+  .compare-col ul{list-style:none;}
+  .compare-col li{
+    font-size:0.92rem;
+    padding:10px 0;
+    border-bottom:1px solid var(--charcoal-line);
+    color:var(--off-dim);
+  }
+  .compare-col.loud li{text-decoration:line-through; opacity:0.7;}
+  .compare-col.essential li{color:var(--off); font-weight:600;}
+  .compare-col li:last-child{border-bottom:none;}
+
+  /* ---------- COMPOUNDING STEPS ---------- */
+  .steps-row{
+    display:flex;
+    gap:2px;
+    background:var(--charcoal-line);
+    margin-top:8px;
+    flex-wrap:wrap;
+  }
+  .step{
+    flex:1;
+    min-width:150px;
+    background:var(--charcoal);
+    padding:26px 20px;
+    text-align:center;
+  }
+  .step .n{font-family:'Anton'; font-size:1.8rem; color:var(--red);}
+  .step p{font-size:0.85rem; color:var(--off-dim); margin-top:8px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--charcoal); padding:120px 0 50px; text-align:center;}
+  footer .eyebrow{color:var(--red);}
+  footer h2{
+    font-size:clamp(2.2rem,5.6vw,3.8rem);
+    color:var(--off);
+    max-width:760px;
+    margin:16px auto 18px;
+    line-height:0.98;
+  }
+  footer p.sub{color:var(--off-dim); max-width:520px; margin:0 auto 40px; font-weight:400; font-size:0.96rem;}
+  .foot-bottom{
+    margin-top:100px;
+    padding-top:26px;
+    border-top:1px solid var(--charcoal-line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'Space Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.05em;
+    color:var(--off-dim);
+    text-transform:uppercase;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width:820px){
+    .death-grid{grid-template-columns:1fr;}
+    .compare-wrap{grid-template-columns:1fr;}
+    .m-row{grid-template-columns:46px 1fr; gap:16px;}
+    .m-num{font-size:1.7rem;}
+    .foot-bottom{flex-direction:column; text-align:center;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  :focus-visible{outline:2px solid var(--charcoal); outline-offset:3px;}
+  .on-charcoal :focus-visible, footer :focus-visible{outline-color:var(--red);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-mark">easyland<span>x</span></div>
+  <a class="nav-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="stamp">LATER</div>
+    <span class="eyebrow">Stop Waiting. Start Shipping.</span>
+    <h1>Your landing page<br>isn't coming <span class="out">later.</span></h1>
+    <p>You don't have time. You have less time than you think — and your business is still running on a page that "isn't ready yet." Nobody is coming to launch it for you.</p>
+    <a class="btn-easylandx" id="ctaHero" href="https://easylandx.github.io" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      Ship it with easylandx
+    </a>
+
+    <div class="lifebar-wrap">
+      <div class="lifebar-head">
+        <span class="eyebrow">A Life, In Weeks</span>
+        <span class="lifebar-num mono">3,900</span>
+      </div>
+      <svg id="lifeBar" viewBox="0 0 900 46" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"></svg>
+      <p class="lifebar-caption">Roughly the number of weeks in an average life. Each bar spent is gone. However you spend yours, it doesn't come back — and neither does the traffic your page missed while it sat unfinished.</p>
+      <div class="ticker">
+        <span class="ticker-label">Seconds spent reading this instead of shipping</span>
+        <span id="secondsCount" class="mono">0</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= PART 1: DEATH ================= -->
+<section class="on-charcoal" id="death">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part One — Death</span>
+      <h2>The Existential Truth About Your Page</h2>
+      <p>Not to scare you. To wake you up. Mortality is the fastest way to see what actually matters — and what's just noise you've been polishing for months.</p>
+    </div>
+
+    <div class="death-grid reveal">
+      <div class="death-card">
+        <span class="mono">The Illusion of Time</span>
+        <h3>Every Unpublished Day Is a Lost Day</h3>
+        <p>The page you're "almost done with" has been almost done for weeks. Every day it sits unpublished is a day of traffic, leads, and revenue you will never get back.</p>
+        <blockquote>"You have less time than you think — and still you are waiting."</blockquote>
+      </div>
+      <div class="death-card">
+        <span class="mono">Nobody Is Coming</span>
+        <h3>No One Is Going to Finish It For You</h3>
+        <p>Waiting for the perfect brand, the perfect copy, the perfect moment to launch is a coping mechanism, not a strategy. There is no rescue coming.</p>
+      </div>
+      <div class="death-card">
+        <span class="mono">The Last Version Test</span>
+        <h3>Would You Still Be Tweaking the Button Color?</h3>
+        <p>If this were the last version of your page you'd ever ship — would you spend today arguing about a font, or would you finally press publish?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART 2: MINDSET ================= -->
+<section class="on-red" id="mindset">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part Two — Mindset</span>
+      <h2>The Traps Keeping Your Page Offline</h2>
+      <p>Most unpublished pages aren't a design problem. They're a mindset problem wearing a design costume.</p>
+
+      <div class="reveal">
+        <div class="m-row">
+          <div class="m-num mono">01</div>
+          <div>
+            <h3>Procrastination Is Not Preparation</h3>
+            <p>"Later" isn't a peaceful pause — it's a trap. Endless revisions and waiting for "the right time to launch" are usually fear of judgment wearing the mask of careful planning.</p>
+          </div>
+        </div>
+        <div class="m-row">
+          <div class="m-num mono">02</div>
+          <div>
+            <h3>Action Beats Planning</h3>
+            <p>A flawless mockup that never leaves Figma is worth less than a live page with one clumsy sentence. Momentum comes exclusively from shipping something — not from perfecting a plan that stays on the page.</p>
+          </div>
+        </div>
+        <div class="m-row">
+          <div class="m-num mono">03</div>
+          <div>
+            <h3>Your Tools Are Your Environment</h3>
+            <p>Slow builders, bloated templates, and agencies that take months quietly erode your urgency. Ruthlessly avoid the tools that make "later" the default.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART 3: HOW TO LIVE / SHIP ================= -->
+<section class="on-charcoal" id="live">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part Three — How to Ship a Good Page</span>
+      <h2>Daily Habits, Not One Big Overhaul</h2>
+      <p>You don't need a total rebrand to move forward. You need one small, real step — today.</p>
+    </div>
+
+    <div class="reveal">
+      <span class="mono" style="color:var(--off-dim); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;">The Compounding Power of Small Steps</span>
+      <div class="steps-row">
+        <div class="step"><div class="n mono">01</div><p>Write one headline today.</p></div>
+        <div class="step"><div class="n mono">02</div><p>Connect one working form.</p></div>
+        <div class="step"><div class="n mono">03</div><p>Publish, even unfinished.</p></div>
+        <div class="step"><div class="n mono">04</div><p>Fix one thing tomorrow.</p></div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:64px;">
+      <span class="mono" style="color:var(--off-dim); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;">Prioritization as Liberation</span>
+      <div class="compare-wrap">
+        <div class="compare-col loud">
+          <h4>Loud (Feels Urgent)</h4>
+          <ul>
+            <li>Perfecting the logo animation</li>
+            <li>Choosing between 40 fonts</li>
+            <li>Arguing about the exact hex code</li>
+            <li>Waiting on the "right" stock photo</li>
+            <li>One more testimonial slot</li>
+          </ul>
+        </div>
+        <div class="compare-col essential">
+          <h4>Essential (Actually Matters)</h4>
+          <ul>
+            <li>A headline that says what you do</li>
+            <li>One button that works</li>
+            <li>A page that loads fast</li>
+            <li>Being live, right now</li>
+            <li>Real traffic seeing real proof</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:64px; max-width:640px;">
+      <span class="mono" style="color:var(--off-dim); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;">Presence and Radical Gratitude</span>
+      <h3 style="font-size:1.5rem; color:var(--off); margin-top:14px; line-height:1.15;">Stop postponing "good enough" until it's perfect.</h3>
+      <p style="color:var(--off-dim); margin-top:14px; font-size:0.98rem;">Waiting for the ideal version keeps you running on a treadmill of dissatisfaction. The page that's live today, imperfect and improving, beats the flawless one that never launches.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER / CTA ================= -->
+<footer>
+  <div class="wrap">
+    <span class="eyebrow">This Is the Wake-Up Call</span>
+    <h2>Stop waiting. Ship the page today.</h2>
+    <p class="sub">easylandx builds and publishes landing pages fast — because the version that's live beats the version that's "almost ready," every single time.</p>
+    <a class="btn-easylandx" id="ctaFooter" href="https://easylandx.github.io" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      Visit easylandx
+    </a>
+
+    <div class="foot-bottom">
+      <span>easylandx — build it today, not later</span>
+      <span>Inspired by Don't Leave Anything for Later, Library Mindset</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Build the "life in weeks" bar chart
+  (function(){
+    const svg = document.getElementById('lifeBar');
+    const total = 130;
+    const usedRatio = 0.58;
+    const usedCount = Math.round(total * usedRatio);
+    const w = 900 / total;
+    for(let i=0;i<total;i++){
+      const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+      rect.setAttribute('x', i * w + 1);
+      rect.setAttribute('y', 4);
+      rect.setAttribute('width', Math.max(w - 2, 1));
+      rect.setAttribute('height', 38);
+      let fill;
+      if(i < usedCount){
+        fill = '#3D3D3D';
+      } else if (i === total - 1){
+        fill = '#F5F3EE';
+      } else {
+        fill = '#E31C13';
+      }
+      rect.setAttribute('fill', fill);
+      if(i === total - 1){
+        rect.style.animation = 'blinkNow 1.2s ease-in-out infinite';
+      }
+      svg.appendChild(rect);
+    }
+    const style = document.createElement('style');
+    style.textContent = '@keyframes blinkNow{0%,100%{opacity:1;}50%{opacity:0.25;}}';
+    document.head.appendChild(style);
+  })();
+
+  // Seconds-on-page ticker
+  (function(){
+    const el = document.getElementById('secondsCount');
+    let s = 0;
+    setInterval(() => { s += 1; el.textContent = s; }, 1000);
+  })();
+
+  // Synthesized alarm blip on CTA click
+  let audioCtx;
+  function playAlert(){
+    try{
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      const now = audioCtx.currentTime;
+      [0, 0.13].forEach((delay) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.value = 520;
+        gain.gain.setValueAtTime(0.0001, now + delay);
+        gain.gain.exponentialRampToValueAtTime(0.07, now + delay + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + delay + 0.11);
+        osc.connect(gain).connect(audioCtx.destination);
+        osc.start(now + delay);
+        osc.stop(now + delay + 0.12);
+      });
+    }catch(e){ /* audio unsupported, fail silently */ }
+  }
+  document.getElementById('ctaHero').addEventListener('click', playAlert);
+  document.getElementById('ctaFooter').addEventListener('click', playAlert);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — A Monk's Guide to a Clean Landing Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --tatami: #7C8A5E;
+    --tatami-deep: #4B5738;
+    --tatami-pale: #AAB98C;
+    --tatami-shadow: #3B4530;
+    --indigo: #2B3A50;
+    --indigo-soft: #46596F;
+    --paper: #F6F1E4;
+    --paper-dim: #EAE2CE;
+    --paper-pure: #FBF8F0;
+    --line: rgba(246,241,228,0.22);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--tatami);
+    color:var(--paper);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Shippori Mincho', serif;
+    font-weight:700;
+    letter-spacing:0.01em;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  .eyebrow{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-weight:700;
+    font-size:0.72rem;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    opacity:0.85;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:50;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 32px;
+    background:linear-gradient(to bottom, rgba(75,87,56,0.92), rgba(75,87,56,0));
+    backdrop-filter:blur(2px);
+  }
+  .nav-mark{
+    font-family:'Shippori Mincho', serif;
+    font-weight:800;
+    font-size:1.15rem;
+    letter-spacing:0.02em;
+    color:var(--paper-pure);
+  }
+  .nav-mark span{color:var(--tatami-pale);}
+  .nav-btn{
+    border:1px solid var(--line);
+    padding:9px 20px;
+    border-radius:999px;
+    font-size:0.82rem;
+    font-weight:700;
+    letter-spacing:0.03em;
+    transition:background .25s ease, border-color .25s ease, transform .25s ease;
+  }
+  .nav-btn:hover{background:var(--indigo);border-color:var(--indigo);transform:translateY(-1px);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:140px 32px 100px;
+    overflow:hidden;
+  }
+  .hero-gravel{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    opacity:0.55;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:2;
+    max-width:760px;
+  }
+  .hero .eyebrow{margin-bottom:22px;display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.3rem, 5.4vw, 4.1rem);
+    color:var(--paper-pure);
+    line-height:1.18;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--tatami-pale);
+    display:block;
+    font-size:0.5em;
+    letter-spacing:0.06em;
+    margin-top:14px;
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-weight:700;
+  }
+  .hero p{
+    font-size:1.08rem;
+    color:var(--paper-dim);
+    max-width:560px;
+    margin:0 auto 40px;
+  }
+
+  .sweep-mask{
+    display:inline-block;
+    overflow:hidden;
+  }
+  .sweep-mask > *{
+    display:block;
+    animation: sweepIn 1.4s cubic-bezier(.5,0,.15,1) both;
+  }
+  .broom{
+    position:absolute;
+    z-index:3;
+    width:64px;
+    height:64px;
+    left:-10%;
+    top:38%;
+    animation: broomPass 1.5s cubic-bezier(.5,0,.15,1) both;
+    filter:drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+  }
+  @keyframes sweepIn{
+    from{ clip-path: inset(0 100% 0 0); }
+    to{ clip-path: inset(0 0 0 0); }
+  }
+  @keyframes broomPass{
+    0%{ left:-10%; opacity:0; transform:rotate(-8deg); }
+    10%{ opacity:1; }
+    90%{ opacity:1; }
+    100%{ left:104%; opacity:0; transform:rotate(4deg); }
+  }
+
+  /* ---------- BUTTONS ---------- */
+  .btn-easylandx{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--indigo);
+    color:var(--paper-pure);
+    padding:16px 34px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.98rem;
+    letter-spacing:0.02em;
+    border:1px solid var(--indigo-soft);
+    box-shadow:0 10px 30px -12px rgba(20,25,15,0.55);
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .btn-easylandx:hover{
+    transform:translateY(-2px);
+    background:var(--indigo-soft);
+    box-shadow:0 16px 34px -14px rgba(20,25,15,0.6);
+  }
+  .btn-easylandx svg{width:16px;height:16px;flex-shrink:0;}
+
+  /* ---------- DIVIDER (karesansui) ---------- */
+  .divider{
+    padding:8px 0;
+    background:var(--tatami-deep);
+  }
+  .divider svg{display:block;width:100%;height:auto;}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:110px 0;}
+  .section-head{
+    max-width:640px;
+    margin:0 auto 64px;
+    text-align:center;
+  }
+  .section-head h2{
+    font-size:clamp(1.7rem, 3.4vw, 2.5rem);
+    color:var(--paper-pure);
+    margin-top:14px;
+  }
+  .section-head p{color:var(--paper-dim); margin-top:16px; font-size:1.02rem;}
+
+  .philosophy-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+  .p-card{
+    background:rgba(246,241,228,0.06);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:34px 28px;
+    transition:transform .3s ease, background .3s ease;
+  }
+  .p-card:hover{transform:translateY(-4px); background:rgba(246,241,228,0.1);}
+  .p-num{
+    font-family:'Shippori Mincho', serif;
+    font-size:0.85rem;
+    color:var(--tatami-pale);
+    letter-spacing:0.1em;
+    margin-bottom:16px;
+    display:block;
+  }
+  .p-card h3{font-size:1.28rem; color:var(--paper-pure); margin-bottom:12px;}
+  .p-card p{font-size:0.96rem; color:var(--paper-dim);}
+  .p-card blockquote{
+    margin-top:16px;
+    font-family:'Shippori Mincho', serif;
+    font-size:0.95rem;
+    color:var(--paper-pure);
+    border-left:2px solid var(--tatami-pale);
+    padding-left:14px;
+    font-style:normal;
+  }
+
+  /* ---------- ROOMS (section by section) ---------- */
+  .room-bg{background:var(--indigo);}
+  .room-row{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:56px;
+    align-items:center;
+    margin-bottom:96px;
+  }
+  .room-row:last-child{margin-bottom:0;}
+  .room-row.rev{grid-template-columns:1.15fr 0.85fr;}
+  .room-row.rev .room-visual{order:2;}
+  .room-visual{
+    aspect-ratio:1/1;
+    border-radius:22px;
+    background:rgba(246,241,228,0.05);
+    border:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px;
+  }
+  .room-visual svg{width:100%;height:100%;}
+  .room-label{
+    font-family:'Shippori Mincho', serif;
+    font-size:0.82rem;
+    color:var(--tatami-pale);
+    letter-spacing:0.08em;
+    margin-bottom:10px;
+    display:block;
+  }
+  .room-text h3{font-size:1.55rem; color:var(--paper-pure); margin-bottom:16px;}
+  .room-text p{color:var(--paper-dim); font-size:1rem;}
+  .room-text p + p{margin-top:14px;}
+
+  /* ---------- RELATIONSHIPS ---------- */
+  .rel-list{
+    display:flex;
+    flex-direction:column;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:18px;
+    overflow:hidden;
+  }
+  .rel-item{
+    background:var(--tatami);
+    padding:36px 40px;
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:32px;
+    align-items:start;
+  }
+  .rel-item h3{font-size:1.2rem; color:var(--paper-pure);}
+  .rel-item h3 span{
+    display:block;
+    font-family:'Zen Kaku Gothic New',sans-serif;
+    font-weight:700;
+    font-size:0.68rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--tatami-pale);
+    margin-bottom:10px;
+  }
+  .rel-item p{color:var(--paper-dim); font-size:0.98rem;}
+
+  /* ---------- QUOTE ---------- */
+  .quote-section{
+    text-align:center;
+    background:var(--tatami-deep);
+  }
+  .quote-section blockquote{
+    font-family:'Shippori Mincho', serif;
+    font-size:clamp(1.5rem,3.6vw,2.3rem);
+    max-width:760px;
+    margin:0 auto;
+    color:var(--paper-pure);
+    line-height:1.5;
+  }
+  .quote-section cite{
+    display:block;
+    margin-top:26px;
+    font-style:normal;
+    font-size:0.85rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--tatami-pale);
+  }
+
+  /* ---------- FOOTER / CTA ---------- */
+  footer{
+    background:var(--indigo);
+    padding:120px 0 60px;
+    text-align:center;
+  }
+  footer h2{
+    font-size:clamp(1.9rem,4.4vw,3rem);
+    color:var(--paper-pure);
+    max-width:640px;
+    margin:0 auto 20px;
+  }
+  footer p.sub{color:var(--paper-dim); max-width:480px; margin:0 auto 40px;}
+  .foot-bottom{
+    margin-top:100px;
+    padding-top:28px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:0.8rem;
+    color:var(--paper-dim);
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .8s ease, transform .8s ease;
+  }
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width:800px){
+    .philosophy-grid{grid-template-columns:1fr;}
+    .room-row, .room-row.rev{grid-template-columns:1fr; gap:28px;}
+    .room-row.rev .room-visual{order:0;}
+    .room-visual{max-width:280px; margin:0 auto;}
+    .rel-item{grid-template-columns:1fr; gap:10px;}
+    .foot-bottom{flex-direction:column; text-align:center;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  :focus-visible{
+    outline:2px solid var(--paper-pure);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-mark">easyland<span>x</span></div>
+  <a class="nav-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <svg class="hero-gravel" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="gravelFade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#3B4530" stop-opacity="0"/>
+        <stop offset="1" stop-color="#3B4530" stop-opacity="0.6"/>
+      </linearGradient>
+    </defs>
+    <g stroke="#4B5738" stroke-width="2" fill="none" opacity="0.7">
+      <path d="M -50 620 Q 300 590 600 620 T 1250 620"/>
+      <path d="M -50 650 Q 300 620 600 650 T 1250 650"/>
+      <path d="M -50 680 Q 300 650 600 680 T 1250 680"/>
+      <path d="M -50 710 Q 300 680 600 710 T 1250 710"/>
+      <path d="M -50 740 Q 300 710 600 740 T 1250 740"/>
+      <path d="M -50 770 Q 300 740 600 770 T 1250 770"/>
+    </g>
+    <rect x="0" y="600" width="1200" height="200" fill="url(#gravelFade)"/>
+    <circle cx="220" cy="650" r="26" fill="#4B5738" opacity="0.5"/>
+    <circle cx="960" cy="700" r="18" fill="#4B5738" opacity="0.4"/>
+  </svg>
+
+  <svg class="broom" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <line x1="32" y1="4" x2="20" y2="42" stroke="#F6F1E4" stroke-width="3" stroke-linecap="round"/>
+    <path d="M20 42 L8 60 M20 42 L20 60 M20 42 L32 60" stroke="#AAB98C" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+
+  <div class="hero-inner">
+    <span class="eyebrow">A Field Guide, Applied to the Web</span>
+    <h1>
+      <span class="sweep-mask"><span>Think of your landing page</span></span>
+      <span class="sweep-mask"><span>as an allegory for your business.</span></span>
+      <em>Keep sweeping it clean.</em>
+    </h1>
+    <p>easylandx builds pages the way a monk keeps a temple — swept clean each morning, tended in small daily rhythms, and made to hold a visitor's attention instead of scattering it.</p>
+    <a class="btn-easylandx" id="ctaHero" href="https://easylandx.github.io" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      Begin with easylandx
+    </a>
+  </div>
+</header>
+
+<div class="divider">
+  <svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 20 Q 150 5 300 20 T 600 20 T 900 20 T 1200 20" stroke="#7C8A5E" stroke-width="1.5" fill="none" opacity="0.6"/>
+  </svg>
+</div>
+
+<!-- ================= PART 1: PHILOSOPHY ================= -->
+<section id="philosophy">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part One</span>
+      <h2>The Philosophy of the Zen Landing Page</h2>
+      <p>Before any layout is drawn, a working principle: a page is cleaned and tended not because it is broken, but because clarity is a practice.</p>
+    </div>
+
+    <div class="philosophy-grid">
+      <div class="p-card reveal">
+        <span class="p-num">壱 · One</span>
+        <h3>The Page as Your Business</h3>
+        <p>A cluttered page is a cluttered pitch. Every stray element — an extra button, an unclear headline, a form with too many fields — is a small confusion visitors carry with them.</p>
+        <blockquote>Think of your page as an allegory for your business. Keep tending it every day.</blockquote>
+      </div>
+      <div class="p-card reveal">
+        <span class="p-num">弐 · Two</span>
+        <h3>The Morning Ritual</h3>
+        <p>The first five seconds above the fold are the open window of the page — the moment a visitor either breathes in or turns away. Clear it before anything else.</p>
+        <blockquote>Open the window first. Let the visitor in before you ask anything of them.</blockquote>
+      </div>
+      <div class="p-card reveal">
+        <span class="p-num">参 · Three</span>
+        <h3>The Power of Consistency</h3>
+        <p>easylandx rejects the once-a-year redesign. A page held to small, non-negotiable daily rhythms — a copy edit here, a load-time trim there — stays honest far longer.</p>
+        <blockquote>It is repetition, not renovation, that polishes a page's character.</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="background:var(--indigo);">
+  <svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 20 Q 150 35 300 20 T 600 20 T 900 20 T 1200 20" stroke="#AAB98C" stroke-width="1.5" fill="none" opacity="0.6"/>
+  </svg>
+</div>
+
+<!-- ================= PART 2: ROOM BY ROOM ================= -->
+<section class="room-bg" id="sections">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part Two</span>
+      <h2>Section by Section, Mindfully</h2>
+      <p>Every zone of a page carries its own weight — the way every room of a temple carries its own meaning.</p>
+    </div>
+
+    <div class="room-row reveal">
+      <div class="room-visual">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="70" width="140" height="90" rx="8" fill="none" stroke="#AAB98C" stroke-width="2"/>
+          <rect x="46" y="90" width="60" height="14" rx="3" fill="#AAB98C" opacity="0.5"/>
+          <rect x="46" y="112" width="90" height="8" rx="2" fill="#F6F1E4" opacity="0.35"/>
+          <rect x="46" y="130" width="50" height="16" rx="8" fill="#F6F1E4"/>
+          <circle cx="100" cy="45" r="20" fill="none" stroke="#F6F1E4" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="room-text">
+        <span class="room-label">The Kitchen — 台所</span>
+        <h3>The Hero, the Heart of the Page</h3>
+        <p>The kitchen is where greed and excess are eradicated first; a cook who works with a pure heart uses only what the dish needs. The hero section deserves the same devotion: one headline, one promise, one action — cooked, not piled on.</p>
+        <p>easylandx treats every hero as a single dish, plated with restraint.</p>
+      </div>
+    </div>
+
+    <div class="room-row rev reveal">
+      <div class="room-visual">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60 40 C 60 20 140 20 140 40 L140 150 C140 165 60 165 60 150 Z" fill="none" stroke="#AAB98C" stroke-width="2"/>
+          <path d="M75 70 Q100 60 125 70" stroke="#F6F1E4" stroke-width="2" fill="none" opacity="0.6"/>
+          <path d="M75 95 Q100 85 125 95" stroke="#F6F1E4" stroke-width="2" fill="none" opacity="0.4"/>
+          <path d="M75 120 Q100 110 125 120" stroke="#F6F1E4" stroke-width="2" fill="none" opacity="0.25"/>
+        </svg>
+      </div>
+      <div class="room-text">
+        <span class="room-label">The Bathroom &amp; Toilet — 湯殿</span>
+        <h3>Forms and Footers, the Soul of the Page</h3>
+        <p>Water represents purification, and the areas monks are most tempted to neglect are the ones that matter most. A contact form with a broken field or a footer left to rot is a small pollution visitors feel even if they can't name it.</p>
+        <p>Cleaning the humble parts of a page thoroughly is a quiet exercise in humility.</p>
+      </div>
+    </div>
+
+    <div class="room-row reveal">
+      <div class="room-visual">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#AAB98C" stroke-width="1.5" opacity="0.7">
+            <line x1="30" y1="60" x2="170" y2="60"/>
+            <line x1="30" y1="90" x2="170" y2="90"/>
+            <line x1="30" y1="120" x2="170" y2="120"/>
+            <line x1="30" y1="150" x2="170" y2="150"/>
+          </g>
+          <rect x="60" y="70" width="12" height="12" fill="#F6F1E4"/>
+          <rect x="128" y="100" width="12" height="12" fill="#F6F1E4" opacity="0.7"/>
+          <rect x="90" y="130" width="12" height="12" fill="#F6F1E4" opacity="0.45"/>
+        </svg>
+      </div>
+      <div class="room-text">
+        <span class="room-label">The Wooden Floors — 廊下</span>
+        <h3>Whitespace, the Rhythm of the Page</h3>
+        <p>Monks spend long hours polishing floors — a literal, repetitive act of mindfulness, one cloth-stroke at a time. Whitespace works the same way: it isn't empty, it's the rhythm that lets a visitor's eye move without stumbling.</p>
+        <p>easylandx never fills a floor just because it's bare.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 20 Q 150 5 300 20 T 600 20 T 900 20 T 1200 20" stroke="#7C8A5E" stroke-width="1.5" fill="none" opacity="0.6"/>
+  </svg>
+</div>
+
+<!-- ================= PART 3: RELATIONSHIPS ================= -->
+<section id="relationships">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Part Three</span>
+      <h2>Relationships with Tools and People</h2>
+      <p>A clean page reaches past pixels — it shapes how a team builds, and how visitors are treated once they arrive.</p>
+    </div>
+
+    <div class="rel-list reveal">
+      <div class="rel-item">
+        <h3><span>01</span>Respecting Your Tools</h3>
+        <p>Instead of rebuilding from scratch for every client, easylandx cares for a living design system — components, patterns, and templates maintained well enough to be reused for a lifetime, not replaced every season.</p>
+      </div>
+      <div class="rel-item">
+        <h3><span>02</span>Ahimsa, No Harm</h3>
+        <p>Nothing on a page should trap or trick a visitor. No dark patterns, no forced choices, no cookie banners designed to confuse — clearing cobwebs gently trains empathy for whoever passes through.</p>
+      </div>
+      <div class="rel-item">
+        <h3><span>03</span>Deepening the Bonds</h3>
+        <p>Maintenance shouldn't fall on one person. easylandx hands off clean, documented pages so designers, writers, and clients can all keep tending the same space without resentment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUOTE ================= -->
+<section class="quote-section reveal">
+  <div class="wrap">
+    <blockquote>"Loving your page trains your mind to naturally care for the people who visit it."</blockquote>
+    <cite>— adapted from A Monk's Guide to a Clean House and Mind</cite>
+  </div>
+</section>
+
+<!-- ================= FOOTER / CTA ================= -->
+<footer>
+  <div class="wrap">
+    <span class="eyebrow">Begin the Practice</span>
+    <h2 style="margin-top:16px;">A clean page is never finished — only tended.</h2>
+    <p class="sub">easylandx builds and maintains landing pages with the same quiet discipline: swept daily, never cluttered, always ready to receive.</p>
+    <a class="btn-easylandx" id="ctaFooter" href="https://easylandx.github.io" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      Visit easylandx
+    </a>
+
+    <div class="foot-bottom">
+      <span>easylandx — clean landing pages, tended daily</span>
+      <span>Inspired by A Monk's Guide to a Clean House and Mind, Shoukei Matsumoto</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Synthesized singing-bowl chime on CTA click
+  let audioCtx;
+  function playChime(){
+    try{
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      const now = audioCtx.currentTime;
+      const freqs = [432, 648, 864];
+      freqs.forEach((f, i) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = f;
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.linearRampToValueAtTime(0.14 / (i+1), now + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.2 - i*0.2);
+        osc.connect(gain).connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 2.3);
+      });
+    }catch(e){ /* audio unsupported, fail silently */ }
+  }
+  document.getElementById('ctaHero').addEventListener('click', playChime);
+  document.getElementById('ctaFooter').addEventListener('click', playChime);
+</script>
+
+</body>
+</html>
