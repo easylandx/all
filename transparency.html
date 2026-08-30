@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — The Transparency Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ice: #E9F3F8;
+    --ice-deep: #D6E9F2;
+    --amber: #E8A230;
+    --amber-deep: #C9821A;
+    --gray: #6B7280;
+    --gray-light: #C7CFD6;
+    --gray-pale: #EDF1F4;
+    --ink: #2B333B;
+    --white: #FFFFFF;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--ice);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a{ color:inherit; }
+  .wrap{ max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+  .display{
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+
+  /* ---------- Topbar ---------- */
+  header.topbar{
+    position: sticky; top:0; z-index: 50;
+    background: var(--ice);
+    border-bottom: 2px solid var(--ink);
+  }
+  .topbar-inner{
+    max-width: 1100px; margin: 0 auto; padding: 16px 32px;
+    display:flex; align-items:center; justify-content: space-between;
+  }
+  .logo{ font-family:'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 19px; color: var(--ink); }
+  .logo span{ color: var(--amber-deep); }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    background: var(--ink); color: var(--ice);
+    font-family:'IBM Plex Mono', monospace; font-weight:600;
+    font-size: 13px; letter-spacing: 0.03em; text-transform: uppercase;
+    text-decoration:none; padding: 12px 20px;
+    border: 2px solid var(--ink); border-radius: 2px;
+    box-shadow: 4px 4px 0 var(--amber);
+    transition: transform .12s ease, box-shadow .12s ease;
+    cursor:pointer;
+  }
+  .btn:hover{ transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--amber); }
+  .btn:active{ transform: translate(4px,4px); box-shadow: 0 0 0 var(--amber); }
+  .btn:focus-visible{ outline: 3px solid var(--ink); outline-offset: 3px; }
+  .btn-small{ padding: 9px 16px; font-size: 12px; }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding: 90px 0 68px; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap: 10px;
+    font-family:'IBM Plex Mono', monospace; font-size: 12px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray);
+    border: 1px solid var(--gray-light);
+    background: var(--white);
+    padding: 7px 14px; border-radius: 999px;
+    margin-bottom: 26px;
+  }
+  .eyebrow::before{ content:""; width: 8px; height:8px; border-radius:50%; background: var(--amber); }
+
+  .hero h1{ font-size: clamp(34px, 5.4vw, 62px); max-width: 880px; color: var(--ink); }
+  .hero h1 em{ font-style:normal; color: var(--amber-deep); }
+  .hero p.lede{ margin-top: 24px; font-size: 17.5px; max-width: 580px; color: rgba(43,51,59,0.78); }
+  .hero-ctas{ margin-top: 32px; display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+  .hero-note{ font-family:'IBM Plex Mono', monospace; font-size: 12px; color: rgba(43,51,59,0.55); }
+
+  /* ---------- Callout strip ---------- */
+  .strip{
+    background: var(--ink); padding: 26px 0;
+    border-top: 3px solid var(--amber); border-bottom: 3px solid var(--amber);
+  }
+  .strip p{
+    font-family:'IBM Plex Sans', sans-serif; font-weight: 600;
+    font-size: clamp(15px, 2vw, 23px); text-align:center; color: var(--ice);
+  }
+  .strip p span{ color: var(--amber); }
+
+  /* ---------- Shared section ---------- */
+  section{ padding: 86px 0; }
+  .section-head{ max-width: 660px; margin-bottom: 42px; }
+  .kicker{
+    font-family:'IBM Plex Mono', monospace; font-size: 12px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber-deep); margin-bottom: 14px;
+  }
+  .section-head h2{ font-size: clamp(26px, 3.4vw, 38px); color: var(--ink); }
+  .section-head p{ margin-top: 16px; color: rgba(43,51,59,0.75); font-size: 15.5px; }
+
+  /* ---------- Decision science cards ---------- */
+  .card-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card{
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 6px;
+    padding: 24px 22px;
+  }
+  .card .tag{
+    font-family:'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--gray); display:block; margin-bottom: 12px;
+  }
+  .card h3{ font-family:'IBM Plex Sans', sans-serif; font-weight:700; font-size: 16.5px; margin-bottom: 8px; }
+  .card p{ font-size: 14px; color: rgba(43,51,59,0.75); }
+  .card.amber{ border-color: var(--amber); border-width: 2px; }
+  .card.amber .tag{ color: var(--amber-deep); }
+
+  /* ---------- Star paradox chart (signature) ---------- */
+  section.paradox{ background: var(--white); border-top: 1px solid var(--gray-light); border-bottom: 1px solid var(--gray-light); }
+  .chart-panel{
+    background: var(--gray-pale);
+    border: 1px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 32px 28px 22px;
+  }
+  .chart-title{
+    display:flex; justify-content: space-between; align-items:baseline; margin-bottom: 26px; flex-wrap: wrap; gap: 8px;
+  }
+  .chart-title .ct-main{ font-family:'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); }
+  .chart-title .ct-sub{ font-family:'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--gray); }
+
+  .chart{
+    display:grid; grid-template-columns: repeat(8, 1fr);
+    align-items:end; gap: 10px;
+    height: 190px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 0;
+  }
+  .bar-wrap{ display:flex; flex-direction:column; align-items:center; height: 100%; justify-content:flex-end; }
+  .bar{
+    width: 100%;
+    max-width: 44px;
+    background: var(--gray-light);
+    border-radius: 3px 3px 0 0;
+  }
+  .bar.peak{ background: var(--amber); }
+  .bar-val{ font-family:'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--gray); margin-bottom: 6px; }
+  .bar.peak + .bar-val, .bar-wrap.peak .bar-val{ color: var(--amber-deep); font-weight: 700; }
+
+  .chart-axis{
+    display:grid; grid-template-columns: repeat(8, 1fr);
+    margin-top: 10px;
+  }
+  .chart-axis span{
+    font-family:'IBM Plex Mono', monospace; font-size: 11px; color: var(--gray); text-align:center;
+  }
+  .chart-axis span.peak{ color: var(--amber-deep); font-weight: 700; }
+
+  .chart-note{
+    margin-top: 22px; font-family:'IBM Plex Mono', monospace; font-size: 12px; color: var(--gray);
+    border-top: 1px dashed var(--gray-light); padding-top: 16px;
+  }
+  .chart-note b{ color: var(--amber-deep); }
+
+  /* ---------- Flaws framework rows ---------- */
+  .flaw-row{
+    display:grid; grid-template-columns: 200px 1fr; gap: 24px;
+    padding: 26px 0; border-top: 1px solid var(--gray-light);
+  }
+  .flaw-row:last-child{ border-bottom: 1px solid var(--gray-light); }
+  .flaw-name{ font-family:'IBM Plex Mono', monospace; font-size: 13px; color: var(--amber-deep); text-transform: uppercase; letter-spacing: 0.04em; }
+  .flaw-row h3{ font-family:'IBM Plex Sans', sans-serif; font-weight:700; font-size: 17.5px; margin-bottom: 8px; }
+  .flaw-row p{ font-size: 14.5px; color: rgba(43,51,59,0.78); max-width: 640px; }
+
+  /* ---------- Cards-face-up (pricing levers) ---------- */
+  section.levers{ background: var(--ice-deep); }
+  .lever-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .lever{
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 6px;
+    padding: 20px 18px;
+    text-align:left;
+  }
+  .lever .num{
+    font-family:'IBM Plex Mono', monospace; font-size: 11px; color: var(--gray); margin-bottom: 10px; display:block;
+  }
+  .lever h3{ font-family:'IBM Plex Sans', sans-serif; font-weight:700; font-size: 15.5px; margin-bottom: 8px; color: var(--ink); }
+  .lever p{ font-size: 13px; color: rgba(43,51,59,0.72); }
+  .lever.highlight{ border: 2px solid var(--amber); }
+
+  .trade-note{
+    margin-top: 24px;
+    background: var(--white);
+    border-left: 4px solid var(--amber);
+    border-radius: 4px;
+    padding: 18px 20px;
+    font-size: 14.5px;
+    color: rgba(43,51,59,0.82);
+  }
+
+  /* ---------- Banner ---------- */
+  .banner{ background: var(--amber); padding: 58px 0; }
+  .banner-inner{ display:flex; align-items:center; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+  .banner h2{ font-size: clamp(21px, 3vw, 30px); color: var(--ink); max-width: 520px; font-weight: 700; }
+  .banner .btn{ background: var(--ink); box-shadow: 4px 4px 0 var(--white); }
+
+  /* ---------- Closing ---------- */
+  section.closing{ padding: 100px 0 96px; text-align:center; }
+  .closing h2{ font-size: clamp(28px, 4.4vw, 48px); max-width: 780px; margin: 0 auto 18px; color: var(--ink); }
+  .closing h2 em{ font-style:normal; color: var(--amber-deep); }
+  .closing p{ color: rgba(43,51,59,0.75); font-size: 16px; max-width: 480px; margin: 0 auto 32px; }
+
+  footer{ background: var(--ink); padding: 30px 0; border-top: 3px solid var(--amber); }
+  .footer-inner{ display:flex; justify-content: space-between; align-items:center; flex-wrap: wrap; gap: 14px; }
+  footer .logo{ color: var(--ice); font-size: 15px; }
+  footer .logo span{ color: var(--amber); }
+  footer .fine{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: rgba(233,243,248,0.6); }
+
+  @media (max-width: 860px){
+    .card-grid{ grid-template-columns: 1fr; }
+    .lever-grid{ grid-template-columns: repeat(2, 1fr); }
+    .flaw-row{ grid-template-columns: 1fr; gap: 8px; }
+    .banner-inner{ flex-direction:column; align-items:flex-start; }
+    .chart{ grid-template-columns: repeat(8, minmax(30px, 1fr)); }
+  }
+  @media (max-width: 520px){
+    .lever-grid{ grid-template-columns: 1fr; }
+    .chart-axis span, .bar-val{ font-size: 9px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="btn btn-small" href="https://easylandx.com" target="_blank" rel="noopener">Get EasyLandX</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Behavioral Science — Applied to Pages</div>
+    <h1 class="display">A <em>perfect</em> landing page converts worse than an honest one.</h1>
+    <p class="lede">Visitors have a built-in "too good to be true" alarm. EasyLandX helps you build pages that lead with real, credible claims instead of inflated perfection — because the brain trusts plausible a lot more than it trusts flawless.</p>
+    <div class="hero-ctas">
+      <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Build with EasyLandX →</a>
+      <span class="hero-note">Designed around how people actually decide.</span>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <p class="wrap">Buyers don't trust perfect. <span>They trust plausible.</span></p>
+</div>
+
+<section class="science">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The Decision-Making Science</div>
+      <h2 class="display">Visitors feel first. They justify second.</h2>
+      <p>A page has to satisfy the gut reaction before the logical read-through ever happens.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="tag">Feeling before logic</span>
+        <h3>The gut decides, the copy confirms</h3>
+        <p>Visitors sense whether a page feels honest within seconds — the rest of the copy either backs that instinct up or fights it.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Certainty</span>
+        <h3>Show exactly what happens next</h3>
+        <p>Ambiguity reads as risk. EasyLandX pages make the next step — and what comes after it — completely clear.</p>
+      </div>
+      <div class="card amber">
+        <span class="tag">Fairness</span>
+        <h3>Nothing hidden until checkout</h3>
+        <p>Pricing, limits, and terms shown upfront disarm the skepticism that a "surprise later" page always triggers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="paradox">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The 4.2 Rule</div>
+      <h2 class="display">A flawless claim reads as a fake one</h2>
+      <p>Products rated a perfect 5.0 convert worse than ones rated 4.2–4.5 — buyers assume perfect scores are filtered. The same pattern holds for landing page claims: "the best ever" reads as noise, while a page that names one honest limitation reads as real.</p>
+    </div>
+
+    <div class="chart-panel">
+      <div class="chart-title">
+        <span class="ct-main">Conversion index by claimed rating</span>
+        <span class="ct-sub">illustrative pattern, not your live data</span>
+      </div>
+      <div class="chart">
+        <div class="bar-wrap"><span class="bar-val">40</span><div class="bar" style="height:40%"></div></div>
+        <div class="bar-wrap"><span class="bar-val">52</span><div class="bar" style="height:52%"></div></div>
+        <div class="bar-wrap"><span class="bar-val">68</span><div class="bar" style="height:68%"></div></div>
+        <div class="bar-wrap"><span class="bar-val">92</span><div class="bar peak" style="height:92%"></div></div>
+        <div class="bar-wrap"><span class="bar-val">98</span><div class="bar peak" style="height:98%"></div></div>
+        <div class="bar-wrap"><span class="bar-val">90</span><div class="bar peak" style="height:90%"></div></div>
+        <div class="bar-wrap"><span class="bar-val">70</span><div class="bar" style="height:70%"></div></div>
+        <div class="bar-wrap"><span class="bar-val">48</span><div class="bar" style="height:48%"></div></div>
+      </div>
+      <div class="chart-axis">
+        <span>3.5★</span><span>3.8★</span><span>4.0★</span><span class="peak">4.2★</span><span class="peak">4.3★</span><span class="peak">4.5★</span><span>4.8★</span><span>5.0★</span>
+      </div>
+      <p class="chart-note">The sweet spot: <b>4.2–4.5</b>. Not the top score — the most believable one.</p>
+    </div>
+  </div>
+</section>
+
+<section class="flaws">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Flaunting Your Flaws</div>
+      <h2 class="display">Say the honest part first</h2>
+      <p>Unexpected honesty, placed early, makes every claim that follows more believable.</p>
+    </div>
+
+    <div class="flaw-row">
+      <div class="flaw-name">Who it's not for</div>
+      <div>
+        <h3>Filter early, not at checkout</h3>
+        <p>State plainly who your offer isn't a fit for. EasyLandX makes it easy to add a short "this isn't for you if…" block near the top, saving both sides the wasted time.</p>
+      </div>
+    </div>
+
+    <div class="flaw-row">
+      <div class="flaw-name">Lead with the trade-off</div>
+      <div>
+        <h3>Name the limitation before the strength</h3>
+        <p>"Fastest page builder on the market — the editor takes about ten minutes to get used to." One honest line before the pitch makes every claim after it land harder.</p>
+      </div>
+    </div>
+
+    <div class="flaw-row">
+      <div class="flaw-name">Unfiltered proof</div>
+      <div>
+        <h3>Real reviews, not just five-star ones</h3>
+        <p>A testimonial that mentions a real snag and how it got resolved carries more weight than a wall of flawless quotes. EasyLandX testimonial blocks are built to hold both.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="levers">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Cards Face Up</div>
+      <h2 class="display">Trade, don't just discount</h2>
+      <p>A discount with no reason attached reads as desperation. A discount tied to a clear trade reads as fair — and belongs right on the pricing section of your page.</p>
+    </div>
+    <div class="lever-grid">
+      <div class="lever highlight">
+        <span class="num">01</span>
+        <h3>Volume</h3>
+        <p>A lower rate for a bigger or longer commitment, shown plainly on the page.</p>
+      </div>
+      <div class="lever">
+        <span class="num">02</span>
+        <h3>Timing</h3>
+        <p>A real, dated offer — never a countdown that resets when it expires.</p>
+      </div>
+      <div class="lever">
+        <span class="num">03</span>
+        <h3>Cash Flow</h3>
+        <p>A discount for paying upfront, stated as the trade it actually is.</p>
+      </div>
+      <div class="lever">
+        <span class="num">04</span>
+        <h3>Risk</h3>
+        <p>A better rate in exchange for a case study or logo — spelled out, not implied.</p>
+      </div>
+    </div>
+    <div class="trade-note">Every trade shown on the page, not negotiated in private. That's what makes it feel fair instead of arbitrary.</div>
+  </div>
+</section>
+
+<div class="banner">
+  <div class="wrap banner-inner">
+    <h2>Stop chasing a perfect score. Build a believable page.</h2>
+    <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Get EasyLandX →</a>
+  </div>
+</div>
+
+<section class="closing">
+  <div class="wrap">
+    <h2 class="display">Honesty isn't the risky move. <em>Perfection is.</em></h2>
+    <p>Every page you build with EasyLandX is designed around how people actually decide — not how we wish they did.</p>
+    <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Start with EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <div class="fine">© 2026 EasyLandX. Built for the believable, not the flawless.</div>
+  </div>
+</footer>
+
+</body>
+</html>

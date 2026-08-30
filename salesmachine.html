@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — The Landing Page Machine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #0B1930;
+    --navy-mid: #122544;
+    --navy-soft: #17305A;
+    --gray: #9AA5B1;
+    --gray-deep: #6B7684;
+    --gray-light: #C9D1D9;
+    --orange: #FF7A1A;
+    --orange-deep: #D9600A;
+    --white: #EDF2F7;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a{ color:inherit; }
+  .wrap{ max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+
+  .display{
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+  }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+
+  /* ---------- Topbar ---------- */
+  header.topbar{
+    position: sticky; top:0; z-index: 50;
+    background: var(--navy);
+    border-bottom: 2px solid var(--gray-deep);
+  }
+  .topbar-inner{
+    max-width: 1120px; margin: 0 auto; padding: 16px 32px;
+    display:flex; align-items:center; justify-content: space-between;
+  }
+  .logo{
+    font-family:'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px;
+    text-transform: uppercase; color: var(--white); letter-spacing: 0.02em;
+  }
+  .logo span{ color: var(--orange); }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    background: var(--orange); color: var(--navy);
+    font-family:'JetBrains Mono', monospace; font-weight:700;
+    font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase;
+    text-decoration:none; padding: 13px 22px;
+    border: 2px solid var(--orange); border-radius: 2px;
+    box-shadow: 4px 4px 0 var(--gray-deep);
+    transition: transform .12s ease, box-shadow .12s ease;
+    cursor:pointer;
+  }
+  .btn:hover{ transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--gray-deep); }
+  .btn:active{ transform: translate(4px,4px); box-shadow: 0 0 0 var(--gray-deep); }
+  .btn:focus-visible{ outline: 3px solid var(--white); outline-offset: 3px; }
+  .btn-small{ padding: 9px 16px; font-size: 12px; }
+  .btn-outline{
+    background: transparent; color: var(--white);
+    border: 2px solid var(--gray); box-shadow: 4px 4px 0 var(--gray-deep);
+  }
+  .btn-outline:hover{ box-shadow: 2px 2px 0 var(--gray-deep); background: rgba(154,165,177,0.08); }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding: 92px 0 70px; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap: 10px;
+    font-family:'JetBrains Mono', monospace; font-size: 12px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange);
+    border: 1px solid var(--gray-deep);
+    padding: 7px 14px; margin-bottom: 26px;
+  }
+  .eyebrow::before{ content:""; width: 8px; height:8px; background: var(--orange); }
+
+  .hero h1{ font-size: clamp(38px, 6vw, 72px); max-width: 900px; color: var(--white); }
+  .hero h1 em{ font-style:normal; color: var(--orange); }
+  .hero p.lede{ margin-top: 24px; font-size: 18px; max-width: 580px; color: rgba(237,242,247,0.72); }
+  .hero-ctas{ margin-top: 34px; display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+  .hero-note{ font-family:'JetBrains Mono', monospace; font-size: 12px; color: rgba(237,242,247,0.5); }
+
+  /* ---------- Strip ---------- */
+  .strip{
+    background: var(--navy-mid); padding: 28px 0;
+    border-top: 3px solid var(--orange); border-bottom: 3px solid var(--orange);
+  }
+  .strip p{
+    font-family:'Barlow Condensed', sans-serif; text-transform: uppercase; font-weight: 600;
+    font-size: clamp(16px, 2.2vw, 26px); text-align:center; color: var(--white);
+  }
+  .strip p span{ color: var(--orange); }
+
+  /* ---------- Shared section ---------- */
+  section{ padding: 90px 0; }
+  .section-head{ max-width: 680px; margin-bottom: 46px; }
+  .kicker{
+    font-family:'JetBrains Mono', monospace; font-size: 12px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); margin-bottom: 14px;
+  }
+  .section-head h2{ font-size: clamp(28px, 3.8vw, 44px); color: var(--white); }
+  .section-head p{ margin-top: 16px; color: rgba(237,242,247,0.68); font-size: 16px; }
+
+  /* ---------- Ops cards ---------- */
+  .card-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card{
+    background: var(--navy-mid);
+    border: 1px solid var(--gray-deep);
+    border-radius: 4px;
+    padding: 26px 22px;
+  }
+  .card .tag{
+    font-family:'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--gray); display:block; margin-bottom: 12px;
+  }
+  .card h3{ font-family:'Barlow Condensed', sans-serif; font-weight:700; font-size: 20px; text-transform: uppercase; margin-bottom: 8px; }
+  .card p{ font-size: 14.5px; color: rgba(237,242,247,0.68); }
+
+  /* ---------- Buyer's pyramid (signature) ---------- */
+  section.pyramid{ background: var(--navy-mid); border-top: 1px solid var(--gray-deep); border-bottom: 1px solid var(--gray-deep); }
+  .pyramid-panel{ display:flex; flex-direction:column; align-items:center; gap: 6px; }
+  .p-layer{
+    display:flex; align-items:center; justify-content:center;
+    padding: 20px 16px;
+    border: 2px solid var(--gray-deep);
+    border-radius: 3px;
+    text-align:center;
+  }
+  .p-layer.top{ width: 30%; background: var(--orange); color: var(--navy); border-color: var(--orange); }
+  .p-layer.mid{ width: 58%; background: var(--navy-soft); color: var(--white); }
+  .p-layer.bottom{ width: 100%; background: transparent; color: var(--white); }
+  .p-layer .p-pct{ font-family:'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(20px, 3vw, 30px); margin-right: 14px; }
+  .p-layer .p-text{ font-family:'Inter', sans-serif; font-size: 13.5px; max-width: 340px; text-align:left; }
+  .p-layer.top .p-text{ color: rgba(11,25,48,0.85); }
+  .p-layer.mid .p-text, .p-layer.bottom .p-text{ color: rgba(237,242,247,0.72); }
+
+  .pyramid-note{
+    margin-top: 26px; text-align:center; font-family:'JetBrains Mono', monospace; font-size: 13px; color: var(--gray);
+    max-width: 560px; margin-left:auto; margin-right:auto;
+  }
+
+  /* ---------- Headline comparison ---------- */
+  .compare{ display:grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .compare-card{
+    border-radius: 4px; padding: 24px 22px; border: 2px solid var(--gray-deep);
+  }
+  .compare-card.bad{ background: rgba(154,165,177,0.06); }
+  .compare-card.good{ background: rgba(255,122,26,0.08); border-color: var(--orange); }
+  .compare-tag{
+    font-family:'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    display:block; margin-bottom: 14px;
+  }
+  .compare-card.bad .compare-tag{ color: var(--gray); }
+  .compare-card.good .compare-tag{ color: var(--orange); }
+  .compare-card h3{ font-family:'Barlow Condensed', sans-serif; font-weight:700; font-size: 21px; text-transform: none; margin-bottom: 10px; line-height: 1.3; }
+  .compare-card p{ font-size: 13.5px; color: rgba(237,242,247,0.65); }
+
+  /* ---------- Dream 100 ---------- */
+  section.dream100{ background: var(--navy-mid); }
+  .dream-body{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; align-items:center; }
+  .dream-text p{ font-size: 15.5px; color: rgba(237,242,247,0.72); margin-bottom: 16px; }
+  .dream-stat{
+    border: 2px solid var(--orange);
+    border-radius: 4px;
+    padding: 30px 26px;
+    text-align:center;
+  }
+  .dream-stat .num{ font-family:'JetBrains Mono', monospace; font-weight:700; font-size: clamp(40px, 6vw, 60px); color: var(--orange); }
+  .dream-stat .label{ font-family:'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray); margin-top: 8px; }
+
+  /* ---------- Assembly line (7 steps) ---------- */
+  .line{ position: relative; }
+  .line-track{
+    position: absolute; left: 27px; top: 8px; bottom: 8px; width: 2px;
+    background: var(--gray-deep);
+  }
+  .line-step{
+    position: relative; padding-left: 74px; margin-bottom: 34px;
+  }
+  .line-step:last-child{ margin-bottom: 0; }
+  .line-num{
+    position:absolute; left: 0; top: 0;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--navy-mid); border: 2px solid var(--orange);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace; font-weight:700; color: var(--orange); font-size: 17px;
+  }
+  .line-step h3{ font-family:'Barlow Condensed', sans-serif; font-weight:700; font-size: 20px; text-transform: uppercase; margin-bottom: 6px; padding-top: 12px;}
+  .line-step p{ font-size: 14.5px; color: rgba(237,242,247,0.68); max-width: 620px; }
+
+  /* ---------- Banner ---------- */
+  .banner{ background: var(--orange); padding: 60px 0; }
+  .banner-inner{ display:flex; align-items:center; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+  .banner h2{ font-family:'Barlow Condensed', sans-serif; text-transform: uppercase; font-weight:700; font-size: clamp(22px, 3.2vw, 32px); color: var(--navy); max-width: 540px; }
+  .banner .btn{ background: var(--navy); color: var(--orange); box-shadow: 4px 4px 0 var(--navy-mid); border-color: var(--navy); }
+
+  /* ---------- Closing ---------- */
+  section.closing{ padding: 106px 0 96px; text-align:center; }
+  .closing h2{ font-size: clamp(30px, 5vw, 54px); max-width: 800px; margin: 0 auto 18px; color: var(--white); }
+  .closing h2 em{ font-style:normal; color: var(--orange); }
+  .closing p{ color: rgba(237,242,247,0.68); font-size: 16.5px; max-width: 480px; margin: 0 auto 32px; }
+
+  footer{ background: var(--navy-mid); padding: 30px 0; border-top: 3px solid var(--orange); }
+  .footer-inner{ display:flex; justify-content: space-between; align-items:center; flex-wrap: wrap; gap: 14px; }
+  footer .logo{ color: var(--white); font-size: 16px; }
+  footer .logo span{ color: var(--orange); }
+  footer .fine{ font-family:'JetBrains Mono', monospace; font-size: 11px; color: rgba(237,242,247,0.5); }
+
+  @media (max-width: 860px){
+    .card-grid{ grid-template-columns: 1fr; }
+    .compare{ grid-template-columns: 1fr; }
+    .dream-body{ grid-template-columns: 1fr; }
+    .p-layer.top{ width: 60%; } .p-layer.mid{ width: 85%; }
+    .p-layer{ flex-direction:column; text-align:center; }
+    .p-layer .p-pct{ margin-right:0; margin-bottom:6px; }
+    .p-layer .p-text{ text-align:center; }
+    .banner-inner{ flex-direction:column; align-items:flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="btn btn-small" href="https://easylandx.com" target="_blank" rel="noopener">Get EasyLandX</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">The Landing Page Machine</div>
+    <h1 class="display">Mastery isn't <em>4,000 ideas.</em><br>It's one good page, run 4,000 times.</h1>
+    <p class="lede">Most pages don't fail from a bad idea — they fail from never being run enough times. EasyLandX is built for pigheaded repetition: ship the fundamentals, test relentlessly, and let volume do what cleverness can't.</p>
+    <div class="hero-ctas">
+      <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Build with EasyLandX →</a>
+      <span class="hero-note">Fewer ideas. More reps.</span>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <p class="wrap">You don't need more page ideas. <span>You need more reps on the ones that work.</span></p>
+</div>
+
+<section class="ops">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Operational Mastery</div>
+      <h2 class="display">Systematize the page before you scale it</h2>
+      <p>Before any page can perform at its best, the process behind it has to run on rails.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="tag">Touch it once</span>
+        <h3>Publish, don't relitigate</h3>
+        <p>Decide and ship instead of endless review cycles. EasyLandX's draft, review, and live states keep pages from sitting half-finished.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Weekly reps</span>
+        <h3>Short, recurring page sessions</h3>
+        <p>A brief weekly check on what the data says, one change tested, then shipped again — not a launch-and-forget page.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Built to hold up</span>
+        <h3>Thick skin, warm handshake</h3>
+        <p>A great page absorbs doubt without folding — objections answered plainly — while still feeling like it was written by a person.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pyramid">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The Buyer's Pyramid</div>
+      <h2 class="display">Most pages only talk to 3% of the room</h2>
+      <p>At any moment, only a sliver of your visitors are ready to buy right now. A page built only for them ignores everyone else in the pyramid.</p>
+    </div>
+
+    <div class="pyramid-panel">
+      <div class="p-layer top">
+        <span class="p-pct">3%</span>
+        <span class="p-text">Ready to buy now — the only group a hard-pitch page ever speaks to.</span>
+      </div>
+      <div class="p-layer mid">
+        <span class="p-pct">7%</span>
+        <span class="p-text">Open to it — needs a reason to pay attention, not a sales pitch.</span>
+      </div>
+      <div class="p-layer bottom">
+        <span class="p-pct">90%</span>
+        <span class="p-text">Not thinking about it yet — reachable only through something worth reading first.</span>
+      </div>
+    </div>
+    <p class="pyramid-note">EasyLandX pages are built to speak to all three layers — not just the top.</p>
+  </div>
+</section>
+
+<section class="education">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Education-Based Marketing</div>
+      <h2 class="display">Stop pitching. Start informing.</h2>
+      <p>The same offer, framed two ways, reaches a completely different share of the pyramid.</p>
+    </div>
+    <div class="compare">
+      <div class="compare-card bad">
+        <span class="compare-tag">Speaks to 3%</span>
+        <h3>"Why You Should Buy Our Landing Page Builder"</h3>
+        <p>Only visitors already shopping for a tool will read past the headline. Everyone else scrolls on by.</p>
+      </div>
+      <div class="compare-card good">
+        <span class="compare-tag">Speaks to 100%</span>
+        <h3>"5 Reasons Your Landing Pages Are Losing Visitors — And How to Fix Them"</h3>
+        <p>Frames real, useful information first. The pitch still lands — just after the page has earned the read.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dream100">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The Dream 100 Factor</div>
+      <h2 class="display">Build one page for the accounts that would change everything</h2>
+    </div>
+    <div class="dream-body">
+      <div class="dream-text">
+        <p>A handful of high-value visitors could matter more than the rest of your traffic combined. Give them a page built specifically for them — not the generic version everyone else sees.</p>
+        <p>EasyLandX makes it simple to spin up a personalized variant for your highest-value targets, and to keep showing up for them, month after month, without starting from scratch each time.</p>
+      </div>
+      <div class="dream-stat">
+        <div class="num">100</div>
+        <div class="label">Dream accounts. One dedicated page each.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The Engineered Page Process</div>
+      <h2 class="display">Every page runs the same seven-station line</h2>
+      <p>Selling isn't improvised, and neither is a page that converts. Seven stations, in order, every time.</p>
+    </div>
+
+    <div class="line">
+      <div class="line-track"></div>
+
+      <div class="line-step">
+        <div class="line-num">01</div>
+        <h3>Rapport</h3>
+        <p>The opening tone of the page — human, specific, and immediately familiar to the visitor's situation.</p>
+      </div>
+      <div class="line-step">
+        <div class="line-num">02</div>
+        <h3>Qualify</h3>
+        <p>A short quiz or filter section that gets the visitor naming their own problem, out loud.</p>
+      </div>
+      <div class="line-step">
+        <div class="line-num">03</div>
+        <h3>Build value</h3>
+        <p>Proof and education, positioning the offer as the natural answer to what they just named.</p>
+      </div>
+      <div class="line-step">
+        <div class="line-num">04</div>
+        <h3>Create desire</h3>
+        <p>A clear picture of what changes once the problem is gone — the outcome, not just the feature.</p>
+      </div>
+      <div class="line-step">
+        <div class="line-num">05</div>
+        <h3>Overcome objections</h3>
+        <p>An honest FAQ that treats hesitation as a signal to answer, not a threat to dodge.</p>
+      </div>
+      <div class="line-step">
+        <div class="line-num">06</div>
+        <h3>Close</h3>
+        <p>One clear call-to-action. If the five stations before it did their job, this is just the next step.</p>
+      </div>
+      <div class="line-step">
+        <div class="line-num">07</div>
+        <h3>Follow-up</h3>
+        <p>A confirmation page and message sequence that turns a single conversion into a lasting relationship.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="banner">
+  <div class="wrap banner-inner">
+    <h2>Stop reinventing the page. Start running it.</h2>
+    <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Get EasyLandX →</a>
+  </div>
+</div>
+
+<section class="closing">
+  <div class="wrap">
+    <h2 class="display">Build the machine. <em>Then run it 4,000 times.</em></h2>
+    <p>Every page you build with EasyLandX is designed to be repeated, refined, and run again — that's where mastery actually comes from.</p>
+    <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Start with EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <div class="fine">© 2026 EasyLandX. Built to run, not just launch.</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages People Choose to Buy Into</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red: #E11B22;
+    --red-deep: #A81118;
+    --gold: #FFC72C;
+    --gold-deep: #E0A100;
+    --black: #0A0A0A;
+    --cream: #FFF6E4;
+    --cream-dim: rgba(255,246,228,0.72);
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--red);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .display{
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 0.95;
+  }
+
+  .mono{
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* ---------- Top bar ---------- */
+  header.topbar{
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--red);
+    border-bottom: 3px solid var(--black);
+  }
+  .topbar-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .logo{
+    font-family:'Anton', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+  .logo span{ color: var(--gold); }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background: var(--gold);
+    color: var(--black);
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration:none;
+    padding: 13px 24px;
+    border: 3px solid var(--black);
+    border-radius: 3px;
+    box-shadow: 4px 4px 0 var(--black);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    cursor: pointer;
+  }
+  .btn:hover{
+    transform: translate(2px,2px);
+    box-shadow: 2px 2px 0 var(--black);
+  }
+  .btn:active{
+    transform: translate(4px,4px);
+    box-shadow: 0 0 0 var(--black);
+  }
+  .btn:focus-visible{
+    outline: 3px solid var(--cream);
+    outline-offset: 3px;
+  }
+  .btn-small{
+    padding: 10px 18px;
+    font-size: 12px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position: relative;
+    padding: 96px 0 88px;
+    overflow: hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    right: -140px;
+    top: -140px;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    background: var(--red-deep);
+    z-index: 0;
+  }
+  .hero-inner{
+    position: relative;
+    z-index: 1;
+    display:grid;
+    grid-template-columns: 1fr 240px;
+    gap: 48px;
+    align-items: start;
+  }
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 22px;
+    display:flex;
+    align-items:center;
+    gap: 12px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 32px;
+    height: 3px;
+    background: var(--gold);
+    display:inline-block;
+  }
+  .hero h1{
+    font-size: clamp(40px, 6.2vw, 78px);
+    color: var(--cream);
+    max-width: 820px;
+  }
+  .hero h1 em{
+    font-style: normal;
+    color: var(--gold);
+  }
+  .hero p.lede{
+    margin-top: 26px;
+    font-size: 19px;
+    max-width: 560px;
+    color: var(--cream-dim);
+  }
+  .hero-ctas{
+    margin-top: 38px;
+    display:flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items:center;
+  }
+  .hero-note{
+    font-family:'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--cream-dim);
+    letter-spacing: 0.04em;
+  }
+
+  /* Gold stamp signature element */
+  .stamp{
+    justify-self: end;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px dashed var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transform: rotate(-9deg);
+    flex-shrink: 0;
+  }
+  .stamp-inner{
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+    background: var(--black);
+    border: 3px solid var(--gold);
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color: var(--gold);
+    font-family:'Space Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.5;
+    padding: 10px;
+  }
+  .stamp-inner strong{
+    font-family:'Anton', sans-serif;
+    font-size: 25px;
+    letter-spacing: 0.02em;
+    display:block;
+    margin: 4px 0;
+  }
+
+  /* ---------- Law strip ---------- */
+  .law{
+    background: var(--black);
+    border-top: 3px solid var(--gold);
+    border-bottom: 3px solid var(--gold);
+    padding: 30px 0;
+  }
+  .law p{
+    font-family:'Anton', sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(18px, 2.6vw, 28px);
+    text-align:center;
+    color: var(--cream);
+    letter-spacing: 0.01em;
+  }
+  .law p span{ color: var(--gold); }
+
+  /* ---------- Principles section ---------- */
+  section.principles{
+    background: var(--black);
+    padding: 90px 0 100px;
+  }
+  .principles-head{
+    max-width: 640px;
+    margin-bottom: 56px;
+  }
+  .principles-head .kicker{
+    font-family:'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .principles-head h2{
+    font-size: clamp(30px, 4vw, 46px);
+    color: var(--cream);
+  }
+  .principles-head p{
+    margin-top: 18px;
+    color: var(--cream-dim);
+    font-size: 16.5px;
+  }
+
+  .rule{
+    display:grid;
+    grid-template-columns: 84px 1fr;
+    gap: 26px;
+    padding: 26px 0;
+    border-top: 1px solid rgba(255,199,44,0.25);
+  }
+  .rule:last-child{ border-bottom: 1px solid rgba(255,199,44,0.25); }
+
+  .rule-num{
+    font-family:'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--gold);
+  }
+  .rule h3{
+    font-family:'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .rule p{
+    color: var(--cream-dim);
+    font-size: 15.5px;
+    max-width: 640px;
+  }
+
+  /* ---------- Mid CTA banner ---------- */
+  .banner{
+    background: var(--gold);
+    padding: 64px 0;
+  }
+  .banner-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .banner h2{
+    font-size: clamp(26px, 3.6vw, 40px);
+    color: var(--black);
+    max-width: 520px;
+  }
+  .banner-btn{
+    background: var(--black);
+    color: var(--gold);
+    border: 3px solid var(--black);
+    box-shadow: 4px 4px 0 var(--red-deep);
+  }
+  .banner-btn:hover{ box-shadow: 2px 2px 0 var(--red-deep); }
+  .banner-btn:active{ box-shadow: 0 0 0 var(--red-deep); }
+
+  /* ---------- Closing CTA ---------- */
+  section.closing{
+    padding: 110px 0 100px;
+    text-align:center;
+    position:relative;
+  }
+  .closing h2{
+    font-size: clamp(32px, 5.4vw, 58px);
+    color: var(--cream);
+    max-width: 760px;
+    margin: 0 auto 20px;
+  }
+  .closing h2 em{
+    font-style:normal;
+    color: var(--gold);
+  }
+  .closing p{
+    color: var(--cream-dim);
+    font-size: 17px;
+    max-width: 480px;
+    margin: 0 auto 34px;
+  }
+  .closing .stamp{
+    margin: 0 auto 40px;
+    justify-self: center;
+  }
+
+  footer{
+    background: var(--black);
+    padding: 34px 0;
+    border-top: 3px solid var(--gold);
+  }
+  .footer-inner{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  footer .logo{ font-size: 17px; }
+  footer .fine{
+    font-family:'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--cream-dim);
+    letter-spacing: 0.03em;
+  }
+
+  @media (max-width: 760px){
+    .hero-inner{ grid-template-columns: 1fr; }
+    .stamp{ justify-self: start; width: 150px; height:150px; margin-top: 10px; }
+    .stamp-inner{ width: 122px; height:122px; font-size: 9px; }
+    .stamp-inner strong{ font-size: 20px; }
+    .rule{ grid-template-columns: 52px 1fr; gap: 16px; }
+    .banner-inner{ flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="btn btn-small" href="https://easylandx.com" target="_blank" rel="noopener">Get EasyLandX</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow">Vol. 1 — The Red Book of Landing Pages</div>
+      <h1 class="display">Nobody wants to be <em>sold</em> a landing page.<br>They want to buy into one.</h1>
+      <p class="lede">EasyLandX builds pages your visitors choose to act on — not pages they click away from. One platform, 12.5 rules of landing page greatness built into every template.</p>
+      <div class="hero-ctas">
+        <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Build with EasyLandX →</a>
+        <span class="hero-note">No pitch. Just pages that convert.</span>
+      </div>
+    </div>
+    <div class="stamp" aria-hidden="true">
+      <div class="stamp-inner">
+        <span>Easylandx</span>
+        <strong>12.5</strong>
+        <span>Rules Certified</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="law">
+  <p class="wrap">Visitors don't like to be sold a page. <span>They love to buy into one.</span></p>
+</div>
+
+<section class="principles">
+  <div class="wrap">
+    <div class="principles-head">
+      <div class="kicker">The Rulebook</div>
+      <h2 class="display">12.5 rules, built into every page</h2>
+      <p>Old-school landing pages push. EasyLandX pages pull — using the same psychology great salespeople have used for decades, translated into layout, copy, and design.</p>
+    </div>
+
+    <div class="rule">
+      <div class="rule-num mono">01</div>
+      <div>
+        <h3>Stop blaming the traffic. Ship the page.</h3>
+        <p>Excuses don't convert. EasyLandX gets a live, on-brand page in front of visitors fast — so you're testing and improving instead of waiting for the perfect moment.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-num mono">02</div>
+      <div>
+        <h3>Know your visitor before they land.</h3>
+        <p>Every audience is different. EasyLandX lets you tailor headlines, offers, and layout by traffic source, device, and intent — so the page is ready before they arrive.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-num mono">03</div>
+      <div>
+        <h3>Your page is your handshake.</h3>
+        <p>Generic templates make you forgettable. EasyLandX brand kits keep your colors, voice, and identity consistent — so the page is unmistakably yours.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-num mono">04</div>
+      <div>
+        <h3>Lead with value, not just price.</h3>
+        <p>A discount gets a click. A clear outcome gets a customer. EasyLandX sections are built to spotlight the result your visitor actually wants.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-num mono">05</div>
+      <div>
+        <h3>It's not traffic. It's a relationship starting.</h3>
+        <p>Every visit is the first step of a connection. EasyLandX pages are built to invite, not interrupt — so the relationship starts on the right foot.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-num mono">06</div>
+      <div>
+        <h3>Send every click to the person who can say yes.</h3>
+        <p>Smart routing and clear calls-to-action put decision-makers straight in front of your offer — no wasted clicks on the wrong page.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-num mono">07</div>
+      <div>
+        <h3>Ask, don't tell — let them convince themselves.</h3>
+        <p>Interactive forms, quizzes, and calculators built into EasyLandX let visitors work through the decision themselves — the strongest kind of yes.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-num mono">08</div>
+      <div>
+        <h3>A smile outperforms a sales pitch.</h3>
+        <p>Personality builds comfort faster than polish does. EasyLandX makes it easy to write and design with real voice, not corporate boilerplate.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-num mono">09</div>
+      <div>
+        <h3>Differentiate, or disappear.</h3>
+        <p>Stock templates make every page look the same. EasyLandX gives you the flexibility to break the mould and stand out from every competitor's page.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-num mono">10</div>
+      <div>
+        <h3>Remove the risk, and a click becomes a customer.</h3>
+        <p>Guarantees, free trials, and clear next steps — built into EasyLandX layouts — kill hesitation before it stops a visitor from acting.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-num mono">11</div>
+      <div>
+        <h3>Let your customers do the talking.</h3>
+        <p>Claims about yourself are noise. Proof from real customers is signal. EasyLandX puts testimonials, reviews, and logos exactly where visitors look first.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-num mono">12</div>
+      <div>
+        <h3>Keep your antennas up.</h3>
+        <p>Built-in analytics surface the small signals — scroll drop-offs, weak sections, slow buttons — before they cost you conversions.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-num mono">12.5</div>
+      <div>
+        <h3>Control what you can control. That's the page.</h3>
+        <p>You can't control the algorithm, the market, or the click. You can control the page they land on. EasyLandX is built to be the one thing you get exactly right.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="banner">
+  <div class="wrap banner-inner">
+    <h2 class="display">Build the page people choose to buy into.</h2>
+    <a class="btn banner-btn" href="https://easylandx.com" target="_blank" rel="noopener">Get EasyLandX →</a>
+  </div>
+</div>
+
+<section class="closing">
+  <div class="wrap">
+    <div class="stamp" aria-hidden="true">
+      <div class="stamp-inner">
+        <span>Easylandx</span>
+        <strong>12.5</strong>
+        <span>Rules Certified</span>
+      </div>
+    </div>
+    <h2 class="display">Stop selling the click. <em>Start earning the buy.</em></h2>
+    <p>Every page you build with EasyLandX carries all 12.5 rules by default — no sales training required.</p>
+    <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Start with EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="logo">Easy<span style="color:var(--gold);">Land</span>X</div>
+    <div class="fine">© 2026 EasyLandX. Pages people choose.</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — The Grand Slam Landing Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --mint: #A9F3D0;
+    --mint-deep: #8CE6BC;
+    --mint-pale: #D7FBEA;
+    --black: #14161A;
+    --black-soft: #1E2126;
+    --orange: #FF6A3D;
+    --orange-deep: #E1552A;
+    --cream: #F6FBF8;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--mint);
+    color: var(--black);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  a{ color:inherit; }
+
+  .wrap{ max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+  .display{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  .mono{ font-family:'Space Mono', monospace; }
+
+  /* ---------- Topbar ---------- */
+  header.topbar{
+    position: sticky; top:0; z-index: 50;
+    background: var(--mint);
+    border-bottom: 3px solid var(--black);
+  }
+  .topbar-inner{
+    max-width: 1100px; margin: 0 auto; padding: 18px 32px;
+    display:flex; align-items:center; justify-content: space-between;
+  }
+  .logo{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 21px; color: var(--black);
+  }
+  .logo span{ color: var(--orange-deep); }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    background: var(--black); color: var(--orange);
+    font-family:'Space Mono', monospace; font-weight:700;
+    font-size: 13.5px; letter-spacing: 0.04em; text-transform: uppercase;
+    text-decoration:none; padding: 13px 22px;
+    border: 2px solid var(--black); border-radius: 999px;
+    box-shadow: 4px 4px 0 var(--orange-deep);
+    transition: transform .12s ease, box-shadow .12s ease;
+    cursor:pointer;
+  }
+  .btn:hover{ transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--orange-deep); }
+  .btn:active{ transform: translate(4px,4px); box-shadow: 0 0 0 var(--orange-deep); }
+  .btn:focus-visible{ outline: 3px solid var(--black); outline-offset: 3px; }
+  .btn-small{ padding: 9px 18px; font-size: 12px; }
+  .btn-outline{
+    background: transparent; color: var(--black);
+    box-shadow: 4px 4px 0 var(--black);
+  }
+  .btn-outline:hover{ box-shadow: 2px 2px 0 var(--black); background: rgba(20,22,26,0.06); }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding: 92px 0 74px; }
+  .eyebrow{
+    font-family:'Space Mono', monospace; font-size: 12.5px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--orange-deep);
+    display:flex; align-items:center; gap: 12px; margin-bottom: 22px;
+  }
+  .eyebrow::before{ content:""; width:30px; height:3px; background: var(--orange-deep); }
+
+  .hero h1{
+    font-size: clamp(38px, 5.8vw, 68px);
+    max-width: 880px;
+    color: var(--black);
+  }
+  .hero h1 em{
+    font-style:normal;
+    color: var(--mint);
+    background: var(--black);
+    padding: 0 10px;
+    border-radius: 6px;
+  }
+  .hero p.lede{
+    margin-top: 24px; font-size: 18.5px; max-width: 560px;
+    color: rgba(20,22,26,0.78);
+  }
+  .hero-ctas{ margin-top: 34px; display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+  .hero-note{ font-family:'Space Mono', monospace; font-size: 12px; color: rgba(20,22,26,0.6); }
+
+  /* ---------- Callout strip ---------- */
+  .callout{
+    background: var(--black); padding: 30px 0;
+    border-top: 3px solid var(--orange); border-bottom: 3px solid var(--orange);
+  }
+  .callout p{
+    font-family:'Space Grotesk', sans-serif; font-weight: 600;
+    font-size: clamp(17px, 2.4vw, 27px); text-align:center; color: var(--cream);
+  }
+  .callout p span{ color: var(--mint); }
+
+  /* ---------- Commodity trap ---------- */
+  section.trap{ padding: 90px 0 84px; }
+  .section-head{ max-width: 660px; margin-bottom: 46px; }
+  .kicker{
+    font-family:'Space Mono', monospace; font-size: 12.5px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange-deep); margin-bottom: 14px;
+  }
+  .section-head h2{ font-size: clamp(28px, 3.8vw, 42px); color: var(--black); }
+  .section-head p{ margin-top: 16px; color: rgba(20,22,26,0.78); font-size: 16px; }
+
+  .trap-body{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 28px;
+  }
+  .trap-body p{
+    background: var(--mint-pale);
+    border: 2px solid var(--black);
+    border-radius: 10px;
+    padding: 26px;
+    font-size: 15.5px;
+    color: rgba(20,22,26,0.85);
+  }
+
+  /* ---------- Value equation (signature) ---------- */
+  section.equation{ background: var(--black); padding: 100px 0 108px; }
+  section.equation .kicker{ color: var(--orange); }
+  section.equation .section-head h2{ color: var(--cream); }
+  section.equation .section-head p{ color: rgba(246,251,248,0.72); }
+
+  .eq-card{
+    background: var(--black-soft);
+    border: 2px solid var(--orange);
+    border-radius: 14px;
+    padding: 44px 32px;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom: 44px;
+    overflow-x: auto;
+  }
+  .eq-row{ display:flex; align-items:center; gap: 22px; white-space: nowrap; }
+  .eq-label{
+    font-family:'Space Grotesk', sans-serif; font-weight:700;
+    font-size: clamp(20px, 3vw, 28px); color: var(--mint);
+  }
+  .eq-frac{ display:flex; flex-direction:column; align-items:center; gap: 6px; }
+  .eq-top, .eq-bottom{
+    font-family:'Space Mono', monospace; font-size: clamp(13px, 1.6vw, 16px);
+    color: var(--cream); display:flex; gap: 14px;
+  }
+  .eq-top span, .eq-bottom span{
+    padding: 6px 10px; border-radius: 6px;
+  }
+  .eq-top span{ background: rgba(169,243,208,0.16); color: var(--mint); }
+  .eq-bottom span{ background: rgba(255,106,61,0.16); color: var(--orange); }
+  .eq-bar{ width: 100%; height: 2px; background: var(--cream); }
+
+  .var-grid{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
+  }
+  .var-card{
+    border: 2px solid rgba(246,251,248,0.18);
+    border-radius: 10px;
+    padding: 22px 20px;
+  }
+  .var-card.max{ border-color: rgba(169,243,208,0.45); }
+  .var-card.min{ border-color: rgba(255,106,61,0.45); }
+  .var-tag{
+    font-family:'Space Mono', monospace; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; display:block;
+  }
+  .var-card.max .var-tag{ color: var(--mint); }
+  .var-card.min .var-tag{ color: var(--orange); }
+  .var-card h3{
+    font-family:'Space Grotesk', sans-serif; font-size: 17px; color: var(--cream); margin-bottom: 8px;
+  }
+  .var-card p{ font-size: 14px; color: rgba(246,251,248,0.68); }
+
+  /* ---------- Trim & stack ---------- */
+  section.build{ padding: 92px 0 90px; }
+  .step-row{
+    display:grid; grid-template-columns: 74px 1fr; gap: 22px;
+    padding: 24px 0; border-top: 1px solid rgba(20,22,26,0.15);
+  }
+  .step-row:last-child{ border-bottom: 1px solid rgba(20,22,26,0.15); }
+  .step-num{
+    font-family:'Space Mono', monospace; font-weight:700; font-size: 22px; color: var(--orange-deep);
+  }
+  .step-row h3{
+    font-family:'Space Grotesk', sans-serif; font-weight: 700; font-size: 18.5px; margin-bottom: 8px;
+  }
+  .step-row p{ font-size: 15px; color: rgba(20,22,26,0.78); max-width: 640px; }
+  .step-row.final{ background: var(--black); margin: 8px -20px 0; padding: 24px 20px; border-radius: 10px; border-top: none; }
+  .step-row.final .step-num{ color: var(--mint); }
+  .step-row.final h3{ color: var(--cream); }
+  .step-row.final p{ color: rgba(246,251,248,0.75); }
+
+  /* ---------- Accelerators ---------- */
+  section.accel{ background: var(--mint-deep); padding: 92px 0; }
+  .accel-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+  }
+  .accel-card{
+    background: var(--cream);
+    border: 2px solid var(--black);
+    border-radius: 10px;
+    padding: 24px 20px;
+  }
+  .accel-card .mono-tag{
+    font-family:'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--orange-deep); display:block; margin-bottom: 12px;
+  }
+  .accel-card h3{
+    font-family:'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px; margin-bottom: 8px; color: var(--black);
+  }
+  .accel-card p{ font-size: 13.5px; color: rgba(20,22,26,0.75); }
+
+  /* ---------- Banner ---------- */
+  .banner{ background: var(--mint); padding: 62px 0; }
+  .banner-inner{
+    display:flex; align-items:center; justify-content: space-between; gap: 30px; flex-wrap: wrap;
+    border-top: 2px solid var(--black); border-bottom: 2px solid var(--black); padding: 40px 0;
+  }
+  .banner h2{ font-size: clamp(24px, 3.4vw, 36px); color: var(--black); max-width: 520px; }
+
+  /* ---------- Closing ---------- */
+  section.closing{ padding: 110px 0 96px; text-align:center; }
+  .closing h2{ font-size: clamp(30px, 5vw, 54px); max-width: 780px; margin: 0 auto 18px; color: var(--black); }
+  .closing h2 em{
+    font-style:normal; color: var(--mint); background: var(--black); padding: 0 10px; border-radius: 6px;
+  }
+  .closing p{ color: rgba(20,22,26,0.75); font-size: 16.5px; max-width: 480px; margin: 0 auto 32px; }
+
+  footer{ background: var(--black); padding: 32px 0; border-top: 3px solid var(--orange); }
+  .footer-inner{ display:flex; justify-content: space-between; align-items:center; flex-wrap: wrap; gap: 14px; }
+  footer .logo{ color: var(--cream); font-size: 16px; }
+  footer .logo span{ color: var(--mint); }
+  footer .fine{ font-family:'Space Mono', monospace; font-size: 11.5px; color: rgba(246,251,248,0.6); }
+
+  @media (max-width: 860px){
+    .trap-body{ grid-template-columns: 1fr; }
+    .var-grid{ grid-template-columns: 1fr; }
+    .accel-grid{ grid-template-columns: repeat(2, 1fr); }
+    .banner-inner{ flex-direction:column; align-items:flex-start; }
+  }
+  @media (max-width: 600px){
+    /* iPhone / narrow-screen margin fixes */
+    html, body{
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:100%;
+      margin:0;
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    .topbar-inner{
+      width:100%;
+      max-width:100%;
+      padding:14px 20px;
+      gap:12px;
+    }
+
+    .logo{
+      font-size:19px;
+    }
+
+    .btn{
+      max-width:100%;
+    }
+
+    .btn-small{
+      padding:8px 13px;
+      font-size:11px;
+    }
+
+    .hero{
+      padding:58px 0 52px;
+    }
+
+    .hero h1{
+      max-width:100%;
+      font-size:clamp(34px, 10vw, 48px);
+      overflow-wrap:anywhere;
+    }
+
+    .hero p.lede{
+      max-width:100%;
+      font-size:17px;
+    }
+
+    .hero-ctas{
+      align-items:stretch;
+    }
+
+    .hero-ctas .btn{
+      width:100%;
+      justify-content:center;
+    }
+
+    .hero-note{
+      display:block;
+      width:100%;
+    }
+
+    .callout{
+      padding:24px 0;
+    }
+
+    .callout p{
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    section.trap,
+    section.build{
+      padding-top:60px;
+      padding-bottom:60px;
+    }
+
+    section.equation{
+      padding-top:64px;
+      padding-bottom:70px;
+    }
+
+    .section-head{
+      max-width:100%;
+      margin-bottom:30px;
+    }
+
+    .section-head h2{
+      max-width:100%;
+    }
+
+    .trap-body{
+      gap:16px;
+    }
+
+    .trap-body p{
+      padding:20px;
+    }
+
+    .eq-card{
+      margin-left:0;
+      margin-right:0;
+      padding:28px 18px;
+      justify-content:flex-start;
+      border-radius:12px;
+      -webkit-overflow-scrolling:touch;
+    }
+
+    .eq-row{
+      min-width:max-content;
+      gap:14px;
+    }
+
+    .eq-top, .eq-bottom{
+      gap:8px;
+    }
+
+    .eq-top span, .eq-bottom span{
+      padding:5px 7px;
+    }
+
+    .var-grid{
+      gap:14px;
+    }
+
+    .var-card{
+      padding:19px 17px;
+    }
+
+    .step-row{
+      grid-template-columns:46px 1fr;
+      gap:14px;
+      padding:20px 0;
+    }
+
+    .step-row.final{
+      margin-left:0;
+      margin-right:0;
+      padding:20px;
+    }
+
+    section.accel{
+      padding:60px 0;
+    }
+
+    .accel-grid{
+      grid-template-columns:1fr;
+      gap:14px;
+    }
+
+    .accel-card{
+      padding:20px 17px;
+    }
+
+    .banner{
+      padding:42px 0;
+    }
+
+    .banner-inner{
+      padding:30px 0;
+      gap:22px;
+    }
+
+    .banner .btn{
+      width:100%;
+      justify-content:center;
+    }
+
+    section.closing{
+      padding:70px 0 64px;
+    }
+
+    .closing h2{
+      max-width:100%;
+    }
+
+    .closing .btn{
+      width:100%;
+      justify-content:center;
+    }
+
+    footer{
+      padding:26px 0;
+    }
+
+    .footer-inner{
+      align-items:flex-start;
+    }
+
+    .footer-inner .fine{
+      max-width:100%;
+      overflow-wrap:anywhere;
+    }
+  }
+
+  @media (max-width: 500px){
+    .wrap{
+      padding-left:16px;
+      padding-right:16px;
+    }
+
+    .topbar-inner{
+      padding-left:16px;
+      padding-right:16px;
+    }
+
+    .hero{
+      padding-top:48px;
+    }
+
+    .hero h1{
+      font-size:clamp(32px, 10.5vw, 44px);
+    }
+
+    .eyebrow{
+      font-size:11px;
+      letter-spacing:.11em;
+    }
+
+    .callout p{
+      padding-left:16px;
+      padding-right:16px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="btn btn-small" href="https://easylandx.com" target="_blank" rel="noopener">Get EasyLandX</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">The Grand Slam Landing Page</div>
+    <h1 class="display">Make an offer so good, <em>leaving</em> feels like the mistake.</h1>
+    <p class="lede">Stop competing on price and polish. EasyLandX helps you build pages built around one unbeatable offer — not one more template that looks like everyone else's.</p>
+    <div class="hero-ctas">
+      <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Build Your Offer Page →</a>
+      <span class="hero-note">Built for offers no one can casually skip.</span>
+    </div>
+  </div>
+</section>
+
+<div class="callout">
+  <p class="wrap">A generic page invites comparison. <span>A Grand Slam page ends it.</span></p>
+</div>
+
+<section class="trap">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The Page Commodity Trap</div>
+      <h2 class="display">If your page looks like theirs, you're already losing</h2>
+      <p>Most landing pages fail the same way most offers do: they compete on price because there's nothing else to compete on.</p>
+    </div>
+    <div class="trap-body">
+      <p>When a page looks like every other page in the category — same hero shot, same three feature icons, same generic testimonial — visitors do the only rational thing: they compare it on price. That's a race EasyLandX pages are built to skip entirely.</p>
+      <p>A page built around one sharp, specific offer removes the comparison altogether. It doesn't ask "are we cheaper?" — it makes "cheaper somewhere else" beside the point. That's the page EasyLandX is built to help you ship.</p>
+    </div>
+  </div>
+</section>
+
+<section class="equation">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The Page Value Equation</div>
+      <h2 class="display">Four variables. One equation. Every EasyLandX page is built around it.</h2>
+      <p>Raise what belongs on top. Shrink what belongs on the bottom. The page's perceived value follows.</p>
+    </div>
+
+    <div class="eq-card">
+      <div class="eq-row">
+        <div class="eq-label">Page Value</div>
+        <div class="eq-label">=</div>
+        <div class="eq-frac">
+          <div class="eq-top"><span>Dream Outcome</span><span>×</span><span>Perceived Likelihood</span></div>
+          <div class="eq-bar"></div>
+          <div class="eq-bottom"><span>Time to First Win</span><span>×</span><span>Effort to Convert</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="var-grid">
+      <div class="var-card max">
+        <span class="var-tag">Maximize — Dream Outcome</span>
+        <h3>Speak to the exact future they want</h3>
+        <p>Not vague benefits — the specific result your visitor is picturing when they land on the page.</p>
+      </div>
+      <div class="var-card max">
+        <span class="var-tag">Maximize — Perceived Likelihood</span>
+        <h3>Make "this could work for me" feel certain</h3>
+        <p>Stack proof, specifics, and guarantees so belief in the outcome outweighs doubt about the price.</p>
+      </div>
+      <div class="var-card min">
+        <span class="var-tag">Minimize — Time to First Win</span>
+        <h3>Show progress before they even leave</h3>
+        <p>The gap between clicking and feeling something happen should be as close to zero as the page allows.</p>
+      </div>
+      <div class="var-card min">
+        <span class="var-tag">Minimize — Effort to Convert</span>
+        <h3>Remove friction from the page itself</h3>
+        <p>Fewer fields, fewer decisions, one clear action — every extra step is a variable working against you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="build">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Trim &amp; Stack Your Page</div>
+      <h2 class="display">Five steps from a generic page to a Grand Slam page</h2>
+      <p>The same process that turns a basic service into an offer works on a page, section by section.</p>
+    </div>
+
+    <div class="step-row">
+      <div class="step-num mono">01</div>
+      <div>
+        <h3>Identify the dream outcome</h3>
+        <p>Name the single result your visitor actually wants — not the feature list, the outcome underneath it.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num mono">02</div>
+      <div>
+        <h3>List every obstacle</h3>
+        <p>Every doubt, question, and hesitation standing between "interested" and "yes." Write them all down.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num mono">03</div>
+      <div>
+        <h3>Solve each one, in view</h3>
+        <p>Turn every obstacle into a section, a line, or a proof point the visitor actually sees on the page.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num mono">04</div>
+      <div>
+        <h3>Choose how you deliver it</h3>
+        <p>Copy, video, a calculator, live chat — pick whichever format removes the most friction, fastest.</p>
+      </div>
+    </div>
+    <div class="step-row final">
+      <div class="step-num mono">05</div>
+      <div>
+        <h3>Trim &amp; stack</h3>
+        <p>Cut anything low-value and high-effort. Keep and stack what delivers the most perceived value for the least visitor effort. That's the page EasyLandX helps you publish.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="accel">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Built-in Accelerators</div>
+      <h2 class="display">Four elements EasyLandX makes easy to add — never to fake</h2>
+      <p>Used honestly, these turn interest into action. EasyLandX ties each one to something real.</p>
+    </div>
+    <div class="accel-grid">
+      <div class="accel-card">
+        <span class="mono-tag">Scarcity</span>
+        <h3>Capacity counter</h3>
+        <p>Show a real limit — spots, units, or client slots — tied to your actual capacity, not a fake number.</p>
+      </div>
+      <div class="accel-card">
+        <span class="mono-tag">Urgency</span>
+        <h3>Deadline bar</h3>
+        <p>A countdown tied to a real close date, so visitors act now instead of "getting back to it later."</p>
+      </div>
+      <div class="accel-card">
+        <span class="mono-tag">Bonuses</span>
+        <h3>Bonus stack block</h3>
+        <p>Add extras that solve the next problem your customer will hit — not props to inflate a discount.</p>
+      </div>
+      <div class="accel-card">
+        <span class="mono-tag">Guarantee</span>
+        <h3>Guarantee badge</h3>
+        <p>Take the risk onto your shoulders in one visible, specific line — not buried in fine print.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="banner">
+  <div class="wrap banner-inner">
+    <h2 class="display">Stop pitching a commodity. Start making an offer.</h2>
+    <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Get EasyLandX →</a>
+  </div>
+</div>
+
+<section class="closing">
+  <div class="wrap">
+    <h2 class="display">Build the page <em>no one wants to refuse.</em></h2>
+    <p>Every page you build with EasyLandX runs on the same value equation behind every offer that stopped being comparable.</p>
+    <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Start with EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <div class="fine">© 2026 EasyLandX. Offers so good, the page can't be ignored.</div>
+  </div>
+</footer>
+
+</body>
+</html>

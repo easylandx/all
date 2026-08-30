@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Fanatical Landing Pages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange: #FF5A1F;
+    --orange-deep: #D9450F;
+    --navy: #0B1F3A;
+    --navy-mid: #13294D;
+    --gray: #8B8F98;
+    --gray-dark: #6B6D70;
+    --gray-light: #D9D6D0;
+    --cream: #FBF6EF;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--orange);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .display{
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 1.05;
+    font-weight: 700;
+  }
+
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+
+  /* ---------- Topbar ---------- */
+  header.topbar{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    background: var(--orange);
+    border-bottom: 3px solid var(--navy);
+  }
+  .topbar-inner{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 18px 32px;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+  }
+  .logo{
+    font-family:'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 21px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--navy);
+  }
+  .logo span{ color: var(--gray-dark); }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    background: var(--navy);
+    color: var(--cream);
+    font-family:'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 13.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration:none;
+    padding: 13px 22px;
+    border: 2px solid var(--navy);
+    border-radius: 2px;
+    box-shadow: 4px 4px 0 var(--gray-dark);
+    transition: transform .12s ease, box-shadow .12s ease;
+    cursor:pointer;
+  }
+  .btn:hover{ transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--gray-dark); }
+  .btn:active{ transform: translate(4px,4px); box-shadow: 0 0 0 var(--gray-dark); }
+  .btn:focus-visible{ outline: 3px solid var(--navy); outline-offset: 3px; }
+  .btn-small{ padding: 9px 16px; font-size: 12px; }
+  .btn-ghost{
+    background: transparent;
+    color: var(--navy);
+    box-shadow: 4px 4px 0 var(--navy);
+  }
+  .btn-ghost:hover{ box-shadow: 2px 2px 0 var(--navy); background: rgba(11,31,58,0.06); }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding: 88px 0 70px; position:relative; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--navy);
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    margin-bottom: 22px;
+    opacity: 0.85;
+  }
+  .eyebrow::before{ content:""; width:30px; height:3px; background: var(--navy); display:inline-block; }
+
+  .hero h1{
+    font-size: clamp(38px, 5.8vw, 68px);
+    max-width: 880px;
+    color: var(--navy);
+  }
+  .hero h1 em{ font-style:normal; color: var(--cream); background: var(--navy); padding: 0 8px; }
+
+  .hero p.lede{
+    margin-top: 24px;
+    font-size: 18.5px;
+    max-width: 560px;
+    color: rgba(11,31,58,0.82);
+  }
+  .hero-ctas{ margin-top: 34px; display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+  .hero-note{ font-family:'IBM Plex Mono', monospace; font-size: 12px; color: rgba(11,31,58,0.7); }
+
+  /* Pipeline status strip (small decorative motif, not the main signature) */
+  .pipeline{
+    margin-top: 54px;
+    max-width: 560px;
+    border: 2px solid var(--navy);
+    border-radius: 3px;
+    padding: 16px 18px;
+    background: rgba(251,246,239,0.35);
+  }
+  .pipeline-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .pipeline-bar{
+    height: 10px;
+    background: rgba(11,31,58,0.15);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .pipeline-fill{
+    height: 100%;
+    width: 82%;
+    background: var(--navy);
+    border-radius: 6px;
+  }
+
+  /* ---------- Law banner ---------- */
+  .law{
+    background: var(--navy);
+    padding: 30px 0;
+    border-top: 3px solid var(--orange-deep);
+    border-bottom: 3px solid var(--orange-deep);
+  }
+  .law p{
+    font-family:'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: clamp(17px, 2.4vw, 27px);
+    text-align:center;
+    color: var(--cream);
+  }
+  .law p span{ color: var(--orange); }
+
+  /* ---------- Laws section ---------- */
+  section.laws{ padding: 92px 0 90px; }
+  .section-head{ max-width: 640px; margin-bottom: 52px; }
+  .kicker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--navy);
+    opacity: 0.8;
+    margin-bottom: 14px;
+  }
+  .section-head h2{
+    font-size: clamp(28px, 3.8vw, 42px);
+    color: var(--navy);
+  }
+  .section-head p{
+    margin-top: 16px;
+    color: rgba(11,31,58,0.78);
+    font-size: 16px;
+  }
+
+  .law-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .law-card{
+    background: var(--navy);
+    color: var(--cream);
+    border-radius: 4px;
+    padding: 30px 24px;
+    border: 2px solid var(--navy);
+  }
+  .law-card .num{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--orange);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    display:block;
+  }
+  .law-card h3{
+    font-family:'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .law-card p{ font-size: 14.5px; color: rgba(251,246,239,0.82); }
+
+  /* ---------- Three Ps section ---------- */
+  section.killers{ background: var(--navy); padding: 92px 0; }
+  section.killers .kicker{ color: var(--orange); opacity: 1; }
+  section.killers .section-head h2{ color: var(--cream); }
+  section.killers .section-head p{ color: rgba(251,246,239,0.75); }
+
+  .killer-row{
+    display:grid;
+    grid-template-columns: 120px 1fr;
+    gap: 24px;
+    padding: 26px 0;
+    border-top: 1px solid rgba(139,143,152,0.4);
+  }
+  .killer-row:last-child{ border-bottom: 1px solid rgba(139,143,152,0.4); }
+  .killer-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+    align-self: start;
+    padding-top: 3px;
+  }
+  .killer-row h3{
+    font-family:'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 18.5px;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .killer-row p{ color: rgba(251,246,239,0.72); font-size: 15px; max-width: 640px; }
+
+  /* ---------- Channel matrix ---------- */
+  section.channels{ padding: 92px 0; }
+  .channel-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .channel-card{
+    background: rgba(251,246,239,0.4);
+    border: 2px solid var(--navy);
+    border-radius: 4px;
+    padding: 28px 22px;
+  }
+  .channel-card .mono-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-dark);
+    margin-bottom: 14px;
+    display:block;
+  }
+  .channel-card h3{
+    font-family:'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .channel-card p{ font-size: 14.5px; color: rgba(11,31,58,0.78); }
+
+  /* ---------- Framework / blueprint (signature) ---------- */
+  section.framework{ background: var(--navy); padding: 100px 0 110px; }
+  section.framework .kicker{ color: var(--orange); opacity: 1; }
+  section.framework .section-head h2{ color: var(--cream); }
+  section.framework .section-head p{ color: rgba(251,246,239,0.75); }
+
+  .blueprint{
+    border: 2px dashed var(--gray);
+    border-radius: 4px;
+    background:
+      linear-gradient(rgba(139,143,152,0.18) 1px, transparent 1px) 0 0 / 100% 25%,
+      linear-gradient(90deg, rgba(139,143,152,0.12) 1px, transparent 1px) 0 0 / 12.5% 100%;
+    padding: 26px;
+  }
+  .bp-band{
+    display:grid;
+    grid-template-columns: 130px 1fr;
+    gap: 20px;
+    align-items:center;
+    padding: 22px 18px;
+    margin-bottom: 14px;
+    background: rgba(11,31,58,0.55);
+    border: 2px solid var(--orange);
+    border-radius: 3px;
+  }
+  .bp-band:last-child{ margin-bottom: 0; }
+  .bp-tag{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--orange);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+  .bp-tag strong{
+    display:block;
+    font-family:'Oswald', sans-serif;
+    color: var(--cream);
+    font-size: 20px;
+    letter-spacing: 0.03em;
+    margin-top: 4px;
+  }
+  .bp-desc{ color: rgba(251,246,239,0.82); font-size: 15px; }
+  .bp-desc code{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--gray-light);
+    font-size: 12.5px;
+  }
+
+  /* ---------- Banner CTA ---------- */
+  .banner{ background: var(--orange); padding: 62px 0; }
+  .banner-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+    border-top: 2px solid var(--navy);
+    border-bottom: 2px solid var(--navy);
+    padding: 40px 0;
+  }
+  .banner h2{
+    font-size: clamp(24px, 3.4vw, 36px);
+    color: var(--navy);
+    max-width: 520px;
+  }
+
+  /* ---------- Closing ---------- */
+  section.closing{ padding: 110px 0 96px; text-align:center; }
+  .closing h2{
+    font-size: clamp(30px, 5vw, 54px);
+    max-width: 760px;
+    margin: 0 auto 18px;
+    color: var(--navy);
+  }
+  .closing h2 em{ font-style:normal; color: var(--cream); background: var(--navy); padding: 0 8px; }
+  .closing p{
+    color: rgba(11,31,58,0.78);
+    font-size: 16.5px;
+    max-width: 480px;
+    margin: 0 auto 32px;
+  }
+
+  footer{ background: var(--navy); padding: 32px 0; border-top: 3px solid var(--orange); }
+  .footer-inner{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  footer .logo{ color: var(--cream); font-size: 16px; }
+  footer .logo span{ color: var(--gray-light); }
+  footer .fine{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: rgba(251,246,239,0.65);
+  }
+
+  @media (max-width: 800px){
+    .law-grid, .channel-grid{ grid-template-columns: 1fr; }
+    .killer-row{ grid-template-columns: 1fr; gap: 8px; }
+    .bp-band{ grid-template-columns: 1fr; gap: 10px; }
+    .banner-inner{ flex-direction:column; align-items:flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="btn btn-small" href="https://easylandx.com" target="_blank" rel="noopener">Get EasyLandX</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Field Manual — Fanatical Landing Pages</div>
+    <h1 class="display">An empty pipeline isn't a lead problem.<br>It's a <em>landing page</em> problem.</h1>
+    <p class="lede">Stop waiting for the perfect campaign. EasyLandX gets pages live fast, replaces the ones that stop converting, and keeps the funnel full — channel by channel, day after day.</p>
+    <div class="hero-ctas">
+      <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Launch with EasyLandX →</a>
+      <span class="hero-note">Built for teams who refuse an empty pipeline.</span>
+    </div>
+
+    <div class="pipeline" aria-hidden="true">
+      <div class="pipeline-label"><span>Pipeline status</span><span>82% full</span></div>
+      <div class="pipeline-bar"><div class="pipeline-fill"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="law">
+  <p class="wrap">The pages you ship this month <span>convert for the next 90 days.</span></p>
+</div>
+
+<section class="laws">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Three Immutable Laws — Applied to Pages</div>
+      <h2 class="display">The math doesn't care about your excuses</h2>
+      <p>Prospecting has its laws. Landing pages obey the same ones. EasyLandX is built around all three.</p>
+    </div>
+    <div class="law-grid">
+      <div class="law-card">
+        <span class="num mono">01 — The Launch Rule</span>
+        <h3>Publish now, or pay in 90 days</h3>
+        <p>Pages you ship and test in the next 30 days keep leads flowing for the next 90. Skip a few weeks and the drop shows up exactly when you can least afford it.</p>
+      </div>
+      <div class="law-card">
+        <span class="num mono">02 — The Confidence Rule</span>
+        <h3>Desperate pages repel the click</h3>
+        <p>A page that begs for the sale reads as desperate, and visitors feel it. EasyLandX pages lead with real value instead of urgency panic — and convert because they don't beg.</p>
+      </div>
+      <div class="law-card">
+        <span class="num mono">03 — The Replacement Rule</span>
+        <h3>A cold page gets replaced, not mourned</h3>
+        <p>The moment a page stops converting, a fresh variant takes its place — not next quarter, not "when there's time." EasyLandX makes swapping in a new version a five-minute job.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="killers">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">What Kills a Landing Page</div>
+      <h2 class="display">Three habits that quietly empty your pipeline</h2>
+      <p>Low-converting pages rarely fail from lack of talent. They fail from three habits that feel productive but aren't.</p>
+    </div>
+
+    <div class="killer-row">
+      <div class="killer-tag mono">Procrastination</div>
+      <div>
+        <h3>Publishing "later"</h3>
+        <p>Waiting for the right moment to launch means launching after the opportunity has already passed. EasyLandX makes shipping today the easy, default option.</p>
+      </div>
+    </div>
+
+    <div class="killer-row">
+      <div class="killer-tag mono">Perfectionism</div>
+      <div>
+        <h3>Polishing instead of publishing</h3>
+        <p>Endless tweaks to fonts and spacing don't convert visitors who never see the page. Ship it live, then improve it using what real visitors actually do.</p>
+      </div>
+    </div>
+
+    <div class="killer-row">
+      <div class="killer-tag mono">Paralysis</div>
+      <div>
+        <h3>Overthinking the headline</h3>
+        <p>Worrying about the perfect first line keeps a page stuck in drafts forever. A live, imperfect page will always outperform a perfect one that never ships.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="channels">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The Channel Matrix</div>
+      <h2 class="display">One offer, built for every channel it reaches</h2>
+      <p>A page built for a cold call doesn't work for a scroll. EasyLandX builds a fitted variant for how each visitor actually arrives.</p>
+    </div>
+    <div class="channel-grid">
+      <div class="channel-card">
+        <span class="mono-tag">Phone &amp; QR</span>
+        <h3>Call-to-page</h3>
+        <p>Short, direct, one clear action — built for the moment right after someone hangs up or scans.</p>
+      </div>
+      <div class="channel-card">
+        <span class="mono-tag">Email &amp; Text</span>
+        <h3>Inbox-to-page</h3>
+        <p>Finishes the hook the message started, matching the promise line for line so nothing feels like a bait-and-switch.</p>
+      </div>
+      <div class="channel-card">
+        <span class="mono-tag">Social</span>
+        <h3>Scroll-to-page</h3>
+        <p>Built to slow the scroll down and hold attention, not just catch a click and lose it a second later.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="framework">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The 4-Step Page Framework</div>
+      <h2 class="display">Every EasyLandX page is built the way a great cold call is built</h2>
+      <p>Four moves, in order, every time. It's the same structure that opens a sales conversation — laid out here as a page blueprint.</p>
+    </div>
+
+    <div class="blueprint">
+      <div class="bp-band">
+        <div class="bp-tag">01<strong>Hook</strong></div>
+        <div class="bp-desc">Say exactly who this is for and earn attention inside the first three seconds. <code>// no throat-clearing</code></div>
+      </div>
+      <div class="bp-band">
+        <div class="bp-tag">02<strong>Problem</strong></div>
+        <div class="bp-desc">Name the exact problem your visitor came here trying to solve — in their words, not yours. <code>// mirrors their language</code></div>
+      </div>
+      <div class="bp-band">
+        <div class="bp-tag">03<strong>WIIFM</strong></div>
+        <div class="bp-desc">Spell out, plainly, what they get for spending the next two minutes on this page. <code>// what's in it for them</code></div>
+      </div>
+      <div class="bp-band">
+        <div class="bp-tag">04<strong>CTA</strong></div>
+        <div class="bp-desc">Ask for one specific action — not "learn more," the actual next step you want taken. <code>// one button, one job</code></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="banner">
+  <div class="wrap banner-inner">
+    <h2 class="display">Stop hoping the pipeline fills itself.</h2>
+    <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Get EasyLandX →</a>
+  </div>
+</div>
+
+<section class="closing">
+  <div class="wrap">
+    <h2 class="display">Fill the funnel. <em>One page at a time.</em></h2>
+    <p>Every page you build with EasyLandX follows the same discipline that fills a pipeline — no sales training required.</p>
+    <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Start with EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <div class="fine">© 2026 EasyLandX. Built to keep the pipeline full.</div>
+  </div>
+</footer>
+
+</body>
+</html>
