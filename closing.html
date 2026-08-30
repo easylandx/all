@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — The Oldest Trick in Sales Isn't a Trick</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&family=Work+Sans:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:        #2B5D82;
+    --blue-deep:   #1B3F5C;
+    --blue-light:  #4A82AC;
+    --blue-pale:   #DCE9F2;
+    --crimson:     #9B1B30;
+    --crimson-deep:#6E1122;
+    --gold:        #D9A125;
+    --gold-light:  #F0C766;
+    --paper:       #F7F1E4;
+    --ink:         #1C2430;
+    --ink-soft:    #47566A;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--blue);
+    color:var(--paper);
+    font-family:'Work Sans',sans-serif;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3{ font-family:'Playfair Display',serif; letter-spacing:-0.01em; }
+
+  .stamp{
+    font-family:'Special Elite',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  :focus-visible{ outline:3px solid var(--gold); outline-offset:3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--blue-deep);
+    border-bottom:2px solid var(--gold);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1120px; margin:0 auto;
+  }
+  .logo{ font-family:'Playfair Display',serif; font-weight:900; font-size:1.4rem; color:var(--paper); }
+  .logo span{ color:var(--gold); }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Special Elite',monospace;
+    font-size:0.82rem; letter-spacing:0.03em;
+    padding:12px 22px; border-radius:2px;
+    border:2px solid var(--gold);
+    cursor:pointer;
+    transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .btn-solid{ background:var(--crimson); color:var(--paper); border-color:var(--crimson); box-shadow:4px 4px 0 var(--gold); }
+  .btn-solid:hover{ transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--gold); background:var(--crimson-deep); }
+  .btn-outline{ background:transparent; color:var(--paper); }
+  .btn-outline:hover{ background:var(--gold); color:var(--ink); border-color:var(--gold); }
+  .nav-cta{ display:none; }
+  @media (min-width:640px){ .nav-cta{ display:inline-flex; } }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; padding:92px 0 100px;
+    background:linear-gradient(180deg, var(--blue-deep) 0%, var(--blue) 55%, var(--blue-light) 100%);
+  }
+  .hero-grid{ display:grid; grid-template-columns:1fr; gap:56px; align-items:center; }
+  @media (min-width:920px){ .hero-grid{ grid-template-columns:1.05fr 0.95fr; } }
+  .hero .stamp{ color:var(--gold-light); margin-bottom:18px; }
+  .hero h1{
+    font-size:clamp(2.2rem,5vw,3.4rem); line-height:1.08; font-weight:900; color:var(--paper);
+  }
+  .hero h1 em{ font-style:italic; color:var(--gold-light); }
+  .hero p.lede{ margin-top:22px; font-size:1.12rem; max-width:52ch; color:var(--blue-pale); }
+  .hero-actions{ margin-top:32px; display:flex; gap:16px; flex-wrap:wrap; }
+
+  /* ---------- LEDGER (Ben Franklin close, signature element) ---------- */
+  .ledger{
+    background:var(--paper); color:var(--ink);
+    border-radius:6px; padding:26px 24px 22px;
+    box-shadow:10px 10px 0 var(--crimson-deep);
+    transform:rotate(-1.2deg);
+    max-width:440px; margin:0 auto;
+  }
+  .ledger-head{
+    text-align:center; font-family:'Special Elite',monospace; font-size:0.78rem;
+    letter-spacing:0.08em; color:var(--ink-soft); margin-bottom:14px; text-transform:uppercase;
+  }
+  .ledger-cols{ display:grid; grid-template-columns:1fr 1fr; gap:18px; position:relative; }
+  .ledger-cols::before{
+    content:""; position:absolute; left:50%; top:0; bottom:0; width:2px;
+    background:var(--ink-soft); opacity:0.25;
+  }
+  .ledger-col h4{
+    font-family:'Playfair Display',serif; font-size:0.98rem; margin-bottom:10px; font-weight:700;
+  }
+  .col-buy h4{ color:var(--crimson); }
+  .col-wait h4{ color:var(--ink-soft); }
+  .ledger-item{
+    font-size:0.86rem; padding:6px 0; opacity:0; transform:translateX(-8px);
+    animation:tally 0.5s ease forwards;
+  }
+  .col-wait .ledger-item{ transform:translateX(8px); }
+  .col-buy .ledger-item:nth-child(1){ animation-delay:0.4s; }
+  .col-buy .ledger-item:nth-child(2){ animation-delay:0.9s; }
+  .col-buy .ledger-item:nth-child(3){ animation-delay:1.4s; }
+  .col-buy .ledger-item:nth-child(4){ animation-delay:1.9s; }
+  .col-wait .ledger-item:nth-child(1){ animation-delay:0.65s; }
+  @keyframes tally{ to{ opacity:1; transform:translateX(0); } }
+  .ledger-foot{
+    margin-top:16px; padding-top:14px; border-top:1px dashed var(--ink-soft);
+    text-align:center; font-family:'Special Elite',monospace; font-size:0.76rem; color:var(--ink-soft);
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ padding:88px 0; }
+  .section-head{ max-width:660px; margin-bottom:52px; }
+  .section-head .stamp{ color:var(--gold); margin-bottom:14px; display:block; }
+  .section-head h2{ font-size:clamp(1.8rem,3.6vw,2.5rem); font-weight:800; }
+  .section-head p{ margin-top:16px; font-size:1.05rem; }
+
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+  /* ---------- DOCTOR SECTION ---------- */
+  .doctor{ background:var(--paper); color:var(--ink); }
+  .doctor .section-head p{ color:var(--ink-soft); }
+  .doctor-grid{ display:grid; gap:36px; grid-template-columns:1fr; align-items:center; }
+  @media (min-width:900px){ .doctor-grid{ grid-template-columns:0.9fr 1.1fr; } }
+  .rx-pad{
+    background:#fff; border:2px solid var(--ink); border-radius:4px;
+    padding:28px 26px; box-shadow:6px 6px 0 var(--blue);
+    max-width:380px;
+  }
+  .rx-pad .rx-mark{ font-family:'Playfair Display',serif; font-weight:900; font-size:2rem; color:var(--crimson); }
+  .rx-line{ border-bottom:1px solid #C9C2B0; padding:10px 0; font-family:'Special Elite',monospace; font-size:0.82rem; color:var(--ink-soft); }
+  .doctor-steps{ display:flex; flex-direction:column; gap:22px; }
+  .doctor-step{ display:flex; gap:16px; align-items:flex-start; }
+  .doctor-step .num{
+    font-family:'Playfair Display',serif; font-weight:900; font-size:1.5rem; color:var(--crimson); flex-shrink:0;
+  }
+  .doctor-step h3{ font-size:1.15rem; margin-bottom:4px; }
+  .doctor-step p{ color:var(--ink-soft); font-size:0.96rem; }
+
+  /* ---------- FIVE REASONS ---------- */
+  .reasons{ background:var(--blue-deep); }
+  .reasons .section-head p{ color:var(--blue-pale); }
+  .reason-list{ display:flex; flex-direction:column; gap:0; }
+  .reason-row{
+    display:grid; grid-template-columns:64px 1fr;
+    gap:22px; padding:26px 0; border-bottom:1px solid rgba(247,241,228,0.14);
+    align-items:start;
+  }
+  .reason-row:first-child{ border-top:1px solid rgba(247,241,228,0.14); }
+  .reason-mark{ font-family:'Playfair Display',serif; font-weight:900; font-size:2rem; color:var(--gold); }
+  .reason-row h3{ font-size:1.1rem; color:var(--paper); margin-bottom:6px; }
+  .reason-row p{ color:var(--blue-pale); font-size:0.94rem; max-width:60ch; }
+
+  /* ---------- PLAYBOOK ---------- */
+  .playbook{ background:var(--paper); color:var(--ink); }
+  .playbook .section-head p{ color:var(--ink-soft); }
+  .play-grid{ display:grid; gap:22px; grid-template-columns:1fr; }
+  @media (min-width:820px){ .play-grid{ grid-template-columns:repeat(2,1fr); } }
+  .play-card{
+    background:#fff; border:1px solid #D8CFB8; border-left:5px solid var(--crimson);
+    border-radius:4px; padding:26px 24px;
+  }
+  .play-card .stamp{ color:var(--crimson); margin-bottom:10px; display:block; }
+  .play-card h3{ font-size:1.15rem; margin-bottom:10px; }
+  .play-card p{ color:var(--ink-soft); font-size:0.95rem; }
+
+  /* ---------- CTA / ALT-CHOICE ---------- */
+  .offer{
+    background:linear-gradient(160deg, var(--crimson-deep) 0%, var(--crimson) 100%);
+  }
+  .offer .section-head p{ color:#F0D3D8; }
+  .offer .stamp{ color:var(--gold-light); }
+  .choice-grid{ display:grid; gap:24px; grid-template-columns:1fr; }
+  @media (min-width:760px){ .choice-grid{ grid-template-columns:1fr 1fr; } }
+  .choice-card{
+    background:var(--paper); color:var(--ink); border-radius:6px;
+    padding:30px 28px; border:2px solid var(--ink);
+    box-shadow:7px 7px 0 var(--gold);
+  }
+  .choice-card h3{ font-size:1.2rem; margin-bottom:10px; }
+  .choice-card p{ color:var(--ink-soft); font-size:0.95rem; margin-bottom:20px; }
+  .choice-card .btn-solid{ width:100%; justify-content:center; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--blue-deep); color:var(--blue-pale); padding:48px 0 36px; }
+  .foot-row{
+    display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between;
+    border-bottom:1px solid rgba(247,241,228,0.15); padding-bottom:28px; margin-bottom:22px;
+  }
+  .foot-logo{ font-family:'Playfair Display',serif; font-weight:900; font-size:1.2rem; color:var(--paper); }
+  .foot-logo span{ color:var(--gold); }
+  .foot-fine{ font-size:0.85rem; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="btn btn-solid nav-cta" href="https://easypagex.github.io" target="_blank" rel="noopener">Get My Page</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="stamp">A 1984 classic, applied to your website</span>
+      <h1>The oldest trick in sales <em>isn't a trick.</em></h1>
+      <p class="lede">Zig Ziglar spent a career proving that closing isn't manipulation — it's helping someone get what they already want, faster. EasyLandX builds landing pages the same way: diagnose first, recommend one clear path, remove the doubt.</p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="https://easypagex.github.io" target="_blank" rel="noopener">Get My Landing Page</a>
+        <a class="btn btn-outline" href="#doctor">See the method</a>
+      </div>
+    </div>
+    <div>
+      <div class="ledger" aria-hidden="true">
+        <div class="ledger-head">Should you finally launch your page?</div>
+        <div class="ledger-cols">
+          <div class="ledger-col col-buy">
+            <h4>Reasons to launch</h4>
+            <div class="ledger-item">Customers already search for you</div>
+            <div class="ledger-item">Competitors already have a page</div>
+            <div class="ledger-item">A page pays for itself in one sale</div>
+            <div class="ledger-item">It's ready in days, not months</div>
+          </div>
+          <div class="ledger-col col-wait">
+            <h4>Reasons to wait</h4>
+            <div class="ledger-item">…haven't decided on a color?</div>
+          </div>
+        </div>
+        <div class="ledger-foot">The list rarely balances. That's the point.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="doctor" id="doctor">
+  <div class="wrap doctor-grid">
+    <div class="rx-pad reveal">
+      <div class="rx-mark">℞</div>
+      <div class="rx-line">Business: your business, not a template</div>
+      <div class="rx-line">Symptom: no page, or one that doesn't convert</div>
+      <div class="rx-line">Diagnosis: unclear offer, unclear next step</div>
+      <div class="rx-line">Prescription: one focused EasyLandX page</div>
+    </div>
+    <div>
+      <div class="section-head reveal" style="margin-bottom:32px;">
+        <span class="stamp">The sales-doctor method</span>
+        <h2>We diagnose before we prescribe</h2>
+        <p>A good doctor doesn't run into the waiting room shouting about a great pill. They ask questions first. EasyLandX works the same way — no page gets built until we understand what your business actually needs it to do.</p>
+      </div>
+      <div class="doctor-steps">
+        <div class="doctor-step reveal">
+          <span class="num">1</span>
+          <div><h3>We ask, before we build</h3><p>What do you sell, who buys it, and what's stopping more people from saying yes right now?</p></div>
+        </div>
+        <div class="doctor-step reveal">
+          <span class="num">2</span>
+          <div><h3>We diagnose the real gap</h3><p>Usually it isn't design — it's an unclear offer, a missing call to action, or no way to build trust fast.</p></div>
+        </div>
+        <div class="doctor-step reveal">
+          <span class="num">3</span>
+          <div><h3>Then, and only then, we prescribe</h3><p>A single page, written and structured around that diagnosis — not a stock layout with your logo dropped in.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reasons">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="stamp">Why small businesses never launch a page</span>
+      <h2>Five walls, and how we take each one down</h2>
+      <p>Ziglar taught that every objection traces back to one of five root causes. The same five show up whenever a small business owner puts off getting a real website.</p>
+    </div>
+    <div class="reason-list">
+      <div class="reason-row reveal">
+        <span class="reason-mark">1</span>
+        <div><h3>No Need — "My customers just call me anyway"</h3><p>We show you what those customers see instead: nothing, or a rival's page, the moment they search your name.</p></div>
+      </div>
+      <div class="reason-row reveal">
+        <span class="reason-mark">2</span>
+        <div><h3>No Money — "A website feels expensive"</h3><p>We price a single focused page at small-business rates, and frame it against the cost of the customers currently walking past you.</p></div>
+      </div>
+      <div class="reason-row reveal">
+        <span class="reason-mark">3</span>
+        <div><h3>No Desire — "It's not urgent this month"</h3><p>We keep the ask small and concrete — one page, one clear job — so it never competes with the rest of your to-do list.</p></div>
+      </div>
+      <div class="reason-row reveal">
+        <span class="reason-mark">4</span>
+        <div><h3>No Hurry — "I'll get to it eventually"</h3><p>We show a working draft fast, built from what you already have, so "eventually" becomes something you can react to today.</p></div>
+      </div>
+      <div class="reason-row reveal">
+        <span class="reason-mark">5</span>
+        <div><h3>No Trust — "How do I know it'll be good?"</h3><p>You see your actual finished page, built from your real business, before deciding on anything further.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="playbook">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="stamp">Ziglar's playbook, reapplied</span>
+      <h2>How we help you decide</h2>
+      <p>Four of Ziglar's best-known closing techniques, translated into the way EasyLandX actually talks with clients.</p>
+    </div>
+    <div class="play-grid">
+      <div class="play-card reveal">
+        <span class="stamp">The Ledger Close</span>
+        <h3>Reasons to launch vs. reasons to wait</h3>
+        <p>Laid out side by side, the case for finally getting a page almost always outweighs the case for putting it off one more month.</p>
+      </div>
+      <div class="play-card reveal">
+        <span class="stamp">The Story Close</span>
+        <h3>You're not the first to hesitate</h3>
+        <p>Most clients had the exact same doubts — about price, about time, about whether it would actually help — right up until their page went live.</p>
+      </div>
+      <div class="play-card reveal">
+        <span class="stamp">The Either-Or Close</span>
+        <h3>Never a flat "yes or no"</h3>
+        <p>The real question isn't whether to get a page. It's whether you send us your details this week, or next.</p>
+      </div>
+      <div class="play-card reveal">
+        <span class="stamp">The Cost-vs-Price Close</span>
+        <h3>What you pay vs. what it costs you</h3>
+        <p>The price is what a page costs once. The cost is every customer who found nothing when they searched for you instead.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="offer">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="stamp">Your two positive options</span>
+      <h2>Would Tuesday work, or is Thursday better?</h2>
+      <p>Not "should I get a page" — just when to start. Pick the option that fits your week.</p>
+    </div>
+    <div class="choice-grid">
+      <div class="choice-card reveal">
+        <h3>Start this week</h3>
+        <p>Send over your business details now and get your first draft back while the idea is still fresh.</p>
+        <a class="btn btn-solid" href="https://easypagex.github.io" target="_blank" rel="noopener">Get My Landing Page →</a>
+      </div>
+      <div class="choice-card reveal">
+        <h3>See examples first</h3>
+        <p>Take a look at pages built for other small businesses, then decide when you're ready to start yours.</p>
+        <a class="btn btn-solid" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <div class="foot-logo">Easy<span>Land</span>X</div>
+      <a class="btn btn-outline" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+    </div>
+    <div class="foot-fine">
+      <span>Built by EasyLandX</span>
+      <span>© 2026 EasyLandX. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
