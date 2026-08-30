@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — The Tiny Details Your Visitors Never Notice (But Always Feel)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo:       #3B36A8;
+    --indigo-deep:  #1E1B4B;
+    --indigo-mid:   #524CC9;
+    --indigo-pale:  #E7E5FA;
+    --amber:        #F0A83B;
+    --amber-deep:   #D68A1C;
+    --amber-pale:   #FCE3B5;
+    --white:        #FFFFFF;
+    --ink:          #1B1935;
+    --ink-soft:     #524F76;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--indigo);
+    color:var(--white);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3{ font-family:'Lora',serif; font-weight:600; letter-spacing:-0.01em; }
+
+  .tag{
+    font-family:'Space Mono',monospace; font-size:0.72rem;
+    letter-spacing:0.1em; text-transform:uppercase; font-weight:700;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; }
+  ::selection{ background:var(--amber); color:var(--ink); }
+  :focus-visible{ outline:3px solid var(--amber); outline-offset:3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--indigo-deep);
+    border-bottom:2px solid var(--amber);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1120px; margin:0 auto;
+  }
+  .logo{ font-family:'Lora',serif; font-weight:700; font-size:1.35rem; color:var(--white); }
+  .logo span{ color:var(--amber); }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Inter',sans-serif; font-weight:700; font-size:0.86rem;
+    padding:12px 22px; border-radius:4px;
+    border:2px solid var(--amber);
+    cursor:pointer;
+    transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .btn-solid{ background:var(--amber); color:var(--indigo-deep); box-shadow:4px 4px 0 var(--white); }
+  .btn-solid:hover{ transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--white); }
+  .btn-outline{ background:transparent; color:var(--white); }
+  .btn-outline:hover{ background:var(--amber); color:var(--indigo-deep); }
+  .nav-cta{ display:none; }
+  @media (min-width:640px){ .nav-cta{ display:inline-flex; } }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; padding:92px 0 100px;
+    background:radial-gradient(ellipse at 20% 15%, var(--indigo-mid) 0%, var(--indigo) 55%, var(--indigo-deep) 100%);
+  }
+  .hero-grid{ display:grid; grid-template-columns:1fr; gap:56px; align-items:center; }
+  @media (min-width:920px){ .hero-grid{ grid-template-columns:1fr 1fr; } }
+  .hero .tag{ color:var(--amber); margin-bottom:18px; display:block; }
+  .hero h1{ font-size:clamp(2.1rem,4.8vw,3.2rem); line-height:1.12; color:var(--white); }
+  .hero h1 em{ font-style:italic; color:var(--amber); }
+  .hero p.lede{ margin-top:22px; font-size:1.1rem; max-width:50ch; color:var(--indigo-pale); }
+  .hero-actions{ margin-top:32px; display:flex; gap:16px; flex-wrap:wrap; }
+
+  /* ---------- MOCKUP + MAGNIFIER (signature element) ---------- */
+  .scan{ position:relative; max-width:440px; margin:0 auto; }
+  .mockup{
+    background:var(--white); color:var(--ink); border-radius:8px; overflow:hidden;
+    box-shadow:10px 10px 0 var(--indigo-deep); border:1px solid #D8D4EE;
+  }
+  .mockup-bar{ display:flex; gap:6px; padding:10px 14px; background:#F1EFFB; }
+  .mockup-bar span{ width:8px; height:8px; border-radius:50%; background:#C9C4E8; }
+  .mockup-body{ padding:26px 24px 30px; }
+  .mockup-headline{ height:14px; width:70%; background:#E2DEF6; border-radius:3px; margin-bottom:10px; }
+  .mockup-headline.short{ width:45%; margin-bottom:20px; }
+  .mockup-btn{
+    display:inline-block; padding:9px 22px; background:var(--amber); color:var(--indigo-deep);
+    border-radius:20px; font-family:'Inter',sans-serif; font-weight:700; font-size:0.82rem; margin-bottom:22px;
+  }
+  .mockup-rows{ display:flex; flex-direction:column; gap:8px; }
+  .mockup-rows div{ height:8px; background:#EDEBFA; border-radius:3px; }
+  .mockup-rows div:nth-child(2){ width:88%; }
+  .mockup-rows div:nth-child(3){ width:60%; }
+  .glass{
+    position:absolute; width:88px; height:88px;
+    border:6px solid var(--amber); border-radius:50%;
+    box-shadow:0 0 0 4px var(--indigo-deep), 4px 6px 14px rgba(0,0,0,0.35);
+    background:rgba(255,255,255,0.08);
+    backdrop-filter: blur(0.5px);
+    animation:scan-move 9s ease-in-out infinite;
+  }
+  .glass::after{
+    content:""; position:absolute; width:6px; height:34px; background:var(--amber);
+    bottom:-30px; right:6px; border-radius:3px; transform:rotate(45deg);
+  }
+  @keyframes scan-move{
+    0%,8%   { top:52px;  left:150px; }
+    25%,33% { top:150px; left:70px; }
+    50%,58% { top:196px; left:230px; }
+    75%,83% { top:96px;  left:250px; }
+    100%    { top:52px;  left:150px; }
+  }
+  .scan-note{
+    text-align:center; margin-top:16px; font-family:'Space Mono',monospace;
+    font-size:0.76rem; color:var(--indigo-pale); letter-spacing:0.04em;
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ padding:88px 0; }
+  .section-head{ max-width:660px; margin-bottom:52px; }
+  .section-head .tag{ color:var(--amber); margin-bottom:14px; display:block; }
+  .section-head h2{ font-size:clamp(1.8rem,3.6vw,2.5rem); }
+  .section-head p{ margin-top:16px; font-size:1.03rem; }
+
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+  /* ---------- PERSPECTIVE FLIP ---------- */
+  .perspective{ background:var(--white); color:var(--ink); }
+  .perspective .section-head p{ color:var(--ink-soft); }
+  .flip-grid{ display:grid; gap:20px; grid-template-columns:1fr; }
+  @media (min-width:820px){ .flip-grid{ grid-template-columns:repeat(3,1fr); } }
+  .flip-card{
+    background:var(--indigo-pale); border-radius:8px; padding:26px 22px;
+    border-left:5px solid var(--indigo);
+  }
+  .flip-old{ font-family:'Lora',serif; font-style:italic; color:var(--ink-soft); font-size:0.98rem; margin-bottom:14px; }
+  .flip-arrow{ font-family:'Space Mono',monospace; font-size:0.72rem; letter-spacing:0.08em; color:var(--amber-deep); margin-bottom:8px; display:block; }
+  .flip-new{ font-size:0.95rem; color:var(--ink); }
+
+  /* ---------- MICRO-COMPOUNDING ---------- */
+  .micro{ background:var(--indigo-deep); }
+  .micro-list{ display:flex; flex-direction:column; }
+  .micro-row{
+    display:grid; grid-template-columns:70px 1fr; gap:20px;
+    padding:24px 0; border-bottom:1px solid #34305F; align-items:start;
+  }
+  .micro-row:first-child{ border-top:1px solid #34305F; }
+  .micro-num{ font-family:'Space Mono',monospace; font-weight:700; font-size:0.95rem; color:var(--amber); }
+  .micro-row h3{ font-size:1.05rem; color:var(--white); margin-bottom:6px; }
+  .micro-row p{ color:var(--indigo-pale); font-size:0.93rem; max-width:60ch; }
+
+  /* ---------- INVISIBLE WORLDS ---------- */
+  .invisible{ background:var(--white); color:var(--ink); }
+  .invisible .section-head p{ color:var(--ink-soft); }
+  .inv-grid{ display:grid; gap:20px; grid-template-columns:1fr; }
+  @media (min-width:760px){ .inv-grid{ grid-template-columns:repeat(2,1fr); } }
+  .inv-card{
+    background:var(--indigo-pale); border-radius:8px; padding:24px 22px;
+  }
+  .inv-card .says{ font-family:'Space Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; color:var(--indigo); text-transform:uppercase; margin-bottom:6px; display:block; }
+  .inv-card .says-text{ font-family:'Lora',serif; font-style:italic; font-size:1rem; color:var(--ink); margin-bottom:14px; }
+  .inv-card .fears{ font-family:'Space Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; color:var(--amber-deep); text-transform:uppercase; margin-bottom:6px; display:block; }
+  .inv-card .fears-text{ font-size:0.93rem; color:var(--ink-soft); }
+
+  /* ---------- EUDAIMONIC / CTA ---------- */
+  .offer{
+    background:linear-gradient(160deg, var(--indigo-deep) 0%, var(--indigo) 100%);
+  }
+  .offer .tag{ color:var(--amber); }
+  .offer h2{ color:var(--white); font-size:clamp(1.9rem,4vw,2.6rem); }
+  .offer p{ margin-top:16px; color:var(--indigo-pale); max-width:54ch; }
+  .offer-actions{ margin-top:30px; display:flex; gap:16px; flex-wrap:wrap; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--indigo-deep); color:var(--indigo-pale); padding:48px 0 36px; }
+  .foot-row{
+    display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between;
+    border-bottom:1px solid #34305F; padding-bottom:28px; margin-bottom:22px;
+  }
+  .foot-logo{ font-family:'Lora',serif; font-weight:700; font-size:1.2rem; color:var(--white); }
+  .foot-logo span{ color:var(--amber); }
+  .foot-fine{ font-size:0.85rem; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="btn btn-solid nav-cta" href="https://easypagex.github.io" target="_blank" rel="noopener">Get My Page</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">The hidden psychology of a landing page</span>
+      <h1>The tiny details visitors never notice — <em>but always feel.</em></h1>
+      <p class="lede">A headline word, a button's color, half a second of load time. No one names these things when they decide whether to trust your business. But every one of them is quietly deciding for them.</p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="https://easypagex.github.io" target="_blank" rel="noopener">Get My Landing Page</a>
+        <a class="btn btn-outline" href="#micro">See what we look for</a>
+      </div>
+    </div>
+    <div>
+      <div class="scan" aria-hidden="true">
+        <div class="mockup">
+          <div class="mockup-bar"><span></span><span></span><span></span></div>
+          <div class="mockup-body">
+            <div class="mockup-headline"></div>
+            <div class="mockup-headline short"></div>
+            <div class="mockup-btn">Get Started</div>
+            <div class="mockup-rows">
+              <div></div><div></div><div></div>
+            </div>
+          </div>
+        </div>
+        <div class="glass"></div>
+      </div>
+      <p class="scan-note">looking for the details that decide trust</p>
+    </div>
+  </div>
+</section>
+
+<section class="perspective">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag" style="color:var(--indigo);">A shift in vantage point</span>
+      <h2>The same page moment, seen two ways</h2>
+      <p>Binit Raj's essays keep returning to one idea: we rarely need a new reality, just a shift in how we look at the one we have. That applies directly to how you read your own website's numbers.</p>
+    </div>
+    <div class="flip-grid">
+      <div class="flip-card reveal">
+        <div class="flip-old">"No one filled out the form."</div>
+        <span class="flip-arrow">REFRAME →</span>
+        <div class="flip-new">The form asked for too much, too soon. That's a fixable design fact, not a verdict on your business.</div>
+      </div>
+      <div class="flip-card reveal">
+        <div class="flip-old">"People land and just leave."</div>
+        <span class="flip-arrow">REFRAME →</span>
+        <div class="flip-new">They left with information — where the page lost their attention. That's the most useful data you'll get all month.</div>
+      </div>
+      <div class="flip-card reveal">
+        <div class="flip-old">"It's been quiet for weeks."</div>
+        <span class="flip-arrow">REFRAME →</span>
+        <div class="flip-new">Quiet is a preparation window — the right moment to fix the small things before the next wave of visitors arrives.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="micro" id="micro">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag">The micro-compounding effect</span>
+      <h2>What we actually spend our time on</h2>
+      <p>Raj's central argument is that character and outcomes are built from thousands of unnoticed micro-decisions, not one big leap. A landing page works the exact same way.</p>
+    </div>
+    <div class="micro-list">
+      <div class="micro-row reveal">
+        <span class="micro-num">No. 01</span>
+        <div><h3>The first five words of your headline</h3><p>Vague ones get skimmed past. Specific ones make a visitor feel like the page was written for them.</p></div>
+      </div>
+      <div class="micro-row reveal">
+        <span class="micro-num">No. 02</span>
+        <div><h3>How long the page takes to appear</h3><p>A slow first second reads as a small doubt about everything that follows, before a visitor's even read a word.</p></div>
+      </div>
+      <div class="micro-row reveal">
+        <span class="micro-num">No. 03</span>
+        <div><h3>The exact words on the button</h3><p>"Get Started" and "See Pricing" send a visitor down two completely different mental paths — one small word choice, a different outcome.</p></div>
+      </div>
+      <div class="micro-row reveal">
+        <span class="micro-num">No. 04</span>
+        <div><h3>One real photo, in the right place</h3><p>A single genuine image of your actual work often does more for trust than an entire paragraph explaining why you're trustworthy.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="invisible">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag" style="color:var(--indigo);">The invisible world of your visitor</span>
+      <h2>What they say, and what they're actually worried about</h2>
+      <p>Raj's essays ask us to trade quick judgment for curiosity about what someone's really carrying. Every visitor to your page is carrying an unspoken worry too.</p>
+    </div>
+    <div class="inv-grid">
+      <div class="inv-card reveal">
+        <span class="says">What they seem to do</span>
+        <div class="says-text">They read the headline and scroll straight past the offer.</div>
+        <span class="fears">What they're actually thinking</span>
+        <div class="fears-text">"This might not be for a business my size" — worth answering directly, near the top.</div>
+      </div>
+      <div class="inv-card reveal">
+        <span class="says">What they seem to do</span>
+        <div class="says-text">They hover over the price, then leave without clicking.</div>
+        <span class="fears">What they're actually thinking</span>
+        <div class="fears-text">"What exactly do I get for this?" — a short, concrete list usually resolves it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="offer">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-bottom:34px;">
+      <span class="tag">Meaning is in the ordinary details</span>
+      <h2>You don't need a grand website. You need the right small things, done well.</h2>
+      <p>Raj's whole argument is that the extraordinary is a myth — meaning lives in the ordinary, noticed closely. The same is true of a page that actually works: not flash, just the right details, placed with care.</p>
+    </div>
+    <div class="offer-actions reveal">
+      <a class="btn btn-solid" href="https://easypagex.github.io" target="_blank" rel="noopener">Get My Landing Page →</a>
+      <a class="btn btn-outline" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <div class="foot-logo">Easy<span>Land</span>X</div>
+      <a class="btn btn-outline" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+    </div>
+    <div class="foot-fine">
+      <span>Built by EasyLandX</span>
+      <span>© 2026 EasyLandX. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
