@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live By Friday — easylandx</title>
+<meta name="description" content="Your landing page doesn't need six months. It needs five days. easylandx builds and launches custom landing pages fast, without cutting the parts that make them convert.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --yellow-bg:   #f5e64a;
+    --yellow-bg-2: #fff9d9;
+    --yellow-line: rgba(38,38,41,.16);
+
+    --velvet:      #1f4d3a;
+    --velvet-light:#4f8069;
+    --velvet-dark: #102a1f;
+
+    --carbon:      #262629;
+    --carbon-dark: #17171a;
+    --carbon-soft: rgba(38,38,41,.7);
+    --carbon-faint:rgba(38,38,41,.46);
+
+    --paper: #fffef2;
+
+    --display: 'Archivo', sans-serif;
+    --body: 'Work Sans', sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background: var(--yellow-bg);
+    color: var(--carbon);
+    font-family: var(--body);
+    font-weight: 400;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection{ background: var(--velvet); color: var(--paper); }
+  a{ color:inherit; }
+  img,svg{ display:block; max-width:100%; }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(20px,5vw,64px);
+  }
+
+  .prose{ max-width: 600px; }
+
+  h1,h2,h3{
+    font-family: var(--display);
+    font-weight: 800;
+    margin: 0 0 .5em;
+    color: var(--carbon);
+    letter-spacing: -.01em;
+  }
+
+  p{ margin: 0 0 1.1em; color: var(--carbon-soft); }
+  p:last-child{ margin-bottom:0; }
+
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--velvet);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- header ---------- */
+
+  header{
+    position: sticky;
+    top:0;
+    z-index:20;
+    background: rgba(245,230,74,.9);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--yellow-line);
+  }
+
+  .headerbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px clamp(20px,5vw,64px);
+  }
+
+  .wordmark{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    font-family: var(--display);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--carbon);
+  }
+  .wordmark svg{ width:26px; height:26px; flex-shrink:0; }
+
+  /* ---------- buttons ---------- */
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    font-family: var(--body);
+    font-weight: 700;
+    font-size: .95rem;
+    padding: 12px 26px;
+    border-radius: 8px;
+    border: 1.5px solid var(--velvet);
+    transition: transform .18s ease, background .18s ease, color .18s ease;
+  }
+
+  .btn-solid{ background: var(--velvet); color: var(--paper); }
+  .btn-solid:hover{ background: var(--velvet-dark); border-color: var(--velvet-dark); transform: translateY(-1px); }
+
+  .btn-line{
+    background: transparent;
+    color: var(--velvet-dark);
+    padding: 9px 20px;
+    font-size: .88rem;
+  }
+  .btn-line:hover{ background: var(--velvet); color: var(--paper); }
+
+  .btn-carbon{
+    background: var(--carbon);
+    border-color: var(--carbon);
+    color: var(--yellow-bg);
+  }
+  .btn-carbon:hover{ background: var(--carbon-dark); border-color: var(--carbon-dark); transform: translateY(-1px); }
+
+  .btn-big{ padding: 17px 38px; font-size: 1.05rem; }
+
+  /* ---------- hero ---------- */
+
+  .hero{ padding: clamp(56px,9vw,108px) 0 clamp(48px,7vw,84px); }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: clamp(32px,6vw,72px);
+    align-items:center;
+  }
+
+  .eyebrow-mark{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom: 20px;
+  }
+  .eyebrow-mark .dot{ width:8px; height:8px; border-radius:50%; background: var(--velvet); }
+  .eyebrow-mark span{ font-family: var(--display); color: var(--carbon); font-size: .88rem; font-weight:700; text-transform: lowercase; }
+
+  .hero h1{
+    font-size: clamp(2.1rem,4.8vw,3.6rem);
+    line-height: 1.06;
+    max-width: 13ch;
+  }
+
+  .hero-sub{ max-width: 46ch; font-size: 1.08rem; }
+
+  .hero-cta{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  .hero-cta .fine{ font-size:.85rem; color: var(--carbon-faint); }
+
+  /* ---------- section rhythm ---------- */
+
+  section{
+    padding: clamp(52px,8vw,96px) 0;
+    border-top: 1px solid var(--yellow-line);
+  }
+
+  .section-head{ max-width: 640px; margin-bottom: clamp(28px,4vw,44px); }
+  .section-head h2{ font-size: clamp(1.6rem,3vw,2.25rem); line-height:1.16; }
+
+  .two-col{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px,6vw,72px);
+    align-items:center;
+  }
+  .two-col.reverse .art{ order:2; }
+
+  .panel{
+    background: var(--yellow-bg-2);
+    border: 1px solid var(--yellow-line);
+    border-radius: 18px;
+    padding: clamp(20px,4vw,40px);
+  }
+
+  /* ---------- 5-day timeline ---------- */
+
+  .timeline{
+    display:grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 14px;
+  }
+  .day-card{
+    background: var(--paper);
+    border: 1px solid var(--yellow-line);
+    border-radius: 12px;
+    padding: 20px 16px;
+  }
+  .day-card .day-name{
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: .78rem;
+    color: var(--velvet-dark);
+    margin-bottom: 10px;
+    display:block;
+  }
+  .day-card h3{ font-size: .98rem; margin-bottom: .3em; }
+  .day-card p{ font-size: .86rem; margin:0; }
+
+  /* ---------- comparison copy ---------- */
+
+  .copy-compare{
+    display:flex;
+    flex-direction:column;
+    gap: 14px;
+  }
+  .copy-line{
+    border-radius: 10px;
+    padding: 16px 18px;
+    font-family: var(--body);
+    font-size: .95rem;
+  }
+  .copy-vague{ background: rgba(38,38,41,.06); color: var(--carbon-soft); }
+  .copy-sharp{ background: var(--velvet); color: var(--paper); }
+
+  /* ---------- closing ---------- */
+
+  .closing{
+    background: var(--carbon-dark);
+    color: var(--paper);
+    border-top: none;
+  }
+  .closing .wrap{
+    padding-top: clamp(56px,9vw,100px);
+    padding-bottom: clamp(56px,9vw,100px);
+    text-align:center;
+  }
+  .closing h2{ color: var(--yellow-bg); font-size: clamp(1.9rem,4vw,2.8rem); max-width:17ch; margin:0 auto .4em; }
+  .closing p{ color: rgba(255,254,242,.78); max-width: 48ch; margin: 0 auto 32px; }
+
+  /* ---------- footer ---------- */
+
+  footer{
+    background: var(--carbon-dark);
+    color: rgba(255,254,242,.55);
+    border-top: 1px solid rgba(255,254,242,.14);
+  }
+  footer .wrap{
+    padding: 22px clamp(20px,5vw,64px);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: .82rem;
+  }
+  footer a{ text-decoration: underline; text-underline-offset:3px; }
+
+  @media (max-width: 900px){
+    .timeline{ grid-template-columns: repeat(2,1fr); }
+  }
+  @media (max-width: 860px){
+    .hero-grid, .two-col{ grid-template-columns:1fr; }
+    .two-col.reverse .art{ order:0; }
+  }
+  @media (max-width: 560px){
+    .timeline{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="headerbar">
+    <a class="wordmark" href="#top">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="21" r="14" fill="none" stroke="#1f4d3a" stroke-width="3"/>
+        <line x1="20" y1="21" x2="20" y2="12" stroke="#1f4d3a" stroke-width="3" stroke-linecap="round"/>
+        <line x1="20" y1="21" x2="27" y2="24" stroke="#1f4d3a" stroke-width="3" stroke-linecap="round"/>
+        <line x1="15" y1="5" x2="25" y2="5" stroke="#1f4d3a" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      easylandx
+    </a>
+    <a class="btn btn-line" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow-mark"><span class="dot"></span><span>built this week, not this quarter</span></span>
+        <h1>Your landing page doesn't need six months. It needs five days.</h1>
+        <p class="hero-sub">Most businesses aren't stuck because they lack something to sell. They're stuck because nobody's ever packaged it into a page that says it clearly. We build that page in the time it takes most agencies to schedule a kickoff call.</p>
+        <div class="hero-cta">
+          <a class="btn btn-solid" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+          <span class="fine">Live by Friday, not "eventually."</span>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 420 300" role="img">
+          <title>A stopwatch, mid-sprint</title>
+          <circle cx="210" cy="165" r="105" fill="none" stroke="#262629" stroke-width="10" opacity="0.9"/>
+          <circle cx="210" cy="165" r="105" fill="none" stroke="#1f4d3a" stroke-width="10" stroke-linecap="round" stroke-dasharray="470 660" transform="rotate(-90 210 165)"/>
+          <line x1="210" y1="165" x2="210" y2="95" stroke="#262629" stroke-width="7" stroke-linecap="round"/>
+          <line x1="210" y1="165" x2="255" y2="150" stroke="#1f4d3a" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="210" cy="165" r="8" fill="#262629"/>
+          <line x1="180" y1="35" x2="240" y2="35" stroke="#262629" stroke-width="9" stroke-linecap="round"/>
+          <line x1="210" y1="35" x2="210" y2="58" stroke="#262629" stroke-width="9" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5-DAY TIMELINE -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What actually happens, day by day</h2>
+        <p>No open-ended "we'll get back to you." Here's the shape of a build week.</p>
+      </div>
+      <div class="timeline">
+        <div class="day-card">
+          <span class="day-name">Monday</span>
+          <h3>What you actually do</h3>
+          <p>We cut past the job title and pin down the one problem you solve better than most.</p>
+        </div>
+        <div class="day-card">
+          <span class="day-name">Tuesday</span>
+          <h3>One clear offer</h3>
+          <p>The headline and the call to action get built around a single, specific transformation.</p>
+        </div>
+        <div class="day-card">
+          <span class="day-name">Wednesday</span>
+          <h3>Reasons to trust it</h3>
+          <p>Proof, credentials, and past results go in — the parts that turn interest into confidence.</p>
+        </div>
+        <div class="day-card">
+          <span class="day-name">Thursday</span>
+          <h3>Built to be seen</h3>
+          <p>Structure and imagery that hold attention instead of asking politely for it.</p>
+        </div>
+        <div class="day-card">
+          <span class="day-name">Friday</span>
+          <h3>Ready to close</h3>
+          <p>Pricing, contact, and the final call to action are locked in — and the page goes live.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBTRACTION / VALIDATE FIRST -->
+  <section>
+    <div class="wrap two-col">
+      <div>
+        <div class="section-head">
+          <h2>Live and imperfect beats perfect and unpublished.</h2>
+        </div>
+        <div class="prose">
+          <p>A page that's 90% right and out in the world this week teaches you more than a flawless one sitting in drafts for two years. Real visitors tell you what's actually working — a mockup never does.</p>
+          <p>We'd rather get your page live and sharpen it against real traffic than chase an imaginary finish line before anyone's seen it.</p>
+        </div>
+      </div>
+      <div class="art panel">
+        <svg viewBox="0 0 420 200" role="img" aria-label="A bar shown live at ninety percent, next to a stalled bar in drafts">
+          <text x="20" y="30" font-family="Archivo, sans-serif" font-weight="700" font-size="13" fill="#1f4d3a">live at 90%</text>
+          <rect x="20" y="45" width="360" height="20" rx="4" fill="rgba(38,38,41,.08)"/>
+          <rect x="20" y="45" width="324" height="20" rx="4" fill="#1f4d3a"/>
+          <text x="20" y="110" font-family="Archivo, sans-serif" font-weight="700" font-size="13" fill="#262629" opacity="0.5">"perfect," still in drafts</text>
+          <rect x="20" y="125" width="360" height="20" rx="4" fill="rgba(38,38,41,.08)"/>
+          <rect x="20" y="125" width="30" height="20" rx="4" fill="rgba(38,38,41,.35)"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS TO MONETIZABLE ASSET -->
+  <section>
+    <div class="wrap two-col reverse">
+      <div class="art panel">
+        <div class="copy-compare">
+          <div class="copy-line copy-vague">"Experienced consultant offering a range of professional services."</div>
+          <div class="copy-line copy-sharp">"I get overbooked salons off spreadsheets and onto a booking page that fills itself."</div>
+        </div>
+      </div>
+      <div>
+        <div class="section-head">
+          <h2>Nobody buys a job title.</h2>
+        </div>
+        <div class="prose">
+          <p>Most "about" pages describe a role instead of a result — vague enough to be safe, and vague enough to be ignored. The version that actually converts names the exact problem solved, for the exact person who has it.</p>
+          <p>We push past the resume language until what's left is the specific, sellable thing underneath it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMOTION DRIVES THE TRANSACTION -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Logic justifies it. The gut decides first.</h2>
+        <p>A visitor feels the problem before they read a single credential. The page has to speak to that moment before it starts making its case.</p>
+      </div>
+      <div class="panel" style="display:flex; gap: 24px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:220px;">
+          <h3 style="font-size:1.02rem; color:var(--velvet-dark);">Opens with the frustration</h3>
+          <p style="font-size:.92rem;">Names the exact moment of pain your visitor already recognizes.</p>
+        </div>
+        <div style="flex:1; min-width:220px;">
+          <h3 style="font-size:1.02rem; color:var(--velvet-dark);">Then earns it with proof</h3>
+          <p style="font-size:.92rem;">Results, credentials, and specifics back up what the gut already decided.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="closing">
+    <div class="wrap">
+      <h2>Broke on Monday. Booked by Friday.</h2>
+      <p>Whatever you've got sitting in your head or half-built in a doc, let's turn it into a page that's live, and selling, by the end of the week.</p>
+      <a class="btn btn-carbon btn-big" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>easylandx — landing pages built on a work-week clock. © 2026</span>
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>
