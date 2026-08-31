@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Landing pages, without the equations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --nebula: #241539;
+    --nebula-deep: #180d29;
+    --nebula-light: #3a2460;
+    --yellow: #F4FF3B;
+    --charcoal: #1E1E22;
+    --paper: #F6F3FB;
+    --paper-dim: #C9BEDD;
+    --line: rgba(246,243,251,0.14);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--nebula);
+    color:var(--paper);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--paper);
+  }
+
+  a{color:inherit;}
+
+  img,svg{display:block; max-width:100%;}
+
+  .wrap{
+    width:100%;
+    max-width:1120px;
+    margin:0 auto;
+    padding-left:clamp(18px, 4vw, 32px);
+    padding-right:clamp(18px, 4vw, 32px);
+  }
+
+  :focus-visible{
+    outline:2px solid var(--yellow);
+    outline-offset:3px;
+  }
+
+  /* ---------- Nav ---------- */
+  header{
+    padding:28px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:1.25rem;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .logo-mark{
+    width:10px; height:10px;
+    background:var(--yellow);
+    transform:rotate(45deg);
+    flex-shrink:0;
+  }
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:32px;
+  }
+  nav a{
+    text-decoration:none;
+    font-size:0.95rem;
+    color:var(--paper-dim);
+    transition:color .15s ease;
+  }
+  nav a:hover{color:var(--paper);}
+  .nav-cta{
+    display:inline-block;
+    background:var(--yellow);
+    color:var(--charcoal);
+    text-decoration:none;
+    font-weight:600;
+    font-size:0.9rem;
+    padding:10px 20px;
+    border-radius:3px;
+  }
+  .nav-links-mobile-hide{display:flex;}
+  @media (max-width:720px){
+    .nav-links-mobile-hide{display:none;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:96px clamp(18px, 4vw, 32px) 90px;
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 4.6vw, 3.6rem);
+    line-height:1.08;
+    max-width:11ch;
+  }
+  .hero p.lede{
+    margin-top:26px;
+    font-size:1.15rem;
+    color:var(--paper-dim);
+    max-width:46ch;
+  }
+  .hero-ctas{
+    margin-top:36px;
+    display:flex;
+    align-items:center;
+    gap:22px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    display:inline-block;
+    background:var(--yellow);
+    color:var(--charcoal);
+    text-decoration:none;
+    font-weight:600;
+    font-size:1rem;
+    padding:15px 28px;
+    border-radius:3px;
+    transition:transform .15s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px);}
+  .link-secondary{
+    text-decoration:none;
+    color:var(--paper-dim);
+    font-size:0.95rem;
+    border-bottom:1px solid var(--paper-dim);
+    padding-bottom:2px;
+  }
+  .link-secondary:hover{color:var(--paper); border-color:var(--paper);}
+
+  .hero-art{
+    background:var(--nebula-light);
+    border-radius:8px;
+    padding:22px;
+    border:1px solid var(--line);
+  }
+  .hero-art .browser-bar{
+    display:flex;
+    gap:6px;
+    margin-bottom:16px;
+  }
+  .hero-art .dot{
+    width:9px; height:9px; border-radius:50%;
+    background:rgba(246,243,251,0.25);
+  }
+
+  /* ---------- Section shells ---------- */
+  section{padding:88px 0;}
+  .section-head{
+    max-width:52ch;
+    margin-bottom:52px;
+  }
+  .section-head h2{
+    font-size:clamp(1.7rem, 3vw, 2.2rem);
+    line-height:1.18;
+  }
+  .section-head p{
+    margin-top:16px;
+    color:var(--paper-dim);
+    font-size:1.05rem;
+  }
+
+  /* ---------- Engines (two column feature) ---------- */
+  .engines{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .engine{
+    background:var(--nebula);
+    padding:40px 36px;
+  }
+  .engine .tag{
+    font-size:0.85rem;
+    color:var(--yellow);
+    font-weight:600;
+    margin-bottom:14px;
+  }
+  .engine h3{
+    font-size:1.35rem;
+    margin-bottom:14px;
+  }
+  .engine p{
+    color:var(--paper-dim);
+    font-size:0.98rem;
+  }
+
+  /* ---------- Stages (sequence) ---------- */
+  .stages{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:28px;
+  }
+  .stage{
+    border-top:2px solid var(--yellow);
+    padding-top:18px;
+  }
+  .stage .index{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:0.85rem;
+    color:var(--paper-dim);
+    margin-bottom:10px;
+  }
+  .stage h3{font-size:1.05rem; margin-bottom:10px;}
+  .stage p{font-size:0.92rem; color:var(--paper-dim);}
+
+  @media (max-width:900px){
+    .stages{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .stages{grid-template-columns:1fr;}
+    .hero{
+      grid-template-columns:1fr;
+      padding-top:64px;
+      padding-bottom:64px;
+    }
+    section{padding:64px 0;}
+    .hero-art{
+      padding:14px;
+      width:100%;
+    }
+    .hero-art svg{
+      width:100%;
+      height:auto;
+    }
+    .quote-panel .wrap,
+    .cta-band .wrap{
+      padding-top:64px;
+      padding-bottom:64px;
+    }
+    footer .wrap{
+      padding-top:32px;
+      padding-bottom:32px;
+    }
+  }
+
+  /* ---------- Quote panel ---------- */
+  .quote-panel{
+    background:var(--charcoal);
+  }
+  .quote-panel .wrap{
+    padding-top:80px;
+    padding-bottom:80px;
+  }
+  blockquote{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(1.4rem, 2.6vw, 2rem);
+    line-height:1.4;
+    max-width:26ch;
+    font-weight:500;
+  }
+  blockquote span.mark{color:var(--yellow);}
+  .quote-attr{
+    margin-top:26px;
+    color:var(--paper-dim);
+    font-size:0.95rem;
+  }
+
+  /* ---------- Belief list ---------- */
+  .beliefs{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:44px 56px;
+  }
+  .belief h3{
+    font-size:1.1rem;
+    margin-bottom:10px;
+    padding-left:18px;
+    border-left:2px solid var(--yellow);
+  }
+  .belief p{
+    color:var(--paper-dim);
+    font-size:0.96rem;
+    padding-left:18px;
+  }
+  @media (max-width:700px){
+    .beliefs{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Final CTA band ---------- */
+  .cta-band{
+    background:var(--yellow);
+    color:var(--charcoal);
+  }
+  .cta-band .wrap{
+    padding-top:80px;
+    padding-bottom:80px;
+    text-align:center;
+  }
+  .cta-band h2{
+    color:var(--charcoal);
+    font-size:clamp(1.8rem, 4vw, 2.6rem);
+    max-width:18ch;
+    margin:0 auto;
+  }
+  .cta-band p{
+    margin-top:16px;
+    color:rgba(30,30,34,0.75);
+    font-size:1.05rem;
+  }
+  .btn-dark{
+    display:inline-block;
+    margin-top:32px;
+    background:var(--charcoal);
+    color:var(--paper);
+    text-decoration:none;
+    font-weight:600;
+    font-size:1rem;
+    padding:16px 32px;
+    border-radius:3px;
+    transition:transform .15s ease;
+  }
+  .btn-dark:hover{transform:translateY(-2px);}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--nebula-deep);
+    border-top:1px solid var(--line);
+  }
+  footer .wrap{
+    padding-top:44px;
+    padding-bottom:44px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  footer p{
+    color:var(--paper-dim);
+    font-size:0.88rem;
+  }
+  footer .foot-links{
+    list-style:none;
+    display:flex;
+    gap:24px;
+  }
+  footer .foot-links a{
+    text-decoration:none;
+    color:var(--paper-dim);
+    font-size:0.88rem;
+  }
+  footer .foot-links a:hover{color:var(--paper);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <div class="logo"><span class="logo-mark"></span>easylandx</div>
+    <div class="nav-links-mobile-hide" style="display:flex; align-items:center; gap:32px;">
+      <nav>
+        <ul>
+          <li><a href="#stages">How it works</a></li>
+          <li><a href="#engines">Why it's different</a></li>
+          <li><a href="#beliefs">Our thinking</a></li>
+        </ul>
+      </nav>
+      <a class="nav-cta" href="https://easylandx.com/signup">Start free</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap" style="display:contents;">
+    <div>
+      <h1>Landing pages, without the equations.</h1>
+      <p class="lede">Most page builders assume you already speak their language: grids, breakpoints, hosting configs. easylandx assumes you know one thing instead — what you're trying to say to your customer. That's enough to start.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="https://easylandx.com/signup">Build your page free</a>
+        <a class="link-secondary" href="#stages">See how it works</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="browser-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <svg viewBox="0 0 460 320" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="460" height="320" rx="4" fill="#180d29"/>
+        <rect x="24" y="28" width="220" height="16" rx="2" fill="#F6F3FB" opacity="0.9"/>
+        <rect x="24" y="56" width="300" height="10" rx="2" fill="#C9BEDD" opacity="0.6"/>
+        <rect x="24" y="72" width="260" height="10" rx="2" fill="#C9BEDD" opacity="0.6"/>
+        <rect x="24" y="104" width="130" height="38" rx="3" fill="#F4FF3B"/>
+        <text x="42" y="128" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600" fill="#1E1E22">Get started</text>
+        <rect x="24" y="176" width="120" height="90" rx="3" fill="#3a2460" stroke="#F6F3FB" stroke-opacity="0.12"/>
+        <rect x="156" y="176" width="120" height="90" rx="3" fill="#3a2460" stroke="#F6F3FB" stroke-opacity="0.12"/>
+        <rect x="288" y="176" width="120" height="90" rx="3" fill="#3a2460" stroke="#F6F3FB" stroke-opacity="0.12"/>
+        <rect x="40" y="192" width="88" height="8" rx="2" fill="#F6F3FB" opacity="0.5"/>
+        <rect x="40" y="206" width="60" height="8" rx="2" fill="#F6F3FB" opacity="0.3"/>
+        <rect x="172" y="192" width="88" height="8" rx="2" fill="#F6F3FB" opacity="0.5"/>
+        <rect x="172" y="206" width="60" height="8" rx="2" fill="#F6F3FB" opacity="0.3"/>
+        <rect x="304" y="192" width="88" height="8" rx="2" fill="#F6F3FB" opacity="0.5"/>
+        <rect x="304" y="206" width="60" height="8" rx="2" fill="#F6F3FB" opacity="0.3"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="engines">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Two forces, one page</h2>
+      <p>Every good page comes from trying things you're not sure will work, and then being honest about whether they did. easylandx is built around both.</p>
+    </div>
+    <div class="engines">
+      <div class="engine">
+        <div class="tag">Try everything</div>
+        <h3>Nothing is locked until you say so</h3>
+        <p>Drag a section somewhere new, swap a headline, try a layout you're not sure about. easylandx never asks you to commit to a decision before you've seen it. If an idea doesn't work, it costs you a click, not an afternoon.</p>
+      </div>
+      <div class="engine">
+        <div class="tag">Undo anything</div>
+        <h3>Doubt your page on purpose</h3>
+        <p>Every page ships with built-in A/B testing and version history, so "I think this headline works better" becomes something you can actually check. Being wrong about a page is just information — easylandx makes it cheap to find out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stages" style="background:var(--nebula-deep);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>From blank page to published, in four moves</h2>
+      <p>No syllabus, no prerequisite reading. Just a sequence you can walk through in one sitting.</p>
+    </div>
+    <div class="stages">
+      <div class="stage">
+        <div class="index">01</div>
+        <h3>Describe it</h3>
+        <p>Tell easylandx what the page is for — a product, an event, a waitlist — and it drafts a real starting layout, not a blank canvas.</p>
+      </div>
+      <div class="stage">
+        <div class="index">02</div>
+        <h3>Shape it</h3>
+        <p>Rearrange sections, adjust copy and colors, add your own images. Every change previews instantly, in context.</p>
+      </div>
+      <div class="stage">
+        <div class="index">03</div>
+        <h3>Publish it</h3>
+        <p>One click puts your page live on a fast, secure domain — yours or a free easylandx subdomain to start.</p>
+      </div>
+      <div class="stage">
+        <div class="index">04</div>
+        <h3>Learn from it</h3>
+        <p>Built-in analytics show what visitors actually do, so your next edit is a decision, not a guess.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="quote-panel">
+  <div class="wrap">
+    <blockquote>"I didn't need to <span class="mark">understand</span> hosting to launch three pages this quarter. I just needed to know what I wanted to say."</blockquote>
+    <p class="quote-attr">— A small business owner, on her second campaign with easylandx</p>
+  </div>
+</div>
+
+<section id="beliefs">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What we built easylandx to believe</h2>
+      <p>A page builder is a set of quiet decisions about who gets to build things. Here's where we landed on ours.</p>
+    </div>
+    <div class="beliefs">
+      <div class="belief">
+        <h3>Not knowing is the starting point, not the failure</h3>
+        <p>You don't need to know what a breakpoint is to have a page that looks right on a phone. easylandx handles the parts you were never supposed to have to learn.</p>
+      </div>
+      <div class="belief">
+        <h3>A page is allowed to be a draft</h3>
+        <p>Publishing isn't a final exam. Every page can be reopened, rebuilt, and republished as many times as your idea changes.</p>
+      </div>
+      <div class="belief">
+        <h3>Building should feel like your first idea, not your tenth tutorial</h3>
+        <p>Templates get you moving, but the page should still sound like you. easylandx keeps your voice in the copy it drafts, not a generic one.</p>
+      </div>
+      <div class="belief">
+        <h3>A landing page is a small piece of storytelling</h3>
+        <p>Behind every page is a real reason someone's building it — a launch, a milestone, a leap. easylandx treats the page as the story, not just the software.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="wrap">
+    <h2>Your page doesn't need permission to be simple.</h2>
+    <p>Start with a real draft in under two minutes. No credit card, no manual.</p>
+    <a class="btn-dark" href="https://easylandx.com/signup">Create your easylandx page</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 easylandx. Landing pages for people who'd rather be building than learning to build.</p>
+    <ul class="foot-links">
+      <li><a href="https://easylandx.com/pricing">Pricing</a></li>
+      <li><a href="https://easylandx.com/templates">Templates</a></li>
+      <li><a href="https://easylandx.com/support">Support</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
