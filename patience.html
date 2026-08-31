@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Built to Take As Long As It Takes — easylandx</title>
+<meta name="description" content="A rushed landing page costs more than the time it saved. easylandx builds custom landing pages with the patience good work actually requires.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --gold-bg:    #f2d9a1;
+    --gold-bg-2:  #faf0da;
+    --gold-line:  #e0bf82;
+    --gold-deep:  #8a6a2e;
+
+    --terracotta:      #c1633b;
+    --terracotta-light:#dd9873;
+    --terracotta-dark: #8a4326;
+
+    --teal:      #1f6f6b;
+    --teal-light:#6ba9a3;
+    --teal-dark: #143f3d;
+
+    --ink:      #2b2013;
+    --ink-soft: rgba(43,32,19,.68);
+    --ink-faint:rgba(43,32,19,.42);
+
+    --paper: #fffbf1;
+
+    --display: 'Zilla Slab', serif;
+    --body: 'Karla', sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background: var(--gold-bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection{ background: var(--teal); color: var(--paper); }
+  a{ color:inherit; }
+  img,svg{ display:block; max-width:100%; }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(20px,5vw,64px);
+  }
+
+  .prose{ max-width: 600px; }
+
+  h1,h2,h3{
+    font-family: var(--display);
+    font-weight: 600;
+    margin: 0 0 .5em;
+    color: var(--terracotta-dark);
+  }
+
+  p{ margin: 0 0 1.1em; color: var(--ink-soft); }
+  p:last-child{ margin-bottom:0; }
+
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--teal);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- header ---------- */
+
+  header{
+    position: sticky;
+    top:0;
+    z-index:20;
+    background: rgba(242,217,161,.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--gold-line);
+  }
+
+  .headerbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px clamp(20px,5vw,64px);
+  }
+
+  .wordmark{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    font-family: var(--display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--terracotta-dark);
+  }
+  .wordmark svg{ width:26px; height:26px; flex-shrink:0; }
+
+  /* ---------- buttons ---------- */
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    font-family: var(--body);
+    font-weight: 700;
+    font-size: .95rem;
+    padding: 12px 26px;
+    border-radius: 999px;
+    border: 1.5px solid var(--teal);
+    transition: transform .18s ease, background .18s ease, color .18s ease;
+  }
+
+  .btn-solid{ background: var(--teal); color: var(--paper); }
+  .btn-solid:hover{ background: var(--teal-dark); border-color: var(--teal-dark); transform: translateY(-1px); }
+
+  .btn-line{
+    background: transparent;
+    color: var(--teal-dark);
+    padding: 9px 20px;
+    font-size: .88rem;
+  }
+  .btn-line:hover{ background: var(--teal); color: var(--paper); }
+
+  .btn-terracotta{
+    background: var(--terracotta);
+    border-color: var(--terracotta);
+    color: var(--paper);
+  }
+  .btn-terracotta:hover{ background: var(--terracotta-dark); border-color: var(--terracotta-dark); transform: translateY(-1px); }
+
+  .btn-big{ padding: 17px 38px; font-size: 1.05rem; }
+
+  /* ---------- hero ---------- */
+
+  .hero{ padding: clamp(56px,9vw,108px) 0 clamp(48px,7vw,84px); }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: clamp(32px,6vw,72px);
+    align-items:center;
+  }
+
+  .eyebrow-mark{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom: 20px;
+  }
+  .eyebrow-mark .dot{ width:8px; height:8px; border-radius:50%; background: var(--terracotta); }
+  .eyebrow-mark span{ font-family: var(--display); font-style: italic; color: var(--teal-dark); font-size: 1rem; }
+
+  .hero h1{
+    font-size: clamp(2.1rem,4.6vw,3.4rem);
+    line-height: 1.14;
+    max-width: 13ch;
+  }
+
+  .hero-sub{ max-width: 46ch; font-size: 1.08rem; }
+
+  .hero-cta{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  .hero-cta .fine{ font-size:.85rem; color: var(--ink-faint); }
+
+  /* ---------- section rhythm ---------- */
+
+  section{
+    padding: clamp(52px,8vw,96px) 0;
+    border-top: 1px solid var(--gold-line);
+  }
+
+  .section-head{ max-width: 640px; margin-bottom: clamp(28px,4vw,44px); }
+  .section-head h2{ font-size: clamp(1.6rem,3vw,2.25rem); line-height:1.22; }
+
+  .two-col{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px,6vw,72px);
+    align-items:center;
+  }
+  .two-col.reverse .art{ order:2; }
+
+  .panel{
+    background: var(--gold-bg-2);
+    border: 1px solid var(--gold-line);
+    border-radius: 18px;
+    padding: clamp(20px,4vw,40px);
+  }
+
+  /* ---------- equation ---------- */
+
+  .equation{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 12px;
+    flex-wrap: wrap;
+    text-align:center;
+  }
+  .eq-box{
+    background: var(--paper);
+    border: 1.5px solid var(--gold-line);
+    border-radius: 14px;
+    padding: 18px 16px;
+    width: 128px;
+  }
+  .eq-box .label{ font-family: var(--display); font-weight:600; font-size: .98rem; color: var(--ink); margin-bottom: 4px; }
+  .eq-box .sub{ font-size: .78rem; color: var(--ink-faint); }
+  .eq-symbol{ font-family: var(--display); font-size: 1.6rem; color: var(--terracotta); }
+  .eq-result{
+    background: var(--teal);
+    color: var(--paper);
+    border-radius: 14px;
+    padding: 18px 22px;
+  }
+  .eq-result .label{ font-family: var(--display); font-weight:600; font-size: 1.05rem; }
+
+  /* ---------- gifts list ---------- */
+
+  .gifts{
+    list-style:none;
+    margin:0; padding:0;
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+  }
+  .gifts li{
+    background: var(--gold-bg-2);
+    border: 1px solid var(--gold-line);
+    border-radius: 14px;
+    padding: 22px 20px;
+  }
+  .gifts h3{ font-size: 1.02rem; margin-bottom:.35em; color: var(--teal-dark); }
+  .gifts p{ font-size: .92rem; margin:0; }
+
+  /* ---------- closing ---------- */
+
+  .closing{
+    background: var(--terracotta-dark);
+    color: var(--paper);
+    border-top: none;
+  }
+  .closing .wrap{
+    padding-top: clamp(56px,9vw,100px);
+    padding-bottom: clamp(56px,9vw,100px);
+    text-align:center;
+  }
+  .closing h2{ color: var(--paper); font-size: clamp(1.9rem,4vw,2.8rem); max-width:17ch; margin:0 auto .4em; }
+  .closing p{ color: rgba(255,251,241,.8); max-width: 48ch; margin: 0 auto 32px; }
+
+  /* ---------- footer ---------- */
+
+  footer{
+    background: var(--terracotta-dark);
+    color: rgba(255,251,241,.62);
+    border-top: 1px solid rgba(255,251,241,.15);
+  }
+  footer .wrap{
+    padding: 22px clamp(20px,5vw,64px);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: .82rem;
+  }
+  footer a{ text-decoration: underline; text-underline-offset:3px; }
+
+  @media (max-width: 860px){
+    .hero-grid, .two-col{ grid-template-columns:1fr; }
+    .two-col.reverse .art{ order:0; }
+    .gifts{ grid-template-columns:1fr; }
+    .equation{ gap: 8px; }
+    .eq-box{ width: 100px; padding: 14px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="headerbar">
+    <a class="wordmark" href="#top">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M8 30 L20 8 L32 30 Z" fill="none" stroke="#1f6f6b" stroke-width="2.6" stroke-linejoin="round"/>
+        <line x1="20" y1="8" x2="20" y2="34" stroke="#1f6f6b" stroke-width="2.6" stroke-linecap="round"/>
+      </svg>
+      easylandx
+    </a>
+    <a class="btn btn-line" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow-mark"><span class="dot"></span><span>on building things properly</span></span>
+        <h1>It takes as long as it takes.</h1>
+        <p class="hero-sub">A landing page thrown together in an afternoon looks like it took an afternoon. The pages that actually convert are the ones where someone took the time to understand the business first. We're not in a hurry, and it shows in the result.</p>
+        <div class="hero-cta">
+          <a class="btn btn-solid" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+          <span class="fine">Built once, built right.</span>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 420 300" role="img">
+          <title>A small boat, held steady by its keel</title>
+          <path d="M60 140 C 60 60, 160 20, 200 20 C 240 20, 340 60, 340 140" fill="none" stroke="#c1633b" stroke-width="4" opacity="0.7"/>
+          <line x1="200" y1="20" x2="200" y2="150" stroke="#8a4326" stroke-width="3"/>
+          <path d="M90 150 L310 150 L280 200 Q200 220 120 200 Z" fill="none" stroke="#1f6f6b" stroke-width="6" stroke-linejoin="round"/>
+          <path d="M200 200 L200 250 L182 250 Z" fill="#1f6f6b"/>
+          <path d="M40 230 C 120 210, 280 250, 380 220" fill="none" stroke="#8a6a2e" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE EQUATION -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Patience isn't luck. It's built the same way every time.</h2>
+        <p>A page that holds up isn't the product of talent alone — it's the result of a fairly plain formula, applied on purpose, every time we build one.</p>
+      </div>
+      <div class="panel">
+        <div class="equation">
+          <div class="eq-box">
+            <div class="label">Motivation</div>
+            <div class="sub">a real reason this page needs to exist</div>
+          </div>
+          <span class="eq-symbol">+</span>
+          <div class="eq-box">
+            <div class="label">Awareness</div>
+            <div class="sub">knowing this business, not a generic one</div>
+          </div>
+          <span class="eq-symbol">+</span>
+          <div class="eq-box">
+            <div class="label">Cultivation</div>
+            <div class="sub">actually revising until it's right</div>
+          </div>
+          <span class="eq-symbol">=</span>
+          <div class="eq-result">
+            <div class="label">a page worth visiting</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPATIENCE COSTS MORE -->
+  <section>
+    <div class="wrap two-col">
+      <div>
+        <div class="section-head">
+          <h2>The quick version costs more than the time it saved.</h2>
+        </div>
+        <div class="prose">
+          <p>A template filled in overnight feels efficient right up until it isn't: generic copy that could belong to any business, a layout built for nobody in particular, a page that has to be redone in six months anyway.</p>
+          <p>The hidden tax of moving fast is that the mistakes are also fast — and they're the ones a visitor notices first. Doing it properly the first time is usually the cheaper option, it just doesn't look that way on day one.</p>
+        </div>
+      </div>
+      <div class="art panel">
+        <svg viewBox="0 0 440 220" role="img" aria-label="A jagged, rushed line compared to a smooth, deliberate one">
+          <text x="20" y="30" font-family="Karla, sans-serif" font-size="13" fill="#8a4326">thrown together</text>
+          <polyline points="20,55 60,40 90,70 130,35 170,65 210,45 250,60" fill="none" stroke="#c1633b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="20" y="130" font-family="Karla, sans-serif" font-size="13" fill="#143f3d">built with time</text>
+          <path d="M20 155 C 90 150, 160 175, 250 160 S 380 150, 420 158" fill="none" stroke="#1f6f6b" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEEL METAPHOR -->
+  <section>
+    <div class="wrap two-col reverse">
+      <div class="art panel" style="display:flex; flex-direction:column; align-items:center;">
+        <svg viewBox="0 0 240 200" width="220" role="img" aria-label="A boat with a deep keel, staying upright through rough water">
+          <path d="M20 90 C 60 60, 180 60, 220 90" fill="none" stroke="#8a6a2e" stroke-width="3" opacity="0.5"/>
+          <path d="M50 100 L190 100 L165 140 Q120 155 75 140 Z" fill="none" stroke="#1f6f6b" stroke-width="6" stroke-linejoin="round"/>
+          <line x1="120" y1="100" x2="120" y2="170" stroke="#8a4326" stroke-width="4"/>
+          <path d="M120 100 L155 55 L120 55 Z" fill="none" stroke="#c1633b" stroke-width="3" stroke-linejoin="round"/>
+        </svg>
+        <p style="font-size:.85rem; color:var(--ink-faint); text-align:center; margin-top:10px;">steady, even when the wind isn't</p>
+      </div>
+      <div>
+        <div class="section-head">
+          <h2>Your page is the keel, not the sail.</h2>
+        </div>
+        <div class="prose">
+          <p>A boat without a keel gets thrown around by every gust. The keel isn't what catches the wind — it's what keeps the boat upright and moving forward no matter which way the wind is blowing that week.</p>
+          <p>Ad platforms change, algorithms shift, trends come and go. A landing page built with patience works the same way: steady underneath all of it, quietly doing its job while everything else moves around it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GIFTS OF PATIENCE -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What a little patience actually buys you</h2>
+      </div>
+      <ul class="gifts">
+        <li>
+          <h3>It converts, not just displays</h3>
+          <p>A page shaped around your actual customer does more than look presentable — it moves people to act.</p>
+        </li>
+        <li>
+          <h3>It ages well</h3>
+          <p>Built around who you really are, not a passing template, so it doesn't need replacing every season.</p>
+        </li>
+        <li>
+          <h3>It earns trust on sight</h3>
+          <p>Visitors can tell, almost instantly, whether a page was made for them or made in a hurry.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="closing">
+    <div class="wrap">
+      <h2>Good things are still worth waiting the right amount for.</h2>
+      <p>We'd rather spend an extra week getting your page right than hand over something fast that needs fixing later. Let's build yours properly.</p>
+      <a class="btn btn-terracotta btn-big" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>easylandx — landing pages built to take exactly as long as they need to. © 2026</span>
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>

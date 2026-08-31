@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Words That Land — easylandx</title>
+<meta name="description" content="A single word can change how a visitor's brain responds. easylandx writes and builds landing pages around how people actually read, trust, and decide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --blue-bg:    #dcebf7;
+    --blue-bg-2:  #eff6fb;
+    --blue-line:  #b9d4e8;
+    --blue-deep:  #1f3b57;
+
+    --teal:       #1e6e6e;
+    --teal-light: #6fada7;
+    --teal-dark:  #123f3f;
+
+    --apricot:      #f2a65a;
+    --apricot-deep: #d9822e;
+    --apricot-soft: #fbe3c6;
+
+    --ink:      #1c2b33;
+    --ink-soft: rgba(28,43,51,.68);
+    --ink-faint:rgba(28,43,51,.42);
+
+    --paper: #fbfdff;
+
+    --display: 'Fraunces', serif;
+    --body: 'Work Sans', sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background: var(--blue-bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection{ background: var(--apricot); color: var(--blue-deep); }
+  a{ color: inherit; }
+  img,svg{ display:block; max-width:100%; }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(20px,5vw,64px);
+  }
+
+  .prose{ max-width: 600px; }
+
+  h1,h2,h3{
+    font-family: var(--display);
+    font-weight: 600;
+    margin: 0 0 .5em;
+    color: var(--blue-deep);
+  }
+
+  p{ margin: 0 0 1.1em; color: var(--ink-soft); }
+  p:last-child{ margin-bottom:0; }
+
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--teal);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- header ---------- */
+
+  header{
+    position: sticky;
+    top:0;
+    z-index:20;
+    background: rgba(220,235,247,.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--blue-line);
+  }
+
+  .headerbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px clamp(20px,5vw,64px);
+  }
+
+  .wordmark{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    font-family: var(--display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--blue-deep);
+  }
+  .wordmark svg{ width:26px; height:26px; flex-shrink:0; }
+
+  /* ---------- buttons ---------- */
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: .95rem;
+    padding: 12px 26px;
+    border-radius: 999px;
+    border: 1.5px solid var(--teal);
+    transition: transform .18s ease, background .18s ease, color .18s ease;
+  }
+
+  .btn-solid{ background: var(--teal); color: var(--paper); }
+  .btn-solid:hover{ background: var(--teal-dark); border-color: var(--teal-dark); transform: translateY(-1px); }
+
+  .btn-line{
+    background: transparent;
+    color: var(--teal-dark);
+    padding: 9px 20px;
+    font-size: .88rem;
+  }
+  .btn-line:hover{ background: var(--teal); color: var(--paper); }
+
+  .btn-apricot{
+    background: var(--apricot);
+    border-color: var(--apricot);
+    color: var(--blue-deep);
+  }
+  .btn-apricot:hover{ background: var(--apricot-deep); border-color: var(--apricot-deep); transform: translateY(-1px); }
+
+  .btn-big{ padding: 17px 38px; font-size: 1.05rem; }
+
+  /* ---------- hero ---------- */
+
+  .hero{ padding: clamp(56px,9vw,108px) 0 clamp(48px,7vw,84px); }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: clamp(32px,6vw,72px);
+    align-items:center;
+  }
+
+  .eyebrow-mark{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom: 20px;
+  }
+  .eyebrow-mark .dot{ width:8px; height:8px; border-radius:50%; background: var(--apricot); }
+  .eyebrow-mark span{ font-family: var(--display); font-style: italic; color: var(--teal-dark); font-size: 1rem; }
+
+  .hero h1{
+    font-size: clamp(2.1rem,4.6vw,3.4rem);
+    line-height: 1.14;
+    max-width: 13ch;
+  }
+
+  .hero-sub{ max-width: 46ch; font-size: 1.08rem; }
+
+  .hero-cta{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  .hero-cta .fine{ font-size:.85rem; color: var(--ink-faint); }
+
+  /* ---------- section rhythm ---------- */
+
+  section{
+    padding: clamp(52px,8vw,96px) 0;
+    border-top: 1px solid var(--blue-line);
+  }
+
+  .section-head{ max-width: 640px; margin-bottom: clamp(28px,4vw,44px); }
+  .section-head h2{ font-size: clamp(1.6rem,3vw,2.25rem); line-height:1.22; }
+
+  .two-col{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px,6vw,72px);
+    align-items:center;
+  }
+  .two-col.reverse .art{ order:2; }
+
+  .panel{
+    background: var(--blue-bg-2);
+    border: 1px solid var(--blue-line);
+    border-radius: 18px;
+    padding: clamp(20px,4vw,40px);
+  }
+
+  /* ---------- ratio bars ---------- */
+
+  .ratio-bars{
+    display:flex;
+    align-items:flex-end;
+    gap: 14px;
+    height: 150px;
+    margin-bottom: 18px;
+  }
+  .ratio-bars .bar{ width: 34px; border-radius: 6px 6px 0 0; }
+  .ratio-bars .bar.teal{ background: var(--teal); height: 150px; }
+  .ratio-bars .bar.apricot{ background: var(--apricot); height: 50px; }
+  .bar-label{ font-size: .78rem; color: var(--ink-faint); text-align:center; margin-top: 6px; }
+  .ratio-group{ display:flex; flex-direction:column; align-items:center; }
+  .ratio-caption{ font-size: .85rem; color: var(--ink-faint); }
+
+  /* ---------- timer ---------- */
+
+  .timer-wrap{ display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .timer-figure{ font-family: var(--display); font-size: 2.3rem; fill: var(--blue-deep); }
+  .timer-caption{ font-size:.85rem; color: var(--ink-faint); text-align:center; }
+
+  /* ---------- trio ---------- */
+
+  .trio{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+  }
+  .trio-card{
+    background: var(--blue-bg-2);
+    border: 1px solid var(--blue-line);
+    border-radius: 14px;
+    padding: 22px 20px;
+  }
+  .trio-card h3{ font-size: 1.05rem; margin-bottom:.35em; color: var(--teal-dark); }
+  .trio-card p{ font-size: .92rem; margin:0; }
+  .trio-mark{
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    margin-bottom: 12px;
+  }
+
+  /* ---------- closing ---------- */
+
+  .closing{
+    background: var(--blue-deep);
+    color: var(--paper);
+    border-top: none;
+  }
+  .closing .wrap{
+    padding-top: clamp(56px,9vw,100px);
+    padding-bottom: clamp(56px,9vw,100px);
+    text-align:center;
+  }
+  .closing h2{ color: var(--paper); font-size: clamp(1.9rem,4vw,2.8rem); max-width:17ch; margin:0 auto .4em; }
+  .closing p{ color: rgba(251,253,255,.78); max-width: 48ch; margin: 0 auto 32px; }
+
+  /* ---------- footer ---------- */
+
+  footer{
+    background: var(--blue-deep);
+    color: rgba(251,253,255,.6);
+    border-top: 1px solid rgba(251,253,255,.15);
+  }
+  footer .wrap{
+    padding: 22px clamp(20px,5vw,64px);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: .82rem;
+  }
+  footer a{ text-decoration: underline; text-underline-offset:3px; }
+
+  @media (max-width: 860px){
+    .hero-grid, .two-col{ grid-template-columns:1fr; }
+    .two-col.reverse .art{ order:0; }
+    .trio{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="headerbar">
+    <a class="wordmark" href="#top">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M4 20 C 10 8, 14 32, 20 20 S 30 8, 36 20" fill="none" stroke="#1e6e6e" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      easylandx
+    </a>
+    <a class="btn btn-line" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow-mark"><span class="dot"></span><span>the science of what people read</span></span>
+        <h1>Your landing page is one half of a conversation.</h1>
+        <p class="hero-sub">Brain research shows that a single negative word can spike a reader's stress response before they've even finished the sentence, while warm, deliberate phrasing does the opposite. Most small-business sites are written without any of that in mind. We write and build ours with it front of mind.</p>
+        <div class="hero-cta">
+          <a class="btn btn-solid" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+          <span class="fine">Every word on the page is doing a job.</span>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 420 300" role="img">
+          <title>Two wavy lines converging into one</title>
+          <path d="M10 60 C 60 20, 90 100, 140 60 S 220 20, 270 60" fill="none" stroke="#f2a65a" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+          <path d="M10 100 C 60 140, 90 60, 140 100 S 220 140, 270 100" fill="none" stroke="#6fada7" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+          <path d="M150 160 C 200 150, 250 170, 310 160 S 400 150, 410 160" fill="none" stroke="#1e6e6e" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="150" cy="160" r="4" fill="#1f3b57"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORDS AS EVENTS -->
+  <section>
+    <div class="wrap two-col">
+      <div>
+        <div class="section-head">
+          <h2>Words are not just words.</h2>
+        </div>
+        <div class="prose">
+          <p>Brain scans show that a single negative word can trigger the amygdala and flood the body with stress hormones almost instantly. Positive, deliberate language does the opposite — it activates the parts of the brain tied to reward and trust.</p>
+          <p>Put that on a landing page and the stakes get concrete. "Don't miss out" and "Never lose a customer again" read as urgency, but they land as threat. "See what's possible" and "Keep every customer you've already earned" say something close to the same thing — and land completely differently.</p>
+        </div>
+      </div>
+      <div class="art panel">
+        <svg viewBox="0 0 460 220" role="img" aria-label="Two phrasings of the same idea, one tense and one calm">
+          <rect x="20" y="30" width="420" height="60" rx="10" fill="#fbe3c6"/>
+          <text x="40" y="66" font-family="Work Sans, sans-serif" font-size="15" fill="#1c2b33">"Don't lose customers to a bad website."</text>
+          <rect x="20" y="130" width="420" height="60" rx="10" fill="#dceee9"/>
+          <text x="40" y="166" font-family="Work Sans, sans-serif" font-size="15" fill="#1c2b33">"Turn more visitors into loyal customers."</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3:1 RATIO -->
+  <section>
+    <div class="wrap two-col reverse">
+      <div class="art panel">
+        <div class="ratio-bars">
+          <div class="ratio-group">
+            <div class="bar teal"></div>
+          </div>
+          <div class="ratio-group">
+            <div class="bar apricot"></div>
+          </div>
+        </div>
+        <div style="display:flex; gap:14px;">
+          <div style="flex:1; text-align:center;"><p class="ratio-caption">three reassurances</p></div>
+          <div style="flex:1; text-align:center;"><p class="ratio-caption">one point of friction</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-head">
+          <h2>Three positives for every friction point.</h2>
+        </div>
+        <div class="prose">
+          <p>A negative moment — a price, a form field, a "sign up" a visitor didn't expect yet — carries more weight in the brain than an equivalent positive one. To keep trust intact, it needs roughly three reassuring signals around it.</p>
+          <p>So next to your price, we put what's included. Next to the sign-up field, a line on what happens right after. Next to the ask, proof that other people already said yes. It isn't padding — it's what keeps the page from reading as a demand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 30 SECONDS -->
+  <section>
+    <div class="wrap two-col">
+      <div>
+        <div class="section-head">
+          <h2>Thirty seconds, not three minutes.</h2>
+        </div>
+        <div class="prose">
+          <p>Working memory is narrow. Past roughly thirty seconds of continuous information, a listener's brain starts discarding what it just heard — and a reader's eye does the same thing with a wall of text.</p>
+          <p>So each section of your page carries one idea, said once, in as few words as it needs. If a paragraph can't be read in a breath, we cut it in half rather than ask a visitor to hold more than they can.</p>
+        </div>
+      </div>
+      <div class="art panel timer-wrap">
+        <svg viewBox="0 0 220 220" width="200" height="200" role="img" aria-label="A gauge marking a thirty second window">
+          <circle cx="110" cy="110" r="86" fill="none" stroke="#b9d4e8" stroke-width="14"/>
+          <circle cx="110" cy="110" r="86" fill="none" stroke="#f2a65a" stroke-width="14"
+            stroke-linecap="round" stroke-dasharray="270 540" transform="rotate(-90 110 110)"/>
+          <text x="110" y="122" text-anchor="middle" class="timer-figure">30s</text>
+        </svg>
+        <p class="timer-caption">one idea, said once</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WARMLY / SLOWLY / BRIEFLY -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Warmly. Slowly. Briefly.</h2>
+        <p>The brain registers tone before it processes the actual words. These three habits shape how every page we write actually reads.</p>
+      </div>
+      <div class="trio">
+        <div class="trio-card">
+          <div class="trio-mark" style="background:#f2a65a;"></div>
+          <h3>Tone</h3>
+          <p>Copy that sounds like the person who owns the business talking to a customer, not a company addressing a market.</p>
+        </div>
+        <div class="trio-card">
+          <div class="trio-mark" style="background:#6fada7;"></div>
+          <h3>Pace</h3>
+          <p>Enough space between sections that a visitor can take a breath before the page asks for anything else.</p>
+        </div>
+        <div class="trio-card">
+          <div class="trio-mark" style="background:#1e6e6e;"></div>
+          <h3>Brevity</h3>
+          <p>Short sentences, short headlines, and exactly one call to action doing exactly one job.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPRECIATION -->
+  <section>
+    <div class="wrap two-col reverse">
+      <div class="art panel">
+        <svg viewBox="0 0 420 200" role="img" aria-label="A quote and a face, representing trust before persuasion">
+          <circle cx="70" cy="100" r="46" fill="#fbe3c6"/>
+          <path d="M52 92 q18 -18 36 0" fill="none" stroke="#d9822e" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="58" cy="88" r="3.5" fill="#1f3b57"/>
+          <circle cx="82" cy="88" r="3.5" fill="#1f3b57"/>
+          <rect x="150" y="60" width="250" height="80" rx="10" fill="#dceee9"/>
+          <text x="170" y="95" font-family="Work Sans, sans-serif" font-size="14" fill="#1c2b33">"They actually asked what mattered</text>
+          <text x="170" y="115" font-family="Work Sans, sans-serif" font-size="14" fill="#1c2b33">to my customers before writing a word."</text>
+        </svg>
+      </div>
+      <div>
+        <div class="section-head">
+          <h2>Trust comes before the ask.</h2>
+        </div>
+        <div class="prose">
+          <p>A wary reader's brain is scanning for reasons not to trust a page before it looks for reasons to act. A real photo, a specific detail, a genuine line from a past client — these lower the guard before the page ever asks for anything.</p>
+          <p>That's why we build in appreciation before persuasion: what a client already does well, said plainly, before we ever get to the offer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="closing">
+    <div class="wrap">
+      <h2>Let's write the version of your business that lands.</h2>
+      <p>Every page we build starts with the same question: what does a visitor actually need to hear, in what order, and how briefly can we say it? Let's find that for your business.</p>
+      <a class="btn btn-apricot btn-big" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>easylandx — landing pages written to be read, not skimmed past. © 2026</span>
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>
