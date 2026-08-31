@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ikigai of a Landing Page — easylandx</title>
+<meta name="description" content="A landing page needs a reason to exist, too. easylandx builds custom landing pages around what your business loves, what it's good at, what people need, and what keeps it running.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --pink-bg:      #f8dce6;
+    --pink-bg-2:    #fdf1f5;
+    --pink-line:    #ecc0d3;
+    --pink-deep:    #e2a4bf;
+
+    --bonsai:       #3e5c44;
+    --bonsai-light: #7c9a76;
+    --bonsai-dark:  #29402d;
+
+    --ink:          #1c1b1a;
+    --ink-soft:     rgba(28,27,26,.68);
+    --ink-faint:    rgba(28,27,26,.4);
+
+    --paper:        #fffaf9;
+
+    --serif: 'Shippori Mincho', serif;
+    --sans:  'Zen Maru Gothic', sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--pink-bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection{ background: var(--bonsai-light); color: var(--paper); }
+
+  a{ color: inherit; }
+
+  img,svg{ display:block; max-width:100%; }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 64px);
+  }
+
+  .prose{
+    max-width: 620px;
+  }
+
+  h1,h2,h3{
+    font-family: var(--serif);
+    font-weight: 700;
+    margin: 0 0 .5em;
+    color: var(--ink);
+  }
+
+  p{ margin: 0 0 1.1em; color: var(--ink-soft); }
+  p:last-child{ margin-bottom: 0; }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--bonsai);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  }
+
+  /* ---------- header ---------- */
+
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(248,220,230,.86);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--pink-line);
+  }
+
+  .headerbar{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 18px clamp(20px, 5vw, 64px);
+  }
+
+  .wordmark{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    text-decoration:none;
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: .01em;
+    color: var(--ink);
+  }
+
+  .wordmark svg{ width: 26px; height: 26px; flex-shrink:0; }
+
+  /* ---------- buttons ---------- */
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    text-decoration:none;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: .95rem;
+    padding: 12px 26px;
+    border-radius: 999px;
+    border: 1.5px solid var(--bonsai);
+    transition: transform .18s ease, background .18s ease, color .18s ease;
+  }
+
+  .btn-solid{
+    background: var(--bonsai);
+    color: var(--pink-bg-2);
+  }
+  .btn-solid:hover{ background: var(--bonsai-dark); border-color: var(--bonsai-dark); transform: translateY(-1px); }
+
+  .btn-line{
+    background: transparent;
+    color: var(--bonsai-dark);
+    padding: 9px 20px;
+    font-size: .88rem;
+  }
+  .btn-line:hover{ background: var(--bonsai); color: var(--pink-bg-2); }
+
+  .btn-big{
+    padding: 17px 38px;
+    font-size: 1.05rem;
+  }
+
+  /* ---------- hero ---------- */
+
+  .hero{
+    padding: clamp(56px, 9vw, 108px) 0 clamp(48px, 7vw, 84px);
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: clamp(32px, 6vw, 72px);
+    align-items:center;
+  }
+
+  .seal{
+    display:inline-flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    width: 58px;
+    height: 58px;
+    border: 1.5px solid var(--bonsai);
+    border-radius: 8px;
+    color: var(--bonsai-dark);
+    font-family: var(--serif);
+    margin-bottom: 22px;
+  }
+  .seal .kanji{ font-size: 1.3rem; line-height:1; }
+
+  .hero h1{
+    font-size: clamp(2.1rem, 4.6vw, 3.5rem);
+    line-height: 1.16;
+    max-width: 12ch;
+  }
+
+  .hero-sub{
+    max-width: 46ch;
+    font-size: 1.08rem;
+  }
+
+  .hero-cta{
+    display:flex;
+    align-items:center;
+    gap: 18px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+
+  .hero-cta .fine{
+    font-size: .85rem;
+    color: var(--ink-faint);
+  }
+
+  .hero-art{ position:relative; }
+
+  /* ---------- ensō circle art ---------- */
+
+  .enso-stroke{
+    fill:none;
+    stroke: var(--ink);
+    stroke-width: 7;
+    stroke-linecap: round;
+  }
+
+  /* ---------- section rhythm ---------- */
+
+  section{
+    padding: clamp(52px, 8vw, 96px) 0;
+    border-top: 1px solid var(--pink-line);
+  }
+
+  .section-head{
+    max-width: 640px;
+    margin-bottom: clamp(28px, 4vw, 44px);
+  }
+
+  .section-head h2{
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    line-height: 1.22;
+  }
+
+  .two-col{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 6vw, 72px);
+    align-items:center;
+  }
+
+  .two-col.reverse .art{ order: 2; }
+
+  /* ---------- four circles diagram ---------- */
+
+  .diagram-panel{
+    background: var(--pink-bg-2);
+    border: 1px solid var(--pink-line);
+    border-radius: 18px;
+    padding: clamp(20px, 4vw, 40px);
+  }
+
+  .legend{
+    list-style:none;
+    margin: 22px 0 0;
+    padding:0;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+  }
+
+  .legend li{
+    display:flex;
+    align-items:baseline;
+    gap: 10px;
+    font-size: .92rem;
+    color: var(--ink-soft);
+  }
+
+  .swatch{
+    width: 11px;
+    height: 11px;
+    border-radius: 3px;
+    flex-shrink:0;
+    transform: translateY(1px);
+  }
+
+  /* ---------- hara hachi bu gauge ---------- */
+
+  .gauge-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 10px;
+  }
+  .gauge-figure{ font-family: var(--serif); font-size: 2.4rem; fill: var(--ink); }
+  .gauge-caption{ font-size: .85rem; color: var(--ink-faint); text-align:center; }
+
+  /* ---------- moai circles ---------- */
+
+  .moai-caption{ font-size: .85rem; color: var(--ink-faint); text-align:center; margin-top: 8px; }
+
+  /* ---------- closing CTA ---------- */
+
+  .closing{
+    background: var(--bonsai-dark);
+    color: var(--pink-bg-2);
+    border-top: none;
+  }
+  .closing .wrap{
+    padding-top: clamp(56px, 9vw, 100px);
+    padding-bottom: clamp(56px, 9vw, 100px);
+    text-align:center;
+  }
+  .closing h2{
+    color: var(--pink-bg-2);
+    font-size: clamp(1.9rem, 4vw, 2.9rem);
+    max-width: 16ch;
+    margin: 0 auto .4em;
+  }
+  .closing p{
+    color: rgba(253,241,245,.78);
+    max-width: 48ch;
+    margin: 0 auto 32px;
+  }
+  .closing .btn-solid{
+    background: var(--pink-bg-2);
+    color: var(--bonsai-dark);
+    border-color: var(--pink-bg-2);
+  }
+  .closing .btn-solid:hover{
+    background: var(--paper);
+    transform: translateY(-1px);
+  }
+
+  /* ---------- footer ---------- */
+
+  footer{
+    background: var(--bonsai-dark);
+    color: rgba(253,241,245,.6);
+    border-top: 1px solid rgba(253,241,245,.15);
+  }
+  footer .wrap{
+    padding: 22px clamp(20px, 5vw, 64px);
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: .82rem;
+  }
+  footer a{ text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (max-width: 860px){
+    .hero-grid, .two-col{ grid-template-columns: 1fr; }
+    .two-col.reverse .art{ order: 0; }
+    .legend{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="headerbar">
+    <a class="wordmark" href="#top">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="16" fill="none" stroke="#3e5c44" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="94 6"/>
+      </svg>
+      easylandx
+    </a>
+    <a class="btn btn-line" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="seal">
+          <span class="kanji">生</span>
+        </span>
+        <h1>A landing page needs a reason to exist, too.</h1>
+        <p class="hero-sub">Ikigai is the Japanese idea of what gets you up in the morning — the place where what you love, what you're good at, what people need, and what sustains you all overlap. Most small-business websites don't sit anywhere near that overlap. We build the kind that do.</p>
+        <div class="hero-cta">
+          <a class="btn btn-solid" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+          <span class="fine">One page, one business, one reason for being.</span>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 420 420" role="img">
+          <title>An open, hand-drawn circle</title>
+          <path class="enso-stroke" stroke="#3e5c44" d="M 210 55
+            C 320 55, 375 130, 368 210
+            C 361 292, 292 358, 205 361
+            C 122 364, 58 305, 55 220
+            C 53 150, 95 85, 168 62" />
+          <circle cx="210" cy="210" r="2" fill="#1c1b1a" opacity="0"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUR CIRCLES -->
+  <section>
+    <div class="wrap two-col">
+      <div>
+        <div class="section-head">
+          <h2>Where a page finds its reason for being</h2>
+        </div>
+        <div class="prose">
+          <p>Every landing page that actually works sits where four things overlap: the story only this business can tell, the craft it has genuinely mastered, what the person searching for it needs to see in the first five seconds, and the one action that turns a visitor into a client.</p>
+          <p>Take any one of those away and the page stops working. It becomes decoration — polished, maybe, but with nothing keeping the visitor there.</p>
+        </div>
+      </div>
+
+      <div class="art diagram-panel">
+        <svg viewBox="0 0 500 380" role="img" aria-label="Four overlapping circles representing story, craft, need, and action">
+          <g style="mix-blend-mode:multiply;">
+            <ellipse cx="190" cy="150" rx="145" ry="92" transform="rotate(-32 190 150)" fill="#e2a4bf" fill-opacity="0.55"/>
+            <ellipse cx="310" cy="150" rx="145" ry="92" transform="rotate(32 310 150)" fill="#7c9a76" fill-opacity="0.55"/>
+            <ellipse cx="190" cy="240" rx="145" ry="92" transform="rotate(32 190 240)" fill="#3e5c44" fill-opacity="0.4"/>
+            <ellipse cx="310" cy="240" rx="145" ry="92" transform="rotate(-32 310 240)" fill="#e2a4bf" fill-opacity="0.85"/>
+          </g>
+          <ellipse cx="190" cy="150" rx="145" ry="92" transform="rotate(-32 190 150)" fill="none" stroke="#1c1b1a" stroke-width="1.2" stroke-opacity="0.5"/>
+          <ellipse cx="310" cy="150" rx="145" ry="92" transform="rotate(32 310 150)" fill="none" stroke="#1c1b1a" stroke-width="1.2" stroke-opacity="0.5"/>
+          <ellipse cx="190" cy="240" rx="145" ry="92" transform="rotate(32 190 240)" fill="none" stroke="#1c1b1a" stroke-width="1.2" stroke-opacity="0.5"/>
+          <ellipse cx="310" cy="240" rx="145" ry="92" transform="rotate(-32 310 240)" fill="none" stroke="#1c1b1a" stroke-width="1.2" stroke-opacity="0.5"/>
+          <text x="250" y="200" text-anchor="middle" font-family="Shippori Mincho, serif" font-size="15" fill="#1c1b1a">the page's ikigai</text>
+        </svg>
+        <ul class="legend">
+          <li><span class="swatch" style="background:#e2a4bf"></span>The story — what it loves</li>
+          <li><span class="swatch" style="background:#7c9a76"></span>The craft — what it's good at</li>
+          <li><span class="swatch" style="background:#3e5c44"></span>The need — what visitors want</li>
+          <li><span class="swatch" style="background:#c77c9e"></span>The action — what pays the bills</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- HARA HACHI BU -->
+  <section>
+    <div class="wrap two-col reverse">
+      <div class="art">
+        <div class="diagram-panel gauge-wrap">
+          <svg viewBox="0 0 220 220" width="220" height="220" role="img" aria-label="A circular gauge, four fifths full">
+            <circle cx="110" cy="110" r="86" fill="none" stroke="#ecc0d3" stroke-width="14"/>
+            <circle cx="110" cy="110" r="86" fill="none" stroke="#3e5c44" stroke-width="14"
+              stroke-linecap="round"
+              stroke-dasharray="432 540"
+              transform="rotate(-90 110 110)"/>
+            <text x="110" y="122" text-anchor="middle" class="gauge-figure">80%</text>
+          </svg>
+          <p class="gauge-caption">full, not overflowing</p>
+        </div>
+      </div>
+      <div>
+        <div class="section-head">
+          <h2>Stop at eighty percent.</h2>
+        </div>
+        <div class="prose">
+          <p>In Ogimi, on Okinawa, people stop eating when they're about eighty percent full — leaving room, rather than filling every corner of the plate. A landing page works the same way.</p>
+          <p>The instinct is always to add one more section, one more testimonial, one more offer. Each one pushes the visitor a little further from the single thing you need them to do. We build pages that stop early, on purpose: fast to load, easy to read on a phone, with nothing standing between the visitor and the button that matters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NO RETIREMENT -->
+  <section>
+    <div class="wrap two-col">
+      <div>
+        <div class="section-head">
+          <h2>There's no closing time.</h2>
+        </div>
+        <div class="prose">
+          <p>Okinawan has no word for retirement in the way we mean it. People keep tending their garden, their craft, their neighbours, for as long as they're able — not because they have to, but because stopping isn't really the point.</p>
+          <p>A landing page can work the same way. It doesn't clock out at six, it doesn't take weekends, and it's still introducing your business to someone new at eleven at night. Once it's live, it just keeps doing the one job it was built for.</p>
+        </div>
+      </div>
+      <div class="art">
+        <div class="diagram-panel" style="display:flex; flex-direction:column; align-items:center;">
+          <svg viewBox="0 0 220 220" width="180" height="180" role="img" aria-label="An open circle, drawn by hand, always unfinished">
+            <path fill="none" stroke="#1c1b1a" stroke-width="9" stroke-linecap="round"
+              d="M 110 26
+                 C 168 30, 196 78, 190 118
+                 C 184 162, 142 194, 96 190
+                 C 54 186, 26 148, 30 104
+                 C 33 68, 60 40, 100 30" />
+          </svg>
+          <p class="gauge-caption">open, on purpose</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOAI -->
+  <section>
+    <div class="wrap two-col reverse">
+      <div class="art">
+        <div class="diagram-panel" style="display:flex; flex-direction:column; align-items:center;">
+          <svg viewBox="0 0 240 180" width="230" height="auto" role="img" aria-label="Three overlapping circles, a small support group">
+            <g style="mix-blend-mode:multiply;">
+              <circle cx="90" cy="90" r="62" fill="#7c9a76" fill-opacity="0.55"/>
+              <circle cx="150" cy="90" r="62" fill="#3e5c44" fill-opacity="0.45"/>
+              <circle cx="120" cy="130" r="62" fill="#e2a4bf" fill-opacity="0.65"/>
+            </g>
+            <circle cx="90" cy="90" r="62" fill="none" stroke="#1c1b1a" stroke-width="1" stroke-opacity="0.45"/>
+            <circle cx="150" cy="90" r="62" fill="none" stroke="#1c1b1a" stroke-width="1" stroke-opacity="0.45"/>
+            <circle cx="120" cy="130" r="62" fill="none" stroke="#1c1b1a" stroke-width="1" stroke-opacity="0.45"/>
+          </svg>
+          <p class="moai-caption">a small circle, looking out for the page</p>
+        </div>
+      </div>
+      <div>
+        <div class="section-head">
+          <h2>You're not buying a file. You're joining a moai.</h2>
+        </div>
+        <div class="prose">
+          <p>In Ogimi, a moai is a small circle of people who commit to look out for one another for life — practically, financially, and otherwise. Handing someone a finished file and disappearing is the opposite of that.</p>
+          <p>When we build your page, we stay close after it goes live: watching how it loads, fixing what breaks, updating it as your business changes. Your page doesn't have to survive on its own, and neither do you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="closing">
+    <div class="wrap">
+      <h2>Find your page's reason for being.</h2>
+      <p>Every page we've built started with the same question: why does this page need to exist? Let's find your answer, and build something worth keeping online.</p>
+      <a class="btn btn-solid btn-big" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>easylandx — landing pages built around a reason to exist. © 2026</span>
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>
