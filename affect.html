@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Build Your Landing Page With a Clear Mind</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange: #E8570F;
+    --orange-deep: #C4450A;
+    --black: #0C0B09;
+    --white: #FBF5EC; /* Empathy White */
+    --white-dim: #F0E5D6;
+    --line: rgba(12,11,9,0.16);
+    --line-on-white: rgba(12,11,9,0.12);
+    --serif: 'Fraunces', serif;
+    --sans: 'Space Grotesk', sans-serif;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--orange);
+    color: var(--black);
+    font-family: var(--sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img, svg{ display:block; max-width:100%; }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--orange);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 20px 32px;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .logo{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--black);
+  }
+  .logo span{ color: var(--white); }
+  .nav-links{
+    display:flex;
+    gap: 32px;
+    font-size: 15px;
+  }
+  .nav-links a{ text-decoration:none; opacity: 0.85; }
+  .nav-links a:hover{ opacity: 1; }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 26px;
+    border-radius: 3px;
+    text-decoration:none;
+    border: 1px solid var(--black);
+    transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  }
+  .btn:hover{ background: var(--white); color: var(--black); }
+  .btn:active{ transform: translateY(1px); }
+
+  .btn-outline{
+    background: transparent;
+    color: var(--black);
+    border: 1px solid var(--black);
+  }
+  .btn-outline:hover{ background: var(--black); color: var(--white); }
+
+  .nav .btn{ padding: 10px 20px; font-size: 14px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 0 88px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-inner{
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 64px;
+    align-items: end;
+  }
+  .kicker{
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 22px;
+    color: var(--black);
+  }
+  h1{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(40px, 5.2vw, 68px);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    color: var(--black);
+  }
+  h1 em{
+    font-style: italic;
+    color: var(--white);
+    font-weight: 500;
+  }
+  .hero-sub{
+    max-width: 460px;
+  }
+  .hero-sub p{
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+    color: rgba(12,11,9,0.85);
+  }
+  .hero-cta{
+    display:flex;
+    align-items:center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .hero-note{
+    font-size: 13px;
+    opacity: 0.7;
+  }
+
+  /* ---------- PREMISE STRIP ---------- */
+  .premise{
+    background: var(--black);
+    color: var(--white);
+    padding: 56px 0;
+  }
+  .premise .wrap{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .premise h2{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-style: italic;
+    font-size: clamp(24px, 2.6vw, 32px);
+    line-height: 1.35;
+  }
+  .premise p{
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(251,245,236,0.75);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section.system{
+    background: var(--white);
+    padding: 100px 0;
+  }
+  .section-head{
+    max-width: 620px;
+    margin-bottom: 64px;
+  }
+  .section-head .label{
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--orange-deep);
+    margin-bottom: 14px;
+  }
+  .section-head h2{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(30px, 3.4vw, 42px);
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+  }
+  .section-head p{
+    margin-top: 18px;
+    font-size: 17px;
+    line-height: 1.65;
+    color: rgba(12,11,9,0.72);
+  }
+
+  .stage-list{
+    display:flex;
+    flex-direction: column;
+  }
+  .stage{
+    display:grid;
+    grid-template-columns: 72px 1fr 1.1fr;
+    gap: 36px;
+    padding: 40px 0;
+    border-top: 1px solid var(--line-on-white);
+  }
+  .stage:last-child{ border-bottom: 1px solid var(--line-on-white); }
+  .stage-num{
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--orange-deep);
+    padding-top: 2px;
+  }
+  .stage-name h3{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .stage-name .from{
+    font-size: 13px;
+    color: rgba(12,11,9,0.5);
+    margin-top: 8px;
+  }
+  .stage-body p{
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(12,11,9,0.78);
+  }
+
+  /* ---------- TOOL / FEATURE BAND ---------- */
+  .tool-band{
+    background: var(--orange);
+    padding: 100px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .tool-inner{
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 64px;
+  }
+  .tool-copy .label{
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .tool-copy h2{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(28px, 3vw, 38px);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-bottom: 20px;
+  }
+  .tool-copy p{
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(12,11,9,0.8);
+    margin-bottom: 28px;
+    max-width: 420px;
+  }
+
+  .compass-card{
+    background: var(--black);
+    color: var(--white);
+    border-radius: 4px;
+    padding: 44px;
+  }
+  .compass-card .tag{
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+  .compass-card h3{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.35;
+    margin-bottom: 24px;
+  }
+  .compass-row{
+    display:flex;
+    justify-content: space-between;
+    padding: 18px 0;
+    border-top: 1px solid rgba(251,245,236,0.15);
+    font-size: 15px;
+  }
+  .compass-row:last-child{ border-bottom: 1px solid rgba(251,245,236,0.15); }
+  .compass-row .yes{ color: #F0E5D6; font-weight: 600; }
+  .compass-row .no{ color: rgba(251,245,236,0.4); }
+
+  /* ---------- QUOTE ---------- */
+  .quote-band{
+    background: var(--white);
+    padding: 110px 0;
+    text-align:center;
+  }
+  .quote-band blockquote{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-style: italic;
+    font-size: clamp(26px, 3.6vw, 40px);
+    line-height: 1.3;
+    max-width: 780px;
+    margin: 0 auto 24px;
+    letter-spacing: -0.01em;
+  }
+  .quote-band cite{
+    font-style: normal;
+    font-size: 14px;
+    opacity: 0.6;
+  }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    background: var(--black);
+    color: var(--white);
+    padding: 120px 0;
+    text-align:center;
+  }
+  .final-cta h2{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(34px, 5vw, 58px);
+    letter-spacing: -0.02em;
+    line-height: 1.06;
+    margin: 0 auto 24px;
+    max-width: 720px;
+  }
+  .final-cta h2 em{
+    font-style: italic;
+    color: var(--orange);
+    font-weight: 500;
+  }
+  .final-cta p{
+    font-size: 17px;
+    color: rgba(251,245,236,0.7);
+    max-width: 480px;
+    margin: 0 auto 40px;
+  }
+  .final-cta .btn{
+    background: var(--orange);
+    color: var(--black);
+    border-color: var(--orange);
+    font-size: 17px;
+    padding: 16px 34px;
+  }
+  .final-cta .btn:hover{ background: var(--white); border-color: var(--white); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background: var(--orange);
+    padding: 40px 0;
+  }
+  .footer-inner{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    font-size: 14px;
+  }
+  .footer-inner a{ text-decoration:none; opacity: 0.8; }
+  .footer-inner a:hover{ opacity: 1; }
+  .footer-links{ display:flex; gap: 24px; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .hero-inner{ grid-template-columns: 1fr; gap: 40px; align-items:start; }
+    .premise .wrap{ grid-template-columns: 1fr; gap: 24px; }
+    .tool-inner{ grid-template-columns: 1fr; gap: 40px; }
+    .stage{ grid-template-columns: 48px 1fr; }
+    .stage-body{ grid-column: 2 / 3; }
+    .nav-links{ display:none; }
+    .footer-inner{ flex-direction: column; gap: 16px; text-align:center; }
+  }
+
+  :focus-visible{
+    outline: 2px solid var(--black);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">easyland<span>x</span></div>
+    <nav class="nav-links">
+      <a href="#system">The System</a>
+      <a href="#compass">Soul Compass</a>
+      <a href="#quote">Why It Works</a>
+    </nav>
+    <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Start free</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="kicker">A calmer way to launch</div>
+      <h1>Give your landing page <em>a clear, confident finish.</em></h1>
+    </div>
+    <div class="hero-sub">
+      <p>Every draft you're proud of, every section you finally lock in, every headline you land on adds up to real momentum. easylandx is built on one idea: the page doesn't need to be perfect. It needs to be published.</p>
+      <div class="hero-cta">
+        <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Build your page — free</a>
+        <span class="hero-note">No credit card. Live in minutes.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="premise">
+  <div class="wrap">
+    <h2>"The real momentum isn't in the page you're still perfecting. It's in the moment you decide it's ready."</h2>
+    <p>Most builders invite endless tinkering — more templates, more settings, more chances to keep exploring. That instinct to refine isn't a flaw, it's care. easylandx just gives it a clear finish line: fewer decisions, clearer defaults, a page that ships today and keeps getting better from there.</p>
+  </div>
+</section>
+
+<section class="system" id="system">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">The easylandx method</div>
+      <h2>A seven-stage path from first idea to live page.</h2>
+      <p>Each stage of building a landing page has its own turning point. Here's where builders usually pause — and how easylandx carries the momentum through it.</p>
+    </div>
+
+    <div class="stage-list">
+      <div class="stage">
+        <div class="stage-num">01</div>
+        <div class="stage-name">
+          <h3>The Fresh Start</h3>
+          <div class="from">Upgrades: endless template browsing</div>
+        </div>
+        <div class="stage-body">
+          <p>Twenty tabs open is twenty ideas worth having. easylandx starts you with one clean canvas and one obvious next step, so all that inspiration lands in one place instead of twenty.</p>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num">02</div>
+        <div class="stage-name">
+          <h3>The Focused Polish</h3>
+          <div class="from">Upgrades: color-tweak, undo, repeat</div>
+        </div>
+        <div class="stage-body">
+          <p>Caring about a shade of orange or a font size shows you're invested — that energy just needs the right outlet. Built-in design defaults mean the small stuff is already handled, so your attention stays on your message.</p>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num">03</div>
+        <div class="stage-name">
+          <h3>The Open Canvas</h3>
+          <div class="from">Upgrades: starting over from scratch</div>
+        </div>
+        <div class="stage-body">
+          <p>Clearing an old draft makes room for a better one. easylandx treats a blank page as an opening, full of possibility, with prompts that turn a fresh start into your very first sentence.</p>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num">04</div>
+        <div class="stage-name">
+          <h3>Building From Zero</h3>
+          <div class="from">Upgrades: the "add one more section" habit</div>
+        </div>
+        <div class="stage-body">
+          <p>You don't need twelve sections to make your case. easylandx nudges you toward the fewest blocks that say the most — a headline, proof, and one clear action.</p>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num">05</div>
+        <div class="stage-name">
+          <h3>Cognitive Protection</h3>
+          <div class="from">Upgrades: chasing every piece of feedback</div>
+        </div>
+        <div class="stage-body">
+          <p>You can welcome every opinion and still trust your own judgment. easylandx helps you set a version, ship it, and revise on real evidence — clicks and conversions — building on what you already know works.</p>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num">06</div>
+        <div class="stage-name">
+          <h3>The Confident Click</h3>
+          <div class="from">Upgrades: hesitating before you hit "go live"</div>
+        </div>
+        <div class="stage-body">
+          <p>That flutter right before publishing means you care about doing it well — it's a good sign, not a warning. easylandx makes the button easy to press and just as easy to adjust afterward, so confidence comes naturally.</p>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num">07</div>
+        <div class="stage-name">
+          <h3>Living Published</h3>
+          <div class="from">Upgrades: talking about a project instead of shipping it</div>
+        </div>
+        <div class="stage-body">
+          <p>A live page speaks for itself. Once yours is up, easylandx keeps quietly measuring what's working, so you can move forward proudly, letting the page do the talking while you focus on what's next.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tool-band" id="compass">
+  <div class="wrap tool-inner">
+    <div class="tool-copy">
+      <div class="label">The Soul Compass, for pages</div>
+      <h2>When a decision feels big, don't think harder. Check your gut.</h2>
+      <p>The best landing pages come from a mix of care and trust in your own instinct. Before you add another section, another popup, another field to your form, ask one question: does this open the page up, or does it close it down?</p>
+      <a class="btn btn-outline" href="https://easylandx.com" target="_blank" rel="noopener">Try the compass in your editor</a>
+    </div>
+    <div class="compass-card">
+      <div class="tag">Quick check before you publish</div>
+      <h3>"Does this section make the page feel more open, or more crowded?"</h3>
+      <div class="compass-row"><span>One clear headline</span><span class="yes">Expansion</span></div>
+      <div class="compass-row"><span>Three competing offers</span><span class="no">Room to simplify</span></div>
+      <div class="compass-row"><span>One confident call to action</span><span class="yes">Expansion</span></div>
+      <div class="compass-row"><span>A pop-up on top of a pop-up</span><span class="no">Room to simplify</span></div>
+      <div class="compass-row"><span>Publishing at 80% instead of waiting for 100%</span><span class="yes">Expansion</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="quote-band" id="quote">
+  <div class="wrap">
+    <blockquote>"Growth feels like progress. Letting go of the version of your page you were attached to isn't loss — it's the old draft making way so the live one can shine."</blockquote>
+    <cite>easylandx design principle, inspired by a book about moving forward</cite>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Your page doesn't need <em>another draft.</em> It needs a launch.</h2>
+    <p>Build it, publish it, and set it free from your head. easylandx is free to start.</p>
+    <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Go live with easylandx</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="logo">easyland<span style="color:var(--black)">x</span></div>
+    <div class="footer-links">
+      <a href="https://easylandx.com" target="_blank" rel="noopener">easylandx.com</a>
+      <a href="#system">The Method</a>
+      <a href="#compass">Soul Compass</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
