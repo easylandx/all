@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Your Website Is a Brochure. Your Landing Page Is a Salesperson.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#ff2ec4;
+    --pink-deep:#e0159f;
+    --black:#0a0a0a;
+    --ink:#141414;
+    --green:#39ff14;
+    --green-dim:#22c40b;
+    --cream:#fff2fb;
+    font-size:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--black);
+    background:var(--pink);
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  section{position:relative;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--pink);
+    border-bottom:3px solid var(--black);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-top:16px;padding-bottom:16px;
+  }
+  .logo{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;font-size:1.3rem;
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo-dot{width:10px;height:10px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green);}
+  .nav-cta{
+    background:var(--black);color:var(--green);
+    padding:10px 20px;border-radius:999px;
+    font-weight:600;font-size:0.9rem;
+    border:2px solid var(--black);
+    transition:transform .15s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:88px 0 96px;
+    background:var(--pink);
+    overflow:hidden;
+  }
+  .hero .wrap{position:relative;}
+  .eyebrow-shape{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--black);color:var(--green);
+    padding:8px 16px;border-radius:999px;
+    font-size:0.85rem;font-weight:600;
+    margin-bottom:28px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem,6vw,4.6rem);
+    max-width:14ch;
+    margin-bottom:28px;
+  }
+  .hero h1 .strike{
+    position:relative;color:var(--black);
+  }
+  .hero h1 .grow{
+    color:var(--black);
+    -webkit-text-stroke:2px var(--black);
+    color:transparent;
+  }
+  .hero p.sub{
+    font-size:1.15rem;max-width:46ch;
+    margin-bottom:36px;color:var(--ink);
+  }
+  .btn-row{display:flex;flex-wrap:wrap;gap:16px;align-items:center;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 30px;border-radius:999px;
+    font-weight:600;font-size:1rem;
+    border:2px solid var(--black);
+    cursor:pointer;
+  }
+  .btn-primary{background:var(--green);color:var(--black);}
+  .btn-primary:hover{background:var(--black);color:var(--green);}
+  .btn-ghost{background:transparent;color:var(--black);}
+  .btn-ghost:hover{background:var(--black);color:var(--pink);}
+
+  .hero-diagram{
+    margin-top:64px;
+    display:flex;gap:0;
+    border:3px solid var(--black);
+    border-radius:18px;
+    overflow:hidden;
+    background:var(--black);
+  }
+  .hero-diagram .col{
+    flex:1;padding:22px 20px;
+    border-right:3px solid var(--black);
+  }
+  .hero-diagram .col:last-child{border-right:none;}
+  .hero-diagram .col.brochure{background:#1c1c1c;color:#8a8a8a;}
+  .hero-diagram .col.funnel{background:var(--black);color:var(--green);}
+  .hero-diagram h4{font-family:'Space Grotesk',sans-serif;font-size:0.95rem;margin-bottom:10px;letter-spacing:0.01em;}
+  .hero-diagram p{font-size:0.88rem;color:inherit;opacity:0.85;}
+
+  /* ---------- DARK SECTION BASE ---------- */
+  .dark{
+    background:var(--black);
+    color:#f4f4f4;
+    padding:100px 0;
+  }
+  .dark h2{color:var(--green);font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:18px;max-width:16ch;}
+  .section-kicker{
+    font-size:0.85rem;font-weight:600;color:var(--pink);
+    margin-bottom:14px;
+  }
+  .section-lead{
+    max-width:56ch;color:#cfcfcf;font-size:1.05rem;margin-bottom:56px;
+  }
+
+  /* ---------- VALUE LADDER ---------- */
+  .ladder{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border:2px solid #2a2a2a;border-radius:16px;overflow:hidden;
+  }
+  .rung{
+    padding:30px 24px;
+    border-right:2px solid #2a2a2a;
+    background:#111;
+    position:relative;
+  }
+  .rung:last-child{border-right:none;}
+  .rung:nth-child(4){background:#161616;}
+  .rung .price{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.8rem;color:var(--green);
+    margin-bottom:10px;font-weight:700;
+  }
+  .rung h3{font-size:1.05rem;color:#fff;margin-bottom:10px;}
+  .rung p{font-size:0.88rem;color:#a9a9a9;}
+  .rung .step-label{
+    position:absolute;top:-2px;left:0;right:0;
+    height:4px;background:var(--pink);
+  }
+
+  /* ---------- CHARACTER SECTION (pink) ---------- */
+  .character{
+    background:var(--pink);
+    padding:100px 0;
+  }
+  .character h2{font-size:clamp(1.9rem,4vw,2.8rem);max-width:16ch;margin-bottom:18px;color:var(--black);}
+  .char-grid{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start;
+  }
+  .char-badge{
+    width:74px;height:74px;border-radius:50%;
+    background:var(--black);color:var(--green);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.4rem;
+    margin-bottom:24px;
+  }
+  .char-grid p{font-size:1.02rem;margin-bottom:16px;color:var(--ink);max-width:52ch;}
+  .traits{display:flex;flex-direction:column;gap:22px;}
+  .trait{
+    background:var(--black);border-radius:14px;padding:22px 24px;
+  }
+  .trait h4{color:var(--green);font-family:'Space Grotesk',sans-serif;font-size:1rem;margin-bottom:8px;}
+  .trait p{color:#d8d8d8;font-size:0.92rem;}
+
+  /* ---------- 5 STEPS ---------- */
+  .steps{
+    background:var(--black);padding:100px 0;
+  }
+  .steps h2{color:var(--green);}
+  .step-list{display:flex;flex-direction:column;}
+  .step-row{
+    display:grid;grid-template-columns:64px 1fr;gap:24px;
+    padding:26px 0;border-top:1px solid #262626;
+  }
+  .step-list .step-row:last-child{border-bottom:1px solid #262626;}
+  .step-num{
+    font-family:'Space Grotesk',sans-serif;font-size:1.6rem;color:var(--pink);
+  }
+  .step-row h3{color:#fff;font-size:1.15rem;margin-bottom:6px;}
+  .step-row p{color:#a9a9a9;font-size:0.95rem;max-width:60ch;}
+
+  /* ---------- PAGE TYPES (pink) ---------- */
+  .types{background:var(--pink);padding:100px 0;}
+  .types h2{color:var(--black);}
+  .type-cards{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  }
+  .type-card{
+    background:var(--black);border-radius:16px;padding:30px 26px;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .type-card .tag{
+    align-self:flex-start;
+    background:var(--green);color:var(--black);
+    font-size:0.75rem;font-weight:700;
+    padding:4px 12px;border-radius:999px;
+  }
+  .type-card h3{color:#fff;font-size:1.2rem;}
+  .type-card p{color:#b3b3b3;font-size:0.9rem;}
+  .type-card .fit{color:var(--pink);font-size:0.85rem;font-weight:600;margin-top:auto;}
+
+  /* ---------- FINAL CTA ---------- */
+  .final{
+    background:var(--black);
+    padding:120px 0 110px;
+    text-align:center;
+    position:relative;
+    border-top:3px solid var(--green);
+  }
+  .final h2{
+    color:#fff;font-size:clamp(2rem,5vw,3.2rem);
+    max-width:20ch;margin:0 auto 20px;
+  }
+  .final h2 span{color:var(--green);}
+  .final p{color:#b3b3b3;max-width:48ch;margin:0 auto 40px;font-size:1.05rem;}
+  .final .btn-row{justify-content:center;}
+
+  footer{
+    background:var(--black);color:#8a8a8a;
+    padding:34px 0;font-size:0.85rem;
+    border-top:1px solid #262626;
+  }
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer a{color:var(--green);}
+
+  /* ---------- reveal animation (single orchestrated hero entrance) ---------- */
+  @keyframes riseIn{
+    from{opacity:0;transform:translateY(18px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .hero .eyebrow-shape{animation:riseIn .6s ease both;}
+  .hero h1{animation:riseIn .6s ease .08s both;}
+  .hero p.sub{animation:riseIn .6s ease .16s both;}
+  .hero .btn-row{animation:riseIn .6s ease .24s both;}
+  .hero-diagram{animation:riseIn .7s ease .32s both;}
+
+  @media (prefers-reduced-motion: reduce){
+    .hero .eyebrow-shape,.hero h1,.hero p.sub,.hero .btn-row,.hero-diagram{animation:none;}
+  }
+
+  @media (max-width: 860px){
+    .ladder{grid-template-columns:1fr 1fr;}
+    .rung{border-bottom:2px solid #2a2a2a;}
+    .char-grid{grid-template-columns:1fr;}
+    .type-cards{grid-template-columns:1fr;}
+    .hero-diagram{flex-direction:column;}
+    .hero-diagram .col{border-right:none;border-bottom:3px solid var(--black);}
+    .hero-diagram .col:last-child{border-bottom:none;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--green);outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo"><span class="logo-dot"></span>easylandx</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">See the portfolio</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow-shape">A landing page framework for small business</span>
+    <h1>Your website is a brochure. <span class="grow">Your landing page is a salesperson.</span></h1>
+    <p class="sub">A brochure sits there and hopes someone reads it. A landing page built by easylandx greets the right visitor, tells them one story, and asks them to take one action — on repeat, all day, without taking a day off.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Get your easylandx page →</a>
+      <a class="btn btn-ghost" href="#ladder">See how it's built</a>
+    </div>
+
+    <div class="hero-diagram">
+      <div class="col brochure">
+        <h4>THE OLD WEBSITE</h4>
+        <p>Six tabs. One homepage trying to speak to everyone. No clear next step. Visitors leave the way they arrived — as strangers.</p>
+      </div>
+      <div class="col funnel">
+        <h4>THE EASYLANDX PAGE</h4>
+        <p>One page. One visitor, one message, one offer. Every line of copy exists to move them one step closer to saying yes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="ladder">
+  <div class="wrap">
+    <div class="section-kicker">01 — The value ladder</div>
+    <h2>Not every visitor is ready to buy today. Meet them where they are.</h2>
+    <p class="section-lead">Most small businesses only have one offer — which means they only have one type of customer they can capture. easylandx pages are built to hold a full ladder, so a curious visitor and a ready-to-buy customer can both find their step.</p>
+
+    <div class="ladder">
+      <div class="rung">
+        <span class="step-label"></span>
+        <div class="price">STEP 1 — FREE</div>
+        <h3>The hook</h3>
+        <p>A free page audit or a short guide that shows an owner exactly what their current site is costing them in lost customers.</p>
+      </div>
+      <div class="rung">
+        <span class="step-label"></span>
+        <div class="price">STEP 2 — LOW COST</div>
+        <h3>The starter page</h3>
+        <p>A single, sharp landing page that replaces the confusing homepage and turns visits into WhatsApp messages, calls, or bookings.</p>
+      </div>
+      <div class="rung">
+        <span class="step-label"></span>
+        <div class="price">STEP 3 — CORE OFFER</div>
+        <h3>The custom build</h3>
+        <p>A fully custom page written around this business specifically — its voice, its photos, its offer — not a template with new logos.</p>
+      </div>
+      <div class="rung">
+        <span class="step-label"></span>
+        <div class="price">STEP 4 — ONGOING</div>
+        <h3>The partnership</h3>
+        <p>Continued copy testing, seasonal updates, and new pages for new offers, as the business grows past its first launch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="character">
+  <div class="wrap">
+    <div class="section-kicker" style="color:var(--black);opacity:.7;">02 — Who's actually building this</div>
+    <h2>People trust a person before they trust a company.</h2>
+
+    <div class="char-grid">
+      <div>
+        <div class="char-badge">Oz</div>
+        <p>easylandx exists because most small business owners were sold a website they never wanted: expensive, generic, and impossible to update themselves. So instead, every easylandx page is built by hand, one business at a time — no drag-and-drop kits, no recycled sections.</p>
+        <p>The businesses on the easylandx portfolio range from astrologers and Pilates studios to surf schools and rural hotels. Different industries, same rule: the page has to sound like the person who runs the business, not like software.</p>
+      </div>
+      <div class="traits">
+        <div class="trait">
+          <h4>The flaw we design around</h4>
+          <p>Templates are fast, and fast is tempting. easylandx turns down the shortcut on purpose, because a page that looks like everyone else's converts like everyone else's — which is to say, barely.</p>
+        </div>
+        <div class="trait">
+          <h4>The opinion we hold</h4>
+          <p>A beautiful page that doesn't ask for anything is decoration. Every easylandx page is built around one clear next step, even when the client asks for "just something nice."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="wrap">
+    <div class="section-kicker">03 — How every page gets built</div>
+    <h2>Five questions, answered in order, before a single line of copy is written.</h2>
+
+    <div class="step-list">
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div>
+          <h3>Who is this actually for?</h3>
+          <p>Not "everyone in the neighborhood" — the specific person most likely to say yes, and what they're worried about before they book.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div>
+          <h3>What stops the scroll?</h3>
+          <p>The opening line or image has to earn the next five seconds. If it doesn't, nothing below it gets read.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div>
+          <h3>What's the story?</h3>
+          <p>Not a list of features — a short, honest account of the problem this business solves and why it's worth trusting with it.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">04</div>
+        <div>
+          <h3>What's the one offer?</h3>
+          <p>One clear thing to do next — message on WhatsApp, book a slot, place an order — never three competing buttons.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">05</div>
+        <div>
+          <h3>What happens to the ones who don't say yes yet?</h3>
+          <p>Not every visitor converts on the first visit. The page is built so a business can follow up — by WhatsApp, Instagram, or email — instead of losing them for good.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="types">
+  <div class="wrap">
+    <div class="section-kicker" style="color:var(--black);opacity:.7;">04 — Three kinds of pages we build</div>
+    <h2>The right structure depends on what you're selling.</h2>
+
+    <div class="type-cards">
+      <div class="type-card">
+        <span class="tag">SIMPLE OFFER</span>
+        <h3>The quick-capture page</h3>
+        <p>Best for a single product, a booking, or a low-cost service. One scroll, one clear ask, built to load fast on a phone.</p>
+        <span class="fit">Fits: shops, groomers, cafés, artisans</span>
+      </div>
+      <div class="type-card">
+        <span class="tag">CONSIDERED OFFER</span>
+        <h3>The full-story page</h3>
+        <p>Best when the customer needs convincing first. Longer scroll, real testimonials, and a clear breakdown of what they get.</p>
+        <span class="fit">Fits: coaches, studios, courses, retreats</span>
+      </div>
+      <div class="type-card">
+        <span class="tag">HIGH-TOUCH OFFER</span>
+        <h3>The application page</h3>
+        <p>Best for premium, limited-availability work. The page qualifies the visitor first, so you only hear from serious leads.</p>
+        <span class="fit">Fits: consultants, high-end services</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Stop handing visitors a brochure. <span>Give them a reason to say yes.</span></h2>
+    <p>Every easylandx page is built one business at a time — your words, your photos, your one clear offer.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>easylandx — custom landing pages, built by hand.</span>
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Pages Proven Before They're Trusted</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue: #2A55FF;
+    --blue-deep: #0F2FB0;
+    --ink: #0A0E1A;
+    --panel: #10142A;
+    --yellow: #FFD23F;
+    --yellow-soft: #FFF1BE;
+    --red: #FF4757;
+    --red-soft: #FFD9DC;
+    --paper: #F5F6FA;
+    --gray: #9AA3C2;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--blue);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  ::selection{background:var(--yellow);color:var(--ink);}
+
+  h1,h2,h3,.display{
+    font-family:'Sora',sans-serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+    color:var(--paper);
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:820px;margin:0 auto;padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--blue);
+    border-bottom:1px solid rgba(245,246,250,0.18);
+  }
+  .nav-inner{
+    max-width:820px;margin:0 auto;padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{font-family:'Sora',sans-serif;font-weight:800;font-size:19px;color:var(--paper);}
+  .logo span{color:var(--yellow);}
+  .nav-cta{
+    background:var(--yellow);
+    color:var(--ink);
+    padding:9px 18px;
+    border-radius:3px;
+    font-size:14px;
+    font-weight:600;
+    transition:background .2s ease, transform .15s ease;
+  }
+  .nav-cta:hover{background:var(--red);color:var(--paper);transform:translateY(-1px);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:100px 0 84px;
+    text-align:center;
+  }
+  .hero .eyebrow{
+    display:inline-block;
+    color:var(--ink);
+    background:var(--yellow);
+    padding:6px 16px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:30px;
+  }
+  .hero h1{
+    font-size:48px;
+    line-height:1.1;
+    max-width:16ch;
+    margin:0 auto 24px;
+  }
+  .hero p.lede{
+    font-size:18.5px;
+    max-width:48ch;
+    margin:0 auto 38px;
+    color:var(--gray);
+  }
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:center;}
+
+  .btn-primary{
+    background:var(--yellow);
+    color:var(--ink);
+    padding:15px 30px;
+    border-radius:4px;
+    font-weight:700;
+    font-size:16px;
+    display:inline-block;
+    transition:background .2s ease, transform .15s ease;
+  }
+  .btn-primary:hover{background:var(--red);color:var(--paper);transform:translateY(-1px);}
+
+  .btn-secondary{
+    color:var(--paper);
+    font-weight:600;
+    font-size:15px;
+    padding:15px 6px;
+    border-bottom:2px solid var(--yellow);
+  }
+  .btn-secondary:hover{border-color:var(--red);}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:78px 0;}
+  .panel-section{background:var(--panel);}
+  .kicker{
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--yellow);
+    text-align:center;
+    margin-bottom:14px;
+  }
+  h2.section-title{
+    font-size:30px;
+    max-width:20ch;
+    margin:0 auto 18px;
+    text-align:center;
+  }
+  .section-lede{
+    max-width:54ch;
+    font-size:16.5px;
+    color:var(--gray);
+    text-align:center;
+    margin:0 auto 50px;
+  }
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- INSTRUMENT PANEL ---------- */
+  .panel-grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    grid-template-rows:auto auto auto;
+    gap:14px;
+  }
+  .gauge-card{
+    background:var(--ink);
+    border-radius:8px;
+    padding:20px 18px;
+    border:1px solid rgba(245,246,250,0.1);
+  }
+  .gauge-card .label{
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:.03em;
+    margin-bottom:8px;
+  }
+  .gauge-card h3{font-size:16px;color:var(--paper);margin-bottom:8px;}
+  .gauge-card p{font-size:13.5px;color:var(--gray);line-height:1.5;}
+
+  .engine{
+    grid-column:1 / 7;
+    background:linear-gradient(135deg, var(--yellow), #FFB020);
+    color:var(--ink);
+    border:none;
+    padding:28px 26px;
+  }
+  .engine .label{color:var(--blue-deep);}
+  .engine h3{color:var(--ink);font-size:22px;}
+  .engine p{color:#3B2E00;font-size:14.5px;}
+
+  .drivers{grid-column:span 3;}
+  .drivers .label{color:var(--yellow);}
+
+  .assurance{grid-column:span 3;}
+  .assurance .label{color:var(--red);}
+
+  .momentum{
+    grid-column:1 / 7;
+    background:linear-gradient(135deg, var(--red), #C21E33);
+    border:none;
+  }
+  .momentum .label{color:var(--yellow-soft);}
+  .momentum h3{color:var(--paper);}
+  .momentum p{color:var(--red-soft);}
+
+  @media (max-width:640px){
+    .panel-grid{grid-template-columns:1fr 1fr;}
+    .engine, .momentum{grid-column:1 / 3;}
+    .drivers, .assurance{grid-column:span 1;}
+  }
+
+  /* ---------- PIE SCORECARD ---------- */
+  .pie-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+  .pie-card{
+    background:var(--panel);
+    border-radius:10px;
+    padding:28px 22px;
+    text-align:center;
+  }
+  .pie-gauge{
+    width:100px;height:100px;
+    margin:0 auto 18px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+  }
+  .pie-gauge span{
+    background:var(--panel);
+    width:74px;height:74px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Sora',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    color:var(--paper);
+  }
+  .pie-card h3{font-size:17px;color:var(--paper);margin-bottom:8px;}
+  .pie-card p{font-size:14px;color:var(--gray);}
+
+  @media (max-width:640px){
+    .pie-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- HYPOTHESIS CARD ---------- */
+  .hypothesis-card{
+    max-width:620px;
+    margin:0 auto;
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:10px;
+    padding:36px 34px;
+    position:relative;
+    box-shadow:0 20px 50px rgba(10,14,26,0.25);
+  }
+  .hypothesis-card .tape{
+    position:absolute;
+    top:-14px;left:32px;
+    background:var(--yellow);
+    color:var(--ink);
+    font-size:12px;
+    font-weight:700;
+    padding:6px 14px;
+    border-radius:3px;
+    transform:rotate(-2deg);
+  }
+  .hypothesis-card .because{color:var(--red);font-weight:600;}
+  .hypothesis-card .then{color:var(--blue-deep);font-weight:600;}
+  .hypothesis-card p{font-size:16.5px;line-height:1.65;}
+
+  /* ---------- TESTING DISCIPLINE ---------- */
+  .stat-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  .stat-badge{
+    background:var(--ink);
+    border-radius:10px;
+    padding:32px 26px;
+    text-align:center;
+  }
+  .stat-badge .num{
+    font-family:'Sora',sans-serif;
+    font-weight:800;
+    font-size:42px;
+    color:var(--yellow);
+    display:block;
+    margin-bottom:10px;
+  }
+  .stat-badge:nth-child(2) .num{color:var(--red);}
+  .stat-badge p{font-size:14.5px;color:var(--gray);}
+
+  @media (max-width:640px){
+    .stat-row{grid-template-columns:1fr;}
+  }
+
+  /* ---------- CLOSING ---------- */
+  .closing{padding:100px 0 112px;text-align:center;}
+  .closing h2{font-size:34px;max-width:18ch;margin:0 auto 20px;}
+  .closing .section-lede{margin-bottom:40px;}
+
+  footer{
+    background:var(--panel);
+    color:var(--gray);
+    padding:36px 0;
+    font-size:14px;
+  }
+  footer .foot-inner{
+    max-width:820px;margin:0 auto;padding:0 32px;
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:16px;
+  }
+  footer a.footer-link{color:var(--yellow);font-weight:600;}
+  footer a.footer-link:hover{color:var(--red);}
+
+  @media (max-width:640px){
+    .hero h1{font-size:32px;}
+    .hero p.lede{font-size:16.5px;}
+    h2.section-title{font-size:24px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--yellow);
+    outline-offset:2px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Get your page</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Proven before it's trusted</span>
+    <h1>Every element on your page earns its place with evidence.</h1>
+    <p class="lede">EasyLandX designs landing pages the way an instrument panel guides a pilot — reading real visitor signals so every choice moves people confidently toward yes.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start your EasyLandX page</a>
+      <a class="btn-secondary" href="#panel">See the instrument panel</a>
+    </div>
+  </div>
+</header>
+
+<section id="panel" class="panel-section">
+  <div class="wrap">
+    <p class="kicker reveal">The instrument panel</p>
+    <h2 class="section-title reveal">Six signals steer every visitor toward yes.</h2>
+    <p class="section-lede reveal">EasyLandX reads every page through six signals at once — together they show exactly how ready a visitor feels to act.</p>
+
+    <div class="panel-grid reveal">
+      <div class="gauge-card engine">
+        <div class="label">THE CORE ENGINE</div>
+        <h3>Value proposition</h3>
+        <p>The clear balance of what a visitor gains against what they give — the single strongest driver of every EasyLandX page.</p>
+      </div>
+
+      <div class="gauge-card drivers">
+        <div class="label">THE FUEL</div>
+        <h3>Relevance</h3>
+        <p>Copy and design that match exactly what a visitor expected, keeping the path from click to page seamless.</p>
+      </div>
+      <div class="gauge-card drivers">
+        <div class="label">THE WINDSHIELD</div>
+        <h3>Clarity</h3>
+        <p>A page a visitor reads at a glance — clean hierarchy, easy type, and a call-to-action that's simple to find.</p>
+      </div>
+
+      <div class="gauge-card assurance">
+        <div class="label">THE REASSURANCE</div>
+        <h3>Confidence</h3>
+        <p>Guarantees, transparent pricing, and clear terms placed right where a visitor needs them to feel fully at ease.</p>
+      </div>
+      <div class="gauge-card assurance">
+        <div class="label">THE FOCUS</div>
+        <h3>Attention</h3>
+        <p>A page trimmed to one clear path, keeping a visitor's attention on the single next step.</p>
+      </div>
+
+      <div class="gauge-card momentum">
+        <div class="label">THE ACCELERATOR</div>
+        <h3>Momentum</h3>
+        <p>A genuine, well-timed reason to act now, offered to a visitor who's already ready to say yes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker reveal">Prioritization</p>
+    <h2 class="section-title reveal">We choose what to build next with a clear scorecard.</h2>
+    <p class="section-lede reveal">Every improvement idea is scored with the PIE scorecard, so effort always goes where it earns the most for your page.</p>
+
+    <div class="pie-grid reveal">
+      <div class="pie-card">
+        <div class="pie-gauge" style="background:conic-gradient(var(--yellow) 0% 82%, rgba(245,246,250,0.12) 82% 100%);">
+          <span>82%</span>
+        </div>
+        <h3>Potential</h3>
+        <p>How much a page's results could rise from evidence-based changes.</p>
+      </div>
+      <div class="pie-card">
+        <div class="pie-gauge" style="background:conic-gradient(var(--red) 0% 90%, rgba(245,246,250,0.12) 90% 100%);">
+          <span>90%</span>
+        </div>
+        <h3>Importance</h3>
+        <p>How valuable this page's traffic is to your business right now.</p>
+      </div>
+      <div class="pie-card">
+        <div class="pie-gauge" style="background:conic-gradient(#5B7CFA 0% 74%, rgba(245,246,250,0.12) 74% 100%);">
+          <span>74%</span>
+        </div>
+        <h3>Ease</h3>
+        <p>How quickly a well-scoped test can go live on your page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="panel-section">
+  <div class="wrap">
+    <p class="kicker reveal">The scientific approach</p>
+    <h2 class="section-title reveal">Every test starts with a clear hypothesis.</h2>
+    <p class="section-lede reveal">Instead of swapping colors on a whim, EasyLandX anchors every test to a specific signal from the instrument panel.</p>
+
+    <div class="hypothesis-card reveal">
+      <span class="tape">Hypothesis</span>
+      <p><span class="because">Because</span> visitors are looking for more <strong>Confidence</strong> around pricing, adding a clear money-back guarantee beside the call-to-action <span class="then">will raise</span> completed sign-ups.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker reveal">Patience that pays off</p>
+    <h2 class="section-title reveal">Results earn their confidence before they shape your page.</h2>
+    <p class="section-lede reveal">EasyLandX lets every test run its full course, so results reflect real visitor patterns across a complete week.</p>
+
+    <div class="stat-row reveal">
+      <div class="stat-badge">
+        <span class="num">10–14</span>
+        <p>Days of minimum run time, enough to capture a full week of visitor patterns.</p>
+      </div>
+      <div class="stat-badge">
+        <span class="num">95%</span>
+        <p>Confidence level a result must reach before it shapes your page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <p class="kicker reveal">Ready when you are</p>
+    <h2 class="reveal">Let's build a page proven by your own visitors.</h2>
+    <p class="section-lede reveal">EasyLandX turns every signal on the instrument panel into a page that earns trust, holds attention, and moves people confidently toward yes.</p>
+    <a class="btn-primary reveal" href="https://easylandx.github.io" target="_blank" rel="noopener">Get your EasyLandX page</a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <span>EasyLandX — pages proven by real signals</span>
+    <a class="footer-link" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
