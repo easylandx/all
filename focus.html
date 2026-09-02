@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages Built for Focus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow: #FBD11E;
+    --yellow-deep: #EFBF00;
+    --ink: #17140A;
+    --ink-soft: #524B2C;
+    --white: #FFFDF4;
+    --purple: #5B21B6;
+    --purple-deep: #3E1680;
+    --purple-soft: #8B5CF6;
+    --green: #0E7A46;
+    --green-deep: #0A5A34;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--yellow);
+    color:var(--ink);
+    font-family:'Manrope', sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3{
+    font-family:'Sora', sans-serif;
+    font-weight:700;
+    letter-spacing:-0.015em;
+    margin:0;
+  }
+  a{ color:inherit; }
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* NAV */
+  nav.wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:26px 32px;
+  }
+  .brand{
+    font-family:'Sora', sans-serif;
+    font-weight:800;
+    font-size:20px;
+  }
+  .brand .dot{ color:var(--purple); }
+  .nav-cta{
+    display:inline-block;
+    background:var(--purple);
+    color:var(--white);
+    text-decoration:none;
+    padding:11px 22px;
+    border-radius:10px;
+    font-weight:700;
+    font-size:14.5px;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .nav-cta:hover{ background:var(--purple-deep); transform:translateY(-1px); }
+
+  /* HERO */
+  header.hero{ padding:60px 0 84px; }
+  .hero-inner{ max-width:740px; }
+  .kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--purple-deep);
+    background:rgba(91,33,182,0.09);
+    padding:8px 14px;
+    border-radius:999px;
+    margin-bottom:26px;
+  }
+  .kicker::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--green);
+    border-radius:50%;
+    display:inline-block;
+  }
+  h1.headline{
+    font-size:clamp(36px, 5.6vw, 62px);
+    line-height:1.05;
+  }
+  h1.headline .accent{ color:var(--purple); }
+  .hero-sub{
+    margin-top:22px;
+    font-size:18.5px;
+    color:var(--ink-soft);
+    max-width:540px;
+  }
+  .hero-actions{
+    margin-top:34px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .btn-primary{
+    display:inline-block;
+    background:var(--ink);
+    color:var(--white);
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:12px;
+    font-weight:700;
+    font-size:16px;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn-primary:hover{ background:var(--purple-deep); transform:translateY(-2px); }
+  .btn-secondary{
+    text-decoration:none;
+    font-weight:700;
+    font-size:16px;
+    color:var(--green-deep);
+    border-bottom:2px solid var(--green);
+    padding-bottom:2px;
+  }
+
+  section{ padding:70px 0; }
+  .section-tag{
+    font-size:13.5px;
+    font-weight:700;
+    color:var(--green-deep);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    margin-bottom:14px;
+  }
+  h2.section-title{
+    font-size:clamp(27px, 3.6vw, 38px);
+    max-width:640px;
+    margin-bottom:16px;
+  }
+  .section-intro{
+    color:var(--ink-soft);
+    font-size:16.5px;
+    max-width:600px;
+    margin-bottom:44px;
+  }
+
+  /* ATTENTION RESIDUE VISUAL */
+  .residue-panel{
+    background:var(--white);
+    border-radius:24px;
+    padding:40px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:36px;
+    align-items:center;
+  }
+  .residue-visual{
+    display:flex;
+    align-items:center;
+    gap:0;
+  }
+  .residue-block{
+    flex:1;
+    height:120px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Sora', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    text-align:center;
+    padding:12px;
+  }
+  .residue-block.focus{
+    background:var(--green);
+    color:var(--white);
+  }
+  .residue-block.leak{
+    background:var(--purple-soft);
+    color:var(--white);
+    opacity:0.55;
+    transform:scale(0.86);
+  }
+  .residue-arrow{
+    font-size:22px;
+    color:var(--ink-soft);
+    padding:0 10px;
+  }
+  .residue-text h3{
+    font-size:21px;
+    margin-bottom:12px;
+  }
+  .residue-text p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:15.5px;
+  }
+
+  /* FRICTION GRID */
+  .friction-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+  .friction-card{
+    padding:34px 30px;
+    border-radius:22px;
+    color:var(--white);
+  }
+  .friction-card.reduce{ background:var(--green-deep); }
+  .friction-card.increase{ background:var(--purple-deep); }
+  .friction-card h3{
+    color:var(--white);
+    font-size:20px;
+    margin-bottom:14px;
+  }
+  .friction-card ul{
+    margin:0; padding:0;
+    list-style:none;
+  }
+  .friction-card li{
+    padding:10px 0;
+    border-top:1px solid rgba(255,255,255,0.18);
+    font-size:15px;
+    color:rgba(255,253,244,0.9);
+  }
+  .friction-card li:first-of-type{ border-top:none; }
+
+  /* RULE OF THREE */
+  .three-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+  }
+  .three-card{
+    background:var(--white);
+    border-radius:20px;
+    padding:30px 26px;
+    border:2px solid transparent;
+  }
+  .three-card .num{
+    font-family:'Sora', sans-serif;
+    font-weight:800;
+    font-size:28px;
+    color:var(--purple);
+    margin-bottom:14px;
+    display:block;
+  }
+  .three-card h3{
+    font-size:18px;
+    margin-bottom:8px;
+  }
+  .three-card p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:15px;
+  }
+
+  /* EMPTY SPACE / BOREDOM SECTION */
+  .space-panel{
+    background:var(--white);
+    border-radius:24px;
+    padding:56px 48px;
+    text-align:center;
+  }
+  .space-panel h2{
+    max-width:600px;
+    margin:0 auto 16px;
+  }
+  .space-panel p{
+    max-width:520px;
+    margin:0 auto;
+    color:var(--ink-soft);
+    font-size:16.5px;
+  }
+  .breathing-row{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:32px 0;
+  }
+  .breathing-dot{
+    width:10px; height:10px;
+    border-radius:50%;
+  }
+  .breathing-dot:nth-child(1){ background:var(--green); }
+  .breathing-dot:nth-child(2){ background:var(--purple); }
+  .breathing-dot:nth-child(3){ background:var(--ink); opacity:0.15; }
+  .breathing-dot:nth-child(4){ background:var(--ink); opacity:0.15; }
+  .breathing-dot:nth-child(5){ background:var(--ink); opacity:0.15; }
+
+  /* CLOSING */
+  .closing-panel{
+    text-align:center;
+    padding:88px 32px;
+    border-radius:28px;
+    background:var(--ink);
+    color:var(--white);
+  }
+  .closing-panel h2{
+    color:var(--white);
+    font-size:clamp(27px, 4vw, 40px);
+    max-width:600px;
+    margin:0 auto 16px;
+  }
+  .closing-panel p{
+    color:rgba(255,253,244,0.75);
+    font-size:16.5px;
+    max-width:500px;
+    margin:0 auto 32px;
+  }
+  .btn-on-dark{
+    display:inline-block;
+    background:var(--yellow);
+    color:var(--ink);
+    text-decoration:none;
+    padding:16px 32px;
+    border-radius:12px;
+    font-weight:800;
+    font-size:16px;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn-on-dark:hover{ background:var(--yellow-deep); transform:translateY(-2px); }
+
+  footer{
+    padding:36px 0 52px;
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:14px;
+  }
+  footer a{ color:var(--purple-deep); font-weight:700; text-decoration:none; }
+
+  @media (max-width: 760px){
+    .residue-panel, .friction-wrap, .three-grid{ grid-template-columns:1fr; }
+    .space-panel{ padding:40px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="wrap">
+  <div class="brand">EasyLandX<span class="dot">.</span></div>
+  <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="kicker">Built for one job: focus</div>
+    <h1 class="headline">A landing page can hold <span class="accent">one</span> thought at a time — so make it the right one.</h1>
+    <p class="hero-sub">Every extra link, banner, and pop-up on your page is a place a visitor's attention can leak out. EasyLandX designs pages engineered around a single, protected path to action.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build Your Page</a>
+      <a class="btn-secondary" href="#friction">See the friction map</a>
+    </div>
+  </div>
+</header>
+
+<section id="residue">
+  <div class="wrap">
+    <div class="section-tag">Attention Residue</div>
+    <h2 class="section-title">Every extra click leaves a footprint</h2>
+    <p class="section-intro">Research on focus shows that a single distraction can take the brain over twenty minutes to fully leave behind. A landing page with five competing links works the same way on a visitor's attention.</p>
+
+    <div class="residue-panel">
+      <div class="residue-visual">
+        <div class="residue-block focus">Your offer</div>
+        <div class="residue-arrow">→</div>
+        <div class="residue-block leak">Blog</div>
+        <div class="residue-arrow">→</div>
+        <div class="residue-block leak">Socials</div>
+      </div>
+      <div class="residue-text">
+        <h3>One path in, one path forward</h3>
+        <p>EasyLandX pages keep the visitor's full attention on the one action that matters — the booking, the quote, the order — instead of scattering it across a menu of exits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="friction">
+  <div class="wrap">
+    <div class="section-tag">Environmental Architecture</div>
+    <h2 class="section-title">Design the friction, don't rely on willpower</h2>
+    <p class="section-intro">A visitor won't discipline themselves into converting. The page has to make the right action the easy one, and every distraction the harder one.</p>
+
+    <div class="friction-wrap">
+      <div class="friction-card reduce">
+        <h3>Reduce friction toward the action</h3>
+        <ul>
+          <li>One button, repeated at every natural pause point.</li>
+          <li>Forms with only the fields the business truly needs.</li>
+          <li>Fast load times so the next step is always one tap away.</li>
+        </ul>
+      </div>
+      <div class="friction-card increase">
+        <h3>Raise friction around the exit</h3>
+        <ul>
+          <li>No navigation bar pulling visitors toward unrelated pages.</li>
+          <li>No auto-playing carousel competing for the eye.</li>
+          <li>No outbound links until after the main action is offered.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="three">
+  <div class="wrap">
+    <div class="section-tag">The Rule of Three</div>
+    <h2 class="section-title">Three elements anchor every page</h2>
+    <p class="section-intro">A page without a clear target defaults to decoration. EasyLandX locks in three non-negotiable elements before any design begins.</p>
+
+    <div class="three-grid">
+      <div class="three-card">
+        <span class="num">01</span>
+        <h3>One headline</h3>
+        <p>States the outcome the visitor came for, in the first five seconds.</p>
+      </div>
+      <div class="three-card">
+        <span class="num">02</span>
+        <h3>One proof point</h3>
+        <p>A result, review, or number that answers the visitor's doubt before they voice it.</p>
+      </div>
+      <div class="three-card">
+        <span class="num">03</span>
+        <h3>One action</h3>
+        <p>A single button, worded the same way everywhere it appears on the page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="space">
+  <div class="wrap">
+    <div class="section-tag">Embracing Empty Space</div>
+    <div class="space-panel">
+      <h2 class="section-title" style="margin:0 auto 16px;">Quiet space is a feature, not a gap</h2>
+      <div class="breathing-row">
+        <div class="breathing-dot"></div>
+        <div class="breathing-dot"></div>
+        <div class="breathing-dot"></div>
+        <div class="breathing-dot"></div>
+        <div class="breathing-dot"></div>
+      </div>
+      <p>A page crammed with stimulation trains a visitor to keep scrolling past everything. EasyLandX leaves deliberate room around the headline and the button, so the eye lands exactly where the business needs it to.</p>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="wrap">
+    <div class="closing-panel">
+      <h2>Give your customers one clear thing to focus on.</h2>
+      <p>EasyLandX builds affordable, distraction-free landing pages that carry every visitor toward a single, well-earned action.</p>
+      <a class="btn-on-dark" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your EasyLandX Page</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    EasyLandX — focused, affordable landing pages for small businesses. &nbsp;·&nbsp;
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>
