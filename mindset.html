@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Give Your Business a Winning Operating System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow: #FFCF33;
+    --yellow-soft: #FFE28A;
+    --blue: #1447E6;
+    --blue-deep: #0B1A3D;
+    --red: #E4002B;
+    --ink: #1A1400;
+    --white: #ffffff;
+    --line: rgba(26,20,0,0.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    background: var(--yellow);
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.wordmark{
+    font-family:'Sora', sans-serif;
+    font-weight:700;
+  }
+  a{color:inherit;text-decoration:none;}
+  .container{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    background: rgba(255,207,51,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 2px solid var(--ink);
+  }
+  nav .container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:72px;
+  }
+  .wordmark{
+    font-size:1.35rem;
+    color: var(--ink);
+  }
+  .wordmark span{color: var(--red);}
+  .nav-cta{
+    background: var(--blue);
+    color: var(--white);
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-weight:700;
+    font-size:0.95rem;
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+    transition: transform .15s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{ transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--ink); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding: 100px 0 90px;
+    background: var(--yellow);
+    border-bottom: 2px solid var(--ink);
+  }
+  .eyebrow-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background: var(--white);
+    border:2px solid var(--ink);
+    padding:7px 16px;
+    border-radius: 999px;
+    font-size:0.85rem;
+    font-weight:700;
+    margin-bottom: 28px;
+  }
+  .eyebrow-badge .dot{
+    width:8px;height:8px;border-radius:50%;
+    background: var(--red);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size: clamp(2.3rem, 5.2vw, 3.6rem);
+    line-height: 1.08;
+    margin-bottom: 22px;
+  }
+  .hero h1 .u{
+    text-decoration: underline;
+    text-decoration-color: var(--red);
+    text-decoration-thickness: 6px;
+    text-underline-offset: 6px;
+  }
+  .hero p.lede{
+    font-size: 1.12rem;
+    max-width: 500px;
+    margin-bottom: 36px;
+    color: rgba(26,20,0,0.85);
+    line-height:1.6;
+  }
+  .hero-actions{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    background: var(--red);
+    color: var(--white);
+    padding: 16px 32px;
+    border-radius: 10px;
+    font-weight:700;
+    font-size:1.02rem;
+    border: 2px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform .15s ease, box-shadow .15s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{
+    transform: translate(-2px,-2px);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .btn-ghost{
+    background: var(--white);
+    color: var(--ink);
+    padding: 16px 28px;
+    border-radius: 10px;
+    font-weight:700;
+    font-size:1.02rem;
+    border: 2px solid var(--ink);
+    transition: background .15s ease;
+  }
+  .btn-ghost:hover{ background: var(--yellow-soft); }
+
+  .dial{
+    background: var(--white);
+    border: 2px solid var(--ink);
+    border-radius: 20px;
+    box-shadow: 8px 8px 0 var(--ink);
+    padding: 28px;
+  }
+  .dial svg{ width:100%; height:auto; display:block; }
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block{
+    padding: 92px 0;
+    border-bottom: 2px solid var(--ink);
+  }
+  section.block.dark{
+    background: var(--blue-deep);
+    color: var(--white);
+    border-bottom: 2px solid var(--ink);
+  }
+  .kicker{
+    font-weight:700;
+    font-size:0.92rem;
+    margin-bottom:10px;
+    color: var(--blue);
+  }
+  section.block.dark .kicker{ color: var(--yellow); }
+  .kicker::before{
+    content:"";
+    display:inline-block;
+    width:22px;height:3px;
+    background: var(--red);
+    margin-right:10px;
+    vertical-align: middle;
+  }
+  .block h2{
+    font-size: clamp(1.7rem, 3.8vw, 2.4rem);
+    max-width: 640px;
+    margin-bottom: 18px;
+    line-height:1.15;
+  }
+  .block p.intro{
+    max-width: 620px;
+    font-size:1.03rem;
+    line-height:1.7;
+    margin-bottom: 44px;
+    color: rgba(26,20,0,0.85);
+  }
+  section.block.dark p.intro{ color: rgba(255,255,255,0.88); }
+
+  /* ---------- OS PANEL ---------- */
+  .os-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items:center;
+  }
+  .os-panel{
+    background: var(--white);
+    border: 2px solid var(--ink);
+    border-radius: 18px;
+    box-shadow: 6px 6px 0 var(--ink);
+    padding: 30px;
+  }
+  .os-panel svg{ width:100%; height:auto; display:block; }
+  .os-copy p{
+    font-size:1rem;
+    line-height:1.75;
+    margin-bottom:16px;
+    color: rgba(255,255,255,0.92);
+  }
+  .os-copy strong{ color: var(--yellow); }
+
+  /* ---------- STORY UPGRADE cards ---------- */
+  .story-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+  .story-card{
+    background: var(--white);
+    border: 2px solid var(--ink);
+    border-radius: 16px;
+    box-shadow: 5px 5px 0 var(--ink);
+    padding: 26px;
+  }
+  .story-card .tag{
+    display:inline-block;
+    font-size:0.8rem;
+    font-weight:700;
+    color: var(--white);
+    background: var(--blue);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .story-card.red .tag{ background: var(--red); }
+  .story-card h3{ font-size:1.1rem; margin-bottom:8px; }
+  .story-card p{ font-size:0.95rem; line-height:1.6; color: rgba(26,20,0,0.82); }
+
+  /* ---------- SMART goal grid ---------- */
+  .smart-grid{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+  }
+  .smart-cell{
+    background: var(--blue);
+    color: var(--white);
+    border-radius: 14px;
+    padding: 22px 16px;
+    text-align:center;
+    border: 2px solid var(--ink);
+  }
+  .smart-cell:nth-child(2n){ background: var(--red); }
+  .smart-cell .letter{
+    font-family:'Sora', sans-serif;
+    font-size:2rem;
+    font-weight:800;
+    display:block;
+    margin-bottom:8px;
+  }
+  .smart-cell .label{ font-size:0.82rem; font-weight:600; }
+
+  /* ---------- 7 daily practices ---------- */
+  .practice-list{
+    display:flex;
+    flex-direction:column;
+  }
+  .practice-row{
+    display:grid;
+    grid-template-columns: 64px 1fr;
+    gap: 20px;
+    align-items:start;
+    padding: 22px 0;
+    border-top: 2px solid var(--ink);
+  }
+  .practice-row:last-child{ border-bottom: 2px solid var(--ink); }
+  .practice-num{
+    font-family:'Sora', sans-serif;
+    font-size:1.6rem;
+    font-weight:800;
+    color: var(--red);
+  }
+  .practice-row h3{ font-size:1.08rem; margin-bottom:6px; }
+  .practice-row p{ font-size:0.96rem; line-height:1.6; color: rgba(26,20,0,0.82); max-width:560px; }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    text-align:center;
+    background: var(--red);
+    color: var(--white);
+    padding: 100px 0;
+    border-bottom: 2px solid var(--ink);
+  }
+  .final-cta h2{
+    font-size: clamp(1.9rem, 4.6vw, 2.7rem);
+    max-width: 640px;
+    margin: 0 auto 18px;
+  }
+  .final-cta p{
+    max-width: 500px;
+    margin: 0 auto 36px;
+    font-size:1.05rem;
+    line-height:1.6;
+    color: rgba(255,255,255,0.92);
+  }
+  .final-cta .btn-primary{
+    background: var(--white);
+    color: var(--red);
+  }
+
+  footer{
+    background: var(--yellow);
+    padding: 30px 0;
+    text-align:center;
+    font-size:0.88rem;
+    color: rgba(26,20,0,0.75);
+  }
+  footer a{ color: var(--ink); font-weight:700; }
+
+  @media (max-width: 820px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .os-grid{ grid-template-columns: 1fr; }
+    .story-grid{ grid-template-columns: 1fr; }
+    .smart-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+
+  :focus-visible{
+    outline: 3px solid var(--blue);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="wordmark">Easy<span>Land</span>X</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow-badge"><span class="dot"></span> Inspired by Master Your Mindset</div>
+      <h1>Give Your Business a Winning <span class="u">Operating System</span></h1>
+      <p class="lede">Your landing page is the operating system visitors judge first — the standards, story, and confidence they sense in seconds. EasyLandX builds a page that reflects the success your business has already earned.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build My Page on EasyLandX</a>
+        <a class="btn-ghost" href="#os">See the Framework</a>
+      </div>
+    </div>
+    <div class="dial">
+      <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="130" cy="130" r="110" fill="none" stroke="#1A1400" stroke-width="2" stroke-dasharray="4 6"/>
+        <circle cx="130" cy="130" r="82" fill="none" stroke="#1447E6" stroke-width="10"/>
+        <path d="M130 48 A82 82 0 0 1 205 168" fill="none" stroke="#E4002B" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="130" cy="130" r="8" fill="#1A1400"/>
+        <line x1="130" y1="130" x2="180" y2="90" stroke="#1A1400" stroke-width="4" stroke-linecap="round"/>
+        <text x="130" y="230" font-family="Sora" font-size="15" font-weight="700" fill="#1A1400" text-anchor="middle">STANDARD: RISING</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section class="block dark" id="os">
+  <div class="container">
+    <div class="kicker">Your Business's Operating System</div>
+    <h2>Every visitor reads your standards before they read your words.</h2>
+    <div class="os-grid">
+      <div class="os-panel">
+        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="20" width="260" height="160" rx="14" fill="none" stroke="#1A1400" stroke-width="2"/>
+          <rect x="36" y="40" width="228" height="24" rx="6" fill="#FFCF33"/>
+          <text x="150" y="57" font-family="Inter" font-size="12" fill="#1A1400" text-anchor="middle">Headline sets the standard</text>
+          <rect x="36" y="76" width="228" height="24" rx="6" fill="#1447E6"/>
+          <text x="150" y="93" font-family="Inter" font-size="12" fill="#ffffff" text-anchor="middle">Proof confirms the standard</text>
+          <rect x="36" y="112" width="228" height="24" rx="6" fill="#E4002B"/>
+          <text x="150" y="129" font-family="Inter" font-size="12" fill="#ffffff" text-anchor="middle">Offer matches the standard</text>
+          <rect x="36" y="148" width="228" height="20" rx="6" fill="#ffffff" stroke="#1A1400" stroke-width="1.5"/>
+          <text x="150" y="162" font-family="Inter" font-size="11" fill="#1A1400" text-anchor="middle">Visitor accepts → takes action</text>
+        </svg>
+      </div>
+      <div class="os-copy">
+        <p>A visitor doesn't just read your page — they absorb it, deciding in seconds what standard your business holds. EasyLandX designs every layer of that page — headline, proof, offer — to communicate one consistent, elevated standard.</p>
+        <p>Raise the standard your page communicates, and you raise what visitors expect, trust, and act on. <strong>You get what your page signals you deserve.</strong></p>
+        <p>That's why every EasyLandX page starts with an honest audit of your current online presence, so the new page reflects exactly the business you're building today — and where it's headed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="story">
+  <div class="container">
+    <div class="kicker">The Story Upgrade</div>
+    <h2>Replace the old story your page has been telling with the one your business has earned.</h2>
+    <p class="intro">Many small business pages are still running on an outdated story — a rushed template, a mismatched logo, copy that undersells what you actually offer. EasyLandX brings that story into the light and rewrites it with confidence.</p>
+    <div class="story-grid">
+      <div class="story-card">
+        <span class="tag">Old Story</span>
+        <h3>"This is just a placeholder for now."</h3>
+        <p>A page built in a hurry, holding your business back from the impression it deserves to make.</p>
+      </div>
+      <div class="story-card red">
+        <span class="tag">New Story</span>
+        <h3>"This page represents exactly who we are."</h3>
+        <p>A page designed with intention, giving every visitor a true, confident first impression.</p>
+      </div>
+      <div class="story-card">
+        <span class="tag">Old Story</span>
+        <h3>"Visitors will figure out how to contact us."</h3>
+        <p>A vague layout that leaves the next step unclear, however great the offer might be.</p>
+      </div>
+      <div class="story-card red">
+        <span class="tag">New Story</span>
+        <h3>"One clear button, one clear next step."</h3>
+        <p>A single, confident call-to-action that turns interest into a booking, call, or sale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block dark" id="smart">
+  <div class="container">
+    <div class="kicker">SMART Page Goals</div>
+    <h2>Vague wishes get vague pages. Clear targets get pages that perform.</h2>
+    <p class="intro">Before any design begins, EasyLandX turns your ambition into a SMART goal — a clear, trackable target your page is built to hit.</p>
+    <div class="smart-grid">
+      <div class="smart-cell"><span class="letter">S</span><span class="label">Specific goal</span></div>
+      <div class="smart-cell"><span class="letter">M</span><span class="label">Measurable clicks</span></div>
+      <div class="smart-cell"><span class="letter">A</span><span class="label">Achievable launch</span></div>
+      <div class="smart-cell"><span class="letter">R</span><span class="label">Relevant offer</span></div>
+      <div class="smart-cell"><span class="letter">T</span><span class="label">Time-bound go-live</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="practices">
+  <div class="container">
+    <div class="kicker">7 Daily Growth Habits, Built Into Your Page</div>
+    <h2>A page that keeps earning trust, day after day.</h2>
+    <div class="practice-list">
+      <div class="practice-row">
+        <div class="practice-num">01</div>
+        <div><h3>Gratitude Signals</h3><p>Testimonials and results are featured up front, so your page leads with genuine appreciation from real customers.</p></div>
+      </div>
+      <div class="practice-row">
+        <div class="practice-num">02</div>
+        <div><h3>Calm Observation</h3><p>Clean spacing and a steady layout give visitors room to think clearly, without visual noise competing for attention.</p></div>
+      </div>
+      <div class="practice-row">
+        <div class="practice-num">03</div>
+        <div><h3>Open-Minded Design</h3><p>Every version is treated as valuable feedback, refined openly until the page performs exactly as intended.</p></div>
+      </div>
+      <div class="practice-row">
+        <div class="practice-num">04</div>
+        <div><h3>Continuous Learning</h3><p>EasyLandX studies what today's best-performing small business pages do well, and brings those lessons to yours.</p></div>
+      </div>
+      <div class="practice-row">
+        <div class="practice-num">05</div>
+        <div><h3>Growth Reflection</h3><p>Each new update is a chance to sharpen the page further, so it keeps growing alongside your business.</p></div>
+      </div>
+      <div class="practice-row">
+        <div class="practice-num">06</div>
+        <div><h3>Calm, Focused Layout</h3><p>Generous white space lets your message breathe, giving visitors a genuinely calm, easy reading experience.</p></div>
+      </div>
+      <div class="practice-row">
+        <div class="practice-num">07</div>
+        <div><h3>Supportive Partnership</h3><p>You work directly with EasyLandX throughout, surrounded by support focused entirely on your page's success.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="container">
+    <h2>Your business already deserves a page that matches its standard. Let's build it.</h2>
+    <p>EasyLandX turns your story, your goal, and your standard into one confident page — ready to welcome every visitor with a genuine "yes."</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build My Page on EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Built with EasyLandX — <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — The Gym Where Your Landing Page Gets Stronger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow: #F2FF1B;
+    --yellow-soft: #F7FF6E;
+    --navy: #0A1A4A;
+    --navy-deep: #060F30;
+    --green: #39FF9E;
+    --white: #ffffff;
+    --line: rgba(10,26,74,0.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    background: var(--yellow);
+    color: var(--navy);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.wordmark{
+    font-family:'Archivo', sans-serif;
+    font-weight:700;
+  }
+  a{color:inherit;text-decoration:none;}
+  .container{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    background: rgba(242,255,27,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 2px solid var(--navy);
+  }
+  nav .container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:72px;
+  }
+  .wordmark{ font-size:1.35rem; color: var(--navy); }
+  .wordmark span{ color: var(--navy); -webkit-text-stroke: 0; background: var(--green); padding: 0 6px; border-radius: 4px; }
+  .nav-cta{
+    background: var(--navy);
+    color: var(--green);
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight:700;
+    font-size:0.95rem;
+    border: 2px solid var(--navy);
+    transition: transform .15s ease, background .15s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{ background: var(--navy-deep); transform: translateY(-1px); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 100px 0 90px;
+    background: var(--yellow);
+    border-bottom: 2px solid var(--navy);
+    text-align:center;
+  }
+  .eyebrow-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background: var(--navy);
+    color: var(--green);
+    padding:7px 16px;
+    border-radius: 999px;
+    font-size:0.85rem;
+    font-weight:600;
+    margin-bottom: 30px;
+  }
+  .eyebrow-badge .dot{ width:8px;height:8px;border-radius:50%; background: var(--green); box-shadow: 0 0 8px 2px var(--green); }
+  .hero h1{
+    font-size: clamp(2.3rem, 5.6vw, 3.9rem);
+    line-height: 1.08;
+    max-width: 800px;
+    margin: 0 auto 22px;
+    color: var(--navy);
+  }
+  .hero h1 .mark{ color: var(--navy); background: var(--green); padding: 0 10px; border-radius: 8px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .hero p.lede{
+    font-size: 1.14rem;
+    max-width: 540px;
+    margin: 0 auto 38px;
+    color: rgba(10,26,74,0.82);
+    line-height:1.6;
+  }
+  .hero-actions{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .btn-primary{
+    background: var(--navy);
+    color: var(--green);
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight:700;
+    font-size:1.02rem;
+    border: 2px solid var(--navy);
+    transition: transform .15s ease, background .15s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); background: var(--navy-deep); }
+  .btn-ghost{
+    background: var(--white);
+    color: var(--navy);
+    padding: 16px 28px;
+    border-radius: 8px;
+    font-weight:700;
+    font-size:1.02rem;
+    border: 2px solid var(--navy);
+    transition: background .15s ease;
+  }
+  .btn-ghost:hover{ background: var(--yellow-soft); }
+
+  /* scorecard dial */
+  .scorecard{
+    max-width: 480px;
+    margin: 56px auto 0;
+    background: var(--navy);
+    border: 2px solid var(--navy);
+    border-radius: 20px;
+    padding: 26px;
+  }
+  .scorecard svg{ width:100%; height:auto; display:block; }
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block{ padding: 92px 0; border-bottom: 2px solid var(--navy); }
+  section.block.dark{ background: var(--navy); color: var(--white); }
+  .kicker{
+    font-weight:700;
+    font-size:0.92rem;
+    margin-bottom:10px;
+    color: var(--navy);
+  }
+  section.block.dark .kicker{ color: var(--green); }
+  .kicker::before{
+    content:"";
+    display:inline-block;
+    width:22px;height:3px;
+    background: var(--green);
+    margin-right:10px;
+    vertical-align: middle;
+  }
+  .block h2{
+    font-size: clamp(1.7rem, 3.8vw, 2.5rem);
+    max-width: 660px;
+    margin-bottom: 18px;
+    line-height:1.15;
+  }
+  .block p.intro{
+    max-width: 620px;
+    font-size:1.03rem;
+    line-height:1.7;
+    margin-bottom: 46px;
+    color: rgba(10,26,74,0.82);
+  }
+  section.block.dark p.intro{ color: rgba(255,255,255,0.85); }
+
+  /* ---------- 4 training tracks ---------- */
+  .tracks-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+  .track-card{
+    background: var(--white);
+    border: 2px solid var(--navy);
+    border-radius: 16px;
+    padding: 26px;
+  }
+  .track-card .tag{
+    display:inline-block;
+    font-size:0.78rem;
+    font-weight:700;
+    color: var(--navy);
+    background: var(--green);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .track-card h3{ font-size:1.12rem; margin-bottom:8px; }
+  .track-card p{ font-size:0.95rem; line-height:1.6; color: rgba(10,26,74,0.78); }
+
+  /* ---------- progressive load bar ---------- */
+  .load-track{
+    background: var(--white);
+    border: 2px solid var(--navy);
+    border-radius: 18px;
+    padding: 32px;
+  }
+  .load-bar{
+    display:flex;
+    align-items:flex-end;
+    gap: 10px;
+    height: 120px;
+    margin-bottom: 20px;
+  }
+  .load-bar .rep{
+    flex:1;
+    background: var(--navy);
+    border-radius: 6px 6px 0 0;
+    position:relative;
+  }
+  .load-bar .rep:nth-child(odd){ background: var(--green); }
+  .load-labels{
+    display:flex;
+    justify-content:space-between;
+    font-size:0.85rem;
+    font-weight:600;
+    color: var(--navy);
+  }
+
+  /* ---------- cross-training rows ---------- */
+  .cross-list{ display:flex; flex-direction:column; }
+  .cross-row{
+    display:grid;
+    grid-template-columns: 64px 1fr;
+    gap: 20px;
+    align-items:start;
+    padding: 24px 0;
+    border-top: 2px solid var(--navy);
+  }
+  .cross-row:last-child{ border-bottom: 2px solid var(--navy); }
+  .cross-num{
+    font-family:'Archivo', sans-serif;
+    font-size:1.7rem;
+    font-weight:800;
+    color: var(--green);
+  }
+  section.block:not(.dark) .cross-num{ color: var(--navy); -webkit-text-stroke: 0; background: var(--green); border-radius: 6px; padding: 2px 8px; display:inline-block; }
+  .cross-row h3{ font-size:1.1rem; margin-bottom:6px; }
+  .cross-row p{ font-size:0.97rem; line-height:1.65; max-width:580px; color: rgba(255,255,255,0.85); }
+
+  /* ---------- scoreboard ---------- */
+  .score-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .score-card{
+    background: var(--white);
+    border: 2px solid var(--navy);
+    border-radius: 16px;
+    padding: 28px;
+    text-align:center;
+  }
+  .score-card .big{
+    font-family:'Archivo', sans-serif;
+    font-size:2.4rem;
+    font-weight:800;
+    color: var(--navy);
+    margin-bottom:10px;
+  }
+  .score-card .big span{ color: var(--green); -webkit-text-stroke: 1px var(--navy); }
+  .score-card p{ font-size:0.94rem; color: rgba(10,26,74,0.78); line-height:1.55; }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    text-align:center;
+    background: var(--navy);
+    color: var(--white);
+    padding: 104px 0;
+  }
+  .final-cta h2{
+    font-size: clamp(1.9rem, 4.6vw, 2.7rem);
+    max-width: 660px;
+    margin: 0 auto 18px;
+  }
+  .final-cta h2 .mark{ color: var(--navy); background: var(--green); padding: 0 10px; border-radius: 8px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .final-cta p{
+    max-width: 520px;
+    margin: 0 auto 36px;
+    font-size:1.05rem;
+    line-height:1.6;
+    color: rgba(255,255,255,0.85);
+  }
+  .final-cta .btn-primary{ background: var(--green); color: var(--navy); border-color: var(--green); }
+  .final-cta .btn-primary:hover{ background: #2be089; }
+
+  footer{
+    background: var(--yellow);
+    padding: 30px 0;
+    text-align:center;
+    font-size:0.88rem;
+    color: rgba(10,26,74,0.7);
+    border-top: 2px solid var(--navy);
+  }
+  footer a{ color: var(--navy); font-weight:700; }
+
+  @media (max-width: 820px){
+    .tracks-grid{ grid-template-columns: 1fr; }
+    .score-grid{ grid-template-columns: 1fr; }
+  }
+
+  :focus-visible{
+    outline: 3px solid var(--navy);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="wordmark">Easy<span>Land</span>X</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="eyebrow-badge"><span class="dot"></span> Inspired by Brain Workout</div>
+    <h1>Your Landing Page Deserves Its Own <span class="mark">Training Program</span></h1>
+    <p class="lede">A page that never gets conditioned goes soft over time. EasyLandX treats every landing page like a well-run gym — progressive, cross-trained, and scored — so it keeps getting stronger with every visitor who walks through.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start Training My Page</a>
+      <a class="btn-ghost" href="#tracks">See the Training Tracks</a>
+    </div>
+    <div class="scorecard">
+      <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+        <text x="20" y="34" font-family="Archivo" font-size="14" font-weight="700" fill="#39FF9E">Brain Rank: Page Fitness</text>
+        <rect x="20" y="52" width="360" height="16" rx="8" fill="#0A1A4A" stroke="#39FF9E" stroke-width="1.5"/>
+        <rect x="20" y="52" width="290" height="16" rx="8" fill="#39FF9E"/>
+        <text x="20" y="94" font-family="Inter" font-size="11" fill="#ffffff" opacity="0.85">Clarity Score</text>
+        <text x="380" y="94" font-family="Inter" font-size="11" fill="#39FF9E" text-anchor="end" font-weight="700">92 / 100</text>
+        <rect x="20" y="104" width="360" height="16" rx="8" fill="#0A1A4A" stroke="#39FF9E" stroke-width="1.5"/>
+        <rect x="20" y="104" width="250" height="16" rx="8" fill="#39FF9E"/>
+        <text x="20" y="146" font-family="Inter" font-size="11" fill="#ffffff" opacity="0.85">Conversion Reflex</text>
+        <text x="380" y="146" font-family="Inter" font-size="11" fill="#39FF9E" text-anchor="end" font-weight="700">78 / 100</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section class="block" id="tracks">
+  <div class="container">
+    <div class="kicker">Four Training Tracks</div>
+    <h2>Every page workout targets a different muscle of persuasion.</h2>
+    <p class="intro">Just like a well-rounded gym program, a strong landing page trains more than one skill at once. EasyLandX builds each page across four core tracks, so nothing is left undertrained.</p>
+    <div class="tracks-grid">
+      <div class="track-card">
+        <span class="tag">Track 01 — Logic</span>
+        <h3>Structured Reasoning</h3>
+        <p>Headlines and sections are ordered so each point builds cleanly on the last, guiding visitors through a clear, logical case for saying yes.</p>
+      </div>
+      <div class="track-card">
+        <span class="tag">Track 02 — Pattern Recognition</span>
+        <h3>Instant Visual Clarity</h3>
+        <p>Consistent layout patterns let visitors recognize what matters at a glance, without needing to study the page to understand it.</p>
+      </div>
+      <div class="track-card">
+        <span class="tag">Track 03 — Memory</span>
+        <h3>Stays With Them</h3>
+        <p>A distinctive palette and a single strong message make your business easy to recall days after the first visit.</p>
+      </div>
+      <div class="track-card">
+        <span class="tag">Track 04 — Flexibility</span>
+        <h3>Works On Any Device</h3>
+        <p>The layout adapts fluidly between desktop and mobile, staying sharp and easy to use wherever visitors arrive from.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block dark" id="progressive">
+  <div class="container">
+    <div class="kicker">The Progressive Load</div>
+    <h2>We build your page in sets — starting light, then adding strength.</h2>
+    <p class="intro" style="color:rgba(255,255,255,0.85)">Rather than launching everything at once, EasyLandX builds your page in progressive stages — from a clean first draft to a fully conditioned, high-performing final version.</p>
+    <div class="load-track">
+      <div class="load-bar">
+        <div class="rep" style="height:30%"></div>
+        <div class="rep" style="height:42%"></div>
+        <div class="rep" style="height:55%"></div>
+        <div class="rep" style="height:68%"></div>
+        <div class="rep" style="height:82%"></div>
+        <div class="rep" style="height:100%"></div>
+      </div>
+      <div class="load-labels">
+        <span>Draft</span><span>Structure</span><span>Copy</span><span>Design</span><span>Polish</span><span>Launch</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="crosstrain">
+  <div class="container">
+    <div class="kicker">Multi-Skill Cross-Training</div>
+    <h2>No single page skill trains alone.</h2>
+    <p class="intro">Just as Moore mixes puzzle types to keep the mind sharp across every domain, EasyLandX blends disciplines within a single page — so strategy, design, and copy all condition each other.</p>
+    <div class="cross-list">
+      <div class="cross-row">
+        <div class="cross-num">01</div>
+        <div><h3 style="color:var(--navy)">Copy Set</h3><p style="color:rgba(10,26,74,0.78)">A clear, benefit-first headline warms up the page and sets the tone for everything below it.</p></div>
+      </div>
+      <div class="cross-row">
+        <div class="cross-num">02</div>
+        <div><h3 style="color:var(--navy)">Design Set</h3><p style="color:rgba(10,26,74,0.78)">Layout and color reinforce that message visually, so words and design pull in the same direction.</p></div>
+      </div>
+      <div class="cross-row">
+        <div class="cross-num">03</div>
+        <div><h3 style="color:var(--navy)">Proof Set</h3><p style="color:rgba(10,26,74,0.78)">Testimonials and results add real evidence, giving visitors a reason beyond a good first impression.</p></div>
+      </div>
+      <div class="cross-row">
+        <div class="cross-num">04</div>
+        <div><h3 style="color:var(--navy)">Conversion Set</h3><p style="color:rgba(10,26,74,0.78)">A single, well-placed call-to-action closes the workout, turning attention into a clear next step.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block dark" id="scoreboard">
+  <div class="container">
+    <div class="kicker">The Scoring Feedback Loop</div>
+    <h2>Track your page's fitness the same way you'd track any workout.</h2>
+    <p class="intro" style="color:rgba(255,255,255,0.85)">Every EasyLandX page comes with a simple way to measure progress, so improvements are visible, not just assumed.</p>
+    <div class="score-grid">
+      <div class="score-card">
+        <div class="big"><span>+</span> Clarity</div>
+        <p>How quickly a new visitor understands your offer, at a glance.</p>
+      </div>
+      <div class="score-card">
+        <div class="big"><span>+</span> Recall</div>
+        <p>How memorable your page feels after visitors have moved on.</p>
+      </div>
+      <div class="score-card">
+        <div class="big"><span>+</span> Momentum</div>
+        <p>How smoothly visitors move from arrival to that final, confident click.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="container">
+    <h2>Put your landing page through a real <span class="mark">workout</span>.</h2>
+    <p>EasyLandX builds a page that's trained, tested, and ready to perform — one rep at a time.</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start Training My Page</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Built with EasyLandX — <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Make Your Business the Interesting One</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow: #FFDE21;
+    --yellow-soft: #FFF07A;
+    --blue: #2450F0;
+    --blue-deep: #16307E;
+    --pink: #FF5FAE;
+    --ink: #221C0E;
+    --white: #ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Nunito Sans', sans-serif;
+    background: var(--yellow);
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.wordmark{
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+  }
+  a{color:inherit;text-decoration:none;}
+  .container{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    background: rgba(255,222,33,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 3px solid var(--ink);
+  }
+  nav .container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:72px;
+  }
+  .wordmark{ font-size:1.35rem; color: var(--ink); }
+  .wordmark span{ color: var(--blue); }
+  .nav-cta{
+    background: var(--pink);
+    color: var(--white);
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-weight:600;
+    font-size:0.95rem;
+    border: 3px solid var(--ink);
+    transition: transform .15s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{ transform: translateY(-2px) rotate(-1deg); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 0 80px;
+    background: var(--yellow);
+    border-bottom: 3px solid var(--ink);
+    text-align:center;
+    position:relative;
+  }
+  .eyebrow-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background: var(--white);
+    border:3px solid var(--ink);
+    padding:7px 16px;
+    border-radius: 999px;
+    font-size:0.85rem;
+    font-weight:700;
+    margin-bottom: 28px;
+    transform: rotate(-2deg);
+  }
+  .eyebrow-badge .dot{ width:8px;height:8px;border-radius:50%; background: var(--pink); }
+  .hero h1{
+    font-size: clamp(2.3rem, 5.6vw, 3.9rem);
+    line-height: 1.1;
+    max-width: 780px;
+    margin: 0 auto 22px;
+  }
+  .hero h1 .u{ color: var(--blue); }
+  .hero p.lede{
+    font-size: 1.14rem;
+    max-width: 540px;
+    margin: 0 auto 38px;
+    color: rgba(34,28,14,0.82);
+    line-height:1.6;
+  }
+  .hero-actions{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .btn-primary{
+    background: var(--pink);
+    color: var(--white);
+    padding: 16px 32px;
+    border-radius: 999px;
+    font-weight:600;
+    font-size:1.02rem;
+    border: 3px solid var(--ink);
+    transition: transform .15s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{ transform: translateY(-3px) rotate(-1deg); }
+  .btn-ghost{
+    background: var(--white);
+    color: var(--ink);
+    padding: 16px 28px;
+    border-radius: 999px;
+    font-weight:600;
+    font-size:1.02rem;
+    border: 3px solid var(--ink);
+    transition: background .15s ease;
+  }
+  .btn-ghost:hover{ background: var(--yellow-soft); }
+
+  /* venn diagram */
+  .venn-wrap{
+    max-width: 460px;
+    margin: 60px auto 0;
+    background: var(--white);
+    border: 3px solid var(--ink);
+    border-radius: 20px;
+    padding: 26px;
+    transform: rotate(-0.5deg);
+  }
+  .venn-wrap svg{ width:100%; height:auto; display:block; }
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block{ padding: 88px 0; border-bottom: 3px solid var(--ink); }
+  section.block.dark{ background: var(--blue); color: var(--white); }
+  .kicker{
+    font-weight:700;
+    font-size:0.92rem;
+    margin-bottom:10px;
+    color: var(--blue);
+  }
+  section.block.dark .kicker{ color: var(--yellow); }
+  .kicker::before{
+    content:"";
+    display:inline-block;
+    width:22px;height:3px;
+    background: var(--pink);
+    margin-right:10px;
+    vertical-align: middle;
+  }
+  .block h2{
+    font-size: clamp(1.7rem, 3.8vw, 2.5rem);
+    max-width: 660px;
+    margin-bottom: 18px;
+    line-height:1.15;
+  }
+  .block p.intro{
+    max-width: 620px;
+    font-size:1.03rem;
+    line-height:1.7;
+    margin-bottom: 44px;
+    color: rgba(34,28,14,0.82);
+  }
+  section.block.dark p.intro{ color: rgba(255,255,255,0.88); }
+
+  /* ---------- 10 steps card grid ---------- */
+  .steps-grid{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+  .step-card{
+    background: var(--white);
+    border: 3px solid var(--ink);
+    border-radius: 14px;
+    padding: 18px 16px;
+    text-align:center;
+  }
+  .step-card:nth-child(3n+1){ transform: rotate(-1.5deg); }
+  .step-card:nth-child(3n+2){ transform: rotate(1deg); }
+  .step-card .num{
+    font-family:'Fredoka', sans-serif;
+    font-size:1.5rem;
+    font-weight:700;
+    color: var(--pink);
+    display:block;
+    margin-bottom:8px;
+  }
+  .step-card p{ font-size:0.85rem; line-height:1.4; font-weight:600; }
+
+  /* ---------- Venn explained ---------- */
+  .venn-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items:center;
+  }
+  .venn-copy p{
+    font-size:1rem;
+    line-height:1.75;
+    margin-bottom:16px;
+    color: rgba(34,28,14,0.85);
+  }
+  .venn-copy strong{ color: var(--blue); }
+
+  /* ---------- daily vacations cards ---------- */
+  .escape-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .escape-card{
+    background: var(--white);
+    border: 3px solid var(--ink);
+    border-radius: 16px;
+    padding: 26px;
+  }
+  .escape-card .tag{
+    display:inline-block;
+    font-size:0.78rem;
+    font-weight:700;
+    color: var(--white);
+    background: var(--blue);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .escape-card h3{ font-size:1.08rem; margin-bottom:8px; }
+  .escape-card p{ font-size:0.94rem; line-height:1.6; color: rgba(34,28,14,0.78); }
+
+  /* ---------- confidence list ---------- */
+  .confidence-list{ display:flex; flex-direction:column; }
+  .confidence-row{
+    display:grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    align-items:start;
+    padding: 22px 0;
+    border-top: 3px solid rgba(255,255,255,0.3);
+  }
+  .confidence-row:last-child{ border-bottom: 3px solid rgba(255,255,255,0.3); }
+  .confidence-mark{
+    font-family:'Fredoka', sans-serif;
+    font-size:1.6rem;
+    font-weight:700;
+    color: var(--yellow);
+  }
+  .confidence-row h3{ font-size:1.08rem; margin-bottom:6px; }
+  .confidence-row p{ font-size:0.96rem; line-height:1.6; max-width:560px; color: rgba(255,255,255,0.88); }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    text-align:center;
+    background: var(--pink);
+    color: var(--white);
+    padding: 100px 0;
+  }
+  .final-cta h2{
+    font-size: clamp(1.9rem, 4.6vw, 2.7rem);
+    max-width: 640px;
+    margin: 0 auto 18px;
+  }
+  .final-cta p{
+    max-width: 500px;
+    margin: 0 auto 36px;
+    font-size:1.05rem;
+    line-height:1.6;
+    color: rgba(255,255,255,0.92);
+  }
+  .final-cta .btn-primary{ background: var(--white); color: var(--pink); }
+
+  footer{
+    background: var(--yellow);
+    padding: 30px 0;
+    text-align:center;
+    font-size:0.88rem;
+    color: rgba(34,28,14,0.75);
+  }
+  footer a{ color: var(--ink); font-weight:700; }
+
+  @media (max-width: 820px){
+    .steps-grid{ grid-template-columns: repeat(2, 1fr); }
+    .venn-grid{ grid-template-columns: 1fr; }
+    .escape-grid{ grid-template-columns: 1fr; }
+  }
+
+  :focus-visible{
+    outline: 3px solid var(--blue);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="wordmark">Easy<span>Land</span>X</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="eyebrow-badge"><span class="dot"></span> Inspired by How to Be Interesting</div>
+    <h1>Make Your Business the <span class="u">Interesting</span> One</h1>
+    <p class="lede">Interesting isn't something a business is born with — it's something a page can show, on purpose. EasyLandX designs your landing page to sit exactly where your knowledge, your passion, and your originality meet.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build My Page on EasyLandX</a>
+      <a class="btn-ghost" href="#venn">See the Sweet Spot</a>
+    </div>
+    <div class="venn-wrap">
+      <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="110" cy="95" r="72" fill="#2450F0" fill-opacity="0.55"/>
+        <circle cx="190" cy="95" r="72" fill="#FF5FAE" fill-opacity="0.55"/>
+        <circle cx="150" cy="150" r="72" fill="#FFDE21" fill-opacity="0.75" stroke="#221C0E" stroke-width="1.5"/>
+        <circle cx="110" cy="95" r="72" fill="none" stroke="#221C0E" stroke-width="2"/>
+        <circle cx="190" cy="95" r="72" fill="none" stroke="#221C0E" stroke-width="2"/>
+        <text x="80" y="60" font-family="Nunito Sans" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">What You Know</text>
+        <text x="222" y="60" font-family="Nunito Sans" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">What Makes You, You</text>
+        <text x="150" y="195" font-family="Nunito Sans" font-size="11" font-weight="700" fill="#221C0E" text-anchor="middle">What No One Else Offers</text>
+        <text x="150" y="125" font-family="Fredoka" font-size="14" font-weight="700" fill="#221C0E" text-anchor="middle">Your Page</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section class="block" id="steps">
+  <div class="container">
+    <div class="kicker">The 10-Step Blueprint, Applied</div>
+    <h2>Every step toward being interesting has a matching move for your page.</h2>
+    <p class="intro">Hagy's manifesto maps neatly onto what a genuinely interesting landing page needs. Here's how EasyLandX brings each step to life on your page.</p>
+    <div class="steps-grid">
+      <div class="step-card"><span class="num">01</span><p>Show a real discovery, not a generic stock photo.</p></div>
+      <div class="step-card"><span class="num">02</span><p>Share your story generously in your own words.</p></div>
+      <div class="step-card"><span class="num">03</span><p>One button, one clear action — momentum over hesitation.</p></div>
+      <div class="step-card"><span class="num">04</span><p>Let your quirky mix of services be the headline.</p></div>
+      <div class="step-card"><span class="num">05</span><p>Name the cause your business truly stands for.</p></div>
+      <div class="step-card"><span class="num">06</span><p>Let real customer voices speak louder than yours.</p></div>
+      <div class="step-card"><span class="num">07</span><p>Try a bold layout others in your field haven't.</p></div>
+      <div class="step-card"><span class="num">08</span><p>Skip the template everyone else is using.</p></div>
+      <div class="step-card"><span class="num">09</span><p>State your point of view clearly and proudly.</p></div>
+      <div class="step-card"><span class="num">10</span><p>Stay focused on the visitors who are genuinely excited.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="venn">
+  <div class="container">
+    <div class="kicker">The Sweet Spot</div>
+    <h2>The most memorable pages sit right at the overlap.</h2>
+    <div class="venn-grid">
+      <div class="venn-copy">
+        <p>Hagy's most famous diagram places genuine individuality exactly where three circles overlap: what you know, what you care about, and what no one else is doing quite the same way.</p>
+        <p>EasyLandX finds that overlap for your business and builds your page around it — <strong>not the safest version of a template, but the truest version of you.</strong></p>
+        <p>That unusual combination of strengths is exactly what visitors remember after they leave the page.</p>
+      </div>
+      <div class="venn-wrap" style="transform:none;">
+        <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="110" cy="95" r="72" fill="#2450F0" fill-opacity="0.5"/>
+          <circle cx="190" cy="95" r="72" fill="#FF5FAE" fill-opacity="0.5"/>
+          <circle cx="150" cy="150" r="72" fill="#FFDE21" fill-opacity="0.7" stroke="#221C0E" stroke-width="1.5"/>
+          <circle cx="110" cy="95" r="72" fill="none" stroke="#221C0E" stroke-width="2"/>
+          <circle cx="190" cy="95" r="72" fill="none" stroke="#221C0E" stroke-width="2"/>
+          <text x="78" y="60" font-family="Nunito Sans" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="middle">Expertise</text>
+          <text x="222" y="60" font-family="Nunito Sans" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="middle">Passion</text>
+          <text x="150" y="195" font-family="Nunito Sans" font-size="10.5" font-weight="700" fill="#221C0E" text-anchor="middle">Originality</text>
+          <text x="150" y="125" font-family="Fredoka" font-size="13" font-weight="700" fill="#221C0E" text-anchor="middle">Memorable</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="vacations">
+  <div class="container">
+    <div class="kicker">Daily Vacations, for Your Brand</div>
+    <h2>Small, deliberate departures from the usual template.</h2>
+    <p class="intro">Hagy calls for small daily detours from routine. EasyLandX applies the same idea to design — tiny, intentional departures from the expected that make a page feel genuinely alive.</p>
+    <div class="escape-grid">
+      <div class="escape-card">
+        <span class="tag">Detour 01</span>
+        <h3>An Unexpected Palette</h3>
+        <p>A color combination chosen for your brand specifically, instead of the same safe blue-and-white every competitor uses.</p>
+      </div>
+      <div class="escape-card">
+        <span class="tag">Detour 02</span>
+        <h3>A Real Voice</h3>
+        <p>Copy written the way you'd actually talk to a customer, not the way a generic template fills in the blanks.</p>
+      </div>
+      <div class="escape-card">
+        <span class="tag">Detour 03</span>
+        <h3>One Bold Detail</h3>
+        <p>A single distinctive element — an illustration, a diagram, a shape — that gives visitors something to remember.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block dark" id="confidence">
+  <div class="container">
+    <div class="kicker">The Courage to Stand Out</div>
+    <h2>Being different only works if you commit to it fully.</h2>
+    <div class="confidence-list">
+      <div class="confidence-row">
+        <div class="confidence-mark">1%</div>
+        <div><h3>Stay Curious, Not Boastful</h3><p>Your page leads with genuine value for visitors, not with ego — earning trust through generosity, not volume.</p></div>
+      </div>
+      <div class="confidence-row">
+        <div class="confidence-mark">✓</div>
+        <div><h3>Take the Leap</h3><p>A page built around your real strengths, published with confidence, beats an endlessly polished draft that never goes live.</p></div>
+      </div>
+      <div class="confidence-row">
+        <div class="confidence-mark">→</div>
+        <div><h3>Keep Your Focus Forward</h3><p>EasyLandX keeps your page centered on the visitors who are genuinely excited about what you offer — that's who it's built for.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="container">
+    <h2>Your business already has an interesting story. Let's give it a page that shows it.</h2>
+    <p>EasyLandX turns your knowledge, your passion, and your originality into one page worth remembering.</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build My Page on EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Built with EasyLandX — <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>

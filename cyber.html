@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Give Your Business Its Digital Self-Image</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink: #ff2e9f;
+    --pink-soft: #ff6ec4;
+    --red: #ff1b4c;
+    --red-deep: #c8003a;
+    --white: #ffffff;
+    --ink: #1a0a20;
+    --ink-panel: #230e29;
+    --grid-line: rgba(255,255,255,0.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope', sans-serif;
+    background: var(--pink);
+    color: var(--white);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.wordmark{
+    font-family:'Rajdhani', sans-serif;
+    font-weight:700;
+    letter-spacing:0.3px;
+  }
+  a{color:inherit;text-decoration:none;}
+  .container{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    background: linear-gradient(180deg, rgba(26,10,32,0.92), rgba(26,10,32,0.78));
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  nav .container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:72px;
+  }
+  .wordmark{
+    font-size:1.35rem;
+    color: var(--white);
+  }
+  .wordmark span{color: var(--red);}
+  .nav-cta{
+    background: var(--red);
+    color: var(--white);
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-weight:600;
+    font-size:0.95rem;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: transform .15s ease, background .15s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{ background: var(--red-deep); transform: translateY(-1px); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding: 96px 0 110px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(255,255,255,0.16), transparent 55%),
+      repeating-linear-gradient(0deg, var(--grid-line) 0 1px, transparent 1px 64px),
+      repeating-linear-gradient(90deg, var(--grid-line) 0 1px, transparent 1px 64px),
+      var(--pink);
+    text-align:center;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .eyebrow-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background: rgba(26,10,32,0.55);
+    border:1px solid rgba(255,255,255,0.3);
+    padding:7px 16px;
+    border-radius: 999px;
+    font-size:0.85rem;
+    font-weight:600;
+    margin-bottom: 28px;
+  }
+  .eyebrow-badge .dot{
+    width:8px;height:8px;border-radius:50%;
+    background: var(--red);
+    box-shadow: 0 0 10px 2px var(--red);
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    line-height: 1.05;
+    max-width: 820px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 .accent{ color: var(--ink); -webkit-text-stroke: 1px var(--white); }
+  .hero p.lede{
+    font-size: 1.15rem;
+    max-width: 560px;
+    margin: 0 auto 40px;
+    color: rgba(255,255,255,0.92);
+    line-height:1.6;
+  }
+  .hero-actions{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    background: var(--red);
+    color: var(--white);
+    padding: 16px 34px;
+    border-radius: 999px;
+    font-weight:700;
+    font-size:1.05rem;
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 0 0 rgba(255,27,76,0.6);
+    transition: transform .15s ease, box-shadow .2s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255,27,76,0.55);
+  }
+  .btn-ghost{
+    background: transparent;
+    color: var(--white);
+    padding: 16px 30px;
+    border-radius: 999px;
+    font-weight:600;
+    font-size:1.05rem;
+    border: 1.5px solid rgba(255,255,255,0.55);
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .btn-ghost:hover{ background: rgba(255,255,255,0.1); border-color: var(--white); }
+
+  /* radar/target motif */
+  .radar{
+    width: 210px; height:210px;
+    margin: 56px auto 0;
+    position:relative;
+  }
+  .radar svg{ width:100%; height:100%; }
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block{
+    padding: 96px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  section.block.dark{
+    background: var(--ink);
+  }
+  .kicker{
+    font-weight:700;
+    font-size:0.95rem;
+    color: var(--white);
+    opacity:0.75;
+    margin-bottom:10px;
+  }
+  .kicker::before{
+    content:"";
+    display:inline-block;
+    width:22px;height:2px;
+    background: var(--red);
+    margin-right:10px;
+    vertical-align: middle;
+  }
+  .block h2{
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    max-width: 640px;
+    margin-bottom: 20px;
+    line-height:1.1;
+  }
+  .block p.intro{
+    max-width: 620px;
+    font-size:1.05rem;
+    line-height:1.7;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 48px;
+  }
+  section.block.dark p.intro,
+  section.block.dark .kicker{ color: rgba(255,255,255,0.85); }
+
+  /* ---------- MECHANISM (2 col) ---------- */
+  .mechanism-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items:center;
+  }
+  .mechanism-diagram{
+    background: var(--ink-panel);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 32px;
+  }
+  .mechanism-diagram svg{ width:100%; height:auto; display:block; }
+  .mechanism-copy p{
+    font-size:1.02rem;
+    line-height:1.75;
+    color: rgba(255,255,255,0.92);
+    margin-bottom:18px;
+  }
+  .mechanism-copy strong{ color: var(--white); }
+
+  /* ---------- THEATER (steps) ---------- */
+  .theater-steps{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .theater-step{
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 18px;
+    padding: 28px 24px;
+  }
+  .theater-step .num{
+    font-family:'Rajdhani', sans-serif;
+    font-size:2.2rem;
+    font-weight:700;
+    color: var(--white);
+    opacity:0.55;
+    line-height:1;
+    margin-bottom:14px;
+  }
+  .theater-step h3{
+    font-size:1.25rem;
+    margin-bottom:10px;
+    color: var(--white);
+  }
+  .theater-step p{
+    font-size:0.96rem;
+    line-height:1.6;
+    color: rgba(255,255,255,0.88);
+  }
+
+  /* ---------- SUCCESS blueprint list ---------- */
+  .success-list{
+    display:flex;
+    flex-direction:column;
+    border-top: 1px solid rgba(255,255,255,0.18);
+  }
+  .success-row{
+    display:grid;
+    grid-template-columns: 90px 1fr;
+    gap: 24px;
+    align-items:start;
+    padding: 26px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.18);
+  }
+  .success-letter{
+    font-family:'Rajdhani', sans-serif;
+    font-size:2.6rem;
+    font-weight:700;
+    color: var(--red);
+    line-height:1;
+  }
+  .success-row h3{
+    font-size:1.15rem;
+    margin-bottom:6px;
+    color: var(--white);
+  }
+  .success-row p{
+    font-size:0.98rem;
+    line-height:1.65;
+    color: rgba(255,255,255,0.88);
+    max-width:520px;
+  }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    text-align:center;
+    background:
+      radial-gradient(circle at 50% 100%, rgba(255,27,76,0.45), transparent 60%),
+      var(--ink);
+    padding: 110px 0;
+  }
+  .final-cta h2{
+    font-size: clamp(2rem, 5vw, 3rem);
+    max-width: 640px;
+    margin: 0 auto 20px;
+  }
+  .final-cta p{
+    max-width: 500px;
+    margin: 0 auto 40px;
+    font-size:1.08rem;
+    color: rgba(255,255,255,0.9);
+    line-height:1.6;
+  }
+
+  footer{
+    background: var(--ink);
+    padding: 32px 0;
+    text-align:center;
+    font-size:0.88rem;
+    color: rgba(255,255,255,0.6);
+  }
+  footer a{ color: var(--white); font-weight:600; }
+
+  @media (max-width: 760px){
+    .mechanism-grid{ grid-template-columns: 1fr; }
+    .theater-steps{ grid-template-columns: 1fr; }
+    .success-row{ grid-template-columns: 56px 1fr; }
+    .success-letter{ font-size:1.9rem; }
+  }
+
+  :focus-visible{
+    outline: 2px solid var(--white);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="wordmark">Easy<span>Land</span>X</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="eyebrow-badge"><span class="dot"></span> Inspired by Psycho-Cybernetics</div>
+    <h1>Give Your Business the <span class="accent">Digital Self-Image</span> It Deserves</h1>
+    <p class="lede">A landing page is more than a page — it's the self-image your business shows the world the instant someone arrives. EasyLandX builds that self-image with confidence, clarity, and a single clear path to yes.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start My Page on EasyLandX</a>
+      <a class="btn-ghost" href="#mechanism">See How It Works</a>
+    </div>
+    <div class="radar" aria-hidden="true">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="90" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+        <circle cx="100" cy="100" r="60" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+        <circle cx="100" cy="100" r="30" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+        <line x1="100" y1="10" x2="100" y2="190" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+        <line x1="10" y1="100" x2="190" y2="100" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+        <circle cx="100" cy="100" r="6" fill="#ff1b4c">
+          <animate attributeName="r" values="6;10;6" dur="2.4s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="100" cy="100" r="14" stroke="#ff1b4c" stroke-width="2" fill="none" opacity="0.7">
+          <animate attributeName="r" values="14;80;14" dur="2.4s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.7;0;0.7" dur="2.4s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section class="block dark" id="self-image">
+  <div class="container">
+    <div class="kicker">The Self-Image Principle</div>
+    <h2>Visitors decide how they feel about your business in seconds — long before they read a single word.</h2>
+    <p class="intro">The moment your page loads, it sets a picture in your visitor's mind: polished and trustworthy, or unfinished and unsure. That picture becomes their reference point for everything that follows — pricing, service, quality. EasyLandX designs that first picture with intention, so the identity your visitors see matches the confidence your business already carries.</p>
+  </div>
+</section>
+
+<section class="block" id="mechanism">
+  <div class="container">
+    <div class="kicker">The Conversion Autopilot</div>
+    <h2>One clear target. Every element guides toward it, automatically.</h2>
+    <div class="mechanism-grid">
+      <div class="mechanism-diagram">
+        <svg viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="30" width="80" height="34" rx="8" fill="none" stroke="#ffffff" stroke-opacity="0.5"/>
+          <text x="50" y="51" font-family="Manrope" font-size="11" fill="#ffffff" text-anchor="middle">Headline</text>
+          <rect x="10" y="93" width="80" height="34" rx="8" fill="none" stroke="#ffffff" stroke-opacity="0.5"/>
+          <text x="50" y="114" font-family="Manrope" font-size="11" fill="#ffffff" text-anchor="middle">Proof</text>
+          <rect x="10" y="156" width="80" height="34" rx="8" fill="none" stroke="#ffffff" stroke-opacity="0.5"/>
+          <text x="50" y="177" font-family="Manrope" font-size="11" fill="#ffffff" text-anchor="middle">Offer</text>
+          <path d="M90 47 C140 47, 140 110, 190 110" stroke="#ff2e9f" stroke-width="2" fill="none"/>
+          <path d="M90 110 C140 110, 140 110, 190 110" stroke="#ff2e9f" stroke-width="2" fill="none"/>
+          <path d="M90 173 C140 173, 140 110, 190 110" stroke="#ff2e9f" stroke-width="2" fill="none"/>
+          <circle cx="190" cy="110" r="6" fill="#ff2e9f"/>
+          <path d="M196 110 L 260 110" stroke="#ff1b4c" stroke-width="3" fill="none"/>
+          <polygon points="258,102 276,110 258,118" fill="#ff1b4c"/>
+          <rect x="278" y="86" width="34" height="48" rx="8" fill="#ff1b4c"/>
+          <text x="295" y="115" font-family="Manrope" font-size="10" fill="#ffffff" text-anchor="middle">Yes</text>
+        </svg>
+      </div>
+      <div class="mechanism-copy">
+        <p>Set one clear goal for your page — a booking, a call, a purchase — and every part of the page starts working toward it together: the headline earns attention, the proof builds trust, the offer makes the next step obvious.</p>
+        <p>Just as a guided system corrects its course toward a fixed target, EasyLandX pages use visitor behavior as steady, useful feedback — small adjustments that keep every visit gliding smoothly toward that single "yes."</p>
+        <p><strong>Once the target is set, the page does the steering.</strong> Your business simply gets to enjoy the results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block dark" id="theater">
+  <div class="container">
+    <div class="kicker">The Preview Theater</div>
+    <h2>See your finished page in full color, before it ever goes live.</h2>
+    <p class="intro">EasyLandX gives you a vivid, complete preview of your page early — the colors, the layout, the flow — so you can feel the confidence of your finished site well before launch day arrives.</p>
+    <div class="theater-steps">
+      <div class="theater-step">
+        <div class="num">01</div>
+        <h3>Picture It</h3>
+        <p>Share your business and your goal. We sketch the full experience your visitors will feel, start to finish.</p>
+      </div>
+      <div class="theater-step">
+        <div class="num">02</div>
+        <h3>Preview It</h3>
+        <p>Walk through your page exactly as your customers will see it — every color, headline, and button in place.</p>
+      </div>
+      <div class="theater-step">
+        <div class="num">03</div>
+        <h3>Live It</h3>
+        <p>Approve with confidence, and your page goes live — a true reflection of your business, ready to welcome visitors.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="success">
+  <div class="container">
+    <div class="kicker">Your SUCCESS Blueprint</div>
+    <h2>Seven qualities, built into every EasyLandX page.</h2>
+    <p class="intro">A confident self-image is made of specific, nameable parts. Here's how EasyLandX builds each one directly into your page.</p>
+    <div class="success-list">
+      <div class="success-row">
+        <div class="success-letter">S</div>
+        <div><h3>Sense of Direction</h3><p>One clear call-to-action guides every visitor toward the next step, with nothing to guess about.</p></div>
+      </div>
+      <div class="success-row">
+        <div class="success-letter">U</div>
+        <div><h3>Understanding</h3><p>Plain, friendly language explains your offer instantly, in words your customers already use.</p></div>
+      </div>
+      <div class="success-row">
+        <div class="success-letter">C</div>
+        <div><h3>Courage</h3><p>Bold color and clear layout let your brand stand tall and be remembered.</p></div>
+      </div>
+      <div class="success-row">
+        <div class="success-letter">C</div>
+        <div><h3>Generosity</h3><p>Affordable pricing gives small businesses a genuine chance to shine online from day one.</p></div>
+      </div>
+      <div class="success-row">
+        <div class="success-letter">E</div>
+        <div><h3>Esteem</h3><p>Polished, professional design earns instant respect and trust from every new visitor.</p></div>
+      </div>
+      <div class="success-row">
+        <div class="success-letter">S</div>
+        <div><h3>Self-Confidence</h3><p>Fast loading and smooth performance keep your page ready to impress on any device.</p></div>
+      </div>
+      <div class="success-row">
+        <div class="success-letter">S</div>
+        <div><h3>Self-Acceptance</h3><p>A page shaped around who your business truly is today, with plenty of room to grow.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="container">
+    <h2>Your business already has a story worth telling. Give it the self-image to match.</h2>
+    <p>EasyLandX turns your goal into a clear, confident page — built to guide every visitor toward yes.</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start My Page on EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Built with EasyLandX — <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>
