@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Purpose-Built Landing Pages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #0A1A3C;
+    --navy-2: #122A54;
+    --navy-3: #1B3A6E;
+    --crimson: #B5273D;
+    --crimson-bright: #D63A52;
+    --gold: #D4AF37;
+    --gold-soft: #E9CE7A;
+    --cream: #F3EEE3;
+    --ink: #E7EBF5;
+    --ink-dim: #A9B4CC;
+    --max: 760px;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--navy);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: -0.01em;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .wrap-wide{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- HERO ---------- */
+
+  header.hero{
+    position: relative;
+    padding: 120px 0 100px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(182,39,61,0.28), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 0%, rgba(212,175,55,0.18), transparent 55%),
+      var(--navy);
+    border-bottom: 1px solid rgba(212,175,55,0.18);
+  }
+
+  .kicker{
+    font-size: 15px;
+    color: var(--gold-soft);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    margin-bottom: 22px;
+  }
+
+  header.hero h1{
+    font-size: clamp(38px, 6vw, 60px);
+    line-height: 1.08;
+    max-width: 720px;
+  }
+
+  header.hero h1 em{
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub{
+    margin-top: 26px;
+    max-width: 520px;
+    font-size: 18px;
+    color: var(--ink-dim);
+  }
+
+  .hero-actions{
+    margin-top: 42px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 30px;
+    background: var(--crimson);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15.5px;
+    text-decoration: none;
+    border-radius: 3px;
+    border: 1px solid var(--crimson-bright);
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+
+  .btn:hover{
+    background: var(--crimson-bright);
+    transform: translateY(-1px);
+  }
+
+  .btn:focus-visible{
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .btn-gold-text{
+    font-size: 14.5px;
+    color: var(--gold-soft);
+  }
+
+  /* ---------- SECTIONS ---------- */
+
+  section{
+    padding: 96px 0;
+    border-bottom: 1px solid rgba(233,206,122,0.1);
+  }
+
+  .eyebrow-num{
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    color: var(--gold);
+    font-style: italic;
+    margin-bottom: 18px;
+  }
+
+  section h2{
+    font-size: clamp(28px, 4vw, 36px);
+    line-height: 1.18;
+    max-width: 560px;
+  }
+
+  section p.lede{
+    margin-top: 20px;
+    font-size: 17px;
+    color: var(--ink-dim);
+    max-width: 560px;
+  }
+
+  .reveal{
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- convergence section ---------- */
+
+  .convergence-grid{
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(233,206,122,0.16);
+    border: 1px solid rgba(233,206,122,0.16);
+  }
+
+  .convergence-card{
+    background: var(--navy-2);
+    padding: 30px 26px;
+  }
+
+  .convergence-card .form{
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+
+  .convergence-card p{
+    font-size: 14.5px;
+    color: var(--ink-dim);
+  }
+
+  /* ---------- dual engine diagram ---------- */
+
+  .engine{
+    background: var(--navy-2);
+    border: 1px solid rgba(212,175,55,0.22);
+    padding: 8px;
+    margin-top: 50px;
+  }
+
+  .engine svg{ display: block; width: 100%; height: auto; }
+
+  /* ---------- two-column potential ---------- */
+
+  .potential-cols{
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+
+  .potential-panel{
+    padding: 34px 30px;
+    border: 1px solid;
+    border-radius: 3px;
+  }
+
+  .potential-panel.crimson{
+    border-color: rgba(182,39,61,0.4);
+    background: linear-gradient(160deg, rgba(182,39,61,0.14), transparent 70%);
+  }
+
+  .potential-panel.gold{
+    border-color: rgba(212,175,55,0.4);
+    background: linear-gradient(160deg, rgba(212,175,55,0.12), transparent 70%);
+  }
+
+  .potential-panel h3{
+    font-size: 19px;
+    margin-bottom: 12px;
+  }
+
+  .potential-panel p{
+    font-size: 14.5px;
+    color: var(--ink-dim);
+  }
+
+  /* ---------- purpose equation ---------- */
+
+  .equation-block{
+    margin-top: 46px;
+    padding: 44px 40px;
+    background: var(--navy-3);
+    border-left: 3px solid var(--gold);
+  }
+
+  .equation-block .line{
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 21px;
+    color: var(--cream);
+    margin-bottom: 14px;
+  }
+
+  .equation-block p{
+    font-size: 15px;
+    color: var(--ink-dim);
+    max-width: 560px;
+  }
+
+  /* ---------- elephant / rider ---------- */
+
+  .er-row{
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(233,206,122,0.18);
+  }
+
+  .er-col{
+    padding: 34px 30px;
+  }
+
+  .er-col:first-child{
+    border-right: 1px solid rgba(233,206,122,0.18);
+    background: rgba(182,39,61,0.08);
+  }
+
+  .er-col:last-child{
+    background: rgba(212,175,55,0.07);
+  }
+
+  .er-col h3{
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+
+  .er-col p{
+    font-size: 14.5px;
+    color: var(--ink-dim);
+  }
+
+  /* ---------- final cta ---------- */
+
+  .final-cta{
+    padding: 110px 0 120px;
+    text-align: center;
+    background:
+      radial-gradient(ellipse 800px 400px at 50% 100%, rgba(182,39,61,0.24), transparent 60%),
+      var(--navy);
+    border-bottom: none;
+  }
+
+  .final-cta h2{
+    max-width: 100%;
+    margin: 0 auto;
+    font-size: clamp(30px, 5vw, 44px);
+  }
+
+  .final-cta p.lede{
+    margin: 20px auto 0;
+    max-width: 480px;
+  }
+
+  .final-cta .hero-actions{
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  footer{
+    padding: 40px 0 60px;
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--ink-dim);
+  }
+
+  footer .gold-dot{
+    color: var(--gold);
+  }
+
+  @media (max-width: 720px){
+    .convergence-grid{ grid-template-columns: 1fr; }
+    .potential-cols{ grid-template-columns: 1fr; }
+    .er-row{ grid-template-columns: 1fr; }
+    .er-col:first-child{ border-right: none; border-bottom: 1px solid rgba(233,206,122,0.18); }
+    header.hero{ padding: 90px 0 70px; }
+    section{ padding: 70px 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    .reveal{ opacity: 1; transform: none; transition: none; }
+    .btn{ transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">EasyLandX</div>
+    <h1>A landing page has a <em>purpose</em> — the same way a species does.</h1>
+    <p class="hero-sub">Every strong page converges on the same proven structures for a reason: they work. EasyLandX designs each page around that principle, so your visitors arrive, understand, and choose to act.</p>
+    <div class="hero-actions">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+      <span class="btn-gold-text">See what a purpose-built page looks like</span>
+    </div>
+  </div>
+</header>
+
+<section id="convergence">
+  <div class="wrap reveal">
+    <div class="eyebrow-num">Convergent design</div>
+    <h2>Great structures arrive at the same place, independently</h2>
+    <p class="lede">The camera-type eye evolved on its own roughly forty separate times — in humans, octopuses, and squid alike — because it is simply the shape that works. High-performing landing pages follow the same law: unrelated businesses, working independently, keep arriving at the same winning elements.</p>
+
+    <div class="convergence-grid">
+      <div class="convergence-card">
+        <div class="form">One clear headline</div>
+        <p>A single, unmistakable statement of value, understood in seconds.</p>
+      </div>
+      <div class="convergence-card">
+        <div class="form">One confident action</div>
+        <p>A single call to act, placed where attention naturally lands.</p>
+      </div>
+      <div class="convergence-card">
+        <div class="form">Visible proof</div>
+        <p>Real signals of trust, shown early and often.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="engine">
+  <div class="wrap reveal">
+    <div class="eyebrow-num">The dual engine</div>
+    <h2>Every visitor is guided by two instincts at once</h2>
+    <p class="lede">Selection works on two levels at once: the individual, wired for self-interest and quick reward, and the group, wired for belonging and trust. A page built with both instincts in mind speaks to the whole visitor, not half of them.</p>
+
+    <div class="engine">
+      <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing individual and group instincts converging into a confident decision">
+        <rect x="30" y="30" width="290" height="96" rx="2" fill="rgba(182,39,61,0.14)" stroke="#B5273D" stroke-width="1.2"/>
+        <text x="175" y="66" text-anchor="middle" font-family="Fraunces, serif" font-size="17" fill="#F3EEE3">Individual instinct</text>
+        <text x="175" y="92" text-anchor="middle" font-family="Inter, sans-serif" font-size="12.5" fill="#A9B4CC">Speed, personal gain, momentum</text>
+
+        <rect x="400" y="30" width="290" height="96" rx="2" fill="rgba(212,175,55,0.12)" stroke="#D4AF37" stroke-width="1.2"/>
+        <text x="545" y="66" text-anchor="middle" font-family="Fraunces, serif" font-size="17" fill="#F3EEE3">Group instinct</text>
+        <text x="545" y="92" text-anchor="middle" font-family="Inter, sans-serif" font-size="12.5" fill="#A9B4CC">Belonging, trust, shared proof</text>
+
+        <line x1="175" y1="126" x2="330" y2="205" stroke="#B5273D" stroke-width="1.4"/>
+        <line x1="545" y1="126" x2="390" y2="205" stroke="#D4AF37" stroke-width="1.4"/>
+
+        <rect x="270" y="210" width="180" height="66" rx="2" fill="rgba(233,206,122,0.14)" stroke="#D4AF37" stroke-width="1.4"/>
+        <text x="360" y="238" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="16" fill="#F3EEE3">A confident</text>
+        <text x="360" y="260" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="16" fill="#F3EEE3">decision</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="potential">
+  <div class="wrap reveal">
+    <div class="eyebrow-num">Full range</div>
+    <h2>Persuasion and warmth, held in the same design</h2>
+    <p class="lede">Human nature holds two dispositions at once, and the most memorable pages do too — direct enough to move someone forward, warm enough to earn their trust along the way.</p>
+
+    <div class="potential-cols">
+      <div class="potential-panel crimson">
+        <h3>The drive to act</h3>
+        <p>Bold typography, a clear path, and a single next step that feels obvious the moment it appears.</p>
+      </div>
+      <div class="potential-panel gold">
+        <h3>The reason to stay</h3>
+        <p>Real voices, honest detail, and a tone that treats the visitor as someone worth speaking to directly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="purpose">
+  <div class="wrap reveal">
+    <div class="eyebrow-num">The moment of choice</div>
+    <h2>Design that makes the best choice the easy one</h2>
+    <p class="lede">A visitor arrives with both instincts alive — the pull toward quick action and the pull toward careful trust. The page's role is to meet that moment with clarity, so the choice that serves them best is also the choice that feels most natural.</p>
+
+    <div class="equation-block">
+      <div class="line">Clarity + trust = a decision made with confidence.</div>
+      <p>Every element on an EasyLandX page — headline, proof, and call to act — is placed to support that one moment, so visitors move forward because it makes sense, not because they were pushed.</p>
+    </div>
+  </div>
+</section>
+
+<section id="guide">
+  <div class="wrap reveal">
+    <div class="eyebrow-num">Intuition, guided</div>
+    <h2>Speaking to instinct, backed by reason</h2>
+    <p class="lede">Picture an elephant and its rider: the elephant is fast, intuitive, and led by feeling; the rider is deliberate and logical. A page that reaches people well speaks to both — first the elephant, then the rider.</p>
+
+    <div class="er-row">
+      <div class="er-col">
+        <h3>For the elephant</h3>
+        <p>Warm color, confident imagery, and a layout that feels effortless to move through — the first impression that sets the tone.</p>
+      </div>
+      <div class="er-col">
+        <h3>For the rider</h3>
+        <p>Clear proof, honest numbers, and specific detail that confirms the feeling was right all along.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap reveal">
+    <h2>Give your idea a page built with purpose</h2>
+    <p class="lede">EasyLandX designs each page around the same principles that shape every enduring structure: clarity, balance, and a moment of confident choice.</p>
+    <div class="hero-actions">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Start with EasyLandX</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">EasyLandX <span class="gold-dot">·</span> Purpose-built landing pages</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
