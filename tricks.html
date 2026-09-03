@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Nine Tricks Behind Every Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --abyss-950:#04140F;
+    --abyss-900:#081F17;
+    --abyss-800:#0D2B21;
+    --abyss-700:#123A2C;
+    --mint-100:#E7FFF2;
+    --mint-300:#AFE9CB;
+    --mint-500:#6FBF98;
+    --yellow-400:#FFD84D;
+    --yellow-300:#FFE585;
+    --blue-400:#4FC3F7;
+    --blue-300:#8FDDFB;
+    --display: 'Space Grotesk', sans-serif;
+    --sans: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:
+      radial-gradient(ellipse at 15% 8%, rgba(79,195,247,0.10), transparent 45%),
+      radial-gradient(ellipse at 85% 92%, rgba(255,216,77,0.08), transparent 45%),
+      var(--abyss-950);
+    color:var(--mint-100);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  a{ color:inherit; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:rgba(4,20,15,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(231,255,242,0.08);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 32px;
+    max-width:1120px;
+    margin:0 auto;
+  }
+  .brand{
+    font-family:var(--display);
+    font-size:1.25rem;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--mint-100);
+  }
+  .brand span{ color:var(--blue-400); }
+  .nav-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--yellow-400);
+    color:var(--abyss-950);
+    padding:10px 22px;
+    border-radius:100px;
+    font-size:0.88rem;
+    font-weight:600;
+    text-decoration:none;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow:0 0 0 rgba(255,216,77,0);
+  }
+  .nav-cta:hover{
+    transform:translateY(-1px);
+    box-shadow:0 8px 24px -6px rgba(255,216,77,0.55);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:120px 0 96px;
+    overflow:hidden;
+  }
+
+  .hero-glow{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+  }
+  .spark{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(1px);
+    animation:pulse 4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ opacity:0.3; transform:scale(0.85); }
+    50%{ opacity:1; transform:scale(1.15); }
+  }
+
+  .hero-content{ position:relative; z-index:2; max-width:760px; }
+
+  .eyebrow-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--mono);
+    font-size:0.78rem;
+    color:var(--blue-300);
+    background:rgba(79,195,247,0.09);
+    border:1px solid rgba(79,195,247,0.25);
+    padding:7px 14px;
+    border-radius:100px;
+    margin-bottom:28px;
+  }
+  .eyebrow-tag .dot{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--yellow-400);
+    box-shadow:0 0 8px 2px rgba(255,216,77,0.6);
+  }
+
+  .hero h1{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(2.3rem, 4.6vw, 3.7rem);
+    line-height:1.14;
+    letter-spacing:-0.02em;
+    color:var(--mint-100);
+    margin-bottom:26px;
+  }
+  .hero h1 .accent{ color:var(--yellow-400); }
+
+  .hero p{
+    font-size:1.12rem;
+    color:var(--mint-300);
+    max-width:560px;
+    margin-bottom:40px;
+    font-weight:300;
+  }
+
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--yellow-400);
+    color:var(--abyss-950);
+    padding:16px 32px;
+    border-radius:100px;
+    font-size:1rem;
+    font-weight:600;
+    text-decoration:none;
+    box-shadow:0 0 40px -8px rgba(255,216,77,0.4);
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 55px -6px rgba(255,216,77,0.6);
+  }
+  .btn-primary svg{ width:16px; height:16px; }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ padding:96px 0; }
+
+  .section-head{ max-width:640px; margin:0 0 56px; }
+  .section-head .kicker{
+    font-family:var(--mono);
+    font-size:0.8rem;
+    color:var(--blue-300);
+    margin-bottom:14px;
+    display:block;
+  }
+  .section-head h2{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(1.8rem, 3.2vw, 2.5rem);
+    line-height:1.2;
+    color:var(--mint-100);
+    margin-bottom:16px;
+    letter-spacing:-0.01em;
+  }
+  .section-head p{
+    color:var(--mint-300);
+    font-size:1.03rem;
+    font-weight:300;
+    max-width:540px;
+  }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+
+  /* ---------- INTRO STRIP ---------- */
+  .intro{
+    background:var(--abyss-900);
+    border-top:1px solid rgba(231,255,242,0.06);
+    border-bottom:1px solid rgba(231,255,242,0.06);
+  }
+  .intro .wrap p{
+    font-size:1.25rem;
+    font-weight:300;
+    color:var(--mint-100);
+    line-height:1.7;
+    max-width:800px;
+  }
+  .intro .wrap p strong{
+    color:var(--yellow-300);
+    font-weight:500;
+  }
+
+  /* ---------- NINE TRICKS GRID ---------- */
+  .tricks-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:rgba(231,255,242,0.07);
+    border:1px solid rgba(231,255,242,0.07);
+    border-radius:20px;
+    overflow:hidden;
+  }
+  .trick-card{
+    background:var(--abyss-950);
+    padding:36px 30px;
+    position:relative;
+  }
+  .trick-card:hover{ background:var(--abyss-800); }
+  .trick-num{
+    font-family:var(--mono);
+    font-size:0.82rem;
+    display:block;
+    margin-bottom:18px;
+  }
+  .trick-card.blue .trick-num{ color:var(--blue-400); }
+  .trick-card.yellow .trick-num{ color:var(--yellow-400); }
+  .trick-name{
+    font-family:var(--mono);
+    font-size:0.72rem;
+    text-transform:lowercase;
+    color:var(--mint-500);
+    display:block;
+    margin-bottom:10px;
+  }
+  .trick-card h3{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.12rem;
+    color:var(--mint-100);
+    margin-bottom:12px;
+    line-height:1.3;
+  }
+  .trick-card p{
+    color:var(--mint-300);
+    font-size:0.92rem;
+    font-weight:300;
+    line-height:1.55;
+  }
+
+  /* ---------- CLOSING CTA ---------- */
+  .closing{
+    text-align:center;
+    padding-bottom:140px;
+  }
+  .closing-panel{
+    background:var(--abyss-900);
+    border:1px solid rgba(231,255,242,0.1);
+    border-radius:28px;
+    padding:76px 40px;
+    position:relative;
+    overflow:hidden;
+  }
+  .closing-panel::before{
+    content:"";
+    position:absolute;
+    width:500px; height:500px;
+    background:radial-gradient(circle, rgba(79,195,247,0.14), transparent 65%);
+    top:-220px; left:50%;
+    transform:translateX(-50%);
+    pointer-events:none;
+  }
+  .closing h2{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(1.9rem, 3.6vw, 2.8rem);
+    max-width:600px;
+    margin:0 auto 18px;
+    color:var(--mint-100);
+    position:relative;
+    z-index:1;
+  }
+  .closing p{
+    color:var(--mint-300);
+    font-weight:300;
+    max-width:480px;
+    margin:0 auto 40px;
+    position:relative;
+    z-index:1;
+  }
+  .closing .btn-primary{ position:relative; z-index:1; }
+
+  footer{
+    border-top:1px solid rgba(231,255,242,0.08);
+    padding:40px 0;
+    text-align:center;
+    color:var(--mint-500);
+    font-size:0.85rem;
+    font-family:var(--mono);
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    .spark{ animation:none; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    .tricks-grid{ grid-template-columns:1fr; }
+    nav{ padding:18px 20px; }
+    .wrap{ padding:0 20px; }
+    .closing-panel{ padding:56px 26px; }
+  }
+  @media (max-width:1080px) and (min-width:861px){
+    .tricks-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand">easylandx<span>.</span></div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">
+      Visit easylandx
+    </a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true">
+    <div class="spark" style="width:6px;height:6px;background:#4FC3F7;box-shadow:0 0 14px 4px rgba(79,195,247,0.7);top:18%;left:8%;"></div>
+    <div class="spark" style="width:4px;height:4px;background:#FFD84D;box-shadow:0 0 12px 3px rgba(255,216,77,0.7);top:32%;left:88%;animation-delay:-1.2s;"></div>
+    <div class="spark" style="width:5px;height:5px;background:#4FC3F7;box-shadow:0 0 12px 3px rgba(79,195,247,0.6);top:70%;left:92%;animation-delay:-2.4s;"></div>
+    <div class="spark" style="width:3px;height:3px;background:#FFD84D;box-shadow:0 0 10px 3px rgba(255,216,77,0.6);top:80%;left:20%;animation-delay:-0.6s;"></div>
+    <div class="spark" style="width:4px;height:4px;background:#8FDDFB;box-shadow:0 0 10px 3px rgba(143,221,251,0.55);top:12%;left:60%;animation-delay:-3.1s;"></div>
+  </div>
+  <div class="wrap hero-content">
+    <div class="eyebrow-tag"><span class="dot"></span> nine.ideas / applied.to.landingpages</div>
+    <h1>The quiet engineering behind a page that <span class="accent">actually works.</span></h1>
+    <p>Great landing pages aren't magic — they're a handful of elegant, well-understood ideas, applied with care. Here's how easylandx builds each of your pages around nine of them.</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">
+      Meet easylandx
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<section class="intro">
+  <div class="wrap reveal">
+    <p>Every fast, trustworthy, high-converting page is built on the same handful of underlying ideas — the ones that also power search engines, secure banking, and modern databases. <strong>easylandx brings those same ideas down to the size of a single small-business page</strong>, so yours loads fast, protects your customers, and finds exactly the visitors it's meant for.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+      <span class="kicker">/// how each page is built</span>
+      <h2>Nine ideas, one page</h2>
+      <p>Each of your business's core needs — being found, being trusted, being fast, being safe — maps to a well-worn idea from computer science. Here's how they show up in your page.</p>
+    </div>
+
+    <div class="tricks-grid reveal">
+
+      <div class="trick-card blue">
+        <span class="trick-num">01</span>
+        <span class="trick-name">the word-location trick</span>
+        <h3>Instant clarity index</h3>
+        <p>Your offer, hours, and contact details are placed exactly where a visitor's eye and a search engine both look first — so the one thing they came for is never buried.</p>
+      </div>
+
+      <div class="trick-card yellow">
+        <span class="trick-num">02</span>
+        <span class="trick-name">the random-surfer trick</span>
+        <h3>Trust that travels</h3>
+        <p>Pages are structured around real links — your Instagram, your WhatsApp, your reviews — so the same signals that build authority across the web build authority for you.</p>
+      </div>
+
+      <div class="trick-card blue">
+        <span class="trick-num">03</span>
+        <span class="trick-name">the paint-mixing trick</span>
+        <h3>Secure by design</h3>
+        <p>Contact forms, Stripe checkouts, and booking links run over the same one-way encryption that protects banking — your customers' details stay private in transit.</p>
+      </div>
+
+      <div class="trick-card yellow">
+        <span class="trick-num">04</span>
+        <span class="trick-name">the redundancy trick</span>
+        <h3>Built to never break</h3>
+        <p>Fonts, images, and layouts carry fallbacks, so your page renders cleanly on an old Android, a fussy Safari, or a shaky connection — no visitor sees a broken page.</p>
+      </div>
+
+      <div class="trick-card blue">
+        <span class="trick-num">05</span>
+        <span class="trick-name">pattern recognition</span>
+        <h3>Reading your customers</h3>
+        <p>Design choices are drawn from patterns that genuinely convert for your kind of business — a tarot reader's page and a bakery's page ask visitors for different things, in different ways.</p>
+      </div>
+
+      <div class="trick-card yellow">
+        <span class="trick-num">06</span>
+        <span class="trick-name">the leave-it-out trick</span>
+        <h3>Fast by design</h3>
+        <p>Images are compressed exactly as far as the eye can't tell the difference, so your page opens in an instant on any phone, on any connection.</p>
+      </div>
+
+      <div class="trick-card blue">
+        <span class="trick-num">07</span>
+        <span class="trick-name">the write-ahead log trick</span>
+        <h3>Nothing lost in transit</h3>
+        <p>Every booking, message, or form submission is captured reliably, the way a database protects a transaction — so an interrupted connection never costs you a lead.</p>
+      </div>
+
+      <div class="trick-card yellow">
+        <span class="trick-num">08</span>
+        <span class="trick-name">the lockbox trick</span>
+        <h3>Verified as genuinely yours</h3>
+        <p>Real contact details, real social links, a consistent voice — visitors can tell instantly that they've reached your business, not an imitation of it.</p>
+      </div>
+
+      <div class="trick-card blue">
+        <span class="trick-num">09</span>
+        <span class="trick-name">the limits of logic</span>
+        <h3>Honest about what's worth building</h3>
+        <p>Not every feature earns its place. Just as some problems are provably unsolvable, some page ideas simply aren't worth the added weight — so we build only what genuinely helps you convert.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <div class="closing-panel reveal">
+      <h2>Nine ideas. One page, built for your business.</h2>
+      <p>easylandx turns proven, elegant engineering into a landing page that's fast, secure, and genuinely yours.</p>
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">
+        Meet easylandx
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">easylandx // 2026</div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
