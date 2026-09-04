@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Built for How Visitors Actually Think</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cyan: #1FB2CF;
+    --cyan-deep: #0E86A0;
+    --cyan-soft: #B7EAF2;
+    --blue: #1B4B91;
+    --blue-bright: #2E6FC7;
+    --amber: #E0972A;
+    --amber-bright: #F2AE3E;
+    --paper: #F2FBFC;
+    --ink: #0E2430;
+    --ink-soft: #375260;
+    --line: rgba(14,36,48,0.14);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    font-family: 'Inter', sans-serif;
+    background: var(--cyan);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    background: var(--cyan);
+    border-bottom: 1px solid rgba(14,36,48,0.16);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 20px 32px;
+  }
+  .brand{
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--ink);
+  }
+  .brand span{ color: var(--blue); }
+  .nav-links{
+    display:flex;
+    gap: 26px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .nav-links a:hover{ color: var(--blue); }
+  .nav-cta{
+    background: var(--blue);
+    color: var(--paper);
+    padding: 10px 22px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: background 0.2s ease;
+  }
+  .nav-cta:hover{ background: var(--blue-bright); }
+  @media(max-width:860px){ .nav-links{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding: 96px 0 80px; }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 50px;
+    align-items:center;
+  }
+  @media(max-width:900px){ .hero .wrap{ grid-template-columns: 1fr; } }
+  .eyebrow-line{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .eyebrow-chip{
+    background: rgba(14,36,48,0.08);
+    border: 1px solid rgba(14,36,48,0.2);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .hero h1{
+    font-size: clamp(34px, 4.8vw, 54px);
+    line-height: 1.14;
+    color: var(--ink);
+  }
+  .hero h1 .accent{ color: var(--blue); }
+  .hero p.lede{
+    margin-top: 22px;
+    font-size: 17.5px;
+    color: var(--ink-soft);
+    max-width: 480px;
+  }
+  .hero-actions{
+    margin-top: 32px;
+    display:flex;
+    align-items:center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .btn-amber{
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    background: var(--amber);
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 15.5px;
+    padding: 15px 28px;
+    border-radius: 3px;
+    border: 1px solid var(--amber);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .btn-amber:hover{ background: var(--amber-bright); transform: translateY(-2px); }
+  .link-plain{
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+  }
+
+  /* ---------- Six minds matrix diagram ---------- */
+  .matrix-card{
+    background: var(--paper);
+    border-radius: 6px;
+    padding: 26px;
+    border: 1px solid rgba(14,36,48,0.12);
+  }
+  .matrix-label{
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+  .matrix-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .matrix-cell{
+    background: var(--white, #fff);
+    background: #FFFFFF;
+    border: 1px solid rgba(14,36,48,0.14);
+    border-radius: 4px;
+    padding: 14px 12px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .matrix-cell .q{
+    display:block;
+    font-weight: 400;
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .matrix-cell.amber-mark{ border-color: var(--amber); }
+
+  /* ---------- SECTION shared ---------- */
+  section{ padding: 88px 0; }
+  .section-paper{ background: var(--paper); color: var(--ink); }
+  .section-blue{ background: var(--blue); color: var(--paper); }
+  .section-white{ background: #FFFFFF; color: var(--ink); }
+
+  .kicker{
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 14px;
+  }
+  .section-blue .kicker{ color: var(--amber-bright); }
+
+  h2.section-title{
+    font-size: clamp(28px, 3.2vw, 38px);
+    max-width: 620px;
+    margin-bottom: 16px;
+  }
+  .section-intro{
+    max-width: 580px;
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+  .section-blue .section-intro{ color: rgba(242,251,252,0.85); }
+
+  /* ---------- Six minds detail rows ---------- */
+  .minds-list{
+    margin-top: 54px;
+    display:flex;
+    flex-direction: column;
+  }
+  .mind-row{
+    display:grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+  }
+  .mind-row:last-child{ border-bottom: 1px solid var(--line); }
+  @media(max-width:760px){ .mind-row{ grid-template-columns: 1fr; gap: 10px; } }
+
+  .mind-head{
+    display:flex;
+    align-items:flex-start;
+    gap: 12px;
+  }
+  .mind-icon{
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: var(--paper);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .mind-title{
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+  }
+  .mind-question{
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 3px;
+  }
+  .mind-body p{
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+    max-width: 620px;
+  }
+  .mind-feature{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    background: rgba(14,36,48,0.05);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 9px 14px;
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+  .mind-feature .dot{ width: 6px; height:6px; border-radius: 50%; background: var(--amber); }
+
+  /* ---------- Process (three-part) ---------- */
+  .process-grid{
+    margin-top: 54px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(242,251,252,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  @media(max-width:900px){ .process-grid{ grid-template-columns: 1fr; } }
+  .process-card{
+    background: var(--blue);
+    padding: 32px 26px;
+  }
+  .process-card .step{
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--amber-bright);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .process-card h3{ font-size: 18px; margin-bottom: 10px; }
+  .process-card p{ font-size: 14px; color: rgba(242,251,252,0.82); }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background: var(--amber);
+    padding: 76px 0;
+    text-align: center;
+  }
+  .cta-band h2{
+    font-size: clamp(28px, 3.4vw, 38px);
+    color: var(--ink);
+    max-width: 640px;
+    margin: 0 auto 16px;
+  }
+  .cta-band p{
+    color: rgba(14,36,48,0.75);
+    font-size: 16px;
+    max-width: 460px;
+    margin: 0 auto 32px;
+  }
+  .btn-blue{
+    display:inline-flex;
+    background: var(--blue);
+    color: var(--paper);
+    font-weight: 700;
+    font-size: 15.5px;
+    padding: 16px 32px;
+    border-radius: 3px;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .btn-blue:hover{ transform: translateY(-2px); background: var(--blue-bright); }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background: var(--ink);
+    color: rgba(242,251,252,0.7);
+    padding: 42px 0;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  footer .brand{ color: var(--paper); }
+  footer .brand span{ color: var(--amber-bright); }
+  footer .fine{ font-size: 13px; color: rgba(242,251,252,0.5); }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">easyland<span>x</span></div>
+    <div class="nav-links">
+      <a href="#matrix">Six minds</a>
+      <a href="#process">Process</a>
+    </div>
+    <a class="nav-cta" href="https://easylandx.com" target="_blank" rel="noopener">Start building</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow-line">
+        <div class="eyebrow-chip">easylandx landing pages</div>
+      </div>
+      <h1>The experience doesn't happen on the page. It happens in the <span class="accent">visitor's mind.</span></h1>
+      <p class="lede">easylandx builds every layout around six cognitive systems that shape how a visitor sees, navigates, remembers, reads, decides, and feels — so your page fits the brain it's landing in.</p>
+      <div class="hero-actions">
+        <a class="btn-amber" href="https://easylandx.com" target="_blank" rel="noopener">Build with easylandx →</a>
+        <a class="link-plain" href="#matrix">See the six minds</a>
+      </div>
+    </div>
+
+    <div class="matrix-card">
+      <div class="matrix-label">THE SIX MINDS MATRIX</div>
+      <div class="matrix-grid">
+        <div class="matrix-cell">Vision &amp; Attention<span class="q">Where are they looking?</span></div>
+        <div class="matrix-cell">Wayfinding<span class="q">Where do they go next?</span></div>
+        <div class="matrix-cell">Memory<span class="q">What do they expect?</span></div>
+        <div class="matrix-cell">Language<span class="q">What words do they use?</span></div>
+        <div class="matrix-cell amber-mark">Decision-Making<span class="q">How do they choose?</span></div>
+        <div class="matrix-cell amber-mark">Emotion<span class="q">How do they feel?</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section-paper" id="matrix">
+  <div class="wrap">
+    <div class="kicker">The six minds, applied</div>
+    <h2 class="section-title">One page, six cognitive systems to design for</h2>
+    <p class="section-intro">A visitor experiences your landing page as a single moment. Underneath, six separate mental systems are doing the work. easylandx optimizes for all six at once.</p>
+
+    <div class="minds-list">
+      <div class="mind-row">
+        <div class="mind-head">
+          <div class="mind-icon">1</div>
+          <div>
+            <div class="mind-title">Vision &amp; Attention</div>
+            <div class="mind-question">Where are they looking?</div>
+          </div>
+        </div>
+        <div class="mind-body">
+          <p>Visual processing runs largely on autopilot, filtering out anything that doesn't fit a clear pattern. easylandx layouts use deliberate hierarchy and clean spacing so the eye lands exactly where it should, without conscious effort.</p>
+          <div class="mind-feature"><span class="dot"></span> Automatic visual hierarchy across every template</div>
+        </div>
+      </div>
+
+      <div class="mind-row">
+        <div class="mind-head">
+          <div class="mind-icon">2</div>
+          <div>
+            <div class="mind-title">Wayfinding</div>
+            <div class="mind-question">Where do they go next?</div>
+          </div>
+        </div>
+        <div class="mind-body">
+          <p>Visitors navigate a page the way they'd navigate an airport terminal — always asking where they are, where they can go, and how to get back. easylandx keeps a sticky nav and clear section markers in view, so orientation never breaks.</p>
+          <div class="mind-feature"><span class="dot"></span> Built-in sticky navigation and section anchors</div>
+        </div>
+      </div>
+
+      <div class="mind-row">
+        <div class="mind-head">
+          <div class="mind-icon">3</div>
+          <div>
+            <div class="mind-title">Memory</div>
+            <div class="mind-question">What do they expect?</div>
+          </div>
+        </div>
+        <div class="mind-body">
+          <p>Every visitor arrives with a mental model built from every other page they've used. easylandx templates follow familiar conventions — cart icons, form patterns, button placement — so your page feels instantly recognizable.</p>
+          <div class="mind-feature"><span class="dot"></span> Convention-matched components, out of the box</div>
+        </div>
+      </div>
+
+      <div class="mind-row">
+        <div class="mind-head">
+          <div class="mind-icon">4</div>
+          <div>
+            <div class="mind-title">Language</div>
+            <div class="mind-question">What words do they use?</div>
+          </div>
+        </div>
+        <div class="mind-body">
+          <p>The words on your page need to match the words already in your visitor's head. easylandx's copy tools flag corporate jargon and suggest phrasing closer to how your actual audience talks.</p>
+          <div class="mind-feature"><span class="dot"></span> Audience-matched microcopy suggestions</div>
+        </div>
+      </div>
+
+      <div class="mind-row">
+        <div class="mind-head">
+          <div class="mind-icon">5</div>
+          <div>
+            <div class="mind-title">Decision-Making</div>
+            <div class="mind-question">How do they choose?</div>
+          </div>
+        </div>
+        <div class="mind-body">
+          <p>Visitors rarely compare every option in detail — they pick the first choice that clearly meets their need. easylandx keeps plan and offer selections short and simple, with one obvious path to the next step.</p>
+          <div class="mind-feature"><span class="dot"></span> Simplified pricing and offer layouts</div>
+        </div>
+      </div>
+
+      <div class="mind-row">
+        <div class="mind-head">
+          <div class="mind-icon">6</div>
+          <div>
+            <div class="mind-title">Emotion</div>
+            <div class="mind-question">How do they feel?</div>
+          </div>
+        </div>
+        <div class="mind-body">
+          <p>Emotion shapes every step of how a visitor processes your page, from first glance to final click. easylandx forms use reassuring progress cues and clear, friendly messaging to keep the experience calm and confident.</p>
+          <div class="mind-feature"><span class="dot"></span> Reassuring progress indicators and friendly form copy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-blue" id="process">
+  <div class="wrap">
+    <div class="kicker">From research to layout</div>
+    <h2 class="section-title">Built the way strong products are built</h2>
+    <p class="section-intro">easylandx follows the same three-step cycle used by cognitive researchers to design intuitive products — turning what visitors actually think into what your page actually shows.</p>
+
+    <div class="process-grid">
+      <div class="process-card">
+        <div class="step">Understand</div>
+        <h3>Rethink the experience</h3>
+        <p>Start from how visitors actually process a page — not from assumptions about what looks impressive.</p>
+      </div>
+      <div class="process-card">
+        <div class="step">Research</div>
+        <h3>Listen to real visitors</h3>
+        <p>easylandx surfaces session recordings and scroll data, so you can spot exactly where attention lands and where it drifts.</p>
+      </div>
+      <div class="process-card">
+        <div class="step">Apply</div>
+        <h3>Segment and refine</h3>
+        <p>Sort visitor behavior into clear patterns, then adjust layout, language, and flow to match what each segment expects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="wrap" style="padding:0;">
+    <h2>Design for the mind your page is landing in.</h2>
+    <p>Open easylandx and build a page that fits how visitors actually think.</p>
+    <a class="btn-blue" href="https://easylandx.com" target="_blank" rel="noopener">Start with easylandx</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">easyland<span>x</span></div>
+    <div class="fine">Built for how people think. easylandx, 2026.</div>
+  </div>
+</footer>
+
+</body>
+</html>
