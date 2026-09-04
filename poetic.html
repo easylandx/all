@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Pages That Perform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white: #FFFFFF;
+    --paper: #FAF8F4;
+    --gold: #B08D4F;
+    --gold-bright: #CFA85F;
+    --gold-pale: #EBDFC3;
+    --black: #141210;
+    --black-soft: #3C372F;
+    --line: rgba(20,18,16,0.13);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  em{ font-style: italic; color: var(--gold); font-family: 'Cormorant Garamond', serif; }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 22px 32px;
+  }
+  .brand{
+    font-family:'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--black);
+  }
+  .brand em{ font-style: italic; }
+  .nav-links{
+    display:flex;
+    gap: 30px;
+    font-size: 13.5px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--black-soft);
+  }
+  .nav-links a:hover{ color: var(--gold); }
+  .nav-cta{
+    background: var(--black);
+    color: var(--white);
+    padding: 10px 22px;
+    font-weight: 400;
+    font-size: 13.5px;
+    letter-spacing: 0.02em;
+    border: 1px solid var(--black);
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .nav-cta:hover{ background: var(--gold); border-color: var(--gold); }
+  @media(max-width:820px){ .nav-links{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding: 130px 0 110px; text-align: center; }
+  .hero .wrap{ max-width: 780px; }
+  .eyebrow{
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 30px;
+  }
+  .hero h1{
+    font-size: clamp(38px, 5.6vw, 62px);
+    line-height: 1.28;
+    font-weight: 500;
+  }
+  .hero p.lede{
+    margin: 32px auto 0;
+    font-size: 18px;
+    color: var(--black-soft);
+    max-width: 520px;
+  }
+  .hero-actions{
+    margin-top: 42px;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    gap: 26px;
+    flex-wrap: wrap;
+  }
+  .btn-gold{
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--white);
+    font-weight: 500;
+    font-size: 15.5px;
+    padding: 16px 32px;
+    letter-spacing: 0.02em;
+    border: 1px solid var(--gold);
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .btn-gold:hover{ background: var(--gold-bright); transform: translateY(-2px); }
+  .link-plain{
+    font-size: 14.5px;
+    color: var(--black);
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 2px;
+  }
+
+  .divider{
+    width: 1px;
+    height: 64px;
+    background: var(--line);
+    margin: 0 auto;
+  }
+
+  /* ---------- SECTION shared ---------- */
+  section.act{ padding: 100px 0; }
+  .act-paper{ background: var(--paper); }
+  .act-white{ background: var(--white); }
+  .act-black{ background: var(--black); color: var(--white); }
+
+  .act-eyebrow{
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .act-black .act-eyebrow{ color: var(--gold-bright); }
+
+  h2.act-title{
+    font-size: clamp(30px, 3.8vw, 44px);
+    text-align: center;
+    max-width: 660px;
+    margin: 0 auto 20px;
+    font-weight: 500;
+  }
+  .act-intro{
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+    color: var(--black-soft);
+    font-size: 16.5px;
+  }
+  .act-black .act-intro{ color: rgba(255,255,255,0.78); }
+
+  /* ---------- Dual format pairing ---------- */
+  .pairing{
+    margin-top: 58px;
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 44px;
+    align-items: start;
+  }
+  @media(max-width:820px){
+    .pairing{ grid-template-columns: 1fr; }
+    .pairing .pair-divider{ display:none; }
+  }
+  .pair-divider{ background: var(--line); }
+  .act-black .pair-divider{ background: rgba(255,255,255,0.18); }
+  .pair-col{ }
+  .pair-label{
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .act-black .pair-label{ color: var(--gold-bright); }
+  .pair-quote{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .pair-body{
+    font-size: 15px;
+    color: var(--black-soft);
+  }
+  .act-black .pair-body{ color: rgba(255,255,255,0.78); }
+
+  /* ---------- Simple feature list (Reunion) ---------- */
+  .presence-grid{
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+  }
+  @media(max-width:860px){ .presence-grid{ grid-template-columns: 1fr; } }
+  .presence-card{ text-align: center; }
+  .presence-mark{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 34px;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .presence-card h3{
+    font-size: 19px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .presence-card p{
+    font-size: 14.5px;
+    color: var(--black-soft);
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  /* ---------- Shared loneliness / connection quote ---------- */
+  .connection{
+    margin-top: 60px;
+    text-align: center;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .connection blockquote{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.5;
+    color: var(--white);
+  }
+  .connection .attribution{
+    margin-top: 22px;
+    font-size: 13.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+  }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background: var(--paper);
+    padding: 110px 0;
+    text-align: center;
+    border-top: 1px solid var(--line);
+  }
+  .cta-band h2{
+    font-size: clamp(30px, 4vw, 46px);
+    color: var(--black);
+    max-width: 640px;
+    margin: 0 auto 18px;
+    font-weight: 500;
+  }
+  .cta-band p{
+    color: var(--black-soft);
+    font-size: 16.5px;
+    max-width: 460px;
+    margin: 0 auto 36px;
+  }
+  .btn-black{
+    display:inline-flex;
+    background: var(--black);
+    color: var(--white);
+    font-weight: 500;
+    font-size: 15.5px;
+    padding: 17px 34px;
+    letter-spacing: 0.02em;
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+  .btn-black:hover{ transform: translateY(-2px); background: var(--gold); }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background: var(--white);
+    color: var(--black-soft);
+    padding: 46px 0;
+    border-top: 1px solid var(--line);
+  }
+  footer .wrap{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  footer .brand{ font-family:'Cormorant Garamond', serif; font-size: 20px; color: var(--black); }
+  footer .brand em{ font-style: italic; }
+  footer .fine{ font-size: 13px; color: rgba(20,18,16,0.5); }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">easyland<em>x</em></div>
+    <div class="nav-links">
+      <a href="#excavation">The clarity</a>
+      <a href="#pivot">The conversion</a>
+      <a href="#reunion">The result</a>
+    </div>
+    <a class="nav-cta" href="https://easylandx.com" target="_blank" rel="noopener">Begin building</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">easylandx landing pages</div>
+    <h1>Some pages look good. Others perform. <em>easylandx</em> helps you build pages that turn attention into action.</h1>
+    <p class="lede">Your landing page has one job: turn attention into action. easylandx helps you sharpen the message, strengthen the offer, and give visitors a clear reason to act.</p>
+    <div class="hero-actions">
+      <a class="btn-gold" href="https://easylandx.com" target="_blank" rel="noopener">Build with easylandx →</a>
+      <a class="link-plain" href="#excavation">Begin the journey</a>
+    </div>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<section class="act act-paper" id="excavation">
+  <div class="wrap">
+    <div class="act-eyebrow">Part One — The Excavation</div>
+    <h2 class="act-title">Find the message that makes people act</h2>
+    <p class="act-intro">The strongest pages do not hide behind vague promises. They make the value obvious, specific, and compelling — because clarity is what makes people stop, understand, and act.</p>
+
+    <div class="pairing">
+      <div class="pair-col">
+        <div class="pair-label">The Word</div>
+        <p class="pair-quote">"Generic copy gets ignored. Specific copy gives people a reason to care."</p>
+        <p class="pair-body">Replace vague promises with the details that make your offer credible: the real benefit, the real customer, the real outcome, the reason someone should choose you.</p>
+      </div>
+      <div class="pair-divider"></div>
+      <div class="pair-col">
+        <div class="pair-label">The Practice</div>
+        <p class="pair-quote">"Read your headline. Would it make you stop and keep reading?"</p>
+        <p class="pair-body">easylandx helps you shape clearer copy section by section, so your message sounds human while staying focused on what moves a visitor toward action.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="act act-black" id="pivot">
+  <div class="wrap">
+    <div class="act-eyebrow">Part Two — The Pivot</div>
+    <h2 class="act-title">Remove what gets in the way</h2>
+    <p class="act-intro">A page can look beautiful and still fail. If visitors do not understand the offer or know what to do next, it is time to change it. easylandx makes rebuilding simple.</p>
+
+    <div class="pairing">
+      <div class="pair-col">
+        <div class="pair-label">The Word</div>
+        <p class="pair-quote">"If the page isn't working, change the page."</p>
+        <p class="pair-body">Keep what you learned. Test a clearer message, a stronger offer, or a simpler path to action.</p>
+      </div>
+      <div class="pair-divider"></div>
+      <div class="pair-col">
+        <div class="pair-label">The Practice</div>
+        <p class="pair-quote">"Strip it back. Find the promise. Build around it."</p>
+        <p class="pair-body">easylandx gives you the freedom to duplicate, simplify, and rebuild without starting from zero — so improving a page feels fast, not painful.</p>
+      </div>
+    </div>
+
+    <div class="connection">
+      <blockquote>"The best-performing pages are not the ones that say the most. They are the ones that make the value easiest to understand."</blockquote>
+      <div class="attribution">The easylandx principle</div>
+    </div>
+  </div>
+</section>
+
+<section class="act act-white" id="reunion">
+  <div class="wrap">
+    <div class="act-eyebrow">Part Three — The Reunion</div>
+    <h2 class="act-title">Build a page that makes the next step obvious</h2>
+    <p class="act-intro">Once the message is clear, everything on the page has a job: build confidence, remove doubt, and move the right visitor toward one clear next step.</p>
+
+    <div class="presence-grid">
+      <div class="presence-card">
+        <div class="presence-mark">I.</div>
+        <h3>One clear action</h3>
+        <p>Give visitors one obvious next step. Fewer competing choices means less hesitation and a clearer path to conversion.</p>
+      </div>
+      <div class="presence-card">
+        <div class="presence-mark">II.</div>
+        <h3>Proof that matters</h3>
+        <p>Use specific testimonials, outcomes, and evidence. Strong proof gives visitors more confidence to move forward.</p>
+      </div>
+      <div class="presence-card">
+        <div class="presence-mark">III.</div>
+        <h3>Clarity that converts</h3>
+        <p>Good design is not decoration. It makes the important message easier to see, understand, and act on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="wrap" style="padding:0;">
+    <h2>Build the page people will act on.</h2>
+    <p>Create a clearer offer, build trust faster, and give your next visitor one good reason to act.</p>
+    <a class="btn-black" href="https://easylandx.com" target="_blank" rel="noopener">Build your page with easylandx</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">easyland<em>x</em></div>
+    <div class="fine">Built for landing pages that perform. easylandx, 2026.</div>
+  </div>
+</footer>
+
+</body>
+</html>
