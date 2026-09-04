@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Every Page Teaches You Something</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow: #F2C230;
+    --yellow-deep: #E0AC0F;
+    --yellow-soft: #F8DA78;
+    --teal: #1B7A75;
+    --teal-deep: #135450;
+    --teal-soft: #4FA39D;
+    --charcoal: #262220;
+    --charcoal-soft: #48423D;
+    --paper: #FFFBEF;
+    --line: rgba(38,34,32,0.14);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--yellow);
+    color: var(--charcoal);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    background: var(--yellow);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 20px 32px;
+  }
+  .brand{
+    font-family:'Source Serif 4', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--charcoal);
+  }
+  .brand span{ color: var(--teal); }
+  .nav-links{
+    display:flex;
+    gap: 30px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--charcoal-soft);
+  }
+  .nav-links a:hover{ color: var(--teal-deep); }
+  .nav-cta{
+    background: var(--teal);
+    color: var(--paper);
+    padding: 10px 22px;
+    border-radius: 2px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s ease;
+  }
+  .nav-cta:hover{ background: var(--teal-deep); }
+  @media(max-width:780px){ .nav-links{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding: 100px 0 84px; }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .eyebrow-line{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .eyebrow-dot{
+    width: 8px; height: 8px;
+    background: var(--teal);
+    border-radius: 50%;
+  }
+  .eyebrow-text{
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--charcoal-soft);
+  }
+  .hero h1{
+    font-size: clamp(38px, 5.6vw, 66px);
+    line-height: 1.06;
+    max-width: 820px;
+  }
+  .hero-grid{
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media(max-width:860px){ .hero-grid{ grid-template-columns: 1fr; } }
+  .hero p.lede{
+    font-size: 18.5px;
+    color: var(--charcoal-soft);
+    max-width: 480px;
+  }
+  .hero-actions{
+    margin-top: 32px;
+    display:flex;
+    align-items:center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .btn-teal{
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    background: var(--teal);
+    color: var(--paper);
+    font-weight: 600;
+    font-size: 16px;
+    padding: 16px 30px;
+    border-radius: 2px;
+    border: 1px solid var(--teal);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .btn-teal:hover{ background: var(--teal-deep); transform: translateY(-2px); }
+  .link-plain{
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--charcoal);
+    border-bottom: 1px solid var(--charcoal);
+    padding-bottom: 2px;
+  }
+
+  /* Command flip card */
+  .flip-card{
+    background: var(--charcoal);
+    border-radius: 3px;
+    padding: 30px;
+    color: var(--paper);
+  }
+  .flip-label{
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--yellow-soft);
+    margin-bottom: 18px;
+  }
+  .flip-row{
+    padding: 16px 0;
+    border-top: 1px solid rgba(255,251,239,0.15);
+  }
+  .flip-row:first-of-type{ border-top:none; }
+  .flip-tag{
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--yellow-soft);
+    margin-bottom: 6px;
+  }
+  .flip-tag.good{ color: var(--teal-soft); }
+  .flip-text{
+    font-family: 'Source Serif 4', serif;
+    font-size: 17px;
+    font-style: italic;
+  }
+
+  /* ---------- SECTION shared ---------- */
+  section{ padding: 88px 0; }
+  .section-paper{ background: var(--paper); color: var(--charcoal); }
+  .section-charcoal{ background: var(--charcoal); color: var(--paper); }
+  .section-teal{ background: var(--teal); color: var(--paper); }
+
+  .kicker{
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--teal-deep);
+    margin-bottom: 14px;
+  }
+  .section-charcoal .kicker, .section-teal .kicker{ color: var(--yellow-soft); }
+
+  h2.section-title{
+    font-size: clamp(28px, 3.4vw, 40px);
+    max-width: 640px;
+    margin-bottom: 16px;
+  }
+  .section-intro{
+    max-width: 560px;
+    color: var(--charcoal-soft);
+    font-size: 16.5px;
+  }
+  .section-charcoal .section-intro, .section-teal .section-intro{ color: rgba(255,251,239,0.82); }
+
+  /* ---------- Protocol steps ---------- */
+  .protocol{
+    margin-top: 54px;
+    display: flex;
+    flex-direction: column;
+  }
+  .protocol-item{
+    display:grid;
+    grid-template-columns: 64px 220px 1fr;
+    gap: 28px;
+    align-items: start;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+  }
+  .protocol-item:last-child{ border-bottom: 1px solid var(--line); }
+  .protocol-num{
+    font-family: 'Source Serif 4', serif;
+    font-size: 26px;
+    color: var(--teal);
+  }
+  .protocol-name{
+    font-weight: 600;
+    font-size: 17px;
+    padding-top: 4px;
+  }
+  .protocol-desc{
+    font-size: 15px;
+    color: var(--charcoal-soft);
+    max-width: 560px;
+  }
+  @media(max-width:760px){
+    .protocol-item{ grid-template-columns: 40px 1fr; }
+    .protocol-desc{ grid-column: 2 / 3; }
+  }
+
+  /* ---------- Voluntary discomfort ---------- */
+  .discomfort-wrap{
+    margin-top: 54px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+    align-items: center;
+  }
+  @media(max-width:860px){ .discomfort-wrap{ grid-template-columns: 1fr; } }
+  .dial{
+    background: var(--charcoal-soft);
+    border-radius: 3px;
+    padding: 30px;
+  }
+  .dial-row{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 12px 0;
+    border-top: 1px solid rgba(255,251,239,0.14);
+    font-size: 14.5px;
+  }
+  .dial-row:first-child{ border-top:none; }
+  .dial-track{
+    flex: 1;
+    height: 6px;
+    background: rgba(255,251,239,0.15);
+    border-radius: 4px;
+    margin: 0 16px;
+    overflow: hidden;
+  }
+  .dial-fill{
+    height: 100%;
+    background: var(--yellow);
+    border-radius: 4px;
+  }
+
+  /* ---------- Quitting triggers ---------- */
+  .triggers{
+    margin-top: 54px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--line);
+  }
+  @media(max-width:760px){ .triggers{ grid-template-columns: 1fr; } }
+  .trigger-card{
+    background: var(--paper);
+    padding: 32px 28px;
+  }
+  .trigger-card h3{
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--teal-deep);
+  }
+  .trigger-card p{
+    font-size: 14.5px;
+    color: var(--charcoal-soft);
+  }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background: var(--yellow-deep);
+    padding: 76px 0;
+    text-align: center;
+  }
+  .cta-band h2{
+    font-size: clamp(28px, 3.4vw, 38px);
+    color: var(--charcoal);
+    max-width: 640px;
+    margin: 0 auto 16px;
+  }
+  .cta-band p{
+    color: var(--charcoal-soft);
+    font-size: 16.5px;
+    max-width: 460px;
+    margin: 0 auto 32px;
+  }
+  .btn-charcoal{
+    display:inline-flex;
+    background: var(--charcoal);
+    color: var(--paper);
+    font-weight: 600;
+    font-size: 16px;
+    padding: 17px 34px;
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .btn-charcoal:hover{ transform: translateY(-2px); opacity: 0.9; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background: var(--charcoal);
+    color: rgba(255,251,239,0.7);
+    padding: 44px 0;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  footer .brand{ color: var(--paper); }
+  footer .fine{ font-size: 13.5px; color: rgba(255,251,239,0.5); }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">easyland<span>x</span></div>
+    <div class="nav-links">
+      <a href="#framing">Framing</a>
+      <a href="#protocol">Recovery protocol</a>
+      <a href="#triggers">Knowing when to pivot</a>
+    </div>
+    <a class="nav-cta" href="https://easylandx.com" target="_blank" rel="noopener">Start building</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow-line">
+      <div class="eyebrow-dot"></div>
+      <div class="eyebrow-text">easylandx landing pages</div>
+    </div>
+    <h1>A slow page isn't a verdict. It's data waiting for your next edit.</h1>
+
+    <div class="hero-grid">
+      <div>
+        <p class="lede">easylandx treats every landing page as a feedback loop, not a final exam. Publish, read the numbers, adjust, and let each version get a little sharper than the last.</p>
+        <div class="hero-actions">
+          <a class="btn-teal" href="https://easylandx.com" target="_blank" rel="noopener">Build your next version with easylandx →</a>
+          <a class="link-plain" href="#protocol">See the recovery protocol</a>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-label">HOW YOU TALK TO YOURSELF ABOUT A PAGE, MATTERS</div>
+        <div class="flip-row">
+          <div class="flip-tag">STUCK PHRASING</div>
+          <div class="flip-text">"This page just doesn't convert."</div>
+        </div>
+        <div class="flip-row">
+          <div class="flip-tag good">EASYLANDX PHRASING</div>
+          <div class="flip-text">"Let's find the edit that moves this number."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section-paper" id="framing">
+  <div class="wrap">
+    <div class="kicker">Brain framing, applied to page building</div>
+    <h2 class="section-title">Your builder brain follows the exact words you give it</h2>
+    <p class="section-intro">easylandx's editor keeps every prompt, tip, and analytics label phrased as a search for a fix — not a judgment on the page. Small wording, different outcome.</p>
+  </div>
+</section>
+
+<section class="section-charcoal" id="protocol">
+  <div class="wrap">
+    <div class="kicker">When a launch underperforms</div>
+    <h2 class="section-title">The 5-step reset, built into your dashboard</h2>
+    <p class="section-intro">Within a day or two of a soft launch, easylandx walks you through the same reset professionals use to turn a flat page into a sharper one.</p>
+
+    <div class="protocol">
+      <div class="protocol-item">
+        <div class="protocol-num">01</div>
+        <div class="protocol-name">Acknowledge and sit</div>
+        <div class="protocol-desc">Give the disappointment a fixed, brief window in easylandx's notes panel — write down exactly how it feels, then close the note.</div>
+      </div>
+      <div class="protocol-item">
+        <div class="protocol-num">02</div>
+        <div class="protocol-name">Separate event from identity</div>
+        <div class="protocol-desc">Log it as "this headline underperformed," not "I can't write headlines." easylandx labels every metric by element, keeping the page in focus instead of you.</div>
+      </div>
+      <div class="protocol-item">
+        <div class="protocol-num">03</div>
+        <div class="protocol-name">Run the lesson audit</div>
+        <div class="protocol-desc">Pull up the easylandx analytics summary and list, plainly, exactly which sections and copy lines correlate with the drop-off.</div>
+      </div>
+      <div class="protocol-item">
+        <div class="protocol-num">04</div>
+        <div class="protocol-name">Isolate the controllables</div>
+        <div class="protocol-desc">Cross out traffic-source noise and seasonal dips; keep only the layout, copy, and offer choices that were actually yours to make.</div>
+      </div>
+      <div class="protocol-item">
+        <div class="protocol-num">05</div>
+        <div class="protocol-name">Re-enter immediately</div>
+        <div class="protocol-desc">Open the easylandx editor and ship one small, controllable fix today — a new headline, a swapped image — to keep momentum warm.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-teal">
+  <div class="wrap">
+    <div class="kicker">Resilience inoculation</div>
+    <h2 class="section-title">Small, voluntary stretches build a steadier builder</h2>
+    <p class="section-intro">You don't build page-building confidence by only ever publishing the safe version. easylandx makes it easy to run small, deliberate experiments that raise your comfort with the unknown.</p>
+
+    <div class="discomfort-wrap">
+      <div>
+        <p style="font-size:16px; color:rgba(255,251,239,0.9); max-width:460px;">Try one experiment a week: a bolder headline, an unfamiliar layout, a price shown in public. Each rep raises your baseline for handling an uncertain result.</p>
+      </div>
+      <div class="dial">
+        <div class="dial-row">
+          <span>Bold headline test</span>
+          <div class="dial-track"><div class="dial-fill" style="width:70%;"></div></div>
+          <span>Comfort +</span>
+        </div>
+        <div class="dial-row">
+          <span>New layout trial</span>
+          <div class="dial-track"><div class="dial-fill" style="width:55%;"></div></div>
+          <span>Comfort +</span>
+        </div>
+        <div class="dial-row">
+          <span>Public pricing page</span>
+          <div class="dial-track"><div class="dial-fill" style="width:40%;"></div></div>
+          <span>Comfort +</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-paper" id="triggers">
+  <div class="wrap">
+    <div class="kicker">Strategic pivoting</div>
+    <h2 class="section-title">Knowing when to retire a page is its own kind of strength</h2>
+    <p class="section-intro">Holding onto a page out of habit costs more than starting fresh. easylandx's version history makes it easy to archive with confidence and open a cleaner build. Four signs it's time:</p>
+
+    <div class="triggers">
+      <div class="trigger-card">
+        <h3>Your goals have moved on</h3>
+        <p>The offer this page promotes no longer matches where your business is headed.</p>
+      </div>
+      <div class="trigger-card">
+        <h3>The upkeep costs more than it returns</h3>
+        <p>The time spent tending this page could go toward something with a clearer payoff.</p>
+      </div>
+      <div class="trigger-card">
+        <h3>A stronger path is waiting</h3>
+        <p>A new offer or audience shows more upside than another round of edits here.</p>
+      </div>
+      <div class="trigger-card">
+        <h3>The data tells a new story</h3>
+        <p>Fresh numbers show the original premise needs a different page entirely — and that's useful to know.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="wrap" style="padding:0;">
+    <h2>Your next version is one small edit away.</h2>
+    <p>Open easylandx, read what the last version taught you, and publish the sharper one.</p>
+    <a class="btn-charcoal" href="https://easylandx.com" target="_blank" rel="noopener">Build with easylandx</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">easyland<span style="color:#4FA39D;">x</span></div>
+    <div class="fine">Built for builders who keep iterating. easylandx, 2026.</div>
+  </div>
+</footer>
+
+</body>
+</html>

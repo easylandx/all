@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Pages Built on Calculation and Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory: #F8F3E7;
+    --ivory-deep: #EFE6D0;
+    --paper: #FDFAF2;
+    --amber: #C9821F;
+    --amber-bright: #E4A13C;
+    --amber-soft: #F1CE95;
+    --gray: #5B564F;
+    --gray-deep: #322E29;
+    --gray-line: rgba(50,46,41,0.14);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    font-family: 'Manrope', sans-serif;
+    background: var(--ivory);
+    color: var(--gray-deep);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    background: var(--ivory);
+    border-bottom: 1px solid var(--gray-line);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 22px 32px;
+  }
+  .brand{
+    font-family:'Newsreader', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gray-deep);
+  }
+  .brand span{ color: var(--amber); font-style: italic; }
+  .nav-links{
+    display:flex;
+    gap: 30px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--gray);
+  }
+  .nav-links a:hover{ color: var(--amber); }
+  .nav-cta{
+    background: var(--gray-deep);
+    color: var(--paper);
+    padding: 10px 22px;
+    border-radius: 2px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s ease;
+  }
+  .nav-cta:hover{ background: var(--amber); }
+  @media(max-width:820px){ .nav-links{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding: 104px 0 80px; }
+  .hero .wrap{ max-width: 880px; }
+  .eyebrow-line{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    margin-bottom: 26px;
+  }
+  .eyebrow-mark{
+    font-family:'Newsreader', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--amber);
+  }
+  .eyebrow-text{
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray);
+  }
+  .hero h1{
+    font-size: clamp(36px, 5.2vw, 58px);
+    line-height: 1.15;
+  }
+  .hero h1 em{ font-style: italic; color: var(--amber); }
+  .hero p.lede{
+    margin-top: 26px;
+    font-size: 18.5px;
+    color: var(--gray);
+    max-width: 600px;
+  }
+  .hero-actions{
+    margin-top: 36px;
+    display:flex;
+    align-items:center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .btn-amber{
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    background: var(--amber);
+    color: var(--paper);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 16px 30px;
+    border-radius: 2px;
+    border: 1px solid var(--amber);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .btn-amber:hover{ background: var(--amber-bright); transform: translateY(-2px); }
+  .link-plain{
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--gray-deep);
+    border-bottom: 1px solid var(--gray-deep);
+    padding-bottom: 2px;
+  }
+
+  /* ---------- SECTION shared ---------- */
+  section{ padding: 90px 0; }
+  .section-paper{ background: var(--paper); }
+  .section-deep{ background: var(--gray-deep); color: var(--ivory); }
+  .section-amber{ background: var(--amber-soft); }
+
+  .kicker{
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--amber);
+    margin-bottom: 14px;
+    font-style: italic;
+    font-family: 'Newsreader', serif;
+  }
+  .section-deep .kicker{ color: var(--amber-bright); }
+
+  h2.section-title{
+    font-size: clamp(28px, 3.4vw, 40px);
+    max-width: 640px;
+    margin-bottom: 16px;
+  }
+  .section-intro{
+    max-width: 580px;
+    color: var(--gray);
+    font-size: 16.5px;
+  }
+  .section-deep .section-intro{ color: rgba(248,243,231,0.78); }
+
+  /* ---------- Two-part split ---------- */
+  .parts{
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--gray-line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  @media(max-width:860px){ .parts{ grid-template-columns: 1fr; } }
+  .part{
+    padding: 40px 36px;
+  }
+  .part.calc{ background: var(--paper); border-right: 1px solid var(--gray-line); }
+  .part.story{ background: var(--ivory-deep); }
+  @media(max-width:860px){ .part.calc{ border-right:none; border-bottom: 1px solid var(--gray-line); } }
+  .part-label{
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--amber);
+    margin-bottom: 14px;
+  }
+  .part h3{
+    font-size: 24px;
+    margin-bottom: 14px;
+  }
+  .part p{
+    font-size: 15px;
+    color: var(--gray);
+    margin-bottom: 18px;
+  }
+  .part ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .part li{
+    font-size: 14.5px;
+    color: var(--gray-deep);
+    padding-left: 18px;
+    position: relative;
+  }
+  .part li::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+
+  /* ---------- Timeline ---------- */
+  .timeline{
+    margin-top: 60px;
+    position: relative;
+    padding-left: 28px;
+    border-left: 2px solid var(--amber-soft);
+  }
+  .t-item{
+    position: relative;
+    padding-bottom: 46px;
+  }
+  .t-item:last-child{ padding-bottom: 0; }
+  .t-item::before{
+    content: "";
+    position: absolute;
+    left: -34px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--amber);
+    border: 3px solid var(--ivory);
+  }
+  .t-year{
+    font-family:'Newsreader', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--amber);
+    margin-bottom: 6px;
+  }
+  .t-title{
+    font-size: 19px;
+    font-weight: 600;
+    font-family: 'Newsreader', serif;
+    margin-bottom: 8px;
+  }
+  .t-desc{
+    font-size: 15px;
+    color: var(--gray);
+    max-width: 560px;
+  }
+
+  /* ---------- Toolkit grid ---------- */
+  .toolkit{
+    margin-top: 54px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media(max-width:900px){ .toolkit{ grid-template-columns: 1fr; } }
+  .tk-card{
+    background: rgba(248,243,231,0.06);
+    border: 1px solid rgba(248,243,231,0.16);
+    border-radius: 4px;
+    padding: 28px 24px;
+  }
+  .tk-card h3{
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--amber-bright);
+  }
+  .tk-card p{
+    font-size: 14.5px;
+    color: rgba(248,243,231,0.78);
+  }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background: var(--amber);
+    padding: 76px 0;
+    text-align: center;
+  }
+  .cta-band h2{
+    font-size: clamp(28px, 3.4vw, 38px);
+    color: var(--paper);
+    max-width: 640px;
+    margin: 0 auto 16px;
+  }
+  .cta-band p{
+    color: rgba(253,250,242,0.9);
+    font-size: 16.5px;
+    max-width: 460px;
+    margin: 0 auto 32px;
+  }
+  .btn-deep{
+    display:inline-flex;
+    background: var(--gray-deep);
+    color: var(--paper);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 17px 34px;
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .btn-deep:hover{ transform: translateY(-2px); opacity: 0.92; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background: var(--gray-deep);
+    color: rgba(248,243,231,0.7);
+    padding: 44px 0;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  footer .brand{ color: var(--ivory); }
+  footer .brand span{ color: var(--amber-bright); }
+  footer .fine{ font-size: 13.5px; color: rgba(248,243,231,0.5); }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">easyland<span>x</span></div>
+    <div class="nav-links">
+      <a href="#parts">The two halves</a>
+      <a href="#timeline">A short history</a>
+      <a href="#toolkit">Believability toolkit</a>
+    </div>
+    <a class="nav-cta" href="https://easylandx.com" target="_blank" rel="noopener">Start building</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow-line">
+      <div class="eyebrow-mark">§</div>
+      <div class="eyebrow-text">easylandx landing pages</div>
+    </div>
+    <h1>A page that <em>works</em> is built from two things: calculation and story.</h1>
+    <p class="lede">easylandx blends the measurable — clicks, tests, conversion odds — with the felt — voice, imagery, trust. Together they make a page that computes well and reads as true.</p>
+    <div class="hero-actions">
+      <a class="btn-amber" href="https://easylandx.com" target="_blank" rel="noopener">Create your page with easylandx →</a>
+      <a class="link-plain" href="#parts">Explore the two halves</a>
+    </div>
+  </div>
+</header>
+
+<section class="section-paper" id="parts">
+  <div class="wrap">
+    <div class="kicker">A page in two halves</div>
+    <h2 class="section-title">The calculation layer and the narrative layer</h2>
+    <p class="section-intro">Great landing pages hold both truths at once: a set of odds worth testing, and a story worth believing. easylandx gives equal weight to each.</p>
+
+    <div class="parts">
+      <div class="part calc">
+        <div class="part-label">THE CALCULATION LAYER</div>
+        <h3>What the numbers make possible</h3>
+        <p>easylandx treats every headline, button, and layout choice as a small wager you can measure, refine, and improve with real visitor data.</p>
+        <ul>
+          <li>Built-in A/B testing across headlines, images, and offers</li>
+          <li>Live conversion odds shown right in the editor</li>
+          <li>Simple, readable analytics — no spreadsheet required</li>
+        </ul>
+      </div>
+      <div class="part story">
+        <div class="part-label">THE NARRATIVE LAYER</div>
+        <h3>What makes a page feel true</h3>
+        <p>Numbers alone rarely persuade. easylandx helps you write and design pages that read as real, specific, and worth trusting.</p>
+        <ul>
+          <li>Copy prompts that favor plain, specific language</li>
+          <li>Testimonial and proof blocks that feel authentic</li>
+          <li>Imagery and pacing that match your audience's world</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-amber" id="timeline">
+  <div class="wrap">
+    <div class="kicker">A short history, applied</div>
+    <h2 class="section-title">From dice to design: how prediction and story came together</h2>
+    <p class="section-intro">The idea of testing your way toward belief has a long, rich lineage. easylandx carries it forward into every page you build.</p>
+
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-year">The wager</div>
+        <div class="t-title">A calculated bet, made persuasive</div>
+        <div class="t-desc">Long before software, thinkers realized a well-structured bet could do more than gamble — it could persuade. easylandx's tests work the same way: a structured wager on what will resonate.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-year">The pattern</div>
+        <div class="t-title">From games to everyday decisions</div>
+        <div class="t-desc">Calculating chance grew useful the moment it applied beyond games — to risk, contracts, and choices. easylandx applies the same shift: your split tests inform real business decisions, not just curiosity.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-year">The story</div>
+        <div class="t-title">Believability becomes a craft</div>
+        <div class="t-desc">Around the same era, storytellers learned to build worlds that felt real without leaning on the miraculous. easylandx's copy and design tools carry that same craft into every section of your page.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-year">The synthesis</div>
+        <div class="t-title">Where easylandx picks up the thread</div>
+        <div class="t-desc">Today's builders no longer have to choose between what computes and what feels true. easylandx holds both, so your page is measured and memorable at once.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-deep" id="toolkit">
+  <div class="wrap">
+    <div class="kicker">The believability toolkit</div>
+    <h2 class="section-title">Make your page feel like real life</h2>
+    <p class="section-intro">Verisimilitude — the quality of feeling true — is a craft easylandx builds into every template.</p>
+
+    <div class="toolkit">
+      <div class="tk-card">
+        <h3>Specific over vague</h3>
+        <p>easylandx's copy prompts nudge you toward concrete details — a name, a number, a moment — the details that make a claim feel real.</p>
+      </div>
+      <div class="tk-card">
+        <h3>Proof, placed naturally</h3>
+        <p>Testimonials, ratings, and case results sit exactly where a visitor is weighing a decision, woven into the page's flow rather than bolted on.</p>
+      </div>
+      <div class="tk-card">
+        <h3>Pacing that mirrors trust</h3>
+        <p>easylandx sequences sections the way a good story unfolds: context, evidence, invitation — so belief builds naturally as visitors scroll.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="wrap" style="padding:0;">
+    <h2>Bring the numbers and the story together.</h2>
+    <p>Open easylandx and build a page that tests well and reads as true.</p>
+    <a class="btn-deep" href="https://easylandx.com" target="_blank" rel="noopener">Start with easylandx</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">easyland<span>x</span></div>
+    <div class="fine">Built for pages worth believing. easylandx, 2026.</div>
+  </div>
+</footer>
+
+</body>
+</html>

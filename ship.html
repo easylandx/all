@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Pages You Actually Finish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange: #E2601A;
+    --orange-deep: #C24E10;
+    --orange-soft: #F0793A;
+    --charcoal: #2B2723;
+    --charcoal-soft: #423C36;
+    --gray: #857C72;
+    --gray-light: #D9CFC3;
+    --cream: #FBF5EC;
+    --gold: #C9972C;
+    --gold-bright: #E3B94D;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    font-family: 'Inter', sans-serif;
+    background: var(--orange);
+    color: var(--charcoal);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--orange);
+    border-bottom: 1px solid rgba(43,39,35,0.15);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .brand{
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--charcoal);
+  }
+  .brand span{ color: var(--gold); }
+  .nav-links{
+    display:flex;
+    gap: 32px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--charcoal-soft);
+  }
+  .nav-links a:hover{ color: var(--charcoal); }
+  .nav-cta{
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 10px 22px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid var(--charcoal);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .nav-cta:hover{ background: var(--gold); border-color: var(--gold); color: var(--charcoal); }
+
+  @media(max-width: 780px){
+    .nav-links{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 0 88px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero .wrap{
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .eyebrow-line{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    margin-bottom: 26px;
+  }
+  .eyebrow-dash{
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+  }
+  .eyebrow-text{
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--charcoal-soft);
+  }
+  .hero h1{
+    font-size: clamp(40px, 5.4vw, 68px);
+    line-height: 1.04;
+    color: var(--charcoal);
+    max-width: 640px;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--cream);
+    -webkit-text-stroke: 1px var(--charcoal);
+  }
+  .hero p.lede{
+    margin-top: 26px;
+    font-size: 19px;
+    max-width: 480px;
+    color: var(--charcoal-soft);
+  }
+  .hero-actions{
+    margin-top: 38px;
+    display:flex;
+    align-items:center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .btn-gold{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--charcoal);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 16px 30px;
+    border-radius: 3px;
+    border: 1px solid var(--gold);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .btn-gold:hover{
+    background: var(--gold-bright);
+    transform: translateY(-2px);
+  }
+  .link-plain{
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--charcoal);
+    border-bottom: 1px solid var(--charcoal);
+    padding-bottom: 2px;
+  }
+
+  /* Engine diagram in hero */
+  .engine-card{
+    background: var(--charcoal);
+    border-radius: 4px;
+    padding: 36px 30px;
+    color: var(--cream);
+  }
+  .engine-title{
+    font-size: 13px;
+    text-transform: none;
+    color: var(--gray-light);
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .engine-row{
+    display:flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .engine-box{
+    border: 1px solid rgba(251,245,236,0.25);
+    border-radius: 3px;
+    padding: 16px 18px;
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+  .engine-box .sub{
+    display:block;
+    font-weight: 400;
+    font-size: 12.5px;
+    color: var(--gray-light);
+    margin-top: 4px;
+  }
+  .engine-box.gold{
+    border-color: var(--gold);
+    background: rgba(201,151,44,0.12);
+  }
+  .engine-arrow{
+    align-self: center;
+    color: var(--gold-bright);
+    font-size: 20px;
+    line-height: 1;
+    padding: 10px 0;
+  }
+
+  /* ---------- SECTION shared ---------- */
+  section{ padding: 90px 0; }
+  .section-cream{ background: var(--cream); color: var(--charcoal); }
+  .section-charcoal{ background: var(--charcoal); color: var(--cream); }
+
+  .kicker{
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .section-charcoal .kicker{ color: var(--gold-bright); }
+
+  h2.section-title{
+    font-size: clamp(30px, 3.6vw, 42px);
+    max-width: 620px;
+    margin-bottom: 16px;
+  }
+  .section-intro{
+    max-width: 560px;
+    color: var(--gray);
+    font-size: 17px;
+  }
+  .section-charcoal .section-intro{ color: var(--gray-light); }
+
+  /* ---------- Momentum cards (formerly "failure" psychology) ---------- */
+  .grid-3{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 52px;
+  }
+  @media(max-width: 900px){ .grid-3{ grid-template-columns: 1fr; } }
+
+  .m-card{
+    background: var(--orange);
+    border-radius: 4px;
+    padding: 30px 26px;
+    border: 1px solid rgba(43,39,35,0.1);
+  }
+  .m-card h3{
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: var(--charcoal);
+  }
+  .m-card p{
+    font-size: 15px;
+    color: var(--charcoal-soft);
+  }
+  .m-card .tag{
+    display:inline-block;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--charcoal);
+    background: var(--gold-bright);
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+
+  /* ---------- Rules ---------- */
+  .rules-list{
+    margin-top: 52px;
+    display: flex;
+    flex-direction: column;
+  }
+  .rule-item{
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 36px;
+    padding: 34px 0;
+    border-top: 1px solid rgba(251,245,236,0.16);
+  }
+  .rule-item:last-child{ border-bottom: 1px solid rgba(251,245,236,0.16); }
+  .rule-name{
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    color: var(--gold-bright);
+    font-weight: 600;
+  }
+  .rule-body h3{
+    font-size: 19px;
+    margin-bottom: 8px;
+    color: var(--cream);
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+  }
+  .rule-body p{
+    font-size: 15.5px;
+    color: var(--gray-light);
+    max-width: 620px;
+  }
+  @media(max-width: 700px){
+    .rule-item{ grid-template-columns: 1fr; gap: 10px; }
+  }
+
+  /* ---------- Toolkit ---------- */
+  .toolkit-grid{
+    margin-top: 52px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(43,39,35,0.12);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  @media(max-width: 900px){ .toolkit-grid{ grid-template-columns: 1fr; } }
+  .tool-card{
+    background: var(--cream);
+    padding: 34px 28px;
+  }
+  .tool-card h3{
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--charcoal);
+  }
+  .tool-card p{
+    font-size: 14.5px;
+    color: var(--gray);
+  }
+  .tool-num{
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 14px;
+    display:block;
+  }
+
+  /* ---------- Quote / monologue shift ---------- */
+  .shift{
+    margin-top: 60px;
+    background: var(--charcoal);
+    border-radius: 4px;
+    padding: 44px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  @media(max-width: 700px){ .shift{ grid-template-columns: 1fr; } }
+  .shift-col{ padding: 18px; border-radius: 3px; }
+  .shift-col.before{ background: rgba(251,245,236,0.05); }
+  .shift-col.after{ background: rgba(201,151,44,0.14); border: 1px solid var(--gold); }
+  .shift-label{
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: var(--gray-light);
+    margin-bottom: 10px;
+  }
+  .shift-col.after .shift-label{ color: var(--gold-bright); }
+  .shift-text{
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    color: var(--cream);
+    font-style: italic;
+  }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background: var(--gold);
+    padding: 74px 0;
+    text-align: center;
+  }
+  .cta-band h2{
+    font-size: clamp(28px, 3.6vw, 40px);
+    color: var(--charcoal);
+    max-width: 640px;
+    margin: 0 auto 18px;
+  }
+  .cta-band p{
+    color: var(--charcoal-soft);
+    font-size: 17px;
+    max-width: 460px;
+    margin: 0 auto 34px;
+  }
+  .btn-charcoal{
+    display: inline-flex;
+    background: var(--charcoal);
+    color: var(--cream);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 17px 34px;
+    border-radius: 3px;
+    border: 1px solid var(--charcoal);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .btn-charcoal:hover{ transform: translateY(-2px); opacity: 0.92; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background: var(--charcoal);
+    color: var(--gray-light);
+    padding: 46px 0;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  footer .brand{ color: var(--cream); }
+  footer .fine{ font-size: 13.5px; color: var(--gray); }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">easyland<span>x</span></div>
+    <div class="nav-links">
+      <a href="#momentum">Momentum</a>
+      <a href="#rules">Rules</a>
+      <a href="#toolkit">Toolkit</a>
+    </div>
+    <a class="nav-cta" href="https://easylandx.com" target="_blank" rel="noopener">Start building</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow-line">
+        <div class="eyebrow-dash"></div>
+        <div class="eyebrow-text">easylandx landing pages</div>
+      </div>
+      <h1>Build the page. <em>Ship</em> the page. Move on.</h1>
+      <p class="lede">easylandx turns landing-page building into a habit you keep, not a project you circle forever. Clear structure, small steps, and a system that carries your momentum all the way to launch.</p>
+      <div class="hero-actions">
+        <a class="btn-gold" href="https://easylandx.com" target="_blank" rel="noopener">Launch your page with easylandx →</a>
+        <a class="link-plain" href="#momentum">See how it works</a>
+      </div>
+    </div>
+
+    <div class="engine-card">
+      <div class="engine-title">THE EASYLANDX EXECUTION ENGINE</div>
+      <div class="engine-row">
+        <div class="engine-box">
+          Your energy and ideas
+          <span class="sub">Finite — best spent early, not stretched thin</span>
+        </div>
+        <div class="engine-arrow">↓</div>
+        <div class="engine-box gold">
+          easylandx structure
+          <span class="sub">Templates, checklists, and built-in guardrails</span>
+        </div>
+        <div class="engine-arrow">↓</div>
+        <div class="engine-box">
+          A page that ships itself
+          <span class="sub">Frictionless, repeatable, always finished</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section-cream" id="momentum">
+  <div class="wrap">
+    <div class="kicker">Why some pages launch and others linger</div>
+    <h2 class="section-title">Three energy patterns, three easy fixes</h2>
+    <p class="section-intro">Every builder meets the same three moments. easylandx gives each one a clear, positive answer, so your energy goes toward the page — not around it.</p>
+
+    <div class="grid-3">
+      <div class="m-card">
+        <span class="tag">Warm-up resistance</span>
+        <h3>The first-click hesitation</h3>
+        <p>A blank canvas can feel bigger than it is. easylandx opens every project with a ready layout, so your first move is a choice, not a blank page.</p>
+      </div>
+      <div class="m-card">
+        <span class="tag">The polish urge</span>
+        <h3>The "one more tweak" pull</h3>
+        <p>Wanting a page to feel just right is a good instinct. easylandx channels it into a short, guided polish pass — then hands you a natural finish line.</p>
+      </div>
+      <div class="m-card">
+        <span class="tag">Big-launch energy</span>
+        <h3>The all-at-once plan</h3>
+        <p>Ambition is fuel. easylandx breaks a big launch vision into steady, doable sessions, so that early spark carries all the way through.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-charcoal" id="rules">
+  <div class="wrap">
+    <div class="kicker">High-leverage rules, built into the workflow</div>
+    <h2 class="section-title">The rules that keep a landing page moving</h2>
+    <p class="section-intro">Borrowed from focus research and baked into every easylandx project, these three rules turn good intentions into a finished, live page.</p>
+
+    <div class="rules-list">
+      <div class="rule-item">
+        <div class="rule-name">10 Minutes</div>
+        <div class="rule-body">
+          <h3>Open the editor, commit to ten</h3>
+          <p>easylandx starts every session with a focused 10-minute block. Set your timer, place your first section, and let momentum take it from there — most builders keep going well past the buzzer.</p>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-name">Rule of Two</div>
+        <div class="rule-body">
+          <h3>Touch your page at least every other day</h3>
+          <p>easylandx tracks your streak and sends a friendly nudge before a second day passes untouched, keeping your page-building habit fresh and alive.</p>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-name">40–70</div>
+        <div class="rule-body">
+          <h3>Publish with good-enough information</h3>
+          <p>easylandx's live preview and one-click publish mean you can launch confidently once you're past 40% ready and before you're chasing 100% — then refine with real visitor data.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="shift">
+      <div class="shift-col before">
+        <div class="shift-label">OLD SCRIPT</div>
+        <div class="shift-text">"I have to finish this landing page."</div>
+      </div>
+      <div class="shift-col after">
+        <div class="shift-label">EASYLANDX SCRIPT</div>
+        <div class="shift-text">"I choose to launch this page today, because it moves my goal forward."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-cream" id="toolkit">
+  <div class="wrap">
+    <div class="kicker">Inside every project</div>
+    <h2 class="section-title">The easylandx toolkit</h2>
+    <p class="section-intro">Three simple mechanics, working together to keep your page-building energy pointed at a finished, published result.</p>
+  </div>
+
+  <div class="toolkit-grid wrap" style="margin-left:auto;margin-right:auto;">
+    <div class="tool-card">
+      <span class="tool-num">Pair it up</span>
+      <h3>Temptation bundling</h3>
+      <p>Save your favorite playlist or coffee order for editing sessions only. easylandx sessions become the reward, not the chore.</p>
+    </div>
+    <div class="tool-card">
+      <span class="tool-num">Break it down</span>
+      <h3>Micro-scoping</h3>
+      <p>Big page, small steps: headline today, gallery tomorrow. easylandx splits every project into bite-sized sections you can always find time for.</p>
+    </div>
+    <div class="tool-card">
+      <span class="tool-num">Say it plainly</span>
+      <h3>Clear internal scripts</h3>
+      <p>easylandx prompts frame every step as a choice you're making for your goal, keeping your momentum self-directed and steady.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="wrap" style="padding:0;">
+    <h2>Your next landing page is one ten-minute session away.</h2>
+    <p>Open easylandx, pick a layout, and let the structure carry you to a page that's live — not lingering.</p>
+    <a class="btn-charcoal" href="https://easylandx.com" target="_blank" rel="noopener">Start with easylandx</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">easyland<span style="color:#C9972C;">x</span></div>
+    <div class="fine">Built for builders who finish. easylandx, 2026.</div>
+  </div>
+</footer>
+
+</body>
+</html>
