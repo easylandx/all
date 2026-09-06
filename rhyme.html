@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Pages Built on Pattern and Trust</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violet: #3B2560;
+    --violet-deep: #2A1B49;
+    --violet-line: rgba(255,255,255,0.14);
+    --teal: #2FBFA6;
+    --teal-deep: #1F8C79;
+    --gold: #D8A94B;
+    --gold-deep: #B8862F;
+    --ink: #F4EFFA;
+    --ink-dim: #C6B8E0;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--violet);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, .display{
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .label{
+    font-family: 'Jost', sans-serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-dim);
+    letter-spacing: 0.02em;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{ padding: 30px 0; }
+  .topbar .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    font-family:'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  /* ---------- Pattern divider ---------- */
+  .rhyme-divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 10px;
+    margin: 26px 0;
+  }
+  .rhyme-divider .diamond{
+    width: 7px; height: 7px;
+    transform: rotate(45deg);
+  }
+  .rhyme-divider .diamond.t{ background: var(--teal); }
+  .rhyme-divider .diamond.g{ background: var(--gold); }
+  .rhyme-divider .line{
+    width: 40px; height: 1px;
+    background: var(--violet-line);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding: 40px 0 90px; text-align:center; }
+  .hero h1{
+    font-size: clamp(32px, 4.6vw, 50px);
+    line-height: 1.22;
+    max-width: 18ch;
+    margin: 0 auto;
+  }
+  .hero p.lede{
+    margin: 26px auto 0;
+    max-width: 54ch;
+    color: var(--ink-dim);
+    font-size: 18px;
+  }
+  .cta-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top: 34px;
+    padding: 15px 32px;
+    background: var(--gold);
+    color: var(--violet-deep);
+    text-decoration:none;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 2px;
+    transition: background .25s ease, transform .25s ease;
+  }
+  .cta-btn:hover{
+    background: var(--gold-deep);
+    transform: translateY(-1px);
+  }
+  .cta-btn .dot{
+    width: 7px; height: 7px;
+    background: var(--teal-deep);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ---------- Plate sections ---------- */
+  .plate{ padding: 58px 0; border-top: 1px solid var(--violet-line); text-align:center; }
+  .plate h2{
+    font-size: 27px;
+    max-width: 24ch;
+    margin: 0 auto 20px;
+  }
+  .plate p{
+    max-width: 58ch;
+    margin: 0 auto;
+    color: var(--ink-dim);
+    font-size: 16.5px;
+  }
+  .plate p + p{ margin-top: 14px; }
+
+  /* ---------- Diagram ---------- */
+  .diagram-note{ margin: 34px auto 0; max-width: 620px; }
+  .diagram-note svg{ width:100%; height:auto; }
+  .diagram-caption{
+    margin-top: 14px;
+    font-family:'Jost', sans-serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-dim);
+  }
+
+  /* ---------- Closing ---------- */
+  .closing{ padding: 90px 0 100px; text-align:center; border-top: 1px solid var(--violet-line); }
+  .closing h2{
+    font-size: clamp(28px, 3.6vw, 40px);
+    max-width: 18ch;
+    margin: 0 auto 18px;
+  }
+  .closing p{
+    max-width: 50ch;
+    margin: 0 auto;
+    color: var(--ink-dim);
+    font-size: 17px;
+  }
+
+  footer{
+    padding: 26px 0 44px;
+    text-align:center;
+    font-family:'Jost', sans-serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-dim);
+  }
+
+  @media (max-width: 640px){
+    .wrap{ padding: 0 22px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cta-btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <span class="brand">EasyLandX</span>
+      <span class="label">patterns that earn trust</span>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>A page that feels right, before a visitor reads a word.</h1>
+      <p class="lede">EasyLandX designs affordable, conversion-focused landing pages for small businesses — built on the same quiet patterns the eye trusts everywhere else: clean alignment, steady rhythm, and proportions that simply feel right.</p>
+
+      <div class="rhyme-divider">
+        <span class="line"></span><span class="diamond t"></span><span class="diamond g"></span><span class="diamond t"></span><span class="line"></span>
+      </div>
+
+      <a class="cta-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">
+        <span class="dot"></span> Start with EasyLandX
+      </a>
+    </div>
+  </section>
+
+  <section class="plate">
+    <div class="wrap">
+      <span class="label">on pattern</span>
+      <h2>Every strong page has a rhyme</h2>
+      <p>A poem earns its beauty through repetition — matching sounds, steady rhythm, a shape the ear recognizes. A landing page works the same way: repeated spacing, aligned edges, and a consistent color story let the eye settle in immediately. EasyLandX builds that rhyme into every section, so the whole page reads as one coherent thought.</p>
+    </div>
+  </section>
+
+  <section class="plate">
+    <div class="wrap">
+      <span class="label">on trust</span>
+      <h2>A clean pattern is a small, quiet reward</h2>
+      <p>When the eye finds an orderly layout, it registers a small flicker of ease — the same instinct that responds to a well-proportioned room or a balanced photograph. EasyLandX designs with that instinct in mind, so a visitor feels comfortable on your page within the first few seconds, often without knowing exactly why.</p>
+
+      <div class="diagram-note">
+        <svg viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrowT" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#2FBFA6"/>
+            </marker>
+            <marker id="arrowG" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#D8A94B"/>
+            </marker>
+          </defs>
+          <g font-family="Jost, sans-serif" font-size="13" fill="#F4EFFA">
+            <circle cx="150" cy="70" r="62" fill="#2A1B49" stroke="#2FBFA6" stroke-width="1.6"/>
+            <text x="150" y="65" text-anchor="middle" font-weight="500">A well-patterned</text>
+            <text x="150" y="83" text-anchor="middle" font-weight="500">page</text>
+
+            <circle cx="470" cy="70" r="62" fill="#2A1B49" stroke="#D8A94B" stroke-width="1.6"/>
+            <text x="470" y="65" text-anchor="middle" font-weight="500">The eye finds</text>
+            <text x="470" y="83" text-anchor="middle" font-weight="500">it easy to read</text>
+
+            <circle cx="470" cy="220" r="62" fill="#2A1B49" stroke="#2FBFA6" stroke-width="1.6"/>
+            <text x="470" y="215" text-anchor="middle" font-weight="500">A small sense</text>
+            <text x="470" y="233" text-anchor="middle" font-weight="500">of confidence</text>
+
+            <circle cx="150" cy="220" r="62" fill="#2A1B49" stroke="#D8A94B" stroke-width="1.6"/>
+            <text x="150" y="215" text-anchor="middle" font-weight="500">The visitor</text>
+            <text x="150" y="233" text-anchor="middle" font-weight="500">trusts the page</text>
+          </g>
+          <path d="M212,70 C280,55 340,55 405,70" fill="none" stroke="#2FBFA6" stroke-width="1.6" marker-end="url(#arrowT)"/>
+          <path d="M470,132 C470,160 470,165 470,158" fill="none" stroke="#D8A94B" stroke-width="1.6" marker-end="url(#arrowG)"/>
+          <path d="M408,220 C340,235 280,235 212,220" fill="none" stroke="#2FBFA6" stroke-width="1.6" marker-end="url(#arrowT)"/>
+          <path d="M150,158 C150,150 150,145 150,132" fill="none" stroke="#D8A94B" stroke-width="1.6" marker-end="url(#arrowG)"/>
+        </svg>
+        <p class="diagram-caption">a well-patterned page → easy to read → a sense of confidence → trust — and back again</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="plate">
+    <div class="wrap">
+      <span class="label">on craft</span>
+      <h2>Polish is a signal, not decoration</h2>
+      <p>A page that looks considered tells a visitor, instantly, that the business behind it is considered too. Careful proportion and clear hierarchy aren't just pleasant to look at — they're evidence of care, and small businesses can carry that evidence just as convincingly as much larger ones. EasyLandX treats visual polish as a working part of the page, not an afterthought.</p>
+    </div>
+  </section>
+
+  <section class="plate">
+    <div class="wrap">
+      <span class="label">on craftsmanship</span>
+      <h2>People can feel when a person made it</h2>
+      <p>A page assembled with real attention reads differently than one stamped out of a generic template — visitors sense the difference, even if they couldn't explain it. EasyLandX builds every page by hand, so what a visitor feels is exactly what's true: someone genuinely thought this through for you.</p>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <h2>Give your business a page that feels considered.</h2>
+      <p>EasyLandX designs affordable, conversion-focused landing pages and websites for small businesses — shaped by the same quiet patterns that earn trust everywhere else.</p>
+
+      <div class="rhyme-divider">
+        <span class="line"></span><span class="diamond g"></span><span class="diamond t"></span><span class="diamond g"></span><span class="line"></span>
+      </div>
+
+      <a class="cta-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">
+        <span class="dot"></span> Visit EasyLandX
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">EasyLandX — pattern, proportion, and a little bit of quiet beauty.</div>
+  </footer>
+
+</body>
+</html>

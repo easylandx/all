@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — The Questions Behind a Great Landing Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,500;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --silver: #D6D9DB;
+    --silver-line: #BDC1C4;
+    --paper: #FFFFFF;
+    --ink: #212327;
+    --ink-soft: #55585D;
+    --red: #C4213A;
+    --red-deep: #8F1729;
+    --red-tint: #F7DEE1;
+    --blue: #1E4FA3;
+    --blue-deep: #143570;
+    --blue-tint: #DCE6F5;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--silver);
+    color: var(--ink);
+    font-family: 'Source Serif 4', serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, .display{
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .tag{
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{ padding: 26px 0; border-bottom: 1px solid var(--silver-line); }
+  .topbar .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    font-family:'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+  }
+  .topbar .tag{ color: var(--ink-soft); }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding: 78px 0 70px; }
+  .hero-card{
+    background: var(--paper);
+    padding: 56px 60px;
+    max-width: 840px;
+    border-top: 6px solid var(--blue);
+  }
+  .hero h1{
+    font-size: clamp(32px, 4.4vw, 48px);
+    line-height: 1.16;
+    max-width: 18ch;
+  }
+  .hero h1 em{
+    font-style: normal;
+    color: var(--blue);
+  }
+  .hero p.lede{
+    margin-top: 22px;
+    max-width: 56ch;
+    color: var(--ink-soft);
+    font-size: 18px;
+  }
+  .cta-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top: 34px;
+    padding: 15px 30px;
+    background: var(--blue);
+    color: #fff;
+    text-decoration:none;
+    font-family: 'Archivo', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    transition: background .25s ease, transform .25s ease;
+  }
+  .cta-btn:hover{
+    background: var(--blue-deep);
+    transform: translateY(-1px);
+  }
+  .cta-btn .dot{
+    width: 8px; height: 8px;
+    background: var(--red);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ---------- Question cards ---------- */
+  .qcard{ padding: 30px 0; }
+  .qcard-inner{
+    background: var(--paper);
+    padding: 42px 48px;
+    display:grid;
+    grid-template-columns: 130px 1fr;
+    gap: 40px;
+  }
+  .qcard.red .qcard-inner{ border-left: 6px solid var(--red); }
+  .qcard.blue .qcard-inner{ border-left: 6px solid var(--blue); }
+
+  .qnum{
+    font-family:'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: 52px;
+    line-height: 1;
+  }
+  .qcard.red .qnum{ color: var(--red); }
+  .qcard.blue .qnum{ color: var(--blue); }
+
+  .qcat{
+    display:inline-block;
+    margin-top: 10px;
+    padding: 4px 9px;
+  }
+  .qcard.red .qcat{ background: var(--red-tint); color: var(--red-deep); }
+  .qcard.blue .qcat{ background: var(--blue-tint); color: var(--blue-deep); }
+
+  .qcard h2{
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 1.35;
+    max-width: 26ch;
+    color: var(--ink);
+  }
+  .qcard p{
+    margin-top: 14px;
+    max-width: 60ch;
+    color: var(--ink-soft);
+    font-size: 16.5px;
+  }
+
+  /* ---------- Diagram ---------- */
+  .diagram-note{ margin-top: 26px; max-width: 660px; }
+  .diagram-note svg{ width:100%; height:auto; }
+  .diagram-caption{
+    margin-top: 12px;
+    font-family:'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Closing ---------- */
+  .closing{ padding: 70px 0 100px; }
+  .closing-card{
+    background: var(--paper);
+    padding: 56px 60px;
+    text-align:center;
+    border-top: 6px solid var(--red);
+  }
+  .closing h2{
+    font-size: clamp(28px, 3.6vw, 40px);
+    max-width: 20ch;
+    margin: 0 auto 16px;
+  }
+  .closing p{
+    max-width: 52ch;
+    margin: 0 auto;
+    color: var(--ink-soft);
+    font-size: 17px;
+  }
+
+  footer{
+    padding: 22px 0 44px;
+    text-align:center;
+    font-family:'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 760px){
+    .qcard-inner{ grid-template-columns: 1fr; }
+    .hero-card, .closing-card{ padding: 36px 26px; }
+    .wrap{ padding: 0 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cta-btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <span class="brand">EasyLandX</span>
+      <span class="tag">A QUESTION-FIRST APPROACH TO LANDING PAGES</span>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-card">
+        <h1>What's the <em>one thing</em> you want a visitor to do here?</h1>
+        <p class="lede">EasyLandX starts every landing page with a short list of pointed questions, not a template. The answers — about your customers, your goals, your business — shape every headline, image, and button that follows.</p>
+        <a class="cta-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">
+          <span class="dot"></span> Start with EasyLandX
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="qcard blue">
+    <div class="wrap qcard-inner">
+      <div>
+        <div class="qnum">01</div>
+        <span class="qcat tag">CLARITY</span>
+      </div>
+      <div>
+        <h2>"What's the one thing you want a first-time visitor to do here?"</h2>
+        <p>Most pages try to say everything at once. EasyLandX asks this question first, because a single, clear answer — book a call, buy a product, sign up — gives every other design decision somewhere to point.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="qcard red">
+    <div class="wrap qcard-inner">
+      <div>
+        <div class="qnum">02</div>
+        <span class="qcat tag">TRADE-OFFS</span>
+      </div>
+      <div>
+        <h2>"Would you rather a page that loads in two seconds and says one thing well, or one that takes six seconds to show everything you offer?"</h2>
+        <p>Every design choice trades something for something else. EasyLandX weighs these trade-offs with you directly, and in almost every case, speed and a clear focus win a visitor's trust faster than a page trying to cover every feature at once.</p>
+
+        <div class="diagram-note">
+          <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrowR" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="#C4213A"/>
+              </marker>
+              <marker id="arrowB" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="#1E4FA3"/>
+              </marker>
+            </defs>
+            <g font-family="Archivo, sans-serif" font-size="14" font-weight="700">
+              <text x="60" y="40" fill="#8F1729">Everything included</text>
+              <text x="60" y="60" font-family="Source Serif 4, serif" font-weight="400" font-style="italic" font-size="13" fill="#55585D">every feature, every claim</text>
+
+              <text x="440" y="40" fill="#143570">One clear message</text>
+              <text x="440" y="60" font-family="Source Serif 4, serif" font-weight="400" font-style="italic" font-size="13" fill="#55585D">the thing that matters most</text>
+            </g>
+            <path d="M60,70 C160,120 260,120 300,105" fill="none" stroke="#C4213A" stroke-width="2" marker-end="url(#arrowR)"/>
+            <path d="M560,70 C460,120 360,120 320,105" fill="none" stroke="#1E4FA3" stroke-width="2" marker-end="url(#arrowB)"/>
+            <circle cx="320" cy="112" r="34" fill="#FFFFFF" stroke="#212327" stroke-width="1.6"/>
+            <text x="320" y="108" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="800" font-size="12.5" fill="#212327">Your</text>
+            <text x="320" y="122" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="800" font-size="12.5" fill="#212327">clearest page</text>
+          </svg>
+          <p class="diagram-caption">EVERYTHING INCLUDED ⟷ ONE CLEAR MESSAGE → YOUR CLEAREST PAGE</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="qcard blue">
+    <div class="wrap qcard-inner">
+      <div>
+        <div class="qnum">03</div>
+        <span class="qcat tag">DEPTH OVER SMALL TALK</span>
+      </div>
+      <div>
+        <h2>"What do you actually do, for whom, and why does it matter to them today?"</h2>
+        <p>Generic phrases like "industry-leading" or "world-class" sound safe but say very little. EasyLandX skips them, asking direct questions until the real answer surfaces — and that specific, honest answer becomes your headline.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="qcard red">
+    <div class="wrap qcard-inner">
+      <div>
+        <div class="qnum">04</div>
+        <span class="qcat tag">HUMAN, NOT AUTOMATED</span>
+      </div>
+      <div>
+        <h2>"Would you rather a page assembled instantly by an algorithm, or one shaped by someone who actually asked about your business?"</h2>
+        <p>Automated builders can produce a page in minutes, generated from a generic pattern. EasyLandX takes a different approach: real people, asking real questions about what makes your business distinct, then building the page by hand around those answers.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap closing-card">
+      <h2>What question would your page answer for a visitor today?</h2>
+      <p>EasyLandX designs affordable, conversion-focused landing pages and websites for small businesses — starting with the right questions, not a template.</p>
+      <a class="cta-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">
+        <span class="dot"></span> Visit EasyLandX
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">EasyLandX — the right question, answered clearly.</div>
+  </footer>
+
+</body>
+</html>

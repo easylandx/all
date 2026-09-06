@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Pages Built to Move People Forward</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --alabaster: #EDEAE2;
+    --alabaster-deep: #E2DDD1;
+    --indigo: #38315F;
+    --indigo-deep: #241F42;
+    --ochre: #C08A2E;
+    --ochre-soft: #DCB56C;
+    --ink: #2A2620;
+    --ink-soft: #5B564C;
+    --rule: rgba(42,38,32,0.14);
+    --max: 720px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--alabaster);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, .display{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    color: var(--indigo-deep);
+    margin: 0;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Running head ---------- */
+  .running-head{
+    padding: 26px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .running-head .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .mark{
+    font-family:'Fraunces', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--indigo-deep);
+  }
+  .running-head .folio{
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 90px 0 80px;
+  }
+  .hero .grid{
+    display:grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 56px;
+    align-items: end;
+  }
+  .hero h1{
+    font-size: clamp(38px, 5vw, 60px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+  .hero .dropcap-para{
+    margin-top: 28px;
+    max-width: 62ch;
+    font-size: 18px;
+    color: var(--ink-soft);
+  }
+  .hero .dropcap-para::first-letter{
+    font-family: 'Fraunces', serif;
+    font-size: 3.6em;
+    font-weight: 500;
+    float: left;
+    line-height: 0.8;
+    padding-right: 10px;
+    padding-top: 6px;
+    color: var(--ochre);
+  }
+  .contents{
+    border-left: 1px solid var(--rule);
+    padding-left: 28px;
+  }
+  .contents .eyebrow{
+    font-family:'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+    display:block;
+  }
+  .contents ol{
+    list-style:none;
+    margin:0; padding:0;
+  }
+  .contents li{
+    display:flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px dotted var(--rule);
+    font-size: 14.5px;
+  }
+  .contents li:last-child{ border-bottom:none; }
+  .contents .numeral{
+    color: var(--ochre);
+    font-family:'Fraunces', serif;
+    font-style: italic;
+  }
+  .contents a{ text-decoration:none; }
+  .contents a:hover{ color: var(--indigo); }
+
+  .cta-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top: 40px;
+    padding: 15px 30px;
+    background: var(--indigo);
+    color: var(--alabaster);
+    border-radius: 3px;
+    text-decoration:none;
+    font-size: 15.5px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: background .25s ease, transform .25s ease;
+  }
+  .cta-btn:hover{
+    background: var(--indigo-deep);
+    transform: translateY(-1px);
+  }
+  .cta-btn .ribbon{
+    width: 8px; height: 8px;
+    background: var(--ochre);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ---------- Essay sections ---------- */
+  .essay{
+    padding: 64px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .essay .grid{
+    display:grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+  }
+  .essay .label{
+    font-family:'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+  .essay .numeral-big{
+    font-family:'Fraunces', serif;
+    font-size: 46px;
+    color: var(--ochre);
+    line-height: 1;
+    margin-bottom: 10px;
+    display:block;
+  }
+  .essay h2{
+    font-size: 28px;
+    margin-bottom: 18px;
+    max-width: 18ch;
+  }
+  .essay p{
+    max-width: 62ch;
+    color: var(--ink-soft);
+    font-size: 16.5px;
+  }
+  .essay p + p{ margin-top: 14px; }
+
+  .pullquote{
+    margin: 22px 0 0;
+    padding-left: 20px;
+    border-left: 3px solid var(--indigo);
+    font-family:'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--indigo-deep);
+    max-width: 52ch;
+  }
+
+  /* ---------- Diagram section ---------- */
+  .diagram-note{
+    margin-top: 30px;
+    max-width: 640px;
+  }
+  .diagram-note svg{ width:100%; height:auto; }
+  .diagram-caption{
+    margin-top: 12px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+  }
+
+  /* ---------- Closing ---------- */
+  .closing{
+    padding: 90px 0 110px;
+    border-top: 1px solid var(--rule);
+    text-align:center;
+  }
+  .closing h2{
+    font-size: clamp(30px, 4vw, 44px);
+    max-width: 16ch;
+    margin: 0 auto 18px;
+  }
+  .closing p{
+    max-width: 52ch;
+    margin: 0 auto;
+    color: var(--ink-soft);
+    font-size: 17px;
+  }
+  .closing .cta-btn{
+    margin-top: 34px;
+  }
+
+  footer{
+    padding: 26px 0 40px;
+    text-align:center;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 760px){
+    .hero .grid, .essay .grid{ grid-template-columns: 1fr; }
+    .contents{ border-left:none; border-top:1px solid var(--rule); padding-left:0; padding-top:20px; margin-top:32px; }
+    .wrap{ padding: 0 22px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cta-btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="running-head">
+    <div class="wrap">
+      <span class="mark">EasyLandX</span>
+      <span class="folio">Landing Pages, Considered</span>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap grid">
+      <div>
+        <h1>Every page tells your reader something true.</h1>
+        <p class="dropcap-para">A landing page works when it meets a visitor exactly where they stand, in language they already trust. EasyLandX builds affordable, conversion-focused pages for small businesses — crafted around your customers as they are today, not around a generic template borrowed from someone else's brand.</p>
+        <a class="cta-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">
+          <span class="ribbon"></span> Start with EasyLandX
+        </a>
+      </div>
+      <nav class="contents">
+        <span class="eyebrow">In this page</span>
+        <ol>
+          <li><span class="numeral">I.</span><a href="#present">Design for the present moment</a></li>
+          <li><span class="numeral">II.</span><a href="#signal">Every click is a signal</a></li>
+          <li><span class="numeral">III.</span><a href="#details">Built from daily details</a></li>
+          <li><span class="numeral">IV.</span><a href="#voice">A voice that's entirely yours</a></li>
+          <li><span class="numeral">V.</span><a href="#ease">Choose ease</a></li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <section class="essay" id="present">
+    <div class="wrap grid">
+      <div><span class="numeral-big">I.</span><span class="label">On clarity</span></div>
+      <div>
+        <h2>Design for the present moment</h2>
+        <p>The strongest pages are built from real, current signals — what today's visitors are actually looking for — rather than assumptions carried over from an older design. EasyLandX studies your audience as they are right now, so every headline, image, and button meets people exactly where they stand.</p>
+        <p class="pullquote">A page grounded in the present earns attention faster than one built from memory.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="essay" id="signal">
+    <div class="wrap grid">
+      <div><span class="numeral-big">II.</span><span class="label">On feedback</span></div>
+      <div>
+        <h2>Every click is a signal</h2>
+        <p>A scroll, a pause, a click — each one carries information about what your visitors want next. EasyLandX treats every signal as valuable data, turning it into small, thoughtful refinements that keep your page aligned with what your audience is telling you, session after session.</p>
+
+        <div class="diagram-note">
+          <svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="#38315F"/>
+              </marker>
+            </defs>
+            <!-- nodes -->
+            <g font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#2A2620">
+              <rect x="20" y="90" width="140" height="52" rx="4" fill="#E2DDD1" stroke="#38315F" stroke-width="1.3"/>
+              <text x="90" y="112" text-anchor="middle" font-weight="600">Visitor</text>
+              <text x="90" y="130" text-anchor="middle" fill="#5B564C" font-size="12.5">arrives on the page</text>
+
+              <rect x="250" y="20" width="140" height="52" rx="4" fill="#E2DDD1" stroke="#C08A2E" stroke-width="1.3"/>
+              <text x="320" y="42" text-anchor="middle" font-weight="600">Signal</text>
+              <text x="320" y="60" text-anchor="middle" fill="#5B564C" font-size="12.5">observed and noted</text>
+
+              <rect x="480" y="90" width="140" height="52" rx="4" fill="#E2DDD1" stroke="#38315F" stroke-width="1.3"/>
+              <text x="550" y="112" text-anchor="middle" font-weight="600">Insight</text>
+              <text x="550" y="130" text-anchor="middle" fill="#5B564C" font-size="12.5">translated for design</text>
+
+              <rect x="250" y="160" width="140" height="52" rx="4" fill="#E2DDD1" stroke="#C08A2E" stroke-width="1.3"/>
+              <text x="320" y="182" text-anchor="middle" font-weight="600">Refinement</text>
+              <text x="320" y="200" text-anchor="middle" fill="#5B564C" font-size="12.5">a clearer experience</text>
+            </g>
+            <!-- arrows -->
+            <path d="M160,105 L255,55" fill="none" stroke="#38315F" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <path d="M390,50 L485,100" fill="none" stroke="#38315F" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <path d="M545,142 L370,175" fill="none" stroke="#38315F" stroke-width="1.4" marker-end="url(#arrow)"/>
+            <path d="M250,182 C170,175 90,155 95,142" fill="none" stroke="#38315F" stroke-width="1.4" marker-end="url(#arrow)"/>
+          </svg>
+          <p class="diagram-caption">The signal loop — how EasyLandX keeps a page in step with the people reading it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="essay" id="details">
+    <div class="wrap grid">
+      <div><span class="numeral-big">III.</span><span class="label">On craft</span></div>
+      <div>
+        <h2>Built from daily details</h2>
+        <p>Real momentum comes from the unglamorous craft of small choices — a clear headline, a well-placed button, an image that loads instantly. EasyLandX focuses on these everyday details, because a page's strength is built line by line, not delivered in a single dramatic leap.</p>
+        <p class="pullquote">A great page is a thousand small decisions, made well.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="essay" id="voice">
+    <div class="wrap grid">
+      <div><span class="numeral-big">IV.</span><span class="label">On identity</span></div>
+      <div>
+        <h2>A voice that's entirely yours</h2>
+        <p>Your brand deserves a page that reflects your own standards, told in your own words — not a borrowed template stretched to fit. EasyLandX designs around your voice and your goals, so your site stands as a genuine reflection of what you've built and where you're headed.</p>
+        <p class="pullquote">Success looks different for every business. Your page should look like yours.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="essay" id="ease">
+    <div class="wrap grid">
+      <div><span class="numeral-big">V.</span><span class="label">On ease</span></div>
+      <div>
+        <h2>Choose ease</h2>
+        <p>Building an online presence can take many forms, and EasyLandX exists to make that path a light one — hands-on design, fair pricing, and a page delivered without the weight of building it all alone. You bring the business; EasyLandX brings the craft.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <h2>Your next chapter starts with one page.</h2>
+      <p>EasyLandX designs affordable, conversion-focused landing pages and websites for small businesses — built around real visitors, real goals, and your own voice.</p>
+      <a class="cta-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">
+        <span class="ribbon"></span> Visit EasyLandX
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">EasyLandX — pages built to move people forward.</div>
+  </footer>
+
+</body>
+</html>

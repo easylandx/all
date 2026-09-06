@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — A Filter for Your Landing Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue: #16264B;
+    --blue-panel: #1C3160;
+    --blue-line: #2C4176;
+    --slate: #8791A3;
+    --slate-soft: #5E6982;
+    --ink: #E9ECF3;
+    --ink-dim: #B7BECE;
+    --lime: #A9E63D;
+    --lime-deep: #7FB627;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--blue);
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, .display{
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .tag{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--slate);
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{ padding: 26px 0; border-bottom: 1px solid var(--blue-line); }
+  .topbar .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{ font-weight: 800; font-size: 19px; color: var(--ink); }
+  .brand .dot{ color: var(--lime); }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding: 78px 0 70px; }
+  .hero h1{
+    font-size: clamp(32px, 4.6vw, 52px);
+    line-height: 1.15;
+    max-width: 17ch;
+  }
+  .hero h1 .accent{ color: var(--lime); }
+  .hero p.lede{
+    margin-top: 22px;
+    max-width: 58ch;
+    color: var(--ink-dim);
+    font-size: 18px;
+  }
+  .cta-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top: 34px;
+    padding: 15px 30px;
+    background: var(--lime);
+    color: var(--blue);
+    text-decoration:none;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 3px;
+    transition: background .25s ease, transform .25s ease;
+  }
+  .cta-btn:hover{
+    background: var(--lime-deep);
+    transform: translateY(-1px);
+  }
+  .cta-btn .dot{
+    width: 8px; height: 8px;
+    background: var(--blue);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ---------- Panels ---------- */
+  .panel-section{ padding: 56px 0; border-top: 1px solid var(--blue-line); }
+  .panel{
+    background: var(--blue-panel);
+    border: 1px solid var(--blue-line);
+    border-radius: 6px;
+    padding: 44px 48px;
+  }
+  .panel .kicker{ margin-bottom: 14px; display:block; }
+  .panel h2{
+    font-size: 27px;
+    max-width: 24ch;
+    margin-bottom: 16px;
+  }
+  .panel p{
+    max-width: 62ch;
+    color: var(--ink-dim);
+    font-size: 16.5px;
+  }
+  .panel p + p{ margin-top: 14px; }
+
+  /* ---------- Filter columns ---------- */
+  .filter-cols{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .fcol{
+    border-radius: 5px;
+    padding: 20px 22px;
+  }
+  .fcol.noise{
+    background: rgba(94,105,130,0.14);
+    border: 1px solid var(--slate-soft);
+  }
+  .fcol.signal{
+    background: rgba(169,230,61,0.08);
+    border: 1px solid var(--lime-deep);
+  }
+  .fcol .flabel{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    margin-bottom: 10px;
+    display:block;
+  }
+  .fcol.noise .flabel{ color: var(--slate); }
+  .fcol.signal .flabel{ color: var(--lime); }
+  .fcol ul{ margin: 0; padding-left: 18px; color: var(--ink-dim); font-size: 15px; }
+  .fcol li{ margin-bottom: 6px; }
+
+  /* ---------- Diagram ---------- */
+  .diagram-note{ margin-top: 30px; }
+  .diagram-note svg{ width:100%; height:auto; }
+  .diagram-caption{
+    margin-top: 12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--slate);
+  }
+
+  /* ---------- Closing ---------- */
+  .closing{ padding: 70px 0 100px; }
+  .closing .panel{ text-align:center; }
+  .closing h2{
+    font-size: clamp(28px, 3.6vw, 40px);
+    max-width: 20ch;
+    margin: 0 auto 16px;
+  }
+  .closing p{
+    max-width: 52ch;
+    margin: 0 auto;
+    color: var(--ink-dim);
+    font-size: 17px;
+  }
+
+  footer{
+    padding: 22px 0 44px;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--slate);
+  }
+
+  @media (max-width: 760px){
+    .filter-cols{ grid-template-columns: 1fr; }
+    .panel{ padding: 30px 24px; }
+    .wrap{ padding: 0 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cta-btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <span class="brand">EasyLandX<span class="dot">.</span></span>
+      <span class="tag">A FILTER FOR YOUR LANDING PAGE</span>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>Every word on your page should <span class="accent">earn its place.</span></h1>
+      <p class="lede">EasyLandX builds affordable, conversion-focused landing pages for small businesses by running every headline, image, and line of copy through one clear filter: does this help a visitor take action?</p>
+      <a class="cta-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">
+        <span class="dot"></span> Start with EasyLandX
+      </a>
+    </div>
+  </section>
+
+  <section class="panel-section">
+    <div class="wrap panel">
+      <span class="tag kicker">THE FILTER</span>
+      <h2>Two kinds of content compete for your page</h2>
+      <p>Some content moves a visitor closer to a decision. Some content just takes up space. EasyLandX sorts every idea for your page into one of these two columns before anything gets built.</p>
+
+      <div class="filter-cols">
+        <div class="fcol noise">
+          <span class="flabel">SET ASIDE FOR LATER</span>
+          <ul>
+            <li>Every feature and award, listed at once</li>
+            <li>Broad claims with nothing specific behind them</li>
+            <li>Extra links that lead a visitor away from the goal</li>
+          </ul>
+        </div>
+        <div class="fcol signal">
+          <span class="flabel">KEEP ON THE PAGE</span>
+          <ul>
+            <li>The one outcome your visitor came here for</li>
+            <li>Proof that speaks to that exact outcome</li>
+            <li>A single, clear next step</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="diagram-note">
+        <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrowL" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#A9E63D"/>
+            </marker>
+            <marker id="arrowS" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#8791A3"/>
+            </marker>
+          </defs>
+          <g font-family="Manrope, sans-serif" font-size="14" fill="#E9ECF3">
+            <rect x="270" y="10" width="160" height="52" rx="4" fill="#1C3160" stroke="#2C4176" stroke-width="1.4"/>
+            <text x="350" y="32" text-anchor="middle" font-weight="700">New idea</text>
+            <text x="350" y="49" text-anchor="middle" fill="#B7BECE" font-size="12.5">for the page</text>
+
+            <polygon points="350,100 450,150 350,200 250,150" fill="#1C3160" stroke="#2C4176" stroke-width="1.4"/>
+            <text x="350" y="145" text-anchor="middle" font-weight="600" font-size="13">Does it help the</text>
+            <text x="350" y="162" text-anchor="middle" font-weight="600" font-size="13">visitor act?</text>
+
+            <rect x="480" y="125" width="180" height="52" rx="4" fill="rgba(169,230,61,0.1)" stroke="#7FB627" stroke-width="1.6"/>
+            <text x="570" y="147" text-anchor="middle" font-weight="700" fill="#A9E63D">Yes</text>
+            <text x="570" y="164" text-anchor="middle" fill="#B7BECE" font-size="12.5">Keep it on the page</text>
+
+            <rect x="40" y="125" width="180" height="52" rx="4" fill="rgba(94,105,130,0.14)" stroke="#5E6982" stroke-width="1.4"/>
+            <text x="130" y="147" text-anchor="middle" font-weight="700" fill="#8791A3">No</text>
+            <text x="130" y="164" text-anchor="middle" fill="#B7BECE" font-size="12.5">Save it for later</text>
+
+            <rect x="270" y="220" width="160" height="40" rx="4" fill="#A9E63D"/>
+            <text x="350" y="245" text-anchor="middle" font-weight="800" fill="#16264B" font-size="13.5">A sharper page</text>
+          </g>
+          <path d="M350,62 L350,95" stroke="#8791A3" stroke-width="1.6" marker-end="url(#arrowS)"/>
+          <path d="M440,155 L475,150" stroke="#A9E63D" stroke-width="1.6" marker-end="url(#arrowL)"/>
+          <path d="M260,155 L225,150" stroke="#8791A3" stroke-width="1.6" marker-end="url(#arrowS)"/>
+          <path d="M570,177 C570,205 430,225 400,230" stroke="#A9E63D" stroke-width="1.6" marker-end="url(#arrowL)"/>
+        </svg>
+        <p class="diagram-caption">NEW IDEA → DOES IT HELP THE VISITOR ACT? → KEEP OR SET ASIDE → A SHARPER PAGE</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel-section">
+    <div class="wrap panel">
+      <span class="tag kicker">ONE PAGE, NOT A VAULT</span>
+      <h2>Your homepage doesn't have to hold everything you do</h2>
+      <p>Trying to fit every service, every detail, and every accomplishment onto one page overloads the very visitor you're trying to convince. EasyLandX writes everything down and gives it a proper home — a page for pricing, a page for your story, a page for the details — so your landing page can stay focused on a single, clear outcome.</p>
+    </div>
+  </section>
+
+  <section class="panel-section">
+    <div class="wrap panel">
+      <span class="tag kicker">A CURATED VIEW</span>
+      <h2>Fewer things competing for attention, more room for the one that matters</h2>
+      <p>Pop-ups, autoplaying video, and a dozen outbound links all pull focus away from the reason a visitor showed up. EasyLandX keeps each page to a curated set of elements, so the one action you care about has room to stand out clearly.</p>
+    </div>
+  </section>
+
+  <section class="panel-section">
+    <div class="wrap panel">
+      <span class="tag kicker">JUDGED BY ACTION</span>
+      <h2>A page is only as good as the action it drives</h2>
+      <p>A beautiful layout that nobody clicks through is a nice sketch, not a working page. EasyLandX measures every design choice by the outcome it produces — sign-ups, calls booked, orders placed — and adjusts anything that looks good but doesn't move a visitor forward.</p>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap panel">
+      <h2>Keep what moves people forward. Set the rest aside.</h2>
+      <p>EasyLandX designs affordable, conversion-focused landing pages and websites for small businesses — filtered down to what actually drives action.</p>
+      <a class="cta-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">
+        <span class="dot"></span> Visit EasyLandX
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">EasyLandX — clarity, built in.</div>
+  </footer>
+
+</body>
+</html>
