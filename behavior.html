@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Design for How Visitors Actually Behave</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink: #E8547A;
+    --pink-deep: #C13D62;
+    --pink-soft: #F6A9BE;
+    --slate: #2E4053;
+    --slate-deep: #202D3B;
+    --grey: #9AA4B2;
+    --grey-light: #C7CDD6;
+    --white: #FBF4F2;
+    --ink-soft: #F6D6DF;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--pink);
+    color:var(--white);
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; color:var(--white); line-height:1.15; }
+  a{ color:inherit; text-decoration:none; }
+  img, svg{ display:block; max-width:100%; }
+
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+
+  .bg-layer{
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(ellipse 780px 500px at 92% -6%, rgba(46,64,83,0.3), transparent 60%),
+      radial-gradient(ellipse 700px 550px at -8% 60%, rgba(154,164,178,0.25), transparent 55%);
+  }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(232,84,122,0.93);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(251,244,242,0.15);
+  }
+  .nav .wrap{ display:flex; align-items:center; justify-content:space-between; padding:18px 32px; }
+  .logo{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.3rem; }
+  .logo .x{ color:var(--slate-deep); background:var(--white); padding:0 4px; border-radius:4px; }
+  .nav-cta{
+    background:var(--slate);
+    color:var(--white);
+    font-weight:600;
+    font-size:0.92rem;
+    padding:10px 22px;
+    border-radius:8px;
+    transition:background 0.25s ease, transform 0.25s ease;
+  }
+  .nav-cta:hover{ background:var(--slate-deep); transform:translateY(-1px); }
+
+  /* ---------- Hero ---------- */
+  .hero{ position:relative; z-index:1; padding:112px 0 60px; }
+  .hero h1{
+    font-size:clamp(2.3rem, 5.2vw, 3.8rem);
+    font-weight:700;
+    letter-spacing:-0.02em;
+    max-width:760px;
+    opacity:0;
+    animation:riseIn 0.8s 0.05s ease forwards;
+  }
+  .hero p.lede{
+    margin-top:24px;
+    max-width:560px;
+    font-size:1.14rem;
+    color:var(--ink-soft);
+    opacity:0;
+    animation:riseIn 0.8s 0.25s ease forwards;
+  }
+  .hero-ctas{
+    margin-top:36px;
+    display:flex; gap:20px; flex-wrap:wrap; align-items:center;
+    opacity:0;
+    animation:riseIn 0.8s 0.42s ease forwards;
+  }
+  .btn-primary{
+    background:var(--slate);
+    color:var(--white);
+    font-weight:700;
+    font-size:1rem;
+    padding:16px 32px;
+    border-radius:8px;
+    display:inline-block;
+    box-shadow:0 12px 26px -10px rgba(32,45,59,0.6);
+    transition:transform 0.25s ease, background 0.25s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); background:var(--slate-deep); }
+  .btn-ghost-link{
+    font-weight:600; font-size:0.95rem; color:var(--white);
+    border-bottom:1px solid rgba(251,244,242,0.4); padding-bottom:2px;
+  }
+  @keyframes riseIn{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ---------- Chain of causes ---------- */
+  .chain-row{
+    margin-top:60px;
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:0;
+    opacity:0;
+    animation:riseIn 0.9s 0.55s ease forwards;
+  }
+  .chain-link{
+    background:var(--slate);
+    padding:12px 20px;
+    border-radius:100px;
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--grey-light);
+  }
+  .chain-sep{ color:var(--white); opacity:0.5; padding:0 10px; font-size:0.9rem; }
+  .chain-link.final{
+    background:var(--white);
+    color:var(--pink-deep);
+    font-weight:700;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ position:relative; z-index:1; padding:88px 0; }
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .section-head h2{ font-size:clamp(1.8rem, 3.4vw, 2.4rem); font-weight:700; letter-spacing:-0.015em; }
+  .section-head p{ margin-top:16px; font-size:1.04rem; color:var(--ink-soft); }
+
+  /* ---------- Environment vs willpower ---------- */
+  .env-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .env-card{
+    border-radius:18px;
+    padding:34px 30px;
+  }
+  .env-card.old{ background:rgba(46,64,83,0.35); border:1px dashed rgba(251,244,242,0.25); }
+  .env-card.new{ background:var(--slate); }
+  .env-label{
+    font-size:0.8rem;
+    font-weight:700;
+    letter-spacing:0.02em;
+    color:var(--grey-light);
+    margin-bottom:12px;
+    display:block;
+  }
+  .env-card h3{ font-size:1.1rem; margin-bottom:10px; }
+  .env-card p{ font-size:0.96rem; color:var(--ink-soft); }
+
+  /* ---------- Invisible baseline ---------- */
+  .baseline-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:18px;
+  }
+  .baseline-card{
+    background:var(--white);
+    color:var(--slate-deep);
+    border-radius:14px;
+    padding:24px 20px;
+    text-align:center;
+  }
+  .baseline-card .mark{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:0.95rem;
+    color:var(--pink-deep);
+    margin-bottom:8px;
+    display:block;
+  }
+  .baseline-card p{ font-size:0.88rem; color:var(--slate); }
+
+  /* ---------- Friction removal ---------- */
+  .friction-area{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+    align-items:center;
+  }
+  .friction-visual{ display:flex; flex-direction:column; gap:12px; }
+  .friction-row{
+    display:flex; align-items:center; gap:14px;
+  }
+  .friction-bar{
+    height:14px;
+    border-radius:100px;
+    background:var(--slate);
+  }
+  .friction-row span{ font-size:0.85rem; color:var(--ink-soft); min-width:110px; }
+  .friction-row.final .friction-bar{ background:var(--white); }
+  .friction-row.final span{ color:var(--white); font-weight:700; }
+
+  /* ---------- Patience over pressure ---------- */
+  .patience-panel{
+    background:var(--slate);
+    border-radius:24px;
+    padding:52px 48px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+  }
+  .patience-panel h2{ font-size:1.8rem; }
+  .patience-panel p{ margin-top:14px; color:var(--grey-light); }
+  .patience-example{
+    background:rgba(251,244,242,0.06);
+    border-radius:12px;
+    padding:20px 22px;
+    font-size:0.95rem;
+    color:var(--ink-soft);
+  }
+  .patience-example .tag{
+    display:block;
+    font-size:0.75rem;
+    font-weight:700;
+    color:var(--pink-soft);
+    margin-bottom:8px;
+  }
+
+  /* ---------- Credit the system ---------- */
+  .system-copy p{ color:var(--ink-soft); margin-top:16px; font-size:1.02rem; max-width:680px; }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    background:var(--slate-deep);
+    border-radius:24px;
+    padding:70px 56px;
+    text-align:center;
+  }
+  .final-cta h2{ font-size:clamp(1.8rem, 3.6vw, 2.5rem); max-width:600px; margin:0 auto; }
+  .final-cta p{ margin-top:16px; color:var(--grey-light); font-size:1.05rem; }
+  .final-cta .btn-primary{ margin-top:30px; background:var(--pink); }
+  .final-cta .btn-primary:hover{ background:var(--pink-deep); }
+
+  footer{ padding:40px 0 50px; position:relative; z-index:1; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  footer .logo{ font-size:1.1rem; }
+  footer p{ font-size:0.88rem; color:var(--ink-soft); }
+
+  @media (max-width: 900px){
+    .env-grid{ grid-template-columns:1fr; }
+    .baseline-grid{ grid-template-columns:1fr 1fr; }
+    .friction-area{ grid-template-columns:1fr; }
+    .patience-panel{ grid-template-columns:1fr; padding:40px 30px; }
+  }
+  @media (max-width: 600px){
+    .wrap{ padding:0 20px; }
+    .baseline-grid{ grid-template-columns:1fr; }
+    .chain-row{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="logo">easyland<span class="x">x</span></div>
+    <a class="nav-cta" href="https://easylandx.com" target="_blank" rel="noopener">Open EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Every click has a chain of causes behind it. Design for the whole chain.</h1>
+    <p class="lede">Visitors don't arrive as a blank slate making a purely rational choice — they arrive shaped by their day, their mindset, and everything that led them to your page. EasyLandX helps you build for that reality, not around it.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Design With Context in Mind</a>
+      <a class="btn-ghost-link" href="#chain">See how it works</a>
+    </div>
+    <div class="chain-row" id="chain">
+      <div class="chain-link">Referral source</div><span class="chain-sep">→</span>
+      <div class="chain-link">Time of day</div><span class="chain-sep">→</span>
+      <div class="chain-link">Current mood</div><span class="chain-sep">→</span>
+      <div class="chain-link final">The click</div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Shape the environment, not just the message</h2>
+      <p>People respond to what's placed in front of them far more than to how hard they're asked to decide. EasyLandX pages are built to make the right next step the easiest one.</p>
+    </div>
+    <div class="env-grid">
+      <div class="env-card old">
+        <span class="env-label">RELYING ON MOTIVATION</span>
+        <h3>"Just click here"</h3>
+        <p>A busy layout with five competing actions, hoping visitors push through on willpower alone.</p>
+      </div>
+      <div class="env-card new">
+        <span class="env-label">DESIGNING THE ENVIRONMENT</span>
+        <h3>One clear path</h3>
+        <p>A single, obvious next step, clean visual hierarchy, and copy that removes hesitation before it starts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head center">
+      <h2>Visitors show up in different states — meet them anyway</h2>
+      <p>Attention, patience, and focus shift throughout the day. A page that performs well regardless of a visitor's state earns far more genuine clicks.</p>
+    </div>
+    <div class="baseline-grid">
+      <div class="baseline-card"><span class="mark">Fast</span><p>Loads instantly, even on a slow connection or a tired scroll</p></div>
+      <div class="baseline-card"><span class="mark">Clear</span><p>Plain language that lands whether someone is focused or distracted</p></div>
+      <div class="baseline-card"><span class="mark">Simple</span><p>One message at a time, easy to absorb in a glance</p></div>
+      <div class="baseline-card"><span class="mark">Accessible</span><p>Comfortable to read and use for every visitor, every device</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap friction-area">
+    <div class="friction-visual">
+      <div class="friction-row"><div class="friction-bar" style="width:90%;"></div><span>Old form</span></div>
+      <div class="friction-row"><div class="friction-bar" style="width:60%;"></div><span>Fewer fields</span></div>
+      <div class="friction-row"><div class="friction-bar" style="width:35%;"></div><span>Smart defaults</span></div>
+      <div class="friction-row final"><div class="friction-bar" style="width:18%;"></div><span>One tap, done</span></div>
+    </div>
+    <div>
+      <div class="section-head" style="margin-bottom:0;">
+        <h2>Real change comes from redesigning the steps</h2>
+        <p>Asking visitors to try harder rarely moves the needle. Shortening the path, removing fields, and setting smart defaults changes outcomes far more reliably than any motivational headline.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="patience-panel">
+      <div>
+        <h2>Patience over pressure</h2>
+        <p>When a visitor isn't ready yet, a page can stay supportive instead of turning up the pressure. EasyLandX favors honest, low-friction ways to stay in touch over guilt-trip pop-ups and manufactured urgency.</p>
+      </div>
+      <div class="patience-example">
+        <span class="tag">A GENTLER EXIT MESSAGE</span>
+        "No rush — here's a quick guide to keep, in case now isn't the right moment."
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap system-copy">
+    <div class="section-head" style="margin-bottom:0;">
+      <h2>Credit the system, not just the headline</h2>
+      <p>A page that converts well is rarely the result of one brilliant line — it's the layout, the loading speed, the timing, and dozens of small tests working together. EasyLandX keeps the focus on improving the whole system, one measured change at a time, so results keep compounding without anyone needing a stroke of genius.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap final-cta">
+    <h2>Ready to design for how visitors actually behave?</h2>
+    <p>Build a page with EasyLandX that works with real human behavior, not against it.</p>
+    <a class="btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Start with EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">easyland<span class="x">x</span></div>
+    <p>EasyLandX — landing pages designed for real behavior, not wishful thinking.</p>
+  </div>
+</footer>
+
+</body>
+</html>
