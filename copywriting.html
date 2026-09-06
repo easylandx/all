@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Copy That Slides Visitors to Yes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --amber: #F5A623;
+    --amber-deep: #D98C00;
+    --amber-pale: #FCE6B8;
+    --red: #D62839;
+    --red-deep: #A81F2D;
+    --blue: #1B3A6B;
+    --blue-bright: #2C5AA0;
+    --white: #FFFCF5;
+    --ink: #2A1B08;
+    --ink-soft: #6B4E1E;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--amber);
+    color:var(--ink);
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; color:var(--ink); line-height:1.14; }
+  a{ color:inherit; text-decoration:none; }
+  img, svg{ display:block; max-width:100%; }
+
+  .wrap{ width:min(1180px, calc(100% - 48px)); max-width:1180px; margin:0 auto; padding:0; }
+
+  .bg-layer{
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(ellipse 800px 500px at 90% -8%, rgba(214,40,57,0.14), transparent 60%),
+      radial-gradient(ellipse 700px 550px at -8% 60%, rgba(27,58,107,0.14), transparent 55%);
+  }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,166,35,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(42,27,8,0.12);
+  }
+  .nav .wrap{ display:flex; align-items:center; justify-content:space-between; padding:18px 0; }
+  .logo{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.3rem; color:var(--ink); }
+  .logo .x{ color:var(--red); }
+  .nav-cta{
+    background:var(--blue);
+    color:var(--white);
+    font-weight:600;
+    font-size:0.92rem;
+    padding:10px 22px;
+    border-radius:100px;
+    transition:background 0.25s ease, transform 0.25s ease;
+  }
+  .nav-cta:hover{ background:var(--blue-bright); transform:translateY(-1px); }
+
+  /* ---------- Hero ---------- */
+  .hero{ position:relative; z-index:1; padding:104px 0 80px; }
+  .hero-grid{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:start; }
+  .hero-tag{
+    display:inline-block;
+    background:var(--red);
+    color:var(--white);
+    font-size:0.82rem;
+    font-weight:700;
+    padding:6px 16px;
+    border-radius:100px;
+    margin-bottom:20px;
+    opacity:0;
+    animation:riseIn 0.7s 0s ease forwards;
+  }
+  .hero h1{
+    font-size:clamp(2.3rem, 5vw, 3.6rem);
+    font-weight:700;
+    letter-spacing:-0.02em;
+    opacity:0;
+    animation:riseIn 0.8s 0.12s ease forwards;
+  }
+  .hero p.lede{
+    margin-top:22px;
+    max-width:480px;
+    font-size:1.1rem;
+    color:var(--ink-soft);
+    opacity:0;
+    animation:riseIn 0.8s 0.3s ease forwards;
+  }
+  .hero-ctas{
+    margin-top:34px;
+    display:flex; gap:20px; flex-wrap:wrap; align-items:center;
+    opacity:0;
+    animation:riseIn 0.8s 0.46s ease forwards;
+  }
+  .btn-primary{
+    background:var(--blue);
+    color:var(--white);
+    font-weight:700;
+    font-size:1rem;
+    padding:16px 32px;
+    border-radius:100px;
+    display:inline-block;
+    box-shadow:0 12px 26px -10px rgba(27,58,107,0.55);
+    transition:transform 0.25s ease, background 0.25s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); background:var(--blue-bright); }
+  .btn-ghost-link{
+    font-weight:600; font-size:0.95rem; color:var(--ink);
+    border-bottom:1px solid rgba(42,27,8,0.35); padding-bottom:2px;
+  }
+  @keyframes riseIn{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ---------- Slippery slide visual (hero side) ---------- */
+  .slide{
+    display:flex; flex-direction:column; gap:0;
+    opacity:0;
+    animation:riseIn 0.9s 0.35s ease forwards;
+  }
+  .slide-step{
+    background:var(--white);
+    border-radius:12px;
+    padding:16px 20px;
+    font-size:0.92rem;
+    font-weight:600;
+    box-shadow:0 8px 18px -10px rgba(42,27,8,0.25);
+    position:relative;
+    margin-bottom:22px;
+  }
+  .slide-step:nth-child(1){ margin-left:0; width:92%; }
+  .slide-step:nth-child(2){ margin-left:8%; width:84%; }
+  .slide-step:nth-child(3){ margin-left:16%; width:76%; }
+  .slide-step:nth-child(4){ margin-left:24%; width:68%; background:var(--red); color:var(--white); }
+  .slide-step .label{
+    display:block;
+    font-size:0.72rem;
+    font-weight:700;
+    color:var(--blue);
+    margin-bottom:4px;
+    text-transform:none;
+  }
+  .slide-step:nth-child(4) .label{ color:var(--amber-pale); }
+  .slide-step:not(:last-child)::after{
+    content:'↓';
+    position:absolute;
+    left:20px; bottom:-24px;
+    color:var(--blue);
+    font-size:1rem;
+    opacity:0.6;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ position:relative; z-index:1; padding:88px 0; }
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .section-head h2{ font-size:clamp(1.8rem, 3.4vw, 2.4rem); font-weight:700; letter-spacing:-0.015em; color:var(--ink); }
+  .section-head p{ margin-top:16px; font-size:1.04rem; color:var(--ink-soft); }
+
+  /* ---------- Trigger cards ---------- */
+  .trigger-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:22px;
+  }
+  .trigger-card{
+    background:var(--white);
+    border-radius:18px;
+    padding:30px 28px;
+    border-left:5px solid var(--blue);
+  }
+  .trigger-card:nth-child(2n){ border-left-color:var(--red); }
+  .trigger-card .num{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:0.85rem;
+    color:var(--red);
+    margin-bottom:12px;
+    display:block;
+  }
+  .trigger-card:nth-child(2n) .num{ color:var(--blue); }
+  .trigger-card h3{ font-size:1.12rem; margin-bottom:10px; }
+  .trigger-card p{ font-size:0.95rem; color:var(--ink-soft); }
+
+  /* ---------- Seeds of curiosity ---------- */
+  .curiosity-panel{
+    background:var(--blue);
+    border-radius:24px;
+    padding:52px 48px;
+    color:var(--white);
+  }
+  .curiosity-panel h2{ color:var(--white); }
+  .curiosity-panel > p{ color:rgba(255,252,245,0.82); margin-top:14px; max-width:560px; }
+  .hook-row{
+    margin-top:32px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .hook-chip{
+    background:var(--amber);
+    color:var(--ink);
+    font-weight:600;
+    font-size:0.92rem;
+    padding:12px 20px;
+    border-radius:100px;
+  }
+  .hook-chip.alt{ background:var(--red); color:var(--white); }
+
+  /* ---------- Length / editing ---------- */
+  .edit-panel{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+  }
+  .edit-copy p{ color:var(--ink-soft); margin-top:16px; }
+  .edit-card{
+    background:var(--white);
+    border-radius:18px;
+    padding:34px 32px;
+  }
+  .edit-line{
+    font-size:1.05rem;
+    margin-bottom:14px;
+    line-height:1.6;
+  }
+  .edit-line .cut{
+    text-decoration:line-through;
+    color:rgba(42,27,8,0.32);
+    margin-right:4px;
+  }
+  .edit-line .keep{
+    color:var(--red);
+    font-weight:700;
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    background:var(--ink);
+    border-radius:24px;
+    padding:70px 56px;
+    text-align:center;
+  }
+  .final-cta h2{ color:var(--white); font-size:clamp(1.8rem, 3.6vw, 2.5rem); max-width:600px; margin:0 auto; }
+  .final-cta p{ margin-top:16px; color:rgba(255,252,245,0.75); font-size:1.05rem; }
+  .final-cta .btn-primary{ margin-top:30px; background:var(--red); box-shadow:0 12px 26px -10px rgba(214,40,57,0.55); }
+  .final-cta .btn-primary:hover{ background:var(--red-deep); }
+
+  footer{ padding:40px 0 50px; position:relative; z-index:1; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  footer .logo{ font-size:1.1rem; }
+  footer p{ font-size:0.88rem; color:var(--ink-soft); }
+
+  @media (max-width: 900px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .trigger-grid{ grid-template-columns:1fr; }
+    .edit-panel{ grid-template-columns:1fr; }
+    .curiosity-panel{ padding:40px 30px; }
+  }
+  @media (max-width: 600px){
+    .hero{ padding:72px 0 56px; }
+    section{ padding:64px 0; }
+    .nav .wrap{ padding:14px 0; }
+    .nav-cta{ padding:9px 16px; font-size:0.82rem; }
+    .hero-grid{ gap:40px; }
+    .curiosity-panel{ padding:32px 24px; }
+    .final-cta{ padding:48px 24px; }
+    footer{ padding:32px 0 40px; }
+    .wrap{ width:calc(100% - 28px); }
+    .slide-step:nth-child(1){ width:100%; margin-left:0; }
+    .slide-step:nth-child(2){ width:96%; margin-left:4%; }
+    .slide-step:nth-child(3){ width:92%; margin-left:8%; }
+    .slide-step:nth-child(4){ width:88%; margin-left:12%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="logo">easyland<span class="x">x</span></div>
+    <a class="nav-cta" href="https://easylandx.com" target="_blank" rel="noopener">Open EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="hero-tag">Copy that converts</span>
+      <h1>Give visitors a slide, not a wall to climb.</h1>
+      <p class="lede">Every great landing page pulls a visitor gently from headline to "yes," one short sentence at a time. EasyLandX gives your copy the structure to keep them sliding all the way to the button.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Write Your Slide with EasyLandX</a>
+        <a class="btn-ghost-link" href="#triggers">See the psychology</a>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="slide-step"><span class="label">HEADLINE</span>Get twice the bookings, starting today</div>
+      <div class="slide-step"><span class="label">FIRST SENTENCE</span>Here's the part most tools miss.</div>
+      <div class="slide-step"><span class="label">SUBHEAD</span>See exactly how it works below.</div>
+      <div class="slide-step"><span class="label">CALL TO ACTION</span>Start free with EasyLandX →</div>
+    </div>
+  </div>
+</header>
+
+<section id="triggers">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Four ways to move a visitor's mind</h2>
+      <p>People decide with emotion and confirm with logic. EasyLandX copy blocks are shaped around the levers that make a message land.</p>
+    </div>
+    <div class="trigger-grid">
+      <div class="trigger-card">
+        <span class="num">Trigger One</span>
+        <h3>Let them picture it</h3>
+        <p>Copy that puts the visitor into the moment — using it, wearing it, already enjoying the result — makes the offer feel like theirs before they buy.</p>
+      </div>
+      <div class="trigger-card">
+        <span class="num">Trigger Two</span>
+        <h3>Earn trust with honesty</h3>
+        <p>Naming one small, honest limitation early builds instant credibility, so the bigger benefits that follow are believed completely.</p>
+      </div>
+      <div class="trigger-card">
+        <span class="num">Trigger Three</span>
+        <h3>Speak to belonging</h3>
+        <p>Connecting your offer to a community or identity taps into a visitor's natural pull toward the people they want to be like.</p>
+      </div>
+      <div class="trigger-card">
+        <span class="num">Trigger Four</span>
+        <h3>Close with the facts</h3>
+        <p>Save the specifics, numbers, and details for the end, so visitors have exactly what they need to justify the choice they've already made.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="curiosity-panel">
+      <h2>Plant a seed at the end of every paragraph</h2>
+      <p>A short, open hook at the close of each section keeps a visitor's mind leaning forward, curious about what comes next. EasyLandX suggests these hooks right where your copy needs momentum.</p>
+      <div class="hook-row">
+        <span class="hook-chip">But there's more...</span>
+        <span class="hook-chip alt">Here's where it gets interesting.</span>
+        <span class="hook-chip">Then something clicked.</span>
+        <span class="hook-chip alt">Keep reading — this is the good part.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap edit-panel">
+    <div class="edit-copy">
+      <div class="section-head" style="margin-bottom:0;">
+        <h2>Length isn't the question. Engagement is.</h2>
+        <p>A genuinely interested visitor welcomes more detail, not less. EasyLandX helps you keep every sentence earning its place, so your page stays exactly as long as it needs to be — and not one word longer.</p>
+      </div>
+    </div>
+    <div class="edit-card">
+      <div class="edit-line"><span class="cut">In today's fast-paced digital landscape,</span> <span class="keep">our tool saves you 3 hours a week.</span></div>
+      <div class="edit-line"><span class="cut">We are proud to offer</span> <span class="keep">a page that loads instantly.</span></div>
+      <div class="edit-line"><span class="cut">It's important to note that</span> <span class="keep">every visitor sees the same fast experience.</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap final-cta">
+    <h2>Ready to build the slide that leads to yes?</h2>
+    <p>Write copy with EasyLandX that carries every visitor straight to your call to action.</p>
+    <a class="btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Start with EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">easyland<span class="x">x</span></div>
+    <p>EasyLandX — landing pages written to slide, not stall.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — When Everyone Zigs, Your Page Zags</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red: #8C1018;
+    --red-deep: #690D13;
+    --red-bright: #C22A2A;
+    --black: #101012;
+    --black-soft: #1B1B1E;
+    --slate: #5B6473;
+    --slate-light: #8A93A3;
+    --white: #F7F3EE;
+    --white-dim: #D9CFC6;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--red);
+    color:var(--white);
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; color:var(--white); line-height:1.14; }
+  a{ color:inherit; text-decoration:none; }
+  img, svg{ display:block; max-width:100%; }
+
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+
+  .bg-layer{
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:
+      linear-gradient(180deg, rgba(16,16,18,0.15), transparent 30%),
+      radial-gradient(ellipse 750px 480px at 88% 4%, rgba(91,100,115,0.25), transparent 60%);
+  }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(140,16,24,0.94);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(247,243,238,0.12);
+  }
+  .nav .wrap{ display:flex; align-items:center; justify-content:space-between; padding:18px 32px; }
+  .logo{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.3rem; }
+  .logo .x{ color:var(--slate-light); }
+  .nav-cta{
+    background:var(--black);
+    color:var(--white);
+    font-weight:600;
+    font-size:0.92rem;
+    padding:10px 22px;
+    border-radius:3px;
+    border:1px solid rgba(247,243,238,0.15);
+    transition:background 0.25s ease, transform 0.25s ease;
+  }
+  .nav-cta:hover{ background:var(--black-soft); transform:translateY(-1px); }
+
+  /* ---------- Hero ---------- */
+  .hero{ position:relative; z-index:1; padding:112px 0 84px; }
+  .hero h1{
+    font-size:clamp(2.4rem, 5.6vw, 4.1rem);
+    font-weight:700;
+    letter-spacing:-0.02em;
+    max-width:760px;
+    opacity:0;
+    animation:riseIn 0.8s 0.05s ease forwards;
+  }
+  .hero .underline{
+    position:relative;
+    display:inline-block;
+  }
+  .hero .underline::after{
+    content:'';
+    position:absolute;
+    left:0; right:0; bottom:6px;
+    height:14px;
+    background:var(--black);
+    z-index:-1;
+  }
+  .hero p.lede{
+    margin-top:26px;
+    max-width:560px;
+    font-size:1.14rem;
+    color:var(--white-dim);
+    opacity:0;
+    animation:riseIn 0.8s 0.25s ease forwards;
+  }
+  .hero-ctas{
+    margin-top:38px;
+    display:flex; gap:20px; flex-wrap:wrap; align-items:center;
+    opacity:0;
+    animation:riseIn 0.8s 0.42s ease forwards;
+  }
+  .btn-primary{
+    background:var(--black);
+    color:var(--white);
+    font-weight:700;
+    font-size:1rem;
+    padding:16px 32px;
+    border-radius:3px;
+    display:inline-block;
+    box-shadow:0 10px 26px -8px rgba(0,0,0,0.55);
+    transition:transform 0.25s ease, background 0.25s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); background:var(--black-soft); }
+  .btn-ghost-link{
+    font-weight:600; font-size:0.95rem; color:var(--white);
+    border-bottom:1px solid rgba(247,243,238,0.4); padding-bottom:2px;
+  }
+  @keyframes riseIn{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ---------- process arrow ---------- */
+  .process-row{
+    margin-top:64px;
+    display:flex;
+    align-items:center;
+    gap:0;
+    flex-wrap:wrap;
+    opacity:0;
+    animation:riseIn 0.9s 0.55s ease forwards;
+  }
+  .process-step{
+    background:var(--black);
+    padding:14px 24px;
+    font-size:0.9rem;
+    font-weight:600;
+    border-radius:3px;
+  }
+  .process-arrow{
+    padding:0 14px;
+    color:var(--slate-light);
+    font-size:1.1rem;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ position:relative; z-index:1; padding:92px 0; }
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .section-head h2{ font-size:clamp(1.8rem, 3.4vw, 2.4rem); font-weight:700; letter-spacing:-0.015em; }
+  .section-head p{ margin-top:16px; font-size:1.04rem; color:var(--white-dim); }
+
+  /* ---------- Onliness mad-lib ---------- */
+  .madlib-card{
+    background:var(--black);
+    border-radius:14px;
+    padding:44px 40px;
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.3rem;
+    line-height:1.9;
+    max-width:820px;
+  }
+  .blank{
+    display:inline-block;
+    background:var(--slate);
+    color:var(--white);
+    padding:3px 14px;
+    border-radius:4px;
+    font-size:1rem;
+    margin:0 3px;
+  }
+  .madlib-example{
+    margin-top:26px;
+    padding-top:26px;
+    border-top:1px solid rgba(247,243,238,0.12);
+    font-family:'Inter', sans-serif;
+    font-size:1rem;
+    color:var(--white-dim);
+  }
+  .madlib-example .blank{ background:var(--red-bright); }
+
+  /* ---------- Good/Different grid ---------- */
+  .zag-grid{
+    display:grid;
+    grid-template-columns:auto 1fr 1fr;
+    grid-template-rows:auto 1fr 1fr;
+    max-width:680px;
+    gap:2px;
+  }
+  .zag-cell{
+    padding:26px 22px;
+    min-height:150px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .zag-axis-label{
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    font-size:0.8rem;
+    font-weight:700;
+    color:var(--white-dim);
+    letter-spacing:0.05em;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .zag-axis-top{
+    grid-column:2 / span 2;
+    text-align:center;
+    font-size:0.8rem;
+    font-weight:700;
+    color:var(--white-dim);
+    letter-spacing:0.05em;
+    padding-bottom:8px;
+  }
+  .zag-cell.dim{ background:rgba(16,16,18,0.55); }
+  .zag-cell.spark{ background:var(--slate); }
+  .zag-cell.zag{ background:var(--black); border:2px solid var(--slate-light); }
+  .zag-cell.quiet{ background:rgba(16,16,18,0.3); }
+  .zag-cell h3{ font-size:1.02rem; margin-bottom:6px; }
+  .zag-cell p{ font-size:0.85rem; color:var(--white-dim); }
+  .zag-cell.zag p{ color:var(--white-dim); }
+
+  /* ---------- Choosing less ---------- */
+  .choose-panel{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .choose-list{ display:flex; flex-direction:column; gap:14px; }
+  .choose-row{
+    display:flex; align-items:center; gap:16px;
+    background:var(--black);
+    padding:16px 20px;
+    border-radius:8px;
+  }
+  .choose-row.keep{ background:var(--slate); }
+  .choose-mark{
+    width:26px; height:26px;
+    border-radius:50%;
+    background:rgba(247,243,238,0.12);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.85rem;
+    flex-shrink:0;
+  }
+  .choose-row.keep .choose-mark{ background:var(--black); }
+  .choose-row span{ font-size:0.95rem; color:var(--white-dim); }
+  .choose-row.keep span{ color:var(--white); font-weight:600; }
+
+  /* ---------- Touchpoint alignment strip ---------- */
+  .touch-strip{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .touch-chip{
+    background:var(--black);
+    padding:16px 22px;
+    border-radius:8px;
+    font-size:0.92rem;
+    flex:1 1 150px;
+    text-align:center;
+    border-bottom:3px solid var(--slate-light);
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    background:var(--black);
+    border-radius:20px;
+    padding:70px 56px;
+    text-align:center;
+  }
+  .final-cta h2{ font-size:clamp(1.8rem, 3.6vw, 2.5rem); max-width:600px; margin:0 auto; }
+  .final-cta p{ margin-top:16px; color:var(--white-dim); font-size:1.05rem; }
+  .final-cta .btn-primary{ margin-top:30px; background:var(--slate); }
+  .final-cta .btn-primary:hover{ background:var(--slate-light); color:var(--black); }
+
+  footer{ padding:40px 0 50px; position:relative; z-index:1; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  footer .logo{ font-size:1.1rem; }
+  footer p{ font-size:0.88rem; color:var(--white-dim); }
+
+  @media (max-width: 900px){
+    .choose-panel{ grid-template-columns:1fr; }
+    .zag-grid{ max-width:100%; }
+  }
+  @media (max-width: 600px){
+    .wrap{ padding:0 20px; }
+    .madlib-card{ padding:30px 24px; font-size:1.05rem; }
+    .zag-grid{ grid-template-columns:1fr; }
+    .zag-axis-label, .zag-axis-top{ display:none; }
+    .touch-strip{ flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="logo">easyland<span class="x">x</span></div>
+    <a class="nav-cta" href="https://easylandx.com" target="_blank" rel="noopener">Open EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>When everyone zigs, your page can <span class="underline">zag</span>.</h1>
+    <p class="lede">In a crowded, look-alike web, standing for something singular beats being slightly better at everything. EasyLandX helps you build a landing page around the one thing only you offer.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Find Your Zag with EasyLandX</a>
+      <a class="btn-ghost-link" href="#onliness">Write your Onliness Statement</a>
+    </div>
+    <div class="process-row">
+      <div class="process-step">Find Your Space</div>
+      <div class="process-arrow">→</div>
+      <div class="process-step">Design Your Zag</div>
+      <div class="process-arrow">→</div>
+      <div class="process-step">Sustain Your Speed</div>
+    </div>
+  </div>
+</header>
+
+<section id="onliness">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Say it in one sentence, with total confidence</h2>
+      <p>Every strong landing page starts with a single, provable claim. EasyLandX gives you a headline builder shaped around this exact statement.</p>
+    </div>
+    <div class="madlib-card">
+      EasyLandX is the <span class="blank">ONLY</span> landing page tool that <span class="blank">gives you a real edge</span> for <span class="blank">independent creators</span> in <span class="blank">a crowded web</span> during <span class="blank">this moment</span>.
+      <div class="madlib-example">
+        Example: "The only booking page built specifically for solo yoga instructors, made for the shift toward independent studios."
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head center">
+      <h2>Good and different — together, on purpose</h2>
+      <p>A page can be useful, or it can be memorable. EasyLandX is designed to help you land squarely in the corner where both are true at once.</p>
+    </div>
+    <div class="zag-grid" style="margin:0 auto;">
+      <div></div>
+      <div class="zag-axis-top">NOT DIFFERENT</div>
+      <div class="zag-axis-top">DIFFERENT</div>
+
+      <div class="zag-axis-label">GOOD</div>
+      <div class="zag-cell dim">
+        <h3>The Crowded Middle</h3>
+        <p>Functional, but easy to swap for the next option.</p>
+      </div>
+      <div class="zag-cell zag">
+        <h3>Your Zag</h3>
+        <p>Useful and unmistakable — the sweet spot EasyLandX is built for.</p>
+      </div>
+
+      <div class="zag-axis-label">NOT GOOD</div>
+      <div class="zag-cell quiet">
+        <h3>Easy to Overlook</h3>
+        <p>Neither useful nor memorable enough to earn a second look.</p>
+      </div>
+      <div class="zag-cell spark">
+        <h3>A One-Time Spark</h3>
+        <p>Eye-catching for a moment, worth growing into something lasting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap choose-panel">
+    <div>
+      <div class="section-head" style="margin-bottom:24px;">
+        <h2>Say less, mean more</h2>
+        <p>Narrowing your focus is what makes your one promise unmissable. EasyLandX layouts are built to hold a single message with total confidence.</p>
+      </div>
+    </div>
+    <div class="choose-list">
+      <div class="choose-row"><div class="choose-mark">–</div><span>A long list of every feature you offer</span></div>
+      <div class="choose-row"><div class="choose-mark">–</div><span>A message aimed at absolutely everyone</span></div>
+      <div class="choose-row keep"><div class="choose-mark">✓</div><span>One promise, for one audience, said with full conviction</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Every touchpoint, singing the same tune</h2>
+      <p>Your headline, your visuals, your tone, and your team's voice should all say the same thing. EasyLandX keeps design, copy, and product choices aligned in one shared space.</p>
+    </div>
+    <div class="touch-strip">
+      <div class="touch-chip">Headline</div>
+      <div class="touch-chip">Visuals</div>
+      <div class="touch-chip">Button copy</div>
+      <div class="touch-chip">Tone of voice</div>
+      <div class="touch-chip">Team culture</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap final-cta">
+    <h2>Ready to find the zag only you can make?</h2>
+    <p>Build a landing page with EasyLandX that stands for one thing, unmistakably.</p>
+    <a class="btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Start with EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">easyland<span class="x">x</span></div>
+    <p>EasyLandX — landing pages built to zag, not zig.</p>
+  </div>
+</footer>
+
+</body>
+</html>
