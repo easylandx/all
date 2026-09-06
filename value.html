@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — A Page Designed Around What Visitors Value</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;1,500&family=Karla:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold: #E4BB3C;
+    --gold-line: #C7A02E;
+    --paper: #FFFCF2;
+    --slate: #2E333D;
+    --slate-600: #5B6270;
+    --slate-300: #C7CBCF;
+    --red: #B23A2E;
+    --red-deep: #8A2C22;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--gold);
+    color: var(--slate);
+    font-family: 'Karla', sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, .display{
+    font-family: 'Spectral', serif;
+    font-weight: 600;
+    color: var(--slate);
+    margin: 0;
+  }
+
+  .tag{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--red-deep);
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{ padding: 26px 0; border-bottom: 1px solid var(--gold-line); }
+  .topbar .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{ font-family:'Spectral', serif; font-weight: 700; font-size: 20px; }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding: 72px 0 64px; }
+  .hero-card{
+    background: var(--paper);
+    padding: 54px 58px;
+    max-width: 840px;
+    border-left: 6px solid var(--red);
+  }
+  .hero h1{
+    font-size: clamp(32px, 4.4vw, 48px);
+    line-height: 1.18;
+    max-width: 18ch;
+  }
+  .hero p.lede{
+    margin-top: 22px;
+    max-width: 56ch;
+    color: var(--slate-600);
+    font-size: 18px;
+  }
+  .cta-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top: 32px;
+    padding: 15px 30px;
+    background: var(--red);
+    color: #fff;
+    text-decoration:none;
+    font-family: 'Karla', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background .25s ease, transform .25s ease;
+  }
+  .cta-btn:hover{
+    background: var(--red-deep);
+    transform: translateY(-1px);
+  }
+  .cta-btn .dot{
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ---------- Section blocks ---------- */
+  .section{ padding: 54px 0; }
+  .section-card{
+    background: var(--paper);
+    padding: 44px 48px;
+  }
+  .section .kicker{ display:block; margin-bottom: 14px; }
+  .section h2{
+    font-size: 27px;
+    max-width: 26ch;
+    margin-bottom: 16px;
+  }
+  .section p{
+    max-width: 62ch;
+    color: var(--slate-600);
+    font-size: 16.5px;
+  }
+  .section p + p{ margin-top: 14px; }
+
+  /* ---------- Diagram ---------- */
+  .diagram-note{ margin-top: 30px; }
+  .diagram-note svg{ width:100%; height:auto; }
+  .diagram-caption{
+    margin-top: 12px;
+    font-family:'Roboto Mono', monospace;
+    font-size: 12px;
+    color: var(--slate-600);
+  }
+
+  /* ---------- Value grid ---------- */
+  .value-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 30px;
+  }
+  .vcard{
+    border: 1px solid var(--slate-300);
+    padding: 22px 24px;
+  }
+  .vcard .vnum{
+    font-family:'Roboto Mono', monospace;
+    font-size: 13px;
+    color: var(--red);
+    display:block;
+    margin-bottom: 8px;
+  }
+  .vcard h3{
+    font-family:'Spectral', serif;
+    font-weight: 600;
+    font-size: 18px;
+    margin: 0 0 8px 0;
+    color: var(--slate);
+  }
+  .vcard p{
+    font-size: 14.5px;
+    color: var(--slate-600);
+    margin: 0;
+  }
+
+  /* ---------- Tier ladder ---------- */
+  .ladder{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-top: 30px;
+  }
+  .tier{
+    border: 1px solid var(--slate-300);
+    padding: 24px 20px;
+    text-align:center;
+  }
+  .tier.best{
+    border-color: var(--red);
+    background: rgba(178,58,46,0.04);
+  }
+  .tier .tname{
+    font-family:'Roboto Mono', monospace;
+    font-size: 12px;
+    color: var(--slate-600);
+    text-transform: none;
+    display:block;
+    margin-bottom: 10px;
+  }
+  .tier.best .tname{ color: var(--red); }
+  .tier p{
+    font-size: 14.5px;
+    color: var(--slate-600);
+    margin: 0;
+  }
+
+  /* ---------- Closing ---------- */
+  .closing{ padding: 60px 0 90px; }
+  .closing-card{
+    background: var(--paper);
+    padding: 54px 58px;
+    text-align:center;
+    border-left: 6px solid var(--red);
+  }
+  .closing h2{
+    font-size: clamp(28px, 3.6vw, 40px);
+    max-width: 20ch;
+    margin: 0 auto 16px;
+  }
+  .closing p{
+    max-width: 52ch;
+    margin: 0 auto;
+    color: var(--slate-600);
+    font-size: 17px;
+  }
+
+  footer{
+    padding: 20px 0 44px;
+    text-align:center;
+    font-family:'Roboto Mono', monospace;
+    font-size: 12px;
+    color: var(--slate-600);
+  }
+
+  @media (max-width: 760px){
+    .value-grid, .ladder{ grid-template-columns: 1fr; }
+    .hero-card, .section-card, .closing-card{ padding: 32px 24px; }
+    .wrap{ padding: 0 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cta-btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <span class="brand">EasyLandX</span>
+      <span class="tag">DESIGNED AROUND WHAT VISITORS VALUE</span>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap hero-card">
+      <h1>Build the page around what visitors actually value.</h1>
+      <p class="lede">EasyLandX starts by learning exactly what matters to your customers — not guessing after the page is already live. That answer shapes the headline, the offer, and the layout from the very first draft.</p>
+      <a class="cta-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">
+        <span class="dot"></span> Start with EasyLandX
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap section-card">
+      <span class="tag kicker">ASK EARLY</span>
+      <h2>The right question comes before the first draft</h2>
+      <p>Instead of asking "would you visit this page," EasyLandX asks a sharper question first: what would make you act on it? Understanding what a visitor genuinely values — the specific detail that earns their trust or their order — is the starting point for every page, not an afterthought once it's built.</p>
+
+      <div class="diagram-note">
+        <svg viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrowM" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#2E333D"/>
+            </marker>
+          </defs>
+          <g font-family="Karla, sans-serif" font-size="13.5" fill="#2E333D">
+            <rect x="20" y="50" width="150" height="60" fill="#FFFCF2" stroke="#C7CBCF" stroke-width="1.3"/>
+            <text x="95" y="75" text-anchor="middle" font-weight="600">Visitor</text>
+            <text x="95" y="93" text-anchor="middle" fill="#5B6270" font-size="12">arrives on the page</text>
+
+            <rect x="200" y="50" width="150" height="60" fill="#FFFCF2" stroke="#B23A2E" stroke-width="1.6"/>
+            <text x="275" y="70" text-anchor="middle" font-weight="600">What matters</text>
+            <text x="275" y="88" text-anchor="middle" font-weight="600">to them</text>
+
+            <rect x="380" y="50" width="150" height="60" fill="#FFFCF2" stroke="#C7CBCF" stroke-width="1.3"/>
+            <text x="455" y="70" text-anchor="middle" font-weight="600">The page</text>
+            <text x="455" y="88" text-anchor="middle" font-weight="600">built around it</text>
+
+            <rect x="560" y="50" width="130" height="60" fill="#B23A2E" stroke="#B23A2E" stroke-width="1.6"/>
+            <text x="625" y="75" text-anchor="middle" font-weight="600" fill="#FFFCF2">Confident</text>
+            <text x="625" y="93" text-anchor="middle" fill="#E4BB3C" font-size="12">action</text>
+          </g>
+          <path d="M170,80 L196,80" stroke="#2E333D" stroke-width="1.5" marker-end="url(#arrowM)"/>
+          <path d="M350,80 L376,80" stroke="#2E333D" stroke-width="1.5" marker-end="url(#arrowM)"/>
+          <path d="M530,80 L556,80" stroke="#2E333D" stroke-width="1.5" marker-end="url(#arrowM)"/>
+        </svg>
+        <p class="diagram-caption">VISITOR ARRIVES → WHAT MATTERS TO THEM → PAGE BUILT AROUND IT → CONFIDENT ACTION</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap section-card">
+      <span class="tag kicker">FOUR THINGS EASYLANDX DESIGNS FOR</span>
+      <h2>Getting the balance right, on purpose</h2>
+      <p>A page can miss its mark in a few different ways — by trying to say too much, by underselling a genuinely strong offer, by speaking to the wrong audience, or by promoting an idea that hasn't yet been tested with real visitors. EasyLandX designs deliberately around each of these.</p>
+
+      <div class="value-grid">
+        <div class="vcard">
+          <span class="vnum">01</span>
+          <h3>Focus over feature overload</h3>
+          <p>A page highlights the few details that matter most, rather than every possible feature at once.</p>
+        </div>
+        <div class="vcard">
+          <span class="vnum">02</span>
+          <h3>Full value, clearly shown</h3>
+          <p>Your page reflects the complete value you provide, instead of a modest fraction of it.</p>
+        </div>
+        <div class="vcard">
+          <span class="vnum">03</span>
+          <h3>Matched to the right audience</h3>
+          <p>The message speaks directly to the visitors actually looking for what you offer.</p>
+        </div>
+        <div class="vcard">
+          <span class="vnum">04</span>
+          <h3>Validated before you invest</h3>
+          <p>Ideas get checked against real visitor reactions early, so effort goes where it counts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap section-card">
+      <span class="tag kicker">GOOD, BETTER, BEST</span>
+      <h2>Presenting your own tiers so visitors can self-select</h2>
+      <p>When a business offers more than one option, a clear ladder — a simple starting point, a popular middle choice, and a complete top tier — helps visitors find their own fit quickly, instead of facing one flat, undifferentiated offer. EasyLandX designs this ladder directly into the page layout.</p>
+
+      <div class="ladder">
+        <div class="tier">
+          <span class="tname">GOOD</span>
+          <p>A clear starting option for visitors just getting to know you.</p>
+        </div>
+        <div class="tier best">
+          <span class="tname">BETTER</span>
+          <p>The option most visitors land on, built around your most requested value.</p>
+        </div>
+        <div class="tier">
+          <span class="tname">BEST</span>
+          <p>The complete offer, for visitors ready to go all in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap closing-card">
+      <h2>Let's find what your visitors truly value.</h2>
+      <p>EasyLandX designs affordable, conversion-focused landing pages and websites for small businesses — built around the value visitors are actually looking for.</p>
+      <a class="cta-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">
+        <span class="dot"></span> Visit EasyLandX
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">EasyLandX — value, designed in from the start.</div>
+  </footer>
+
+</body>
+</html>
