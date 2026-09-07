@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Every Landing Page Tells a Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --navy-deep:#0a1a33;
+    --navy-mid:#0f2647;
+    --navy-panel:#122b52;
+    --ink:#08111f;
+    --gold:#cda545;
+    --gold-bright:#e8c977;
+    --gold-dim:#8a6f34;
+    --paper:#f2ecda;
+    --paper-dim:#c9c2ac;
+    --serif: 'Fraunces', serif;
+    --sans: 'Source Sans 3', sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--navy-deep);
+    background-image:
+      radial-gradient(ellipse at 15% 0%, rgba(205,165,69,0.08), transparent 45%),
+      radial-gradient(ellipse at 85% 15%, rgba(205,165,69,0.05), transparent 40%);
+    color:var(--paper);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  ::selection{background:var(--gold-dim); color:var(--paper);}
+
+  /* ---------- top mark ---------- */
+  header.mark{
+    padding:28px 0 0;
+  }
+  .mark .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:1.15rem;
+    letter-spacing:0.02em;
+    color:var(--gold-bright);
+  }
+  .brand em{font-style:italic; color:var(--paper);}
+  .mark nav a{
+    text-decoration:none;
+    font-size:0.92rem;
+    color:var(--paper-dim);
+    margin-left:22px;
+    border-bottom:1px solid transparent;
+    transition:border-color .25s ease, color .25s ease;
+  }
+  .mark nav a:hover{color:var(--gold-bright); border-color:var(--gold-dim);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:110px 0 90px;
+    text-align:left;
+    opacity:0;
+    transform:translateY(14px);
+    animation:rise 1s ease forwards .15s;
+  }
+  @keyframes rise{ to{opacity:1; transform:translateY(0);} }
+
+  .kicker{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--gold);
+    margin:0 0 18px;
+  }
+
+  h1{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(2.4rem, 5.4vw, 4.1rem);
+    line-height:1.06;
+    margin:0 0 28px;
+    max-width:14ch;
+    color:var(--paper);
+  }
+  h1 .accent{
+    font-style:italic;
+    color:var(--gold-bright);
+  }
+
+  .lede{
+    font-size:1.18rem;
+    max-width:56ch;
+    color:var(--paper-dim);
+    margin:0 0 40px;
+  }
+
+  .cta-row{display:flex; align-items:center; gap:22px; flex-wrap:wrap;}
+
+  .btn-gold{
+    display:inline-block;
+    background:linear-gradient(180deg, var(--gold-bright), var(--gold));
+    color:var(--ink);
+    font-weight:600;
+    font-family:var(--sans);
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:2px;
+    font-size:1rem;
+    letter-spacing:0.01em;
+    box-shadow:0 10px 26px -10px rgba(205,165,69,0.55);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-gold:hover{transform:translateY(-2px); box-shadow:0 16px 32px -12px rgba(205,165,69,0.7);}
+
+  .cta-sub{
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--paper-dim);
+    font-size:0.98rem;
+  }
+
+  /* ---------- shared section styling ---------- */
+  section.chapter{
+    padding:78px 0;
+    border-top:1px solid rgba(205,165,69,0.18);
+  }
+
+  .chapter-label{
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--gold);
+    font-size:1rem;
+    margin:0 0 10px;
+  }
+
+  .chapter h2{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(1.7rem, 3.4vw, 2.5rem);
+    margin:0 0 26px;
+    max-width:18ch;
+  }
+
+  .chapter .body-col{
+    max-width:64ch;
+  }
+
+  .chapter p{
+    font-size:1.06rem;
+    color:var(--paper-dim);
+    margin:0 0 18px;
+  }
+
+  .chapter p strong{
+    color:var(--paper);
+    font-weight:600;
+  }
+
+  .pullquote{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.35rem;
+    color:var(--gold-bright);
+    border-left:2px solid var(--gold-dim);
+    padding-left:24px;
+    margin:34px 0;
+    max-width:46ch;
+    line-height:1.5;
+  }
+
+  /* ---------- telling detail example row ---------- */
+  .detail-panel{
+    margin-top:34px;
+    background:var(--navy-panel);
+    border:1px solid rgba(205,165,69,0.22);
+    border-radius:3px;
+    padding:28px 30px;
+  }
+  .detail-panel .label{
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--gold);
+    font-size:0.95rem;
+    margin:0 0 12px;
+  }
+  .detail-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+  @media (max-width:640px){ .detail-grid{grid-template-columns:1fr;} }
+  .detail-grid .item{
+    font-size:0.98rem;
+    color:var(--paper-dim);
+    padding-top:14px;
+    border-top:1px solid rgba(242,236,218,0.12);
+  }
+  .detail-grid .item .who{
+    display:block;
+    font-family:var(--serif);
+    color:var(--paper);
+    font-weight:500;
+    margin-bottom:4px;
+  }
+
+  /* ---------- framework diagram ---------- */
+  .framework{
+    margin-top:50px;
+  }
+  .fw-node{
+    text-align:center;
+    padding:20px 26px;
+    border:1px solid var(--gold-dim);
+    border-radius:2px;
+    background:rgba(18,43,82,0.55);
+    font-family:var(--serif);
+    color:var(--gold-bright);
+    font-size:1.05rem;
+    max-width:420px;
+    margin:0 auto;
+  }
+  .fw-line{
+    width:1px;
+    height:38px;
+    background:var(--gold-dim);
+    margin:0 auto;
+  }
+  .fw-branches{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+    margin-top:0;
+  }
+  @media (max-width:760px){ .fw-branches{grid-template-columns:1fr;} }
+  .fw-branch{
+    border-top:2px solid var(--gold);
+    padding-top:18px;
+  }
+  .fw-branch h3{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:1.08rem;
+    color:var(--paper);
+    margin:0 0 10px;
+  }
+  .fw-branch p{
+    font-size:0.95rem;
+    color:var(--paper-dim);
+    margin:0;
+  }
+
+  /* ---------- closing / cta ---------- */
+  .finale{
+    padding:100px 0 120px;
+    text-align:center;
+    border-top:1px solid rgba(205,165,69,0.18);
+  }
+  .finale .chapter-label{ text-align:center; }
+  .finale h2{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(1.9rem, 4vw, 2.8rem);
+    max-width:20ch;
+    margin:0 auto 22px;
+  }
+  .finale p{
+    color:var(--paper-dim);
+    max-width:52ch;
+    margin:0 auto 38px;
+    font-size:1.08rem;
+  }
+
+  footer{
+    padding:34px 0 46px;
+    text-align:center;
+    color:var(--paper-dim);
+    font-size:0.85rem;
+    opacity:0.75;
+  }
+  footer a{color:var(--gold); text-decoration:none;}
+
+  @media (prefers-reduced-motion: reduce){
+    .hero{animation:none; opacity:1; transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="mark">
+  <div class="wrap">
+    <div class="brand">easylandx<em>.</em></div>
+    <nav>
+      <a href="#craft">The Craft</a>
+      <a href="#framework">The Method</a>
+      <a href="#begin">Begin</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">On the craft of landing pages</p>
+    <h1>Every page tells a story — <span class="accent">yours should read like the truth.</span></h1>
+    <p class="lede">easylandx builds landing pages the way a novelist builds a character: with precision, warmth, and details so specific they feel genuinely lived-in. No templates. No filler. Just a page written to convince.</p>
+    <div class="cta-row">
+      <a class="btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">See the Portfolio</a>
+      <span class="cta-sub">one page, crafted entirely for your business</span>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="craft">
+  <div class="wrap">
+    <p class="chapter-label">Chapter I</p>
+    <h2>Believability is built, not copied</h2>
+    <div class="body-col">
+      <p>Great fiction does not photograph the world — it builds a version of it so precise and considered that readers accept it as real. A landing page works the same way. <strong>Believability comes from deliberate craft, not from a generic template stretched over your business.</strong></p>
+      <p>Every easylandx page is composed from scratch: your colours, your language, your customers' habits. The result feels less like a website and more like a place your visitors already recognise.</p>
+      <p class="pullquote">"Lifelikeness" isn't an accident of realism — it's an achievement of choices.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="wrap">
+    <p class="chapter-label">Chapter II</p>
+    <h2>Speaking in your visitor's own voice</h2>
+    <div class="body-col">
+      <p>The most powerful technique in modern fiction is <strong>free indirect style</strong> — the narrator's voice quietly merging with a character's private thoughts, so the reader feels the story from the inside.</p>
+      <p>easylandx writes copy the same way: not a company announcing itself, but words that sound like the exact thought already forming in your visitor's mind — their question, their hesitation, their "yes, that's what I needed." That closeness is what turns a glance into a click.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="wrap">
+    <p class="chapter-label">Chapter III</p>
+    <h2>One true detail outshines a hundred features</h2>
+    <div class="body-col">
+      <p>A novelist does not describe a room in full — they choose the single, telling detail that makes it real: the chipped teacup, the smell of rain on a coat. <strong>Landing pages work best on the same economy of detail.</strong></p>
+      <p>easylandx looks for the one specific, idiosyncratic detail about your business — the exact WhatsApp reply time, the neighbourhood your studio sits on, the ingredient you source yourself — and gives it the spotlight, instead of burying it under generic claims.</p>
+      <div class="detail-panel">
+        <p class="label">Telling details, in practice</p>
+        <div class="detail-grid">
+          <div class="item"><span class="who">A Pilates studio</span>"Founded on the same street for eleven years" — a location, not a slogan.</div>
+          <div class="item"><span class="who">A bakery cart</span>"Open only Saturdays and Sundays" — scarcity that is simply true.</div>
+          <div class="item"><span class="who">A tarot reader</span>"Replies personally, in her own voice, within the hour" — warmth made specific.</div>
+          <div class="item"><span class="who">A surf school</span>"Boards fitted to your height before you arrive" — care made visible.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="wrap">
+    <p class="chapter-label">Chapter IV</p>
+    <h2>A page that grows with your story</h2>
+    <div class="body-col">
+      <p>The most memorable characters in fiction are never finished — they evolve, contradict themselves gracefully, and reveal new layers as the story continues. <strong>Your business is the same kind of living character.</strong></p>
+      <p>easylandx treats every page as a first chapter, not a final draft. As your offer sharpens, your prices update, or your story simply grows, your page is refined right alongside it — always the truest version of where your business stands today.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="framework">
+  <div class="wrap">
+    <p class="chapter-label">The Method</p>
+    <h2>How every easylandx page is composed</h2>
+    <div class="framework">
+      <div class="fw-node">Voice &amp; Perspective — writing in your visitor's own thoughts</div>
+      <div class="fw-line"></div>
+      <div class="fw-node">Understanding Your Visitor — what they already believe, want, and need to hear</div>
+      <div class="fw-line"></div>
+      <div class="fw-branches">
+        <div class="fw-branch">
+          <h3>The Telling Detail</h3>
+          <p>One vivid, specific fact chosen over a long list of generic claims.</p>
+        </div>
+        <div class="fw-branch">
+          <h3>A Layered Personality</h3>
+          <p>Real texture and warmth, so the page reads like a person, not a product.</p>
+        </div>
+        <div class="fw-branch">
+          <h3>Warm Perspective</h3>
+          <p>Close enough to feel familiar, clear enough to make the next step obvious.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="finale" id="begin">
+  <div class="wrap">
+    <p class="chapter-label">Epilogue</p>
+    <h2>Your business already has a story. Let's give it a page worth reading.</h2>
+    <p>Every easylandx page is written and designed individually — for your voice, your customers, and the details only your business could offer.</p>
+    <a class="btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">easylandx — custom landing pages, individually crafted · <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a></div>
+</footer>
+
+</body>
+</html>
