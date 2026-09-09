@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing pages built for clarity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --bg-soft:#F6FAF7;
+    --ink:#14171A;
+    --ink-soft:#54605B;
+    --sage:#5FE39B;
+    --sage-deep:#146C42;
+    --sage-line:#D8EFE1;
+    --indigo:#5B4CFB;
+    --indigo-deep:#382C9E;
+    --indigo-soft:#EDEBFF;
+    --line:#E6EAE7;
+    --radius:14px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    color:var(--ink);
+  }
+  p{ margin:0; }
+  a{ color:inherit; }
+  img,svg{ display:block; }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---- Nav ---- */
+  header{
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:20px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .logo span{ color:var(--sage-deep); }
+  .nav-links{
+    display:flex;
+    gap:32px;
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+  .nav-links a{ text-decoration:none; }
+  .nav-links a:hover{ color:var(--indigo); }
+  .nav-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--ink);
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:500;
+    padding:10px 18px;
+    border-radius:999px;
+    transition:background .2s ease;
+  }
+  .nav-cta:hover{ background:var(--indigo-deep); }
+
+  /* ---- Hero ---- */
+  .hero{
+    padding:96px 0 88px;
+  }
+  .hero-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    color:var(--sage-deep);
+    background:var(--bg-soft);
+    border:1px solid var(--sage-line);
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:28px;
+  }
+  .hero-eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--sage);
+    box-shadow:0 0 10px var(--sage);
+  }
+  .hero h1{
+    font-size:clamp(38px, 5.4vw, 64px);
+    line-height:1.06;
+    letter-spacing:-0.015em;
+    max-width:15ch;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--indigo);
+  }
+  .hero-sub{
+    margin-top:26px;
+    font-size:19px;
+    color:var(--ink-soft);
+    max-width:52ch;
+  }
+  .hero-actions{
+    margin-top:38px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--indigo);
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    font-size:16px;
+    padding:15px 26px;
+    border-radius:10px;
+    box-shadow:0 10px 24px -8px rgba(91,76,251,0.55);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn-primary:hover{
+    transform:translateY(-1px);
+    box-shadow:0 14px 30px -8px rgba(91,76,251,0.6);
+  }
+  .hero-note{
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+
+  .hero-panel{
+    margin-top:64px;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--bg-soft);
+    padding:6px;
+  }
+  .hero-panel-inner{
+    border-radius:calc(var(--radius) - 4px);
+    background:#fff;
+    border:1px solid var(--line);
+    padding:34px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:28px;
+  }
+  .stat b{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size:30px;
+    color:var(--ink);
+  }
+  .stat span{
+    font-size:13.5px;
+    color:var(--ink-soft);
+  }
+
+  /* ---- Section shared ---- */
+  section{ padding:88px 0; }
+  .section-head{
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .kicker{
+    font-size:14px;
+    color:var(--indigo);
+    font-weight:600;
+    margin-bottom:14px;
+    display:block;
+  }
+  .section-head h2{
+    font-size:clamp(28px, 3.4vw, 38px);
+    line-height:1.16;
+    letter-spacing:-0.01em;
+  }
+  .section-head p{
+    margin-top:16px;
+    font-size:17px;
+    color:var(--ink-soft);
+  }
+
+  /* ---- Principles ---- */
+  .principles{
+    background:var(--bg-soft);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .principle-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .principle{
+    background:#fff;
+    padding:32px;
+  }
+  .principle h3{
+    font-size:19px;
+    margin-bottom:12px;
+  }
+  .principle p{
+    font-size:15px;
+    color:var(--ink-soft);
+  }
+  .principle .mark{
+    width:34px; height:34px;
+    border-radius:9px;
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Fraunces', serif;
+    font-size:16px;
+  }
+  .mark.sage{ background:var(--sage); color:#0c3d24; }
+  .mark.indigo{ background:var(--indigo); color:#fff; }
+
+  /* ---- Framework diagram ---- */
+  .framework-frame{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:56px 32px;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(95,227,155,0.09), transparent 40%),
+      radial-gradient(circle at 85% 15%, rgba(91,76,251,0.08), transparent 40%);
+  }
+  .fw-node{
+    max-width:420px;
+    margin:0 auto;
+    text-align:center;
+    background:#fff;
+    border:1.5px solid var(--indigo);
+    border-radius:10px;
+    padding:18px 22px;
+    position:relative;
+  }
+  .fw-node .fw-title{
+    font-size:15px;
+    font-weight:700;
+    color:var(--indigo-deep);
+    letter-spacing:.01em;
+  }
+  .fw-node .fw-desc{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin-top:4px;
+  }
+  .fw-connector{
+    width:1.5px;
+    height:34px;
+    background:var(--indigo);
+    margin:0 auto;
+    opacity:.55;
+  }
+  .fw-branch-wrap{
+    display:flex;
+    justify-content:center;
+    margin-top:0;
+  }
+  .fw-branches{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+    margin-top:34px;
+  }
+  .fw-branch{
+    border:1.5px solid var(--sage-deep);
+    background:#fff;
+    border-radius:10px;
+    padding:20px;
+  }
+  .fw-branch .fw-title{
+    font-size:14.5px;
+    font-weight:700;
+    color:var(--sage-deep);
+  }
+  .fw-branch .fw-desc{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin-top:6px;
+  }
+
+  /* ---- Process ---- */
+  .process-list{
+    display:flex;
+    flex-direction:column;
+  }
+  .process-row{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+  }
+  .process-row:last-child{ border-bottom:1px solid var(--line); }
+  .process-num{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    color:var(--sage-deep);
+  }
+  .process-row h3{
+    font-size:18px;
+    margin-bottom:8px;
+  }
+  .process-row p{
+    font-size:15px;
+    color:var(--ink-soft);
+    max-width:56ch;
+  }
+
+  /* ---- CTA band ---- */
+  .cta-band{
+    background:var(--ink);
+    border-radius:20px;
+    padding:64px 48px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-band::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(95,227,155,0.28), transparent 45%),
+      radial-gradient(circle at 80% 70%, rgba(91,76,251,0.35), transparent 45%);
+  }
+  .cta-band > *{ position:relative; }
+  .cta-band h2{
+    color:#fff;
+    font-size:clamp(26px,3.6vw,36px);
+    max-width:20ch;
+    margin:0 auto;
+  }
+  .cta-band p{
+    color:#C9CDD1;
+    margin-top:16px;
+    font-size:16px;
+  }
+  .cta-band .hero-actions{
+    justify-content:center;
+    margin-top:32px;
+  }
+  .btn-outline{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    border:1.5px solid var(--sage);
+    color:var(--sage);
+    text-decoration:none;
+    font-weight:600;
+    font-size:16px;
+    padding:13.5px 24px;
+    border-radius:10px;
+  }
+
+  footer{
+    padding:44px 0 56px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  footer a{ text-decoration:none; color:var(--ink-soft); }
+
+  @media (max-width: 800px){
+    .principle-grid{ grid-template-columns:1fr; }
+    .fw-branches{ grid-template-columns:1fr; }
+    .hero-panel-inner{ grid-template-columns:1fr; gap:20px; }
+    .nav-links{ display:none; }
+    footer{ flex-direction:column; gap:12px; text-align:center; }
+  }
+
+  :focus-visible{
+    outline:2px solid var(--indigo);
+    outline-offset:2px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">easyland<span>x</span></div>
+    <nav class="nav-links">
+      <a href="#philosophy">Philosophy</a>
+      <a href="#framework">Framework</a>
+      <a href="#process">Process</a>
+    </nav>
+    <a class="nav-cta" href="https://easylandx.com" target="_blank" rel="noopener">Get your page</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="hero-eyebrow">Landing pages for small businesses</span>
+    <h1>A calm page <em>converts</em> more than a loud one.</h1>
+    <p class="hero-sub">EasyLandX builds landing pages on a simple premise borrowed from the oldest lesson in the book: clarity isn't something you add, it's what's left once the noise is removed. We remove the noise. You keep the customers.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Start your calm launch →</a>
+      <span class="hero-note">Live in days, not months.</span>
+    </div>
+
+    <div class="hero-panel">
+      <div class="hero-panel-inner">
+        <div class="stat">
+          <b>1 goal</b>
+          <span>per page — no split attention</span>
+        </div>
+        <div class="stat">
+          <b>&lt; 2s</b>
+          <span>target load time, calm by default</span>
+        </div>
+        <div class="stat">
+          <b>Days</b>
+          <span>from brief to a live page</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="principles" id="philosophy">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">The philosophy</span>
+      <h2>Clutter is the only thing standing between your visitor and "yes."</h2>
+      <p>Most landing pages fail from addition, not omission. Every extra banner, badge, and button is a small tax on attention. We design by subtraction first.</p>
+    </div>
+
+    <div class="principle-grid">
+      <div class="principle">
+        <div class="mark sage">1</div>
+        <h3>Clarity is the default state</h3>
+        <p>A page doesn't need to convince a visitor with more — it needs to stop distracting them with less. Once we remove what doesn't serve the goal, the offer speaks for itself.</p>
+      </div>
+      <div class="principle">
+        <div class="mark indigo">2</div>
+        <h3>The page is a tool, not a showcase</h3>
+        <p>It exists to move one visitor toward one action. We build every section to serve that action, not to display everything your business can do.</p>
+      </div>
+      <div class="principle">
+        <div class="mark sage">3</div>
+        <h3>Too many choices create hesitation</h3>
+        <p>Three calls to action get zero clicks. One clear call to action gets the click. We pick the single next step and remove every competing one.</p>
+      </div>
+      <div class="principle">
+        <div class="mark indigo">4</div>
+        <h3>Balance across every device</h3>
+        <p>A page that looks composed on desktop and cramped on mobile isn't finished. We hold the same visual calm at every size, because most visitors arrive on a phone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">The framework</span>
+      <h2>How we structure every EasyLandX page</h2>
+      <p>One idea sits above the rest, and three disciplines support it underneath. This is the same order we build every page in, regardless of industry.</p>
+    </div>
+
+    <div class="framework-frame">
+      <div class="fw-node">
+        <div class="fw-title">SINGLE FOCUS</div>
+        <div class="fw-desc">One offer, one visitor, one page. No competing messages.</div>
+      </div>
+      <div class="fw-connector"></div>
+      <div class="fw-node">
+        <div class="fw-title">PAGE RHYTHM</div>
+        <div class="fw-desc">Fast load, smooth scroll, sections that breathe instead of rush.</div>
+      </div>
+
+      <div class="fw-branches">
+        <div class="fw-branch">
+          <div class="fw-title">PURPOSEFUL COPY</div>
+          <div class="fw-desc">Words written for the visitor's outcome, not the owner's ego.</div>
+        </div>
+        <div class="fw-branch">
+          <div class="fw-title">ESSENTIAL DESIGN</div>
+          <div class="fw-desc">Only the elements that move the visitor forward make the page.</div>
+        </div>
+        <div class="fw-branch">
+          <div class="fw-title">WHITE SPACE</div>
+          <div class="fw-desc">Room around every section so the eye can rest and re-focus.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">The process</span>
+      <h2>From brief to a live page</h2>
+      <p>No templates to wrestle with and no builder to learn. You describe the business; we handle the rest.</p>
+    </div>
+
+    <div class="process-list">
+      <div class="process-row">
+        <div class="process-num">01</div>
+        <div>
+          <h3>Tell us the one outcome</h3>
+          <p>A booking, a call, a signup, a sale — we start by agreeing on the single action the page exists to get.</p>
+        </div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">02</div>
+        <div>
+          <h3>We write and design around it</h3>
+          <p>Copy, layout, and visuals are all built to support that one action — nothing is added just to fill space.</p>
+        </div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">03</div>
+        <div>
+          <h3>You review one clean draft</h3>
+          <p>No twelve template choices to sort through. One considered page, ready for your notes.</p>
+        </div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">04</div>
+        <div>
+          <h3>It goes live, fast and calm</h3>
+          <p>Optimized to load quickly and hold up on any screen, so nothing gets in the way of the visitor's decision.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Give your business the page it deserves — a calm one.</h2>
+      <p>Affordable, conversion-focused, and built around one clear goal.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Get your EasyLandX page →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+    <span>© 2026 EasyLandX. Landing pages for small businesses.</span>
+    <a href="https://easylandx.com" target="_blank" rel="noopener">easylandx.com</a>
+  </div>
+</footer>
+
+</body>
+</html>

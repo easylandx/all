@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing pages that keep learning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#2C0E66;
+    --bg-2:#1E0A49;
+    --glow-violet:#8B3CFF;
+    --surface:rgba(255,255,255,0.05);
+    --surface-line:rgba(255,255,255,0.13);
+    --ink:#F6F2FF;
+    --ink-soft:#C3B7E6;
+    --coral:#FF6B54;
+    --coral-soft:#FFB199;
+    --slate:#43D8FF;
+    --slate-soft:#B6EFFF;
+    --radius:14px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(139,60,255,0.55), transparent 42%),
+      radial-gradient(circle at 88% 0%, rgba(67,216,255,0.16), transparent 40%),
+      radial-gradient(circle at 70% 85%, rgba(255,107,84,0.14), transparent 45%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    color:var(--ink);
+  }
+  p{ margin:0; }
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---- Nav ---- */
+  header{
+    padding:26px 0;
+    border-bottom:1px solid var(--surface-line);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:20px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .logo span{ color:var(--coral); }
+  .nav-links{
+    display:flex;
+    gap:32px;
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+  .nav-links a{ text-decoration:none; }
+  .nav-links a:hover{ color:var(--slate); }
+  .nav-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--coral);
+    color:#2C0E66;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:700;
+    padding:10px 18px;
+    border-radius:999px;
+    transition:filter .2s ease;
+  }
+  .nav-cta:hover{ filter:brightness(1.08); }
+
+  /* ---- Hero ---- */
+  .hero{ padding:96px 0 84px; }
+  .hero-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    color:var(--slate-soft);
+    background:var(--surface);
+    border:1px solid var(--surface-line);
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:28px;
+  }
+  .hero-eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--slate);
+    box-shadow:0 0 12px var(--slate);
+  }
+  .hero h1{
+    font-size:clamp(38px, 5.4vw, 62px);
+    line-height:1.08;
+    letter-spacing:-0.015em;
+    max-width:16ch;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--coral);
+  }
+  .hero-sub{
+    margin-top:26px;
+    font-size:19px;
+    color:var(--ink-soft);
+    max-width:54ch;
+  }
+  .hero-actions{
+    margin-top:38px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--coral);
+    color:#2C0E66;
+    text-decoration:none;
+    font-weight:700;
+    font-size:16px;
+    padding:15px 26px;
+    border-radius:10px;
+    box-shadow:0 12px 26px -8px rgba(255,107,84,0.5);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn-primary:hover{
+    transform:translateY(-1px);
+    box-shadow:0 16px 32px -8px rgba(255,107,84,0.6);
+  }
+  .hero-note{ font-size:14px; color:var(--ink-soft); }
+
+  .hero-panel{
+    margin-top:64px;
+    border:1px solid var(--surface-line);
+    border-radius:var(--radius);
+    background:var(--surface);
+    padding:6px;
+  }
+  .hero-panel-inner{
+    border-radius:calc(var(--radius) - 4px);
+    background:rgba(0,0,0,0.16);
+    border:1px solid var(--surface-line);
+    padding:34px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:28px;
+  }
+  .stat b{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size:28px;
+    color:var(--ink);
+  }
+  .stat span{ font-size:13.5px; color:var(--ink-soft); }
+
+  /* ---- Section shared ---- */
+  section{ padding:88px 0; }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .kicker{
+    font-size:14px;
+    color:var(--coral);
+    font-weight:700;
+    margin-bottom:14px;
+    display:block;
+  }
+  .section-head h2{
+    font-size:clamp(28px, 3.4vw, 38px);
+    line-height:1.16;
+    letter-spacing:-0.01em;
+  }
+  .section-head p{
+    margin-top:16px;
+    font-size:17px;
+    color:var(--ink-soft);
+  }
+
+  /* ---- Principles ---- */
+  .principles{
+    border-top:1px solid var(--surface-line);
+    border-bottom:1px solid var(--surface-line);
+    background:rgba(0,0,0,0.14);
+  }
+  .principle-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1px;
+    background:var(--surface-line);
+    border:1px solid var(--surface-line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .principle{
+    background:var(--bg-2);
+    padding:32px;
+  }
+  .principle h3{ font-size:19px; margin-bottom:12px; }
+  .principle p{ font-size:15px; color:var(--ink-soft); }
+  .principle .mark{
+    width:34px; height:34px;
+    border-radius:9px;
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Fraunces', serif;
+    font-size:16px;
+  }
+  .mark.coral{ background:var(--coral); color:#2C0E66; }
+  .mark.slate{ background:var(--slate); color:#0B2430; }
+
+  /* ---- Framework diagram ---- */
+  .framework-frame{
+    border:1px solid var(--surface-line);
+    border-radius:var(--radius);
+    padding:56px 32px;
+    background:var(--surface);
+  }
+  .fw-node{
+    max-width:440px;
+    margin:0 auto;
+    text-align:center;
+    background:var(--bg-2);
+    border:1.5px solid var(--slate);
+    border-radius:10px;
+    padding:18px 22px;
+    box-shadow:0 0 22px -6px rgba(67,216,255,0.35);
+  }
+  .fw-node .fw-title{
+    font-size:15px;
+    font-weight:700;
+    color:var(--slate-soft);
+    letter-spacing:.01em;
+  }
+  .fw-node .fw-desc{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin-top:4px;
+  }
+  .fw-connector{
+    width:1.5px;
+    height:34px;
+    background:var(--slate);
+    margin:0 auto;
+    opacity:.6;
+  }
+  .fw-branches{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+    margin-top:34px;
+  }
+  .fw-branch{
+    border:1.5px solid var(--coral);
+    background:var(--bg-2);
+    border-radius:10px;
+    padding:20px;
+    box-shadow:0 0 22px -8px rgba(255,107,84,0.3);
+  }
+  .fw-branch .fw-title{ font-size:14.5px; font-weight:700; color:var(--coral-soft); }
+  .fw-branch .fw-desc{ font-size:13.5px; color:var(--ink-soft); margin-top:6px; }
+
+  /* ---- Process ---- */
+  .process-list{ display:flex; flex-direction:column; }
+  .process-row{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-top:1px solid var(--surface-line);
+  }
+  .process-row:last-child{ border-bottom:1px solid var(--surface-line); }
+  .process-num{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    color:var(--slate);
+  }
+  .process-row h3{ font-size:18px; margin-bottom:8px; }
+  .process-row p{ font-size:15px; color:var(--ink-soft); max-width:56ch; }
+
+  /* ---- CTA band ---- */
+  .cta-band{
+    background:var(--bg-2);
+    border:1px solid var(--surface-line);
+    border-radius:20px;
+    padding:64px 48px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-band::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 18% 25%, rgba(67,216,255,0.22), transparent 45%),
+      radial-gradient(circle at 82% 75%, rgba(255,107,84,0.28), transparent 45%);
+  }
+  .cta-band > *{ position:relative; }
+  .cta-band h2{
+    font-size:clamp(26px,3.6vw,36px);
+    max-width:22ch;
+    margin:0 auto;
+  }
+  .cta-band p{ color:var(--ink-soft); margin-top:16px; font-size:16px; }
+  .cta-band .hero-actions{ justify-content:center; margin-top:32px; }
+  .btn-outline{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    border:1.5px solid var(--slate);
+    color:var(--slate-soft);
+    text-decoration:none;
+    font-weight:600;
+    font-size:16px;
+    padding:13.5px 24px;
+    border-radius:10px;
+  }
+
+  footer{
+    padding:44px 0 56px;
+    border-top:1px solid var(--surface-line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  footer a{ text-decoration:none; color:var(--ink-soft); }
+
+  @media (max-width: 800px){
+    .principle-grid{ grid-template-columns:1fr; }
+    .fw-branches{ grid-template-columns:1fr; }
+    .hero-panel-inner{ grid-template-columns:1fr; gap:20px; }
+    .nav-links{ display:none; }
+    footer{ flex-direction:column; gap:12px; text-align:center; }
+  }
+
+  :focus-visible{ outline:2px solid var(--slate); outline-offset:2px; }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">easyland<span>x</span></div>
+    <nav class="nav-links">
+      <a href="#philosophy">Philosophy</a>
+      <a href="#framework">Framework</a>
+      <a href="#process">Process</a>
+    </nav>
+    <a class="nav-cta" href="https://easylandx.com" target="_blank" rel="noopener">Get your page</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="hero-eyebrow">Landing pages for small businesses</span>
+    <h1>Your landing page should <em>never stop</em> learning.</h1>
+    <p class="hero-sub">EasyLandX treats every page as a small, ongoing experiment instead of a one-time launch. Small tests, real feedback, and quick reflection beat a single "perfect" redesign — every time.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Start your first test →</a>
+      <span class="hero-note">Live in days, improving every week after.</span>
+    </div>
+
+    <div class="hero-panel">
+      <div class="hero-panel-inner">
+        <div class="stat">
+          <b>1 metric</b>
+          <span>tracked per test — no noisy dashboards</span>
+        </div>
+        <div class="stat">
+          <b>Small tests</b>
+          <span>one element changed at a time</span>
+        </div>
+        <div class="stat">
+          <b>Weekly</b>
+          <span>review-and-adjust cadence</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="principles" id="philosophy">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">The philosophy</span>
+      <h2>A page doesn't need to be perfect at launch — it needs to keep improving after.</h2>
+      <p>Most businesses treat a landing page as a one-time project. We treat it as an ongoing loop: try something small, see what real visitors do, adjust, repeat.</p>
+    </div>
+
+    <div class="principle-grid">
+      <div class="principle">
+        <div class="mark coral">1</div>
+        <h3>Growth happens live, not in redesigns</h3>
+        <p>The page learns from real visitors doing real things, not from another round of internal opinions before launch.</p>
+      </div>
+      <div class="principle">
+        <div class="mark slate">2</div>
+        <h3>Trade "looks good" for "learn something"</h3>
+        <p>Chasing a flawless first draft stalls launches. We'd rather ship a good page this week and know exactly what to improve next week.</p>
+      </div>
+      <div class="principle">
+        <div class="mark coral">3</div>
+        <h3>A dip in conversion is data, not defeat</h3>
+        <p>When a change underperforms, that's useful information about your visitors — not a sign to panic or abandon testing.</p>
+      </div>
+      <div class="principle">
+        <div class="mark slate">4</div>
+        <h3>Visitors won't tell you unless you ask</h3>
+        <p>We build in the small feedback moments — a one-question survey, a scroll-depth check — because silence isn't the same as satisfaction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">The framework</span>
+      <h2>The EasyLandX growth loop</h2>
+      <p>The same cycle runs behind every page we manage: one clear goal, a small test, real feedback, and a short reflection — then repeat.</p>
+    </div>
+
+    <div class="framework-frame">
+      <div class="fw-node">
+        <div class="fw-title">SET A CONVERSION GOAL</div>
+        <div class="fw-desc">Pick the one number this page needs to move — signups, bookings, calls.</div>
+      </div>
+      <div class="fw-connector"></div>
+      <div class="fw-node">
+        <div class="fw-title">RUN A SMALL TEST</div>
+        <div class="fw-desc">Change one headline, image, or button at a time on real traffic.</div>
+      </div>
+
+      <div class="fw-branches">
+        <div class="fw-branch">
+          <div class="fw-title">COLLECT FEEDBACK</div>
+          <div class="fw-desc">Ask a targeted question or watch a session recording right after the test runs.</div>
+        </div>
+        <div class="fw-branch">
+          <div class="fw-title">REVIEW THE RESULT</div>
+          <div class="fw-desc">Check the one metric that mattered — keep what moved it, drop what didn't.</div>
+        </div>
+        <div class="fw-branch">
+          <div class="fw-title">TREAT FLOPS AS DATA</div>
+          <div class="fw-desc">A test that underperforms still tells you something real about your visitors.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">The process</span>
+      <h2>How a page keeps improving after launch</h2>
+      <p>Launch is the start of the loop, not the end of the project.</p>
+    </div>
+
+    <div class="process-list">
+      <div class="process-row">
+        <div class="process-num">01</div>
+        <div>
+          <h3>Pick this month's goal</h3>
+          <p>We agree on the single metric worth moving this cycle — not everything at once.</p>
+        </div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">02</div>
+        <div>
+          <h3>Run a small, low-risk test</h3>
+          <p>One variable changes — a headline, an image, a button — so we know exactly what caused the shift.</p>
+        </div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">03</div>
+        <div>
+          <h3>Ask visitors directly</h3>
+          <p>A short on-page question or a recorded session tells us what a dashboard alone can't.</p>
+        </div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">04</div>
+        <div>
+          <h3>Reflect, then lock it in</h3>
+          <p>Keep what worked, drop what didn't, and set the next small test — every week, without fanfare.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Stop launching once. Start improving weekly.</h2>
+      <p>Affordable, conversion-focused landing pages that get better every cycle.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Get your EasyLandX page →</a>
+        <a class="btn-outline" href="https://easylandx.com" target="_blank" rel="noopener">See how testing works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+    <span>© 2026 EasyLandX. Landing pages for small businesses.</span>
+    <a href="https://easylandx.com" target="_blank" rel="noopener">easylandx.com</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Pages built to carry your story</title>
+<meta name="description" content="EasyLandX builds affordable, conversion-focused landing pages and websites for small businesses — hand-built, not templated.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,560;9..144,680&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --jade-deep: #061F1A;
+    --jade-panel: #0A2E26;
+    --jade-panel-2: #0D372D;
+    --jade-line: #123F33;
+    --jade-neon: #00F5A6;
+    --jade-neon-dim: rgba(0,245,166,0.28);
+    --amber-neon: #FFB020;
+    --amber-neon-soft: rgba(255,176,32,0.16);
+    --parchment: #F6ECC9;
+    --parchment-dim: #C9C09B;
+    --parchment-faint: rgba(246,236,201,0.55);
+
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "IBM Plex Sans", -apple-system, sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body{
+    margin:0;
+    background: var(--jade-deep);
+    color: var(--parchment);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; }
+
+  ::selection{ background: var(--amber-neon); color: var(--jade-deep); }
+
+  :focus-visible{
+    outline: 2px solid var(--amber-neon);
+    outline-offset: 3px;
+  }
+
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* subtle ambient glow field behind everything */
+  .glow-field{
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(680px 420px at 12% -6%, var(--jade-neon-dim), transparent 60%),
+      radial-gradient(520px 380px at 96% 18%, rgba(255,176,32,0.10), transparent 65%);
+    pointer-events: none;
+  }
+
+  /* ---------- NAV ---------- */
+  header.site{
+    padding: 28px 0 0;
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+  }
+  .wordmark{
+    font-family: var(--serif);
+    font-weight: 560;
+    font-size: 1.3rem;
+    letter-spacing: 0.01em;
+    color: var(--parchment);
+    text-decoration: none;
+  }
+  .wordmark span{ color: var(--jade-neon); }
+  .nav-cta{
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--jade-deep);
+    background: var(--amber-neon);
+    padding: 10px 20px;
+    border-radius: 3px;
+    text-decoration: none;
+    box-shadow: 0 0 0 rgba(255,176,32,0);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    white-space: nowrap;
+  }
+  .nav-cta:hover{
+    box-shadow: 0 0 26px rgba(255,176,32,0.55);
+    transform: translateY(-1px);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 0 72px;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .hero h1{
+    font-family: var(--serif);
+    font-weight: 450;
+    font-size: clamp(2.6rem, 4.6vw, 3.9rem);
+    line-height: 1.08;
+    margin: 0 0 26px;
+    max-width: 12ch;
+    color: var(--parchment);
+  }
+  .hero h1 em{
+    font-style: italic;
+    font-weight: 560;
+    color: var(--jade-neon);
+  }
+  .hero p.lede{
+    font-size: 1.14rem;
+    color: var(--parchment-faint);
+    max-width: 46ch;
+    margin: 0 0 34px;
+  }
+  .hero-actions{
+    display:flex;
+    align-items:center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .btn-primary{
+    display:inline-block;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--jade-deep);
+    background: var(--amber-neon);
+    padding: 15px 30px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .btn-primary:hover{
+    box-shadow: 0 0 34px rgba(255,176,32,0.6);
+    transform: translateY(-1px);
+  }
+  .hero-note{
+    font-size: 0.9rem;
+    color: var(--parchment-dim);
+  }
+
+  .hero-art{
+    position: relative;
+  }
+  .hero-art svg{ width: 100%; height: auto; display:block; }
+
+  /* ---------- DIVIDER ---------- */
+  .thread{
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--jade-neon-dim) 20%, var(--jade-neon-dim) 80%, transparent);
+    margin: 0 0 0;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section.block{
+    padding: 92px 0;
+    border-top: 1px solid var(--jade-line);
+  }
+  .grid-2{
+    display: grid;
+    grid-template-columns: 0.92fr 1.08fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .grid-2.reverse{
+    grid-template-columns: 1.08fr 0.92fr;
+  }
+  .grid-2.reverse .art{ order: 2; }
+  .grid-2.reverse .copy{ order: 1; }
+
+  h2.h{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.7rem, 2.6vw, 2.25rem);
+    line-height: 1.2;
+    margin: 0 0 22px;
+    color: var(--parchment);
+    max-width: 15ch;
+  }
+  .copy p{
+    color: var(--parchment-faint);
+    font-size: 1.02rem;
+    max-width: 52ch;
+    margin: 0 0 18px;
+  }
+  .copy p:last-child{ margin-bottom: 0; }
+
+  .art{ display:flex; align-items:center; justify-content:center; }
+  .art svg{ width:100%; max-width: 420px; height:auto; }
+
+  /* points list — asymmetric, not identical cards */
+  .points{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  .point{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    padding: 22px 0;
+    border-top: 1px solid var(--jade-line);
+  }
+  .point:first-child{ border-top: none; padding-top: 0; }
+  .point .mark{
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--amber-neon);
+    line-height: 1.4;
+  }
+  .point h3{
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 0 0 8px;
+    color: var(--parchment);
+  }
+  .point p{
+    color: var(--parchment-faint);
+    margin: 0;
+    max-width: 50ch;
+  }
+
+  /* CTA band */
+  .cta-band{
+    padding: 100px 0 110px;
+    text-align: left;
+    border-top: 1px solid var(--jade-line);
+    position: relative;
+  }
+  .cta-band .wrap{
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: end;
+  }
+  .cta-band h2.h{ max-width: 16ch; }
+  .cta-side{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .cta-side p{
+    color: var(--parchment-faint);
+    margin:0;
+    max-width: 34ch;
+  }
+
+  footer.site{
+    padding: 40px 0 56px;
+    border-top: 1px solid var(--jade-line);
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  footer.site .wordmark{ font-size: 1.05rem; }
+  footer.site .foot-link{
+    font-size: 0.9rem;
+    color: var(--parchment-dim);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  footer.site .foot-link:hover{ border-bottom-color: var(--jade-neon); color: var(--jade-neon); }
+
+  @media (max-width: 860px){
+    .wrap{ padding: 0 22px; }
+    .hero{ grid-template-columns: 1fr; padding-top: 64px; }
+    .hero-art{ order: -1; max-width: 320px; margin: 0 auto; }
+    .grid-2, .grid-2.reverse{ grid-template-columns: 1fr; gap: 34px; }
+    .grid-2.reverse .art, .grid-2.reverse .copy{ order: initial; }
+    .cta-band .wrap{ grid-template-columns: 1fr; }
+    .art svg{ max-width: 280px; }
+    section.block{ padding: 64px 0; }
+  }
+</style>
+</head>
+<body>
+<div class="glow-field"></div>
+
+<header class="site">
+  <div class="wrap nav">
+    <a href="#top" class="wordmark">Easy<span>Land</span>X</a>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">See the work</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div>
+      <h1>Every small business has a story. <em>Most sites don't tell it.</em></h1>
+      <p class="lede">EasyLandX builds affordable, conversion-focused landing pages and websites for small businesses — page by page, by hand. No drag-and-drop kit standing between your business and the people looking for it.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Get your page built</a>
+        <span class="hero-note">easylandx.github.io</span>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 420 460" fill="none">
+        <!-- a hand-drawn thread connecting hand-built blocks, vs a rigid grid -->
+        <rect x="40" y="30" width="180" height="46" rx="2" stroke="#123F33" stroke-width="1.5"/>
+        <rect x="40" y="30" width="70" height="46" rx="2" fill="none" stroke="#00F5A6" stroke-width="1.6"/>
+        <rect x="60" y="120" width="320" height="90" rx="2" stroke="#123F33" stroke-width="1.5"/>
+        <circle cx="96" cy="165" r="20" stroke="#FFB020" stroke-width="1.6"/>
+        <rect x="130" y="145" width="200" height="10" fill="#0D372D"/>
+        <rect x="130" y="165" width="150" height="10" fill="#0D372D"/>
+        <rect x="130" y="185" width="90" height="10" fill="#0D372D"/>
+        <rect x="40" y="240" width="150" height="70" rx="2" stroke="#123F33" stroke-width="1.5"/>
+        <rect x="210" y="240" width="150" height="70" rx="2" stroke="#00F5A6" stroke-width="1.5"/>
+        <rect x="40" y="330" width="320" height="56" rx="28" stroke="#FFB020" stroke-width="1.6"/>
+        <text x="70" y="363" font-family="IBM Plex Sans" font-size="15" fill="#FFB020">Get started →</text>
+        <!-- connective thread -->
+        <path d="M120 76 C 130 100, 90 105, 96 120 M 250 210 C 260 225, 115 225, 115 240 M 285 310 C 300 320, 300 320, 300 330"
+              stroke="#F6ECC9" stroke-opacity="0.35" stroke-width="1.4" stroke-dasharray="2 5" fill="none"/>
+      </svg>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="thread"></div></div>
+
+  <!-- SECTION 1: stewardship / not-a-template -->
+  <section class="block">
+    <div class="wrap grid-2">
+      <div class="copy">
+        <h2 class="h">A page doesn't hold together on its own</h2>
+        <p>A logo, a price list, a few good photos — none of it adds up to a business unless something ties it together. That's what a landing page is for. Left to a generic builder, it usually doesn't.</p>
+        <p>We don't hand you a theme and a color picker. Every EasyLandX page is built from your business — what you actually sell, who actually buys it, and what makes someone choose you over the next tab they have open.</p>
+      </div>
+      <div class="art" aria-hidden="true">
+        <svg viewBox="0 0 300 300" fill="none">
+          <circle cx="150" cy="150" r="90" stroke="#123F33" stroke-width="1.5"/>
+          <circle cx="150" cy="150" r="60" stroke="#00F5A6" stroke-width="1.5" stroke-dasharray="3 6"/>
+          <path d="M150 60 L150 240 M60 150 L240 150" stroke="#123F33" stroke-width="1"/>
+          <circle cx="150" cy="60" r="5" fill="#FFB020"/>
+          <circle cx="210" cy="105" r="4" fill="#F6ECC9"/>
+          <circle cx="210" cy="195" r="4" fill="#F6ECC9"/>
+          <circle cx="90" cy="195" r="4" fill="#F6ECC9"/>
+          <circle cx="90" cy="105" r="4" fill="#F6ECC9"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: empathic translation -->
+  <section class="block">
+    <div class="wrap grid-2 reverse">
+      <div class="art" aria-hidden="true">
+        <svg viewBox="0 0 300 300" fill="none">
+          <rect x="45" y="60" width="90" height="130" rx="2" stroke="#00F5A6" stroke-width="1.6"/>
+          <rect x="165" y="110" width="90" height="130" rx="2" stroke="#FFB020" stroke-width="1.6"/>
+          <path d="M135 125 C 155 140, 145 155, 165 175" stroke="#F6ECC9" stroke-opacity="0.5" stroke-width="1.4" fill="none"/>
+          <circle cx="135" cy="125" r="4" fill="#00F5A6"/>
+          <circle cx="165" cy="175" r="4" fill="#FFB020"/>
+        </svg>
+      </div>
+      <div class="copy">
+        <h2 class="h">Two languages, one page</h2>
+        <p>You know your business in the language of doing it — the trade, the ingredients, the hours you keep. Your customer arrives speaking a different one: five seconds, one glance, a decision.</p>
+        <p>A conversion-focused page is a translation between those two. It says what you'd say in the doorway, in the words and order a stranger actually needs to hear it, so the five seconds go your way.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: tech as emotional prism, reframed as feature philosophy -->
+  <section class="block">
+    <div class="wrap">
+      <h2 class="h">What the page is actually for</h2>
+      <div class="points">
+        <div class="point">
+          <span class="mark">i.</span>
+          <div>
+            <h3>Built to be found and trusted</h3>
+            <p>Fast-loading, mobile-first, and structured so search engines and skeptical customers both take you seriously — not effects layered on for their own sake.</p>
+          </div>
+        </div>
+        <div class="point">
+          <span class="mark">ii.</span>
+          <div>
+            <h3>Priced for a small business, not an agency retainer</h3>
+            <p>You get a hand-built site without hand-built-site pricing. No monthly builder subscription you're locked into either.</p>
+          </div>
+        </div>
+        <div class="point">
+          <span class="mark">iii.</span>
+          <div>
+            <h3>Grows without losing you</h3>
+            <p>New hours, new menu, a second location — the page updates with the business. What stays fixed is the identity that made someone stop scrolling in the first place.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-band">
+    <div class="wrap">
+      <div>
+        <h2 class="h">Your story is worth a page that carries it well</h2>
+      </div>
+      <div class="cta-side">
+        <p>See finished pages, or start one for your own business — built by hand, priced for a small business.</p>
+        <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="thread"></div></div>
+
+  <footer class="site">
+    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; width:100%;">
+      <a href="#top" class="wordmark">Easy<span style="color:var(--jade-neon)">Land</span>X</a>
+      <a class="foot-link" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>

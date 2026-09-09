@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing pages built for the three-second decision</title>
+<meta name="description" content="EasyLandX designs landing pages and small business websites using decision science — clear structure, honest copy, and proof placed where doubt shows up.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green: #00ff6a;
+    --green-dim: #00d95c;
+    --deep: #071009;
+    --deep-2: #0c1a10;
+    --blue: #00d9ff;
+    --yellow: #f4ff3d;
+    --ink: #04140a;
+    --paper: #eafff0;
+    --line: rgba(4,20,10,0.28);
+    --line-dark: rgba(234,255,240,0.18);
+    --shadow-hard: 6px 6px 0 var(--ink);
+    --shadow-hard-blue: 6px 6px 0 var(--blue);
+    --radius: 2px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--green);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    line-height:1.08;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;}
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    letter-spacing:0.02em;
+  }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  section{padding:88px 0;}
+
+  @media (max-width:720px){
+    section{padding:56px 0;}
+    .wrap{padding:0 20px;}
+  }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--green);
+    border-bottom:3px solid var(--ink);
+  }
+  .nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:16px;
+    padding-bottom:16px;
+  }
+  .brand{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:1.2rem;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .brand-dot{
+    width:11px;height:11px;
+    background:var(--blue);
+    border:2px solid var(--ink);
+    display:inline-block;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:0.95rem;
+    text-decoration:none;
+    padding:12px 22px;
+    border:3px solid var(--ink);
+    background:var(--blue);
+    color:var(--ink);
+    box-shadow:var(--shadow-hard);
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .btn:hover{
+    transform:translate(-3px,-3px);
+    box-shadow:9px 9px 0 var(--ink);
+  }
+  .btn:active{
+    transform:translate(0,0);
+    box-shadow:2px 2px 0 var(--ink);
+  }
+  .btn:focus-visible{
+    outline:3px solid var(--ink);
+    outline-offset:3px;
+  }
+  .btn.small{
+    padding:9px 16px;
+    font-size:0.85rem;
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .btn.small:hover{box-shadow:7px 7px 0 var(--ink);}
+  .btn.yellow{background:var(--yellow);}
+  .btn.ghost{
+    background:transparent;
+    color:var(--paper);
+    border-color:var(--paper);
+    box-shadow:6px 6px 0 rgba(234,255,240,0.35);
+  }
+  .btn.ghost:hover{box-shadow:9px 9px 0 rgba(234,255,240,0.35);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding-top:72px;
+    padding-bottom:64px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:center;
+  }
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr; gap:40px;}
+  }
+  .hero h1{
+    font-size:clamp(2.3rem, 5vw, 3.6rem);
+  }
+  .hero p.lede{
+    margin-top:22px;
+    font-size:1.18rem;
+    max-width:46ch;
+    color:rgba(4,20,10,0.82);
+  }
+  .hero-actions{
+    margin-top:32px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .hero-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    color:rgba(4,20,10,0.6);
+  }
+
+  /* three-second demo widget */
+  .demo{
+    background:var(--deep);
+    border:3px solid var(--ink);
+    box-shadow:var(--shadow-hard-blue);
+    padding:22px;
+    color:var(--paper);
+  }
+  .demo-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+  }
+  .demo-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.03em;
+    color:var(--green-dim);
+  }
+  .demo-timer{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    color:var(--yellow);
+    min-width:38px;
+    text-align:right;
+  }
+  .demo-screen{
+    position:relative;
+    background:var(--deep-2);
+    border:2px solid var(--line-dark);
+    padding:22px 18px;
+    min-height:190px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:10px;
+    overflow:hidden;
+  }
+  .demo-screen .ghost-line{
+    height:11px;
+    background:rgba(234,255,240,0.14);
+    filter:blur(2px);
+    transition:filter 0.6s ease, background 0.6s ease, opacity 0.6s ease;
+  }
+  .demo-screen.clear .ghost-line{
+    filter:blur(0);
+    background:var(--paper);
+    opacity:0.92;
+  }
+  .demo-screen .gl-1{width:62%;}
+  .demo-screen .gl-2{width:88%;}
+  .demo-screen .gl-3{width:41%;}
+  .demo-screen .gl-cta{
+    margin-top:8px;
+    width:120px;
+    height:30px;
+    background:var(--blue);
+    filter:blur(3px);
+    opacity:0.5;
+    transition:filter 0.6s ease, opacity 0.6s ease;
+  }
+  .demo-screen.clear .gl-cta{filter:blur(0); opacity:1;}
+  .demo-caption{
+    margin-top:14px;
+    font-size:0.86rem;
+    color:rgba(234,255,240,0.72);
+  }
+  .demo-btn-row{
+    margin-top:14px;
+  }
+
+  /* ---------- Section headers ---------- */
+  .kicker-row{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:18px;
+  }
+  .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    color:var(--ink);
+    opacity:0.55;
+  }
+  .section-title{
+    font-size:clamp(1.6rem, 3.2vw, 2.3rem);
+  }
+
+  /* ---------- Default trap section ---------- */
+  .trap{
+    background:var(--deep);
+    color:var(--paper);
+  }
+  .trap .num{color:rgba(234,255,240,0.5);}
+  .trap-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    margin-top:36px;
+  }
+  @media (max-width:820px){
+    .trap-grid{grid-template-columns:1fr;}
+  }
+  .trap p{
+    color:rgba(234,255,240,0.82);
+    font-size:1.05rem;
+  }
+  .stat-block{
+    border-left:3px solid var(--yellow);
+    padding-left:20px;
+  }
+  .stat-block .stat{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:2.6rem;
+    color:var(--yellow);
+    line-height:1;
+  }
+  .stat-block p{
+    margin-top:10px;
+    color:rgba(234,255,240,0.68);
+    font-size:0.95rem;
+  }
+
+  /* ---------- Framework diagram ---------- */
+  .framework{background:var(--green);}
+  .diagram{
+    margin-top:52px;
+  }
+  .d-box{
+    background:var(--paper);
+    border:3px solid var(--ink);
+    padding:18px 22px;
+    box-shadow:5px 5px 0 var(--ink);
+  }
+  .d-box h3{
+    font-size:1.05rem;
+  }
+  .d-box p{
+    margin-top:8px;
+    font-size:0.92rem;
+    color:rgba(4,20,10,0.75);
+  }
+  .d-trunk{
+    max-width:440px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .d-connector{
+    width:3px;
+    height:34px;
+    background:var(--ink);
+  }
+  .d-branch-wrap{
+    width:100%;
+    margin-top:0;
+  }
+  .d-fan{
+    position:relative;
+    height:34px;
+  }
+  .d-fan svg{
+    width:100%;
+    height:100%;
+    display:block;
+    overflow:visible;
+  }
+  .d-branches{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+  }
+  @media (max-width:760px){
+    .d-branches{grid-template-columns:1fr;}
+    .d-fan{display:none;}
+    .d-branch-wrap .d-connector{margin:0 auto;}
+  }
+  .d-branches .d-box{
+    border-color:var(--blue);
+    box-shadow:5px 5px 0 var(--blue);
+  }
+  .d-branches .tag{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--blue);
+    margin-bottom:8px;
+  }
+
+  /* ---------- Lessons ---------- */
+  .lessons{background:var(--green);}
+  .lesson-list{
+    margin-top:36px;
+    display:flex;
+    flex-direction:column;
+  }
+  .lesson{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:22px;
+    padding:26px 0;
+    border-top:2px solid var(--line);
+    align-items:start;
+  }
+  .lesson:last-child{border-bottom:2px solid var(--line);}
+  .lesson .num{font-size:1.4rem; opacity:0.4;}
+  .lesson h3{font-size:1.15rem;}
+  .lesson p{
+    margin-top:8px;
+    color:rgba(4,20,10,0.75);
+    font-size:0.98rem;
+    max-width:60ch;
+  }
+
+  /* ---------- Process vs outcome ---------- */
+  .process{
+    background:var(--deep-2);
+    color:var(--paper);
+  }
+  .process-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    margin-top:36px;
+  }
+  @media (max-width:820px){
+    .process-grid{grid-template-columns:1fr;}
+  }
+  .pcard{
+    border:2px solid var(--line-dark);
+    padding:26px;
+  }
+  .pcard.win{border-color:var(--yellow);}
+  .pcard h3{
+    font-size:1rem;
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--yellow);
+    text-transform:none;
+  }
+  .pcard p{
+    margin-top:12px;
+    color:rgba(234,255,240,0.78);
+    font-size:0.98rem;
+  }
+
+  /* ---------- Cooling rule ---------- */
+  .cooling{
+    background:var(--green);
+  }
+  .cooling-inner{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:48px;
+    align-items:center;
+  }
+  @media (max-width:820px){
+    .cooling-inner{grid-template-columns:1fr;}
+  }
+  .cooling-visual{
+    background:var(--paper);
+    border:3px solid var(--ink);
+    box-shadow:6px 6px 0 var(--yellow);
+    padding:26px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .cooling-visual .row{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px dashed var(--line);
+    font-size:0.85rem;
+  }
+  .cooling-visual .row:last-child{border-bottom:none;}
+  .cooling-visual .row span:last-child{color:var(--green-dim); font-weight:700;}
+
+  /* ---------- Final CTA ---------- */
+  .cta-final{
+    background:var(--deep);
+    color:var(--paper);
+    text-align:center;
+  }
+  .cta-final h2{
+    font-size:clamp(1.9rem, 4vw, 2.8rem);
+    max-width:20ch;
+    margin:0 auto;
+  }
+  .cta-final p{
+    margin:18px auto 0;
+    max-width:48ch;
+    color:rgba(234,255,240,0.75);
+    font-size:1.05rem;
+  }
+  .cta-final .hero-actions{
+    justify-content:center;
+    margin-top:30px;
+  }
+
+  footer{
+    background:var(--deep);
+    color:rgba(234,255,240,0.55);
+    border-top:1px solid var(--line-dark);
+    padding:26px 0;
+    font-size:0.85rem;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  footer a{text-decoration:underline;}
+
+  /* ---------- Reveal ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="brand-dot"></span>EasyLandX</a>
+    <a class="btn small" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Visitors decide in three seconds. We design for that moment.</h1>
+      <p class="lede">EasyLandX builds landing pages and small business websites the way a decision scientist builds a choice: remove the noise, put the proof where doubt shows up, and give people a clear next step before they've had time to hesitate.</p>
+      <div class="hero-actions">
+        <a class="btn yellow" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to EasyLandX →</a>
+        <a class="btn ghost" href="#framework">See the framework</a>
+      </div>
+      <p class="hero-note">easylandx.github.io — landing pages, tuned for the first look.</p>
+    </div>
+
+    <div class="demo" id="demo">
+      <div class="demo-head">
+        <span class="demo-title">// LIVE PREVIEW: FIRST 3 SECONDS</span>
+        <span class="demo-timer" id="demoTimer">3.0s</span>
+      </div>
+      <div class="demo-screen" id="demoScreen">
+        <div class="ghost-line gl-1"></div>
+        <div class="ghost-line gl-2"></div>
+        <div class="ghost-line gl-3"></div>
+        <div class="ghost-line gl-cta"></div>
+      </div>
+      <p class="demo-caption" id="demoCaption">Most pages load like this — technically fine, nothing for the eye to land on.</p>
+      <div class="demo-btn-row">
+        <button class="btn small yellow" id="demoBtn" type="button">Run the test again</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="trap">
+  <div class="wrap">
+    <div class="kicker-row"><span class="num">01</span><h2 class="section-title">The mind defaults to shortcuts</h2></div>
+    <div class="trap-grid">
+      <p>A first-time visitor isn't reading your landing page. They're scanning it — pulling a shape, a color, a headline, and a button into a snap judgment about whether this business is worth thirty more seconds of their attention. That instinct isn't a flaw to argue with. It's the thing a good page is built for.</p>
+      <div class="stat-block">
+        <div class="stat">~3<span style="font-size:1.3rem;">sec</span></div>
+        <p>is roughly how long it takes most visitors to form a first impression of a page — before they've read a single sentence of your copy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="framework" id="framework">
+  <div class="wrap">
+    <div class="kicker-row"><span class="num">02</span><h2 class="section-title">The EasyLandX conversion framework</h2></div>
+    <p style="max-width:62ch; color:rgba(4,20,10,0.75); font-size:1.03rem;">Every page we build works through the same sequence, borrowed from how good decisions get made under pressure: notice first, question assumptions second, then choose the fix with the clearest evidence behind it.</p>
+
+    <div class="diagram reveal" id="diagramReveal">
+      <div class="d-trunk">
+        <div class="d-box" style="width:100%;">
+          <h3>Pause &amp; scan</h3>
+          <p>Look at the page the way a stranger would. Where do their eyes stop first — and what do they feel there: clear, confused, or unsure?</p>
+        </div>
+        <div class="d-connector"></div>
+        <div class="d-box" style="width:100%;">
+          <h3>Map the friction</h3>
+          <p>Check for slow load, an unclear offer, or missing proof — the quiet reasons a good business still loses a visitor.</p>
+        </div>
+        <div class="d-connector"></div>
+      </div>
+
+      <div class="d-fan" aria-hidden="true">
+        <svg viewBox="0 0 600 34" preserveAspectRatio="none">
+          <line x1="300" y1="0" x2="300" y2="17" stroke="#04140a" stroke-width="3"/>
+          <line x1="300" y1="17" x2="60" y2="17" stroke="#04140a" stroke-width="3"/>
+          <line x1="300" y1="17" x2="300" y2="17" stroke="#04140a" stroke-width="3"/>
+          <line x1="300" y1="17" x2="540" y2="17" stroke="#04140a" stroke-width="3"/>
+          <line x1="60" y1="17" x2="60" y2="34" stroke="#04140a" stroke-width="3"/>
+          <line x1="300" y1="17" x2="300" y2="34" stroke="#04140a" stroke-width="3"/>
+          <line x1="540" y1="17" x2="540" y2="34" stroke="#04140a" stroke-width="3"/>
+        </svg>
+      </div>
+
+      <div class="d-branches">
+        <div class="d-box">
+          <span class="tag mono">INVERT THE FUNNEL</span>
+          <h3>Find the exit first</h3>
+          <p>Ask what would make a visitor leave this page, then fix that before touching anything else.</p>
+        </div>
+        <div class="d-box">
+          <span class="tag mono">SECOND-ORDER THINKING</span>
+          <h3>Follow the click</h3>
+          <p>Ask "and then what" for every button. A page can hold attention and still lose the next step.</p>
+        </div>
+        <div class="d-box">
+          <span class="tag mono">PRE-LAUNCH PRE-MORTEM</span>
+          <h3>Picture a quiet year</h3>
+          <p>Imagine the page live for twelve months with no results, then work backward to close the gaps before launch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lessons">
+  <div class="wrap">
+    <div class="kicker-row"><span class="num">03</span><h2 class="section-title">What this changes about the build</h2></div>
+    <div class="lesson-list">
+      <div class="lesson">
+        <span class="num">1</span>
+        <div>
+          <h3>The first draft is rarely the clear one</h3>
+          <p>Copy written by the business owner is shaped by everything they already know about their work. A first-time visitor knows none of it — so every page gets read back through a stranger's eyes before it ships.</p>
+        </div>
+      </div>
+      <div class="lesson">
+        <span class="num">2</span>
+        <div>
+          <h3>Feeling finished isn't the same as testing well</h3>
+          <p>A page can look complete and still lose visitors at the same spot every time. We check where people actually stop, not just how the page looks in a final review.</p>
+        </div>
+      </div>
+      <div class="lesson">
+        <span class="num">3</span>
+        <div>
+          <h3>Growth compounds from small, well-tuned pages</h3>
+          <p>Momentum rarely comes from one big redesign. It comes from steadily sharpening the page people actually land on, one honest adjustment at a time.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="wrap">
+    <div class="kicker-row"><span class="num">04</span><h2 class="section-title" style="color:var(--paper);">Judge the process, not just the week's traffic</h2></div>
+    <div class="process-grid">
+      <div class="pcard">
+        <h3>// OUTSIDE OUR CONTROL</h3>
+        <p>Traffic, timing, and what a competitor launches this month all move the numbers on any given week — no landing page controls that on its own.</p>
+      </div>
+      <div class="pcard win">
+        <h3>// WHAT EASYLANDX BUILDS</h3>
+        <p>Clear structure, honest copy, and proof placed exactly where doubt tends to show up. Get that process right, and the strong weeks start outnumbering the slow ones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cooling">
+  <div class="wrap cooling-inner">
+    <div>
+      <div class="kicker-row"><span class="num">05</span><h2 class="section-title">A full day of distance before launch</h2></div>
+      <p style="margin-top:18px; color:rgba(4,20,10,0.75); font-size:1.03rem; max-width:48ch;">Every EasyLandX page gets a cooling period before it goes live — one full day away from the work. A second look, with fresh eyes, catches what a first look never can.</p>
+    </div>
+    <div class="cooling-visual">
+      <div class="row"><span>headline clarity</span><span>reviewed</span></div>
+      <div class="row"><span>load on mobile</span><span>reviewed</span></div>
+      <div class="row"><span>proof placement</span><span>reviewed</span></div>
+      <div class="row"><span>call to action</span><span>reviewed</span></div>
+      <div class="row"><span>24-hour distance</span><span>applied</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <h2>Give your business a page built for the first three seconds.</h2>
+    <p>EasyLandX designs and builds landing pages and small business websites — priced for a small business, tuned like a decision scientist would tune it.</p>
+    <div class="hero-actions">
+      <a class="btn yellow" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to EasyLandX →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>EasyLandX — landing pages and small business websites.</span>
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Scroll reveal — single orchestrated section (the framework diagram)
+  var target = document.getElementById('diagramReveal');
+  if('IntersectionObserver' in window && target){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.2});
+    io.observe(target);
+  } else if(target){
+    target.classList.add('in');
+  }
+
+  // 3-second decision demo
+  var screen = document.getElementById('demoScreen');
+  var timerEl = document.getElementById('demoTimer');
+  var caption = document.getElementById('demoCaption');
+  var btn = document.getElementById('demoBtn');
+  var running = false;
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function runDemo(){
+    if(running) return;
+    running = true;
+    screen.classList.remove('clear');
+    caption.textContent = 'Most pages load like this — technically fine, nothing for the eye to land on.';
+    var t = 3.0;
+    timerEl.textContent = t.toFixed(1) + 's';
+
+    if(reduceMotion){
+      screen.classList.add('clear');
+      timerEl.textContent = '0.0s';
+      caption.textContent = 'An EasyLandX page resolves fast: one message, one path, one clear action.';
+      running = false;
+      return;
+    }
+
+    var interval = setInterval(function(){
+      t -= 0.1;
+      if(t <= 0){
+        clearInterval(interval);
+        timerEl.textContent = '0.0s';
+        screen.classList.add('clear');
+        caption.textContent = 'An EasyLandX page resolves fast: one message, one path, one clear action.';
+        running = false;
+      } else {
+        timerEl.textContent = t.toFixed(1) + 's';
+      }
+    }, 100);
+  }
+
+  btn.addEventListener('click', runDemo);
+  window.addEventListener('load', function(){ setTimeout(runDemo, 500); });
+})();
+</script>
+
+</body>
+</html>

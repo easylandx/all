@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — The Border Between Seeing and Clicking</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --blue: #1547FF;
+    --blue-deep: #0E33CC;
+    --blue-light: #6C8CFF;
+    --amber: #FFB020;
+    --amber-soft: #FFD98C;
+    --teal: #00E6C3;
+    --teal-soft: #7CF3E1;
+    --navy: #0D1130;
+    --navy-light: #1B2148;
+    --mist: #9AA3C7;
+    --cream: #F4F7FF;
+    --line: rgba(244, 247, 255, 0.22);
+    --radius: 4px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--blue);
+    color: var(--cream);
+    font-family: 'Manrope', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 32px;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--cream);
+  }
+
+  .brand span { color: var(--amber); }
+
+  .nav-cta {
+    background: var(--amber);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 11px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    display: inline-block;
+  }
+
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+  .nav-cta:focus-visible { outline: 3px solid var(--cream); outline-offset: 3px; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 70px 32px 110px;
+    max-width: 980px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .hero .eyebrow {
+    font-size: 0.95rem;
+    color: var(--teal-soft);
+    margin-bottom: 22px;
+    max-width: 520px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 5.6vw, 4.4rem);
+    line-height: 1.04;
+    color: var(--cream);
+    max-width: 900px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--amber);
+  }
+
+  .hero p.lede {
+    margin-top: 26px;
+    font-size: 1.15rem;
+    color: var(--cream);
+    opacity: 0.88;
+    max-width: 560px;
+  }
+
+  .hero-actions {
+    margin-top: 40px;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--amber);
+    color: var(--navy);
+    font-weight: 700;
+    padding: 16px 30px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 1rem;
+    display: inline-block;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.3); }
+  .btn-primary:focus-visible { outline: 3px solid var(--cream); outline-offset: 3px; }
+
+  .btn-secondary {
+    color: var(--cream);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 3px;
+    font-size: 0.98rem;
+  }
+
+  .btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* ---------- PANEL SECTIONS (navy blocks on blue field) ---------- */
+  .panel {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 64px 48px;
+  }
+
+  .panel + .panel { margin-top: 4px; }
+
+  section.band { padding: 4px 20px; }
+  section.band .wrap { padding: 0; }
+
+  .kicker {
+    color: var(--teal);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+
+  .panel h2 {
+    font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+    color: var(--cream);
+    max-width: 700px;
+  }
+
+  .panel .sub {
+    margin-top: 18px;
+    color: var(--mist);
+    max-width: 620px;
+    font-size: 1.05rem;
+  }
+
+  /* ---------- SPLIT: perception vs cognition ---------- */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 48px;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .split-col {
+    padding: 40px;
+    position: relative;
+  }
+
+  .split-col.perceive {
+    background: var(--blue);
+  }
+
+  .split-col.think {
+    background: var(--navy-light);
+  }
+
+  .split-col h3 {
+    font-size: 1.3rem;
+    margin-bottom: 14px;
+  }
+
+  .split-col.perceive h3 { color: var(--amber); }
+  .split-col.think h3 { color: var(--teal-soft); }
+
+  .split-col p { font-size: 0.98rem; opacity: 0.9; }
+  .split-col.perceive p { color: var(--cream); }
+  .split-col.think p { color: var(--mist); }
+
+  .split-col ul { margin-top: 16px; padding-left: 20px; }
+  .split-col li { margin-bottom: 8px; font-size: 0.96rem; }
+
+  @media (max-width: 720px) {
+    .split { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- DIAGRAM ---------- */
+  .diagram-wrap {
+    margin-top: 52px;
+    background: var(--blue-deep);
+    border-radius: var(--radius);
+    padding: 40px 24px;
+  }
+
+  .diagram-wrap svg { width: 100%; height: auto; display: block; }
+
+  /* ---------- OVERFLOW SECTION ---------- */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 48px;
+  }
+
+  .stat-card {
+    background: var(--navy-light);
+    border-radius: var(--radius);
+    padding: 30px 26px;
+    border-top: 3px solid var(--teal);
+  }
+
+  .stat-card .num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.1rem;
+    color: var(--amber);
+    font-weight: 700;
+  }
+
+  .stat-card p {
+    margin-top: 10px;
+    color: var(--mist);
+    font-size: 0.94rem;
+  }
+
+  @media (max-width: 780px) {
+    .stat-row { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- APPLIED PRACTICES ---------- */
+  .practice-list {
+    margin-top: 44px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .practice {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 24px;
+    padding: 26px 0;
+    border-top: 1px solid rgba(244,247,255,0.08);
+    align-items: start;
+  }
+
+  .practice:last-child { border-bottom: 1px solid rgba(244,247,255,0.08); }
+
+  .practice .tag {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--teal);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .practice h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--cream);
+    font-size: 1.12rem;
+    margin-bottom: 6px;
+  }
+
+  .practice p { color: var(--mist); font-size: 0.96rem; max-width: 560px; }
+
+  /* ---------- CLOSING CTA ---------- */
+  .closing {
+    background: linear-gradient(160deg, var(--blue-deep), var(--blue));
+    text-align: left;
+    padding: 84px 48px;
+  }
+
+  .closing h2 {
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    color: var(--cream);
+    max-width: 620px;
+  }
+
+  .closing p {
+    margin-top: 18px;
+    color: var(--teal-soft);
+    max-width: 480px;
+    font-size: 1.05rem;
+  }
+
+  .closing .hero-actions { margin-top: 36px; }
+
+  footer {
+    padding: 36px 32px 50px;
+    text-align: left;
+    max-width: 1120px;
+    margin: 0 auto;
+    color: var(--teal-soft);
+    font-size: 0.88rem;
+    opacity: 0.8;
+  }
+
+  footer a { text-decoration: underline; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+
+  @media (max-width: 640px) {
+    .panel { padding: 44px 26px; }
+    .hero { padding: 50px 24px 70px; }
+    nav { padding: 22px 24px; }
+    .closing { padding: 60px 26px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">easyland<span>x</span></div>
+  <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">See the work</a>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">On landing page design, 2026</div>
+  <h1>Your visitor decides in a glance, <em>before they read a single word.</em></h1>
+  <p class="lede">
+    Cognitive science draws a hard line between seeing and thinking. A landing page lives right on that line — and most of them are built for the wrong side of it. easylandx designs for both.
+  </p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+    <a class="btn-secondary" href="#border">How this works</a>
+  </div>
+</div>
+
+<section class="band" id="border">
+  <div class="wrap">
+    <div class="panel">
+      <div class="kicker">The border</div>
+      <h2>Seeing and thinking are two different systems — and your page has to satisfy both.</h2>
+      <p class="sub">
+        Philosopher Ned Block spent decades showing that perception and cognition are not the same process wearing different hats. Perception is fast, rich, and wordless. Cognition is slower, selective, and built from concepts. A landing page fires the first system the instant it loads, and only earns the second if the first one cooperates.
+      </p>
+
+      <div class="split">
+        <div class="split-col perceive">
+          <h3>What visitors see</h3>
+          <p>The perceptual layer arrives whole and immediate — color, contrast, motion, shape, spacing — before any concept has been formed about what the business even does.</p>
+          <ul>
+            <li>Color palette and contrast</li>
+            <li>Layout rhythm and whitespace</li>
+            <li>Motion and hierarchy of first impression</li>
+            <li>Texture, imagery, shape language</li>
+          </ul>
+        </div>
+        <div class="split-col think">
+          <h3>What visitors think</h3>
+          <p>The cognitive layer is slower and effortful — it's where the offer gets understood, trust gets weighed, and the decision to act actually gets made.</p>
+          <ul>
+            <li>The headline's promise</li>
+            <li>Pricing, credibility, proof</li>
+            <li>What the button says it will do</li>
+            <li>The decision to click, message, or buy</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing a visitor moving from perceptual impression through an attention bottleneck into cognitive decision and action">
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+              <path d="M0,0 L7,3 L0,6 Z" fill="#FFB020"></path>
+            </marker>
+          </defs>
+
+          <!-- Perception box -->
+          <rect x="20" y="70" width="220" height="120" rx="4" fill="#1547FF"></rect>
+          <text x="130" y="120" text-anchor="middle" fill="#F4F7FF" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700">Perception</text>
+          <text x="130" y="145" text-anchor="middle" fill="#7CF3E1" font-family="Manrope, sans-serif" font-size="12">colour, layout,</text>
+          <text x="130" y="163" text-anchor="middle" fill="#7CF3E1" font-family="Manrope, sans-serif" font-size="12">motion, shape</text>
+
+          <line x1="240" y1="130" x2="330" y2="130" stroke="#FFB020" stroke-width="2" marker-end="url(#arrow)"></line>
+
+          <!-- Border / bottleneck -->
+          <rect x="335" y="40" width="120" height="180" rx="4" fill="none" stroke="#FFB020" stroke-width="2" stroke-dasharray="5 5"></rect>
+          <text x="395" y="30" text-anchor="middle" fill="#FFB020" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="700">the border</text>
+          <text x="395" y="120" text-anchor="middle" fill="#FFB020" font-family="Manrope, sans-serif" font-size="12">attention</text>
+          <text x="395" y="138" text-anchor="middle" fill="#FFB020" font-family="Manrope, sans-serif" font-size="12">picks what</text>
+          <text x="395" y="156" text-anchor="middle" fill="#FFB020" font-family="Manrope, sans-serif" font-size="12">gets through</text>
+
+          <line x1="460" y1="130" x2="550" y2="130" stroke="#FFB020" stroke-width="2" marker-end="url(#arrow)"></line>
+
+          <!-- Cognition box -->
+          <rect x="555" y="70" width="220" height="120" rx="4" fill="#1B2148"></rect>
+          <text x="665" y="120" text-anchor="middle" fill="#F4F7FF" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700">Cognition</text>
+          <text x="665" y="145" text-anchor="middle" fill="#9AA3C7" font-family="Manrope, sans-serif" font-size="12">offer, trust,</text>
+          <text x="665" y="163" text-anchor="middle" fill="#9AA3C7" font-family="Manrope, sans-serif" font-size="12">the decision</text>
+
+          <line x1="775" y1="130" x2="865" y2="130" stroke="#00E6C3" stroke-width="2" marker-end="url(#arrow)"></line>
+          <text x="880" y="126" text-anchor="middle" fill="#F4F7FF" font-family="Manrope, sans-serif" font-size="20">→</text>
+          <text x="838" y="230" text-anchor="middle" fill="#7CF3E1" font-family="Manrope, sans-serif" font-size="12">click, message, buy</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="panel">
+      <div class="kicker">Overflow</div>
+      <h2>Visitors absorb far more than they can consciously process — design for the glance, not just the read.</h2>
+      <p class="sub">
+        Block calls this overflow: conscious perception holds more detail than working memory can ever report or store. A visitor's eye takes in the whole page before their mind can name any part of it. That gap is where a landing page either earns a second look, or loses one.
+      </p>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="num">1 glance</div>
+          <p>is enough for a visitor to perceive your entire layout, palette, and shape language — before reading a single line.</p>
+        </div>
+        <div class="stat-card">
+          <div class="num">Few words</div>
+          <p>make it through the attentive bottleneck into working memory. Everything else in the headline is wasted.</p>
+        </div>
+        <div class="stat-card">
+          <div class="num">1 button</div>
+          <p>should be the thing attention is steered toward — the bridge from perceptual impression to cognitive action.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="panel">
+      <div class="kicker">How easylandx builds on this</div>
+      <h2>Every page is built to satisfy the eye first, then the mind.</h2>
+
+      <div class="practice-list">
+        <div class="practice">
+          <div class="tag">01</div>
+          <div>
+            <h4>Design the perceptual hit before the copy</h4>
+            <p>Colour, composition, and motion are set first, so the page reads as trustworthy and distinct in the instant before anyone starts reading.</p>
+          </div>
+        </div>
+        <div class="practice">
+          <div class="tag">02</div>
+          <div>
+            <h4>Keep the cognitive load light</h4>
+            <p>One offer, one voice, one action. Working memory is small — a page competing with itself for attention loses visitors it already had.</p>
+          </div>
+        </div>
+        <div class="practice">
+          <div class="tag">03</div>
+          <div>
+            <h4>Build one deliberate bridge to action</h4>
+            <p>A single, clearly placed WhatsApp, Instagram, or booking button — the one thing attention is meant to cross the border toward.</p>
+          </div>
+        </div>
+        <div class="practice">
+          <div class="tag">04</div>
+          <div>
+            <h4>Custom-built, not templated</h4>
+            <p>A template imposes someone else's perceptual choices on your business. Every easylandx page is built from scratch around what the business actually is.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="closing panel">
+      <h2>Give visitors a page their eyes trust before their mind even catches up.</h2>
+      <p>Custom, conversion-focused landing pages for small businesses — built for how people actually see and decide.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>easylandx — custom landing pages, 2026. Portfolio at <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a></p>
+</footer>
+
+</body>
+</html>
