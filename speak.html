@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages That Know How to Speak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crimson-950:#4A0620;
+    --crimson-800:#7A0C2E;
+    --crimson-700:#A81237;
+    --crimson-600:#C41941;
+    --crimson-500:#D62449;
+    --crimson-300:#F2506B;
+    --navy-neon:#2436FF;
+    --navy-neon-soft:#4A57FF;
+    --gold-neon:#FFCE45;
+    --gold-neon-soft:#FFE08A;
+    --cream:#FFF6EC;
+    --cream-dim:#FBD9CB;
+    --serif:'Fraunces', serif;
+    --sans:'Space Grotesk', sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--crimson-700);
+    color:var(--cream);
+    font-family:var(--sans);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 28px 80px;
+    background:
+      radial-gradient(ellipse at 20% 15%, rgba(36,54,255,0.28), transparent 55%),
+      radial-gradient(ellipse at 85% 80%, rgba(255,206,69,0.22), transparent 55%),
+      var(--crimson-800);
+  }
+
+  .eyebrow-mark{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--gold-neon);
+    margin-bottom:22px;
+    letter-spacing:0.02em;
+  }
+
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(2.4rem, 6vw, 4.2rem);
+    line-height:1.06;
+    max-width:14ch;
+    color:var(--cream);
+  }
+
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold-neon);
+    font-weight:500;
+  }
+
+  .hero p.sub{
+    margin-top:26px;
+    font-size:1.15rem;
+    max-width:46ch;
+    color:var(--cream-dim);
+  }
+
+  /* waveform */
+  .waveform{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    height:64px;
+    margin:44px 0 8px;
+  }
+  .waveform .bar{
+    width:5px;
+    border-radius:3px;
+    background:linear-gradient(180deg, var(--navy-neon-soft), var(--gold-neon));
+    animation:speak 1.6s ease-in-out infinite;
+  }
+  @keyframes speak{
+    0%,100%{transform:scaleY(0.25);}
+    50%{transform:scaleY(1);}
+  }
+  .waveform.paused .bar{ animation-play-state:paused; transform:scaleY(0.25); opacity:0.5; }
+
+  .pause-note{
+    font-size:0.85rem;
+    color:var(--gold-neon-soft);
+    min-height:20px;
+    letter-spacing:0.02em;
+  }
+
+  .cta-primary{
+    display:inline-block;
+    margin-top:38px;
+    background:var(--gold-neon);
+    color:var(--crimson-950);
+    font-weight:700;
+    font-size:1rem;
+    padding:16px 36px;
+    border-radius:999px;
+    box-shadow:0 0 0 2px rgba(255,206,69,0.25), 0 14px 30px -10px rgba(255,206,69,0.55);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .cta-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 0 2px rgba(255,206,69,0.4), 0 18px 36px -8px rgba(255,206,69,0.7);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{
+    padding:110px 0;
+  }
+
+  .band-deep{ background:var(--crimson-800); }
+  .band-mid{ background:var(--crimson-700); }
+  .band-light{ background:var(--crimson-600); }
+
+  .kicker{
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--gold-neon);
+    font-size:1.05rem;
+    margin-bottom:16px;
+  }
+
+  h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(1.8rem, 4vw, 2.6rem);
+    line-height:1.16;
+    max-width:18ch;
+    color:var(--cream);
+  }
+
+  h2 em{ color:var(--navy-neon-soft); font-style:italic; font-weight:500; }
+  h2 .g{ color:var(--gold-neon); font-style:italic; font-weight:500; }
+
+  p.lead{
+    margin-top:20px;
+    font-size:1.08rem;
+    max-width:56ch;
+    color:var(--cream-dim);
+  }
+
+  /* divider — a single vocal-line motif between bands */
+  .divider{
+    width:100%;
+    height:46px;
+  }
+
+  /* pair rows: delivery vs content, charm cards */
+  .pair{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+    margin-top:48px;
+  }
+  @media(max-width:640px){ .pair{grid-template-columns:1fr;} }
+
+  .pair-item{
+    padding:30px 26px;
+    border-radius:4px;
+  }
+  .pair-item.navy{
+    background:rgba(36,54,255,0.16);
+    border-left:3px solid var(--navy-neon-soft);
+  }
+  .pair-item.gold{
+    background:rgba(255,206,69,0.13);
+    border-left:3px solid var(--gold-neon);
+  }
+  .pair-item h3{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:1.25rem;
+    margin-bottom:10px;
+  }
+  .pair-item p{
+    color:var(--cream-dim);
+    font-size:0.98rem;
+  }
+
+  /* structure diagram: hook / context / payoff -> hero / value / action — genuinely sequential */
+  .sequence{
+    margin-top:56px;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .seq-step{
+    display:grid;
+    grid-template-columns:56px 1fr;
+    gap:20px;
+    padding:26px 0;
+    border-bottom:1px solid rgba(255,246,236,0.14);
+  }
+  .seq-step:last-child{border-bottom:none;}
+  .seq-num{
+    font-family:var(--serif);
+    font-size:1.6rem;
+    color:var(--gold-neon);
+    font-weight:600;
+  }
+  .seq-step h4{
+    font-family:var(--serif);
+    font-size:1.15rem;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .seq-step p{ color:var(--cream-dim); font-size:0.98rem; max-width:52ch; }
+  .seq-tag{
+    display:inline-block;
+    font-size:0.8rem;
+    color:var(--navy-neon-soft);
+    background:rgba(36,54,255,0.18);
+    padding:3px 12px;
+    border-radius:999px;
+    margin-top:10px;
+  }
+
+  /* rhythm / pause interactive block */
+  .rhythm-box{
+    margin-top:50px;
+    padding:38px 32px;
+    background:var(--crimson-800);
+    border-radius:6px;
+    text-align:center;
+  }
+  .rhythm-box p{ color:var(--cream-dim); margin-bottom:22px; }
+  .toggle-btn{
+    background:transparent;
+    border:2px solid var(--navy-neon-soft);
+    color:var(--cream);
+    padding:12px 28px;
+    border-radius:999px;
+    font-family:var(--sans);
+    font-weight:600;
+    cursor:pointer;
+    font-size:0.95rem;
+    transition:background 0.2s ease, border-color 0.2s ease;
+  }
+  .toggle-btn:hover{ background:rgba(36,54,255,0.2); }
+  .toggle-btn:focus-visible{ outline:3px solid var(--gold-neon); outline-offset:3px; }
+
+  /* mirror & validate — quote style */
+  .validate-block{
+    margin-top:50px;
+    padding:36px 32px;
+    background:rgba(255,206,69,0.1);
+    border-radius:6px;
+  }
+  .validate-block p.line{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.3rem;
+    line-height:1.5;
+    color:var(--gold-neon-soft);
+  }
+  .validate-block p.line span{ color:var(--navy-neon-soft); }
+  .validate-block p.attribution{
+    margin-top:16px;
+    font-size:0.9rem;
+    color:var(--cream-dim);
+    font-style:normal;
+  }
+
+  /* final CTA */
+  .final-cta{
+    text-align:center;
+    padding:130px 28px;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(255,206,69,0.2), transparent 55%),
+      radial-gradient(ellipse at 75% 85%, rgba(36,54,255,0.28), transparent 55%),
+      var(--crimson-950);
+  }
+  .final-cta h2{ margin:0 auto; }
+  .final-cta p.lead{ margin-left:auto; margin-right:auto; }
+
+  footer{
+    text-align:center;
+    padding:36px 20px 44px;
+    background:var(--crimson-950);
+    color:var(--cream-dim);
+    font-size:0.85rem;
+  }
+  footer a{ color:var(--gold-neon-soft); font-weight:600; }
+
+  /* reveal — a single orchestrated moment for the structure section only */
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  ::selection{ background:var(--gold-neon); color:var(--crimson-950); }
+
+  @media (prefers-reduced-motion: reduce){
+    .waveform .bar{ animation:none; transform:scaleY(0.7); }
+    .reveal{ transition:none; opacity:1; transform:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="eyebrow-mark">A page that talks the way a great speaker talks</div>
+    <h1>Your landing page is a <em>conversation</em>, not a brochure</h1>
+    <p class="sub">Patrick King's "How to Speak Effectively" breaks down what makes people captivating in a room. EasyLandX builds those same instincts — pacing, warmth, structure — into every page we design.</p>
+
+    <div class="waveform" id="waveform" aria-hidden="true">
+      <div class="bar" style="height:34px; animation-delay:0s;"></div>
+      <div class="bar" style="height:52px; animation-delay:0.12s;"></div>
+      <div class="bar" style="height:22px; animation-delay:0.24s;"></div>
+      <div class="bar" style="height:60px; animation-delay:0.06s;"></div>
+      <div class="bar" style="height:40px; animation-delay:0.3s;"></div>
+      <div class="bar" style="height:56px; animation-delay:0.18s;"></div>
+      <div class="bar" style="height:26px; animation-delay:0.36s;"></div>
+      <div class="bar" style="height:48px; animation-delay:0.42s;"></div>
+    </div>
+    <div class="pause-note" id="pauseNote">&nbsp;</div>
+
+    <a class="cta-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Meet EasyLandX</a>
+  </div>
+</section>
+
+<!-- LISTENER EXPERIENCE -->
+<section class="band-deep">
+  <div class="wrap">
+    <div class="kicker">Core message one</div>
+    <h2>Every page is written for the <em>person reading it</em>, not the business writing it</h2>
+    <p class="lead">King's first rule of speaking is that the audience's experience comes before the speaker's ego. We design landing pages the same way: your visitor's questions, timing, and comfort shape every word and every section — so the page feels effortless to read, not impressive to have written.</p>
+  </div>
+</section>
+
+<!-- DELIVERY TRUMPS CONTENT -->
+<section class="band-mid">
+  <div class="wrap">
+    <div class="kicker">Core message two</div>
+    <h2>How your page <span class="g">delivers</span> a message matters more than the words alone</h2>
+    <p class="lead">A confident speaker's tone and timing carry the message. On a landing page, that role belongs to layout, color, motion, and rhythm — the visual voice a visitor hears before they read a single sentence.</p>
+
+    <div class="pair">
+      <div class="pair-item navy">
+        <h3>The words</h3>
+        <p>Clear, honest copy that says exactly what your business offers and who it's for.</p>
+      </div>
+      <div class="pair-item gold">
+        <h3>The delivery</h3>
+        <p>Color, spacing, and pacing that make the words land with warmth, clarity, and confidence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHARM AS STRATEGIC EMPATHY -->
+<section class="band-light">
+  <div class="wrap">
+    <div class="kicker">Core message three</div>
+    <h2>Charm is the spotlight pointed at your <em>customer</em></h2>
+    <p class="lead">King describes charm as strategic empathy — making the other person feel seen. EasyLandX pages open with your customer's world (their goals, their routine, their taste) before introducing your business as the answer to it.</p>
+
+    <div class="validate-block">
+      <p class="line">"People rarely say yes to someone they don't feel <span>understood</span> by first."</p>
+      <p class="attribution">— the connect-before-convince principle, applied to page structure</p>
+    </div>
+  </div>
+</section>
+
+<!-- STRUCTURE: HOOK, CONTEXT, PAYOFF -> HERO, VALUE, ACTION -->
+<section class="band-deep">
+  <div class="wrap">
+    <div class="kicker">Core message four</div>
+    <h2>Structure keeps attention from <em>wandering</em></h2>
+    <p class="lead">King's "Hook, Context, Payoff" story shape becomes the backbone of a great landing page: open strong, give just enough context, and land on a clear, satisfying next step.</p>
+
+    <div class="sequence reveal" id="sequenceBlock">
+      <div class="seq-step">
+        <div class="seq-num">01</div>
+        <div>
+          <h4>The hook</h4>
+          <p>An opening line and image that stop the scroll and make your value obvious in seconds.</p>
+          <span class="seq-tag">Hero section</span>
+        </div>
+      </div>
+      <div class="seq-step">
+        <div class="seq-num">02</div>
+        <div>
+          <h4>The context</h4>
+          <p>Just enough detail — what you offer, who it's for, and the proof that it works — to build trust quickly.</p>
+          <span class="seq-tag">Value & proof</span>
+        </div>
+      </div>
+      <div class="seq-step">
+        <div class="seq-num">03</div>
+        <div>
+          <h4>The payoff</h4>
+          <p>One clear, confident action for the visitor to take, stated plainly and repeated where it matters.</p>
+          <span class="seq-tag">Call to action</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOCAL DYNAMIC VARIETY / STRATEGIC PAUSE -->
+<section class="band-mid">
+  <div class="wrap">
+    <div class="kicker">Essential lesson</div>
+    <h2>Rhythm and <span class="g">pause</span> keep a page alive</h2>
+    <p class="lead">A monotone voice loses a room; a page with no visual rhythm loses a scroll. King calls silence a speaker's most potent tool — on a page, that silence is whitespace, and it gives every idea room to land.</p>
+
+    <div class="rhythm-box">
+      <p>Try the pause yourself — tap to hear what steady rhythm and a strategic pause each communicate.</p>
+      <button class="toggle-btn" id="toggleBtn" aria-pressed="false">Pause the rhythm</button>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap">
+    <div class="kicker">Ready when you are</div>
+    <h2>Give your business a page that knows exactly <em>when to speak</em> and when to let the silence work</h2>
+    <p class="lead">EasyLandX builds custom, conversion-ready landing pages with the pacing, warmth, and structure of a great conversation — for businesses across Spanish- and English-speaking markets.</p>
+    <a class="cta-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Start with EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  Built by <a href="https://easypagex.github.io" target="_blank" rel="noopener">EasyLandX</a> · &copy; 2026
+</footer>
+
+<script>
+  // Rhythm / strategic pause toggle
+  const waveform = document.getElementById('waveform');
+  const toggleBtn = document.getElementById('toggleBtn');
+  const pauseNote = document.getElementById('pauseNote');
+  let paused = false;
+
+  toggleBtn.addEventListener('click', () => {
+    paused = !paused;
+    waveform.classList.toggle('paused', paused);
+    toggleBtn.setAttribute('aria-pressed', String(paused));
+    toggleBtn.textContent = paused ? 'Resume the rhythm' : 'Pause the rhythm';
+    pauseNote.textContent = paused
+      ? 'This is the strategic pause — a beat of quiet that lets an idea settle.'
+      : '';
+    document.getElementById('waveform').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  // Single orchestrated reveal for the structure sequence
+  const seq = document.getElementById('sequenceBlock');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  io.observe(seq);
+</script>
+
+</body>
+</html>
