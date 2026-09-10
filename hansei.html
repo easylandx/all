@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages, Refined the Japanese Way</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sun:#FFE94D;
+    --sun-deep:#FFD400;
+    --sun-pale:#FFF6C4;
+    --green:#0A8F42;
+    --green-neon:#00C853;
+    --green-deep:#064F26;
+    --ink:#111111;
+    --ink-soft:#3A3A32;
+    --serif:'Zen Maru Gothic', sans-serif;
+    --sans:'Work Sans', sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--sun);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{
+    max-width:740px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 28px 90px;
+    background:
+      radial-gradient(circle at 22% 20%, rgba(0,200,83,0.18), transparent 55%),
+      var(--sun);
+  }
+
+  .ensou{
+    width:120px;
+    height:120px;
+    margin-bottom:34px;
+  }
+  .ensou circle{
+    fill:none;
+    stroke:var(--ink);
+    stroke-width:6;
+    stroke-linecap:round;
+    stroke-dasharray:330;
+    stroke-dashoffset:330;
+    animation:draw-circle 1.8s ease forwards 0.3s;
+  }
+  @keyframes draw-circle{
+    to{stroke-dashoffset:22;}
+  }
+
+  .eyebrow{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:1.05rem;
+    color:var(--green-deep);
+    margin-bottom:20px;
+  }
+
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:clamp(2.3rem, 6vw, 4rem);
+    line-height:1.1;
+    max-width:15ch;
+    color:var(--ink);
+  }
+
+  .hero h1 span{ color:var(--green); }
+
+  .hero p.sub{
+    margin-top:26px;
+    font-size:1.15rem;
+    max-width:46ch;
+    color:var(--ink-soft);
+  }
+
+  .cta-primary{
+    display:inline-block;
+    margin-top:40px;
+    background:var(--ink);
+    color:var(--sun);
+    font-weight:700;
+    font-size:1rem;
+    padding:16px 36px;
+    border-radius:4px;
+    box-shadow:0 0 0 2px var(--green-neon);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .cta-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 0 2px var(--green-neon), 0 14px 28px -10px rgba(0,200,83,0.6);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:110px 0; }
+  .band-pale{ background:var(--sun-pale); }
+  .band-sun{ background:var(--sun); }
+  .band-deep{ background:var(--sun-deep); }
+
+  .kicker{
+    font-family:var(--serif);
+    font-weight:500;
+    color:var(--green);
+    font-size:1.02rem;
+    margin-bottom:16px;
+  }
+
+  h2{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:clamp(1.75rem, 4vw, 2.5rem);
+    line-height:1.2;
+    max-width:19ch;
+    color:var(--ink);
+  }
+  h2 span{ color:var(--green); }
+
+  p.lead{
+    margin-top:20px;
+    font-size:1.06rem;
+    max-width:56ch;
+    color:var(--ink-soft);
+  }
+
+  /* Shuhari sequence — a genuine three-stage progression */
+  .stages{
+    margin-top:54px;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .stage{
+    display:grid;
+    grid-template-columns:70px 1fr;
+    gap:22px;
+    padding:28px 0;
+    border-bottom:2px solid rgba(17,17,17,0.12);
+  }
+  .stage:last-child{ border-bottom:none; }
+  .stage-mark{
+    font-family:var(--serif);
+    font-size:1.5rem;
+    font-weight:700;
+    color:var(--ink);
+    background:var(--green-neon);
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .stage h3{
+    font-family:var(--serif);
+    font-size:1.2rem;
+    font-weight:700;
+    margin-bottom:6px;
+  }
+  .stage p{ color:var(--ink-soft); max-width:52ch; }
+  .stage-tag{
+    display:inline-block;
+    margin-top:10px;
+    font-size:0.8rem;
+    font-weight:600;
+    color:var(--green-deep);
+    background:rgba(10,143,66,0.14);
+    padding:3px 12px;
+    border-radius:999px;
+  }
+
+  /* Kaizen / Muda / Hansei triple */
+  .triple{
+    margin-top:52px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  @media(max-width:760px){ .triple{ grid-template-columns:1fr; } }
+  .triple-card{
+    padding:28px 24px;
+    background:var(--sun-pale);
+    border-top:4px solid var(--ink);
+  }
+  .triple-card.green{ border-top-color:var(--green-neon); }
+  .triple-card h4{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:1.1rem;
+    margin-bottom:10px;
+    color:var(--ink);
+  }
+  .triple-card p{ font-size:0.95rem; color:var(--ink-soft); }
+
+  /* daily kata strip */
+  .kata-box{
+    margin-top:52px;
+    padding:36px 32px;
+    background:var(--ink);
+    color:var(--sun);
+    border-radius:6px;
+  }
+  .kata-box p.label{
+    font-family:var(--serif);
+    color:var(--green-neon);
+    font-weight:500;
+    margin-bottom:14px;
+  }
+  .kata-box p{ color:var(--sun-pale); font-size:1rem; }
+
+  /* self-check / hansei interactive */
+  .hansei-box{
+    margin-top:52px;
+    padding:34px 30px;
+    background:var(--sun-pale);
+    border-radius:6px;
+    text-align:center;
+  }
+  .hansei-box p{ color:var(--ink-soft); margin-bottom:20px; }
+  .toggle-btn{
+    background:transparent;
+    border:2px solid var(--ink);
+    color:var(--ink);
+    padding:12px 28px;
+    border-radius:4px;
+    font-family:var(--sans);
+    font-weight:600;
+    cursor:pointer;
+    font-size:0.95rem;
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+  .toggle-btn:hover{ background:var(--ink); color:var(--sun); }
+  .toggle-btn:focus-visible{ outline:3px solid var(--green-neon); outline-offset:3px; }
+  .audit-result{
+    margin-top:20px;
+    font-family:var(--serif);
+    color:var(--green-deep);
+    min-height:24px;
+    font-size:1rem;
+  }
+
+  /* final CTA */
+  .final-cta{
+    text-align:center;
+    padding:130px 28px;
+    background:
+      radial-gradient(circle at 70% 25%, rgba(0,200,83,0.2), transparent 55%),
+      var(--sun-deep);
+  }
+  .final-cta h2{ margin:0 auto; }
+  .final-cta p.lead{ margin-left:auto; margin-right:auto; }
+
+  footer{
+    text-align:center;
+    padding:34px 20px 42px;
+    background:var(--ink);
+    color:var(--sun-pale);
+    font-size:0.85rem;
+  }
+  footer a{ color:var(--green-neon); font-weight:600; }
+
+  /* reveal for stages sequence only — one orchestrated moment */
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  ::selection{ background:var(--green-neon); color:var(--ink); }
+
+  @media (prefers-reduced-motion: reduce){
+    .ensou circle{ animation:none; stroke-dashoffset:22; }
+    .reveal{ transition:none; opacity:1; transform:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <svg class="ensou" viewBox="0 0 120 120" aria-hidden="true">
+      <circle cx="60" cy="60" r="48" />
+    </svg>
+    <div class="eyebrow">A page, refined the way a craft is refined</div>
+    <h1>Great landing pages are <span>practiced</span>, not published once</h1>
+    <p class="sub">How To Learn Anything The Japanese Way maps mastery through Shuhari, Kaizen, and Kodawari. EasyLandX builds and improves your landing page the same way — copy what works, refine daily, and grow into a page that's unmistakably yours.</p>
+    <a class="cta-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Meet EasyLandX</a>
+  </div>
+</section>
+
+<!-- PROCESS OVER GOALS -->
+<section class="band-pale">
+  <div class="wrap">
+    <div class="kicker">Core message</div>
+    <h2>Honoring the <span>process</span> is what makes the result last</h2>
+    <p class="lead">The book's idea of Kata — a fixed daily routine — applies directly to how a page should be built. EasyLandX follows the same sequence for every client: proven structure first, personality second, ongoing refinement always. Results follow the routine, not the other way around.</p>
+  </div>
+</section>
+
+<!-- SHUHARI SEQUENCE -->
+<section class="band-sun">
+  <div class="wrap">
+    <div class="kicker">The Shuhari progression</div>
+    <h2>Mastery moves through three honest stages</h2>
+    <p class="lead">Shu, Ha, Ri describe how any skill matures — and it's exactly how a landing page matures too, from a solid foundation into a page with real character.</p>
+
+    <div class="stages reveal" id="stagesBlock">
+      <div class="stage">
+        <div class="stage-mark">諭</div>
+        <div>
+          <h3>Shu — copy the fundamentals</h3>
+          <p>We start with the structure that reliably works: a clear headline, one visible offer, and a direct path to act. No guessing, no shortcuts.</p>
+          <span class="stage-tag">Foundation build</span>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage-mark">破</div>
+        <div>
+          <h3>Ha — branch into your brand</h3>
+          <p>Once the fundamentals hold, we shape color, tone, and imagery around your business specifically, so the page reads as yours.</p>
+          <span class="stage-tag">Brand fit</span>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage-mark">離</div>
+        <div>
+          <h3>Ri — develop your own style</h3>
+          <p>With performance proven, the page earns room to stand apart — a distinct identity your visitors recognize and remember.</p>
+          <span class="stage-tag">Distinct identity</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KAIZEN / MUDA / HANSEI TRIPLE -->
+<section class="band-pale">
+  <div class="wrap">
+    <div class="kicker">The daily disciplines</div>
+    <h2>Small, steady care compounds into <span>real</span> results</h2>
+    <p class="lead">Three Japanese principles guide how EasyLandX keeps every page performing well after launch.</p>
+
+    <div class="triple">
+      <div class="triple-card green">
+        <h4>Kaizen</h4>
+        <p>Small, continuous refinements — a headline tightened, a button moved — that compound into stronger results over time.</p>
+      </div>
+      <div class="triple-card">
+        <h4>Muda removal</h4>
+        <p>Every element earns its place. Clutter and distraction are cleared away so visitors focus on your offer.</p>
+      </div>
+      <div class="triple-card green">
+        <h4>Kodawari</h4>
+        <p>Close attention to the details most pages skip — spacing, contrast, load speed — that quietly build trust.</p>
+      </div>
+    </div>
+
+    <div class="kata-box">
+      <p class="label">Your daily kata</p>
+      <p>The same dependable sequence, every time: proven layout, your voice, one clear action — practiced and refined until it becomes second nature for your visitors to say yes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HANSEI INTERACTIVE -->
+<section class="band-sun">
+  <div class="wrap">
+    <div class="kicker">Practice in action</div>
+    <h2>A brief <span>hansei</span> — reflection that leads to improvement</h2>
+    <p class="lead">Hansei is a calm review at the end of a practice session: what to keep, what to refine. Try a one-tap version below.</p>
+
+    <div class="hansei-box">
+      <p>Tap to run a quick reflection on today's page.</p>
+      <button class="toggle-btn" id="hanseiBtn">Run today's hansei</button>
+      <div class="audit-result" id="hanseiResult"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap">
+    <div class="kicker">Ready to begin the practice</div>
+    <h2>Build a page you'll keep refining, not one you'll leave alone</h2>
+    <p class="lead">EasyLandX designs custom, conversion-ready landing pages with the discipline of daily craft — for businesses across Spanish- and English-speaking markets.</p>
+    <a class="cta-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Start with EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  Built by <a href="https://easypagex.github.io" target="_blank" rel="noopener">EasyLandX</a> · &copy; 2026
+</footer>
+
+<script>
+  const hanseiBtn = document.getElementById('hanseiBtn');
+  const hanseiResult = document.getElementById('hanseiResult');
+  const notes = [
+    'Keep: the headline lands fast. Refine: tighten the second paragraph.',
+    'Keep: the call to action is clear. Refine: add one proof point above it.',
+    'Keep: the color rhythm guides the eye. Refine: shorten the opening line.',
+    'Keep: the page loads quickly. Refine: add a touch more space around the offer.'
+  ];
+  let i = 0;
+  hanseiBtn.addEventListener('click', () => {
+    hanseiResult.textContent = notes[i % notes.length];
+    i++;
+  });
+
+  const seq = document.getElementById('stagesBlock');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  io.observe(seq);
+</script>
+
+</body>
+</html>

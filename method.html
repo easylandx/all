@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages Built on Mechanics, Not Performance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,500;0,600;1,500;1,600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --amber-900:#C97800;
+    --amber-700:#FFAE00;
+    --amber-500:#FFC94D;
+    --amber-300:#FFDD8F;
+    --amber-pale:#FFF3D6;
+    --slate-neon:#5A8FC7;
+    --slate-deep:#2E4E73;
+    --teal-neon:#14E0C4;
+    --teal-deep:#0A7A6A;
+    --ink:#2A1E05;
+    --serif:'Literata', serif;
+    --sans:'Work Sans', sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--amber-700);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  .wrap{ max-width:740px; margin:0 auto; padding:0 28px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 28px 90px;
+    background:
+      radial-gradient(ellipse at 18% 18%, rgba(90,143,199,0.24), transparent 55%),
+      radial-gradient(ellipse at 84% 80%, rgba(20,224,196,0.2), transparent 55%),
+      var(--amber-700);
+  }
+
+  .eyebrow{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--slate-deep);
+    margin-bottom:20px;
+  }
+
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(2.3rem, 6vw, 4rem);
+    line-height:1.12;
+    max-width:16ch;
+  }
+  .hero h1 em{ color:var(--teal-deep); font-style:italic; }
+
+  .hero p.sub{
+    margin-top:26px;
+    font-size:1.15rem;
+    max-width:46ch;
+    color:var(--ink);
+    opacity:0.78;
+  }
+
+  .cta-primary{
+    display:inline-block;
+    margin-top:40px;
+    background:var(--ink);
+    color:var(--amber-500);
+    font-weight:700;
+    font-size:1rem;
+    padding:16px 36px;
+    border-radius:6px;
+    box-shadow:0 0 0 2px var(--teal-neon);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .cta-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 0 2px var(--slate-neon), 0 14px 28px -10px rgba(90,143,199,0.55);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:110px 0; }
+  .band-pale{ background:var(--amber-pale); }
+  .band-amber{ background:var(--amber-500); }
+  .band-deep{ background:var(--amber-300); }
+
+  .kicker{
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--teal-deep);
+    font-size:1.02rem;
+    margin-bottom:16px;
+  }
+
+  h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(1.75rem, 4vw, 2.5rem);
+    line-height:1.22;
+    max-width:19ch;
+    color:var(--ink);
+  }
+  h2 em{ color:var(--slate-deep); font-style:italic; }
+
+  p.lead{
+    margin-top:20px;
+    font-size:1.06rem;
+    max-width:56ch;
+    color:var(--ink);
+    opacity:0.75;
+  }
+
+  /* reframe interactive — spotlight effect */
+  .reframe-box{
+    margin-top:48px;
+    padding:32px 30px;
+    background:rgba(42,30,5,0.05);
+    border-radius:10px;
+  }
+  .reframe-row{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .reframe-line{
+    padding:14px 18px;
+    border-radius:6px;
+    font-family:var(--serif);
+    font-size:1.05rem;
+  }
+  .reframe-line.fear{
+    background:rgba(90,143,199,0.16);
+    border-left:3px solid var(--slate-neon);
+  }
+  .reframe-line.real{
+    background:rgba(20,224,196,0.16);
+    border-left:3px solid var(--teal-neon);
+    display:none;
+  }
+  .reframe-line.real.show{ display:block; }
+  .toggle-btn{
+    margin-top:22px;
+    background:transparent;
+    border:2px solid var(--slate-deep);
+    color:var(--ink);
+    padding:12px 28px;
+    border-radius:6px;
+    font-family:var(--sans);
+    font-weight:600;
+    cursor:pointer;
+    font-size:0.95rem;
+    transition:background 0.2s ease;
+  }
+  .toggle-btn:hover{ background:rgba(90,143,199,0.16); }
+  .toggle-btn:focus-visible{ outline:3px solid var(--teal-neon); outline-offset:3px; }
+
+  /* framework sequence */
+  .sequence{
+    margin-top:54px;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .seq-step{
+    display:grid;
+    grid-template-columns:60px 1fr;
+    gap:20px;
+    padding:26px 0;
+    border-bottom:1px solid rgba(42,30,5,0.14);
+  }
+  .seq-step:last-child{ border-bottom:none; }
+  .seq-num{
+    font-family:var(--serif);
+    font-size:1.5rem;
+    font-weight:600;
+    color:var(--slate-deep);
+  }
+  .seq-step h4{
+    font-family:var(--serif);
+    font-size:1.15rem;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .seq-step p{ opacity:0.75; font-size:0.98rem; max-width:52ch; }
+  .seq-tag{
+    display:inline-block;
+    margin-top:10px;
+    font-size:0.8rem;
+    color:var(--teal-deep);
+    background:rgba(20,224,196,0.16);
+    padding:3px 12px;
+    border-radius:999px;
+  }
+
+  .triple{
+    margin-top:52px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  @media(max-width:760px){ .triple{ grid-template-columns:1fr; } }
+  .triple-card{
+    padding:28px 24px;
+    background:var(--amber-pale);
+    border-top:4px solid var(--slate-neon);
+  }
+  .triple-card.teal{ border-top-color:var(--teal-neon); }
+  .triple-card h4{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:1.1rem;
+    margin-bottom:10px;
+  }
+  .triple-card p{ font-size:0.95rem; opacity:0.75; }
+
+  /* 50/50 balance bar */
+  .balance-box{
+    margin-top:52px;
+    padding:34px 30px;
+    background:var(--amber-pale);
+    border-radius:10px;
+  }
+  .balance-labels{
+    display:flex;
+    justify-content:space-between;
+    font-family:var(--serif);
+    font-weight:600;
+    margin-bottom:12px;
+  }
+  .balance-labels span:first-child{ color:var(--slate-deep); }
+  .balance-labels span:last-child{ color:var(--teal-deep); }
+  .balance-bar{
+    height:18px;
+    border-radius:999px;
+    overflow:hidden;
+    display:flex;
+  }
+  .balance-bar .half{
+    width:50%;
+    height:100%;
+  }
+  .balance-bar .half.slate{ background:var(--slate-neon); }
+  .balance-bar .half.teal{ background:var(--teal-neon); }
+  .balance-box p.caption{
+    margin-top:16px;
+    font-size:0.92rem;
+    opacity:0.7;
+  }
+
+  /* final CTA */
+  .final-cta{
+    text-align:center;
+    padding:130px 28px;
+    background:
+      radial-gradient(ellipse at 25% 25%, rgba(90,143,199,0.24), transparent 55%),
+      radial-gradient(ellipse at 78% 80%, rgba(20,224,196,0.2), transparent 55%),
+      var(--amber-300);
+  }
+  .final-cta h2{ margin:0 auto; }
+  .final-cta p.lead{ margin-left:auto; margin-right:auto; }
+
+  footer{
+    text-align:center;
+    padding:34px 20px 42px;
+    background:var(--ink);
+    color:var(--amber-300);
+    font-size:0.85rem;
+  }
+  footer a{ color:var(--teal-neon); font-weight:600; }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  ::selection{ background:var(--teal-neon); color:var(--ink); }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ transition:none; opacity:1; transform:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="eyebrow">Confidence, built from mechanics</div>
+    <h1>A great landing page comes from <em>method</em>, not a talent for performing</h1>
+    <p class="sub">Chris MacLeod's Social Skills Guidebook shows that connection is a set of learnable mechanics, not a gift for the naturally charismatic. EasyLandX builds your page the same way — with structure you can trust, in your own authentic voice.</p>
+    <a class="cta-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Meet EasyLandX</a>
+  </div>
+</section>
+
+<!-- LEARNABLE NOT INNATE -->
+<section class="band-pale">
+  <div class="wrap">
+    <div class="kicker">Core message</div>
+    <h2>A page that connects is <em>built</em>, not born</h2>
+    <p class="lead">MacLeod breaks social skill into practicable steps rather than an inborn trait. A landing page works the same way — clear structure and thoughtful mechanics, applied consistently, outperform any single flash of inspiration.</p>
+  </div>
+</section>
+
+<!-- COGNITIVE BIAS REFRAME -->
+<section class="band-amber">
+  <div class="wrap">
+    <div class="kicker">Core message</div>
+    <h2>Visitors notice <em>far less</em> than you'd expect</h2>
+    <p class="lead">MacLeod points to the spotlight effect — the sense that every flaw is under scrutiny. In reality, visitors are focused outward on their own goals, not combing a page for imperfections.</p>
+
+    <div class="reframe-box">
+      <div class="reframe-row">
+        <div class="reframe-line fear" id="fearLine">"What if visitors notice every small imperfection on my page?"</div>
+        <div class="reframe-line real" id="realLine">A visitor spends a few seconds scanning for one thing: does this solve what I came here for?</div>
+      </div>
+      <button class="toggle-btn" id="reframeBtn">See the outward view</button>
+    </div>
+  </div>
+</section>
+
+<!-- AUTHENTICITY OVER PERFORMANCE -->
+<section class="band-pale">
+  <div class="wrap">
+    <div class="kicker">Core message</div>
+    <h2>Your page should sound like <em>you</em>, not a performance</h2>
+    <p class="lead">MacLeod's advice is to find your people rather than adopt a louder persona. EasyLandX writes your page in your business's real voice, aimed at the customers who are already looking for exactly what you offer.</p>
+  </div>
+</section>
+
+<!-- FRAMEWORK SEQUENCE -->
+<section class="band-amber">
+  <div class="wrap">
+    <div class="kicker">The social mastery framework, applied</div>
+    <h2>Growth happens in <em>logical</em>, incremental stages</h2>
+    <p class="lead">MacLeod's pyramid moves from managed thinking, to solid mechanics, to an expanding circle. EasyLandX pages are built and grown the same deliberate way.</p>
+
+    <div class="sequence reveal" id="seqBlock">
+      <div class="seq-step">
+        <div class="seq-num">1</div>
+        <div>
+          <h4>Clarify what matters</h4>
+          <p>Start by naming the one outcome the page needs to achieve, so every section supports it.</p>
+          <span class="seq-tag">Clear purpose</span>
+        </div>
+      </div>
+      <div class="seq-step">
+        <div class="seq-num">2</div>
+        <div>
+          <h4>Solid conversational mechanics</h4>
+          <p>A structure that listens as much as it speaks — clear questions answered, offers balanced with proof.</p>
+          <span class="seq-tag">Page structure</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="triple">
+      <div class="triple-card">
+        <h4>Gradual exposure ladder</h4>
+        <p>Launch with a simple, solid version, then add sections and polish step by step as it proves itself.</p>
+      </div>
+      <div class="triple-card teal">
+        <h4>Proactive, low-pressure asks</h4>
+        <p>A call to action framed as an easy first step — "take a quick look" — rather than a big commitment.</p>
+      </div>
+      <div class="triple-card">
+        <h4>Repeated shared touchpoints</h4>
+        <p>Newsletters, follow-ups, and return visits that build familiarity with your business over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 50/50 RULE -->
+<section class="band-pale">
+  <div class="wrap">
+    <div class="kicker">The 50/50 rule</div>
+    <h2>Balance what you <em>offer</em> with what they're <em>looking for</em></h2>
+    <p class="lead">MacLeod's rule for great conversation is balance — sharing and listening in equal measure. A page follows the same rule: half about your business, half about the customer's own goals.</p>
+
+    <div class="balance-box">
+      <div class="balance-labels">
+        <span>About your business</span>
+        <span>About your customer</span>
+      </div>
+      <div class="balance-bar">
+        <div class="half slate"></div>
+        <div class="half teal"></div>
+      </div>
+      <p class="caption">The pages that convert best keep this balance close to even.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap">
+    <div class="kicker">Ready to build the mechanics</div>
+    <h2>Give your business a page built on <em>method</em>, in your own genuine voice</h2>
+    <p class="lead">EasyLandX designs custom, conversion-ready landing pages with grounded, dependable mechanics — for businesses across Spanish- and English-speaking markets.</p>
+    <a class="cta-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Start with EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  Built by <a href="https://easypagex.github.io" target="_blank" rel="noopener">EasyLandX</a> · &copy; 2026
+</footer>
+
+<script>
+  const reframeBtn = document.getElementById('reframeBtn');
+  const realLine = document.getElementById('realLine');
+  reframeBtn.addEventListener('click', () => {
+    const showing = realLine.classList.toggle('show');
+    reframeBtn.textContent = showing ? 'Back to the worry' : 'See the outward view';
+  });
+
+  const seq = document.getElementById('seqBlock');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  io.observe(seq);
+</script>
+
+</body>
+</html>

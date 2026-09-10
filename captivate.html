@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages Built for the First 5 Seconds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold-900:#B8860B;
+    --gold-700:#FFC42B;
+    --gold-500:#FFD84D;
+    --gold-300:#FFE98C;
+    --gold-pale:#FFF6D9;
+    --blue-neon:#1E9FFF;
+    --blue-deep:#0A5FA8;
+    --coral-neon:#FF5C6E;
+    --coral-deep:#B8283C;
+    --ink:#231A05;
+    --display:'Bricolage Grotesque', sans-serif;
+    --sans:'Inter', sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--gold-700);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  .wrap{ max-width:740px; margin:0 auto; padding:0 28px; }
+
+  /* ---------- 5-SECOND COUNTDOWN OVERLAY ---------- */
+  .countdown-overlay{
+    position:fixed;
+    inset:0;
+    background:var(--ink);
+    color:var(--gold-500);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+    transition:opacity 0.6s ease, visibility 0.6s ease;
+  }
+  .countdown-overlay.done{ opacity:0; visibility:hidden; pointer-events:none; }
+  .countdown-num{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:6rem;
+    line-height:1;
+  }
+  .countdown-caption{
+    margin-top:14px;
+    font-size:0.95rem;
+    color:var(--gold-300);
+    letter-spacing:0.02em;
+  }
+  .skip-btn{
+    margin-top:30px;
+    background:none;
+    border:1px solid var(--gold-300);
+    color:var(--gold-300);
+    padding:8px 18px;
+    border-radius:999px;
+    font-family:var(--sans);
+    font-size:0.85rem;
+    cursor:pointer;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 28px 90px;
+    background:
+      radial-gradient(ellipse at 18% 18%, rgba(30,159,255,0.22), transparent 55%),
+      radial-gradient(ellipse at 84% 80%, rgba(255,92,110,0.2), transparent 55%),
+      var(--gold-700);
+  }
+
+  .eyebrow{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    color:var(--coral-deep);
+    margin-bottom:20px;
+  }
+
+  .hero h1{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:clamp(2.3rem, 6vw, 4rem);
+    line-height:1.08;
+    max-width:15ch;
+  }
+  .hero h1 span{ color:var(--blue-deep); }
+
+  .hero p.sub{
+    margin-top:26px;
+    font-size:1.15rem;
+    max-width:46ch;
+    color:var(--ink);
+    opacity:0.78;
+  }
+
+  .cta-primary{
+    display:inline-block;
+    margin-top:40px;
+    background:var(--ink);
+    color:var(--gold-500);
+    font-weight:700;
+    font-size:1rem;
+    padding:16px 36px;
+    border-radius:6px;
+    box-shadow:0 0 0 2px var(--blue-neon);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .cta-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 0 2px var(--coral-neon), 0 14px 28px -10px rgba(255,92,110,0.5);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:110px 0; }
+  .band-pale{ background:var(--gold-pale); }
+  .band-gold{ background:var(--gold-500); }
+  .band-deep{ background:var(--gold-300); }
+
+  .kicker{
+    font-family:var(--display);
+    font-weight:600;
+    color:var(--blue-deep);
+    font-size:1.02rem;
+    margin-bottom:16px;
+  }
+
+  h2{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(1.75rem, 4vw, 2.5rem);
+    line-height:1.2;
+    max-width:19ch;
+    color:var(--ink);
+  }
+  h2 span{ color:var(--coral-deep); }
+
+  p.lead{
+    margin-top:20px;
+    font-size:1.06rem;
+    max-width:56ch;
+    color:var(--ink);
+    opacity:0.75;
+  }
+
+  /* autopilot vs spark comparison */
+  .pair{
+    margin-top:48px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:26px;
+  }
+  @media(max-width:640px){ .pair{ grid-template-columns:1fr; } }
+  .pair-item{
+    padding:28px 24px;
+    border-radius:6px;
+  }
+  .pair-item.old{
+    background:rgba(35,26,5,0.06);
+    border-left:3px solid rgba(35,26,5,0.35);
+  }
+  .pair-item.spark{
+    background:rgba(30,159,255,0.12);
+    border-left:3px solid var(--blue-neon);
+  }
+  .pair-item .label{
+    font-size:0.82rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    opacity:0.6;
+    margin-bottom:10px;
+    display:block;
+  }
+  .pair-item p.line{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.1rem;
+  }
+
+  /* framework sequence */
+  .sequence{
+    margin-top:54px;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .seq-step{
+    display:grid;
+    grid-template-columns:60px 1fr;
+    gap:20px;
+    padding:26px 0;
+    border-bottom:1px solid rgba(35,26,5,0.14);
+  }
+  .seq-step:last-child{ border-bottom:none; }
+  .seq-num{
+    font-family:var(--display);
+    font-size:1.5rem;
+    font-weight:700;
+    color:var(--coral-deep);
+  }
+  .seq-step h4{
+    font-family:var(--display);
+    font-size:1.15rem;
+    font-weight:700;
+    margin-bottom:6px;
+  }
+  .seq-step p{ opacity:0.75; font-size:0.98rem; max-width:52ch; }
+  .seq-tag{
+    display:inline-block;
+    margin-top:10px;
+    font-size:0.8rem;
+    color:var(--blue-deep);
+    background:rgba(30,159,255,0.14);
+    padding:3px 12px;
+    border-radius:999px;
+  }
+
+  .triple{
+    margin-top:52px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  @media(max-width:760px){ .triple{ grid-template-columns:1fr; } }
+  .triple-card{
+    padding:28px 24px;
+    background:var(--gold-pale);
+    border-top:4px solid var(--coral-neon);
+  }
+  .triple-card.blue{ border-top-color:var(--blue-neon); }
+  .triple-card h4{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:1.1rem;
+    margin-bottom:10px;
+  }
+  .triple-card p{ font-size:0.95rem; opacity:0.75; }
+
+  /* highlighter interactive */
+  .highlighter-box{
+    margin-top:52px;
+    padding:36px 32px;
+    background:var(--gold-pale);
+    border-radius:10px;
+    text-align:center;
+  }
+  .highlighter-box p.instruction{ opacity:0.75; margin-bottom:22px; }
+  .highlight-text{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.3rem;
+    line-height:1.5;
+  }
+  .highlight-text mark{
+    background:var(--blue-neon);
+    color:var(--ink);
+    padding:0 6px;
+    border-radius:3px;
+  }
+  .toggle-btn{
+    margin-top:22px;
+    background:transparent;
+    border:2px solid var(--coral-neon);
+    color:var(--ink);
+    padding:12px 28px;
+    border-radius:6px;
+    font-family:var(--sans);
+    font-weight:600;
+    cursor:pointer;
+    font-size:0.95rem;
+    transition:background 0.2s ease;
+  }
+  .toggle-btn:hover{ background:rgba(255,92,110,0.16); }
+  .toggle-btn:focus-visible{ outline:3px solid var(--blue-neon); outline-offset:3px; }
+
+  /* final CTA */
+  .final-cta{
+    text-align:center;
+    padding:130px 28px;
+    background:
+      radial-gradient(ellipse at 25% 25%, rgba(30,159,255,0.22), transparent 55%),
+      radial-gradient(ellipse at 78% 80%, rgba(255,92,110,0.2), transparent 55%),
+      var(--gold-500);
+  }
+  .final-cta h2{ margin:0 auto; }
+  .final-cta p.lead{ margin-left:auto; margin-right:auto; }
+
+  footer{
+    text-align:center;
+    padding:34px 20px 42px;
+    background:var(--ink);
+    color:var(--gold-300);
+    font-size:0.85rem;
+  }
+  footer a{ color:var(--blue-neon); font-weight:600; }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  ::selection{ background:var(--coral-neon); color:var(--gold-pale); }
+
+  @media (prefers-reduced-motion: reduce){
+    .countdown-overlay{ display:none; }
+    .reveal{ transition:none; opacity:1; transform:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- FIRST 5 SECONDS: countdown overlay -->
+<div class="countdown-overlay" id="countdownOverlay">
+  <div class="countdown-num" id="countdownNum">5</div>
+  <div class="countdown-caption">This is how long your visitor gives you to make an impression.</div>
+  <button class="skip-btn" id="skipBtn">Skip ahead</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="eyebrow">The science of a great first impression</div>
+    <h1>Your visitor decides in <span>five seconds</span>. Make them count.</h1>
+    <p class="sub">Vanessa Van Edwards' Captivate shows that trust, warmth, and interest form almost instantly. EasyLandX designs the opening moment of your page with that exact science in mind.</p>
+    <a class="cta-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Meet EasyLandX</a>
+  </div>
+</section>
+
+<!-- PREDICTABLE PATTERNS -->
+<section class="band-pale">
+  <div class="wrap">
+    <div class="kicker">Core message</div>
+    <h2>Charm follows <span>patterns</span> anyone can design for</h2>
+    <p class="lead">Van Edwards treats social chemistry as a science, not a gift reserved for a few. The same is true of a landing page — warmth, trust, and clarity come from specific, repeatable design choices, not luck.</p>
+  </div>
+</section>
+
+<!-- SPARK QUESTIONS VS AUTOPILOT -->
+<section class="band-gold">
+  <div class="wrap">
+    <div class="kicker">Core message</div>
+    <h2>Trade autopilot headlines for a <span>spark</span></h2>
+    <p class="lead">Generic openers like "What do you do?" fall flat. Van Edwards calls for questions that light up curiosity instead — and a headline should do exactly the same job.</p>
+
+    <div class="pair">
+      <div class="pair-item old">
+        <span class="label">Autopilot</span>
+        <p class="line">"Welcome to our website."</p>
+      </div>
+      <div class="pair-item spark">
+        <span class="label">Spark</span>
+        <p class="line">"What would your business look like with twice the customers who found you online?"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORK SEQUENCE -->
+<section class="band-pale">
+  <div class="wrap">
+    <div class="kicker">The captivate framework</div>
+    <h2>A page can win someone over in the <span>same order</span> a person does</h2>
+    <p class="lead">Van Edwards' framework moves from an instant first impression to sparked curiosity, then into deeper trust. EasyLandX builds pages along that same arc.</p>
+
+    <div class="sequence reveal" id="seqBlock">
+      <div class="seq-step">
+        <div class="seq-num">1</div>
+        <div>
+          <h4>The first five seconds</h4>
+          <p>A hero that shows warmth and competence immediately — clear imagery, a confident headline, an obvious next step.</p>
+          <span class="seq-tag">Hero section</span>
+        </div>
+      </div>
+      <div class="seq-step">
+        <div class="seq-num">2</div>
+        <div>
+          <h4>Conversational sparking</h4>
+          <p>Copy that raises an intriguing question or possibility, instead of stating flat, forgettable facts.</p>
+          <span class="seq-tag">Headline & hook</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="triple">
+      <div class="triple-card">
+        <h4>Highlighter technique</h4>
+        <p>Testimonials and copy that name a customer's best qualities specifically, so praise feels earned and real.</p>
+      </div>
+      <div class="triple-card blue">
+        <h4>Reading the signals</h4>
+        <p>Scroll and click behavior reveal what visitors truly respond to — the page's own version of reading a room.</p>
+      </div>
+      <div class="triple-card">
+        <h4>A little vulnerability</h4>
+        <p>A short, honest founder note or origin story builds the same trust a small, genuine admission builds in person.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTER INTERACTIVE -->
+<section class="band-gold">
+  <div class="wrap">
+    <div class="kicker">Try the highlighter technique</div>
+    <h2>Naming what's <span>best</span> makes people remember you</h2>
+    <p class="lead">Tap to see the technique at work on a sample line of customer copy.</p>
+
+    <div class="highlighter-box">
+      <p class="instruction">Sample line before and after the highlighter technique:</p>
+      <p class="highlight-text" id="highlightText">"Thanks for your business."</p>
+      <button class="toggle-btn" id="highlightBtn">Apply the highlighter</button>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap">
+    <div class="kicker">Make the first five seconds count</div>
+    <h2>Give your business a page built on the <span>science</span> of a great first impression</h2>
+    <p class="lead">EasyLandX designs custom, conversion-ready landing pages using the same research-backed instincts that make people captivating — for businesses across Spanish- and English-speaking markets.</p>
+    <a class="cta-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Start with EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  Built by <a href="https://easypagex.github.io" target="_blank" rel="noopener">EasyLandX</a> · &copy; 2026
+</footer>
+
+<script>
+  // 5-second countdown intro
+  const overlay = document.getElementById('countdownOverlay');
+  const numEl = document.getElementById('countdownNum');
+  const skipBtn = document.getElementById('skipBtn');
+  let count = 5;
+
+  function finishCountdown(){
+    overlay.classList.add('done');
+  }
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    overlay.classList.add('done');
+  } else {
+    const timer = setInterval(() => {
+      count--;
+      if (count <= 0){
+        clearInterval(timer);
+        finishCountdown();
+      } else {
+        numEl.textContent = count;
+      }
+    }, 700);
+    skipBtn.addEventListener('click', () => {
+      clearInterval(timer);
+      finishCountdown();
+    });
+  }
+
+  // Highlighter technique toggle
+  const highlightBtn = document.getElementById('highlightBtn');
+  const highlightText = document.getElementById('highlightText');
+  let highlighted = false;
+  highlightBtn.addEventListener('click', () => {
+    highlighted = !highlighted;
+    highlightText.innerHTML = highlighted
+      ? '"I love how <mark>carefully you thought this through</mark> — that shows in every detail."'
+      : '"Thanks for your business."';
+    highlightBtn.textContent = highlighted ? 'Show the plain version' : 'Apply the highlighter';
+  });
+
+  const seq = document.getElementById('seqBlock');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  io.observe(seq);
+</script>
+
+</body>
+</html>

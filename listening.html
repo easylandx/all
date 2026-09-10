@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages That Listen First</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,500;0,600;1,500;1,600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#0B1440;
+    --navy-800:#152368;
+    --navy-700:#1C2F80;
+    --navy-500:#2E45B8;
+    --navy-300:#5B72D6;
+    --gold-neon:#FFD23F;
+    --gold-soft:#FFE58F;
+    --teal-neon:#1FE8C7;
+    --teal-deep:#0B7A66;
+    --paper:#F2F0FF;
+    --serif:'Crimson Pro', serif;
+    --sans:'IBM Plex Sans', sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--navy-700);
+    color:var(--paper);
+    font-family:var(--sans);
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  .wrap{ max-width:740px; margin:0 auto; padding:0 28px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 28px 90px;
+    background:
+      radial-gradient(ellipse at 18% 18%, rgba(255,210,63,0.16), transparent 55%),
+      radial-gradient(ellipse at 84% 80%, rgba(31,232,199,0.2), transparent 55%),
+      var(--navy-800);
+  }
+
+  .eyebrow{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--teal-neon);
+    margin-bottom:20px;
+  }
+
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(2.3rem, 6vw, 4rem);
+    line-height:1.14;
+    max-width:16ch;
+  }
+  .hero h1 em{ color:var(--gold-neon); font-style:italic; }
+
+  .hero p.sub{
+    margin-top:26px;
+    font-size:1.15rem;
+    max-width:46ch;
+    color:var(--navy-300);
+  }
+
+  /* waveform with a deliberate pause gap */
+  .waveform{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    height:56px;
+    margin:44px 0 6px;
+  }
+  .waveform .bar{
+    width:5px;
+    border-radius:3px;
+    background:var(--teal-neon);
+  }
+  .waveform .gap{
+    width:26px;
+    height:2px;
+    background:var(--gold-neon);
+    align-self:center;
+    border-radius:2px;
+  }
+  .waveform-caption{
+    font-size:0.85rem;
+    color:var(--gold-soft);
+  }
+
+  .cta-primary{
+    display:inline-block;
+    margin-top:38px;
+    background:var(--gold-neon);
+    color:var(--navy-950);
+    font-weight:700;
+    font-size:1rem;
+    padding:16px 36px;
+    border-radius:6px;
+    box-shadow:0 0 0 2px rgba(255,210,63,0.3), 0 14px 30px -10px rgba(255,210,63,0.55);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .cta-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 0 2px rgba(31,232,199,0.45), 0 18px 36px -8px rgba(31,232,199,0.6);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:110px 0; }
+  .band-deep{ background:var(--navy-950); }
+  .band-mid{ background:var(--navy-700); }
+  .band-light{ background:var(--navy-500); }
+
+  .kicker{
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--teal-neon);
+    font-size:1.02rem;
+    margin-bottom:16px;
+  }
+
+  h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(1.75rem, 4vw, 2.5rem);
+    line-height:1.22;
+    max-width:19ch;
+  }
+  h2 em{ color:var(--gold-neon); font-style:italic; }
+
+  p.lead{
+    margin-top:20px;
+    font-size:1.06rem;
+    max-width:56ch;
+    color:var(--navy-300);
+  }
+
+  /* closeness bias — before/after */
+  .pair{
+    margin-top:48px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:26px;
+  }
+  @media(max-width:640px){ .pair{ grid-template-columns:1fr; } }
+  .pair-item{
+    padding:28px 24px;
+    border-radius:6px;
+  }
+  .pair-item.assume{
+    background:rgba(91,114,214,0.16);
+    border-left:3px solid var(--navy-300);
+  }
+  .pair-item.ask{
+    background:rgba(31,232,199,0.14);
+    border-left:3px solid var(--teal-neon);
+  }
+  .pair-item .label{
+    font-size:0.82rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    opacity:0.7;
+    margin-bottom:10px;
+    display:block;
+  }
+  .pair-item p.line{
+    font-family:var(--serif);
+    font-size:1.1rem;
+  }
+
+  /* framework sequence */
+  .sequence{
+    margin-top:54px;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .seq-step{
+    display:grid;
+    grid-template-columns:60px 1fr;
+    gap:20px;
+    padding:26px 0;
+    border-bottom:1px solid rgba(242,240,255,0.14);
+  }
+  .seq-step:last-child{ border-bottom:none; }
+  .seq-num{
+    font-family:var(--serif);
+    font-size:1.5rem;
+    font-weight:600;
+    color:var(--gold-neon);
+  }
+  .seq-step h4{
+    font-family:var(--serif);
+    font-size:1.15rem;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .seq-step p{ color:var(--navy-300); font-size:0.98rem; max-width:52ch; }
+  .seq-tag{
+    display:inline-block;
+    margin-top:10px;
+    font-size:0.8rem;
+    color:var(--teal-neon);
+    background:rgba(31,232,199,0.14);
+    padding:3px 12px;
+    border-radius:999px;
+  }
+
+  .triple{
+    margin-top:52px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  @media(max-width:760px){ .triple{ grid-template-columns:1fr; } }
+  .triple-card{
+    padding:28px 24px;
+    background:rgba(242,240,255,0.06);
+    border-top:4px solid var(--gold-neon);
+  }
+  .triple-card.teal{ border-top-color:var(--teal-neon); }
+  .triple-card h4{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:1.1rem;
+    margin-bottom:10px;
+  }
+  .triple-card p{ font-size:0.95rem; color:var(--navy-300); }
+
+  /* 3-second pause interactive */
+  .pause-box{
+    margin-top:52px;
+    padding:34px 30px;
+    background:rgba(242,240,255,0.06);
+    border-radius:10px;
+    text-align:center;
+  }
+  .pause-box p{ color:var(--navy-300); margin-bottom:20px; }
+  .toggle-btn{
+    background:transparent;
+    border:2px solid var(--teal-neon);
+    color:var(--paper);
+    padding:12px 28px;
+    border-radius:6px;
+    font-family:var(--sans);
+    font-weight:600;
+    cursor:pointer;
+    font-size:0.95rem;
+    transition:background 0.2s ease;
+  }
+  .toggle-btn:hover{ background:rgba(31,232,199,0.16); }
+  .toggle-btn:focus-visible{ outline:3px solid var(--gold-neon); outline-offset:3px; }
+  .pause-result{
+    margin-top:20px;
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--gold-neon);
+    min-height:24px;
+    font-size:1.05rem;
+  }
+
+  /* final CTA */
+  .final-cta{
+    text-align:center;
+    padding:130px 28px;
+    background:
+      radial-gradient(ellipse at 25% 25%, rgba(255,210,63,0.16), transparent 55%),
+      radial-gradient(ellipse at 78% 80%, rgba(31,232,199,0.2), transparent 55%),
+      var(--navy-950);
+  }
+  .final-cta h2{ margin:0 auto; }
+  .final-cta p.lead{ margin-left:auto; margin-right:auto; }
+
+  footer{
+    text-align:center;
+    padding:34px 20px 42px;
+    background:var(--navy-950);
+    color:var(--navy-300);
+    font-size:0.85rem;
+  }
+  footer a{ color:var(--gold-neon); font-weight:600; }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  ::selection{ background:var(--gold-neon); color:var(--navy-950); }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ transition:none; opacity:1; transform:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="eyebrow">Built to listen before it speaks</div>
+    <h1>The best landing pages <em>listen</em> before they pitch</h1>
+    <p class="sub">Kate Murphy's You're Not Listening shows that real understanding takes active, deliberate attention. EasyLandX designs your page around what your customers are actually asking, not just what your business wants to broadcast.</p>
+
+    <div class="waveform" aria-hidden="true">
+      <div class="bar" style="height:20px;"></div>
+      <div class="bar" style="height:34px;"></div>
+      <div class="bar" style="height:14px;"></div>
+      <div class="bar" style="height:28px;"></div>
+      <div class="gap"></div>
+      <div class="bar" style="height:30px;"></div>
+      <div class="bar" style="height:18px;"></div>
+      <div class="bar" style="height:36px;"></div>
+      <div class="bar" style="height:22px;"></div>
+    </div>
+    <p class="waveform-caption">The gap is the pause where real understanding happens.</p>
+
+    <a class="cta-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Meet EasyLandX</a>
+  </div>
+</section>
+
+<!-- LISTENING IS ACTIVE -->
+<section class="band-deep">
+  <div class="wrap">
+    <div class="kicker">Core message</div>
+    <h2>Listening well takes <em>effort</em> — and so does a page that reflects it</h2>
+    <p class="lead">Murphy shows listening is an active cognitive skill, not passive hearing. A landing page built the same way takes real effort to shape around a visitor's questions, rather than simply repeating what the business wants to say.</p>
+  </div>
+</section>
+
+<!-- EPIDEMIC OF BROADCASTING -->
+<section class="band-mid">
+  <div class="wrap">
+    <div class="kicker">Core message</div>
+    <h2>Most pages are built to <em>broadcast</em>. Few are built to listen</h2>
+    <p class="lead">Murphy points to a culture that rewards speaking over receiving. Many business pages do the same — endless features and claims, with little space for what the visitor actually came to find out.</p>
+  </div>
+</section>
+
+<!-- CLOSENESS-COMMUNICATION BIAS -->
+<section class="band-deep">
+  <div class="wrap">
+    <div class="kicker">Core message</div>
+    <h2>Being close to your business can mean assuming too <em>much</em></h2>
+    <p class="lead">The closer you are to something, the easier it is to assume you already know what people want from it. EasyLandX starts by asking real questions about your customers, rather than guessing from the inside.</p>
+
+    <div class="pair">
+      <div class="pair-item assume">
+        <span class="label">Assuming</span>
+        <p class="line">"They already know what we do — no need to explain it simply."</p>
+      </div>
+      <div class="pair-item ask">
+        <span class="label">Asking</span>
+        <p class="line">"What's the first question a new visitor would actually have?"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORK SEQUENCE -->
+<section class="band-mid">
+  <div class="wrap">
+    <div class="kicker">The deep listening framework, applied</div>
+    <h2>A page can listen the way a great <em>listener</em> does</h2>
+    <p class="lead">Murphy's framework moves from quieting distraction to a wide, outward focus. EasyLandX pages are shaped by that same discipline.</p>
+
+    <div class="sequence reveal" id="seqBlock">
+      <div class="seq-step">
+        <div class="seq-num">1</div>
+        <div>
+          <h4>Quiet the noise</h4>
+          <p>Remove clutter, autoplay, and distractions that pull attention away from what the visitor came to find.</p>
+          <span class="seq-tag">Clean design</span>
+        </div>
+      </div>
+      <div class="seq-step">
+        <div class="seq-num">2</div>
+        <div>
+          <h4>Outward focus</h4>
+          <p>Structure content around the visitor's real questions and cues, not just the business's preferred talking points.</p>
+          <span class="seq-tag">Customer-first content</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="triple">
+      <div class="triple-card">
+        <h4>Supportive responses</h4>
+        <p>Testimonials and FAQ answers that speak to the customer's actual experience, in their own words.</p>
+      </div>
+      <div class="triple-card teal">
+        <h4>Room to pause</h4>
+        <p>No rushed pop-ups or countdowns — visitors get the space to read and decide at their own pace.</p>
+      </div>
+      <div class="triple-card">
+        <h4>Open-ended exploration</h4>
+        <p>A simple contact form or short survey that invites real questions, rather than assuming you already know them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3-SECOND PAUSE INTERACTIVE -->
+<section class="band-deep">
+  <div class="wrap">
+    <div class="kicker">Try the pause</div>
+    <h2>Count to <em>three</em> before responding</h2>
+    <p class="lead">Murphy's 3-second pause rule prevents rushed replies and invites a fuller thought. Tap below and notice the same principle at work.</p>
+
+    <div class="pause-box">
+      <p>Tap, then wait a moment before the response appears.</p>
+      <button class="toggle-btn" id="pauseBtn">Ask a question</button>
+      <div class="pause-result" id="pauseResult"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap">
+    <div class="kicker">Ready to build a page that listens</div>
+    <h2>Give your business a page that hears its customers <em>first</em></h2>
+    <p class="lead">EasyLandX designs custom, conversion-ready landing pages built around real listening — for businesses across Spanish- and English-speaking markets.</p>
+    <a class="cta-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Start with EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  Built by <a href="https://easypagex.github.io" target="_blank" rel="noopener">EasyLandX</a> · &copy; 2026
+</footer>
+
+<script>
+  const pauseBtn = document.getElementById('pauseBtn');
+  const pauseResult = document.getElementById('pauseResult');
+  const questions = [
+    'What surprised you most about how customers found your business?',
+    'What\'s the one thing a new visitor most needs to hear first?',
+    'What would make someone trust your page in the first glance?',
+    'What question do customers ask you again and again?'
+  ];
+  let qi = 0;
+  pauseBtn.addEventListener('click', () => {
+    pauseResult.textContent = '…';
+    pauseBtn.disabled = true;
+    setTimeout(() => {
+      pauseResult.textContent = questions[qi % questions.length];
+      qi++;
+      pauseBtn.disabled = false;
+    }, 1500);
+  });
+
+  const seq = document.getElementById('seqBlock');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  io.observe(seq);
+</script>
+
+</body>
+</html>

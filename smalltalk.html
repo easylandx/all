@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages That Know How to Talk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,500;0,600;1,500;1,600&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --coral-900:#B8342E;
+    --coral-700:#FF5C4D;
+    --coral-500:#FF7A62;
+    --coral-300:#FFAE93;
+    --coral-pale:#FFE0D2;
+    --teal-neon:#00E6B8;
+    --teal-deep:#007A63;
+    --slate-neon:#4C5FE0;
+    --slate-deep:#2A3480;
+    --ink:#241512;
+    --paper:#FFF3EC;
+    --serif:'Newsreader', serif;
+    --sans:'Libre Franklin', sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--coral-700);
+    color:var(--paper);
+    font-family:var(--sans);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{ max-width:740px; margin:0 auto; padding:0 28px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 28px 90px;
+    background:
+      radial-gradient(ellipse at 18% 18%, rgba(0,230,184,0.24), transparent 55%),
+      radial-gradient(ellipse at 82% 78%, rgba(76,95,224,0.28), transparent 55%),
+      var(--coral-700);
+  }
+
+  .eyebrow{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--teal-neon);
+    margin-bottom:20px;
+  }
+
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(2.3rem, 6vw, 4rem);
+    line-height:1.1;
+    max-width:15ch;
+    color:var(--paper);
+  }
+  .hero h1 em{ color:var(--slate-neon); font-style:italic; }
+
+  .hero p.sub{
+    margin-top:26px;
+    font-size:1.15rem;
+    max-width:46ch;
+    color:var(--coral-pale);
+  }
+
+  /* speech bubble exchange in hero */
+  .exchange{
+    margin-top:44px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    align-items:center;
+    width:100%;
+    max-width:420px;
+  }
+  .bubble{
+    padding:12px 20px;
+    border-radius:18px;
+    font-size:0.95rem;
+    max-width:88%;
+  }
+  .bubble.them{
+    align-self:flex-start;
+    background:var(--slate-neon);
+    color:var(--paper);
+    border-bottom-left-radius:4px;
+  }
+  .bubble.you{
+    align-self:flex-end;
+    background:var(--teal-neon);
+    color:var(--ink);
+    border-bottom-right-radius:4px;
+  }
+
+  .cta-primary{
+    display:inline-block;
+    margin-top:40px;
+    background:var(--teal-neon);
+    color:var(--ink);
+    font-weight:700;
+    font-size:1rem;
+    padding:16px 36px;
+    border-radius:999px;
+    box-shadow:0 0 0 2px rgba(0,230,184,0.3), 0 14px 30px -10px rgba(0,230,184,0.6);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .cta-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 0 2px rgba(0,230,184,0.45), 0 18px 36px -8px rgba(0,230,184,0.75);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:110px 0; }
+  .band-deep{ background:var(--coral-900); }
+  .band-mid{ background:var(--coral-500); }
+  .band-light{ background:var(--coral-300); color:var(--ink); }
+
+  .kicker{
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--teal-neon);
+    font-size:1.02rem;
+    margin-bottom:16px;
+  }
+  .band-light .kicker{ color:var(--slate-deep); }
+
+  h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(1.75rem, 4vw, 2.5rem);
+    line-height:1.2;
+    max-width:19ch;
+  }
+  h2 em{ color:var(--slate-neon); font-style:italic; }
+  .band-light h2 em{ color:var(--slate-deep); }
+
+  p.lead{
+    margin-top:20px;
+    font-size:1.06rem;
+    max-width:56ch;
+    color:var(--coral-pale);
+  }
+  .band-light p.lead{ color:var(--ink); opacity:0.75; }
+
+  /* conversation flow — genuine sequence: initiate -> sustain -> three parallel closers */
+  .flow{
+    margin-top:54px;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .flow-step{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:20px;
+    padding:26px 0;
+    border-bottom:1px solid rgba(255,243,236,0.18);
+  }
+  .flow-step:last-child{ border-bottom:none; }
+  .flow-mark{
+    font-family:var(--serif);
+    font-size:1.5rem;
+    font-weight:600;
+    color:var(--teal-neon);
+  }
+  .flow-step h4{
+    font-family:var(--serif);
+    font-size:1.15rem;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .flow-step p{ color:var(--coral-pale); font-size:0.98rem; max-width:52ch; }
+  .flow-tag{
+    display:inline-block;
+    margin-top:10px;
+    font-size:0.8rem;
+    color:var(--slate-neon);
+    background:rgba(76,95,224,0.2);
+    padding:3px 12px;
+    border-radius:999px;
+  }
+
+  /* three-card row: statement+question, use the name, graceful exit */
+  .triple{
+    margin-top:52px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  @media(max-width:760px){ .triple{ grid-template-columns:1fr; } }
+  .triple-card{
+    padding:28px 24px;
+    background:rgba(255,255,255,0.08);
+    border-left:3px solid var(--teal-neon);
+  }
+  .triple-card.slate{ border-left-color:var(--slate-neon); }
+  .triple-card h4{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:1.1rem;
+    margin-bottom:10px;
+  }
+  .triple-card p{ font-size:0.95rem; color:var(--coral-pale); }
+
+  /* free-information detective interactive */
+  .detective-box{
+    margin-top:52px;
+    padding:34px 30px;
+    background:rgba(255,255,255,0.1);
+    border-radius:10px;
+    text-align:center;
+  }
+  .detective-box p{ color:var(--coral-pale); margin-bottom:20px; }
+  .toggle-btn{
+    background:transparent;
+    border:2px solid var(--teal-neon);
+    color:var(--paper);
+    padding:12px 28px;
+    border-radius:999px;
+    font-family:var(--sans);
+    font-weight:600;
+    cursor:pointer;
+    font-size:0.95rem;
+    transition:background 0.2s ease;
+  }
+  .toggle-btn:hover{ background:rgba(0,230,184,0.2); }
+  .toggle-btn:focus-visible{ outline:3px solid var(--slate-neon); outline-offset:3px; }
+  .clue-result{
+    margin-top:20px;
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--teal-neon);
+    min-height:24px;
+    font-size:1.05rem;
+  }
+
+  /* graceful exit CTA */
+  .final-cta{
+    text-align:center;
+    padding:130px 28px;
+    background:
+      radial-gradient(ellipse at 25% 25%, rgba(76,95,224,0.28), transparent 55%),
+      radial-gradient(ellipse at 78% 80%, rgba(0,230,184,0.22), transparent 55%),
+      var(--coral-900);
+  }
+  .final-cta h2{ margin:0 auto; }
+  .final-cta p.lead{ margin-left:auto; margin-right:auto; }
+
+  footer{
+    text-align:center;
+    padding:34px 20px 42px;
+    background:var(--ink);
+    color:var(--coral-pale);
+    font-size:0.85rem;
+  }
+  footer a{ color:var(--teal-neon); font-weight:600; }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  ::selection{ background:var(--teal-neon); color:var(--ink); }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ transition:none; opacity:1; transform:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="eyebrow">The runway before the real conversation</div>
+    <h1>A great landing page opens with <em>small talk</em>, not a pitch</h1>
+    <p class="sub">Debra Fine's Fine Art of Small Talk shows how a warm opener builds the trust that real conversation needs. EasyLandX designs that same opener into your page — the moment a visitor decides to keep reading.</p>
+
+    <div class="exchange" aria-hidden="true">
+      <div class="bubble them">"What does your business actually help with?"</div>
+      <div class="bubble you">"Tell me about what you're trying to grow — we'll show you exactly."</div>
+    </div>
+
+    <a class="cta-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Meet EasyLandX</a>
+  </div>
+</section>
+
+<!-- ICEBREAKER FOR BIG TALK -->
+<section class="band-deep">
+  <div class="wrap">
+    <div class="kicker">Core message</div>
+    <h2>Small talk is the <em>runway</em> for every big decision</h2>
+    <p class="lead">Nobody signs a contract before a first hello. Fine calls small talk the necessary bridge to deeper trust — and a landing page plays exactly that role, warming up a visitor before asking anything of them.</p>
+  </div>
+</section>
+
+<!-- OWNERSHIP / TAKE THE RISK -->
+<section class="band-mid">
+  <div class="wrap">
+    <div class="kicker">Core message</div>
+    <h2>Speaking first puts your visitor at <em>ease</em></h2>
+    <p class="lead">Fine notes that whoever initiates the conversation relieves the other person of that pressure. A page that opens warmly — plain language, a friendly first line — does the same for every visitor who lands on it.</p>
+  </div>
+</section>
+
+<!-- CONVERSATION FLOW -->
+<section class="band-deep">
+  <div class="wrap">
+    <div class="kicker">The small talk framework</div>
+    <h2>Every good exchange follows the <em>same</em> shape</h2>
+    <p class="lead">Initiate, then sustain, then close well — Fine's structure for a great chat maps directly onto a page that keeps a visitor engaged from first glance to final click.</p>
+
+    <div class="flow reveal" id="flowBlock">
+      <div class="flow-step">
+        <div class="flow-mark">1</div>
+        <div>
+          <h4>Initiate & icebreak</h4>
+          <p>A warm, specific opening line that names the visitor's situation, not a generic greeting.</p>
+          <span class="flow-tag">Hero section</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-mark">2</div>
+        <div>
+          <h4>Sustain & dig deeper</h4>
+          <p>Content that answers the next question a curious visitor would naturally ask, in order.</p>
+          <span class="flow-tag">Value & detail</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-mark">3</div>
+        <div>
+          <h4>Graceful exit</h4>
+          <p>A clear, confident final step that tells the visitor exactly what happens when they act.</p>
+          <span class="flow-tag">Call to action</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE TECHNIQUES: STATEMENT+QUESTION, USE THE NAME, GRACEFUL EXIT -->
+<section class="band-mid">
+  <div class="wrap">
+    <div class="kicker">Techniques we design in</div>
+    <h2>Three habits of a <em>great</em> conversationalist, built into your page</h2>
+
+    <div class="triple">
+      <div class="triple-card">
+        <h4>Statement + question</h4>
+        <p>Copy that offers a real detail, then invites the visitor forward: "Businesses like yours grow with a clear page — what would yours say first?"</p>
+      </div>
+      <div class="triple-card slate">
+        <h4>Make it personal</h4>
+        <p>Language written for the specific visitor your business serves, so the page feels like it's speaking to them directly.</p>
+      </div>
+      <div class="triple-card">
+        <h4>Graceful exit</h4>
+        <p>A closing section that states plainly what happens next, so the visitor leaves the page — or clicks through — with confidence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FREE INFORMATION / DETECTIVE -->
+<section class="band-deep">
+  <div class="wrap">
+    <div class="kicker">Listening well</div>
+    <h2>The best pages act like a good <em>listener</em></h2>
+    <p class="lead">Fine calls it being an information detective — noticing the small details someone shares and using them as hooks. EasyLandX pages pick up on your visitors' cues too, from the questions they arrive with to what keeps them reading.</p>
+
+    <div class="detective-box">
+      <p>See it in action — tap for a "tell me about" opener your page could use.</p>
+      <button class="toggle-btn" id="clueBtn">Give me an opener</button>
+      <div class="clue-result" id="clueResult"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap">
+    <div class="kicker">Ready to start the conversation</div>
+    <h2>Give your business a page that knows how to <em>open</em> a conversation and close it well</h2>
+    <p class="lead">EasyLandX builds custom, conversion-ready landing pages with the warmth and structure of great small talk — for businesses across Spanish- and English-speaking markets.</p>
+    <a class="cta-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Start with EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  Built by <a href="https://easypagex.github.io" target="_blank" rel="noopener">EasyLandX</a> · &copy; 2026
+</footer>
+
+<script>
+  const clueBtn = document.getElementById('clueBtn');
+  const clueResult = document.getElementById('clueResult');
+  const openers = [
+    '"Tell me about the last time your website earned you a customer."',
+    '"Tell me about what you wish your page did better."',
+    '"Tell me about your ideal customer\'s very first question."',
+    '"Tell me about the moment you knew your business needed a better page."'
+  ];
+  let i = 0;
+  clueBtn.addEventListener('click', () => {
+    clueResult.textContent = openers[i % openers.length];
+    i++;
+  });
+
+  const flow = document.getElementById('flowBlock');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  io.observe(flow);
+</script>
+
+</body>
+</html>

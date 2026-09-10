@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages for Quiet, Deliberate Growth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo-950:#150A38;
+    --indigo-800:#241259;
+    --indigo-600:#3C1FA8;
+    --indigo-500:#4B2FDE;
+    --indigo-300:#8570F2;
+    --emerald-neon:#00E69A;
+    --emerald-deep:#00895E;
+    --sand-neon:#F4C77A;
+    --sand-soft:#FBE3B8;
+    --paper:#F4F0FF;
+    --serif:'Spectral', serif;
+    --sans:'Manrope', sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--indigo-600);
+    color:var(--paper);
+    font-family:var(--sans);
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  .wrap{ max-width:740px; margin:0 auto; padding:0 28px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 28px 90px;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(0,230,154,0.18), transparent 55%),
+      radial-gradient(ellipse at 82% 80%, rgba(244,199,122,0.16), transparent 55%),
+      var(--indigo-800);
+  }
+
+  .eyebrow{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--sand-neon);
+    margin-bottom:20px;
+  }
+
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(2.3rem, 6vw, 4rem);
+    line-height:1.12;
+    max-width:15ch;
+  }
+  .hero h1 em{ color:var(--emerald-neon); font-style:italic; }
+
+  .hero p.sub{
+    margin-top:26px;
+    font-size:1.15rem;
+    max-width:46ch;
+    color:var(--indigo-300);
+  }
+
+  /* room of dots — one solo visitor highlighted */
+  .room{
+    margin-top:46px;
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:14px;
+    width:100%;
+    max-width:340px;
+  }
+  .dot{
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:rgba(244,240,255,0.28);
+    margin:0 auto;
+    transition:background 0.3s ease, transform 0.3s ease;
+  }
+  .dot.solo{
+    background:var(--emerald-neon);
+    box-shadow:0 0 14px rgba(0,230,154,0.7);
+    transform:scale(1.35);
+  }
+  .room-caption{
+    margin-top:16px;
+    font-size:0.85rem;
+    color:var(--sand-soft);
+  }
+
+  .cta-primary{
+    display:inline-block;
+    margin-top:40px;
+    background:var(--emerald-neon);
+    color:var(--indigo-950);
+    font-weight:700;
+    font-size:1rem;
+    padding:16px 36px;
+    border-radius:6px;
+    box-shadow:0 0 0 2px rgba(0,230,154,0.3), 0 14px 30px -10px rgba(0,230,154,0.55);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .cta-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 0 2px rgba(0,230,154,0.45), 0 18px 36px -8px rgba(0,230,154,0.7);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:110px 0; }
+  .band-deep{ background:var(--indigo-950); }
+  .band-mid{ background:var(--indigo-600); }
+  .band-light{ background:var(--indigo-500); }
+
+  .kicker{
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--emerald-neon);
+    font-size:1.02rem;
+    margin-bottom:16px;
+  }
+
+  h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(1.75rem, 4vw, 2.5rem);
+    line-height:1.22;
+    max-width:19ch;
+  }
+  h2 em{ color:var(--sand-neon); font-style:italic; }
+
+  p.lead{
+    margin-top:20px;
+    font-size:1.06rem;
+    max-width:56ch;
+    color:var(--indigo-300);
+  }
+
+  /* framework sequence: prep -> one-on-one -> three parallel */
+  .sequence{
+    margin-top:54px;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .seq-step{
+    display:grid;
+    grid-template-columns:60px 1fr;
+    gap:20px;
+    padding:26px 0;
+    border-bottom:1px solid rgba(244,240,255,0.14);
+  }
+  .seq-step:last-child{ border-bottom:none; }
+  .seq-num{
+    font-family:var(--serif);
+    font-size:1.5rem;
+    font-weight:600;
+    color:var(--sand-neon);
+  }
+  .seq-step h4{
+    font-family:var(--serif);
+    font-size:1.15rem;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .seq-step p{ color:var(--indigo-300); font-size:0.98rem; max-width:52ch; }
+  .seq-tag{
+    display:inline-block;
+    margin-top:10px;
+    font-size:0.8rem;
+    color:var(--emerald-neon);
+    background:rgba(0,230,154,0.14);
+    padding:3px 12px;
+    border-radius:999px;
+  }
+
+  .triple{
+    margin-top:52px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  @media(max-width:760px){ .triple{ grid-template-columns:1fr; } }
+  .triple-card{
+    padding:28px 24px;
+    background:rgba(244,240,255,0.06);
+    border-top:3px solid var(--emerald-neon);
+  }
+  .triple-card.sand{ border-top-color:var(--sand-neon); }
+  .triple-card h4{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:1.1rem;
+    margin-bottom:10px;
+  }
+  .triple-card p{ font-size:0.95rem; color:var(--indigo-300); }
+
+  /* micro-goal interactive */
+  .goal-box{
+    margin-top:52px;
+    padding:34px 30px;
+    background:rgba(244,240,255,0.06);
+    border-radius:10px;
+    text-align:center;
+  }
+  .goal-box p{ color:var(--indigo-300); margin-bottom:20px; }
+  .toggle-btn{
+    background:transparent;
+    border:2px solid var(--sand-neon);
+    color:var(--paper);
+    padding:12px 28px;
+    border-radius:6px;
+    font-family:var(--sans);
+    font-weight:600;
+    cursor:pointer;
+    font-size:0.95rem;
+    transition:background 0.2s ease;
+  }
+  .toggle-btn:hover{ background:rgba(244,199,122,0.16); }
+  .toggle-btn:focus-visible{ outline:3px solid var(--emerald-neon); outline-offset:3px; }
+  .goal-result{
+    margin-top:20px;
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--sand-neon);
+    min-height:24px;
+    font-size:1.05rem;
+  }
+
+  /* final CTA */
+  .final-cta{
+    text-align:center;
+    padding:130px 28px;
+    background:
+      radial-gradient(ellipse at 25% 25%, rgba(0,230,154,0.18), transparent 55%),
+      radial-gradient(ellipse at 78% 80%, rgba(244,199,122,0.16), transparent 55%),
+      var(--indigo-950);
+  }
+  .final-cta h2{ margin:0 auto; }
+  .final-cta p.lead{ margin-left:auto; margin-right:auto; }
+
+  footer{
+    text-align:center;
+    padding:34px 20px 42px;
+    background:var(--indigo-950);
+    color:var(--indigo-300);
+    font-size:0.85rem;
+  }
+  footer a{ color:var(--emerald-neon); font-weight:600; }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  ::selection{ background:var(--emerald-neon); color:var(--indigo-950); }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ transition:none; opacity:1; transform:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="eyebrow">Not built to work a crowded room</div>
+    <h1>Your page doesn't need to <em>shout</em> to everyone to grow your business</h1>
+    <p class="sub">Devora Zack's Networking for People Who Hate Networking shows that one genuine connection outperforms a hundred loud ones. EasyLandX designs pages that speak clearly to the one visitor who matters, instead of performing for a crowd.</p>
+
+    <div class="room" id="room" aria-hidden="true"></div>
+    <p class="room-caption">Find the one visitor ready for a real conversation.</p>
+
+    <a class="cta-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Meet EasyLandX</a>
+  </div>
+</section>
+
+<!-- CONNECTION NOT MANIPULATION -->
+<section class="band-deep">
+  <div class="wrap">
+    <div class="kicker">Core message</div>
+    <h2>Real growth comes from <em>connection</em>, not pressure</h2>
+    <p class="lead">Zack rejects the idea that networking means self-promotion and aggressive pitching. A page built the same way skips the countdown timers and pushy pop-ups, and simply offers a clear, honest reason to reach out.</p>
+  </div>
+</section>
+
+<!-- HONOR YOUR TYPE -->
+<section class="band-mid">
+  <div class="wrap">
+    <div class="kicker">Core message</div>
+    <h2>Your page should sound like <em>your</em> business, not a performance</h2>
+    <p class="lead">Forcing a loud, hyped-up voice onto a quiet, thoughtful brand reads as insincere. EasyLandX shapes the tone of your page around how your business actually communicates — measured, warm, or bold, whichever is true.</p>
+  </div>
+</section>
+
+<!-- QUALITY OVER QUANTITY -->
+<section class="band-deep">
+  <div class="wrap">
+    <div class="kicker">Core message</div>
+    <h2>Five right visitors beat fifty <em>passing</em> clicks</h2>
+    <p class="lead">Zack values five deep relationships over fifty shallow ones. A landing page built for quality speaks precisely to the visitors who are the best fit, so every conversation that follows is worth having.</p>
+  </div>
+</section>
+
+<!-- FRAMEWORK SEQUENCE -->
+<section class="band-mid">
+  <div class="wrap">
+    <div class="kicker">The low-stress framework</div>
+    <h2>A page grows the way a <em>quiet</em> networker grows a room</h2>
+    <p class="lead">Zack's framework moves from a light plan, to one focused engagement, to what happens after. EasyLandX applies the same shape to how your page is built and maintained.</p>
+
+    <div class="sequence reveal" id="seqBlock">
+      <div class="seq-step">
+        <div class="seq-num">1</div>
+        <div>
+          <h4>Set a micro-goal</h4>
+          <p>One clear outcome for the page — a booked call, a signup, a reply — instead of trying to do everything at once.</p>
+          <span class="seq-tag">Single clear CTA</span>
+        </div>
+      </div>
+      <div class="seq-step">
+        <div class="seq-num">2</div>
+        <div>
+          <h4>One-on-one engagement</h4>
+          <p>Copy written as if to one real visitor, with the depth and specificity that makes them feel understood.</p>
+          <span class="seq-tag">Personalized content</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="triple">
+      <div class="triple-card">
+        <h4>Curate & disconnect</h4>
+        <p>No clutter, no noisy pop-ups. Only the elements that earn a visitor's attention stay on the page.</p>
+      </div>
+      <div class="triple-card sand">
+        <h4>Asynchronous follow-up</h4>
+        <p>A simple contact form or newsletter signup gives quieter visitors a low-pressure way to reach out on their own time.</p>
+      </div>
+      <div class="triple-card">
+        <h4>Recharge & reflect</h4>
+        <p>A calm cadence of review — checking what's working, refining what isn't — instead of constant, exhausting tinkering.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MICRO-GOAL INTERACTIVE -->
+<section class="band-deep">
+  <div class="wrap">
+    <div class="kicker">Try it</div>
+    <h2>Set the <em>one</em> goal your page should focus on</h2>
+    <p class="lead">Zack's low-pressure exit goal removes the anxiety of trying to do too much. Give your page the same clarity.</p>
+
+    <div class="goal-box">
+      <p>Tap for a focused, single goal a page like yours could aim for.</p>
+      <button class="toggle-btn" id="goalBtn">Give me a micro-goal</button>
+      <div class="goal-result" id="goalResult"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap">
+    <div class="kicker">Ready for one good connection</div>
+    <h2>Build a page that earns the <em>right</em> visitor's trust, one at a time</h2>
+    <p class="lead">EasyLandX designs custom, conversion-ready landing pages with the quiet confidence of authentic connection — for businesses across Spanish- and English-speaking markets.</p>
+    <a class="cta-primary" href="https://easypagex.github.io" target="_blank" rel="noopener">Start with EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  Built by <a href="https://easypagex.github.io" target="_blank" rel="noopener">EasyLandX</a> · &copy; 2026
+</footer>
+
+<script>
+  // Room of dots — highlight the "solo" visitor
+  const room = document.getElementById('room');
+  const totalDots = 24;
+  let soloIndex = 14;
+  for (let i = 0; i < totalDots; i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === soloIndex ? ' solo' : '');
+    room.appendChild(d);
+  }
+
+  // Micro-goal generator
+  const goalBtn = document.getElementById('goalBtn');
+  const goalResult = document.getElementById('goalResult');
+  const goals = [
+    'One goal: get three visitors to book an intro call this week.',
+    'One goal: turn one in ten visitors into a newsletter signup.',
+    'One goal: earn five genuine replies to your contact form this month.',
+    'One goal: have one clear, memorable line a visitor repeats back to you.'
+  ];
+  let gi = 0;
+  goalBtn.addEventListener('click', () => {
+    goalResult.textContent = goals[gi % goals.length];
+    gi++;
+  });
+
+  const seq = document.getElementById('seqBlock');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  io.observe(seq);
+</script>
+
+</body>
+</html>
