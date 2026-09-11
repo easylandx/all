@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Build From the Pause, Not the Panic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #fa1eb8;
+    --pink-soft: #ff8fdb;
+    --ink: #16031a;
+    --ink-soft: #4a1a4e;
+    --panel: #0b0310;
+    --paper: #fdf3fb;
+    --yellow: #f4ff3a;
+    --green: #4dff8f;
+    --max: 700px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--pink);
+    color: var(--ink);
+    font-family: 'Spectral', serif;
+    font-size: 18px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Space Grotesk', sans-serif;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  a { color: inherit; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+  .wrap.wide { max-width: 960px; }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 28px 28px 0;
+  }
+
+  .mark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .mark span { color: var(--yellow); }
+
+  .navbtn {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    padding: 9px 17px;
+    border-radius: 999px;
+    text-decoration: none;
+  }
+
+  /* HERO */
+  .hero {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 90px 28px 80px;
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 40px;
+    align-items: end;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 6vw, 64px);
+    font-weight: 700;
+  }
+
+  .hero h1 .accent {
+    color: var(--paper);
+    background: var(--ink);
+    padding: 0 10px;
+    border-radius: 8px;
+    display: inline-block;
+  }
+
+  .hero p {
+    font-family: 'Spectral', serif;
+    max-width: 420px;
+    margin: 24px 0 34px;
+    color: var(--ink-soft);
+    font-size: 18px;
+  }
+
+  .btn-primary {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    background: var(--green);
+    color: var(--ink);
+    padding: 15px 30px;
+    border-radius: 999px;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 0 0 3px var(--ink);
+  }
+
+  .pause-demo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pause-dot {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--ink);
+    animation: gap-pulse 3.6s ease-in-out infinite;
+  }
+
+  @keyframes gap-pulse {
+    0%, 100% { transform: scale(1); }
+    45% { transform: scale(1); }
+    55% { transform: scale(0.55); background: var(--yellow); }
+    75% { transform: scale(1); }
+  }
+
+  .pause-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pause-dot { animation: none; }
+  }
+
+  @media (max-width: 720px) {
+    .hero { grid-template-columns: 1fr; }
+    .pause-demo { align-items: flex-start; }
+  }
+
+  /* PANEL */
+  .panel {
+    background: var(--panel);
+    color: var(--paper);
+    padding: 96px 0 100px;
+  }
+
+  .kicker {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--yellow);
+    max-width: 420px;
+    margin: 0 0 50px;
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(253,243,251,0.14);
+  }
+
+  .principle {
+    background: var(--panel);
+    padding: 34px;
+  }
+
+  .principle h3 {
+    font-size: 21px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .principle:nth-child(1) h3 { color: var(--green); }
+  .principle:nth-child(2) h3 { color: var(--yellow); }
+  .principle:nth-child(3) h3 { color: var(--yellow); }
+  .principle:nth-child(4) h3 { color: var(--green); }
+
+  .principle p {
+    color: rgba(253,243,251,0.78);
+    font-size: 16px;
+    font-family: 'Spectral', serif;
+  }
+
+  @media (max-width: 720px) {
+    .principles-grid { grid-template-columns: 1fr; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* FRAMEWORK */
+  .framework { padding: 110px 0 100px; }
+
+  .framework .wrap.wide > h2 {
+    font-size: clamp(30px, 5vw, 44px);
+    font-weight: 700;
+    max-width: 600px;
+  }
+
+  .framework .lead {
+    max-width: 480px;
+    margin: 18px 0 64px;
+    color: var(--ink-soft);
+    font-size: 17px;
+  }
+
+  .fw-top, .fw-second {
+    max-width: 480px;
+    margin: 0 auto 34px;
+    text-align: center;
+    padding: 22px 26px;
+    border: 1.5px solid var(--ink);
+    border-radius: 16px;
+    background: rgba(255,255,255,0.28);
+  }
+
+  .fw-top h3, .fw-second h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .fw-top p, .fw-second p { font-size: 15px; margin: 0; color: var(--ink-soft); }
+
+  .fw-line {
+    width: 2px;
+    height: 40px;
+    background: var(--ink);
+    margin: 0 auto;
+    opacity: 0.5;
+  }
+
+  .fw-branches {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 34px;
+  }
+
+  @media (max-width: 820px) {
+    .fw-branches { grid-template-columns: 1fr; }
+  }
+
+  .branch {
+    padding: 28px 22px;
+    border-radius: 18px;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .branch:nth-child(1) { border-top: 4px solid var(--green); }
+  .branch:nth-child(2) { border-top: 4px solid var(--yellow); }
+  .branch:nth-child(3) { border-top: 4px solid var(--green); }
+
+  .branch h3 {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .branch p {
+    font-size: 15px;
+    color: rgba(253,243,251,0.78);
+  }
+
+  /* LESSONS */
+  .lessons-row {
+    display: flex;
+    gap: 28px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+  }
+
+  .lesson {
+    flex: 1 1 260px;
+    padding: 28px 24px;
+    border-left: 3px solid var(--green);
+  }
+
+  .lesson:nth-child(2) { border-left-color: var(--yellow); }
+  .lesson:nth-child(3) { border-left-color: var(--green); }
+
+  .lesson h3 {
+    font-size: 19px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--paper);
+  }
+
+  .lesson p { color: rgba(253,243,251,0.75); font-size: 15.5px; }
+
+  /* CLOSING */
+  .closing {
+    padding: 120px 0 140px;
+  }
+
+  .closing .wrap { max-width: 560px; }
+
+  .closing h2 {
+    font-size: clamp(32px, 6vw, 54px);
+    font-weight: 700;
+  }
+
+  .closing p {
+    margin: 22px 0 36px;
+    color: var(--ink-soft);
+    max-width: 420px;
+  }
+
+  .closing-links { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+
+  .link-secondary {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    text-decoration: underline;
+    text-decoration-color: var(--ink);
+    text-underline-offset: 4px;
+  }
+
+  footer {
+    background: var(--ink);
+    color: rgba(253,243,251,0.6);
+    padding: 34px 28px;
+    text-align: center;
+    font-size: 13px;
+  }
+  footer .mark { color: var(--paper); }
+  footer .mark span { color: var(--yellow); }
+
+  @media (max-width: 600px) {
+    body { font-size: 16.5px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="mark">easyland<span>x</span></div>
+  <a class="navbtn" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with easylandx</a>
+</nav>
+
+<header class="hero">
+  <div>
+    <h1>Build from the <span class="accent">pause</span>, not the panic.</h1>
+    <p>A landing page changes for good reasons more often when the reaction gets a moment to settle first.</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with easylandx</a>
+  </div>
+  <div class="pause-demo">
+    <div class="pause-dot"></div>
+    <p class="pause-label">stimulus — pause — response</p>
+  </div>
+</header>
+
+<section class="panel">
+  <div class="wrap wide">
+    <p class="kicker reveal">Four things worth knowing about reacting to a page's numbers.</p>
+
+    <div class="principles-grid">
+      <div class="principle reveal">
+        <h3>A calmer read beats a faster reaction</h3>
+        <p>A dip in signups, a sharp comment, a competitor's new trick — met instantly, each one tends to produce a rushed fix. Met with a moment's distance first, the same signal usually points somewhere more useful.</p>
+      </div>
+      <div class="principle reveal">
+        <h3>Three familiar patterns, once you know to look for them</h3>
+        <p>Wanting the numbers to already be different, bracing against a result you didn't want, and holding a fixed idea of who's visiting — all three show up quietly, long before any actual decision gets made.</p>
+      </div>
+      <div class="principle reveal">
+        <h3>Naming the urge is usually enough</h3>
+        <p>Noticing "I want to change this right now" — and naming it plainly as that — already loosens its grip, leaving room to choose the edit on purpose instead.</p>
+      </div>
+      <div class="principle reveal">
+        <h3>The real edit happens in the pause</h3>
+        <p>Between a metric moving and a decision getting made, there's a considered space worth keeping open. That space is where the page actually gets better.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="framework">
+  <div class="wrap wide">
+    <h2 class="reveal">A five-part way of responding</h2>
+    <p class="lead reveal">The same steady sequence, run every time something on the page asks for a reaction.</p>
+
+    <div class="fw-top reveal">
+      <h3>Notice the trigger</h3>
+      <p>A sudden dip, a heated comment, a hunch to overhaul something — caught early, right as it appears.</p>
+    </div>
+    <div class="fw-line"></div>
+    <div class="fw-second reveal">
+      <h3>Name it plainly</h3>
+      <p>Before acting, the reaction gets a plain, silent name: "this is a dip," "this is one opinion," "this is an old assumption."</p>
+    </div>
+    <div class="fw-line"></div>
+
+    <div class="fw-branches">
+      <div class="branch reveal">
+        <h3>Anchor in the real data</h3>
+        <p>Attention returns to the page's actual numbers and session recordings, not the first feeling those numbers produced.</p>
+      </div>
+      <div class="branch reveal">
+        <h3>Hold it as one data point</h3>
+        <p>A single complaint or trend gets treated as one input worth noting, not the full picture of every visitor.</p>
+      </div>
+      <div class="branch reveal">
+        <h3>Choose the considered edit</h3>
+        <p>A pause, a second look, then a deliberate change — made on purpose, on its own schedule, not as an emergency reaction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="wrap wide">
+    <p class="kicker reveal">Three habits worth building alongside it.</p>
+
+    <div class="lessons-row">
+      <div class="lesson reveal">
+        <h3>Let the data sit before labeling it</h3>
+        <p>Every result gets sorted into good or bad almost instantly. The most useful read of it comes just before that label gets attached.</p>
+      </div>
+      <div class="lesson reveal">
+        <h3>One visitor's reaction is one data point</h3>
+        <p>A single piece of feedback carries that person's own assumptions along with it — useful context, but not the whole audience's truth.</p>
+      </div>
+      <div class="lesson reveal">
+        <h3>Choose what gets a place in your attention</h3>
+        <p>Not every competitor page, algorithm update, or offhand comment needs tracking. Deciding what's worth following keeps the signals that matter clear.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>Build the page from a clear place.</h2>
+    <p>One considered edit at a time, made from the pause rather than the first reaction to it.</p>
+    <div class="closing-links">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with easylandx</a>
+      <a class="link-secondary" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="mark">easyland<span>x</span></div>
+  <p>Landing pages, built one considered pass at a time.</p>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Give Your Landing Page Full Attention</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700;900&family=Literata:ital,opsz,wght@0,18..144,400;0,18..144,500;1,18..144,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lime: #d4ff2b;
+    --lime-soft: #e6ff8a;
+    --ink: #08150a;
+    --ink-soft: #163019;
+    --panel: #071410;
+    --panel-2: #0c1f16;
+    --pink: #ff2e9a;
+    --blue: #29c8ff;
+    --paper: #f5fbe4;
+    --max: 720px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--lime);
+    color: var(--ink);
+    font-family: 'Literata', serif;
+    font-size: 18px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Unbounded', sans-serif;
+    margin: 0;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .wrap.wide { max-width: 860px; }
+
+  section { position: relative; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 26px 28px 0;
+  }
+
+  .mark {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  .mark span { color: var(--pink); }
+
+  .navbtn {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    background: var(--ink);
+    color: var(--lime-soft);
+    padding: 10px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 90px 28px 70px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 7vw, 76px);
+    font-weight: 700;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--paper);
+    background: var(--ink);
+    padding: 0 10px;
+    display: inline-block;
+    border-radius: 8px;
+  }
+
+  .hero p {
+    max-width: 480px;
+    margin: 26px auto 0;
+    font-size: 19px;
+    color: var(--ink-soft);
+  }
+
+  .hero-cta {
+    margin-top: 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .btn-primary {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    background: var(--pink);
+    color: var(--ink);
+    padding: 16px 34px;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 0 0 3px var(--ink), 0 0 32px rgba(255,46,154,0.55);
+    transition: transform 0.2s ease;
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); }
+
+  .breath {
+    width: 96px;
+    height: 96px;
+  }
+
+  .breath circle {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 1.4;
+  }
+
+  .breath .pulse {
+    transform-origin: 50% 50%;
+    animation: breathe 5.2s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { transform: scale(0.72); opacity: 0.45; }
+    50% { transform: scale(1); opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .breath .pulse { animation: none; }
+  }
+
+  /* ---------- DARK PANEL ---------- */
+  .panel {
+    background: var(--panel);
+    color: var(--paper);
+    padding: 100px 0 108px;
+  }
+
+  .kicker {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--blue);
+    max-width: 420px;
+    margin: 0 0 48px;
+  }
+
+  .principle {
+    padding: 34px 0;
+    border-top: 1px solid rgba(245,251,228,0.14);
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 22px;
+  }
+
+  .principle:last-child { border-bottom: 1px solid rgba(245,251,228,0.14); }
+
+  .principle .num {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 15px;
+    color: var(--paper);
+    opacity: 0.4;
+    padding-top: 4px;
+  }
+
+  .principle h3 {
+    font-size: 23px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .principle:nth-child(odd) h3 { color: var(--pink); }
+  .principle:nth-child(even) h3 { color: var(--blue); }
+
+  .principle p {
+    color: rgba(245,251,228,0.78);
+    font-size: 16.5px;
+    max-width: 520px;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* ---------- FRAMEWORK ---------- */
+  .framework {
+    padding: 110px 0 100px;
+  }
+
+  .framework > .wrap > h2 {
+    font-size: clamp(30px, 5vw, 44px);
+    font-weight: 700;
+    max-width: 560px;
+  }
+
+  .framework > .wrap > p.lead {
+    max-width: 480px;
+    margin: 18px 0 64px;
+    color: var(--ink-soft);
+    font-size: 17px;
+  }
+
+  .steps {
+    position: relative;
+    padding-left: 46px;
+  }
+
+  .steps::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--pink), var(--blue), var(--pink), var(--blue), var(--pink));
+    opacity: 0.55;
+  }
+
+  .step {
+    position: relative;
+    padding: 0 0 56px;
+  }
+
+  .step:last-child { padding-bottom: 0; }
+
+  .step::before {
+    content: attr(data-n);
+    position: absolute;
+    left: -46px;
+    top: -2px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--lime-soft);
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step h3 {
+    font-size: 21px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .step p {
+    max-width: 480px;
+    color: var(--ink-soft);
+    font-size: 16.5px;
+  }
+
+  /* ---------- LESSONS ---------- */
+  .lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 54px;
+  }
+
+  @media (max-width: 760px) {
+    .lessons-grid { grid-template-columns: 1fr; gap: 44px; }
+  }
+
+  .lesson svg { width: 34px; height: 34px; margin-bottom: 18px; }
+
+  .lesson h3 {
+    font-size: 19px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--paper);
+  }
+
+  .lesson p {
+    color: rgba(245,251,228,0.75);
+    font-size: 16px;
+  }
+
+  /* ---------- CLOSING ---------- */
+  .closing {
+    padding: 120px 0 140px;
+    text-align: center;
+  }
+
+  .closing h2 {
+    font-size: clamp(32px, 6vw, 56px);
+    font-weight: 700;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .closing p {
+    max-width: 440px;
+    margin: 22px auto 40px;
+    color: var(--ink-soft);
+  }
+
+  .closing-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .link-secondary {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    text-decoration: underline;
+    text-decoration-color: var(--blue);
+    text-underline-offset: 4px;
+  }
+
+  footer {
+    background: var(--ink);
+    color: rgba(245,251,228,0.6);
+    padding: 34px 28px;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  footer .mark { color: var(--paper); }
+  footer .mark span { color: var(--pink); }
+
+  @media (max-width: 600px) {
+    body { font-size: 16.5px; }
+    .principle { grid-template-columns: 40px 1fr; gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="mark">easyland<span>x</span></div>
+  <a class="navbtn" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with easylandx</a>
+</nav>
+
+<header class="hero">
+  <h1>Give your landing page <em>full attention</em>.</h1>
+  <p>A calm, clear-sighted way to build pages that visitors can actually settle into — one honest message at a time.</p>
+  <div class="hero-cta">
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with easylandx</a>
+    <svg class="breath" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="46"></circle>
+      <circle class="pulse" cx="50" cy="50" r="28"></circle>
+    </svg>
+  </div>
+</header>
+
+<section class="panel">
+  <div class="wrap wide">
+    <p class="kicker reveal">Four ways of seeing that shape a page people actually stay on.</p>
+
+    <div class="principle reveal">
+      <div class="num">1</div>
+      <div>
+        <h3>Look at the page as it actually is</h3>
+        <p>Before changing anything, read the page the way a first-time visitor would — plainly, without deciding in advance what's good or bad about it. Most fixes start with an honest look, not a redesign.</p>
+      </div>
+    </div>
+
+    <div class="principle reveal">
+      <div class="num">2</div>
+      <div>
+        <h3>Building is the practice, not an escape from it</h3>
+        <p>A landing page isn't a place to hide an unclear offer behind nice visuals. Laying it out in front of a visitor is exactly how a business figures out what it's actually trying to say.</p>
+      </div>
+    </div>
+
+    <div class="principle reveal">
+      <div class="num">3</div>
+      <div>
+        <h3>Hold each version loosely</h3>
+        <p>What converted last season won't always convert this one. Trends, algorithms, and audiences keep moving — so a page is held as something to keep tending, not a thing to finish once and defend forever.</p>
+      </div>
+    </div>
+
+    <div class="principle reveal">
+      <div class="num">4</div>
+      <div>
+        <h3>One clear action, inside a wide field of care</h3>
+        <p>A single, unmistakable call to action sits at the center — but everything around it, from load time to the last line of copy, is held in the same wide, attentive awareness.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="framework">
+  <div class="wrap wide">
+    <h2 class="reveal">A five-part way of building</h2>
+    <p class="lead reveal">The same steady sequence, applied every time a page comes together.</p>
+
+    <div class="steps">
+      <div class="step reveal" data-n="1">
+        <h3>Set the page's stance</h3>
+        <p>Structure, hierarchy, and speed are settled first — the foundation everything else rests on, upright and unforced.</p>
+      </div>
+      <div class="step reveal" data-n="2">
+        <h3>Anchor on one clear message</h3>
+        <p>Every section returns to a single, tangible point of contact: the one sentence a visitor should walk away remembering.</p>
+      </div>
+      <div class="step reveal" data-n="3">
+        <h3>Notice what pulls attention away</h3>
+        <p>Extra buttons, competing offers, and busy visuals are noted for what they are, then quietly set aside so the main message can be heard.</p>
+      </div>
+      <div class="step reveal" data-n="4">
+        <h3>Meet friction with the same steadiness</h3>
+        <p>A slow load, an unclear line of copy, an unanswered objection — each is met directly and worked with, rather than around.</p>
+      </div>
+      <div class="step reveal" data-n="5">
+        <h3>Carry it into every visit</h3>
+        <p>Once live, the page keeps being watched and refined in small, real ways — the same clarity, sustained past launch day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="wrap wide">
+    <p class="kicker reveal">Three things worth expecting going in.</p>
+
+    <div class="lessons-grid">
+      <div class="lesson reveal">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 26c4-10 8-14 14-14s10 4 14 14" stroke="#ff2e9a" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="10" cy="30" r="2" fill="#29c8ff"/>
+          <circle cx="20" cy="32" r="2" fill="#29c8ff"/>
+          <circle cx="30" cy="30" r="2" fill="#29c8ff"/>
+        </svg>
+        <h3>A restless first impression is normal</h3>
+        <p>Visitors arrive scattered — mid-scroll, half-distracted, comparing tabs. A page is built to work with that starting condition, not to expect a calmer one.</p>
+      </div>
+
+      <div class="lesson reveal">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="15" stroke="#29c8ff" stroke-width="2"/>
+          <path d="M20 12v8l6 4" stroke="#ff2e9a" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h3>Clarity comes from steady small passes</h3>
+        <p>A page rarely arrives at its clearest version in one dramatic rewrite. It gets there through small, patient revisions, made one at a time.</p>
+      </div>
+
+      <div class="lesson reveal">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="7" y="7" width="26" height="26" rx="4" stroke="#ff2e9a" stroke-width="2"/>
+          <path d="M7 20h26M20 7v26" stroke="#29c8ff" stroke-width="1.6"/>
+        </svg>
+        <h3>The clarity travels past the page</h3>
+        <p>Whatever gets sharpened on the landing page — the offer, the tone, the promise — carries naturally into emails, social posts, and everyday conversation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>Bring your page this kind of attention.</h2>
+    <p>One clear message, held steady, built one honest pass at a time.</p>
+    <div class="closing-links">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with easylandx</a>
+      <a class="link-secondary" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="mark">easyland<span>x</span></div>
+  <p>Landing pages, built with full attention.</p>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

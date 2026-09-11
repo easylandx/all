@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — A Landing Page That's Fully Present</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #05071c;
+    --bg-2: #0a1140;
+    --neon-blue: #2e56ff;
+    --neon-blue-soft: #1c2f8f;
+    --neon-blue-glow: rgba(46,86,255,0.45);
+    --sage: #8dffb0;
+    --sage-dim: #6fd694;
+    --slate: #9ab4d9;
+    --ink: #eef1ff;
+    --ink-dim: #b7c0e6;
+    --ink-faint: #7c86ad;
+    --card: rgba(255,255,255,0.035);
+    --card-line: rgba(255,255,255,0.09);
+    --serif: 'Spectral', Georgia, serif;
+    --sans: 'Manrope', -apple-system, sans-serif;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width: 1120px;
+    margin:0 auto;
+    padding: 0 32px;
+  }
+
+  /* -------- NAV -------- */
+  header{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    backdrop-filter: blur(14px);
+    background: rgba(5,7,28,0.72);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  nav.wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height: 74px;
+  }
+  .logo{
+    font-family: var(--serif);
+    font-size: 20px;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .logo-dot{
+    width:9px; height:9px; border-radius:50%;
+    background: var(--sage);
+    box-shadow: 0 0 10px 2px var(--sage-dim);
+  }
+  .nav-cta{
+    font-family: var(--sans);
+    font-weight:600;
+    font-size: 14.5px;
+    background: var(--neon-blue);
+    color:#fff;
+    padding: 10px 20px;
+    border-radius: 999px;
+    text-decoration:none;
+    box-shadow: 0 0 0 0 var(--neon-blue-glow);
+    transition: box-shadow .35s ease, transform .25s ease;
+  }
+  .nav-cta:hover{
+    box-shadow: 0 0 22px 2px var(--neon-blue-glow);
+    transform: translateY(-1px);
+  }
+
+  /* -------- HERO -------- */
+  .hero{
+    position: relative;
+    padding: 110px 0 130px;
+    background:
+      radial-gradient(ellipse 900px 520px at 50% -10%, var(--neon-blue-glow), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 85% 30%, rgba(141,255,176,0.08), transparent 60%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items:center;
+    gap: 48px;
+  }
+  .eyebrow-line{
+    font-size:14px;
+    color: var(--slate);
+    margin-bottom: 22px;
+  }
+  h1{
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 4.4vw, 3.6rem);
+    line-height: 1.14;
+    color: var(--ink);
+    max-width: 12ch;
+  }
+  .hero p.lede{
+    margin-top: 22px;
+    font-size: 17px;
+    color: var(--ink-dim);
+    max-width: 46ch;
+  }
+  .hero-actions{
+    margin-top: 36px;
+    display:flex;
+    align-items:center;
+    gap: 22px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    display:inline-block;
+    background: var(--neon-blue);
+    color:#fff;
+    font-weight:600;
+    font-size: 15.5px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    text-decoration:none;
+    box-shadow: 0 0 24px 0 var(--neon-blue-glow);
+    transition: transform .25s ease, box-shadow .3s ease;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 0 34px 4px var(--neon-blue-glow); }
+  .link-quiet{
+    font-size: 14.5px;
+    color: var(--ink-faint);
+    text-decoration:none;
+    border-bottom: 1px solid rgba(255,255,255,0.16);
+    padding-bottom: 2px;
+    transition: color .2s ease, border-color .2s ease;
+  }
+  .link-quiet:hover{ color: var(--sage); border-color: var(--sage-dim); }
+
+  /* breathing rings */
+  .breath{
+    position:relative;
+    height: 360px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .ring{
+    position:absolute;
+    border-radius:50%;
+    border: 1px solid rgba(154,180,217,0.35);
+  }
+  .ring--1{ width:120px; height:120px; background: radial-gradient(circle, rgba(46,86,255,0.55), rgba(46,86,255,0.05) 70%); border-color: transparent; animation: breathe 8s ease-in-out infinite; }
+  .ring--2{ width:220px; height:220px; animation: breathe 8s ease-in-out infinite; animation-delay: .15s; border-color: rgba(141,255,176,0.28); }
+  .ring--3{ width:320px; height:320px; animation: breathe 8s ease-in-out infinite; animation-delay: .3s; }
+
+  @keyframes breathe{
+    0%   { transform: scale(0.92); opacity:.55; }
+    45%  { transform: scale(1.05); opacity:1; }
+    55%  { transform: scale(1.05); opacity:1; }
+    100% { transform: scale(0.92); opacity:.55; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ring{ animation: none !important; }
+  }
+
+  /* -------- SECTIONS -------- */
+  section{ padding: 100px 0; position:relative; }
+  .section-alt{ background: linear-gradient(180deg, transparent, rgba(28,47,143,0.10), transparent); }
+
+  h2{
+    font-family: var(--serif);
+    font-weight:400;
+    font-size: clamp(1.7rem, 3vw, 2.35rem);
+    line-height:1.25;
+    color: var(--ink);
+    max-width: 16ch;
+  }
+  .kicker{
+    font-size: 13.5px;
+    color: var(--sage);
+    margin-bottom: 14px;
+  }
+  .body-copy{
+    color: var(--ink-dim);
+    font-size: 16.5px;
+    max-width: 58ch;
+    margin-top: 18px;
+  }
+
+  .reveal{
+    opacity:0;
+    transform: translateY(18px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.is-visible{ opacity:1; transform:none; }
+
+  /* two column layout */
+  .split{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items:start;
+  }
+
+  /* non-doing comparison */
+  .balance{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .balance-card{
+    background: var(--card);
+    border: 1px solid var(--card-line);
+    border-radius: 18px;
+    padding: 30px 26px;
+  }
+  .balance-card h3{
+    font-family: var(--serif);
+    font-weight:500;
+    font-size: 19px;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .balance-card ul{ list-style:none; }
+  .balance-card li{
+    color: var(--ink-dim);
+    font-size: 15px;
+    padding: 9px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .balance-card li:first-child{ border-top:none; }
+  .balance-card--sage h3{ color: var(--sage); }
+  .balance-card--slate h3{ color: var(--slate); }
+
+  /* wholeness grid */
+  .whole-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 46px;
+  }
+  .whole-item{
+    background: var(--card);
+    border: 1px solid var(--card-line);
+    border-radius: 16px;
+    padding: 24px 20px;
+  }
+  .whole-item .mark{
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--neon-blue), var(--sage-dim));
+    margin-bottom: 16px;
+  }
+  .whole-item h4{
+    font-size: 15.5px;
+    font-weight:700;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .whole-item p{
+    font-size: 13.8px;
+    color: var(--ink-faint);
+    line-height:1.55;
+  }
+
+  /* framework */
+  .framework{
+    margin-top: 50px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--card-line);
+    border-radius: 20px;
+    overflow:hidden;
+  }
+  .fw-step{
+    padding: 38px 30px;
+    background: var(--card);
+    border-right: 1px solid var(--card-line);
+    position:relative;
+  }
+  .fw-step:last-child{ border-right:none; }
+  .fw-num{
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--slate);
+    margin-bottom: 18px;
+  }
+  .fw-step h3{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 21px;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .fw-step p{
+    font-size: 14.8px;
+    color: var(--ink-faint);
+  }
+  .fw-step--mid{ background: rgba(141,255,176,0.045); }
+
+  /* practice cards */
+  .practices{
+    margin-top: 46px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .practice{
+    padding: 32px 26px;
+    border-radius: 18px;
+    border: 1px solid var(--card-line);
+    background: linear-gradient(160deg, rgba(46,86,255,0.06), rgba(255,255,255,0.02));
+  }
+  .practice h3{
+    font-family: var(--serif);
+    font-weight:500;
+    font-size: 19px;
+    color: var(--sage);
+    margin-bottom: 12px;
+  }
+  .practice p{
+    font-size: 14.8px;
+    color: var(--ink-dim);
+  }
+
+  /* final CTA */
+  .final{
+    text-align:center;
+    padding: 130px 0 150px;
+    background:
+      radial-gradient(ellipse 800px 440px at 50% 110%, var(--neon-blue-glow), transparent 60%),
+      var(--bg-2);
+  }
+  .final h2{ max-width: none; margin: 0 auto; }
+  .final .body-copy{ margin-left:auto; margin-right:auto; }
+  .final .hero-actions{ justify-content:center; margin-top:40px; }
+
+  footer{
+    padding: 40px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color: var(--ink-faint);
+    font-size: 13.5px;
+  }
+  footer a{ text-decoration:none; color: var(--slate); }
+
+  @media (max-width: 860px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .breath{ height: 220px; order:-1; }
+    .split{ grid-template-columns: 1fr; }
+    .balance{ grid-template-columns: 1fr; }
+    .whole-grid{ grid-template-columns: repeat(2, 1fr); }
+    .framework{ grid-template-columns: 1fr; }
+    .fw-step{ border-right:none; border-bottom: 1px solid var(--card-line); }
+    .practices{ grid-template-columns: 1fr; }
+    footer{ flex-direction:column; gap:14px; text-align:center; }
+  }
+
+  :focus-visible{
+    outline: 2px solid var(--sage);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo"><span class="logo-dot"></span>EasyLandX</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Start your page</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow-line reveal">Landing pages, built with presence</p>
+      <h1 class="reveal">A landing page that's fully here.</h1>
+      <p class="lede reveal">EasyLandX builds pages the way presence is taught: on purpose, in the moment, and true to what's already there. One message, one path, nothing rushing past the visitor.</p>
+      <div class="hero-actions reveal">
+        <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start with EasyLandX →</a>
+        <a class="link-quiet" href="#framework">See how it comes together</a>
+      </div>
+    </div>
+    <div class="breath" aria-hidden="true">
+      <div class="ring ring--3"></div>
+      <div class="ring ring--2"></div>
+      <div class="ring ring--1"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap split">
+    <div class="reveal">
+      <p class="kicker">Simple, not easy</p>
+      <h2>Clarity is simple to describe. It takes real craft to build.</h2>
+    </div>
+    <div class="reveal">
+      <p class="body-copy" style="margin-top:8px;">A page that converts sounds straightforward: one message, one action, one clear path to it. Getting there takes intention — choosing what stays, what goes, and what earns the visitor's attention. EasyLandX does that work with you, section by section, until what's left is exactly what your business needs to say.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <div class="reveal" style="max-width:640px; margin:0 auto; text-align:center;">
+      <p class="kicker" style="text-align:center;">Wherever your business is today</p>
+      <h2 style="max-width:none;">That's exactly what shows up on the page.</h2>
+      <p class="body-copy" style="margin-left:auto; margin-right:auto;">A new page can't manufacture trust you haven't built yet, and it doesn't need to. What EasyLandX does is let what's already true about your business — the craft, the story, the offer — come through clearly, instead of getting lost behind noise.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker">What we add, what we leave open</p>
+      <h2>What we leave alone matters as much as what we add.</h2>
+      <p class="body-copy">Good pages know when to act and when to hold still. Every element earns its place, and the space around it earns its place too.</p>
+    </div>
+    <div class="balance">
+      <div class="balance-card balance-card--slate reveal">
+        <h3>What we add</h3>
+        <ul>
+          <li>One clear headline, written in your words</li>
+          <li>A single strong call to action</li>
+          <li>Real proof — reviews, results, work shown</li>
+        </ul>
+      </div>
+      <div class="balance-card balance-card--sage reveal">
+        <h3>What we leave open</h3>
+        <ul>
+          <li>Breathing room between ideas</li>
+          <li>An uncluttered pace down the page</li>
+          <li>Quiet, so the one message you need lands</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center; max-width:560px; margin:0 auto;">
+      <p class="kicker" style="text-align:center;">Already whole</p>
+      <h2 style="max-width:none;">You already have what a great page needs.</h2>
+      <p class="body-copy" style="margin-left:auto; margin-right:auto;">A page isn't built from scratch — it's built from what your business already is. We just give each piece room to be seen.</p>
+    </div>
+    <div class="whole-grid">
+      <div class="whole-item reveal"><div class="mark"></div><h4>Your offer</h4><p>What you sell, clearly, without dressing it up as something else.</p></div>
+      <div class="whole-item reveal"><div class="mark"></div><h4>Your story</h4><p>How you started and why it matters to the people you serve.</p></div>
+      <div class="whole-item reveal"><div class="mark"></div><h4>Your proof</h4><p>The results and reviews you've already earned, put where visitors can find them.</p></div>
+      <div class="whole-item reveal"><div class="mark"></div><h4>Your voice</h4><p>How you actually talk to customers, kept intact from first line to last.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto;">
+      <p class="kicker" style="text-align:center;">How it comes together</p>
+      <h2 style="max-width:none;">The EasyLandX Presence Framework</h2>
+      <p class="body-copy" style="margin-left:auto; margin-right:auto;">Three quiet principles, present on every page we build.</p>
+    </div>
+    <div class="framework">
+      <div class="fw-step reveal">
+        <p class="fw-num">Anchor</p>
+        <h3>One clear action</h3>
+        <p>A single, unmistakable next step anchors the whole page, so visitors always know exactly where to go.</p>
+      </div>
+      <div class="fw-step fw-step--mid reveal">
+        <p class="fw-num">Integration</p>
+        <h3>Woven, not bolted on</h3>
+        <p>Your story flows naturally through each section, part of the experience rather than an add-on at the end.</p>
+      </div>
+      <div class="fw-step reveal">
+        <p class="fw-num">Space</p>
+        <h3>Room to land</h3>
+        <p>Space between ideas lets each message settle before the next one arrives — nothing competes for attention.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto;">
+      <p class="kicker" style="text-align:center;">How we build with you</p>
+      <h2 style="max-width:none;">Three practices behind every page</h2>
+    </div>
+    <div class="practices">
+      <div class="practice reveal">
+        <h3>A clear-eyed look</h3>
+        <p>We look at what's working and what visitors actually respond to, so every choice on the page is grounded in evidence rather than habit.</p>
+      </div>
+      <div class="practice reveal">
+        <h3>Fresh eyes, every time</h3>
+        <p>Each page starts by seeing your business as if for the first time — no assumptions carried over from anyone else's brief.</p>
+      </div>
+      <div class="practice reveal">
+        <h3>Built to compound</h3>
+        <p>Trust and conversion build gradually. We design for that curve, and stay with the page as it grows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker" style="text-align:center;">Ready when you are</p>
+      <h2>One page, fully present.</h2>
+      <p class="body-copy">Built around what your business already is — clear, calm, and ready for visitors to arrive exactly where you need them.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start with EasyLandX →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>© EasyLandX</span>
+  <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

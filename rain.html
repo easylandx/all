@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing pages that stay fully present</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --bg-base: #050b1f;
+    --bg-panel: #0a1b4a;
+    --bg-panel-2: #081533;
+    --blue-neon: #2f6fff;
+    --blue-glow: #6fa8ff;
+    --evergreen: #00e08a;
+    --evergreen-dim: #0a8f5c;
+    --amber: #ffb020;
+    --amber-dim: #b87a12;
+    --text-primary: #f1f5ff;
+    --text-muted: #93a6d6;
+    --line: rgba(147, 166, 214, 0.22);
+    --max-w: 1120px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    width: min(100%, var(--max-w));
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  /* ---------- background glow ---------- */
+  .glow-field {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(600px 500px at 12% 8%, rgba(47,111,255,0.35), transparent 60%),
+      radial-gradient(700px 600px at 88% 28%, rgba(0,224,138,0.14), transparent 60%),
+      radial-gradient(600px 500px at 70% 92%, rgba(255,176,32,0.10), transparent 60%);
+  }
+
+  main, header, footer { position: relative; z-index: 1; }
+
+  /* ---------- header ---------- */
+  header {
+    padding: 24px 0;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(10px);
+    background: rgba(5, 11, 31, 0.72);
+    border-bottom: 1px solid var(--line);
+  }
+  header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--amber);
+    box-shadow: 0 0 12px 2px rgba(255,176,32,0.7);
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  nav a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.94rem;
+    transition: color 0.2s ease;
+  }
+  nav a:hover, nav a:focus-visible { color: var(--text-primary); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
+  .btn:focus-visible { outline: 2px solid var(--blue-glow); outline-offset: 3px; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--blue-neon), #1a4fd6);
+    color: #ffffff;
+    box-shadow: 0 0 0 1px rgba(111,168,255,0.4), 0 8px 24px -6px rgba(47,111,255,0.65);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(111,168,255,0.6), 0 12px 30px -6px rgba(47,111,255,0.8); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--line);
+  }
+  .btn-ghost:hover { border-color: var(--evergreen); color: var(--evergreen); }
+  nav .btn-primary { padding: 10px 20px; font-size: 0.88rem; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding: 96px 0 80px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .hero h1 {
+    font-size: clamp(2.3rem, 4.2vw, 3.4rem);
+    color: var(--text-primary);
+  }
+  .hero .accent-word { color: var(--evergreen); font-style: italic; }
+  .hero p.lede {
+    margin-top: 22px;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 46ch;
+  }
+  .hero .cta-row {
+    margin-top: 34px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* breathing orb */
+  .orb-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 380px;
+  }
+  .orb-stage svg { width: 100%; max-width: 380px; height: auto; overflow: visible; }
+  .orb-ring { animation: breathe 6s ease-in-out infinite; transform-origin: center; }
+  .orb-ring.r2 { animation-delay: -1.5s; }
+  .orb-ring.r3 { animation-delay: -3s; }
+  @keyframes breathe {
+    0%, 100% { transform: scale(0.94); opacity: 0.55; }
+    50% { transform: scale(1.05); opacity: 0.95; }
+  }
+
+  /* ---------- section shell ---------- */
+  section { padding: 88px 0; }
+  .panel { background: linear-gradient(180deg, var(--bg-panel-2), var(--bg-panel)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+  .section-head {
+    max-width: 640px;
+    margin-bottom: 56px;
+  }
+  .section-head h2 {
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+  }
+  .section-head p {
+    margin-top: 16px;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+  }
+
+  /* two-up intro */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+  }
+  .intro-grid h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: var(--blue-glow);
+  }
+  .intro-grid p { color: var(--text-muted); }
+
+  /* ---------- framework diagram ---------- */
+  .framework-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 64px;
+  }
+  .fw-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 14px 0;
+  }
+  .fw-shape {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    color: var(--bg-base);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .fw-anchor {
+    width: 128px; height: 128px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, var(--blue-glow), var(--blue-neon));
+    box-shadow: 0 0 40px -4px rgba(47,111,255,0.7);
+  }
+  .fw-rain {
+    width: 108px; height: 108px;
+    transform: rotate(45deg);
+    background: linear-gradient(135deg, var(--amber), var(--amber-dim));
+    box-shadow: 0 0 34px -4px rgba(255,176,32,0.6);
+  }
+  .fw-rain span { transform: rotate(-45deg); display:block; }
+  .connector {
+    width: 2px;
+    height: 46px;
+    background: linear-gradient(var(--blue-neon), var(--amber));
+    opacity: 0.6;
+  }
+  .fw-label {
+    margin-top: 14px;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .fw-caption {
+    margin-top: 6px;
+    max-width: 280px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+  }
+
+  .fw-branches {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .leaf {
+    width: 96px; height: 96px;
+    border-radius: 0 100% 0 100%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    background: linear-gradient(135deg, var(--evergreen), var(--evergreen-dim));
+    box-shadow: 0 0 28px -4px rgba(0,224,138,0.55);
+  }
+  .branch { text-align: center; }
+  .branch h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.08rem;
+    margin: 0 0 8px;
+  }
+  .branch p { color: var(--text-muted); font-size: 0.94rem; max-width: 240px; margin: 0 auto; }
+
+  /* ---------- RAIN steps ---------- */
+  .rain-steps { display: flex; flex-direction: column; gap: 0; }
+  .rain-step {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 28px;
+    padding: 30px 0;
+    border-top: 1px solid var(--line);
+    align-items: flex-start;
+  }
+  .rain-step:last-child { border-bottom: 1px solid var(--line); }
+  .rain-letter {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 2.6rem;
+    color: var(--amber);
+    line-height: 1;
+  }
+  .rain-step h3 { font-size: 1.25rem; font-weight: 500; margin-bottom: 8px; }
+  .rain-step p { color: var(--text-muted); max-width: 58ch; }
+
+  /* ---------- practices ---------- */
+  .practices {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .practice-card {
+    padding: 32px 26px;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.02);
+    position: relative;
+  }
+  .practice-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 26px; right: 26px;
+    height: 3px;
+    border-radius: 0 0 4px 4px;
+  }
+  .practice-card.blue::before { background: var(--blue-neon); }
+  .practice-card.green::before { background: var(--evergreen); }
+  .practice-card.amber::before { background: var(--amber); }
+  .practice-card h3 { font-size: 1.15rem; font-weight: 500; margin-bottom: 12px; }
+  .practice-card p { color: var(--text-muted); font-size: 0.96rem; }
+
+  /* ---------- case study ---------- */
+  .case-study {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 44px;
+    border-radius: 24px;
+    border: 1px solid var(--line);
+    background: linear-gradient(135deg, rgba(47,111,255,0.08), rgba(0,224,138,0.05));
+  }
+  .case-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--evergreen);
+    color: var(--evergreen);
+    font-size: 0.82rem;
+    margin-bottom: 18px;
+  }
+  .case-study h3 { font-size: 1.6rem; margin-bottom: 14px; }
+  .case-study p { color: var(--text-muted); }
+  .case-visual {
+    height: 220px;
+    border-radius: 18px;
+    background: radial-gradient(circle at 30% 20%, rgba(255,176,32,0.25), transparent 55%),
+                radial-gradient(circle at 75% 75%, rgba(0,224,138,0.25), transparent 55%),
+                var(--bg-panel-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    text-align: center;
+    padding: 20px;
+    border: 1px solid var(--line);
+  }
+
+  /* ---------- final CTA ---------- */
+  .final-cta {
+    text-align: center;
+    padding: 100px 0;
+  }
+  .final-cta h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    max-width: 18ch;
+    margin: 0 auto 20px;
+  }
+  .final-cta p { color: var(--text-muted); max-width: 50ch; margin: 0 auto 34px; font-size: 1.05rem; }
+  .final-cta .cta-row { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 40px 0;
+  }
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  footer .logo { font-size: 1.05rem; }
+  footer .foot-note { color: var(--text-muted); font-size: 0.88rem; }
+
+
+  /* Edge protection */
+  img, svg, video, iframe { max-width: 100%; }
+  .hero > *, .intro-grid > *, .practices > *, .case-study > * { min-width: 0; }
+  @media (max-width: 600px) {
+    .wrap { width: 100%; padding-left: 20px; padding-right: 20px; }
+    section { overflow: hidden; }
+    .case-visual { max-width: 100%; overflow-wrap: anywhere; }
+  }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; }
+    .orb-stage { height: 280px; order: -1; }
+    .intro-grid { grid-template-columns: 1fr; gap: 36px; }
+    .fw-branches { grid-template-columns: 1fr; gap: 40px; }
+    .practices { grid-template-columns: 1fr; }
+    .case-study { grid-template-columns: 1fr; padding: 30px; }
+    nav .nav-links { display: none; }
+    .rain-step { grid-template-columns: 60px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow-field" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap">
+    <div class="logo"><span class="logo-dot" aria-hidden="true"></span> EasyLandX</div>
+    <nav>
+      <span class="nav-links" style="display:flex; gap:28px;">
+        <a href="#framework">Framework</a>
+        <a href="#practice">Practice</a>
+        <a href="#work">Work</a>
+      </span>
+      <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div>
+      <h1>A landing page that stays <span class="accent-word">fully present</span> with every visitor.</h1>
+      <p class="lede">EasyLandX designs clear, calm, conversion-ready pages for small businesses — the kind of digital presence that meets people exactly where they are, and invites them to act with ease.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+        <a class="btn btn-ghost" href="#framework">See the framework</a>
+      </div>
+    </div>
+    <div class="orb-stage" aria-hidden="true">
+      <svg viewBox="0 0 300 300">
+        <circle class="orb-ring r1" cx="150" cy="150" r="130" fill="none" stroke="#2f6fff" stroke-width="1.5" opacity="0.5"/>
+        <circle class="orb-ring r2" cx="150" cy="150" r="95" fill="none" stroke="#00e08a" stroke-width="1.5" opacity="0.5"/>
+        <circle class="orb-ring r3" cx="150" cy="150" r="60" fill="none" stroke="#ffb020" stroke-width="1.5" opacity="0.5"/>
+        <circle cx="150" cy="150" r="26" fill="#f1f5ff" opacity="0.9"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- INTRO / GROUNDING -->
+  <section class="panel">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Presence is a skill your website can practice</h2>
+        <p>A calm, focused page isn't a rare talent reserved for big brands — it's a quality any small business can build into their site, on purpose.</p>
+      </div>
+      <div class="intro-grid">
+        <div>
+          <h3>Trained, not accidental</h3>
+          <p>Just like attention is a skill anyone can strengthen, a landing page can be shaped toward the same quality: full clarity for the person reading it, and one clear next step waiting for them. EasyLandX builds every page around this idea, so it feels genuinely present for each visitor rather than simply decorated.</p>
+        </div>
+        <div>
+          <h3>Design and performance, one system</h3>
+          <p>A calm layout and a fast, working page are two sides of the same coin. When your site feels easy to read, it also loads light, guides attention naturally, and keeps working quietly in the background while you focus on running your business.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRAMEWORK DIAGRAM -->
+  <section id="framework">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The EasyLandX Fully Present Framework</h2>
+        <p>A simple structure behind every page we build — from the first thing a visitor sees to the relationship that follows.</p>
+      </div>
+
+      <div class="framework-diagram">
+        <div class="fw-node">
+          <div class="fw-shape fw-anchor">Anchor</div>
+          <div class="fw-label">Establish the anchor</div>
+          <div class="fw-caption">One clear focus for the whole page: your offer, your voice, your visitor's next step.</div>
+        </div>
+        <div class="connector"></div>
+        <div class="fw-node">
+          <div class="fw-shape fw-rain"><span>R.A.I.N</span></div>
+          <div class="fw-label">Apply the R.A.I.N. method</div>
+          <div class="fw-caption">Recognize, Attract, Investigate, and Nurture — the four moves behind a page that converts warmly.</div>
+        </div>
+        <div class="connector"></div>
+
+        <div class="fw-branches">
+          <div class="branch">
+            <div class="leaf" aria-hidden="true"></div>
+            <h4>Steady foundations</h4>
+            <p>A dependable, well-built homepage that visitors and search engines can count on.</p>
+          </div>
+          <div class="branch">
+            <div class="leaf" aria-hidden="true"></div>
+            <h4>Everyday moments</h4>
+            <p>Small, well-timed touches throughout the visit — fast loads, clear confirmations, friendly detail.</p>
+          </div>
+          <div class="branch">
+            <div class="leaf" aria-hidden="true"></div>
+            <h4>Genuine kindness</h4>
+            <p>Copy and design that speak to customers the way any good host would — warmly and clearly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RAIN STEPS -->
+  <section class="panel">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>R.A.I.N., applied to landing pages</h2>
+        <p>Four moves, in order, behind every EasyLandX build.</p>
+      </div>
+      <div class="rain-steps">
+        <div class="rain-step">
+          <div class="rain-letter">R</div>
+          <div>
+            <h3>Recognize your audience</h3>
+            <p>Get clear on who is landing on the page and what brought them there, so every word and image speaks straight to them.</p>
+          </div>
+        </div>
+        <div class="rain-step">
+          <div class="rain-letter">A</div>
+          <div>
+            <h3>Attract with clarity</h3>
+            <p>Welcome visitors with a headline and layout that make sense in the first glance — no guessing, no clutter, just an easy way in.</p>
+          </div>
+        </div>
+        <div class="rain-step">
+          <div class="rain-letter">I</div>
+          <div>
+            <h3>Investigate what works</h3>
+            <p>Watch how real visitors move through the page, and refine the details with actual data rather than guesswork.</p>
+          </div>
+        </div>
+        <div class="rain-step">
+          <div class="rain-letter">N</div>
+          <div>
+            <h3>Nurture every lead</h3>
+            <p>Follow up in a way that feels considerate and personal — the same tone that brought them in stays with them afterward.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICES -->
+  <section id="practice">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Daily presence practices for your website</h2>
+        <p>Small, ongoing habits that keep a landing page feeling fresh, fast, and genuinely helpful.</p>
+      </div>
+      <div class="practices">
+        <div class="practice-card blue">
+          <h3>Keep the anchor clear</h3>
+          <p>One main call to action, placed where it's easy to find, on every page — so visitors always know their next step.</p>
+        </div>
+        <div class="practice-card green">
+          <h3>Add sensory check-ins</h3>
+          <p>Quick trust signals along the way — real photos, honest reviews, a visible way to reach you — placed exactly where visitors pause to look.</p>
+        </div>
+        <div class="practice-card amber">
+          <h3>Speak with warmth</h3>
+          <p>Every button, message, and confirmation is written the way you'd want to be spoken to: plainly, kindly, and with respect for your visitor's time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDY -->
+  <section class="panel" id="work">
+    <div class="wrap">
+      <div class="case-study">
+        <div>
+          <span class="case-tag">Built with the framework</span>
+          <h3>Ana Gastronomics, LLC · Culichi Sushi</h3>
+          <p>For this Perris, California business, EasyLandX designed a landing page that puts the menu, the story, and online ordering front and center — clear, fast, and ready for the next customer to say yes. The same anchor-and-nurture approach carries through from the homepage to their social channels.</p>
+        </div>
+        <div class="case-visual">"Clear enough to act on, warm enough to remember."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="wrap">
+      <h2>Ready for a landing page that's fully present?</h2>
+      <p>Bring your business the same clarity and calm your customers already look for. EasyLandX builds it with you.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="logo"><span class="logo-dot" aria-hidden="true"></span> EasyLandX</div>
+    <div class="foot-note">Calm, clear, conversion-ready websites for small businesses.</div>
+  </div>
+</footer>
+
+</body>
+</html>

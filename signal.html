@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — One Clear Signal, No Competing Noise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --neon-blue: #1737FF;
+    --neon-blue-deep: #0F26D6;
+    --neon-amber: #FFB300;
+    --neon-green: #33FF8C;
+    --ink: #050818;
+    --paper: #F3F5FF;
+    --radius: 2px;
+    --max-w: 1120px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--neon-blue);
+    color: var(--paper);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 400;
+    line-height: 1.06;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  a{ color: inherit; }
+  :focus-visible{ outline: 3px solid var(--neon-amber); outline-offset: 3px; }
+
+  .wrap{ max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Header ---------- */
+  header{ padding: 26px 0; border-bottom: 3px solid rgba(243,245,255,0.3); }
+  .header-row{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap: wrap; }
+  .logo{ font-family:'Archivo Black', sans-serif; font-size:22px; }
+  .logo span{ color: var(--neon-amber); }
+  .header-cta{
+    font-weight: 700; font-size: 15px;
+    background: var(--neon-amber); color: var(--ink);
+    padding: 11px 20px; border-radius: var(--radius);
+    text-decoration:none; border: 3px solid var(--neon-amber);
+    white-space: nowrap; display:inline-block;
+    transition: transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .header-cta:hover{ background: var(--neon-green); border-color: var(--neon-green); transform: translateY(-2px); }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding: 88px 0 96px; }
+  .hero-eyebrow{ font-size:16px; font-weight:700; color: var(--neon-amber); max-width: 560px; margin-bottom: 18px; }
+  .hero h1{ font-size: clamp(38px, 6vw, 74px); max-width: 940px; }
+  .hero h1 em{
+    font-style: normal;
+    background: var(--neon-green); color: var(--ink);
+    padding: 0 10px;
+    box-decoration-break: clone; -webkit-box-decoration-break: clone;
+  }
+  .hero p.lead{ margin-top: 26px; font-size: 19px; max-width: 560px; font-weight: 500; color: rgba(243,245,255,0.9); }
+  .hero-actions{ margin-top: 38px; display:flex; gap:18px; flex-wrap: wrap; align-items:center; }
+  .btn-primary{
+    font-weight: 700; font-size: 17px;
+    background: var(--neon-amber); color: var(--ink);
+    padding: 17px 30px; border-radius: var(--radius);
+    text-decoration:none; border: 3px solid var(--neon-amber);
+    display:inline-block;
+    box-shadow: 6px 6px 0 var(--neon-green);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary:hover{ transform: translate(-3px,-3px); box-shadow: 9px 9px 0 var(--neon-green); }
+  .btn-ghost{
+    font-weight: 700; font-size: 16px;
+    text-decoration: underline; text-underline-offset: 4px;
+    padding: 12px 4px; color: var(--paper);
+  }
+  .hero-strip{
+    margin-top: 64px; border-top: 3px solid rgba(243,245,255,0.3); padding-top: 22px;
+    display:flex; gap: 40px; flex-wrap: wrap; font-weight:700; font-size:14px; color: rgba(243,245,255,0.85);
+  }
+
+  /* ---------- Section shells ---------- */
+  section{ padding: 88px 0; }
+  .on-ink{ background: var(--ink); }
+  .on-paper{ background: var(--paper); color: var(--ink); }
+  .on-paper h2, .on-paper h3{ color: var(--ink); }
+
+  .kicker{ font-weight:700; font-size:15px; color: var(--neon-amber); margin-bottom:14px; }
+  .on-paper .kicker{ color: var(--neon-blue-deep); }
+  h2.section-title{ font-size: clamp(30px, 4.2vw, 46px); max-width: 740px; }
+  .section-lead{ margin-top:20px; max-width: 620px; font-size:17px; font-weight:500; color: rgba(243,245,255,0.85); }
+  .on-paper .section-lead{ color: rgba(5,8,24,0.78); }
+
+  /* ---------- Framework flow ---------- */
+  .flow{ margin-top: 56px; display:flex; flex-direction:column; gap:0; }
+  .flow-connector{ display:flex; justify-content:center; padding:6px 0; }
+  .flow-connector svg{ width:26px; height:26px; }
+  .flow-box{ flex:1; border: 3px solid var(--neon-green); padding: 24px 22px; border-radius: var(--radius); }
+  .flow-box h3{ font-size:19px; font-family:'Space Grotesk'; font-weight:700; color: var(--neon-green); }
+  .flow-box p{ margin: 10px 0 0; font-size:15px; color: rgba(243,245,255,0.82); }
+  .flow-box .tag{
+    display:inline-block; font-size:12px; font-weight:700;
+    background: var(--neon-green); color: var(--ink);
+    padding: 4px 9px; border-radius: var(--radius); margin-bottom: 12px;
+  }
+  .flow-branch{ display:flex; gap:18px; }
+  .flow-branch .flow-box{ border-color: var(--neon-amber); }
+  .flow-branch .flow-box h3{ color: var(--neon-amber); }
+  .flow-branch .flow-box .tag{ background: var(--neon-amber); }
+  @media (max-width: 760px){ .flow-branch{ flex-direction: column; } }
+
+  /* ---------- Signal vs noise comparison ---------- */
+  .compare{
+    margin-top: 56px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 3px solid var(--ink);
+  }
+  .compare-col{ padding: 30px 28px; }
+  .compare-col:first-child{ border-right: 3px solid var(--ink); }
+  .compare-col.noise{ background: rgba(5,8,24,0.04); }
+  .compare-col.signal{ background: var(--neon-green); }
+  .compare-label{
+    font-family:'Archivo Black'; font-size: 20px; margin-bottom: 18px;
+  }
+  .compare-col ul{ margin:0; padding-left: 20px; }
+  .compare-col li{ margin-bottom: 10px; font-size: 15px; }
+  @media (max-width: 700px){
+    .compare{ grid-template-columns: 1fr; }
+    .compare-col:first-child{ border-right: none; border-bottom: 3px solid var(--ink); }
+  }
+
+  /* ---------- Pillars ---------- */
+  .pillars{
+    margin-top: 56px; display:grid; grid-template-columns: repeat(3,1fr); gap:0;
+    border-top: 3px solid rgba(243,245,255,0.3); border-left: 3px solid rgba(243,245,255,0.3);
+  }
+  .pillar{ padding: 30px 26px; border-right: 3px solid rgba(243,245,255,0.3); border-bottom: 3px solid rgba(243,245,255,0.3); }
+  .pillar h3{ font-size:18px; font-family:'Space Grotesk'; font-weight:700; color: var(--neon-amber); }
+  .pillar p{ margin-top:12px; font-size:15px; color: rgba(243,245,255,0.85); }
+  @media (max-width: 760px){ .pillars{ grid-template-columns: 1fr; } }
+
+  /* ---------- Detail toggle ---------- */
+  .detail-list{ margin-top: 48px; border-top: 3px solid var(--ink); }
+  .detail-item{ border-bottom: 3px solid var(--ink); }
+  .detail-item summary{
+    cursor:pointer; list-style:none; padding: 24px 0;
+    display:flex; align-items:center; justify-content:space-between;
+    font-weight:700; font-size:18px; gap:20px;
+  }
+  .detail-item summary::-webkit-details-marker{ display:none; }
+  .detail-item .plus{
+    flex-shrink:0; width:30px; height:30px; border: 3px solid var(--ink); border-radius:50%; position:relative;
+  }
+  .detail-item .plus::before, .detail-item .plus::after{
+    content:''; position:absolute; background: var(--ink); top:50%; left:50%; transform: translate(-50%,-50%);
+  }
+  .detail-item .plus::before{ width:12px; height:3px; }
+  .detail-item .plus::after{ width:3px; height:12px; transition: opacity .15s ease; }
+  .detail-item[open] .plus::after{ opacity:0; }
+  .detail-item .detail-body{ padding:0 0 26px; max-width: 640px; font-size:15px; }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta h2{ font-size: clamp(32px, 5vw, 58px); max-width: 760px; }
+  .final-cta-actions{ margin-top: 34px; }
+
+  footer{
+    padding: 40px 0; border-top: 3px solid rgba(243,245,255,0.3);
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+    font-size:14px; font-weight:700; color: rgba(243,245,255,0.85);
+  }
+  footer a{ text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; scroll-behavior: auto !important; }
+  }
+  @media (max-width: 600px){
+    .hero{ padding: 56px 0 64px; }
+    section{ padding: 64px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-row">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="header-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Build My Page</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="hero-eyebrow">Landing pages for small businesses, built around one idea:</p>
+    <h1>Your visitor is tuning out ninety open tabs. Give them <em>one signal</em> worth keeping.</h1>
+    <p class="lead">EasyLandX designs landing pages that cut through the noise — one clear message, one action, and nothing left competing for a visitor's attention.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your EasyLandX Page</a>
+      <a class="btn-ghost" href="#framework">See how it works</a>
+    </div>
+    <div class="hero-strip">
+      <span>Built for small businesses</span>
+      <span>Priced to be an easy yes</span>
+      <span>Designed to convert visitors into customers</span>
+    </div>
+  </div>
+</section>
+
+<section class="on-ink" id="framework">
+  <div class="wrap">
+    <p class="kicker">Why noise sinks a landing page</p>
+    <h2 class="section-title">Most pages don't lose visitors on quality. They lose them to noise.</h2>
+    <p class="section-lead">A visitor scanning your page is doing the same thing a decision-maker does under pressure: filtering a flood of input for the one signal that actually matters. Autoplay banners, three competing buttons, and paragraphs of unnecessary copy all count as noise — and noise is what sends a visitor elsewhere. Every EasyLandX page is built with a deliberate process for finding the signal and cutting everything around it.</p>
+
+    <div class="flow">
+      <div class="flow-connector" style="padding-top:0;"></div>
+      <div class="flow-box" style="margin-bottom:0;">
+        <span class="tag">Audit the noise</span>
+        <h3>What's competing for attention on your page</h3>
+        <p>We review every element on the page and ask a single question: does this help a visitor understand and act, or is it just competing for their attention?</p>
+      </div>
+      <div class="flow-connector"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v16m0 0l-6-6m6 6l6-6" stroke="#33FF8C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="flow-box" style="margin-bottom:0;">
+        <span class="tag">Pause &amp; see it fresh</span>
+        <h3>Look at the page the way a stranger would</h3>
+        <p>We step back and view the page with no prior knowledge of your business, so it's judged on what it actually says rather than what we know it means.</p>
+      </div>
+      <div class="flow-connector"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v16m0 0l-6-6m6 6l6-6" stroke="#33FF8C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="flow-branch">
+        <div class="flow-box">
+          <span class="tag">Circuit breakers</span>
+          <h3>Layout choices that hold attention</h3>
+          <p>One headline, one primary action, and generous space around both, so the key message can't get lost in clutter.</p>
+        </div>
+        <div class="flow-box">
+          <span class="tag">The bounce test</span>
+          <h3>Work backward from an early exit</h3>
+          <p>We picture a visitor leaving within five seconds, trace what could cause it, and adjust the page before it ever goes live.</p>
+        </div>
+        <div class="flow-box">
+          <span class="tag">Signal over noise</span>
+          <h3>Keep what helps, cut what distracts</h3>
+          <p>Every remaining element earns its place: a clear value line, honest proof, and a single next step.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="on-paper">
+  <div class="wrap">
+    <p class="kicker">Signal vs. noise</p>
+    <h2 class="section-title">A simple filter for every element on your page.</h2>
+    <p class="section-lead">Before a page goes live, we sort everything on it into two columns. Only one of them makes the final cut.</p>
+
+    <div class="compare">
+      <div class="compare-col noise">
+        <div class="compare-label">Noise</div>
+        <ul>
+          <li>Several buttons, each asking for something different</li>
+          <li>Stock imagery that says nothing about your business</li>
+          <li>Long paragraphs before the actual offer appears</li>
+          <li>Autoplay video or motion that pulls focus away from the message</li>
+          <li>Jargon that describes the business, not the customer's outcome</li>
+        </ul>
+      </div>
+      <div class="compare-col signal">
+        <div class="compare-label">Signal</div>
+        <ul>
+          <li>One clear action, stated in plain language</li>
+          <li>A headline that says exactly what you offer and to whom</li>
+          <li>Real proof — a result, a review, a number that matters</li>
+          <li>Enough white space for the message to stand on its own</li>
+          <li>Words your customer would use to describe their own need</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillars" style="border-color: rgba(5,8,24,0.18); margin-top: 72px;">
+      <div class="pillar" style="border-color: rgba(5,8,24,0.18);">
+        <h3 style="color: var(--neon-blue-deep);">Audit first</h3>
+        <p style="color: rgba(5,8,24,0.78);">Nothing is added to your page until we've confirmed it earns its place.</p>
+      </div>
+      <div class="pillar" style="border-color: rgba(5,8,24,0.18);">
+        <h3 style="color: var(--neon-blue-deep);">One ask</h3>
+        <p style="color: rgba(5,8,24,0.78);">A single call to action, stated plainly, so visitors always know the next step.</p>
+      </div>
+      <div class="pillar" style="border-color: rgba(5,8,24,0.18);">
+        <h3 style="color: var(--neon-blue-deep);">Built to hold attention</h3>
+        <p style="color: rgba(5,8,24,0.78);">Layout and pacing designed so the key message is the loudest thing on the page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="on-ink">
+  <div class="wrap">
+    <p class="kicker">A closer look</p>
+    <h2 class="section-title">What goes into an EasyLandX page</h2>
+    <div class="detail-list" style="border-color: rgba(243,245,255,0.3);">
+      <details class="detail-item" style="border-color: rgba(243,245,255,0.3);" open>
+        <summary>How do you decide what stays on the page? <span class="plus"></span></summary>
+        <div class="detail-body" style="color: rgba(243,245,255,0.85);">Every element is sorted into signal or noise before launch. If it doesn't help a visitor understand your offer or take action, it doesn't make the final page.</div>
+      </details>
+      <details class="detail-item" style="border-color: rgba(243,245,255,0.3);">
+        <summary>Is this a template or a website builder? <span class="plus"></span></summary>
+        <div class="detail-body" style="color: rgba(243,245,255,0.85);">Your page is built around your business and your words, not assembled from a generic template or handed to you as a drag-and-drop tool.</div>
+      </details>
+      <details class="detail-item" style="border-color: rgba(243,245,255,0.3);">
+        <summary>What is the "bounce test"? <span class="plus"></span></summary>
+        <div class="detail-body" style="color: rgba(243,245,255,0.85);">Before your page goes live, we imagine a visitor leaving within five seconds and trace back what could cause it — then fix that in the design itself.</div>
+      </details>
+      <details class="detail-item" style="border-color: rgba(243,245,255,0.3);">
+        <summary>Who is EasyLandX built for? <span class="plus"></span></summary>
+        <div class="detail-body" style="color: rgba(243,245,255,0.85);">Small businesses that want a page that represents them clearly, holds a visitor's attention, and stays easy on the budget.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <p class="kicker">Ready when you are</p>
+    <h2>Cut the noise. Keep the signal that turns visitors into customers.</h2>
+    <p class="section-lead">Tell us about your business, and we'll build a page that says one thing clearly — instead of ten things quietly.</p>
+    <div class="final-cta-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your EasyLandX Page</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap header-row">
+    <span>EasyLandX — landing pages, built to be heard over the noise.</span>
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>

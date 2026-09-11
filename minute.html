@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Pages That Work In The First Minute</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --neon-orange: #FF4C00;
+    --neon-orange-deep: #E23F00;
+    --neon-yellow: #F4FF2B;
+    --neon-black: #0D0D0D;
+    --paper: #FFF7ED;
+    --line: rgba(13,13,13,0.16);
+    --line-on-black: rgba(244,255,43,0.28);
+    --max-w: 1120px;
+    --radius: 2px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--neon-orange);
+    color: var(--neon-black);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 400;
+    line-height: 1.05;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  :focus-visible{
+    outline: 3px solid var(--neon-black);
+    outline-offset: 3px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    padding: 26px 0;
+    border-bottom: 3px solid var(--neon-black);
+  }
+  .header-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 16px;
+  }
+  .logo{
+    font-family:'Archivo Black', sans-serif;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+  .logo span{ color: var(--paper); -webkit-text-stroke: 1.5px var(--neon-black); }
+  .header-cta{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    background: var(--neon-black);
+    color: var(--neon-yellow);
+    padding: 11px 20px;
+    border-radius: var(--radius);
+    text-decoration:none;
+    border: 3px solid var(--neon-black);
+    white-space: nowrap;
+    transition: transform .15s ease, background .15s ease, color .15s ease;
+    display:inline-block;
+  }
+  .header-cta:hover{ background: var(--neon-yellow); color: var(--neon-black); transform: translateY(-2px); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 84px 0 96px;
+  }
+  .hero-eyebrow{
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    max-width: 540px;
+  }
+  .hero h1{
+    font-size: clamp(40px, 6.4vw, 78px);
+    max-width: 920px;
+  }
+  .hero h1 em{
+    font-style: normal;
+    background: var(--neon-black);
+    color: var(--neon-yellow);
+    padding: 0 10px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  .hero p.lead{
+    margin-top: 26px;
+    font-size: 19px;
+    max-width: 560px;
+    font-weight: 500;
+  }
+  .hero-actions{
+    margin-top: 38px;
+    display:flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-primary{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    background: var(--neon-black);
+    color: var(--neon-yellow);
+    padding: 17px 30px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    border: 3px solid var(--neon-black);
+    display: inline-block;
+    transition: transform .15s ease, box-shadow .15s ease;
+    box-shadow: 6px 6px 0 var(--neon-black);
+  }
+  .btn-primary:hover{ transform: translate(-3px,-3px); box-shadow: 9px 9px 0 var(--neon-black); }
+  .btn-ghost{
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    padding: 12px 4px;
+  }
+
+  .hero-strip{
+    margin-top: 64px;
+    border-top: 3px solid var(--neon-black);
+    padding-top: 22px;
+    display:flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ padding: 88px 0; }
+  .on-black{ background: var(--neon-black); color: var(--paper); }
+  .on-black h2, .on-black h3{ color: var(--paper); }
+  .on-yellow{ background: var(--neon-yellow); color: var(--neon-black); }
+
+  .kicker{
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+  h2.section-title{
+    font-size: clamp(30px, 4.2vw, 46px);
+    max-width: 720px;
+  }
+  .section-lead{
+    margin-top: 20px;
+    max-width: 620px;
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .on-black .section-lead{ color: rgba(255,247,237,0.86); }
+
+  /* ---------- Flow diagram ---------- */
+  .flow{
+    margin-top: 56px;
+    display:flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .flow-row{
+    display:flex;
+    gap: 18px;
+  }
+  .flow-connector{
+    display:flex;
+    justify-content: center;
+    padding: 6px 0;
+  }
+  .flow-connector svg{ width: 26px; height: 26px; }
+  .flow-box{
+    flex:1;
+    border: 3px solid var(--neon-yellow);
+    padding: 24px 22px;
+    border-radius: var(--radius);
+  }
+  .flow-box h3{
+    font-size: 19px;
+    color: var(--neon-yellow);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+  }
+  .flow-box p{
+    margin: 10px 0 0;
+    font-size: 15px;
+    color: rgba(255,247,237,0.82);
+  }
+  .flow-box .tag{
+    display:inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    background: var(--neon-yellow);
+    color: var(--neon-black);
+    padding: 4px 9px;
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+  }
+  .flow-branch{
+    display:flex;
+    gap: 18px;
+    margin-top: 0;
+  }
+  .flow-branch .flow-box{ border-color: var(--paper); }
+  .flow-branch .flow-box .tag{ background: var(--paper); }
+  .flow-branch .flow-box h3{ color: var(--paper); }
+
+  @media (max-width: 760px){
+    .flow-branch{ flex-direction: column; }
+  }
+
+  /* ---------- Test / stat block ---------- */
+  .test-block{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    margin-top: 56px;
+  }
+  .test-number{
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(90px, 13vw, 170px);
+    line-height: 0.9;
+  }
+  .test-copy p{ font-size: 16px; margin: 0 0 14px; }
+  .test-copy p:last-child{ margin-bottom: 0; }
+  @media (max-width: 760px){
+    .test-block{ grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  /* ---------- Three pillars ---------- */
+  .pillars{
+    margin-top: 56px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 3px solid var(--neon-black);
+    border-left: 3px solid var(--neon-black);
+  }
+  .pillar{
+    padding: 30px 26px;
+    border-right: 3px solid var(--neon-black);
+    border-bottom: 3px solid var(--neon-black);
+  }
+  .pillar h3{ font-size: 18px; font-family:'Space Grotesk'; font-weight:700; }
+  .pillar p{ margin-top: 12px; font-size: 15px; }
+  @media (max-width: 760px){
+    .pillars{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Detail toggle (opt-in for details) ---------- */
+  .detail-list{
+    margin-top: 48px;
+    border-top: 3px solid var(--neon-black);
+  }
+  .detail-item{
+    border-bottom: 3px solid var(--neon-black);
+  }
+  .detail-item summary{
+    cursor: pointer;
+    list-style: none;
+    padding: 24px 0;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 18px;
+    gap: 20px;
+  }
+  .detail-item summary::-webkit-details-marker{ display:none; }
+  .detail-item .plus{
+    flex-shrink:0;
+    width: 30px; height: 30px;
+    border: 3px solid var(--neon-black);
+    border-radius: 50%;
+    position: relative;
+  }
+  .detail-item .plus::before, .detail-item .plus::after{
+    content:'';
+    position:absolute;
+    background: var(--neon-black);
+    top:50%; left:50%;
+    transform: translate(-50%,-50%);
+  }
+  .detail-item .plus::before{ width: 12px; height: 3px; }
+  .detail-item .plus::after{ width: 3px; height: 12px; transition: opacity .15s ease; }
+  .detail-item[open] .plus::after{ opacity: 0; }
+  .detail-item .detail-body{ padding: 0 0 26px; max-width: 640px; font-size: 15px; }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    text-align:left;
+  }
+  .final-cta h2{ font-size: clamp(32px, 5vw, 58px); max-width: 760px; }
+  .final-cta-actions{ margin-top: 34px; }
+
+  footer{
+    padding: 40px 0;
+    border-top: 3px solid var(--neon-black);
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  footer a{ text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; scroll-behavior: auto !important; }
+  }
+
+  @media (max-width: 600px){
+    .hero{ padding: 56px 0 64px; }
+    section{ padding: 64px 0; }
+    .flow-row{ flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-row">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="header-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Build My Page</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="hero-eyebrow">Landing pages for small businesses, built around one idea:</p>
+    <h1>Visitors decide in <em>the first minute</em>. We make sure it goes your way.</h1>
+    <p class="lead">EasyLandX builds affordable, conversion-focused landing pages that tell people exactly who you are and what to do next — clearly, quickly, and from the very first scroll.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your EasyLandX Page</a>
+      <a class="btn-ghost" href="#framework">See how it works</a>
+    </div>
+    <div class="hero-strip">
+      <span>Built for small businesses</span>
+      <span>Priced to be an easy yes</span>
+      <span>Designed to convert visitors into customers</span>
+    </div>
+  </div>
+</section>
+
+<section class="on-black" id="framework">
+  <div class="wrap">
+    <p class="kicker" style="color: var(--neon-yellow);">Why the first minute matters</p>
+    <h2 class="section-title">People give a new page about a minute to earn their attention — so we spend it well.</h2>
+    <p class="section-lead">A visitor who understands your business right away is a visitor who stays. Instead of leading with technical detail or a slow introduction, every EasyLandX page opens with the three things that matter most: who you are, what you're asking for, and why it's worth their time.</p>
+
+    <div class="flow">
+      <div class="flow-row">
+        <div class="flow-box">
+          <span class="tag">Context</span>
+          <h3>Who you are, in one line</h3>
+          <p>We open with a plain-language line that places your business immediately — no jargon, no guessing.</p>
+        </div>
+      </div>
+      <div class="flow-connector"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v16m0 0l-6-6m6 6l6-6" stroke="#F4FF2B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="flow-row">
+        <div class="flow-box">
+          <span class="tag">Intent</span>
+          <h3>What you're asking visitors to do</h3>
+          <p>Every page states its one goal plainly — book a call, request a quote, sign up — so visitors always know where they stand.</p>
+        </div>
+      </div>
+      <div class="flow-connector"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v16m0 0l-6-6m6 6l6-6" stroke="#F4FF2B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="flow-branch">
+        <div class="flow-box">
+          <span class="tag">Key message</span>
+          <h3>The headline that carries the page</h3>
+          <p>One clear sentence that gives visitors the bottom line before they scroll any further.</p>
+        </div>
+        <div class="flow-box">
+          <span class="tag">15-second summary</span>
+          <h3>Context, intent, and key message, together</h3>
+          <p>A short opening that a new visitor can read in about 15 seconds and fully understand.</p>
+        </div>
+        <div class="flow-box">
+          <span class="tag">Opt-in for details</span>
+          <h3>More depth for visitors who want it</h3>
+          <p>Everything below the fold is there for the visitor who's ready to go deeper, at their own pace.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">The 15-second test</p>
+    <h2 class="section-title">Every EasyLandX page is built to pass a simple test.</h2>
+    <div class="test-block">
+      <div class="test-number">15<span style="font-size: 0.35em;">sec</span></div>
+      <div class="test-copy">
+        <p>Give a page 15 seconds, and a new visitor should already know who you are, what you offer, and exactly what to do next.</p>
+        <p>That's the standard we build to. We boil your business down to a headline that lands fast, back it with a short summary, and give visitors a single clear action to take — so the page earns their attention immediately and keeps it.</p>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <h3>Say it upfront</h3>
+        <p>The headline carries the full story, so visitors get the point before they even finish scrolling.</p>
+      </div>
+      <div class="pillar">
+        <h3>Ask for one thing</h3>
+        <p>Every button states its outcome plainly — "Book a Call" books a call, "Get a Quote" gets a quote.</p>
+      </div>
+      <div class="pillar">
+        <h3>Invite them deeper</h3>
+        <p>The details sit just below, ready for the visitors who want the full picture.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="on-yellow">
+  <div class="wrap">
+    <p class="kicker">A closer look</p>
+    <h2 class="section-title">What goes into an EasyLandX page</h2>
+    <div class="detail-list">
+      <details class="detail-item" open>
+        <summary>How fast can my page go live? <span class="plus"></span></summary>
+        <div class="detail-body">We keep the process short — a quick conversation about your business, a first draft built around the 15-second test, and a round of refinement so the page reads exactly as you'd say it yourself.</div>
+      </details>
+      <details class="detail-item">
+        <summary>Is this a template or a website builder? <span class="plus"></span></summary>
+        <div class="detail-body">Your page is built by hand around your business, your words, and your offer — not assembled from a generic template or handed to you as a drag-and-drop tool.</div>
+      </details>
+      <details class="detail-item">
+        <summary>What makes a page "conversion-focused"? <span class="plus"></span></summary>
+        <div class="detail-body">Every choice on the page — the headline, the layout, the button copy — is made to help a visitor understand your offer quickly and take the next step with confidence.</div>
+      </details>
+      <details class="detail-item">
+        <summary>Who is EasyLandX built for? <span class="plus"></span></summary>
+        <div class="detail-body">Small businesses that want a page that represents them well, communicates clearly, and stays easy on the budget.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="on-black final-cta">
+  <div class="wrap">
+    <p class="kicker" style="color: var(--neon-yellow);">Ready when you are</p>
+    <h2>Give your visitors a first minute worth staying for.</h2>
+    <p class="section-lead">Tell us about your business, and we'll build a page that says exactly what you do, clearly, from the very first line.</p>
+    <div class="final-cta-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your EasyLandX Page</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap header-row">
+    <span>EasyLandX — landing pages, built for the first minute.</span>
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>
