@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Pages that construct the right reaction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violet-950:#150631;
+    --violet-900:#1F0A47;
+    --violet-800:#2C1064;
+    --violet-700:#3B1587;
+    --violet-600:#5420B5;
+    --sun:#FFD447;
+    --sun-bright:#FFE98A;
+    --rose:#FF3E8E;
+    --rose-bright:#FF6FB0;
+    --cloud:#F6F2FF;
+    --cloud-soft:#C9BEEA;
+    --muted:#9C86D4;
+    --card:rgba(255,255,255,0.045);
+    --card-border:rgba(255,255,255,0.10);
+    --radius-lg:24px;
+    --max-w:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--violet-950);
+    color:var(--cloud);
+    font-family:'Inter', system-ui, sans-serif;
+    line-height:1.6;
+    background-image:
+      radial-gradient(60% 45% at 85% 0%, rgba(255,62,142,0.14), transparent 60%),
+      radial-gradient(55% 40% at 5% 15%, rgba(255,212,71,0.10), transparent 60%),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 64px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 64px);
+    background-attachment:fixed;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+    color:#fff;
+  }
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit;}
+  img,svg{display:block; max-width:100%;}
+
+  .wrap{max-width:var(--max-w); margin:0 auto; padding:0 32px;}
+  section{padding:100px 0;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  :focus-visible{outline:3px solid var(--sun); outline-offset:3px;}
+
+  /* ---------- Nav ---------- */
+  header.site-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(21,6,49,0.82);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--card-border);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:var(--max-w); margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.24rem;}
+  nav.nav-links{display:none; gap:30px;}
+  @media(min-width:860px){nav.nav-links{display:flex;}}
+  nav.nav-links a{color:var(--cloud-soft); font-size:0.96rem; font-weight:500; transition:color .18s ease;}
+  nav.nav-links a:hover{color:#fff;}
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:13px 26px; border-radius:999px; font-weight:600; font-size:0.98rem;
+    border:none; cursor:pointer; transition:transform .15s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(120deg, var(--rose), var(--sun));
+    color:#1B0733;
+    box-shadow:0 10px 26px rgba(255,62,142,0.35);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 14px 32px rgba(255,62,142,0.45);}
+  .btn-ghost{background:transparent; color:var(--cloud); border:1.5px solid var(--card-border);}
+  .btn-ghost:hover{border-color:var(--muted); background:rgba(255,255,255,0.05);}
+  .nav-cta{display:none;}
+  @media(min-width:860px){.nav-cta{display:inline-flex;}}
+
+  /* ---------- Hero ---------- */
+  .hero-inner{display:grid; grid-template-columns:1.1fr 1fr; gap:56px; align-items:center; padding-top:70px;}
+  @media(max-width:900px){.hero-inner{grid-template-columns:1fr;}}
+  .hero h1{font-size:clamp(2.2rem, 4.1vw, 3.3rem); line-height:1.1;}
+  .hero .lede{margin-top:22px; font-size:1.14rem; color:var(--cloud-soft); max-width:48ch;}
+  .hero-actions{margin-top:34px; display:flex; gap:16px; flex-wrap:wrap;}
+  .hero-note{margin-top:22px; font-size:0.92rem; color:var(--muted);}
+
+  .radar-wrap{position:relative; aspect-ratio:1/1; max-width:400px; margin:0 auto;}
+  .radar-ring{
+    position:absolute; inset:0; border-radius:50%;
+    border:1px solid rgba(255,255,255,0.12);
+  }
+  .radar-ring.r2{inset:14%;}
+  .radar-ring.r3{inset:28%;}
+  .radar-ring.r4{inset:42%;}
+  .radar-sweep{
+    position:absolute; inset:0; border-radius:50%;
+    background:conic-gradient(from 0deg, rgba(255,62,142,0.55), transparent 35%);
+    animation:spin 6s linear infinite;
+  }
+  .radar-core{
+    position:absolute; inset:44%; border-radius:50%;
+    background:radial-gradient(circle, var(--sun), var(--rose) 70%);
+    box-shadow:0 0 40px rgba(255,212,71,0.6);
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  /* ---------- Section headers ---------- */
+  .section-head{max-width:680px; margin:0 auto 56px; text-align:center;}
+  .section-head h2{font-size:clamp(1.9rem, 3.2vw, 2.5rem); line-height:1.15;}
+  .section-head p{margin-top:16px; font-size:1.06rem; color:var(--cloud-soft);}
+
+  .card{
+    background:var(--card); border:1px solid var(--card-border);
+    border-radius:var(--radius-lg); padding:36px;
+  }
+
+  .science-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+  @media(max-width:900px){.science-grid{grid-template-columns:1fr;}}
+  .science-grid h3{font-size:1.2rem; margin-bottom:12px;}
+  .science-grid p{color:var(--cloud-soft); font-size:0.98rem;}
+  .glow-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:10px;}
+
+  /* ---------- Affect map ---------- */
+  .map-layout{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;}
+  @media(max-width:900px){.map-layout{grid-template-columns:1fr;}}
+  .affect-box{
+    position:relative;
+    aspect-ratio:1/1;
+    background:linear-gradient(180deg, rgba(255,62,142,0.10), rgba(255,212,71,0.10));
+    border:1px solid var(--card-border);
+    border-radius:20px;
+    cursor:crosshair;
+    overflow:hidden;
+  }
+  .affect-box::before, .affect-box::after{
+    content:''; position:absolute; background:rgba(255,255,255,0.18);
+  }
+  .affect-box::before{ left:50%; top:0; bottom:0; width:1px; }
+  .affect-box::after{ top:50%; left:0; right:0; height:1px; }
+  .axis-label{
+    position:absolute; font-size:0.78rem; color:var(--muted); font-weight:500;
+  }
+  .axis-top{top:8px; left:50%; transform:translateX(-50%);}
+  .axis-bottom{bottom:8px; left:50%; transform:translateX(-50%);}
+  .axis-left{left:10px; top:50%; transform:translateY(-50%) rotate(-90deg); transform-origin:left center;}
+  .axis-right{right:10px; top:50%; transform:translateY(-50%) rotate(90deg); transform-origin:right center;}
+  .affect-marker{
+    position:absolute; width:22px; height:22px; border-radius:50%;
+    background:radial-gradient(circle, var(--sun), var(--rose) 75%);
+    box-shadow:0 0 22px rgba(255,212,71,0.7);
+    transform:translate(-50%,-50%);
+    left:50%; top:50%;
+    transition:left .25s ease, top .25s ease;
+    pointer-events:none;
+  }
+  .map-readout h3{font-size:1.4rem; margin-bottom:6px;}
+  #affectLabel{color:var(--sun);}
+  .map-readout p{color:var(--cloud-soft); font-size:1rem; margin-top:14px;}
+  .map-hint{margin-top:20px; font-size:0.88rem; color:var(--muted);}
+
+  /* ---------- Granularity chips ---------- */
+  .chip-grid{display:flex; flex-wrap:wrap; gap:14px; justify-content:center;}
+  .chip{
+    position:relative;
+    padding:14px 22px;
+    border-radius:999px;
+    background:var(--card);
+    border:1px solid var(--card-border);
+    cursor:pointer;
+    font-weight:500;
+    font-size:0.98rem;
+    transition:border-color .2s ease, background .2s ease;
+    min-width:150px;
+    text-align:center;
+  }
+  .chip:hover{border-color:var(--rose);}
+  .chip .vague{display:block;}
+  .chip .precise{display:none; color:var(--sun); font-weight:600;}
+  .chip.revealed .vague{display:none;}
+  .chip.revealed .precise{display:block;}
+  .chip.revealed{background:rgba(255,212,71,0.08); border-color:var(--sun);}
+
+  /* ---------- Page budget ---------- */
+  .budget-layout{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;}
+  @media(max-width:900px){.budget-layout{grid-template-columns:1fr;}}
+  .budget-toggle-list{display:flex; flex-direction:column; gap:14px;}
+  .budget-item{
+    display:flex; align-items:center; gap:14px;
+    padding:16px 18px; border-radius:14px;
+    background:var(--card); border:1px solid var(--card-border);
+    cursor:pointer;
+  }
+  .budget-item input{accent-color:var(--rose); width:18px; height:18px;}
+  .budget-item span{font-size:0.96rem;}
+  .gauge-wrap{display:flex; flex-direction:column; align-items:center; gap:18px;}
+  .gauge-caption{font-size:0.98rem; color:var(--cloud-soft); text-align:center; max-width:34ch;}
+  #gaugeValue{font-family:'Space Grotesk', sans-serif; font-size:2.4rem; font-weight:700;}
+
+  /* ---------- Features ---------- */
+  .feature-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+  @media(max-width:980px){.feature-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.feature-grid{grid-template-columns:1fr;}}
+  .feature-card h3{font-size:1.1rem; margin:16px 0 10px;}
+  .feature-card p{font-size:0.94rem; color:var(--cloud-soft);}
+
+  /* ---------- Quote band ---------- */
+  .quote-band{text-align:center;}
+  .quote-band blockquote{
+    font-family:'Space Grotesk', sans-serif; font-weight:500;
+    font-size:clamp(1.4rem, 3vw, 2.05rem); line-height:1.4;
+    max-width:740px; margin:0 auto;
+  }
+  .quote-band cite{display:block; margin-top:22px; font-style:normal; font-size:0.94rem; color:var(--muted);}
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{text-align:center;}
+  .final-cta h2{font-size:clamp(2rem, 4vw, 2.8rem); max-width:22ch; margin:0 auto;}
+  .final-cta p{margin-top:18px; color:var(--cloud-soft); font-size:1.06rem;}
+  .final-cta .hero-actions{justify-content:center; margin-top:34px;}
+
+  footer{border-top:1px solid var(--card-border); padding:36px 0;}
+  .footer-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:0.9rem; color:var(--muted);}
+  .footer-inner .brand{font-size:1.02rem; color:var(--cloud);}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="none" stroke="url(#g1)" stroke-width="2.4"/><circle cx="14" cy="14" r="4" fill="#FFD447"/><defs><linearGradient id="g1" x1="0" y1="0" x2="28" y2="28"><stop offset="0" stop-color="#FF3E8E"/><stop offset="1" stop-color="#FFD447"/></linearGradient></defs></svg>
+      EasyLandX
+    </div>
+    <nav class="nav-links">
+      <a href="#science">The science</a>
+      <a href="#map">Construct a moment</a>
+      <a href="#budget">Page budget</a>
+      <a href="#features">Features</a>
+    </nav>
+    <a class="btn btn-primary nav-cta" href="https://easylandx.com" target="_blank" rel="noopener">Get started</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <h1>Your landing page doesn't trigger a reaction. It constructs one.</h1>
+      <p class="lede">Every visitor's brain predicts what a page means before they've read a word. EasyLandX shapes those predictions on purpose, so the reaction it constructs is the one you intended.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Build with EasyLandX</a>
+        <a class="btn btn-ghost" href="#map">Try the affect map</a>
+      </div>
+      <p class="hero-note">Built on how the brain actually constructs feeling — prediction first, label second.</p>
+    </div>
+    <div class="radar-wrap" aria-hidden="true">
+      <div class="radar-ring"></div>
+      <div class="radar-ring r2"></div>
+      <div class="radar-ring r3"></div>
+      <div class="radar-ring r4"></div>
+      <div class="radar-sweep"></div>
+      <div class="radar-core"></div>
+    </div>
+  </div>
+</section>
+
+<section id="science">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The brain predicts, then it labels</h2>
+      <p>Modern neuroscience shows emotion isn't switched on by an event. The brain builds it in the moment, from raw body signals, past experience, and the words available to describe them.</p>
+    </div>
+    <div class="science-grid">
+      <div class="card">
+        <h3><span class="glow-dot" style="background:var(--sun);"></span>Raw affect arrives first</h3>
+        <p>Before any label attaches, a visitor's body registers something simple: pleasant or unpleasant, calm or energized. That raw signal — not the words on the page — is the very first thing a landing page produces.</p>
+      </div>
+      <div class="card">
+        <h3><span class="glow-dot" style="background:var(--rose);"></span>EasyLandX designs the signal</h3>
+        <p>Color, pacing, spacing, and copy tone all shape that raw affect directly. Once the feeling is in place, precise language steps in to give it the exact meaning you want it to carry.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="map">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Construct a moment</h2>
+      <p>Click anywhere on the map to set a raw affect — how pleasant and how energized. EasyLandX will construct the matching emotion label and the page treatment built for it.</p>
+    </div>
+    <div class="map-layout">
+      <div class="affect-box" id="affectBox">
+        <span class="axis-label axis-top">Energized</span>
+        <span class="axis-label axis-bottom">Calm</span>
+        <span class="axis-label axis-left">Unpleasant</span>
+        <span class="axis-label axis-right">Pleasant</span>
+        <div class="affect-marker" id="affectMarker"></div>
+      </div>
+      <div class="map-readout card">
+        <h3>Constructed feeling: <span id="affectLabel">Curious</span></h3>
+        <p id="affectDetail">A balanced, attentive state. Feed it with a clear, specific value line and one obvious next step.</p>
+        <p class="map-hint">Click a new point on the map to construct a different moment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="granularity">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Say it with precision</h2>
+      <p>The more precisely a page names what a visitor is experiencing, the more useful that feeling becomes. Tap a chip to see the sharper, more granular version EasyLandX would write instead.</p>
+    </div>
+    <div class="chip-grid">
+      <div class="chip" tabindex="0" role="button">
+        <span class="vague">Good</span>
+        <span class="precise">Effortless</span>
+      </div>
+      <div class="chip" tabindex="0" role="button">
+        <span class="vague">Fast</span>
+        <span class="precise">Instant</span>
+      </div>
+      <div class="chip" tabindex="0" role="button">
+        <span class="vague">Nice design</span>
+        <span class="precise">Considered, down to the pixel</span>
+      </div>
+      <div class="chip" tabindex="0" role="button">
+        <span class="vague">Trustworthy</span>
+        <span class="precise">Proven, with the receipts to show it</span>
+      </div>
+      <div class="chip" tabindex="0" role="button">
+        <span class="vague">Helpful</span>
+        <span class="precise">Anticipates the next question</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="budget">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Protect the page budget</h2>
+      <p>A visitor's brain is also managing a physical budget — attention, patience, effort. A page that respects that budget lets any good feeling land where it belongs: on your brand.</p>
+    </div>
+    <div class="budget-layout">
+      <div class="budget-toggle-list">
+        <label class="budget-item"><input type="checkbox" data-weight="25"><span>Sub-second load, every time</span></label>
+        <label class="budget-item"><input type="checkbox" data-weight="25"><span>One clear focus per screen</span></label>
+        <label class="budget-item"><input type="checkbox" data-weight="25"><span>A minimal number of decisions</span></label>
+        <label class="budget-item"><input type="checkbox" data-weight="25"><span>A steady, consistent visual rhythm</span></label>
+      </div>
+      <div class="gauge-wrap">
+        <svg width="180" height="180" viewBox="0 0 180 180">
+          <circle cx="90" cy="90" r="76" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="14"/>
+          <circle id="gaugeRing" cx="90" cy="90" r="76" fill="none" stroke="url(#gaugeGrad)" stroke-width="14" stroke-linecap="round" stroke-dasharray="477.5" stroke-dashoffset="429.8" transform="rotate(-90 90 90)"/>
+          <defs>
+            <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#FF3E8E"/>
+              <stop offset="1" stop-color="#FFD447"/>
+            </linearGradient>
+          </defs>
+          <text x="90" y="98" text-anchor="middle" id="gaugeValue" fill="#F6F2FF" font-size="34" font-weight="700">10%</text>
+        </svg>
+        <p class="gauge-caption" id="gaugeCaption">Every setting checked here protects a little more of the visitor's budget for the feeling you want them to have.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Everything EasyLandX brings to your page</h2>
+      <p>A toolkit built around how feeling actually gets made — and how to make it work in your favor.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="card feature-card">
+        <svg width="34" height="34" viewBox="0 0 34 34"><circle cx="17" cy="17" r="14" fill="none" stroke="#FF3E8E" stroke-width="2.4"/><circle cx="17" cy="17" r="5" fill="#FFD447"/></svg>
+        <h3>Prediction-ready templates</h3>
+        <p>Layouts tuned so the very first raw impression lands exactly where you want it, before a visitor reads a single line.</p>
+      </div>
+      <div class="card feature-card">
+        <svg width="34" height="34" viewBox="0 0 34 34"><rect x="5" y="5" width="24" height="24" rx="7" fill="none" stroke="#FFD447" stroke-width="2.4"/><path d="M11 17 L15 22 L23 11" stroke="#FF3E8E" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>A precise language library</h3>
+        <p>Copy suggestions built for granularity — swapping vague claims for language that names the exact value on offer.</p>
+      </div>
+      <div class="card feature-card">
+        <svg width="34" height="34" viewBox="0 0 34 34"><circle cx="17" cy="17" r="14" fill="none" stroke="#9C86D4" stroke-width="2.4"/><path d="M17 8 L17 17 L23 21" stroke="#FFD447" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <h3>Body-budget performance</h3>
+        <p>Fast, light pages that keep a visitor's patience and attention in reserve for the moment that matters most: the click.</p>
+      </div>
+      <div class="card feature-card">
+        <svg width="34" height="34" viewBox="0 0 34 34"><path d="M17 4 L21 15 L32 15 L23 22 L27 32 L17 25 L7 32 L11 22 L2 15 L13 15 Z" fill="#FF3E8E"/></svg>
+        <h3>Recategorizing CTAs</h3>
+        <p>Buttons and microcopy that meet hesitation with reassurance, turning a racing pulse into readiness to act.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote-band">
+  <div class="wrap">
+    <blockquote>A feeling isn't waiting inside your visitor to be triggered. It's being built, in real time, from every signal your page sends.</blockquote>
+    <cite>The idea at the center of every EasyLandX page</cite>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Construct the reaction your page was always meant to build</h2>
+    <p>Shape the raw feeling, name it precisely, and protect the budget it takes to get there — all in one build.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Build with EasyLandX</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="brand">EasyLandX</div>
+    <div>Pages built the way feeling actually gets made.</div>
+  </div>
+</footer>
+
+<script>
+  // ---- Affect map ----
+  const affectBox = document.getElementById('affectBox');
+  const affectMarker = document.getElementById('affectMarker');
+  const affectLabel = document.getElementById('affectLabel');
+  const affectDetail = document.getElementById('affectDetail');
+
+  const grid = [
+    [ // low arousal (bottom row)
+      {label:'Weary', text:'A low, unsettled state. Cut every optional step and offer one clear, calm path forward.'},
+      {label:'Settled', text:'Quiet and neutral. Keep the pacing unhurried and let trust build without pressure.'},
+      {label:'Content', text:'Calm and pleasant. Soft colors and gentle copy work best here — "whenever you are ready."'}
+    ],
+    [ // mid arousal
+      {label:'Uneasy', text:'A little on edge. Place visible proof and reassurance right at the first point of friction.'},
+      {label:'Curious', text:'A balanced, attentive state. Feed it with a clear, specific value line and one obvious next step.'},
+      {label:'Interested', text:'Engaged and open. Keep the momentum going with a next step that feels natural, not pushy.'}
+    ],
+    [ // high arousal (top row)
+      {label:'Keyed up', text:'Energized but wary. Slow the pace, simplify the choices, and lead with calm confidence.'},
+      {label:'Alert', text:'Primed and ready to act. Sharpen contrast and shorten the copy — attention is already there.'},
+      {label:'Excited', text:'Energized and pleasant. Bright accents, energetic verbs, one bold call to action: "Jump in now."'}
+    ]
+  ];
+
+  function setAffect(xRatio, yRatio){
+    // xRatio: 0 (unpleasant) -> 1 (pleasant); yRatio: 0 (top/energized) -> 1 (bottom/calm)
+    const col = Math.min(2, Math.floor(xRatio * 3));
+    const arousalRatio = 1 - yRatio; // 0 calm -> 1 energized
+    const row = Math.min(2, Math.floor(arousalRatio * 3));
+    const cell = grid[row][col];
+    affectLabel.textContent = cell.label;
+    affectDetail.textContent = cell.text;
+    affectMarker.style.left = (xRatio * 100) + '%';
+    affectMarker.style.top = (yRatio * 100) + '%';
+  }
+
+  affectBox.addEventListener('click', (e) => {
+    const rect = affectBox.getBoundingClientRect();
+    const x = Math.min(Math.max((e.clientX - rect.left) / rect.width, 0), 1);
+    const y = Math.min(Math.max((e.clientY - rect.top) / rect.height, 0), 1);
+    setAffect(x, y);
+  });
+  setAffect(0.5, 0.45);
+
+  // ---- Granularity chips ----
+  document.querySelectorAll('.chip').forEach(chip => {
+    const toggle = () => chip.classList.toggle('revealed');
+    chip.addEventListener('click', toggle);
+    chip.addEventListener('keypress', (e) => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); } });
+  });
+
+  // ---- Page budget gauge ----
+  const budgetInputs = document.querySelectorAll('#budget input[type="checkbox"]');
+  const gaugeRing = document.getElementById('gaugeRing');
+  const gaugeValue = document.getElementById('gaugeValue');
+  const gaugeCaption = document.getElementById('gaugeCaption');
+  const circumference = 2 * Math.PI * 76;
+  const captions = [
+    "Every setting checked here protects a little more of the visitor's budget for the feeling you want them to have.",
+    "A good start — a bit more room is being kept in reserve.",
+    "The budget is holding steady, with real room to spare.",
+    "Comfortably protected — most of the page's demands are already handled.",
+    "Fully protected. Every bit of the visitor's attention is free for what matters."
+  ];
+
+  function updateGauge(){
+    let total = 10, count = 0;
+    budgetInputs.forEach(cb => { if(cb.checked){ total += Number(cb.dataset.weight); count++; } });
+    total = Math.min(total, 100);
+    const offset = circumference * (1 - total/100);
+    gaugeRing.style.strokeDashoffset = offset;
+    gaugeValue.textContent = total + '%';
+    gaugeCaption.textContent = captions[Math.min(count, captions.length - 1)];
+  }
+  budgetInputs.forEach(cb => cb.addEventListener('change', updateGauge));
+  updateGauge();
+</script>
+
+</body>
+</html>
