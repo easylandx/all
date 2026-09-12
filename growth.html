@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing pages that haven't peaked yet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --emerald-950:#03170F;
+    --emerald-900:#062A1D;
+    --emerald-800:#0A3D29;
+    --emerald-700:#0F5238;
+    --amber:#FFB627;
+    --amber-bright:#FFD166;
+    --slate:#7D93B2;
+    --slate-bright:#AFC2DC;
+    --cloud:#EFF7F1;
+    --cloud-soft:#B9D2C3;
+    --muted:#7FA391;
+    --card:rgba(255,255,255,0.045);
+    --card-border:rgba(255,255,255,0.10);
+    --radius-lg:24px;
+    --max-w:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--emerald-950);
+    color:var(--cloud);
+    font-family:'Inter', system-ui, sans-serif;
+    line-height:1.6;
+    background-image:
+      radial-gradient(60% 45% at 88% 0%, rgba(255,182,39,0.12), transparent 60%),
+      radial-gradient(55% 40% at 4% 10%, rgba(15,82,56,0.55), transparent 65%);
+    background-attachment:fixed;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+    color:#fff;
+  }
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit;}
+  img,svg{display:block; max-width:100%;}
+
+  .wrap{max-width:var(--max-w); margin:0 auto; padding:0 32px;}
+  section{padding:100px 0;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  :focus-visible{outline:3px solid var(--amber); outline-offset:3px;}
+
+  /* ---------- Nav ---------- */
+  header.site-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(3,23,15,0.86);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--card-border);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:var(--max-w); margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.24rem;}
+  nav.nav-links{display:none; gap:30px;}
+  @media(min-width:900px){nav.nav-links{display:flex;}}
+  nav.nav-links a{color:var(--cloud-soft); font-size:0.96rem; font-weight:500; transition:color .18s ease;}
+  nav.nav-links a:hover{color:#fff;}
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:13px 26px; border-radius:999px; font-weight:600; font-size:0.98rem;
+    border:none; cursor:pointer; transition:transform .15s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(120deg, var(--amber), var(--amber-bright));
+    color:#0A2A1B;
+    box-shadow:0 10px 26px rgba(255,182,39,0.30);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 14px 32px rgba(255,182,39,0.4);}
+  .btn-ghost{background:transparent; color:var(--cloud); border:1.5px solid var(--card-border);}
+  .btn-ghost:hover{border-color:var(--slate-bright); background:rgba(255,255,255,0.05);}
+  .btn:disabled{opacity:0.55; cursor:default; transform:none !important; box-shadow:none !important;}
+  .nav-cta{display:none;}
+  @media(min-width:900px){.nav-cta{display:inline-flex;}}
+
+  /* ---------- Hero ---------- */
+  .hero-inner{display:grid; grid-template-columns:1.1fr 1fr; gap:56px; align-items:center; padding-top:60px;}
+  @media(max-width:900px){.hero-inner{grid-template-columns:1fr;}}
+  .hero h1{font-size:clamp(2.2rem, 4vw, 3.25rem); line-height:1.1;}
+  .hero .lede{margin-top:22px; font-size:1.13rem; color:var(--cloud-soft); max-width:50ch;}
+  .hero-actions{margin-top:34px; display:flex; gap:16px; flex-wrap:wrap;}
+  .hero-note{margin-top:22px; font-size:0.92rem; color:var(--muted);}
+
+  .grow-visual{position:relative; aspect-ratio:1/1; max-width:400px; margin:0 auto;}
+  .grow-visual svg{width:100%; height:100%;}
+  .grow-line{
+    stroke-dasharray:400;
+    stroke-dashoffset:400;
+    animation:draw 2.2s ease forwards 0.3s;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .grow-dot{
+    animation:rise 2.2s ease forwards 0.3s;
+  }
+  @keyframes rise{
+    0%{ transform:translateY(0); opacity:0; }
+    5%{ opacity:1; }
+    100%{ transform:translateY(0); opacity:1; }
+  }
+
+  /* ---------- Section headers ---------- */
+  .section-head{max-width:680px; margin:0 auto 56px; text-align:center;}
+  .section-head h2{font-size:clamp(1.9rem, 3.2vw, 2.5rem); line-height:1.15;}
+  .section-head p{margin-top:16px; font-size:1.06rem; color:var(--cloud-soft);}
+
+  .card{
+    background:var(--card); border:1px solid var(--card-border);
+    border-radius:var(--radius-lg); padding:36px;
+  }
+
+  /* ---------- Two mindsets comparison ---------- */
+  .mindset-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  @media(max-width:820px){.mindset-grid{grid-template-columns:1fr;}}
+  .mindset-card{border-radius:var(--radius-lg); padding:34px;}
+  .mindset-fixed{
+    background:rgba(125,147,178,0.08);
+    border:1px solid rgba(175,194,220,0.25);
+  }
+  .mindset-fixed h3{color:var(--slate-bright);}
+  .mindset-growth{
+    background:rgba(255,182,39,0.08);
+    border:1px solid rgba(255,182,39,0.35);
+    box-shadow:0 0 40px rgba(255,182,39,0.08);
+  }
+  .mindset-growth h3{color:var(--amber-bright);}
+  .mindset-card ul{margin:18px 0 0; padding-left:20px; color:var(--cloud-soft); font-size:0.97rem;}
+  .mindset-card li{margin-bottom:10px;}
+  .tag{
+    display:inline-block; font-size:0.78rem; font-weight:600;
+    padding:5px 12px; border-radius:999px; margin-bottom:14px;
+  }
+  .tag-fixed{background:rgba(175,194,220,0.15); color:var(--slate-bright);}
+  .tag-growth{background:rgba(255,182,39,0.18); color:var(--amber-bright);}
+
+  /* ---------- Growth simulator ---------- */
+  .grow-sim{display:grid; grid-template-columns:1fr; gap:28px;}
+  .grow-chart-card{padding:36px;}
+  .grow-chart{
+    display:flex; align-items:flex-end; gap:14px;
+    height:220px; padding:0 6px 30px;
+    position:relative;
+  }
+  .grow-baseline{
+    position:absolute; left:0; right:0; bottom:30px;
+    border-top:1.5px dashed rgba(175,194,220,0.4);
+  }
+  .grow-baseline-label{
+    position:absolute; right:0; bottom:36px;
+    font-size:0.78rem; color:var(--slate-bright);
+  }
+  .grow-bar-col{
+    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;
+    gap:8px;
+  }
+  .grow-bar{
+    width:100%; max-width:52px;
+    border-radius:8px 8px 0 0;
+    background:linear-gradient(180deg, var(--amber-bright), var(--amber));
+    transition:height .5s cubic-bezier(.2,.8,.2,1);
+    height:8%;
+  }
+  .grow-bar-label{font-size:0.78rem; color:var(--cloud-soft); text-align:center;}
+  .grow-controls{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-top:24px;}
+  .grow-caption{font-size:0.98rem; color:var(--cloud-soft); max-width:56ch;}
+  .round-counter{font-family:'Space Grotesk', sans-serif; font-weight:600; color:var(--amber-bright);}
+
+  /* ---------- Reframe chips ---------- */
+  .chip-grid{display:flex; flex-direction:column; gap:14px; max-width:760px; margin:0 auto;}
+  .chip{
+    position:relative;
+    padding:20px 24px;
+    border-radius:16px;
+    background:var(--card);
+    border:1px solid var(--card-border);
+    cursor:pointer;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .chip:hover{border-color:var(--amber);}
+  .chip .fixed-line{display:flex; align-items:center; gap:10px; color:var(--slate-bright); font-size:0.98rem;}
+  .chip .growth-line{display:none; align-items:flex-start; gap:10px; color:var(--amber-bright); font-weight:500; font-size:0.98rem; margin-top:10px; padding-top:10px; border-top:1px solid var(--card-border);}
+  .chip.revealed .growth-line{display:flex;}
+  .chip.revealed{background:rgba(255,182,39,0.06); border-color:var(--amber);}
+  .chip-icon{flex:0 0 auto; margin-top:2px;}
+
+  /* ---------- How we work ---------- */
+  .process-list{display:flex; flex-direction:column; gap:0;}
+  .process-step{display:flex; gap:22px; padding:26px 0; border-bottom:1px solid var(--card-border);}
+  .process-step:last-child{border-bottom:none;}
+  .process-num{
+    flex:0 0 auto; width:44px; height:44px; border-radius:50%;
+    background:linear-gradient(135deg, var(--amber), var(--amber-bright));
+    color:#0A2A1B; display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.05rem;
+  }
+  .process-body h3{font-size:1.1rem; margin-bottom:6px;}
+  .process-body p{color:var(--cloud-soft); font-size:0.97rem;}
+
+  /* ---------- Feature cards ---------- */
+  .feature-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+  @media(max-width:980px){.feature-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.feature-grid{grid-template-columns:1fr;}}
+  .feature-card h3{font-size:1.08rem; margin:16px 0 10px;}
+  .feature-card p{font-size:0.94rem; color:var(--cloud-soft);}
+
+  /* ---------- Quote band ---------- */
+  .quote-band{text-align:center;}
+  .quote-band blockquote{
+    font-family:'Space Grotesk', sans-serif; font-weight:500;
+    font-size:clamp(1.4rem, 3vw, 2.05rem); line-height:1.4;
+    max-width:740px; margin:0 auto;
+  }
+  .quote-band cite{display:block; margin-top:22px; font-style:normal; font-size:0.94rem; color:var(--muted);}
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{text-align:center;}
+  .final-cta h2{font-size:clamp(2rem, 4vw, 2.8rem); max-width:22ch; margin:0 auto;}
+  .final-cta p{margin-top:18px; color:var(--cloud-soft); font-size:1.06rem;}
+  .final-cta .hero-actions{justify-content:center; margin-top:34px;}
+
+  footer{border-top:1px solid var(--card-border); padding:36px 0;}
+  .footer-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:0.9rem; color:var(--muted);}
+  .footer-inner .brand{font-size:1.02rem; color:var(--cloud);}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <svg width="28" height="28" viewBox="0 0 28 28"><path d="M5 21 L11 14 L16 18 L23 6" stroke="#FFB627" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="6" r="3" fill="#FFD166"/></svg>
+      EasyLandX
+    </div>
+    <nav class="nav-links">
+      <a href="#mindsets">The mindset shift</a>
+      <a href="#grow">Watch it grow</a>
+      <a href="#reframe">Reframe it</a>
+      <a href="#process">How we work</a>
+    </nav>
+    <a class="btn btn-primary nav-cta" href="https://easylandx.com" target="_blank" rel="noopener">Start your project</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <h1>Your landing page isn't finished. It just hasn't peaked yet.</h1>
+      <p class="lede">We design, launch, and keep refining landing pages for businesses — because a page's first version is a starting point, not a verdict. Every round teaches us exactly what to build next.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Start your project</a>
+        <a class="btn btn-ghost" href="#grow">Watch a page grow</a>
+      </div>
+      <p class="hero-note">Built on a simple idea: effort and iteration, not one lucky launch, are what make a page work.</p>
+    </div>
+    <div class="grow-visual" aria-hidden="true">
+      <svg viewBox="0 0 300 300">
+        <line x1="20" y1="270" x2="280" y2="270" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+        <line x1="20" y1="270" x2="20" y2="20" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+        <path class="grow-line" d="M30 240 L90 210 L150 160 L210 110 L270 50" fill="none" stroke="#FFB627" stroke-width="4" stroke-linecap="round"/>
+        <circle class="grow-dot" cx="270" cy="50" r="9" fill="#FFD166"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="mindsets">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Two ways to see a landing page</h2>
+      <p>Psychologist Carol Dweck found that people either see ability as fixed or as something built through effort. The same split shows up in how businesses see their landing pages.</p>
+    </div>
+    <div class="mindset-grid">
+      <div class="mindset-card mindset-fixed">
+        <span class="tag tag-fixed">The fixed view</span>
+        <h3>"The page is the verdict"</h3>
+        <ul>
+          <li>One launch is treated as the final answer on whether the idea works.</li>
+          <li>A quiet first week reads as proof the product, or the market, isn't right.</li>
+          <li>Changing the page feels like admitting the first version was a mistake.</li>
+        </ul>
+      </div>
+      <div class="mindset-card mindset-growth">
+        <span class="tag tag-growth">The growth view</span>
+        <h3>"The page is a project"</h3>
+        <ul>
+          <li>Every launch produces information — a signal about what to try next.</li>
+          <li>A quiet first week is data, not a verdict, and it points to a specific next move.</li>
+          <li>Refining the page is exactly the plan, not a departure from it.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="grow">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Watch a page grow</h2>
+      <p>This is how we actually work: one honest launch, then round after round of specific, targeted improvement. Run a few rounds and see where the page ends up.</p>
+    </div>
+    <div class="card grow-chart-card">
+      <div class="grow-chart" id="growChart">
+        <div class="grow-baseline"></div>
+        <span class="grow-baseline-label">A page that launched once and stayed the same</span>
+      </div>
+      <div class="grow-controls">
+        <p class="grow-caption" id="growCaption">Round 0: the honest first launch. Every round after this is built from what it teaches us.</p>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span class="round-counter" id="roundCounter">Round 0 / 6</span>
+          <button class="btn btn-primary" id="growBtn">Run another round</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reframe">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Reframe it</h2>
+      <p>These are things business owners often think after a slow launch. Tap one to see how we'd read the same moment instead.</p>
+    </div>
+    <div class="chip-grid">
+      <div class="chip" tabindex="0" role="button">
+        <div class="fixed-line"><span class="chip-icon">💭</span><span>"This page didn't convert. It's not working."</span></div>
+        <div class="growth-line"><span class="chip-icon">↳</span><span>This page hasn't found its version yet. Round two starts with exactly what round one taught us.</span></div>
+      </div>
+      <div class="chip" tabindex="0" role="button">
+        <div class="fixed-line"><span class="chip-icon">💭</span><span>"We already tried a landing page once."</span></div>
+        <div class="growth-line"><span class="chip-icon">↳</span><span>That first version was round one. Round two is built entirely from what it showed us.</span></div>
+      </div>
+      <div class="chip" tabindex="0" role="button">
+        <div class="fixed-line"><span class="chip-icon">💭</span><span>"Maybe our offer just isn't right for this."</span></div>
+        <div class="growth-line"><span class="chip-icon">↳</span><span>Maybe the message hasn't matched the audience yet — that's a specific, testable, fixable thing.</span></div>
+      </div>
+      <div class="chip" tabindex="0" role="button">
+        <div class="fixed-line"><span class="chip-icon">💭</span><span>"Our competitor's page just works better."</span></div>
+        <div class="growth-line"><span class="chip-icon">↳</span><span>Their page found its round three. Ours is already on the way to its own.</span></div>
+      </div>
+      <div class="chip" tabindex="0" role="button">
+        <div class="fixed-line"><span class="chip-icon">💭</span><span>"We don't have time to keep changing it."</span></div>
+        <div class="growth-line"><span class="chip-icon">↳</span><span>Small, steady rounds take far less effort than starting over — and the gains compound.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How we work with every business</h2>
+      <p>A repeatable, four-step rhythm behind every page we build and refine.</p>
+    </div>
+    <div class="card">
+      <div class="process-list">
+        <div class="process-step">
+          <div class="process-num">1</div>
+          <div class="process-body">
+            <h3>We launch it honestly</h3>
+            <p>The first version goes live as a genuine starting point, not a finished statement — so what it teaches us is real.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">2</div>
+          <div class="process-body">
+            <h3>We watch the real signals</h3>
+            <p>Scroll depth, time on page, click paths, and drop-off points tell us far more than a single conversion number can.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">3</div>
+          <div class="process-body">
+            <h3>We name exactly what's holding it back</h3>
+            <p>A specific, nameable sticking point — a headline, a proof gap, a slow section — replaces any vague sense that "something's off."</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">4</div>
+          <div class="process-body">
+            <h3>We answer with a growth move</h3>
+            <p>One targeted change goes live, and the next round begins with a page that's already a little stronger.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What we measure success by</h2>
+      <p>The same habits Dweck found in people with a growth mindset, built into how we run every project.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="card feature-card">
+        <svg width="34" height="34" viewBox="0 0 34 34"><circle cx="17" cy="17" r="14" fill="none" stroke="#FFB627" stroke-width="2.4"/><path d="M11 18 L15 22 L23 12" stroke="#FFD166" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Process over first impression</h3>
+        <p>We judge a page by the quality of its testing rhythm, not by how it performs in its very first week.</p>
+      </div>
+      <div class="card feature-card">
+        <svg width="34" height="34" viewBox="0 0 34 34"><rect x="5" y="5" width="24" height="24" rx="7" fill="none" stroke="#7D93B2" stroke-width="2.4"/><path d="M12 17 L22 17 M17 12 L17 22" stroke="#FFB627" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <h3>Specific, never vague feedback</h3>
+        <p>Every report names the exact element to work on next, so effort always has a clear, useful target.</p>
+      </div>
+      <div class="card feature-card">
+        <svg width="34" height="34" viewBox="0 0 34 34"><path d="M6 26 L14 18 L20 22 L28 8" stroke="#FFB627" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="28" cy="8" r="3" fill="#FFD166"/></svg>
+        <h3>Effort visible in every round</h3>
+        <p>Each version carries forward what the last one earned, so the page keeps compounding instead of restarting.</p>
+      </div>
+      <div class="card feature-card">
+        <svg width="34" height="34" viewBox="0 0 34 34"><circle cx="17" cy="17" r="14" fill="none" stroke="#FFD166" stroke-width="2.4"/><text x="17" y="22" text-anchor="middle" font-size="14" fill="#FFD166" font-family="Space Grotesk">yet</text></svg>
+        <h3>A page that hasn't peaked, yet</h3>
+        <p>We treat "not converting yet" as a temporary, workable state — never as the final word on a business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote-band">
+  <div class="wrap">
+    <blockquote>A landing page isn't a fixed verdict on your business. It's a project in progress, and every round makes it a little more itself.</blockquote>
+    <cite>The idea behind every EasyLandX project</cite>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Let's find your page's next round</h2>
+    <p>Tell us where the page stands today, and we'll bring the process that gets it moving toward its best version.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Start your project</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="brand">EasyLandX</div>
+    <div>Landing pages, built and grown for every business we work with.</div>
+  </div>
+</footer>
+
+<script>
+  const growBtn = document.getElementById('growBtn');
+  const growChart = document.getElementById('growChart');
+  const growCaption = document.getElementById('growCaption');
+  const roundCounter = document.getElementById('roundCounter');
+
+  const rounds = [
+    { height: 22, value: '2.1%', note: 'Round 1: a clearer headline goes up, aimed straight at the visitor who scrolled but did not click.' },
+    { height: 34, value: '2.9%', note: 'Round 2: proof moves closer to the first hesitation point in the page.' },
+    { height: 46, value: '3.6%', note: 'Round 3: the call to action gets sharper, more specific wording.' },
+    { height: 60, value: '4.3%', note: 'Round 4: the page loads faster, so the good first impression has room to land.' },
+    { height: 76, value: '5.1%', note: 'Round 5: the layout flow gets tightened around what visitors actually do first.' },
+    { height: 92, value: '5.9%', note: 'Round 6: this page is a noticeably stronger version of where it started — and the next round is always available.' }
+  ];
+
+  let currentRound = 0;
+  const maxRounds = rounds.length;
+
+  function renderBars(){
+    growChart.querySelectorAll('.grow-bar-col').forEach(el => el.remove());
+    for(let i = 0; i < currentRound; i++){
+      const col = document.createElement('div');
+      col.className = 'grow-bar-col';
+      const bar = document.createElement('div');
+      bar.className = 'grow-bar';
+      const label = document.createElement('div');
+      label.className = 'grow-bar-label';
+      label.textContent = 'R' + (i + 1) + ' · ' + rounds[i].value;
+      col.appendChild(bar);
+      col.appendChild(label);
+      growChart.appendChild(col);
+      requestAnimationFrame(() => { bar.style.height = rounds[i].height + '%'; });
+    }
+  }
+
+  growBtn.addEventListener('click', () => {
+    if(currentRound >= maxRounds){ return; }
+    currentRound++;
+    renderBars();
+    roundCounter.textContent = 'Round ' + currentRound + ' / ' + maxRounds;
+    growCaption.textContent = rounds[currentRound - 1].note;
+    if(currentRound >= maxRounds){
+      growBtn.textContent = 'Six rounds in — and still room to grow';
+      growBtn.disabled = true;
+    }
+  });
+
+  document.querySelectorAll('.chip').forEach(chip => {
+    const toggle = () => chip.classList.toggle('revealed');
+    chip.addEventListener('click', toggle);
+    chip.addEventListener('keypress', (e) => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
