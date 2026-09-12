@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — The Discipline of Focus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue-deep:#081a33;
+    --blue-mid:#0f2c52;
+    --blue-panel:#12335f;
+    --gold:#f4b942;
+    --gold-soft:#ffd97a;
+    --green:#2fae7a;
+    --green-soft:#7fe3b0;
+    --ink:#eaf1ff;
+    --ink-soft:rgba(234,241,255,0.72);
+    --line:rgba(234,241,255,0.14);
+    --radius:20px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--blue-deep);
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    padding:clamp(10px,3vw,32px);
+  }
+
+  .frame{
+    border:1px solid var(--line);
+    border-radius:32px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 12% 0%, rgba(244,185,66,0.12), transparent 40%),
+      radial-gradient(circle at 92% 8%, rgba(47,174,122,0.14), transparent 45%),
+      linear-gradient(170deg, var(--blue-mid), var(--blue-deep) 60%);
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Manrope', sans-serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.04em;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 30px;
+  }
+
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:28px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .brand{font-family:'Manrope', sans-serif; font-weight:800; font-size:1.25rem;}
+  .brand span{color:var(--gold);}
+  .nav-cta{
+    background:var(--green);
+    color:#04160e;
+    font-weight:700;
+    padding:10px 20px;
+    border-radius:10px;
+    text-decoration:none;
+    font-size:0.9rem;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px); background:var(--green-soft);}
+
+  /* HERO */
+  .hero{padding:70px 0 50px;}
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    border:1px solid rgba(244,185,66,0.4);
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem, 4.6vw, 3.4rem);
+    line-height:1.08;
+    font-weight:800;
+  }
+  .hero h1 .accent{color:var(--green-soft);}
+  .hero p.lead{
+    margin-top:22px;
+    font-size:1.08rem;
+    color:var(--ink-soft);
+    max-width:480px;
+  }
+  .cta-row{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--gold);
+    color:#241804;
+    font-weight:700;
+    padding:15px 28px;
+    border-radius:12px;
+    text-decoration:none;
+    font-size:1rem;
+    transition:transform .15s ease;
+  }
+  .btn-primary:hover{transform:translateY(-3px);}
+  .btn-ghost{
+    border:1px solid var(--line);
+    color:var(--ink);
+    padding:14px 26px;
+    border-radius:12px;
+    text-decoration:none;
+    font-size:0.98rem;
+  }
+
+  /* hero focus ring visual */
+  .ring-box{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .ring{
+    width:250px;
+    height:250px;
+    border-radius:50%;
+    background: conic-gradient(var(--gold) 0deg 90deg, var(--green) 90deg 180deg, rgba(255,255,255,0.08) 180deg 360deg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+  .ring::before{
+    content:"";
+    position:absolute;
+    inset:14px;
+    border-radius:50%;
+    background:var(--blue-deep);
+  }
+  .ring-label{
+    position:relative;
+    z-index:1;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+  }
+  .ring-label strong{
+    display:block;
+    font-family:'Manrope', sans-serif;
+    font-size:1.6rem;
+    color:var(--ink);
+    font-weight:800;
+  }
+
+  /* SECTIONS */
+  .section{padding:60px 0;}
+  .section-head{max-width:600px; margin:0 auto 40px; text-align:center;}
+  .section-head .mono{color:var(--green-soft); font-size:0.78rem; text-transform:uppercase;}
+  .section-head h2{font-size:clamp(1.6rem,3.6vw,2.3rem); margin-top:10px;}
+  .section-head p{margin-top:14px; color:var(--ink-soft); font-size:1rem;}
+
+  /* PILLARS */
+  .pillars{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .pillar{
+    background:var(--blue-panel);
+    padding:28px 24px;
+  }
+  .pillar .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    color:var(--gold-soft);
+    margin-bottom:14px;
+    display:block;
+  }
+  .pillar h3{font-size:1.08rem; margin-bottom:10px;}
+  .pillar p{margin:0; font-size:0.94rem; color:var(--ink-soft);}
+
+  /* FRAMEWORK */
+  .framework{
+    background:var(--blue-panel);
+    border:1px solid var(--line);
+    border-radius:28px;
+    padding:40px 26px;
+  }
+  .flow-top{display:flex; flex-direction:column; align-items:center;}
+  .node{
+    cursor:pointer;
+    border:1px solid var(--line);
+    font-family:'Manrope', sans-serif;
+    font-weight:700;
+    font-size:0.94rem;
+    color:var(--ink);
+    background:rgba(255,255,255,0.04);
+    padding:15px 24px;
+    border-radius:12px;
+    transition:transform .15s ease, background .2s ease, border-color .2s ease;
+    text-align:center;
+  }
+  .node.active{
+    background:var(--gold);
+    color:#241804;
+    border-color:var(--gold);
+    transform:translateY(-2px);
+  }
+  .connector{width:2px; height:28px; background:var(--line);}
+  .branch-wrap{display:flex; justify-content:center; width:100%; margin-top:2px;}
+  .branch-lines{width:70%; max-width:520px; height:28px; border-top:2px solid var(--line);}
+  .branches{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:10px;
+    width:100%;
+  }
+  .node.branch{width:100%;}
+  .desc-panel{
+    margin-top:30px;
+    background:rgba(0,0,0,0.2);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:22px 24px;
+    display:flex;
+    gap:18px;
+    align-items:center;
+    min-height:88px;
+  }
+  .desc-panel .tag{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--green-soft);
+    font-size:0.78rem;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .desc-panel p{margin:0; color:var(--ink-soft); font-size:0.98rem;}
+
+  /* FOCUS TIMER */
+  .timer-card{
+    background:var(--blue-panel);
+    border:1px solid var(--line);
+    border-radius:28px;
+    padding:40px 26px;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:36px;
+    align-items:center;
+  }
+  .timer-ring-wrap{display:flex; justify-content:center;}
+  .timer-ring{
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    background: conic-gradient(var(--green) calc(var(--pct,0) * 1%), rgba(255,255,255,0.08) 0);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .timer-ring::before{
+    content:"";
+    position:relative;
+  }
+  .timer-inner{
+    width:132px;
+    height:132px;
+    border-radius:50%;
+    background:var(--blue-panel);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+  }
+  .timer-inner span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:1.5rem;
+    color:var(--ink);
+  }
+  .timer-inner small{color:var(--ink-soft); font-size:0.7rem; margin-top:4px;}
+  .timer-copy h3{font-size:1.2rem; margin-bottom:10px;}
+  .timer-copy p{color:var(--ink-soft); margin:0 0 20px; font-size:0.96rem; max-width:420px;}
+  .timer-controls{display:flex; gap:12px;}
+  .btn-small{
+    border:none;
+    padding:11px 20px;
+    border-radius:10px;
+    font-weight:700;
+    font-family:'Inter', sans-serif;
+    font-size:0.92rem;
+    cursor:pointer;
+  }
+  .btn-small.start{background:var(--green); color:#04160e;}
+  .btn-small.reset{background:transparent; border:1px solid var(--line); color:var(--ink);}
+  #timerStatus{
+    margin-top:16px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    color:var(--gold-soft);
+    min-height:20px;
+  }
+
+  /* STRATEGIES */
+  .strategies{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:18px;
+  }
+  .strategy{
+    background:var(--blue-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:24px 22px;
+  }
+  .strategy h3{font-size:1.05rem; margin-bottom:10px; display:flex; align-items:center; gap:10px;}
+  .dot{width:9px; height:9px; border-radius:50%;}
+  .dot.gold{background:var(--gold);}
+  .dot.green{background:var(--green);}
+  .strategy p{margin:0; color:var(--ink-soft); font-size:0.93rem;}
+
+  /* PURGE TOGGLE */
+  .purge{
+    background:var(--blue-panel);
+    border:1px solid var(--line);
+    border-radius:28px;
+    padding:36px;
+    text-align:center;
+  }
+  .toggle-row{
+    display:inline-flex;
+    background:rgba(0,0,0,0.25);
+    border-radius:999px;
+    padding:6px;
+    gap:6px;
+    margin-bottom:26px;
+  }
+  .toggle-btn{
+    border:none;
+    background:transparent;
+    padding:10px 20px;
+    border-radius:999px;
+    font-weight:700;
+    font-family:'Inter', sans-serif;
+    cursor:pointer;
+    color:var(--ink-soft);
+    font-size:0.9rem;
+  }
+  .toggle-btn.active{background:var(--gold); color:#241804;}
+  .mock{
+    background:#0c2547;
+    border:1px solid var(--line);
+    border-radius:16px;
+    max-width:540px;
+    margin:0 auto;
+    padding:26px;
+    text-align:left;
+  }
+  .mock-bar{display:flex; gap:6px; margin-bottom:16px;}
+  .mock-bar span{width:9px;height:9px;border-radius:50%; background:rgba(255,255,255,0.15);}
+  .mock-title{font-family:'Manrope', sans-serif; font-weight:800; font-size:1.2rem; margin-bottom:8px;}
+  .mock-sub{font-size:0.88rem; color:var(--ink-soft); margin-bottom:16px;}
+  .mock-blocks{display:grid; grid-template-columns:repeat(4,1fr); gap:8px;}
+  .mock-blocks div{background:rgba(255,255,255,0.06); border-radius:8px; height:38px;}
+  .mock-cta{
+    margin-top:16px;
+    display:inline-block;
+    background:var(--green);
+    color:#04160e;
+    padding:9px 20px;
+    border-radius:999px;
+    font-size:0.85rem;
+    font-weight:700;
+  }
+  .state-b .mock-blocks{grid-template-columns:repeat(1,1fr);}
+  .state-b .mock-blocks div:nth-child(n+2){display:none;}
+  .state-b .mock-sub{color:var(--green-soft); font-weight:600;}
+
+  /* FINAL */
+  .final{
+    text-align:center;
+    padding:64px 28px;
+    margin:0 20px 20px;
+  }
+  .final h2{font-size:clamp(1.7rem,3.6vw,2.3rem); margin-bottom:14px;}
+  .final p{color:var(--ink-soft); max-width:440px; margin:0 auto 26px;}
+
+  footer{
+    text-align:center;
+    padding:24px 0 34px;
+    font-size:0.82rem;
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
+  }
+  footer a{text-decoration:underline;}
+
+  @media (max-width:760px){
+    .hero-grid{grid-template-columns:1fr;}
+    .ring-box{order:-1;}
+    .branches{grid-template-columns:1fr;}
+    .timer-card{grid-template-columns:1fr; text-align:center;}
+    .timer-controls{justify-content:center;}
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="wrap">
+    <nav>
+      <div class="brand">Easy<span>Land</span>X</div>
+      <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Start My Page</a>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Built on the discipline of focus</span>
+        <h1>Attention is the currency. <span class="accent">Design for it.</span></h1>
+        <p class="lead">EasyLandX applies the same executive discipline that protects deep work to your landing page — one clear priority, zero engineered distraction, every pixel earning its place.</p>
+        <div class="cta-row">
+          <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Get My EasyLandX Page →</a>
+          <a class="btn-ghost" href="#framework">See the framework</a>
+        </div>
+      </div>
+      <div class="ring-box">
+        <div class="ring">
+          <div class="ring-label">
+            <strong>1</strong>
+            non-negotiable<br>conversion goal
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section wrap">
+    <div class="section-head">
+      <span class="mono">Core messages</span>
+      <h2>Focus is not a personality trait. It's a page structure.</h2>
+      <p>The same principles that protect a person's deep work protect a page's conversion rate.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <span class="num">01</span>
+        <h3>Focus is designed, not accidental</h3>
+        <p>A high-converting page is engineered on purpose — layout, copy, and pacing all shielding the visitor from anything that isn't the goal.</p>
+      </div>
+      <div class="pillar">
+        <span class="num">02</span>
+        <h3>Attention is the asset</h3>
+        <p>Every second a visitor spends on your page is spent somewhere. EasyLandX makes sure it's spent moving toward your offer.</p>
+      </div>
+      <div class="pillar">
+        <span class="num">03</span>
+        <h3>Shallow content is a trap</h3>
+        <p>Extra banners and busywork sections feel productive to build but quietly drain the momentum a visitor needs to convert.</p>
+      </div>
+      <div class="pillar">
+        <span class="num">04</span>
+        <h3>Clarity comes first</h3>
+        <p>Before a single pixel is placed, we define exactly what the page needs to accomplish — clarity is what makes focus possible.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="framework">
+    <div class="section-head">
+      <span class="mono">The process</span>
+      <h2>The EasyLandX Discipline of Focus Framework</h2>
+      <p>Tap a step to see how it shapes the page we build for you.</p>
+    </div>
+    <div class="framework">
+      <div class="flow-top">
+        <button class="node active" data-key="horizon">Clear the Horizon</button>
+        <div class="connector"></div>
+        <button class="node" data-key="blocks">Design Deep-Focus Sections</button>
+        <div class="branch-wrap"><div class="branch-lines"></div></div>
+        <div class="branches">
+          <button class="node branch" data-key="purge">Environment Purge</button>
+          <button class="node branch" data-key="batch">Batch Secondary Content</button>
+          <button class="node branch" data-key="shutdown">Clear Closing</button>
+        </div>
+      </div>
+      <div class="desc-panel">
+        <span class="tag" id="descTag">Step 1</span>
+        <p id="descText">We define the one to three outcomes your page must hit — a booking, a signup, a sale — before any design begins.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section-head">
+      <span class="mono">Try it</span>
+      <h2>Every EasyLandX build starts with a focus block</h2>
+      <p>This is a small preview of the distraction-free block we run when building your hero section.</p>
+    </div>
+    <div class="timer-card">
+      <div class="timer-ring-wrap">
+        <div class="timer-ring" id="timerRing" style="--pct:0;">
+          <div class="timer-inner">
+            <span id="timerDisplay">0:20</span>
+            <small>focus block</small>
+          </div>
+        </div>
+      </div>
+      <div class="timer-copy">
+        <h3>Run a 20-second focus block</h3>
+        <p>Real blocks run 90 minutes with notifications off. Press start to feel the shape of one, compressed down to a quick preview.</p>
+        <div class="timer-controls">
+          <button class="btn-small start" id="timerStart">Start Block</button>
+          <button class="btn-small reset" id="timerReset">Reset</button>
+        </div>
+        <div id="timerStatus"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section-head">
+      <span class="mono">Essential lessons</span>
+      <h2>Habits that keep a page sharp</h2>
+    </div>
+    <div class="strategies">
+      <div class="strategy">
+        <h3><span class="dot gold"></span>One Path, No Residue</h3>
+        <p>Every extra exit link leaves a little attention behind. We limit navigation so visitors carry full focus to your call-to-action.</p>
+      </div>
+      <div class="strategy">
+        <h3><span class="dot green"></span>Comfortable with Simplicity</h3>
+        <p>The urge to add "just one more" section is real. Our process holds the line so your core message stays the loudest thing on the page.</p>
+      </div>
+      <div class="strategy">
+        <h3><span class="dot gold"></span>Structure Over Willpower</h3>
+        <p>Rather than relying on good intentions during a redesign, EasyLandX uses a tested structure that protects focus by default.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section-head">
+      <span class="mono">See it in action</span>
+      <h2>From scattered to purged</h2>
+      <p>Toggle to see what an environment purge does to a busy page.</p>
+    </div>
+    <div class="purge">
+      <div class="toggle-row">
+        <button class="toggle-btn active" id="btnA">Before Purge</button>
+        <button class="toggle-btn" id="btnB">After Purge</button>
+      </div>
+      <div class="mock" id="mock">
+        <div class="mock-bar"><span></span><span></span><span></span></div>
+        <div class="mock-title">Your Business Name</div>
+        <div class="mock-sub" id="mockSub">Four sections competing for the same click.</div>
+        <div class="mock-blocks"><div></div><div></div><div></div><div></div></div>
+        <span class="mock-cta">Get Started</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="final">
+      <h2>Give your page a discipline of focus.</h2>
+      <p>One clear goal, one clean path, one page built to hold attention until it converts.</p>
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+    </div>
+  </section>
+
+  <footer>
+    Built with EasyLandX · <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </footer>
+
+</div>
+
+<script>
+  // Framework stepper
+  const descriptions = {
+    horizon: { tag:"Step 1", text:"We define the one to three outcomes your page must hit — a booking, a signup, a sale — before any design begins." },
+    blocks: { tag:"Step 2", text:"Each section is built as its own uninterrupted block — hero, proof, offer, close — so a visitor's focus flows in one direction." },
+    purge: { tag:"Branch · Purge", text:"We remove pop-ups, extra menus, and stray links that pull a visitor's attention away from the one goal you set." },
+    batch: { tag:"Branch · Batch", text:"FAQs, policies, and secondary details are grouped in their own space, so they support the page without competing with it." },
+    shutdown: { tag:"Branch · Closing", text:"Every page ends with a single, unmistakable call-to-action — no dangling options left for a visitor to weigh." }
+  };
+  const nodes = document.querySelectorAll('.node');
+  const descTag = document.getElementById('descTag');
+  const descText = document.getElementById('descText');
+  nodes.forEach(node => {
+    node.addEventListener('click', () => {
+      nodes.forEach(n => n.classList.remove('active'));
+      node.classList.add('active');
+      const d = descriptions[node.dataset.key];
+      descTag.textContent = d.tag;
+      descText.textContent = d.text;
+    });
+  });
+
+  // Focus timer
+  const TOTAL = 20;
+  let remaining = TOTAL;
+  let intervalId = null;
+  const ring = document.getElementById('timerRing');
+  const display = document.getElementById('timerDisplay');
+  const status = document.getElementById('timerStatus');
+  const startBtn = document.getElementById('timerStart');
+  const resetBtn = document.getElementById('timerReset');
+
+  function render(){
+    const pct = ((TOTAL - remaining) / TOTAL) * 100;
+    ring.style.setProperty('--pct', pct.toFixed(1));
+    display.textContent = '0:' + String(remaining).padStart(2,'0');
+  }
+
+  function tick(){
+    remaining -= 1;
+    render();
+    if(remaining <= 0){
+      clearInterval(intervalId);
+      intervalId = null;
+      status.textContent = "Block complete — your hero section just locked in its focus.";
+      startBtn.textContent = "Start Block";
+    }
+  }
+
+  startBtn.addEventListener('click', () => {
+    if(intervalId){
+      clearInterval(intervalId);
+      intervalId = null;
+      startBtn.textContent = "Resume Block";
+      status.textContent = "Paused — real focus blocks hold steady until the goal is met.";
+      return;
+    }
+    if(remaining <= 0){ remaining = TOTAL; }
+    status.textContent = "Notifications off. Building without interruption.";
+    startBtn.textContent = "Pause Block";
+    intervalId = setInterval(tick, 1000);
+  });
+
+  resetBtn.addEventListener('click', () => {
+    clearInterval(intervalId);
+    intervalId = null;
+    remaining = TOTAL;
+    render();
+    status.textContent = "";
+    startBtn.textContent = "Start Block";
+  });
+
+  render();
+
+  // Before / after purge toggle
+  const mock = document.getElementById('mock');
+  const mockSub = document.getElementById('mockSub');
+  const btnA = document.getElementById('btnA');
+  const btnB = document.getElementById('btnB');
+  btnA.addEventListener('click', () => {
+    mock.classList.remove('state-b');
+    mockSub.textContent = "Four sections competing for the same click.";
+    btnA.classList.add('active');
+    btnB.classList.remove('active');
+  });
+  btnB.addEventListener('click', () => {
+    mock.classList.add('state-b');
+    mockSub.textContent = "One section, one goal, one confident click.";
+    btnB.classList.add('active');
+    btnA.classList.remove('active');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — A Page for Every Visitor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --paper:#f7f7fb;
+    --ink:#14141c;
+    --ink-soft:#5c5c6c;
+    --line:#eaeaf1;
+
+    --red:#ff1e46;
+    --red-soft:#ffe0e6;
+    --yellow:#f5e400;
+    --yellow-soft:#fdf8c9;
+    --green:#22e07a;
+    --green-soft:#d9fbe8;
+    --blue:#00c2ff;
+    --blue-soft:#d7f5ff;
+
+    --radius:20px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--white);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    padding:clamp(10px,3vw,32px);
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Sora', sans-serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;}
+
+  .wrap{max-width:1080px; margin:0 auto; padding:0 30px;}
+
+  /* NAV */
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:26px 0;
+  }
+  .brand{font-family:'Sora', sans-serif; font-weight:800; font-size:1.3rem;}
+  .brand .swatch{display:inline-flex; gap:3px; margin-left:8px; vertical-align:middle;}
+  .brand .swatch i{width:8px; height:8px; border-radius:50%; display:inline-block;}
+  .nav-cta{
+    background:var(--ink);
+    color:#fff;
+    font-weight:700;
+    padding:11px 22px;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:0.9rem;
+    transition:transform .15s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px);}
+
+  /* HERO */
+  .hero{padding:60px 0 40px;}
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:44px; align-items:center;}
+  .eyebrow{
+    display:inline-block;
+    font-size:0.8rem;
+    font-weight:700;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:7px 16px;
+    border-radius:999px;
+    margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(2.1rem,4.4vw,3.2rem); line-height:1.1; font-weight:800;}
+  .hero p.lead{margin-top:20px; color:var(--ink-soft); font-size:1.08rem; max-width:460px;}
+  .cta-row{display:flex; gap:14px; margin-top:30px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--ink);
+    color:#fff;
+    font-weight:700;
+    padding:15px 28px;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:1rem;
+    transition:transform .15s ease;
+  }
+  .btn-primary:hover{transform:translateY(-3px);}
+  .btn-ghost{
+    border:1.5px solid var(--line);
+    color:var(--ink);
+    padding:13px 26px;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:0.98rem;
+  }
+
+  .signal{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+  }
+  .signal-tile{
+    border-radius:18px;
+    padding:20px;
+    font-weight:700;
+    font-family:'Sora', sans-serif;
+    font-size:0.95rem;
+    color:var(--ink);
+  }
+  .signal-tile small{display:block; font-weight:500; font-family:'Inter'; margin-top:6px; font-size:0.78rem; color:rgba(20,20,28,0.65);}
+  .signal-tile.red{background:var(--red-soft); box-shadow:0 0 0 2px var(--red) inset;}
+  .signal-tile.yellow{background:var(--yellow-soft); box-shadow:0 0 0 2px var(--yellow) inset;}
+  .signal-tile.green{background:var(--green-soft); box-shadow:0 0 0 2px var(--green) inset;}
+  .signal-tile.blue{background:var(--blue-soft); box-shadow:0 0 0 2px var(--blue) inset;}
+
+  /* SECTION */
+  .section{padding:60px 0;}
+  .section-head{max-width:620px; margin:0 auto 40px; text-align:center;}
+  .section-head .kicker{font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--ink-soft);}
+  .section-head h2{font-size:clamp(1.6rem,3.6vw,2.3rem); margin-top:10px;}
+  .section-head p{margin-top:14px; color:var(--ink-soft); font-size:1rem;}
+
+  /* PILLARS */
+  .pillars{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px;}
+  .pillar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 22px;
+  }
+  .pillar h3{font-size:1.05rem; margin-bottom:10px;}
+  .pillar p{margin:0; color:var(--ink-soft); font-size:0.94rem;}
+
+  /* PERSONA TOOL */
+  .tool{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:28px;
+    padding:36px 28px;
+  }
+  .persona-picker{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:30px;
+  }
+  .persona-btn{
+    cursor:pointer;
+    border:2px solid transparent;
+    border-radius:14px;
+    padding:16px 10px;
+    background:#fff;
+    font-family:'Sora', sans-serif;
+    font-weight:700;
+    font-size:0.92rem;
+    text-align:center;
+    transition:transform .15s ease, border-color .2s ease;
+  }
+  .persona-btn:hover{transform:translateY(-2px);}
+  .persona-btn .chip{
+    width:16px; height:16px; border-radius:50%;
+    margin:0 auto 8px;
+  }
+  .persona-btn.red.active{border-color:var(--red); background:var(--red-soft);}
+  .persona-btn.yellow.active{border-color:var(--yellow); background:var(--yellow-soft);}
+  .persona-btn.green.active{border-color:var(--green); background:var(--green-soft);}
+  .persona-btn.blue.active{border-color:var(--blue); background:var(--blue-soft);}
+  .chip.red{background:var(--red);}
+  .chip.yellow{background:var(--yellow);}
+  .chip.green{background:var(--green);}
+  .chip.blue{background:var(--blue);}
+
+  .tool-body{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+    align-items:center;
+  }
+  .tool-copy p{color:var(--ink-soft); font-size:0.98rem; margin:0 0 16px;}
+  .tool-copy .label{font-weight:700; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.03em; margin-bottom:6px; display:block;}
+
+  .mock{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:26px;
+    box-shadow:0 14px 40px rgba(20,20,28,0.08);
+    transition:box-shadow .2s ease;
+  }
+  .mock-bar{display:flex; gap:6px; margin-bottom:16px;}
+  .mock-bar span{width:9px; height:9px; border-radius:50%; background:var(--line);}
+  #mockHeadline{font-family:'Sora', sans-serif; font-weight:800; font-size:1.35rem; margin-bottom:10px; transition:color .2s ease;}
+  #mockSub{color:var(--ink-soft); font-size:0.92rem; margin-bottom:18px;}
+  #mockCta{
+    display:inline-block;
+    padding:11px 24px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.9rem;
+    color:#12121a;
+  }
+
+  /* FRAMEWORK STRIP */
+  .flow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:34px;
+    font-family:'Sora', sans-serif;
+    font-weight:700;
+    font-size:0.88rem;
+  }
+  .flow .step{
+    background:#fff;
+    border:1px solid var(--line);
+    padding:10px 18px;
+    border-radius:999px;
+  }
+  .flow .arrow{color:var(--ink-soft); font-weight:400;}
+
+  /* TOUCHPOINT CARDS */
+  .touchpoints{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px;}
+  .tp-card{
+    border-radius:var(--radius);
+    padding:24px 22px;
+    border:1px solid var(--line);
+  }
+  .tp-card.red{border-top:5px solid var(--red);}
+  .tp-card.yellow{border-top:5px solid var(--yellow);}
+  .tp-card.green{border-top:5px solid var(--green);}
+  .tp-card.blue{border-top:5px solid var(--blue);}
+  .tp-card h3{font-size:1rem; margin-bottom:10px;}
+  .tp-card p{margin:0; color:var(--ink-soft); font-size:0.92rem;}
+
+  /* FINAL */
+  .final{
+    text-align:center;
+    padding:64px 28px;
+    background:var(--paper);
+    border-radius:32px;
+    border:1px solid var(--line);
+    margin:20px auto 40px;
+    max-width:900px;
+  }
+  .final h2{font-size:clamp(1.7rem,3.6vw,2.3rem); margin-bottom:14px;}
+  .final p{color:var(--ink-soft); max-width:440px; margin:0 auto 26px;}
+
+  footer{
+    text-align:center;
+    padding:24px 0 10px;
+    font-size:0.82rem;
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
+  }
+  footer a{text-decoration:underline;}
+
+  @media (max-width:760px){
+    .hero-grid{grid-template-columns:1fr;}
+    .signal{order:-1;}
+    .tool-body{grid-template-columns:1fr;}
+    .persona-picker{grid-template-columns:repeat(2,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <div class="brand">EasyLandX
+      <span class="swatch"><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i><i style="background:var(--blue)"></i></span>
+    </div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Start My Page</a>
+  </nav>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Built for every kind of visitor</span>
+      <h1>Your visitors aren't idiots. They just read pages differently.</h1>
+      <p class="lead">EasyLandX builds landing pages that speak to how each visitor actually decides — fast and direct, big-picture and warm, steady and reassuring, or detailed and precise.</p>
+      <div class="cta-row">
+        <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Get My EasyLandX Page →</a>
+        <a class="btn-ghost" href="#tool">Meet the four visitors</a>
+      </div>
+    </div>
+    <div class="signal">
+      <div class="signal-tile red">Fast & Direct<small>Wants the bottom line</small></div>
+      <div class="signal-tile yellow">Big & Bright<small>Wants the vision</small></div>
+      <div class="signal-tile green">Steady & Safe<small>Wants reassurance</small></div>
+      <div class="signal-tile blue">Sharp & Precise<small>Wants the data</small></div>
+    </div>
+  </div>
+</header>
+
+<section class="section wrap">
+  <div class="section-head">
+    <span class="kicker">Core messages</span>
+    <h2>A bounce isn't rejection. It's a mismatch in style.</h2>
+    <p>The same landing-page principles that fix human miscommunication also fix conversion gaps.</p>
+  </div>
+  <div class="pillars">
+    <div class="pillar">
+      <h3>Hesitation isn't intent</h3>
+      <p>A visitor who leaves quickly isn't rejecting your offer — the page just spoke a style they weren't ready to hear.</p>
+    </div>
+    <div class="pillar">
+      <h3>The page speaks their language</h3>
+      <p>Great copy adapts to the reader's pace and priorities, not the founder's favorite way of explaining things.</p>
+    </div>
+    <div class="pillar">
+      <h3>No single style wins alone</h3>
+      <p>The strongest pages blend quick facts, big vision, warm reassurance, and precise detail — never just one note.</p>
+    </div>
+    <div class="pillar">
+      <h3>Know your own voice first</h3>
+      <p>Before EasyLandX adapts your page for every visitor, we start with the voice that's naturally, authentically yours.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap" id="tool">
+  <div class="section-head">
+    <span class="kicker">Try it live</span>
+    <h2>Meet your four visitors</h2>
+    <p>Pick a color to see how the same landing page shifts its headline, tone, and call-to-action for each one.</p>
+  </div>
+
+  <div class="tool">
+    <div class="persona-picker">
+      <button class="persona-btn red active" data-key="red"><span class="chip red"></span>Red<br>Decisive Buyer</button>
+      <button class="persona-btn yellow" data-key="yellow"><span class="chip yellow"></span>Yellow<br>Inspired Explorer</button>
+      <button class="persona-btn green" data-key="green"><span class="chip green"></span>Green<br>Cautious Researcher</button>
+      <button class="persona-btn blue" data-key="blue"><span class="chip blue"></span>Blue<br>Detail Analyst</button>
+    </div>
+
+    <div class="tool-body">
+      <div class="tool-copy">
+        <span class="label" id="toolLabel">How EasyLandX writes for Reds</span>
+        <p id="toolText">Short headline, one bold number, and a single button above the fold — no small talk before the offer.</p>
+      </div>
+      <div class="mock">
+        <div class="mock-bar"><span></span><span></span><span></span></div>
+        <div id="mockHeadline">Book more clients. Starting today.</div>
+        <div id="mockSub">Live in 3 days. No design skills needed.</div>
+        <span id="mockCta">Get Started</span>
+      </div>
+    </div>
+
+    <div class="flow">
+      <span class="step">Identify their style</span>
+      <span class="arrow">→</span>
+      <span class="step">Adapt the section</span>
+      <span class="arrow">→</span>
+      <span class="step">One page, four voices</span>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="section-head">
+    <span class="kicker">After the click</span>
+    <h2>Follow-up tailored to every color</h2>
+    <p>The adaptation doesn't stop at the landing page — confirmation emails and next steps flex too.</p>
+  </div>
+  <div class="touchpoints">
+    <div class="tp-card red">
+      <h3>Following up with Reds</h3>
+      <p>A short, direct confirmation with the next concrete step and a clear timeline — no filler.</p>
+    </div>
+    <div class="tp-card yellow">
+      <h3>Following up with Yellows</h3>
+      <p>A warm, enthusiastic message that celebrates the decision and paints the exciting result ahead.</p>
+    </div>
+    <div class="tp-card green">
+      <h3>Following up with Greens</h3>
+      <p>A reassuring note confirming everything is handled, with a gentle, step-by-step outline of what's next.</p>
+    </div>
+    <div class="tp-card blue">
+      <h3>Following up with Blues</h3>
+      <p>A detailed confirmation with specifics, documentation, and exactly what to expect and when.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="final">
+    <h2>One page. Every visitor understood.</h2>
+    <p>EasyLandX builds landing pages that flex to how people actually decide — so more of every color converts.</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</section>
+
+<footer class="wrap">
+  Built with EasyLandX · <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+</footer>
+
+<script>
+  const personas = {
+    red: {
+      label: "How EasyLandX writes for Reds",
+      text: "Short headline, one bold number, and a single button above the fold — no small talk before the offer.",
+      headline: "Book more clients. Starting today.",
+      sub: "Live in 3 days. No design skills needed.",
+      cta: "Get Started",
+      color: "var(--red)",
+      soft: "var(--red-soft)"
+    },
+    yellow: {
+      label: "How EasyLandX writes for Yellows",
+      text: "An energetic headline and a story-driven opening that paints the exciting future your page can create.",
+      headline: "Imagine your business, finally seen.",
+      sub: "Join hundreds of businesses telling a bigger story online.",
+      cta: "Let's Build It",
+      color: "#c9b900",
+      soft: "var(--yellow-soft)"
+    },
+    green: {
+      label: "How EasyLandX writes for Greens",
+      text: "A calm, reassuring headline with visible trust signals and a gentle, step-by-step path forward.",
+      headline: "A page that's steady, safe, and truly yours.",
+      sub: "Trusted by small businesses — no surprises, ever.",
+      cta: "See How It Works",
+      color: "#149a52",
+      soft: "var(--green-soft)"
+    },
+    blue: {
+      label: "How EasyLandX writes for Blues",
+      text: "A precise headline backed by specifics — load times, structure, and exactly what's included.",
+      headline: "A conversion-focused page, built to specification.",
+      sub: "Fast load times, clean structure, full documentation included.",
+      cta: "View the Details",
+      color: "#0090c2",
+      soft: "var(--blue-soft)"
+    }
+  };
+
+  const buttons = document.querySelectorAll('.persona-btn');
+  const toolLabel = document.getElementById('toolLabel');
+  const toolText = document.getElementById('toolText');
+  const mockHeadline = document.getElementById('mockHeadline');
+  const mockSub = document.getElementById('mockSub');
+  const mockCta = document.getElementById('mockCta');
+
+  function applyPersona(key){
+    const p = personas[key];
+    toolLabel.textContent = p.label;
+    toolText.textContent = p.text;
+    mockHeadline.textContent = p.headline;
+    mockHeadline.style.color = p.color;
+    mockSub.textContent = p.sub;
+    mockCta.textContent = p.cta;
+    mockCta.style.background = p.soft;
+    mockCta.style.boxShadow = "0 0 0 2px " + p.color + " inset";
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.key === key));
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => applyPersona(btn.dataset.key));
+  });
+
+  applyPersona('red');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing pages that feel right and add up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cortical-900:#0B1530;
+    --cortical-800:#132148;
+    --cortical-700:#1C2E5C;
+    --cortical-600:#28407A;
+    --paper:#EEF0F6;
+    --paper-card:#FFFFFF;
+    --synaptic:#E23150;
+    --synaptic-bright:#FF4F6D;
+    --slate:#5B6478;
+    --slate-light:#8890A0;
+    --ink:#10142A;
+    --ink-soft:#454C60;
+    --cloud:#F5F6FB;
+    --cloud-soft:#C7CCE0;
+    --radius-lg:22px;
+    --radius-sm:10px;
+    --max-w:1120px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter', system-ui, sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+    color:inherit;
+  }
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  button{font-family:inherit;}
+
+  .wrap{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  :focus-visible{
+    outline:3px solid var(--synaptic-bright);
+    outline-offset:3px;
+  }
+
+  /* ---------- Nav ---------- */
+  header.site-nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(11,21,48,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 32px;
+    max-width:var(--max-w);
+    margin:0 auto;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.28rem;
+    color:var(--cloud);
+  }
+  .brand-mark{
+    width:30px;height:30px;
+    flex:0 0 auto;
+  }
+  nav.nav-links{
+    display:flex;
+    gap:30px;
+    align-items:center;
+  }
+  nav.nav-links a{
+    color:var(--cloud-soft);
+    font-size:0.96rem;
+    font-weight:500;
+    transition:color .18s ease;
+  }
+  nav.nav-links a:hover{color:var(--cloud);}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:13px 26px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:0.98rem;
+    border:none;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-primary{
+    background:var(--synaptic);
+    color:#fff;
+    box-shadow:0 8px 20px rgba(226,49,80,0.35);
+  }
+  .btn-primary:hover{
+    background:var(--synaptic-bright);
+    transform:translateY(-2px);
+    box-shadow:0 12px 26px rgba(226,49,80,0.42);
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--cloud);
+    border:1.5px solid rgba(245,246,251,0.35);
+  }
+  .btn-ghost:hover{border-color:var(--cloud); background:rgba(245,246,251,0.06);}
+  .nav-cta{display:none;}
+  @media(min-width:860px){.nav-cta{display:inline-flex;}}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:radial-gradient(120% 140% at 15% -10%, var(--cortical-700), var(--cortical-900) 60%);
+    color:var(--cloud);
+    padding:88px 0 60px;
+    overflow:hidden;
+    position:relative;
+  }
+  .hero-inner{
+    display:grid;
+    grid-template-columns:1.15fr 1fr;
+    gap:56px;
+    align-items:center;
+  }
+  @media(max-width:900px){
+    .hero-inner{grid-template-columns:1fr; text-align:left;}
+  }
+  .hero h1{
+    font-size:clamp(2.3rem, 4.2vw, 3.4rem);
+    line-height:1.08;
+    color:#fff;
+  }
+  .hero .lede{
+    margin-top:22px;
+    font-size:1.15rem;
+    color:var(--cloud-soft);
+    max-width:46ch;
+  }
+  .hero-actions{
+    margin-top:34px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .hero-note{
+    margin-top:22px;
+    font-size:0.92rem;
+    color:var(--slate-light);
+  }
+  .hero-visual{
+    position:relative;
+    aspect-ratio:1/1;
+    max-width:420px;
+    margin:0 auto;
+  }
+
+  /* ---------- Section shells ---------- */
+  section{padding:96px 0;}
+  .section-dark{background:var(--cortical-900); color:var(--cloud);}
+  .section-mid{background:var(--cortical-800); color:var(--cloud);}
+  .eyebrow-free-head{
+    max-width:640px;
+    margin:0 auto 56px;
+    text-align:center;
+  }
+  .eyebrow-free-head h2{
+    font-size:clamp(1.9rem, 3.2vw, 2.5rem);
+    line-height:1.15;
+  }
+  .eyebrow-free-head p{
+    margin-top:16px;
+    font-size:1.06rem;
+    color:var(--ink-soft);
+  }
+  .section-dark .eyebrow-free-head p,
+  .section-mid .eyebrow-free-head p{color:var(--cloud-soft);}
+
+  /* ---------- Science / insight ---------- */
+  .science-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:start;
+  }
+  @media(max-width:900px){.science-grid{grid-template-columns:1fr;}}
+  .science-copy h3{
+    font-size:1.5rem;
+    margin-bottom:14px;
+  }
+  .science-copy p{
+    color:var(--ink-soft);
+    margin-bottom:20px;
+    font-size:1.02rem;
+  }
+  .pull-quote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.4rem;
+    line-height:1.4;
+    color:var(--ink);
+    border-left:3px solid var(--synaptic);
+    padding-left:22px;
+    margin:28px 0;
+  }
+
+  /* journey diagram */
+  .journey{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .journey-step{
+    display:flex;
+    gap:18px;
+    padding:20px 0;
+    border-bottom:1px solid #DDE1EE;
+  }
+  .journey-step:last-child{border-bottom:none;}
+  .journey-num{
+    flex:0 0 auto;
+    width:38px;height:38px;
+    border-radius:50%;
+    background:var(--cortical-900);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1rem;
+  }
+  .journey-step:nth-child(2) .journey-num{background:var(--synaptic);}
+  .journey-step:nth-child(4) .journey-num{background:var(--synaptic);}
+  .journey-body h4{
+    margin:0 0 4px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.08rem;
+  }
+  .journey-body p{
+    color:var(--ink-soft);
+    font-size:0.97rem;
+  }
+
+  /* ---------- Simulator ---------- */
+  .sim-card{
+    background:var(--paper-card);
+    border-radius:var(--radius-lg);
+    padding:40px;
+    color:var(--ink);
+    box-shadow:0 30px 60px -30px rgba(11,21,48,0.5);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+  }
+  @media(max-width:860px){.sim-card{grid-template-columns:1fr; padding:28px;}}
+
+  .toggle-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:16px 0;
+    border-bottom:1px solid #E7E9F2;
+  }
+  .toggle-row:first-child{padding-top:0;}
+  .toggle-row:last-child{border-bottom:none;}
+  .toggle-label{
+    font-weight:600;
+    font-size:0.98rem;
+  }
+  .toggle-sub{
+    font-size:0.85rem;
+    color:var(--slate);
+    margin-top:2px;
+  }
+  .switch{
+    position:relative;
+    width:52px;height:30px;
+    flex:0 0 auto;
+  }
+  .switch input{
+    opacity:0;width:100%;height:100%;
+    position:absolute; margin:0; cursor:pointer;
+  }
+  .switch .track{
+    position:absolute; inset:0;
+    background:#DADEEC;
+    border-radius:999px;
+    transition:background .2s ease;
+  }
+  .switch .thumb{
+    position:absolute;
+    top:3px; left:3px;
+    width:24px;height:24px;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:0 2px 6px rgba(0,0,0,0.2);
+    transition:transform .2s ease;
+  }
+  .switch input:checked + .track{background:var(--synaptic);}
+  .switch input:checked + .track + .thumb{transform:translateX(22px);}
+
+  .scores{
+    display:flex;
+    flex-direction:column;
+    gap:26px;
+    justify-content:center;
+  }
+  .score-block .score-label{
+    display:flex;
+    justify-content:space-between;
+    font-size:0.92rem;
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .score-label span:last-child{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+  }
+  .score-bar-track{
+    height:14px;
+    background:#E7E9F2;
+    border-radius:999px;
+    overflow:hidden;
+  }
+  .score-bar-fill{
+    height:100%;
+    border-radius:999px;
+    transition:width .5s cubic-bezier(.2,.8,.2,1);
+    width:15%;
+  }
+  .fill-instant{background:linear-gradient(90deg, var(--synaptic), var(--synaptic-bright));}
+  .fill-reasoned{background:linear-gradient(90deg, var(--slate), var(--slate-light));}
+  .fill-combined{background:linear-gradient(90deg, var(--cortical-700), var(--synaptic));}
+
+  .combined-block{
+    margin-top:6px;
+    padding-top:22px;
+    border-top:1px dashed #DADEEC;
+  }
+  .combined-note{
+    margin-top:10px;
+    font-size:0.9rem;
+    color:var(--slate);
+  }
+
+  /* ---------- Features ---------- */
+  .feature-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+  }
+  @media(max-width:980px){.feature-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.feature-grid{grid-template-columns:1fr;}}
+  .feature-card{
+    background:var(--paper-card);
+    border-radius:var(--radius-lg);
+    padding:30px 26px;
+    border:1px solid #E4E7F1;
+  }
+  .feature-icon{
+    width:42px;height:42px;
+    margin-bottom:18px;
+  }
+  .feature-card h3{
+    font-size:1.12rem;
+    margin-bottom:10px;
+  }
+  .feature-card p{
+    font-size:0.94rem;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Pull quote band ---------- */
+  .quote-band{
+    background:var(--cortical-900);
+    color:#fff;
+    text-align:center;
+    padding:90px 0;
+  }
+  .quote-band blockquote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.5rem, 3vw, 2.15rem);
+    line-height:1.4;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .quote-band cite{
+    display:block;
+    margin-top:24px;
+    font-style:normal;
+    font-family:'Inter', sans-serif;
+    font-size:0.95rem;
+    color:var(--slate-light);
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    background:linear-gradient(135deg, var(--cortical-800), var(--cortical-900));
+    color:#fff;
+    text-align:center;
+    padding:110px 0;
+  }
+  .final-cta h2{
+    font-size:clamp(2rem, 4vw, 2.9rem);
+    max-width:20ch;
+    margin:0 auto;
+  }
+  .final-cta p{
+    margin-top:18px;
+    color:var(--cloud-soft);
+    font-size:1.08rem;
+  }
+  .final-cta .hero-actions{justify-content:center; margin-top:36px;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--cortical-900);
+    color:var(--slate-light);
+    padding:40px 0;
+    border-top:1px solid rgba(255,255,255,0.08);
+  }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+    font-size:0.9rem;
+  }
+  .footer-inner .brand{color:var(--cloud); font-size:1.05rem;}
+
+  /* pulse animation for hero svg */
+  .pulse-dot{
+    animation:travel 4.5s ease-in-out infinite;
+  }
+  @keyframes travel{
+    0%{ offset-distance:0%; opacity:0; }
+    8%{ opacity:1; }
+    92%{ opacity:1; }
+    100%{ offset-distance:100%; opacity:0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 30 30" fill="none">
+        <circle cx="7" cy="15" r="3.4" fill="#E23150"/>
+        <circle cx="23" cy="7" r="3.4" fill="#F5F6FB"/>
+        <circle cx="23" cy="23" r="3.4" fill="#F5F6FB"/>
+        <path d="M9.8 13.5 L20.2 8.5 M9.8 16.5 L20.2 21.5" stroke="#5B6478" stroke-width="1.6"/>
+      </svg>
+      EasyLandX
+    </div>
+    <nav class="nav-links">
+      <a href="#science">The science</a>
+      <a href="#simulator">Try it live</a>
+      <a href="#features">Features</a>
+    </nav>
+    <a class="btn btn-primary nav-cta" href="https://easylandx.com" target="_blank" rel="noopener">Get started</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <h1>Pages that reach the gut first, and the mind right after</h1>
+      <p class="lede">EasyLandX helps you build landing pages the way great decisions actually happen: a fast, felt reaction that opens the door, followed by clear reasoning that confirms the click.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Build with EasyLandX</a>
+        <a class="btn btn-ghost" href="#simulator">See the instant reaction simulator</a>
+      </div>
+      <p class="hero-note">Grounded in how people really decide — feeling first, logic close behind.</p>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 400 400" width="100%" height="100%">
+        <defs>
+          <path id="synapsePath" d="M 90 300 C 150 220, 150 140, 210 90" fill="none"/>
+        </defs>
+        <line x1="90" y1="300" x2="210" y2="90" stroke="#28407A" stroke-width="1.4" opacity="0.55"/>
+        <line x1="90" y1="300" x2="310" y2="230" stroke="#28407A" stroke-width="1.4" opacity="0.55"/>
+        <line x1="210" y1="90" x2="310" y2="230" stroke="#28407A" stroke-width="1.4" opacity="0.55"/>
+        <line x1="210" y1="90" x2="320" y2="70" stroke="#28407A" stroke-width="1.4" opacity="0.4"/>
+        <line x1="90" y1="300" x2="70" y2="150" stroke="#28407A" stroke-width="1.4" opacity="0.4"/>
+        <circle cx="90" cy="300" r="16" fill="#E23150"/>
+        <circle cx="210" cy="90" r="12" fill="#F5F6FB"/>
+        <circle cx="310" cy="230" r="12" fill="#F5F6FB"/>
+        <circle cx="320" cy="70" r="8" fill="#8890A0"/>
+        <circle cx="70" cy="150" r="8" fill="#8890A0"/>
+        <circle r="6" fill="#FF4F6D" class="pulse-dot" style="offset-path:path('M 90 300 C 150 220, 150 140, 210 90');"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="science" class="section-mid">
+  <div class="wrap">
+    <div class="eyebrow-free-head">
+      <h2>Great decisions start in the body</h2>
+      <p>Neuroscience shows that feeling and reasoning work as one system. EasyLandX brings that same integration to every page you build.</p>
+    </div>
+    <div class="science-grid" style="color:var(--ink);">
+      <div class="science-copy" style="background:var(--paper-card); border-radius:var(--radius-lg); padding:36px;">
+        <h3>Why feeling comes first</h3>
+        <p>Long before a visitor reads a headline, their body has already reacted. Color, shape, rhythm, and pacing trigger a quick physical response — call it a gut sense — that shapes everything that follows. A page that earns a warm, easy first reaction gives the reasoning mind a welcoming place to land.</p>
+        <p class="pull-quote">"Feeling opens the page. Reasoning keeps the visitor there."</p>
+        <p>Once that initial pull is in place, the visitor's conscious mind steps in to confirm it: clear value, honest proof, and a confident next step. Pages that carry both layers, felt and reasoned, move people to act with real conviction rather than hesitation.</p>
+      </div>
+      <div style="background:var(--paper-card); border-radius:var(--radius-lg); padding:36px;">
+        <h3 style="margin-bottom:20px;">The EasyLandX visitor journey</h3>
+        <div class="journey">
+          <div class="journey-step">
+            <div class="journey-num">1</div>
+            <div class="journey-body">
+              <h4>Visitor arrives</h4>
+              <p>Attention meets your design in a fraction of a second, before a single word is read.</p>
+            </div>
+          </div>
+          <div class="journey-step">
+            <div class="journey-num">2</div>
+            <div class="journey-body">
+              <h4>Instant reaction</h4>
+              <p>Color, imagery, and layout create a fast, felt response — the page's first impression, made in the body.</p>
+            </div>
+          </div>
+          <div class="journey-step">
+            <div class="journey-num">3</div>
+            <div class="journey-body">
+              <h4>Quick filtering</h4>
+              <p>That reaction sets the tone in an instant, deciding whether the visitor leans in to explore further.</p>
+            </div>
+          </div>
+          <div class="journey-step">
+            <div class="journey-num">4</div>
+            <div class="journey-body">
+              <h4>Clear reasoning</h4>
+              <p>Value, proof, and detail step forward to confirm what the first feeling already suggested.</p>
+            </div>
+          </div>
+          <div class="journey-step">
+            <div class="journey-num">5</div>
+            <div class="journey-body">
+              <h4>Confident action</h4>
+              <p>Feeling and logic align, and the visitor moves forward with a click that feels earned.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="simulator" style="background:var(--paper);">
+  <div class="wrap">
+    <div class="eyebrow-free-head">
+      <h2>Feel it, then prove it</h2>
+      <p>Switch page elements on and watch two kinds of momentum grow side by side: the instant reaction and the reasoned confidence that follows it.</p>
+    </div>
+
+    <div class="sim-card">
+      <div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-label">A striking hero visual</div>
+            <div class="toggle-sub">Sparks a fast, positive first impression</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" data-instant="28" data-reasoned="8">
+            <span class="track"></span>
+            <span class="thumb"></span>
+          </label>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-label">Real voices and social proof</div>
+            <div class="toggle-sub">Gives the reasoning mind something solid to hold onto</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" data-instant="12" data-reasoned="26">
+            <span class="track"></span>
+            <span class="thumb"></span>
+          </label>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-label">A crystal-clear value statement</div>
+            <div class="toggle-sub">Turns the good feeling into a good reason</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" data-instant="10" data-reasoned="28">
+            <span class="track"></span>
+            <span class="thumb"></span>
+          </label>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-label">One confident call to action</div>
+            <div class="toggle-sub">Carries both instinct and logic straight to the click</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" data-instant="18" data-reasoned="18">
+            <span class="track"></span>
+            <span class="thumb"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="scores">
+        <div class="score-block">
+          <div class="score-label"><span>Instant reaction</span><span id="instantScoreText">15%</span></div>
+          <div class="score-bar-track"><div class="score-bar-fill fill-instant" id="instantBar"></div></div>
+        </div>
+        <div class="score-block">
+          <div class="score-label"><span>Reasoned confidence</span><span id="reasonedScoreText">11%</span></div>
+          <div class="score-bar-track"><div class="score-bar-fill fill-reasoned" id="reasonedBar"></div></div>
+        </div>
+        <div class="score-block combined-block">
+          <div class="score-label"><span>Conversion readiness</span><span id="combinedScoreText">13%</span></div>
+          <div class="score-bar-track"><div class="score-bar-fill fill-combined" id="combinedBar"></div></div>
+          <p class="combined-note" id="combinedNote">Every page starts with real potential — switch on elements above to build momentum.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="section-dark">
+  <div class="wrap">
+    <div class="eyebrow-free-head">
+      <h2>Everything EasyLandX brings to your page</h2>
+      <p>A full toolkit for pages that connect with visitors quickly, and hold up to a second look.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <svg class="feature-icon" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="21" r="18" stroke="#E23150" stroke-width="2.4"/><circle cx="21" cy="21" r="6" fill="#E23150"/></svg>
+        <h3>Emotional hooks, built in</h3>
+        <p>Color palettes, imagery, and pacing chosen to spark a quick, positive gut reaction the moment a page loads.</p>
+      </div>
+      <div class="feature-card">
+        <svg class="feature-icon" viewBox="0 0 42 42" fill="none"><rect x="6" y="6" width="30" height="30" rx="8" stroke="#5B6478" stroke-width="2.4"/><path d="M14 21 L19 27 L29 15" stroke="#5B6478" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>A logic trail that closes the deal</h3>
+        <p>Proof points, clear value language, and honest detail that let the reasoning mind confirm the good first feeling.</p>
+      </div>
+      <div class="feature-card">
+        <svg class="feature-icon" viewBox="0 0 42 42" fill="none"><path d="M21 4 L27 18 L21 18 L25 38 L14 20 L20 20 Z" fill="#28407A"/></svg>
+        <h3>Fast, fluid pages</h3>
+        <p>Quick-loading builds that keep the instant reaction strong instead of letting it fade while a page catches up.</p>
+      </div>
+      <div class="feature-card">
+        <svg class="feature-icon" viewBox="0 0 42 42" fill="none"><circle cx="12" cy="30" r="4" fill="#E23150"/><circle cx="21" cy="16" r="4" fill="#F5F6FB"/><circle cx="30" cy="26" r="4" fill="#8890A0"/><path d="M12 30 L21 16 L30 26" stroke="#5B6478" stroke-width="1.8"/></svg>
+        <h3>Insight from every visit</h3>
+        <p>Outcome data that helps calibrate the next page, so each release lands with a little more confidence than the last.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote-band">
+  <div class="wrap">
+    <blockquote>Feeling is the fast opening act. Reasoning takes the encore. EasyLandX gives your page both.</blockquote>
+    <cite>The idea at the center of every EasyLandX page</cite>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Give your visitors a page that feels right and adds up</h2>
+    <p>Bring instant reaction and clear reasoning together in one build, and watch confident clicks follow.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://easylandx.com" target="_blank" rel="noopener">Build with EasyLandX</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="brand">EasyLandX</div>
+    <div>Pages built for the whole mind — feeling and reasoning together.</div>
+  </div>
+</footer>
+
+<script>
+  const checkboxes = document.querySelectorAll('.sim-card input[type="checkbox"]');
+  const baseInstant = 12, baseReasoned = 10;
+  const maxInstant = baseInstant + 68; // 28+12+10+18
+  const maxReasoned = baseReasoned + 80; // 8+26+28+18
+
+  const instantBar = document.getElementById('instantBar');
+  const reasonedBar = document.getElementById('reasonedBar');
+  const combinedBar = document.getElementById('combinedBar');
+  const instantText = document.getElementById('instantScoreText');
+  const reasonedText = document.getElementById('reasonedScoreText');
+  const combinedText = document.getElementById('combinedScoreText');
+  const combinedNote = document.getElementById('combinedNote');
+
+  const notes = [
+    "Every page starts with real potential — switch on elements above to build momentum.",
+    "Nice start. The instant reaction is already warming up.",
+    "Feeling and logic are beginning to move together.",
+    "This combination is building real momentum toward a confident click.",
+    "A strong, balanced page — instinct and reasoning are fully aligned."
+  ];
+
+  function update(){
+    let instant = baseInstant, reasoned = baseReasoned, activeCount = 0;
+    checkboxes.forEach(cb => {
+      if(cb.checked){
+        instant += Number(cb.dataset.instant);
+        reasoned += Number(cb.dataset.reasoned);
+        activeCount++;
+      }
+    });
+    const instantPct = Math.round((instant / maxInstant) * 100);
+    const reasonedPct = Math.round((reasoned / maxReasoned) * 100);
+    const combinedPct = Math.round((instantPct + reasonedPct) / 2);
+
+    instantBar.style.width = instantPct + '%';
+    reasonedBar.style.width = reasonedPct + '%';
+    combinedBar.style.width = combinedPct + '%';
+    instantText.textContent = instantPct + '%';
+    reasonedText.textContent = reasonedPct + '%';
+    combinedText.textContent = combinedPct + '%';
+    combinedNote.textContent = notes[Math.min(activeCount, notes.length - 1)];
+  }
+
+  checkboxes.forEach(cb => cb.addEventListener('change', update));
+  update();
+</script>
+
+</body>
+</html>
