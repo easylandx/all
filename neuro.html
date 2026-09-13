@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — The Landing Page Your Brain Reads Instantly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cobalt: #0033FF;
+    --cobalt-deep: #001B8C;
+    --cobalt-navy: #050B34;
+    --fuchsia: #FF10E0;
+    --chartreuse: #C8FF1E;
+    --cream: #F1F3FF;
+    --max: 1120px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background: var(--cobalt);
+    color: var(--cream);
+    font-family:'Inter', sans-serif;
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    line-height:1.14;
+    margin:0;
+    color: var(--cream);
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+
+  a{ color:inherit; }
+  .wrap{ max-width: var(--max); margin:0 auto; padding: 0 28px; }
+
+  header{ padding:26px 0; position:relative; z-index:3; }
+  .header-row{ display:flex; justify-content:space-between; align-items:center; }
+  .logo{ font-family:'Space Grotesk', sans-serif; font-weight:900; font-size:1.15rem; letter-spacing:-0.01em; }
+  .logo span{ color: var(--chartreuse); }
+
+  .top-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background: var(--fuchsia); color: var(--cobalt-navy);
+    font-weight:700; font-family:'Space Grotesk', sans-serif; font-size:0.8rem;
+    padding: 10px 18px; border-radius: 8px; text-decoration:none;
+    transition: transform 0.15s ease;
+  }
+  .top-cta:hover{ transform: translateY(-2px); }
+
+  /* ---------- hero ---------- */
+  .hero{ padding:64px 0 20px; position:relative; z-index:2; }
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color: var(--chartreuse);
+    margin-bottom: 18px;
+  }
+  .hero-headline{
+    font-size: clamp(2.3rem, 5.6vw, 4.1rem);
+    font-weight:700;
+    max-width: 860px;
+  }
+  .hero-headline .accent{ color: var(--chartreuse); }
+  .hero-headline .accent2{ color: var(--fuchsia); }
+  .hero-sub{ max-width: 560px; margin-top:22px; font-size:1.06rem; opacity:0.88; }
+  .hero-actions{ margin-top:32px; display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:10px;
+    background: var(--chartreuse); color: var(--cobalt-navy);
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:0.95rem;
+    padding: 15px 26px; border-radius: 10px; text-decoration:none;
+    box-shadow: 5px 5px 0 var(--fuchsia);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary:hover{ transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--fuchsia); }
+
+  .btn-ghost{
+    font-weight:600; text-decoration:none; color: var(--cream);
+    border-bottom: 2px solid var(--fuchsia); padding-bottom:3px; font-size:0.95rem;
+  }
+
+  /* ---------- EEG waveform strip ---------- */
+  .eeg-holder{
+    margin-top: 50px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 16px;
+    background: rgba(0,0,0,0.22);
+    padding: 18px 20px 6px;
+  }
+  .eeg-label{ font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color: var(--chartreuse); margin-bottom:6px; }
+  svg#eegSvg{ width:100%; height:auto; display:block; }
+
+  /* ---------- sections ---------- */
+  section{ padding: 78px 0; position:relative; z-index:2; }
+  .section-head{ max-width: 620px; margin-bottom:42px; }
+  .section-head h2{ font-size: clamp(1.7rem, 3.6vw, 2.4rem); }
+  .section-head p{ margin-top:14px; opacity:0.85; font-size:1.02rem; }
+
+  /* ---------- two pathways ---------- */
+  .pathways{ display:grid; grid-template-columns: 1fr 1fr; gap:22px; }
+  .pathway-card{
+    border-radius:16px; padding:28px;
+    border: 1px solid rgba(255,255,255,0.18);
+  }
+  .pathway-card.meaning{ background: rgba(255,16,224,0.1); border-color: rgba(255,16,224,0.4); }
+  .pathway-card.structure{ background: rgba(200,255,30,0.08); border-color: rgba(200,255,30,0.4); }
+  .pathway-card .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; margin-bottom:14px; display:block;
+  }
+  .pathway-card.meaning .tag{ color: var(--fuchsia); }
+  .pathway-card.structure .tag{ color: var(--chartreuse); }
+  .pathway-card h3{ font-size:1.25rem; margin-bottom:12px; }
+  .pathway-card p{ margin:0; opacity:0.9; font-size:0.96rem; }
+  .bridge-note{
+    margin-top:22px;
+    padding: 18px 22px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.06);
+    font-size:0.95rem;
+    opacity:0.9;
+  }
+
+  /* ---------- specialization ---------- */
+  .special-row{ display:grid; grid-template-columns: repeat(4, 1fr); gap:18px; }
+  .special-card{
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius:14px;
+    padding:22px 18px;
+  }
+  .special-card .role{
+    font-family:'IBM Plex Mono', monospace; font-size:0.7rem;
+    color: var(--chartreuse); margin-bottom:10px; display:block;
+  }
+  .special-card:nth-child(even) .role{ color: var(--fuchsia); }
+  .special-card h3{ font-size:1rem; margin-bottom:8px; }
+  .special-card p{ font-size:0.86rem; opacity:0.85; margin:0; }
+
+  /* ---------- process ---------- */
+  .timeline{ display:flex; flex-direction:column; }
+  .step{
+    display:grid; grid-template-columns: 90px 1fr; gap:22px;
+    padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.16);
+  }
+  .step:last-child{ border-bottom: 1px solid rgba(255,255,255,0.16); }
+  .step-tag{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color: var(--chartreuse); }
+  .step:nth-child(even) .step-tag{ color: var(--fuchsia); }
+  .step h3{ font-size:1.1rem; margin-bottom:8px; }
+  .step p{ margin:0; opacity:0.88; font-size:0.95rem; max-width:640px; }
+
+  /* ---------- millisecond simulator ---------- */
+  .sim{
+    background: var(--cobalt-navy);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 22px;
+    padding: 40px;
+    margin-top: 20px;
+  }
+  .sim-head p{ opacity:0.8; margin-top:12px; max-width:560px; }
+  .sim-run{
+    margin-top: 26px;
+    background: var(--fuchsia);
+    color: var(--cobalt-navy);
+    border:none;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:0.95rem;
+    padding: 14px 28px;
+    border-radius: 10px;
+    cursor:pointer;
+    transition: transform 0.15s ease;
+  }
+  .sim-run:hover{ transform: translateY(-2px); }
+
+  .sim-track{
+    margin-top: 34px;
+    position:relative;
+    height: 10px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 999px;
+  }
+  .sim-dot{
+    position:absolute;
+    top:50%; left:0;
+    width: 22px; height:22px;
+    border-radius:50%;
+    background: var(--chartreuse);
+    transform: translate(-50%,-50%);
+    box-shadow: 0 0 18px rgba(200,255,30,0.7);
+    transition: left 2.8s linear;
+  }
+  .sim-ticks{
+    display:flex; justify-content:space-between;
+    margin-top: 12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    opacity:0.6;
+  }
+  .sim-readout{
+    margin-top: 30px;
+    padding: 24px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.05);
+    min-height: 90px;
+  }
+  .sim-readout .stage-time{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--chartreuse);
+    font-size:0.85rem;
+    margin-bottom:8px;
+    display:block;
+  }
+  .sim-readout .stage-text{
+    font-size: 1.08rem;
+    font-weight:500;
+  }
+
+  /* ---------- final cta ---------- */
+  .final-cta{ text-align:center; padding: 90px 0 60px; }
+  .final-cta h2{ font-size: clamp(2rem, 5vw, 3rem); max-width: 700px; margin:0 auto 20px; }
+  .final-cta .accent{ color: var(--chartreuse); }
+  .final-cta p{ max-width: 520px; margin:0 auto 32px; opacity:0.85; }
+
+  footer{
+    border-top: 1px solid rgba(255,255,255,0.16);
+    padding: 30px 0; text-align:center; font-size:0.85rem; opacity:0.75;
+    position:relative; z-index:2;
+  }
+  footer a{ color: var(--chartreuse); text-decoration:none; font-weight:600; }
+
+  @media (max-width: 900px){
+    .pathways{ grid-template-columns:1fr; }
+    .special-row{ grid-template-columns: 1fr 1fr; }
+    .sim{ padding:26px; }
+  }
+  @media (max-width: 560px){
+    .special-row{ grid-template-columns: 1fr; }
+    .step{ grid-template-columns: 60px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-row">
+    <div class="logo">easyland<span>x</span></div>
+    <a class="top-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow mono">FIRST 800 MILLISECONDS</div>
+    <h1 class="hero-headline">Your landing page has about <span class="accent">200 milliseconds</span> to make <span class="accent2">structural sense</span>.</h1>
+    <p class="hero-sub">Before a visitor reads a single word, their brain is already parsing your page's structure. EasyLandX designs for that window — clear hierarchy, instant meaning, and a layout that reads as effortlessly as a well-formed sentence.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Explore EasyLandX →</a>
+      <a class="btn-ghost" href="#simulator">Run the millisecond test</a>
+    </div>
+
+    <div class="eeg-holder">
+      <div class="eeg-label mono">LIVE READOUT — HOW A CLEAR PAGE GETS PROCESSED</div>
+      <svg id="eegSvg" viewBox="0 0 900 140" xmlns="http://www.w3.org/2000/svg">
+        <polyline id="eegLine" points="" fill="none" stroke="#C8FF1E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline id="eegLine2" points="" fill="none" stroke="#FF10E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.65"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="pathways">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Two pathways, one decision</h2>
+      <p>A page that works is really two systems working together: what it says, and how it's arranged.</p>
+    </div>
+    <div class="pathways">
+      <div class="pathway-card meaning">
+        <span class="tag mono">MEANING</span>
+        <h3>Your words, your offer, your proof</h3>
+        <p>Photos, headlines, pricing, testimonials — the raw content that tells a visitor what you actually do and why it matters to them.</p>
+      </div>
+      <div class="pathway-card structure">
+        <span class="tag mono">STRUCTURE</span>
+        <h3>Your hierarchy, your order, your flow</h3>
+        <p>The arrangement that tells a visitor what to look at first, second, and third — so the same great content actually gets read.</p>
+      </div>
+    </div>
+    <div class="bridge-note">
+      Great content with weak structure reads like a sentence with the right words in the wrong order — technically there, but harder to follow than it needs to be. EasyLandX builds the bridge between the two, on purpose, every time.
+    </div>
+  </div>
+</section>
+
+<section id="specialization">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Every section has exactly one job</h2>
+      <p>A page isn't one section trying to do everything. It's a small network, each part specialized.</p>
+    </div>
+    <div class="special-row">
+      <div class="special-card">
+        <span class="role mono">HEADLINE</span>
+        <h3>Names the identity</h3>
+        <p>States clearly who this is for and what changes for them.</p>
+      </div>
+      <div class="special-card">
+        <span class="role mono">PROOF</span>
+        <h3>Builds the trust</h3>
+        <p>Shows evidence — reviews, results, real work — that backs the claim.</p>
+      </div>
+      <div class="special-card">
+        <span class="role mono">OFFER</span>
+        <h3>Confirms the meaning</h3>
+        <p>Makes the specific offer unmistakable, with no guessing required.</p>
+      </div>
+      <div class="special-card">
+        <span class="role mono">CTA</span>
+        <h3>Asks for one action</h3>
+        <p>Points to a single next step, stated in plain, direct language.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How EasyLandX builds for instant comprehension</h2>
+      <p>Five stages, borrowed from how the brain actually processes language — applied to your page.</p>
+    </div>
+    <div class="timeline">
+      <div class="step">
+        <div class="step-tag mono">0–200ms</div>
+        <div>
+          <h3>First-impression architecture</h3>
+          <p>Color, spacing, and contrast are set before anyone reads a word — this is the layer a visitor reacts to instantly.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-tag mono">150–250ms</div>
+        <div>
+          <h3>Structural clarity</h3>
+          <p>We build a layout hierarchy so the eye immediately knows what matters most, second, and third.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-tag mono">~400ms</div>
+        <div>
+          <h3>Meaning integration</h3>
+          <p>Headline and offer are tuned to click together instantly for the exact visitor you want to reach.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-tag mono">~600ms</div>
+        <div>
+          <h3>Trust repair</h3>
+          <p>We find anything that creates hesitation — vague pricing, missing proof — and resolve it before a visitor leaves.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-tag mono">Ongoing</div>
+        <div>
+          <h3>Real diagnostics</h3>
+          <p>We track how real visitors move through your page and refine the exact point where attention was won or lost.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="simulator">
+  <div class="wrap">
+    <div class="sim">
+      <div class="sim-head">
+        <h2>Run the millisecond test</h2>
+        <p>Press run and follow what a visitor's brain moves through in the first moments on a well-structured page.</p>
+      </div>
+      <button class="sim-run" id="simRun">Run test</button>
+
+      <div class="sim-track">
+        <div class="sim-dot" id="simDot"></div>
+      </div>
+      <div class="sim-ticks mono">
+        <span>0ms</span><span>200ms</span><span>400ms</span><span>600ms</span><span>800ms+</span>
+      </div>
+
+      <div class="sim-readout">
+        <span class="stage-time mono" id="stageTime">READY</span>
+        <div class="stage-text" id="stageText">Press "Run test" to follow the sequence a clear page moves a visitor through.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Build a page that <span class="accent">parses instantly</span> — no re-reading required.</h2>
+    <p>Every EasyLandX page for 2026 is structured for the way people actually process a page, from first glance to final click.</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx.github.io →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    EasyLandX — landing pages structured for instant comprehension, built for 2026 and beyond. &nbsp;·&nbsp;
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+<script>
+  // ---- animated EEG-style waveform ----
+  (function(){
+    const w = 900, h = 140, mid = h/2;
+    const points = 90;
+    let t = 0;
+
+    function build(offset, amp1, amp2, speed){
+      let s = "";
+      for(let i=0;i<=points;i++){
+        const x = (i/points) * w;
+        const y = mid + Math.sin(i*0.35 + t*speed + offset)*amp1 + Math.sin(i*0.09 + t*speed*0.6 + offset)*amp2;
+        s += x + "," + y + " ";
+      }
+      return s.trim();
+    }
+
+    function animate(){
+      t += 0.05;
+      document.getElementById('eegLine').setAttribute('points', build(0, 10, 22, 1));
+      document.getElementById('eegLine2').setAttribute('points', build(2, 8, 16, 0.8));
+      requestAnimationFrame(animate);
+    }
+    animate();
+  })();
+
+  // ---- millisecond simulator ----
+  const simRun = document.getElementById('simRun');
+  const simDot = document.getElementById('simDot');
+  const stageTime = document.getElementById('stageTime');
+  const stageText = document.getElementById('stageText');
+
+  const stages = [
+    { pct: 2,   time: "0ms",   text: "First impression forming — color, layout, and whitespace register before any reading begins." },
+    { pct: 27,  time: "150–250ms", text: "Structure detected — is there a clear hierarchy here, or does everything compete for attention at once?" },
+    { pct: 52,  time: "~400ms", text: "Meaning integration — does the headline and offer immediately make sense for what this visitor needs?" },
+    { pct: 77,  time: "~600ms", text: "Trust check — anything unclear or unresolved gets a second look here." },
+    { pct: 98,  time: "800ms+", text: "Decision — the visitor clicks, scrolls further, or moves on." }
+  ];
+
+  let running = false;
+
+  simRun.addEventListener('click', () => {
+    if(running) return;
+    running = true;
+    simDot.style.transition = 'none';
+    simDot.style.left = '0%';
+    // force reflow
+    void simDot.offsetWidth;
+    simDot.style.transition = 'left 2.8s linear';
+    requestAnimationFrame(() => { simDot.style.left = '100%'; });
+
+    stageTime.textContent = "RUNNING";
+    stageText.textContent = "Tracking the sequence...";
+
+    const totalDuration = 2800;
+    stages.forEach(stage => {
+      setTimeout(() => {
+        stageTime.textContent = stage.time;
+        stageText.textContent = stage.text;
+      }, (stage.pct/100) * totalDuration);
+    });
+
+    setTimeout(() => { running = false; }, totalDuration + 200);
+  });
+</script>
+
+</body>
+</html>

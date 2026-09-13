@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages Built With Confidence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red: #E8001A;
+    --red-deep: #B40014;
+    --red-soft: #FF3B4E;
+    --lime: #D6FF3F;
+    --pink: #FF2E9F;
+    --cream: #FFF6EC;
+    --ink: #1A0008;
+    --white: #FFFFFF;
+    --max: 1120px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background: var(--red);
+    color: var(--cream);
+    font-family:'Manrope', sans-serif;
+    font-weight:500;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Unbounded', sans-serif;
+    line-height:1.12;
+    margin:0;
+    color: var(--white);
+  }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- background texture ---------- */
+  .grain-layer{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.055) 1px, transparent 0);
+    background-size: 22px 22px;
+    z-index:0;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:relative;
+    z-index:2;
+    padding: 26px 0;
+  }
+  .header-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    font-family:'Unbounded', sans-serif;
+    font-weight:800;
+    font-size: 1.1rem;
+    letter-spacing: 0.01em;
+    color: var(--white);
+  }
+  .logo span{ color: var(--lime); }
+  .top-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background: var(--lime);
+    color: var(--ink);
+    font-weight:800;
+    font-family:'Unbounded', sans-serif;
+    font-size:0.78rem;
+    padding: 11px 18px;
+    border-radius:999px;
+    text-decoration:none;
+    border: 2px solid var(--ink);
+    transition: transform 0.15s ease;
+  }
+  .top-cta:hover{ transform: translateY(-2px); }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    z-index:2;
+    padding: 64px 0 40px;
+  }
+  .hero-headline{
+    font-size: clamp(2.4rem, 6vw, 4.6rem);
+    font-weight:900;
+    max-width: 880px;
+    letter-spacing: -0.01em;
+  }
+  .hero-headline .accent{ color: var(--lime); }
+  .hero-headline .accent2{ color: var(--pink); }
+
+  .hero-sub{
+    max-width: 560px;
+    margin-top: 22px;
+    font-size: 1.08rem;
+    color: var(--cream);
+    opacity:0.92;
+  }
+
+  .hero-actions{
+    margin-top: 34px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background: var(--lime);
+    color: var(--ink);
+    font-family:'Unbounded', sans-serif;
+    font-weight:800;
+    font-size:0.95rem;
+    padding: 16px 28px;
+    border-radius: 999px;
+    text-decoration:none;
+    border: 3px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--pink);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary:hover{
+    transform: translate(-3px,-3px);
+    box-shadow: 9px 9px 0 var(--pink);
+  }
+
+  .btn-ghost{
+    font-family:'Unbounded', sans-serif;
+    font-weight:700;
+    font-size:0.9rem;
+    color: var(--white);
+    text-decoration:none;
+    border-bottom: 2px solid var(--pink);
+    padding-bottom:3px;
+  }
+
+  /* ---------- forecast waveform ---------- */
+  .waveform-holder{
+    margin-top: 54px;
+    border: 3px solid var(--white);
+    border-radius: 22px;
+    background: rgba(0,0,0,0.14);
+    padding: 22px 22px 10px;
+    position:relative;
+  }
+  .waveform-label{
+    font-family:'Unbounded', sans-serif;
+    font-size:0.72rem;
+    font-weight:700;
+    color: var(--lime);
+    margin-bottom: 6px;
+  }
+  svg#forecastSvg{ width:100%; height:auto; display:block; }
+
+  /* ---------- section shell ---------- */
+  section{
+    position:relative;
+    z-index:2;
+    padding: 80px 0;
+  }
+  .section-head{
+    max-width: 640px;
+    margin-bottom: 44px;
+  }
+  .section-head h2{
+    font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+    font-weight:800;
+  }
+  .section-head p{
+    margin-top:14px;
+    color: var(--cream);
+    opacity:0.9;
+    font-size:1.02rem;
+  }
+
+  /* ---------- truth cards ---------- */
+  .truths{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .truth-card{
+    background: var(--cream);
+    color: var(--ink);
+    border-radius: 18px;
+    padding: 28px 24px;
+    border: 3px solid var(--ink);
+  }
+  .truth-card h3{
+    color: var(--ink);
+    font-size: 1.15rem;
+    font-weight:700;
+    margin-bottom:12px;
+  }
+  .truth-card p{ margin:0; font-size:0.96rem; }
+  .truth-mark{
+    display:inline-block;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--red);
+    color: var(--white);
+    font-family:'Unbounded', sans-serif;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom: 16px;
+  }
+  .truth-card:nth-child(2) .truth-mark{ background: var(--pink); }
+  .truth-card:nth-child(3) .truth-mark{ background: var(--ink); color: var(--lime); }
+
+  /* ---------- three ideas ---------- */
+  .ideas{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    border-top: 2px solid rgba(255,255,255,0.3);
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+  }
+  .idea{
+    padding: 30px 24px;
+    border-right: 2px solid rgba(255,255,255,0.3);
+  }
+  .idea:last-child{ border-right:none; }
+  .idea .tag{
+    font-family:'Unbounded', sans-serif;
+    font-size: 0.85rem;
+    font-weight:800;
+    color: var(--lime);
+    display:block;
+    margin-bottom: 10px;
+  }
+  .idea:nth-child(2) .tag{ color: var(--pink); }
+  .idea:nth-child(3) .tag{ color: var(--white); }
+  .idea p{ margin:0; font-size:0.95rem; color: var(--cream); opacity:0.92; }
+
+  .callout{
+    margin-top: 40px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  .callout-box{
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255,255,255,0.35);
+    border-radius: 16px;
+    padding: 26px;
+  }
+  .callout-box h4{
+    font-family:'Unbounded', sans-serif;
+    color: var(--lime);
+    font-size: 1rem;
+    margin: 0 0 10px;
+  }
+  .callout-box:nth-child(2) h4{ color: var(--pink); }
+  .callout-box p{ margin:0; font-size:0.95rem; opacity:0.9; }
+
+  /* ---------- process timeline ---------- */
+  .timeline{
+    display:flex;
+    flex-direction:column;
+    gap: 0;
+  }
+  .step{
+    display:grid;
+    grid-template-columns: 64px 1fr;
+    gap: 24px;
+    padding: 26px 0;
+    border-top: 2px dashed rgba(255,255,255,0.3);
+  }
+  .step:last-child{ border-bottom: 2px dashed rgba(255,255,255,0.3); }
+  .step-num{
+    font-family:'Unbounded', sans-serif;
+    font-weight:900;
+    font-size: 1.6rem;
+    color: var(--lime);
+  }
+  .step:nth-child(even) .step-num{ color: var(--pink); }
+  .step h3{
+    font-size: 1.15rem;
+    font-weight:700;
+    margin-bottom: 8px;
+  }
+  .step p{ margin:0; font-size:0.96rem; color: var(--cream); opacity:0.92; max-width: 640px; }
+
+  /* ---------- simulator ---------- */
+  .sim{
+    background: var(--cream);
+    color: var(--ink);
+    border-radius: 26px;
+    border: 3px solid var(--ink);
+    padding: 40px;
+  }
+  .sim-head h2{ color: var(--ink); }
+  .sim-head p{ color: var(--ink); opacity:0.75; }
+
+  .sim-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    margin-top: 30px;
+    align-items:start;
+  }
+
+  .control{ margin-bottom: 26px; }
+  .control label{
+    display:flex;
+    justify-content:space-between;
+    font-family:'Unbounded', sans-serif;
+    font-size: 0.82rem;
+    font-weight:700;
+    margin-bottom: 10px;
+  }
+  .control label .val{ color: var(--red-deep); }
+
+  input[type="range"]{
+    -webkit-appearance:none;
+    width:100%;
+    height: 10px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--pink), var(--lime));
+    outline:none;
+    border: 2px solid var(--ink);
+  }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width: 24px; height:24px;
+    border-radius:50%;
+    background: var(--ink);
+    border: 3px solid var(--white);
+    cursor:pointer;
+  }
+  input[type="range"]::-moz-range-thumb{
+    width: 22px; height:22px;
+    border-radius:50%;
+    background: var(--ink);
+    border: 3px solid var(--white);
+    cursor:pointer;
+  }
+
+  .result-card{
+    background: var(--red);
+    border-radius: 20px;
+    padding: 30px;
+    border: 3px solid var(--ink);
+    color: var(--white);
+  }
+  .result-label{
+    font-family:'Unbounded', sans-serif;
+    font-size:0.78rem;
+    font-weight:700;
+    color: var(--lime);
+    margin-bottom: 14px;
+  }
+  .range-bar-holder{
+    background: rgba(255,255,255,0.15);
+    border-radius: 999px;
+    height: 22px;
+    position:relative;
+    overflow:hidden;
+    border: 2px solid rgba(255,255,255,0.4);
+  }
+  .range-bar{
+    position:absolute;
+    top:0; bottom:0;
+    background: linear-gradient(90deg, var(--pink), var(--lime));
+    border-radius: 999px;
+    transition: left 0.25s ease, width 0.25s ease;
+  }
+  .range-numbers{
+    display:flex;
+    justify-content:space-between;
+    font-family:'Unbounded', sans-serif;
+    font-size: 1.6rem;
+    font-weight:900;
+    margin-top: 14px;
+  }
+  .range-numbers span:last-child{ color: var(--lime); }
+  .range-numbers span:first-child{ color: var(--pink); }
+  .result-note{
+    margin-top: 18px;
+    font-size: 0.95rem;
+    color: var(--cream);
+    opacity:0.95;
+    min-height: 44px;
+  }
+
+  /* ---------- final cta ---------- */
+  .final-cta{
+    text-align:center;
+    padding: 90px 0 60px;
+  }
+  .final-cta h2{
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight:900;
+    max-width: 720px;
+    margin: 0 auto 22px;
+  }
+  .final-cta .accent{ color: var(--lime); }
+  .final-cta p{
+    max-width: 520px;
+    margin: 0 auto 34px;
+    opacity:0.9;
+  }
+
+  footer{
+    position:relative;
+    z-index:2;
+    border-top: 2px solid rgba(255,255,255,0.25);
+    padding: 30px 0;
+    text-align:center;
+    font-size: 0.85rem;
+    opacity:0.8;
+  }
+  footer a{ color: var(--lime); text-decoration:none; font-weight:700; }
+
+  @media (max-width: 860px){
+    .truths{ grid-template-columns: 1fr; }
+    .ideas{ grid-template-columns: 1fr; }
+    .idea{ border-right:none; border-bottom: 2px solid rgba(255,255,255,0.3); }
+    .idea:last-child{ border-bottom:none; }
+    .callout{ grid-template-columns: 1fr; }
+    .sim-grid{ grid-template-columns: 1fr; }
+    .sim{ padding: 26px; }
+    .step{ grid-template-columns: 40px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain-layer"></div>
+
+<header>
+  <div class="wrap header-row">
+    <div class="logo">easy<span>land</span>x</div>
+    <a class="top-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1 class="hero-headline">Your landing page, <span class="accent">forecast</span> with <span class="accent2">confidence</span>.</h1>
+    <p class="hero-sub">EasyLandX designs landing pages the way great forecasters build models: grounded in real signals, checked against simple baselines, and refined until every visitor sees one clear, confident path to yes.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">
+        Explore EasyLandX →
+      </a>
+      <a class="btn-ghost" href="#simulator">Try the confidence simulator</a>
+    </div>
+
+    <div class="waveform-holder">
+      <div class="waveform-label">LIVE SIGNAL — WHAT A CONFIDENT PAGE LOOKS LIKE</div>
+      <svg id="forecastSvg" viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg">
+        <polyline id="bandTop" points="" fill="none" stroke="none"/>
+        <path id="bandFill" fill="url(#bandGrad)" opacity="0.35"/>
+        <polyline id="signalLine" points="" fill="none" stroke="#D6FF3F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="bandGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#FF2E9F"/>
+            <stop offset="100%" stop-color="#D6FF3F"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="truths">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Three truths we build around</h2>
+      <p>Every EasyLandX page starts from the same grounded ideas that make a forecast worth trusting.</p>
+    </div>
+    <div class="truths">
+      <div class="truth-card">
+        <span class="truth-mark">1</span>
+        <h3>Predictability is earned</h3>
+        <p>Your page's results come down to three things: how clearly it speaks to your audience, how much real feedback has shaped it, and how directly it invites one action.</p>
+      </div>
+      <div class="truth-card">
+        <span class="truth-mark">2</span>
+        <h3>Confidence comes with a range</h3>
+        <p>We never hand you a single guess. We show you a confident range — what's likely, what's possible, and what to expect as your traffic grows.</p>
+      </div>
+      <div class="truth-card">
+        <span class="truth-mark">3</span>
+        <h3>Keep what converts</h3>
+        <p>Every color, word, and animation on your page earns its place. If it moves a visitor toward yes, it stays. If it doesn't, we happily swap it for something that does.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ideas">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Three ideas we keep separate</h2>
+      <p>Clarity starts with knowing which question you're actually answering.</p>
+    </div>
+    <div class="ideas">
+      <div class="idea">
+        <span class="tag">Goals</span>
+        <p>What you want your business to achieve — more bookings, more messages, more sales.</p>
+      </div>
+      <div class="idea">
+        <span class="tag">Planning</span>
+        <p>The structure, story, and calls to action we design to carry visitors toward that goal.</p>
+      </div>
+      <div class="idea">
+        <span class="tag">Forecasting</span>
+        <p>An honest, evidence-based read on how real visitors will respond once your page is live.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-box">
+        <h4>Structure over guesswork</h4>
+        <p>When there's history to learn from, we let real data lead the design. When a brand is brand new, we lean on proven, structured approaches used across hundreds of small-business pages before yours.</p>
+      </div>
+      <div class="callout-box">
+        <h4>Every design earns its keep</h4>
+        <p>Before your custom page goes live, we compare it against simple, proven layouts. A bold new idea only stays when it clearly performs better than the basics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The EasyLandX forecasting process</h2>
+      <p>Five steps, borrowed from how the best forecasters work — applied to your landing page.</p>
+    </div>
+    <div class="timeline">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <h3>Discovery</h3>
+          <p>We start with your goal, your audience, and what success genuinely looks like for your business.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <h3>Signal mapping</h3>
+          <p>We explore your brand's strongest signals — your best photos, your clearest offer, your true voice.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <h3>Design &amp; build</h3>
+          <p>We choose the layout, colors, and interactive moments that carry those signals straight to your visitor.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div>
+          <h3>Clarity check</h3>
+          <p>We review every headline, button, and animation to confirm it points toward one confident action.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div>
+          <h3>Real results &amp; refinement</h3>
+          <p>Once your page is live, we watch how real visitors respond and refine it with evidence, not guesswork.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="simulator">
+  <div class="wrap">
+    <div class="sim">
+      <div class="sim-head">
+        <h2>Try it: forecast your page's confidence</h2>
+        <p>Move the sliders the way we tune a real landing page, and watch the confidence range respond live.</p>
+      </div>
+      <div class="sim-grid">
+        <div>
+          <div class="control">
+            <label>Message clarity <span class="val" id="v1">60</span></label>
+            <input type="range" id="clarity" min="0" max="100" value="60">
+          </div>
+          <div class="control">
+            <label>Visual identity strength <span class="val" id="v2">60</span></label>
+            <input type="range" id="identity" min="0" max="100" value="60">
+          </div>
+          <div class="control">
+            <label>Call-to-action directness <span class="val" id="v3">60</span></label>
+            <input type="range" id="cta" min="0" max="100" value="60">
+          </div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">ESTIMATED CONVERSION CONFIDENCE RANGE</div>
+          <div class="range-bar-holder">
+            <div class="range-bar" id="rangeBar"></div>
+          </div>
+          <div class="range-numbers">
+            <span id="lowVal">2.0%</span>
+            <span id="highVal">10.0%</span>
+          </div>
+          <div class="result-note" id="resultNote">A wide, exploratory range — there's plenty of signal still to bring forward.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Ready to see your page's <span class="accent">confident range</span>?</h2>
+    <p>Every EasyLandX page is built individually — for your brand, your audience, and your 2026 goals.</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx.github.io →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    EasyLandX — confident, custom landing pages, built for 2026 and beyond. &nbsp;·&nbsp;
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+<script>
+  // ---- animated forecast waveform in hero ----
+  (function(){
+    const w = 900, h = 220, mid = h/2;
+    const points = 60;
+    const signal = [];
+    const bandTopArr = [];
+    const bandBotArr = [];
+    let t = 0;
+
+    function noise(x, seed){
+      return Math.sin(x*0.15 + seed) * 0.6 + Math.sin(x*0.045 + seed*1.7) * 1.1;
+    }
+
+    function build(){
+      let sig = "", top = "", bot = "";
+      const topPts = [], botPts = [];
+      for(let i=0;i<=points;i++){
+        const x = (i/points) * w;
+        const trend = mid - 40 + (i/points)*30;
+        const wobble = noise(i + t, 0.4) * 14;
+        const y = trend + wobble;
+        const spread = 46 - (i/points)*30; // band narrows toward the right (more confidence)
+        sig += x + "," + y + " ";
+        topPts.push([x, y - spread]);
+        botPts.push([x, y + spread]);
+      }
+      document.getElementById('signalLine').setAttribute('points', sig.trim());
+
+      let d = "M " + topPts[0][0] + " " + topPts[0][1] + " ";
+      for(let i=1;i<topPts.length;i++){ d += "L " + topPts[i][0] + " " + topPts[i][1] + " "; }
+      for(let i=botPts.length-1;i>=0;i--){ d += "L " + botPts[i][0] + " " + botPts[i][1] + " "; }
+      d += "Z";
+      document.getElementById('bandFill').setAttribute('d', d);
+    }
+
+    function animate(){
+      t += 0.012;
+      build();
+      requestAnimationFrame(animate);
+    }
+    animate();
+  })();
+
+  // ---- confidence simulator ----
+  const clarity = document.getElementById('clarity');
+  const identity = document.getElementById('identity');
+  const cta = document.getElementById('cta');
+  const v1 = document.getElementById('v1');
+  const v2 = document.getElementById('v2');
+  const v3 = document.getElementById('v3');
+  const rangeBar = document.getElementById('rangeBar');
+  const lowVal = document.getElementById('lowVal');
+  const highVal = document.getElementById('highVal');
+  const resultNote = document.getElementById('resultNote');
+
+  function updateSimulator(){
+    const a = parseInt(clarity.value, 10);
+    const b = parseInt(identity.value, 10);
+    const c = parseInt(cta.value, 10);
+    v1.textContent = a; v2.textContent = b; v3.textContent = c;
+
+    const avg = (a + b + c) / 3;
+    const low = 2 + avg * 0.08;
+    const spread = 8 - avg * 0.06;
+    const high = low + spread;
+
+    lowVal.textContent = low.toFixed(1) + "%";
+    highVal.textContent = high.toFixed(1) + "%";
+
+    const leftPct = (low / 14) * 100;
+    const widthPct = (spread / 14) * 100;
+    rangeBar.style.left = leftPct + "%";
+    rangeBar.style.width = widthPct + "%";
+
+    let note;
+    if(spread > 6){
+      note = "A wide, exploratory range — there's plenty of signal still to bring forward.";
+    } else if(spread > 3){
+      note = "A solid, tightening range — your signal is coming through clearly.";
+    } else {
+      note = "A narrow, high-confidence range — this page is dialed in.";
+    }
+    resultNote.textContent = note;
+  }
+
+  [clarity, identity, cta].forEach(el => el.addEventListener('input', updateSimulator));
+  updateSimulator();
+</script>
+
+</body>
+</html>
