@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Every dream starts with the page you publish today</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#ffcb05;
+    --ink:#1c1102;
+    --ink-2:#241605;
+    --ink-muted:#5c4520;
+    --red:#ff3b3b;
+    --blue-bright:#5cc3ff;
+    --cream:#fff3d6;
+    --line-on-gold:rgba(28,17,2,0.18);
+    --line-on-dark:rgba(255,203,5,0.2);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--gold);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.01em; margin:0; }
+  a{ color:inherit; }
+  .wrap{ max-width:1160px; margin:0 auto; padding:0 32px; }
+  section{ padding:92px 0; }
+  @media (max-width:720px){ section{padding:56px 0;} .wrap{padding:0 20px;} }
+  ::selection{ background:var(--ink); color:var(--gold); }
+  :focus-visible{ outline:2px solid var(--red); outline-offset:3px; }
+
+  header.nav{ position:sticky; top:0; z-index:50; background:var(--ink); border-bottom:1px solid var(--line-on-dark); }
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:16px 32px; max-width:1160px; margin:0 auto; }
+  .logo{ display:flex; align-items:center; gap:10px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px; color:var(--gold); }
+  .logo-mark{ width:24px;height:24px;border-radius:6px; background:var(--gold); position:relative; }
+  .logo-mark::after{ content:""; position:absolute; inset:6px; background:var(--red); border-radius:2px; }
+
+  .btn{ display:inline-flex; align-items:center; gap:8px; font-family:'Inter', sans-serif; font-weight:600; font-size:14.5px; padding:12px 22px; border-radius:999px; cursor:pointer; border:1.5px solid transparent; text-decoration:none; transition:transform .18s ease, box-shadow .18s ease, background .18s ease; }
+  .btn:active{ transform:translateY(1px); }
+  .btn-red{ background:var(--red); color:#2a0303; }
+  .btn-red:hover{ box-shadow:0 0 0 5px rgba(255,59,59,0.28); transform:translateY(-1px); }
+  .btn-outline{ background:transparent; color:var(--ink); border-color:var(--ink); }
+  .btn-outline:hover{ background:rgba(28,17,2,0.08); }
+
+  .hero{ padding-top:80px; padding-bottom:56px; }
+  .eyebrow-line{ display:flex; align-items:center; gap:10px; color:var(--ink-muted); font-size:13.5px; margin-bottom:22px; }
+  .eyebrow-line .dash{ width:26px; height:2px; background:var(--ink); }
+  .hero h1{ font-size:clamp(32px,5vw,54px); line-height:1.1; max-width:17ch; color:var(--ink); }
+  .hero p.lede{ margin-top:22px; max-width:58ch; font-size:17.5px; color:var(--ink-muted); }
+  .hero-actions{ display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+
+  .section-head{ max-width:660px; margin-bottom:44px; }
+  .section-head h2{ font-size:clamp(26px,3.4vw,36px); color:var(--ink); }
+  .section-head p{ margin-top:14px; color:var(--ink-muted); font-size:16px; }
+
+  .generator{ display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; }
+  @media (max-width:900px){ .generator{ grid-template-columns:1fr; } }
+  .gen-inputs{ display:flex; flex-direction:column; gap:20px; }
+  .gen-field label{ display:block; font-size:13px; color:var(--ink); margin-bottom:8px; font-weight:600; }
+  .gen-field input{
+    width:100%; padding:14px 16px; border-radius:10px; border:1.5px solid var(--line-on-gold);
+    background:var(--ink); color:var(--cream); font-family:'Inter',sans-serif; font-size:15px;
+  }
+  .gen-field input::placeholder{ color:rgba(255,243,214,0.4); }
+  .gen-field input:focus{ outline:none; border-color:var(--red); }
+  .gen-field .hint{ font-size:12.5px; color:var(--ink-muted); margin-top:6px; }
+
+  .gen-preview{ border-radius:16px; background:var(--ink); box-shadow:0 24px 60px rgba(28,17,2,0.3); position:sticky; top:100px; overflow:hidden; }
+  .gen-preview .pbar{ display:flex; gap:6px; padding:12px 14px; background:var(--ink-2); border-bottom:1px solid var(--line-on-dark); }
+  .gen-preview .pbar span{ width:9px;height:9px;border-radius:50%; background:rgba(255,203,5,0.4); }
+  .gen-body{ padding:36px 30px 40px; text-align:center; }
+  .gen-tag{ font-size:12.5px; color:var(--blue-bright); margin-bottom:14px; }
+  .gen-h{ font-family:'Space Grotesk',sans-serif; font-size:24px; line-height:1.3; color:var(--gold); min-height:64px; }
+  .gen-sub{ margin-top:14px; color:rgba(255,243,214,0.7); font-size:14.5px; min-height:44px; }
+  .gen-cta{ margin-top:24px; display:inline-block; padding:12px 26px; border-radius:999px; background:var(--red); color:#2a0303; font-weight:600; font-size:14px; }
+
+  .core-steps{ display:flex; flex-direction:column; gap:16px; margin-bottom:32px; }
+  .core-step{ display:flex; gap:18px; align-items:flex-start; padding:20px 24px; border:1.5px solid var(--line-on-gold); border-radius:14px; }
+  .core-step .n{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:18px; color:var(--red); flex:none; }
+  .core-step h3{ font-size:17px; margin-bottom:4px; color:var(--ink); }
+  .core-step p{ margin:0; color:var(--ink-muted); font-size:14.5px; }
+
+  .framework-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  @media (max-width:900px){ .framework-grid{ grid-template-columns:1fr; } }
+  .fw-card{ border-radius:16px; padding:26px 24px; background:var(--ink); transition:transform .2s ease; }
+  .fw-card:hover{ transform:translateY(-4px); }
+  .fw-icon{ width:40px; height:40px; border-radius:10px; margin-bottom:16px; display:flex; align-items:center; justify-content:center; background:rgba(92,195,255,0.18); }
+  .fw-card h3{ font-size:18px; margin-bottom:8px; color:var(--gold); }
+  .fw-card p{ margin:0; color:rgba(255,243,214,0.65); font-size:14px; }
+
+  .timeline{ display:flex; flex-direction:column; gap:0; }
+  .tl-item{ display:grid; grid-template-columns:110px 1fr; gap:20px; padding:20px 0; border-top:1.5px solid var(--line-on-gold); }
+  .tl-item:first-child{ border-top:none; }
+  .tl-hours{ font-family:'Space Grotesk',sans-serif; color:var(--red); font-weight:600; font-size:14px; }
+  .tl-item h3{ font-size:16.5px; margin-bottom:6px; color:var(--ink); }
+  .tl-item p{ margin:0; color:var(--ink-muted); font-size:14.5px; }
+
+  .callout{ border-radius:18px; padding:34px 32px; background:var(--ink); display:flex; gap:24px; align-items:center; flex-wrap:wrap; }
+  .callout .badge{ font-size:12.5px; color:var(--blue-bright); font-weight:600; }
+  .callout p{ margin:8px 0 0; color:var(--cream); font-size:16px; max-width:56ch; }
+
+  .final-cta{ text-align:center; border-radius:24px; padding:70px 40px; background:var(--ink); position:relative; overflow:hidden; }
+  .final-cta::before{ content:""; position:absolute; width:420px; height:420px; border-radius:50%; background:radial-gradient(circle, rgba(255,59,59,0.28), transparent 65%); top:-180px; left:50%; transform:translateX(-50%); }
+  .final-cta h2{ font-size:clamp(26px,4vw,40px); position:relative; max-width:22ch; margin:0 auto; color:var(--gold); }
+  .final-cta p{ color:rgba(255,243,214,0.72); margin:18px auto 32px; max-width:48ch; position:relative; }
+  .final-cta .btn{ position:relative; font-size:16px; padding:15px 30px; }
+
+  footer{ background:var(--ink); padding:34px 0; }
+  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; color:rgba(255,203,5,0.6); font-size:13.5px; }
+  footer .logo{ color:var(--gold); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-row">
+    <div class="logo"><span class="logo-mark"></span>easylandx</div>
+    <a class="btn btn-red" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with EasyLandX</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow-line"><span class="dash"></span>a landing page builder for people ready to start today</div>
+    <h1>Every dream starts with the page you publish today.</h1>
+    <p class="lede">Entrepreneur Simon Squibb built his way from nothing to multiple companies by starting before he felt ready. His playbook is simple: name what you'd build for free, package it fast, and put it in front of real people. EasyLandX gives that playbook a home page in minutes.</p>
+    <div class="hero-actions">
+      <a class="btn btn-red" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with EasyLandX</a>
+      <a class="btn btn-outline" href="#generator">Write your pitch live</a>
+    </div>
+  </div>
+</section>
+
+<section id="generator">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Find the page hiding inside your idea</h2>
+      <p>Squibb's framework starts at the intersection of what you love doing, who wants it, and what makes it worth paying for. Fill in the three fields and watch your headline take shape on the right, live.</p>
+    </div>
+
+    <div class="generator">
+      <div class="gen-inputs">
+        <div class="gen-field">
+          <label for="fSkill">What you'd do even without pay</label>
+          <input type="text" id="fSkill" placeholder="e.g. teaching people to cook on a budget" oninput="renderPreview()">
+          <div class="hint">Your core dream — the thing that pulls you back every time.</div>
+        </div>
+        <div class="gen-field">
+          <label for="fAudience">Who lights up when you talk about it</label>
+          <input type="text" id="fAudience" placeholder="e.g. busy parents feeding a family of four" oninput="renderPreview()">
+          <div class="hint">Your audience — the people already asking questions.</div>
+        </div>
+        <div class="gen-field">
+          <label for="fValue">What makes it worth paying for</label>
+          <input type="text" id="fValue" placeholder="e.g. a weekly plan that saves them two hours" oninput="renderPreview()">
+          <div class="hint">Your value — the result someone hands over money for.</div>
+        </div>
+      </div>
+
+      <div class="gen-preview">
+        <div class="pbar"><span></span><span></span><span></span></div>
+        <div class="gen-body">
+          <div class="gen-tag">live preview</div>
+          <div class="gen-h" id="genHeadline">Your headline appears here as you type</div>
+          <div class="gen-sub" id="genSub">Add a few words to each field to see your pitch come together.</div>
+          <div class="gen-cta" id="genCta">Build with EasyLandX</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The dream launch framework, built for landing pages</h2>
+      <p>Two moves come first, in order. Then three moves that run side by side, for as long as your page is live.</p>
+    </div>
+
+    <div class="core-steps">
+      <div class="core-step">
+        <span class="n">1</span>
+        <div><h3>Name your core dream</h3><p>Write the version of your offer you'd build even if nobody paid you for it yet. That's the page worth publishing first.</p></div>
+      </div>
+      <div class="core-step">
+        <span class="n">2</span>
+        <div><h3>Match your passion to real demand</h3><p>Use the generator above to find the exact words your audience already uses for what they want.</p></div>
+      </div>
+    </div>
+
+    <div class="framework-grid">
+      <div class="fw-card">
+        <div class="fw-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h7l-1 8 11-14h-8l1-6z" stroke="#5cc3ff" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <h3>Launch a same-day page</h3>
+        <p>Package your offer into one clear page today and put it in front of real visitors this week — EasyLandX turns an afternoon into a live link.</p>
+      </div>
+      <div class="fw-card">
+        <div class="fw-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="#5cc3ff" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h3>Share the build in public</h3>
+        <p>Post the page as you make it — the drafts, the tweaks, the reasoning. An audience that watches you build becomes an audience that buys.</p>
+      </div>
+      <div class="fw-card">
+        <div class="fw-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="#5cc3ff" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h3>Reinvest into your time</h3>
+        <p>Put your first revenue toward tools and automation that hand your hours back, so your dream keeps growing without eating your whole week.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Publish your first version in a single day</h2>
+      <p>A real sequence, so it earns a real timeline — here's the 24 hours between an idea and a live, paying offer.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-hours">Hour 0–2</div>
+        <div><h3>Write your offer in one sentence</h3><p>What you do, for whom, and the result they get. That sentence becomes your headline.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-hours">Hour 2–6</div>
+        <div><h3>Assemble the page</h3><p>Drop your sentence, a photo, and a way to pay or book into EasyLandX. Keep every section short.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-hours">Hour 6–20</div>
+        <div><h3>Share it with real people</h3><p>Send the link to five people directly, then post the story of building it to your community.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-hours">Hour 20–24</div>
+        <div><h3>Open it for business</h3><p>Turn on payments or bookings and let the page do the asking for you.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="callout">
+      <div>
+        <div class="badge">on rethinking rich</div>
+        <p>A rich life means owning your time, enjoying the work in front of you, and building alongside people who want you to win. The page you publish today is one way to start owning more of it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="final-cta">
+      <h2>Your dream deserves a page that's live by tonight.</h2>
+      <p>EasyLandX handles the build, so the only thing standing between your idea and your first customer is the sentence you write next.</p>
+      <a class="btn btn-red" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with EasyLandX</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <div class="logo"><span class="logo-mark"></span>easylandx</div>
+    <div>Landing pages for dreams ready to go live today.</div>
+  </div>
+</footer>
+
+<script>
+  function renderPreview(){
+    const skill = document.getElementById('fSkill').value.trim();
+    const audience = document.getElementById('fAudience').value.trim();
+    const value = document.getElementById('fValue').value.trim();
+
+    const genHeadline = document.getElementById('genHeadline');
+    const genSub = document.getElementById('genSub');
+
+    if(!skill && !audience && !value){
+      genHeadline.textContent = 'Your headline appears here as you type';
+      genSub.textContent = 'Add a few words to each field to see your pitch come together.';
+      return;
+    }
+
+    const headline = skill ? capitalize(skill) + (audience ? ', built for ' + audience : '') : (audience ? 'Built for ' + audience : 'A page worth publishing');
+    genHeadline.textContent = headline;
+
+    genSub.textContent = value ? capitalize(value) + '.' : 'Add the result people get, and this line writes itself.';
+  }
+
+  function capitalize(str){
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  renderPreview();
+</script>
+
+</body>
+</html>

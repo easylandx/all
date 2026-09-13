@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Build the landing page of your Future Self</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0A0620;
+    --indigo:#170B45;
+    --indigo-2:#1F0F5C;
+    --neon-indigo:#6A3CFF;
+    --neon-indigo-soft:rgba(106,60,255,.35);
+    --neon-gold:#FFCB3D;
+    --neon-gold-soft:rgba(255,203,61,.35);
+    --neon-slate:#9FB2DA;
+    --slate-muted:#8A93B8;
+    --ink:#F3F1FF;
+    --line:rgba(159,178,218,.18);
+    --radius-s:6px;
+    --radius-m:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(60% 50% at 15% 0%, rgba(106,60,255,.30), transparent 60%),
+      radial-gradient(50% 40% at 100% 10%, rgba(255,203,61,.10), transparent 60%),
+      var(--void);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  p{color:var(--slate-muted);}
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--neon-gold); outline-offset:3px;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:40;
+    background:rgba(10,6,32,.72);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .bar{display:flex; align-items:center; justify-content:space-between; padding:18px 28px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Space Grotesk'; font-weight:700; font-size:1.15rem;}
+  .logo-mark{width:26px; height:26px; border-radius:7px; background:linear-gradient(135deg,var(--neon-indigo),#9C7CFF); box-shadow:0 0 18px var(--neon-indigo-soft);}
+  .navlinks{display:flex; gap:32px; font-size:.92rem; color:var(--neon-slate);}
+  .navlinks a{text-decoration:none; opacity:.85; transition:opacity .15s;}
+  .navlinks a:hover{opacity:1;}
+  .btn-gold{
+    background:var(--neon-gold); color:#241800; font-weight:600; text-decoration:none;
+    padding:11px 22px; border-radius:999px; font-size:.92rem;
+    box-shadow:0 0 0 1px rgba(255,203,61,.4), 0 0 22px var(--neon-gold-soft);
+    transition:transform .15s ease, box-shadow .15s ease;
+    display:inline-block; border:none; cursor:pointer;
+  }
+  .btn-gold:hover{transform:translateY(-1px); box-shadow:0 0 0 1px rgba(255,203,61,.6), 0 0 32px var(--neon-gold-soft);}
+  .btn-ghost{
+    background:transparent; color:var(--neon-slate); text-decoration:none;
+    padding:10px 20px; border-radius:999px; font-size:.92rem;
+    border:1px solid var(--line);
+  }
+
+  /* HERO */
+  .hero{padding:96px 0 60px;}
+  .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center;}
+  .eyebrow-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:.82rem; color:var(--neon-gold); margin-bottom:22px;
+  }
+  .eyebrow-tag .dot{width:6px; height:6px; border-radius:50%; background:var(--neon-gold); box-shadow:0 0 8px var(--neon-gold);}
+  h1.display{font-size:clamp(2.3rem, 4.4vw, 3.4rem); line-height:1.08; max-width:12ch;}
+  .hero p.lead{font-size:1.08rem; max-width:46ch; margin-top:22px;}
+  .hero-ctas{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+
+  /* TOGGLE MOCKUP */
+  .mock-frame{
+    border:1px solid var(--line); border-radius:var(--radius-m);
+    background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+    padding:18px; position:relative;
+  }
+  .toggle-row{display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:16px;}
+  .toggle-label{font-size:.85rem; color:var(--slate-muted); transition:color .2s, text-shadow .2s;}
+  .toggle-label.active{color:var(--ink); text-shadow:0 0 12px var(--neon-indigo-soft);}
+  .switch{
+    width:52px; height:28px; border-radius:999px; background:rgba(159,178,218,.15);
+    border:1px solid var(--line); position:relative; cursor:pointer; flex-shrink:0;
+  }
+  .switch .knob{
+    width:20px; height:20px; border-radius:50%; background:var(--neon-slate);
+    position:absolute; top:3px; left:3px; transition:left .22s ease, background .22s ease, box-shadow .22s ease;
+  }
+  .switch.on{background:rgba(255,203,61,.18); border-color:rgba(255,203,61,.4);}
+  .switch.on .knob{left:27px; background:var(--neon-gold); box-shadow:0 0 12px var(--neon-gold);}
+
+  .mock-screen{
+    border-radius:var(--radius-s); overflow:hidden; height:340px;
+    background:#EDEBFA; position:relative; transition:background .3s ease;
+  }
+  .mock-screen.future{background:linear-gradient(160deg,#170B45,#2A1470 60%, #170B45);}
+  .mock-inner{padding:22px;}
+  .mock-nav{height:8px; width:40%; border-radius:4px; background:#C9C4E8; margin-bottom:22px;}
+  .mock-screen.future .mock-nav{background:rgba(159,178,218,.35);}
+  .mock-h{height:14px; border-radius:4px; background:#B9B2E0; margin-bottom:10px;}
+  .mock-h.w1{width:78%;} .mock-h.w2{width:55%;}
+  .mock-screen.future .mock-h{background:linear-gradient(90deg,#9C7CFF,#FFCB3D); box-shadow:0 0 10px rgba(106,60,255,.4);}
+  .mock-sub{height:8px; width:70%; border-radius:4px; background:#D2CDEE; margin:16px 0 20px;}
+  .mock-screen.future .mock-sub{background:rgba(159,178,218,.4);}
+  .mock-btn{width:130px; height:34px; border-radius:999px; background:#C9C4E8;}
+  .mock-screen.future .mock-btn{background:var(--neon-gold); box-shadow:0 0 16px var(--neon-gold-soft);}
+  .mock-cards{display:flex; gap:10px; margin-top:26px;}
+  .mock-card{flex:1; height:64px; border-radius:8px; background:#DEDAF3;}
+  .mock-screen.future .mock-card{background:rgba(255,255,255,.05); border:1px solid rgba(159,178,218,.25);}
+  .mock-caption{text-align:center; font-size:.82rem; color:var(--slate-muted); margin-top:14px;}
+
+  /* SECTION HEADERS */
+  .section{padding:88px 0;}
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem); line-height:1.15;}
+  .section-head p{margin-top:14px; font-size:1.02rem;}
+  .rule{height:1px; background:var(--line); border:none; margin:0;}
+
+  /* STAT ROW */
+  .stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius-m); overflow:hidden;}
+  .stat{background:var(--void); padding:30px 26px;}
+  .stat .num{font-family:'Space Grotesk'; font-size:2.1rem; color:var(--neon-gold); text-shadow:0 0 18px var(--neon-gold-soft);}
+  .stat p{margin-top:8px; font-size:.92rem;}
+
+  /* FRAMEWORK TABS */
+  .fw-layout{display:grid; grid-template-columns:280px 1fr; gap:0; border:1px solid var(--line); border-radius:var(--radius-m); overflow:hidden;}
+  .fw-tabs{background:rgba(255,255,255,.02); border-right:1px solid var(--line);}
+  .fw-tab{
+    display:block; width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    color:var(--slate-muted); padding:20px 22px; font-family:'Inter'; font-size:.94rem;
+    border-bottom:1px solid var(--line); position:relative; transition:color .15s, background .15s;
+  }
+  .fw-tab .step-n{color:var(--neon-slate); font-family:'Space Grotesk'; margin-right:10px;}
+  .fw-tab.active{color:var(--ink); background:rgba(106,60,255,.10);}
+  .fw-tab.active::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--neon-gold); box-shadow:0 0 10px var(--neon-gold);}
+  .fw-panel{padding:40px 40px; display:none;}
+  .fw-panel.active{display:block;}
+  .fw-panel h3{font-size:1.35rem; margin-bottom:14px;}
+  .fw-panel p{font-size:1rem; max-width:52ch;}
+  .fw-panel ul{margin:20px 0 0; padding:0; list-style:none; display:grid; gap:10px;}
+  .fw-panel li{font-size:.94rem; padding-left:20px; position:relative; color:var(--ink);}
+  .fw-panel li::before{content:"—"; position:absolute; left:0; color:var(--neon-gold);}
+
+  /* TRUTHS GRID */
+  .truths{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px;}
+  .truth-card{
+    border:1px solid var(--line); border-radius:var(--radius-m); padding:24px;
+    background:rgba(255,255,255,.02); cursor:pointer; perspective:900px; min-height:150px;
+    position:relative;
+  }
+  .truth-inner{transition:transform .5s; transform-style:preserve-3d; position:relative; height:100%;}
+  .truth-card.flipped .truth-inner{transform:rotateY(180deg);}
+  .truth-face{backface-visibility:hidden; position:absolute; inset:0;}
+  .truth-face.back{transform:rotateY(180deg);}
+  .truth-n{font-family:'Space Grotesk'; color:var(--neon-gold); font-size:.85rem; margin-bottom:10px; display:block;}
+  .truth-face h4{font-family:'Space Grotesk'; font-size:1.02rem; font-weight:500; color:var(--ink); line-height:1.35;}
+  .truth-face.back p{font-size:.88rem; margin:0; color:var(--neon-slate);}
+  .truth-hint{font-size:.75rem; color:var(--slate-muted); position:absolute; bottom:16px; left:24px;}
+
+  /* COMMIT / FORCING FUNCTION */
+  .commit{
+    border:1px solid var(--line); border-radius:var(--radius-m);
+    background:linear-gradient(135deg, rgba(106,60,255,.12), rgba(255,203,61,.04));
+    padding:44px; display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;
+  }
+  .commit h3{font-size:1.4rem; max-width:22ch;}
+  .commit p{margin-top:10px; max-width:44ch;}
+  .commit-form{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+  .commit-form input[type=date], .commit-form input[type=text]{
+    background:rgba(255,255,255,.04); border:1px solid var(--line); color:var(--ink);
+    padding:12px 14px; border-radius:var(--radius-s); font-family:'Inter'; font-size:.92rem; min-width:180px;
+  }
+  #commitResult{margin-top:18px; font-size:.92rem; color:var(--neon-gold); min-height:1.4em;}
+
+  /* FINAL CTA */
+  .final-cta{text-align:center; padding:110px 0 100px;}
+  .final-cta h2{font-size:clamp(2rem,4vw,2.8rem); max-width:16ch; margin:0 auto;}
+  .final-cta p{max-width:44ch; margin:20px auto 36px; font-size:1.05rem;}
+
+  footer{border-top:1px solid var(--line); padding:36px 0; }
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  footer p{font-size:.85rem; margin:0;}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .fw-layout{grid-template-columns:1fr;}
+    .fw-tabs{border-right:none; border-bottom:1px solid var(--line); display:flex; overflow-x:auto;}
+    .fw-tab{white-space:nowrap; border-bottom:none;}
+    .fw-tab.active::before{bottom:0; top:auto; width:100%; height:3px;}
+    .stat-row{grid-template-columns:1fr;}
+    .commit{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="bar wrap">
+    <div class="logo"><span class="logo-mark"></span>easylandx</div>
+    <div class="navlinks">
+      <a href="#framework">Framework</a>
+      <a href="#truths">7 Truths</a>
+      <a href="#commit">Commit</a>
+    </div>
+    <a class="btn-gold" href="https://easylandx..github.io" target="_blank" rel="noopener">Start building free</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow-tag"><span class="dot"></span>Built on the science of prospection</div>
+      <h1 class="display">Build the landing page of your Future Self.</h1>
+      <p class="lead">Most pages are built by your Present Self — rushed, generic, and optimized for comfort. easylandx helps you design the page your business will need three moves from now, then makes it easy to ship it today.</p>
+      <div class="hero-ctas">
+        <a class="btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch easylandx</a>
+        <a class="btn-ghost" href="#framework">See the framework</a>
+      </div>
+    </div>
+
+    <div class="mock-frame">
+      <div class="toggle-row">
+        <span class="toggle-label active" id="labelPresent">Present Self page</span>
+        <div class="switch" id="mockSwitch" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle between Present Self and Future Self landing page preview">
+          <div class="knob"></div>
+        </div>
+        <span class="toggle-label" id="labelFuture">Future Self page</span>
+      </div>
+      <div class="mock-screen" id="mockScreen">
+        <div class="mock-inner">
+          <div class="mock-nav"></div>
+          <div class="mock-h w1"></div>
+          <div class="mock-h w2"></div>
+          <div class="mock-sub"></div>
+          <div class="mock-btn"></div>
+          <div class="mock-cards">
+            <div class="mock-card"></div>
+            <div class="mock-card"></div>
+            <div class="mock-card"></div>
+          </div>
+        </div>
+      </div>
+      <p class="mock-caption" id="mockCaption">Generic template. Default copy. 1.8% conversion.</p>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Without a clear vision, you default to the generic template.</h2>
+      <p>Prospection research shows behavior is driven by anticipated outcomes, not past habits. Apply it to your page: if you can't picture the business it needs to win, you'll ship the safest, least differentiated version instead.</p>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><div class="num">92%</div><p>of first drafts default to stock layouts when there's no target identity guiding the build.</p></div>
+      <div class="stat"><div class="num">3–5×</div><p>faster to a page you'll actually keep, when the destination is defined before the design starts.</p></div>
+      <div class="stat"><div class="num">1 page</div><p>identity per launch — easylandx keeps every section pulling toward the same future brand.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="framework">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The easylandx Future Page System</h2>
+      <p>A five-step build order, so every section of your page is designed from where your business is headed — not where it started.</p>
+    </div>
+    <div class="fw-layout">
+      <div class="fw-tabs" role="tablist" aria-label="Future Page System steps">
+        <button class="fw-tab active" data-tab="1"><span class="step-n">01</span>Connect with the future brand</button>
+        <button class="fw-tab" data-tab="2"><span class="step-n">02</span>Eliminate the drag</button>
+        <button class="fw-tab" data-tab="3"><span class="step-n">03</span>Commit at high stakes</button>
+        <button class="fw-tab" data-tab="4"><span class="step-n">04</span>Practice daily</button>
+        <button class="fw-tab" data-tab="5"><span class="step-n">05</span>Measure the gap</button>
+      </div>
+      <div class="fw-panels">
+        <div class="fw-panel active" data-panel="1">
+          <h3>Connect with the future brand</h3>
+          <p>Before you open the editor, define the version of your business this page is for — the pricing, the audience, the promise you're growing into, not the one you're leaving.</p>
+          <ul>
+            <li>Set a one-line positioning statement as your page's north star</li>
+            <li>Pick the metric this page exists to move</li>
+            <li>Name the visitor you're writing for, six months from now</li>
+          </ul>
+        </div>
+        <div class="fw-panel" data-panel="2">
+          <h3>Eliminate the drag</h3>
+          <p>Every extra section, competing offer, or leftover copy from an old positioning is noise your visitor has to work through. Cut it before you add anything new.</p>
+          <ul>
+            <li>Remove sections that don't serve the one metric you picked</li>
+            <li>Cut competing calls to action down to one</li>
+            <li>Archive old copy instead of editing around it</li>
+          </ul>
+        </div>
+        <div class="fw-panel" data-panel="3">
+          <h3>Commit at high stakes</h3>
+          <p>A page in a drafts folder never ships. Set a real deadline and a forcing function that makes finishing easier than not finishing.</p>
+          <ul>
+            <li>Set a publish date and share it with your team</li>
+            <li>Connect a domain before the page is "ready"</li>
+            <li>Turn on live traffic sooner than feels comfortable</li>
+          </ul>
+        </div>
+        <div class="fw-panel" data-panel="4">
+          <h3>Practice daily</h3>
+          <p>Treat the page as a living draft. Small, frequent edits made from your target identity beat one big redesign made from habit.</p>
+          <ul>
+            <li>Adjust one section a day instead of a full rebuild once a quarter</li>
+            <li>Write each edit as a choice your future brand would make</li>
+            <li>Keep a running log of what changed and why</li>
+          </ul>
+        </div>
+        <div class="fw-panel" data-panel="5">
+          <h3>Measure the gap</h3>
+          <p>Judge the page against the identity you set in step one, not against where you started. The gap tells you what to build next.</p>
+          <ul>
+            <li>Track conversion against your target, not last month</li>
+            <li>Review weekly, not only after a launch</li>
+            <li>Feed each gap back into step one</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="truths">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>7 truths of the future landing page</h2>
+      <p>Flip each card. These are the ideas easylandx builds into every workspace.</p>
+    </div>
+    <div class="truths" id="truthsGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="commit">
+  <div class="wrap">
+    <div class="commit">
+      <div>
+        <h3>Build your forcing function.</h3>
+        <p>Set the date your future page goes live. Committing it out loud is what turns a draft into a launch.</p>
+        <div id="commitResult" role="status"></div>
+      </div>
+      <div class="commit-form">
+        <input type="text" id="commitName" placeholder="Your business name">
+        <input type="date" id="commitDate">
+        <button class="btn-gold" id="commitBtn" type="button">Lock it in</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Stop designing for who you were. Start shipping for who you're becoming.</h2>
+    <p>easylandx turns the Future Page System into a builder you can use today — no code, no drag, no more waiting to feel ready.</p>
+    <a class="btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch easylandx</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo"><span class="logo-mark"></span>easylandx</div>
+    <p>© 2026 easylandx. Build the page your future business needs.</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const sw = document.querySelector('.switch');
+    const screen = document.getElementById('mockScreen');
+    const labelPresent = document.getElementById('labelPresent');
+    const labelFuture = document.getElementById('labelFuture');
+    const caption = document.getElementById('mockCaption');
+
+    function setState(on){
+      sw.classList.toggle('on', on);
+      sw.setAttribute('aria-checked', on ? 'true' : 'false');
+      screen.classList.toggle('future', on);
+      labelPresent.classList.toggle('active', !on);
+      labelFuture.classList.toggle('active', on);
+      caption.textContent = on
+        ? 'Built from the target identity. Clear promise. 6.4% conversion.'
+        : 'Generic template. Default copy. 1.8% conversion.';
+    }
+    let state = false;
+    sw.addEventListener('click', ()=>{ state = !state; setState(state); });
+    sw.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); state = !state; setState(state); }
+    });
+  })();
+
+  // Framework tabs
+  (function(){
+    const tabs = document.querySelectorAll('.fw-tab');
+    const panels = document.querySelectorAll('.fw-panel');
+    tabs.forEach(tab=>{
+      tab.addEventListener('click', ()=>{
+        tabs.forEach(t=>t.classList.remove('active'));
+        panels.forEach(p=>p.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelector('.fw-panel[data-panel="'+tab.dataset.tab+'"]').classList.add('active');
+      });
+    });
+  })();
+
+  // 7 Truths flip cards
+  (function(){
+    const truths = [
+      { title: "Your future page dictates your present edits.", back: "Decide the page's destination first — every section you build today should serve it." },
+      { title: "Your Future Business is different than you expect.", back: "Design for the version of your brand with more customers and more confidence, not a bigger version of today." },
+      { title: "Your page is the ROI on today's choices.", back: "Every section you ship compounds. Cheap shortcuts now cost conversions later." },
+      { title: "Your future page needs an explicit story.", back: "A one-line positioning statement keeps every headline and CTA pointed the same direction." },
+      { title: "Your future page needs intentional cuts.", back: "Saying no to an extra offer or section is what makes the one message land." },
+      { title: "Your future page needs real accountability.", back: "A launch date shared with your team turns a draft into a deadline." },
+      { title: "Your future page is built by commitment, not mood.", back: "Publishing before it feels perfect is what actually gets it in front of visitors." }
+    ];
+    const grid = document.getElementById('truthsGrid');
+    truths.forEach((t, i)=>{
+      const card = document.createElement('div');
+      card.className = 'truth-card';
+      card.tabIndex = 0;
+      card.innerHTML = `
+        <div class="truth-inner">
+          <div class="truth-face front">
+            <span class="truth-n">${String(i+1).padStart(2,'0')}</span>
+            <h4>${t.title}</h4>
+            <span class="truth-hint">Tap to flip</span>
+          </div>
+          <div class="truth-face back">
+            <span class="truth-n">${String(i+1).padStart(2,'0')}</span>
+            <p>${t.back}</p>
+          </div>
+        </div>`;
+      const flip = ()=>card.classList.toggle('flipped');
+      card.addEventListener('click', flip);
+      card.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); flip(); } });
+      grid.appendChild(card);
+    });
+  })();
+
+  // Commitment forcing function
+  (function(){
+    const btn = document.getElementById('commitBtn');
+    const result = document.getElementById('commitResult');
+    btn.addEventListener('click', ()=>{
+      const name = document.getElementById('commitName').value.trim();
+      const date = document.getElementById('commitDate').value;
+      if(!name || !date){
+        result.textContent = 'Add your business name and a launch date to lock it in.';
+        return;
+      }
+      const d = new Date(date + 'T00:00:00');
+      const formatted = d.toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
+      result.textContent = name + ' goes live on ' + formatted + '. That commitment is now yours to keep.';
+    });
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages That Stand Aligned</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink: #FF6FD8;
+    --pink-deep: #FF2EBD;
+    --pink-pale: #FFE9F8;
+    --paper: #FFFBFE;
+    --yellow: #F5FF3D;
+    --yellow-deep: #DCEC00;
+    --green: #3CFF7A;
+    --green-deep: #14C94F;
+    --ink: #24122E;
+    --ink-soft: #5C4568;
+    --line: rgba(36,18,46,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;font-family:'Inter',sans-serif;color:var(--ink);
+    background:var(--pink-pale);
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;}
+  a{color:inherit;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px;}
+
+  nav{position:sticky;top:0;z-index:40;background:rgba(255,111,216,0.75);backdrop-filter:blur(10px);border-bottom:1px solid rgba(36,18,46,0.18);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
+  .logo{font-weight:700;font-size:1.15rem;}
+  .logo span{color:var(--green-deep);}
+  .navlinks{display:flex;gap:22px;font-size:0.92rem;font-weight:600;}
+  .navlinks a{text-decoration:none;opacity:0.85;color:var(--ink);}
+  .navlinks a:hover{opacity:1;text-decoration:underline;text-decoration-color:var(--green-deep);text-underline-offset:4px;}
+  .nav-cta{background:var(--yellow);border:2px solid var(--ink);border-radius:999px;padding:8px 18px;font-weight:700;font-size:0.88rem;text-decoration:none;box-shadow:3px 3px 0 var(--ink);color:var(--ink);}
+  .nav-cta:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink);}
+
+  header.hero{padding:60px 0 46px;background:var(--pink);border-bottom:2px solid var(--ink);}
+  .eyebrow{display:inline-block;background:var(--green-deep);color:var(--ink);font-weight:700;font-size:0.78rem;padding:5px 14px;border-radius:999px;margin-bottom:18px;}
+  h1{font-size:clamp(2.1rem,5vw,3.3rem);line-height:1.08;margin:0 0 18px;max-width:17ch;}
+  .lede{font-size:1.1rem;color:var(--ink-soft);max-width:54ch;line-height:1.55;margin:0 0 30px;}
+  p{line-height:1.65;color:var(--ink-soft);font-size:1rem;}
+
+  /* ALIGNMENT WIDGET */
+  .align-card{background:var(--paper);border:2px solid var(--ink);border-radius:22px;padding:30px;box-shadow:8px 8px 0 var(--ink);}
+  .align-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:20px;}
+  .align-title{font-weight:700;font-size:1.02rem;}
+  .align-title small{display:block;font-weight:500;font-size:0.84rem;color:var(--ink-soft);margin-top:2px;}
+  .reading{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;padding:6px 16px;border-radius:999px;border:2px solid var(--ink);}
+  .reading.alarm{background:var(--pink-deep);color:white;}
+  .reading.mid{background:var(--yellow);color:var(--ink);}
+  .reading.safe{background:var(--green);color:var(--ink);}
+
+  .align-stage{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;}
+  @media(max-width:760px){.align-stage{grid-template-columns:1fr;}}
+
+  .mock-frame{
+    border:1px solid var(--line);border-radius:12px;background:white;overflow:hidden;
+    transform-origin:center;transition:transform .25s ease;
+  }
+  .mock-bar{background:var(--pink-pale);padding:7px 10px;display:flex;gap:5px;border-bottom:1px solid var(--line);}
+  .mock-bar i{width:8px;height:8px;border-radius:50%;background:var(--line);display:inline-block;}
+  .mock-inner{padding:18px;}
+  .mrow{height:14px;border-radius:5px;background:var(--line);margin-bottom:10px;transition:all .25s ease;}
+  .mrow.head{height:22px;width:70%;}
+  .mrow.cta{height:34px;width:44%;border-radius:8px;background:var(--pink-deep);margin-top:14px;transition:all .25s ease;}
+
+  .slider-block{padding:6px 0;}
+  input[type=range]{width:100%;accent-color:var(--pink-deep);height:6px;}
+  .slider-labels{display:flex;justify-content:space-between;font-size:0.8rem;font-weight:700;color:var(--ink-soft);margin-top:6px;}
+
+  .tension-list{margin-top:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  @media(max-width:760px){.tension-list{grid-template-columns:repeat(2,1fr);}}
+  .tension{border:2px solid var(--line);border-radius:12px;padding:10px;text-align:center;font-size:0.8rem;font-weight:700;color:var(--ink-soft);transition:all .25s ease;}
+  .tension.ok{border-color:var(--green-deep);background:#F1FFF4;color:var(--ink);}
+
+  section{padding:70px 0;}
+  #skeleton{background:var(--yellow);border-bottom:2px solid var(--ink);}
+  #armor{background:var(--green);border-bottom:2px solid var(--ink);}
+  #audit{background:var(--pink);border-bottom:2px solid var(--ink);}
+  #audit .kicker{color:var(--ink);}
+  #framework{background:var(--yellow);border-bottom:2px solid var(--ink);}
+  .kicker{font-weight:700;color:var(--pink-deep);font-size:0.86rem;margin-bottom:10px;}
+  h2{font-size:clamp(1.55rem,3.3vw,2.2rem);margin:0 0 16px;max-width:22ch;}
+  .col2{display:grid;grid-template-columns:1.05fr 1fr;gap:46px;align-items:center;}
+  @media(max-width:820px){.col2{grid-template-columns:1fr;}}
+
+  /* BREATH AUDIT */
+  .audit-card{background:var(--paper);border:2px solid var(--ink);border-radius:20px;padding:34px;box-shadow:8px 8px 0 var(--green-deep);text-align:center;}
+  .breath-circle{
+    width:150px;height:150px;border-radius:50%;margin:20px auto;
+    background:radial-gradient(circle at 35% 30%, var(--pink), var(--pink-deep));
+    display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-family:'Space Grotesk',sans-serif;
+    transition:transform 2.2s ease-in-out;font-size:1rem;
+  }
+  .breath-circle.in{transform:scale(1.35);}
+  .breath-circle.out{transform:scale(0.9);}
+  .runbtn{background:var(--green-deep);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:11px 26px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:4px 4px 0 var(--ink);font-size:0.92rem;}
+  .runbtn:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink);}
+  .runbtn:disabled{opacity:0.55;cursor:default;}
+  .audit-checklist{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px;}
+  .audit-item{border:2px solid var(--line);border-radius:10px;padding:9px 13px;font-size:0.82rem;font-weight:700;color:var(--ink-soft);transition:all .3s ease;}
+  .audit-item.released{border-color:var(--green-deep);background:#F1FFF4;color:var(--ink);}
+
+  /* FRAMEWORK DIAGRAM */
+  .flow{display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .flow-box{border:2px solid var(--ink);background:white;border-radius:14px;padding:14px 20px;text-align:center;font-weight:700;font-size:0.92rem;box-shadow:4px 4px 0 var(--green-deep);max-width:340px;}
+  .flow-box small{display:block;font-weight:500;color:var(--ink-soft);font-size:0.78rem;margin-top:4px;}
+  .flow-arrow{font-size:1.3rem;color:var(--pink-deep);}
+  .flow-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+
+  .cta-final{text-align:center;padding:70px 24px;background:var(--green);border-top:2px solid var(--ink);}
+  .cta-final h2{max-width:none;}
+  .big-btn{display:inline-block;margin-top:20px;background:var(--yellow);border:3px solid var(--ink);border-radius:999px;padding:18px 42px;font-weight:700;font-size:1.1rem;text-decoration:none;color:var(--ink);box-shadow:6px 6px 0 var(--green-deep);transition:transform .15s ease, box-shadow .15s ease;}
+  .big-btn:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 var(--green-deep);}
+
+  footer{padding:26px 24px;text-align:center;font-size:0.85rem;color:var(--ink-soft);background:var(--pink-pale);border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <div class="navlinks">
+      <a href="#align">Alignment</a>
+      <a href="#armor">Tension</a>
+      <a href="#audit">Gravity Audit</a>
+      <a href="#framework">Framework</a>
+    </div>
+    <a class="nav-cta" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero" id="align">
+  <div class="wrap">
+    <span class="eyebrow">Applying The Art of Standing — LD Chen</span>
+    <h1>A page can't fake calm. It has to be structurally aligned.</h1>
+    <p class="lede">LD Chen's somatic work argues you can't think your way out of a body that's bracing and collapsing. A landing page works the same way: no clever copy fixes a layout that's structurally in a panic. Drag the slider and watch what alignment actually does.</p>
+
+    <div class="align-card">
+      <div class="align-top">
+        <div class="align-title">Structural Alignment<small>0 = collapsed and gripping · 100 = fully aligned</small></div>
+        <div class="reading alarm" id="readingBadge">NERVOUS SYSTEM: ALARM</div>
+      </div>
+
+      <div class="align-stage">
+        <div>
+          <div class="mock-frame" id="mockFrame">
+            <div class="mock-bar"><i></i><i></i><i></i></div>
+            <div class="mock-inner">
+              <div class="mrow head" id="rowHead"></div>
+              <div class="mrow" id="rowSub" style="width:88%;"></div>
+              <div class="mrow" id="rowSub2" style="width:60%;"></div>
+              <div class="mrow cta" id="rowCta"></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="slider-block">
+            <input type="range" min="0" max="100" value="0" id="alignSlider" oninput="updateAlignment(this.value)">
+            <div class="slider-labels"><span>Collapsed</span><span>Aligned</span></div>
+          </div>
+          <p style="margin-top:14px;font-size:0.92rem;">Every degree you add straightens the visual spine: heading, subhead, and one clear call to action stacked on a true vertical — the same axis Chen aligns through head, ribs, and pelvis.</p>
+        </div>
+      </div>
+
+      <div class="tension-list" id="tensionList">
+        <div class="tension" id="t1">Header<br>tension</div>
+        <div class="tension" id="t2">Navigation<br>tension</div>
+        <div class="tension" id="t3">CTA<br>tension</div>
+        <div class="tension" id="t4">Footer<br>tension</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="skeleton">
+  <div class="wrap col2">
+    <div>
+      <div class="kicker">The skeleton is an emotional instrument</div>
+      <h2>How a page carries itself tells a visitor whether to relax or brace.</h2>
+      <p>Chen's core claim is that slumping or rigid bracing signals emergency to the nervous system before a single thought forms. A page does the same thing in the first half-second: cramped spacing and competing calls to action read as alarm, even if the offer underneath is solid.</p>
+      <p>EasyLandX designs the vertical first — one headline, one supporting line, one action — so the structure itself signals safety before anyone reads a word.</p>
+    </div>
+    <div class="mock-frame" style="box-shadow:6px 6px 0 var(--pink-deep);">
+      <div class="mock-bar"><i></i><i></i><i></i></div>
+      <div class="mock-inner">
+        <p style="margin:0 0 6px;font-weight:700;font-size:0.92rem;">Collapsed page, visitor reaction:</p>
+        <p style="margin:0;font-size:0.88rem;">"Too much going on — I don't trust this."</p>
+        <hr style="border:none;border-top:1px dashed var(--line);margin:14px 0;">
+        <p style="margin:0 0 6px;font-weight:700;font-size:0.92rem;">Aligned page, visitor reaction:</p>
+        <p style="margin:0;font-size:0.88rem;">"This is clear. I know what to do next."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="armor">
+  <div class="wrap">
+    <div class="kicker" style="text-align:center;">Tension is psychological armor</div>
+    <h2 style="text-align:center;margin-left:auto;margin-right:auto;max-width:32ch;">The parts of a page that grip hardest are usually the parts hiding doubt.</h2>
+    <p style="text-align:center;max-width:56ch;margin:0 auto;">Chen finds chronic tightness in the jaw, shoulders, hips, and lower back mirrors suppressed emotion. On a page, the equivalent is over-explaining headlines, cluttered navigation, stacked competing buttons, and defensive fine print — all muscular gripping instead of structural trust.</p>
+  </div>
+</section>
+
+<section id="audit">
+  <div class="wrap">
+    <div class="kicker" style="text-align:center;">Standing still is an active practice</div>
+    <h2 style="text-align:center;margin-left:auto;margin-right:auto;max-width:30ch;">Before shipping, run a Gravity Audit on the page.</h2>
+    <p style="text-align:center;max-width:54ch;margin:0 auto 30px;">Chen's "gravity audit" is a mid-stress pause: drop the shoulders, unclench the jaw, breathe down instead of up. EasyLandX runs the same pause on a page before launch — breathe through it, and check each section releases its grip.</p>
+
+    <div class="audit-card">
+      <div class="breath-circle" id="breathCircle">Breathe</div>
+      <button class="runbtn" id="auditBtn" onclick="runAudit()">Start the gravity audit</button>
+      <div class="audit-checklist">
+        <div class="audit-item" id="a1">Headline — no shouting</div>
+        <div class="audit-item" id="a2">Nav — down to essentials</div>
+        <div class="audit-item" id="a3">CTA — just one</div>
+        <div class="audit-item" id="a4">Footer — no over-explaining</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="wrap">
+    <div class="kicker" style="text-align:center;">The framework, applied to your page</div>
+    <h2 style="text-align:center;margin-left:auto;margin-right:auto;max-width:30ch;">From a collapsed draft to a page that stands on its own.</h2>
+    <div class="flow">
+      <div class="flow-box">Establish the base<small>One offer, one audience, no unnecessary steps to act</small></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-box">Align the vertical<small>Heading → proof → one call to action, stacked and true</small></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-row">
+        <div class="flow-box">Release the armor<small>Cut hedging copy, pop-ups, and competing buttons</small></div>
+        <div class="flow-box">Let it breathe<small>Real whitespace instead of cramming every section</small></div>
+        <div class="flow-box">Observe stillness<small>No unnecessary motion competing for attention</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-final">
+  <div class="kicker">EasyLandX</div>
+  <h2>Stop bracing your page against every idea. Give it one true structure.</h2>
+  <p style="max-width:48ch;margin:0 auto;">Custom, conversion-focused landing pages for small businesses — built aligned from the base up, not gripped together section by section.</p>
+  <a class="big-btn" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+</div>
+
+<footer>Built by EasyLandX · © 2026</footer>
+
+<script>
+  function updateAlignment(val){
+    val = parseInt(val,10);
+    const t = val/100;
+
+    // frame tilts hard when collapsed, sits dead level when aligned
+    const skew = (1-t) * 14;
+    const rot = (1-t) * -9;
+    document.getElementById('mockFrame').style.transform = `rotate(${rot}deg) skewY(${skew*0.5}deg)`;
+
+    // rows lean off-axis by different amounts when collapsed, snap to a true vertical when aligned
+    const rows = [
+      {id:'rowHead', lean: 26, width:[60,70]},
+      {id:'rowSub',  lean: -18, width:[68,88]},
+      {id:'rowSub2', lean: 34, width:[50,60]},
+      {id:'rowCta',  lean: -10, width:[38,44]}
+    ];
+    rows.forEach(r=>{
+      const el = document.getElementById(r.id);
+      el.style.marginLeft = (r.lean * (1-t)) + 'px';
+      el.style.width = (r.width[0] + (r.width[1]-r.width[0])*t) + '%';
+      // tense pink-red when collapsed, calm green when aligned
+      const from = [255,46,150], to = [20,201,79];
+      const mix = from.map((c,i)=> Math.round(c + (to[i]-c)*t));
+      el.style.background = `rgb(${mix.join(',')})`;
+    });
+    document.getElementById('rowCta').style.opacity = 0.55 + t*0.45;
+
+    // reading badge
+    const badge = document.getElementById('readingBadge');
+    if(val < 34){
+      badge.className = 'reading alarm'; badge.textContent = 'NERVOUS SYSTEM: ALARM';
+    } else if(val < 75){
+      badge.className = 'reading mid'; badge.textContent = 'NERVOUS SYSTEM: SETTLING';
+    } else {
+      badge.className = 'reading safe'; badge.textContent = 'NERVOUS SYSTEM: SAFE';
+    }
+
+    // tension list
+    const ids = ['t1','t2','t3','t4'];
+    const thresholds = [20,45,70,90];
+    ids.forEach((id,i)=>{
+      document.getElementById(id).classList.toggle('ok', val >= thresholds[i]);
+    });
+  }
+
+  // Gravity audit breathing sequence
+  function runAudit(){
+    const btn = document.getElementById('auditBtn');
+    const circle = document.getElementById('breathCircle');
+    const items = ['a1','a2','a3','a4'];
+    btn.disabled = true;
+    items.forEach(id=>document.getElementById(id).classList.remove('released'));
+
+    let step = 0;
+    function cycle(){
+      if(step >= items.length){
+        circle.className='breath-circle';
+        circle.textContent='Aligned';
+        btn.disabled = false;
+        return;
+      }
+      circle.className = 'breath-circle in';
+      circle.textContent = 'Breathe in';
+      setTimeout(()=>{
+        circle.className = 'breath-circle out';
+        circle.textContent = 'Breathe out';
+        document.getElementById(items[step]).classList.add('released');
+        step++;
+        setTimeout(cycle, 1400);
+      }, 1800);
+    }
+    cycle();
+  }
+
+  updateAlignment(0);
+</script>
+
+</body>
+</html>

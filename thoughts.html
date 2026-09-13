@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Your landing page doesn't need fixing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#f2ff33;
+    --yellow-soft:#f8ffa0;
+    --ink:#0a0a0a;
+    --ink-2:#161616;
+    --ink-muted:#4a4a42;
+    --red:#ff1f3d;
+    --red-dim:#7a1120;
+    --line-on-yellow:rgba(10,10,10,0.16);
+    --line-on-ink:rgba(242,255,51,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--yellow);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.01em; margin:0; }
+  a{ color:inherit; }
+  .wrap{ max-width:1140px; margin:0 auto; padding:0 32px; }
+  section{ padding:90px 0; }
+  @media (max-width:720px){ section{padding:56px 0;} .wrap{padding:0 20px;} }
+  ::selection{ background:var(--ink); color:var(--yellow); }
+  :focus-visible{ outline:2px solid var(--red); outline-offset:3px; }
+
+  /* hazard divider */
+  .hazard{
+    height:14px;
+    background:repeating-linear-gradient(-45deg, var(--ink), var(--ink) 18px, var(--yellow) 18px, var(--yellow) 36px);
+  }
+
+  /* NAV */
+  header.nav{ position:sticky; top:0; z-index:50; background:var(--ink); border-bottom:1px solid var(--line-on-ink); }
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:16px 32px; max-width:1140px; margin:0 auto; }
+  .logo{ display:flex; align-items:center; gap:10px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px; color:var(--yellow); }
+  .logo-mark{ width:24px;height:24px;border-radius:6px; background:var(--yellow); position:relative; }
+  .logo-mark::after{ content:""; position:absolute; inset:6px; background:var(--red); border-radius:2px; }
+
+  .btn{ display:inline-flex; align-items:center; gap:8px; font-family:'Inter', sans-serif; font-weight:600; font-size:14.5px; padding:12px 22px; border-radius:8px; cursor:pointer; border:1.5px solid transparent; text-decoration:none; transition:transform .15s ease, box-shadow .15s ease, background .15s ease; }
+  .btn:active{ transform:translateY(1px); }
+  .btn-red{ background:var(--red); color:#0a0a0a; }
+  .btn-red:hover{ box-shadow:0 0 0 4px rgba(255,31,61,0.25); }
+  .btn-ink{ background:var(--ink); color:var(--yellow); }
+  .btn-ink:hover{ box-shadow:0 0 0 4px rgba(10,10,10,0.15); }
+  .btn-outline{ background:transparent; color:var(--ink); border-color:var(--ink); }
+  .btn-outline:hover{ background:rgba(10,10,10,0.06); }
+  .btn-outline-y{ background:transparent; color:var(--yellow); border-color:var(--yellow); }
+  .btn-outline-y:hover{ background:rgba(242,255,51,0.08); }
+
+  /* HERO */
+  .hero{ padding-top:80px; padding-bottom:64px; }
+  .eyebrow-line{ display:flex; align-items:center; gap:10px; color:var(--ink-muted); font-size:13.5px; margin-bottom:22px; }
+  .eyebrow-line .dash{ width:26px; height:2px; background:var(--ink); }
+  .hero h1{ font-size:clamp(32px,5.2vw,58px); line-height:1.08; max-width:16ch; }
+  .hero p.lede{ margin-top:22px; max-width:58ch; font-size:17.5px; color:var(--ink-muted); }
+  .hero-actions{ display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+
+  /* section heads */
+  .section-head{ max-width:660px; margin-bottom:44px; }
+  .section-head.on-ink{ color:var(--yellow); }
+  .section-head h2{ font-size:clamp(26px,3.4vw,36px); }
+  .section-head p{ margin-top:14px; color:var(--ink-muted); font-size:16px; }
+  .section-head.on-ink p{ color:rgba(242,255,51,0.7); }
+
+  /* automatic thought cards */
+  .thoughts-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  @media (max-width:800px){ .thoughts-grid{ grid-template-columns:1fr; } }
+  .thought-card{ background:var(--ink); color:var(--yellow); border-radius:14px; padding:26px 26px; }
+  .thought-card .distortion{ font-size:12.5px; color:var(--red); font-weight:600; margin-bottom:12px; font-family:'Space Grotesk',sans-serif; }
+  .thought-card .quote{ font-size:16px; line-height:1.55; margin-bottom:16px; }
+  .thought-card .reframe{ font-size:13.5px; color:rgba(242,255,51,0.65); border-top:1px solid var(--line-on-ink); padding-top:14px; }
+
+  /* SECTION on ink background */
+  .ink-section{ background:var(--ink); color:var(--yellow); }
+
+  /* QUIZ */
+  .quiz{ background:var(--ink); border-radius:22px; padding:0; overflow:hidden; }
+  .quiz-top{ display:flex; align-items:center; justify-content:space-between; padding:24px 30px; border-bottom:1px solid var(--line-on-ink); flex-wrap:wrap; gap:12px; }
+  .quiz-progress{ font-size:13px; color:rgba(242,255,51,0.6); }
+  .quiz-track{ width:160px; height:5px; border-radius:99px; background:rgba(242,255,51,0.15); overflow:hidden; }
+  .quiz-fill{ height:100%; background:var(--red); width:0%; transition:width .3s ease; }
+
+  .quiz-body{ padding:34px 30px 36px; }
+  .quiz-label{ font-size:12.5px; color:rgba(242,255,51,0.55); margin-bottom:10px; }
+  .quiz-thought{ font-size:21px; font-family:'Space Grotesk',sans-serif; color:var(--yellow); max-width:52ch; margin-bottom:26px; }
+
+  .quiz-options{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:22px; }
+  @media (max-width:640px){ .quiz-options{ grid-template-columns:1fr; } }
+  .quiz-opt{
+    text-align:left; padding:13px 16px; border-radius:9px; border:1.5px solid rgba(242,255,51,0.3);
+    background:transparent; color:var(--yellow); font-family:'Inter',sans-serif; font-size:14px; cursor:pointer;
+    transition:all .15s ease;
+  }
+  .quiz-opt:hover{ border-color:var(--yellow); }
+  .quiz-opt.correct{ background:var(--yellow); color:var(--ink); border-color:var(--yellow); font-weight:600; }
+  .quiz-opt.wrong{ border-color:var(--red); color:var(--red); }
+  .quiz-opt:disabled{ cursor:default; }
+
+  .quiz-feedback{ display:none; }
+  .quiz-feedback.show{ display:block; animation:reveal .3s ease; }
+  @keyframes reveal{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+  .quiz-feedback .verdict{ font-size:14px; color:var(--red); font-weight:600; margin-bottom:8px; }
+  .quiz-feedback .reframe-text{ font-size:15px; color:rgba(242,255,51,0.85); max-width:56ch; margin-bottom:22px; }
+
+  .quiz-done{ display:none; text-align:center; padding:20px 0; }
+  .quiz-done.show{ display:block; animation:reveal .3s ease; }
+  .quiz-done .count{ font-family:'Space Grotesk',sans-serif; font-size:44px; color:var(--yellow); }
+  .quiz-done p{ color:rgba(242,255,51,0.7); margin:10px 0 24px; }
+
+  /* worth vs esteem */
+  .we-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  @media (max-width:800px){ .we-grid{ grid-template-columns:1fr; } }
+  .we-card{ border:1.5px solid var(--line-on-yellow); border-radius:14px; padding:28px 26px; }
+  .we-card h3{ font-size:19px; margin-bottom:10px; }
+  .we-card p{ margin:0; color:var(--ink-muted); font-size:14.5px; }
+  .we-card.fluctuates{ border-color:var(--red); }
+  .we-card.fluctuates h3{ color:var(--red); }
+
+  /* final cta */
+  .final-cta{ text-align:center; border-radius:22px; padding:66px 40px; background:var(--ink); color:var(--yellow); }
+  .final-cta h2{ font-size:clamp(26px,4vw,38px); max-width:20ch; margin:0 auto; }
+  .final-cta p{ color:rgba(242,255,51,0.7); margin:16px auto 30px; max-width:46ch; }
+
+  footer{ background:var(--ink); padding:34px 0; }
+  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; color:rgba(242,255,51,0.55); font-size:13.5px; }
+  footer .logo{ color:var(--yellow); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-row">
+    <div class="logo"><span class="logo-mark"></span>easylandx</div>
+    <a class="btn btn-red" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with EasyLandX</a>
+  </div>
+</header>
+<div class="hazard"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow-line"><span class="dash"></span>a landing page builder for the thoughts that stall your launch</div>
+    <h1>Your landing page doesn't need fixing. Your thinking about it does.</h1>
+    <p class="lede">Therapist Zach Leezer argues that low self-esteem isn't a flaw in who you are — it's a set of automatic thoughts that feel like facts but aren't. The same thing happens to a landing page: it's not broken, but your team's catastrophizing, all-or-nothing thinking, and comparison spirals will convince you it is.</p>
+    <div class="hero-actions">
+      <a class="btn btn-red" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with EasyLandX</a>
+      <a class="btn btn-outline" href="#quiz">Cross-examine a thought</a>
+    </div>
+  </div>
+</section>
+
+<div class="hazard"></div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The automatic thoughts every launch triggers</h2>
+      <p>None of these are facts about your page. They're mental habits — conditioned by a bad last launch, a loud competitor, or a Monday deadline.</p>
+    </div>
+    <div class="thoughts-grid">
+      <div class="thought-card">
+        <div class="distortion">all-or-nothing thinking</div>
+        <div class="quote">"If this page doesn't convert on day one, the whole redesign was pointless."</div>
+        <div class="reframe">Reframe: most pages find their number after two or three iterations, not their first hour live.</div>
+      </div>
+      <div class="thought-card">
+        <div class="distortion">catastrophizing</div>
+        <div class="quote">"If we publish this headline and it flops, the brand's reputation is ruined."</div>
+        <div class="reframe">Reframe: a weak headline test costs a week of traffic. Worst case, you revert it by Friday.</div>
+      </div>
+      <div class="thought-card">
+        <div class="distortion">personalization</div>
+        <div class="quote">"The bounce rate is high because I designed it wrong."</div>
+        <div class="reframe">Reframe: bounce rate has a dozen causes — traffic source, timing, page speed. It's data, not a verdict on you.</div>
+      </div>
+      <div class="thought-card">
+        <div class="distortion">comparative thinking</div>
+        <div class="quote">"Their landing page looks so much more polished than ours."</div>
+        <div class="reframe">Reframe: you're comparing your rough draft to their finished, twelfth-iteration version. Not a fair fight.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ink-section" id="quiz">
+  <div class="wrap">
+    <div class="section-head on-ink">
+      <h2>Cross-examine your landing page thoughts</h2>
+      <p>Leezer's technique, live: read the automatic thought, name the distortion, then see the reframe. Five rounds.</p>
+    </div>
+
+    <div class="quiz">
+      <div class="quiz-top">
+        <span class="quiz-progress" id="quizProgress">Round 1 of 5</span>
+        <div class="quiz-track"><div class="quiz-fill" id="quizFill"></div></div>
+      </div>
+      <div class="quiz-body">
+
+        <div id="quizActive">
+          <div class="quiz-label">the automatic thought</div>
+          <div class="quiz-thought" id="quizThought"></div>
+          <div class="quiz-options" id="quizOptions"></div>
+          <div class="quiz-feedback" id="quizFeedback">
+            <div class="verdict" id="quizVerdict"></div>
+            <div class="reframe-text" id="quizReframe"></div>
+            <button class="btn btn-outline-y" id="quizNextBtn" onclick="nextRound()">Next thought →</button>
+          </div>
+        </div>
+
+        <div class="quiz-done" id="quizDone">
+          <div class="count" id="quizFinalCount">5/5</div>
+          <p>Reframes on the board. None of those thoughts were facts about your page — and neither is the next one.</p>
+          <a class="btn btn-red" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with EasyLandX</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Your page's performance isn't your worth as a marketer</h2>
+      <p>Leezer separates self-esteem, which rises and falls with performance, from self-worth, which doesn't move. The same split protects a team that ships pages for a living.</p>
+    </div>
+    <div class="we-grid">
+      <div class="we-card fluctuates">
+        <h3>Conversion rate</h3>
+        <p>Goes up with a good headline, down with a slow quarter, sideways with a traffic shift you didn't cause. It's a moving number — read it, don't identify with it.</p>
+      </div>
+      <div class="we-card">
+        <h3>Your judgment as a builder</h3>
+        <p>Doesn't change because one test underperformed. The same instinct that shipped last quarter's winner is still yours after this week's flat page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="final-cta">
+      <h2>Stop bullying your team into a better page. Reframe the thought instead.</h2>
+      <p>EasyLandX won't argue you out of a bad launch day — but it removes the technical excuses, so the only thing left to work on is the thought stopping you from shipping.</p>
+      <a class="btn btn-red" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with EasyLandX</a>
+    </div>
+  </div>
+</section>
+
+<div class="hazard"></div>
+
+<footer>
+  <div class="wrap foot-row">
+    <div class="logo"><span class="logo-mark"></span>easylandx</div>
+    <div>Landing pages for teams done catastrophizing about launch day.</div>
+  </div>
+</footer>
+
+<script>
+  const rounds = [
+    {
+      thought: "If this page doesn't convert on day one, the whole redesign was pointless.",
+      options: ["All-or-Nothing Thinking", "Personalization", "Comparative Thinking", "Catastrophizing"],
+      correct: "All-or-Nothing Thinking",
+      reframe: "Reframe: one slow day isn't the whole verdict. Most pages need a few iterations to find their real number."
+    },
+    {
+      thought: "If we publish this and it flops, the brand's reputation is ruined.",
+      options: ["Personalization", "Catastrophizing", "All-or-Nothing Thinking", "Comparative Thinking"],
+      correct: "Catastrophizing",
+      reframe: "Reframe: a flat test costs a week of traffic, not the brand. You can revert it by Friday."
+    },
+    {
+      thought: "The bounce rate is high because I designed it wrong.",
+      options: ["Catastrophizing", "Comparative Thinking", "Personalization", "All-or-Nothing Thinking"],
+      correct: "Personalization",
+      reframe: "Reframe: bounce rate has a dozen causes — traffic source, timing, page speed. It's data to investigate, not a verdict on you."
+    },
+    {
+      thought: "This page feels clunky, so it must be bad.",
+      options: ["Emotional Reasoning", "All-or-Nothing Thinking", "Catastrophizing", "Personalization"],
+      correct: "Emotional Reasoning",
+      reframe: "Reframe: feeling unsure about a design isn't the same as it underperforming. Check the numbers before you rewrite it."
+    },
+    {
+      thought: "Their landing page looks so much more polished than ours.",
+      options: ["Personalization", "Catastrophizing", "Emotional Reasoning", "Comparative Thinking"],
+      correct: "Comparative Thinking",
+      reframe: "Reframe: you're comparing your rough draft to their finished, twelfth-iteration version. Not a fair fight."
+    }
+  ];
+
+  let round = 0;
+  let correctCount = 0;
+
+  const elThought = document.getElementById('quizThought');
+  const elOptions = document.getElementById('quizOptions');
+  const elFeedback = document.getElementById('quizFeedback');
+  const elVerdict = document.getElementById('quizVerdict');
+  const elReframe = document.getElementById('quizReframe');
+  const elProgress = document.getElementById('quizProgress');
+  const elFill = document.getElementById('quizFill');
+  const elActive = document.getElementById('quizActive');
+  const elDone = document.getElementById('quizDone');
+  const elFinalCount = document.getElementById('quizFinalCount');
+  const elNextBtn = document.getElementById('quizNextBtn');
+
+  function renderRound(){
+    const r = rounds[round];
+    elFeedback.classList.remove('show');
+    elThought.textContent = r.thought;
+    elProgress.textContent = 'Round ' + (round + 1) + ' of ' + rounds.length;
+    elFill.style.width = ((round) / rounds.length * 100) + '%';
+    elOptions.innerHTML = '';
+    r.options.forEach(opt => {
+      const b = document.createElement('button');
+      b.className = 'quiz-opt';
+      b.textContent = opt;
+      b.onclick = () => selectOption(b, opt);
+      elOptions.appendChild(b);
+    });
+  }
+
+  function selectOption(btn, choice){
+    const r = rounds[round];
+    const allBtns = elOptions.querySelectorAll('.quiz-opt');
+    allBtns.forEach(b => b.disabled = true);
+
+    if(choice === r.correct){
+      btn.classList.add('correct');
+      correctCount++;
+      elVerdict.textContent = 'That\'s the one.';
+    } else {
+      btn.classList.add('wrong');
+      allBtns.forEach(b => { if(b.textContent === r.correct) b.classList.add('correct'); });
+      elVerdict.textContent = 'Close — it\'s actually ' + r.correct + '.';
+    }
+    elReframe.textContent = r.reframe;
+    elFeedback.classList.add('show');
+    elFill.style.width = ((round + 1) / rounds.length * 100) + '%';
+    elNextBtn.textContent = (round === rounds.length - 1) ? 'See your results →' : 'Next thought →';
+  }
+
+  function nextRound(){
+    round++;
+    if(round >= rounds.length){
+      elActive.style.display = 'none';
+      elDone.classList.add('show');
+      elFinalCount.textContent = correctCount + '/' + rounds.length;
+      elProgress.textContent = 'Complete';
+      return;
+    }
+    renderRound();
+  }
+
+  renderRound();
+</script>
+
+</body>
+</html>

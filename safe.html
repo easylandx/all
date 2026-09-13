@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages That Talk With You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cyan: #22E8FF;
+    --cyan-deep: #00B9D6;
+    --cyan-pale: #E3FCFF;
+    --paper: #FBFFFF;
+    --green: #3CFF7A;
+    --green-deep: #14C94F;
+    --magenta: #FF2FD1;
+    --magenta-deep: #C6009F;
+    --ink: #0E1B2A;
+    --ink-soft: #45596B;
+    --line: rgba(14,27,42,0.15);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Inter',sans-serif;color:var(--ink);background:var(--cyan-pale);}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;}
+  a{color:inherit;}
+  p{line-height:1.65;color:var(--ink-soft);font-size:1rem;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px;}
+  section{padding:70px 0;border-bottom:2px solid var(--ink);}
+
+  nav{position:sticky;top:0;z-index:40;background:rgba(34,232,255,0.78);backdrop-filter:blur(10px);border-bottom:1px solid rgba(14,27,42,0.2);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
+  .logo{font-weight:700;font-size:1.15rem;}
+  .logo span{color:var(--magenta-deep);}
+  .navlinks{display:flex;gap:22px;font-size:0.92rem;font-weight:600;}
+  .navlinks a{text-decoration:none;opacity:0.85;color:var(--ink);}
+  .navlinks a:hover{opacity:1;text-decoration:underline;text-decoration-color:var(--magenta-deep);text-underline-offset:4px;}
+  .nav-cta{background:var(--green);border:2px solid var(--ink);border-radius:999px;padding:8px 18px;font-weight:700;font-size:0.88rem;text-decoration:none;color:var(--ink);box-shadow:3px 3px 0 var(--ink);}
+  .nav-cta:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink);}
+
+  header.hero{padding:60px 0 46px;background:var(--cyan);}
+  .eyebrow{display:inline-block;background:var(--magenta);color:white;font-weight:700;font-size:0.78rem;padding:5px 14px;border-radius:999px;margin-bottom:18px;}
+  h1{font-size:clamp(2.1rem,5vw,3.3rem);line-height:1.07;margin:0 0 18px;max-width:19ch;}
+  .lede{font-size:1.1rem;color:var(--ink-soft);max-width:56ch;line-height:1.55;margin:0 0 30px;}
+
+  /* SIMULATOR */
+  .sim-card{background:var(--paper);border:2px solid var(--ink);border-radius:22px;padding:30px;box-shadow:8px 8px 0 var(--ink);}
+  .sim-title{font-weight:700;font-size:1.02rem;margin-bottom:4px;}
+  .sim-sub{font-size:0.86rem;color:var(--ink-soft);margin-bottom:18px;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px;}
+  .chip{
+    border:2px solid var(--ink);background:white;border-radius:999px;padding:10px 16px;
+    font-family:inherit;font-weight:600;font-size:0.86rem;cursor:pointer;box-shadow:3px 3px 0 var(--ink);
+  }
+  .chip:hover{transform:translateY(-1px);}
+  .chip.active{background:var(--magenta);color:white;}
+  .sim-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;}
+  @media(max-width:760px){.sim-steps{grid-template-columns:1fr;}}
+  .sim-step{border:2px solid var(--line);border-radius:14px;padding:14px;opacity:0.35;transform:translateY(6px);transition:all .35s ease;}
+  .sim-step.on{opacity:1;transform:translateY(0);border-color:var(--ink);background:var(--cyan-pale);}
+  .sim-step b{display:block;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.03em;color:var(--magenta-deep);margin-bottom:6px;}
+  .sim-step span{font-size:0.9rem;color:var(--ink);}
+  .versus{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:760px){.versus{grid-template-columns:1fr;}}
+  .vbox{border:2px solid var(--line);border-radius:14px;padding:16px;font-size:0.88rem;min-height:70px;}
+  .vbox.bad{background:#FFF1FA;}
+  .vbox.bad b{color:var(--magenta-deep);}
+  .vbox.good{background:#EFFFF3;}
+  .vbox.good b{color:var(--green-deep);}
+  .vbox b{display:block;font-size:0.76rem;text-transform:uppercase;letter-spacing:0.03em;margin-bottom:6px;}
+  .placeholder{color:var(--ink-soft);font-style:italic;}
+
+  .kicker{font-weight:700;color:var(--magenta-deep);font-size:0.86rem;margin-bottom:10px;}
+  h2{font-size:clamp(1.55rem,3.3vw,2.2rem);margin:0 0 16px;max-width:22ch;}
+  .col2{display:grid;grid-template-columns:1.05fr 1fr;gap:46px;align-items:center;}
+  @media(max-width:820px){.col2{grid-template-columns:1fr;}}
+
+  #safety{background:var(--green);}
+  #safety .kicker{color:var(--ink);}
+
+  #talking{background:var(--magenta);}
+  #talking .kicker{color:white;}
+  #talking h2{color:white;}
+  #talking p{color:rgba(255,255,255,0.92);}
+  .atwith{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:10px;}
+  @media(max-width:760px){.atwith{grid-template-columns:1fr;}}
+  .aw-box{background:white;border:2px solid var(--ink);border-radius:14px;padding:18px;box-shadow:5px 5px 0 var(--ink);}
+  .aw-box b{display:block;font-size:0.76rem;text-transform:uppercase;letter-spacing:0.03em;margin-bottom:8px;color:var(--ink-soft);}
+  .aw-box p{margin:0;color:var(--ink);font-weight:600;font-size:0.98rem;line-height:1.4;}
+  #talking .aw-box p, #talking .aw-box b{color:var(--ink);}
+  #safety .aw-box p, #safety .aw-box b{color:var(--ink);}
+
+  #protocol{background:var(--cyan);}
+  .flow{display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .flow-box{border:2px solid var(--ink);background:white;border-radius:14px;padding:14px 20px;text-align:center;font-weight:700;font-size:0.92rem;box-shadow:4px 4px 0 var(--magenta-deep);max-width:340px;}
+  .flow-box small{display:block;font-weight:500;color:var(--ink-soft);font-size:0.78rem;margin-top:4px;}
+  .flow-arrow{font-size:1.3rem;color:var(--magenta-deep);}
+  .flow-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+
+  #translator{background:var(--green);}
+  #translator .kicker{color:var(--ink);}
+  .flip-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;}
+  @media(max-width:760px){.flip-grid{grid-template-columns:1fr;}}
+  .flip{
+    background:white;border:2px solid var(--ink);border-radius:14px;padding:18px;cursor:pointer;
+    box-shadow:5px 5px 0 var(--ink);min-height:120px;transition:background .2s ease;
+  }
+  .flip b{display:block;font-size:0.74rem;text-transform:uppercase;letter-spacing:0.03em;margin-bottom:8px;}
+  .flip .front b{color:var(--magenta-deep);}
+  .flip .back b{color:var(--green-deep);}
+  .flip .back{display:none;}
+  .flip.flipped .front{display:none;}
+  .flip.flipped .back{display:block;}
+  .flip.flipped{background:#EFFFF3;}
+  .flip p{margin:0;color:var(--ink);font-size:0.92rem;line-height:1.45;}
+  .flip .hint{margin-top:10px;font-size:0.74rem;color:var(--ink-soft);font-weight:600;}
+
+  #honor{background:var(--magenta);}
+  #honor .kicker{color:white;}
+  #honor h2{color:white;max-width:26ch;}
+  #honor p{color:rgba(255,255,255,0.92);}
+
+  .cta-final{text-align:center;padding:70px 24px;background:var(--cyan);}
+  .cta-final h2{max-width:none;}
+  .big-btn{display:inline-block;margin-top:20px;background:var(--green);border:3px solid var(--ink);border-radius:999px;padding:18px 42px;font-weight:700;font-size:1.1rem;text-decoration:none;color:var(--ink);box-shadow:6px 6px 0 var(--magenta-deep);transition:transform .15s ease, box-shadow .15s ease;}
+  .big-btn:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 var(--magenta-deep);}
+
+  footer{padding:26px 24px;text-align:center;font-size:0.85rem;color:var(--ink-soft);background:var(--cyan-pale);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <div class="navlinks">
+      <a href="#simulator">Simulator</a>
+      <a href="#protocol">Protocol</a>
+      <a href="#translator">Translator</a>
+    </div>
+    <a class="nav-cta" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero" id="simulator">
+  <div class="wrap">
+    <span class="eyebrow">Applying Safe Conversations — Hendrix &amp; Hunt</span>
+    <h1>A landing page is a conversation. Most of them just talk at you.</h1>
+    <p class="lede">Hendrix and Hunt's research says a brain in defense mode can't hear anything, no matter how good the argument is. A visitor decides in seconds whether your page feels safe before they read a word of the offer. Pick an objection below and watch what a safe conversation sounds like instead.</p>
+
+    <div class="sim-card">
+      <div class="sim-title">Mirror → Validate → Empathize</div>
+      <div class="sim-sub">Click what a visitor is silently thinking:</div>
+      <div class="chips" id="chips"></div>
+      <div class="sim-steps">
+        <div class="sim-step" id="stepMirror"><b>Mirror</b><span id="mirrorText">—</span></div>
+        <div class="sim-step" id="stepValidate"><b>Validate</b><span id="validateText">—</span></div>
+        <div class="sim-step" id="stepEmpathize"><b>Empathize</b><span id="empathizeText">—</span></div>
+      </div>
+      <div class="versus">
+        <div class="vbox bad"><b>Most landing pages say</b><span id="badText" class="placeholder">Pick an objection above</span></div>
+        <div class="vbox good"><b>A safe-conversation page says</b><span id="goodText" class="placeholder">Pick an objection above</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="safety">
+  <div class="wrap col2">
+    <div>
+      <div class="kicker">Safety is the prerequisite for connection</div>
+      <h2>A pressured visitor's brain stops reading and starts defending.</h2>
+      <p>Hendrix and Hunt describe a brain that shifts into defense mode the moment a conversation feels unpredictable or judgmental — real understanding becomes impossible from there. A countdown timer, a popup before the headline even loads, or a wall of exclamation points does the same thing to a visitor: it triggers the exit, not the sale.</p>
+      <p>EasyLandX builds the opposite: one clear message, no ambush, nothing competing for attention before the visitor has decided they're safe to keep reading.</p>
+    </div>
+    <div class="aw-box" style="box-shadow:5px 5px 0 var(--magenta-deep);">
+      <b>What "unsafe" looks like on a page</b>
+      <p style="font-weight:500;">Exit-intent popup · countdown timer · five competing buttons · "LAST CHANCE" in red, before a single sentence of context.</p>
+    </div>
+  </div>
+</section>
+
+<section id="talking">
+  <div class="wrap">
+    <div class="kicker">From talking "at" to talking "with"</div>
+    <h2>Same offer, two very different conversations.</h2>
+    <p style="max-width:56ch;">Most landing pages are a monologue about the business. A safe conversation starts from the visitor's side of the table.</p>
+    <div class="atwith">
+      <div class="aw-box">
+        <b>Talking at the visitor</b>
+        <p>"We are the #1 landing page provider. Buy now before prices increase."</p>
+      </div>
+      <div class="aw-box">
+        <b>Talking with the visitor</b>
+        <p>"Send us your Instagram, and we'll show you the page your business already deserves."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="protocol">
+  <div class="wrap">
+    <div class="kicker" style="text-align:center;">The Safe Conversation Protocol, applied to a page build</div>
+    <h2 style="text-align:center;margin-left:auto;margin-right:auto;max-width:30ch;">Every EasyLandX page follows the same five steps.</h2>
+    <div class="flow">
+      <div class="flow-box">1 · Ask permission<small>No pop-up ambush — one clear invitation to keep reading</small></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-box">2 · Express &amp; mirror<small>The headline mirrors the visitor's exact problem, in their words</small></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-row">
+        <div class="flow-box">3 · Validate<small>The subhead confirms that problem is real and reasonable</small></div>
+        <div class="flow-box">4 · Empathize<small>Testimonials and tone show we understand the feeling behind it</small></div>
+        <div class="flow-box">5 · Reverse roles<small>FAQ and contact section let the visitor speak back</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="translator">
+  <div class="wrap">
+    <div class="kicker" style="text-align:center;">Eliminate zero-degree statements</div>
+    <h2 style="text-align:center;margin-left:auto;margin-right:auto;max-width:34ch;">Flip the cards. Same truth, rewritten as a safe conversation.</h2>
+    <div class="flip-grid" id="flipGrid"></div>
+  </div>
+</section>
+
+<section id="honor">
+  <div class="wrap">
+    <div class="kicker">Honor the space between</div>
+    <h2>Every word, color, and animation on a page either enriches the space between you and the visitor, or pollutes it.</h2>
+    <p style="max-width:56ch;">That's the real reason EasyLandX keeps a page down to one message and one action — not for minimalism's sake, but because the space between a business and a stranger deciding whether to trust it is worth protecting.</p>
+  </div>
+</section>
+
+<div class="cta-final">
+  <div class="kicker">EasyLandX</div>
+  <h2>Stop talking at your visitors. Start a safe conversation instead.</h2>
+  <p style="max-width:48ch;margin:0 auto;">Custom, conversion-focused landing pages for small businesses — built to mirror, validate, and empathize before they ever ask for the sale.</p>
+  <a class="big-btn" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+</div>
+
+<footer>Built by EasyLandX · © 2026</footer>
+
+<script>
+  const objections = [
+    {
+      label: "This looks expensive",
+      mirror: "What I'm hearing is the price feels like a real risk right now.",
+      validate: "That makes sense — you can't afford to gamble on a page that doesn't perform.",
+      empathize: "I imagine spending on a website feels scary when every euro counts.",
+      bad: "\u201cOur prices are the best in the industry, period.\u201d",
+      good: "\u201cOne flat fee, agreed before we start. No surprises after.\u201d"
+    },
+    {
+      label: "A bad agency burned me before",
+      mirror: "So a past agency left you feeling let down or ignored.",
+      validate: "That makes complete sense — trust has to be earned back, not assumed.",
+      empathize: "I imagine you're a little guarded going into this one.",
+      bad: "\u201cWe're not like those other agencies, trust us.\u201d",
+      good: "\u201cSee three real client pages before you commit to anything.\u201d"
+    },
+    {
+      label: "I could build it myself",
+      mirror: "You're saying you could technically build this on your own.",
+      validate: "That's fair — templates are everywhere and look easy at first.",
+      empathize: "I imagine what you actually want back is your time, not another tool to learn.",
+      bad: "\u201cDIY builders are inferior and will hurt your business.\u201d",
+      good: "\u201cYou could build it yourself. Most owners would rather spend that time with clients.\u201d"
+    },
+    {
+      label: "I don't have time for a long process",
+      mirror: "It sounds like a slow, drawn-out process is the real dealbreaker.",
+      validate: "Makes sense — you're already stretched thin running the business day to day.",
+      empathize: "I imagine another long project is the last thing you want right now.",
+      bad: "\u201cEveryone says they're fast. We guarantee results!\u201d",
+      good: "\u201cSend your Instagram link. Most pages are ready to review within days.\u201d"
+    }
+  ];
+
+  const chipsEl = document.getElementById('chips');
+  objections.forEach((o, i)=>{
+    const b = document.createElement('button');
+    b.className = 'chip';
+    b.textContent = '"' + o.label + '"';
+    b.onclick = ()=>runSim(i, b);
+    chipsEl.appendChild(b);
+  });
+
+  function runSim(i, btn){
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    btn.classList.add('active');
+    const o = objections[i];
+
+    ['stepMirror','stepValidate','stepEmpathize'].forEach(id=>document.getElementById(id).classList.remove('on'));
+    document.getElementById('mirrorText').textContent = '—';
+    document.getElementById('validateText').textContent = '—';
+    document.getElementById('empathizeText').textContent = '—';
+    document.getElementById('badText').textContent = '';
+    document.getElementById('goodText').textContent = '';
+    document.getElementById('badText').classList.remove('placeholder');
+    document.getElementById('goodText').classList.remove('placeholder');
+
+    setTimeout(()=>{
+      document.getElementById('stepMirror').classList.add('on');
+      document.getElementById('mirrorText').textContent = o.mirror;
+    }, 150);
+    setTimeout(()=>{
+      document.getElementById('stepValidate').classList.add('on');
+      document.getElementById('validateText').textContent = o.validate;
+    }, 750);
+    setTimeout(()=>{
+      document.getElementById('stepEmpathize').classList.add('on');
+      document.getElementById('empathizeText').textContent = o.empathize;
+    }, 1350);
+    setTimeout(()=>{
+      document.getElementById('badText').textContent = o.bad;
+      document.getElementById('goodText').textContent = o.good;
+    }, 1950);
+  }
+
+  // Zero-degree translator flip cards
+  const translations = [
+    { bad: "Your website is losing you customers every day.", good: "When a website doesn't match the quality of the work behind it, it's easy to lose customers who never even reached out." },
+    { bad: "You're doing it wrong if you don't have a landing page yet.", good: "Plenty of great businesses don't have a landing page yet — it's usually just next on a long list." },
+    { bad: "You'll fail without professional design.", good: "It's possible to grow without a polished page. It usually just means working twice as hard for the same result." },
+    { bad: "Stop wasting money on ads that don't convert.", good: "It's frustrating watching ad spend go toward a page that doesn't turn clicks into clients." }
+  ];
+  const flipGrid = document.getElementById('flipGrid');
+  translations.forEach(t=>{
+    const card = document.createElement('div');
+    card.className = 'flip';
+    card.innerHTML = `
+      <div class="front"><b>Zero-degree statement</b><p>"${t.bad}"</p><div class="hint">Click to hear it as a safe conversation →</div></div>
+      <div class="back"><b>Safe conversation</b><p>"${t.good}"</p><div class="hint">← Click to flip back</div></div>
+    `;
+    card.onclick = ()=>card.classList.toggle('flipped');
+    flipGrid.appendChild(card);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing pages that don't blend in</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-base:#0c0620;
+    --bg-panel:#150b33;
+    --bg-panel-2:#1c1042;
+    --indigo:#6c4dff;
+    --indigo-soft:#3f2e99;
+    --amber:#ffb627;
+    --amber-dim:#8a6420;
+    --slate:#9fb3d1;
+    --slate-dim:#5b6b8a;
+    --text:#f1edff;
+    --text-muted:#b6acd8;
+    --line:rgba(159,179,209,0.18);
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 600px at 85% -10%, rgba(108,77,255,0.35), transparent 60%),
+      radial-gradient(900px 500px at -10% 30%, rgba(108,77,255,0.18), transparent 55%),
+      var(--bg-base);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3, .display{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  a{color:inherit;}
+  img,svg{display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  section{padding:96px 0;}
+  @media (max-width:720px){ section{padding:64px 0;} .wrap{padding:0 20px;} }
+
+  ::selection{background:var(--amber);color:#241300;}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(12,6,32,0.72);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px;
+  }
+  .logo-mark{
+    width:26px;height:26px;border-radius:7px;
+    background:linear-gradient(135deg, var(--indigo), #a58bff);
+    box-shadow:0 0 18px rgba(108,77,255,0.75);
+    position:relative;
+  }
+  .logo-mark::after{
+    content:"";
+    position:absolute; inset:7px;
+    background:var(--amber);
+    border-radius:3px;
+    box-shadow:0 0 8px rgba(255,182,39,0.9);
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Inter', sans-serif; font-weight:600; font-size:14.5px;
+    padding:12px 22px; border-radius:999px;
+    cursor:pointer; border:1px solid transparent;
+    text-decoration:none; transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-amber{
+    background:var(--amber); color:#241300;
+    box-shadow:0 0 0 rgba(255,182,39,0);
+  }
+  .btn-amber:hover{ box-shadow:0 0 26px rgba(255,182,39,0.55); transform:translateY(-1px); }
+  .btn-ghost{
+    background:transparent; color:var(--text); border-color:var(--line);
+  }
+  .btn-ghost:hover{ border-color:var(--slate); background:rgba(159,179,209,0.06); }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding-top:88px; padding-bottom:70px; }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.9fr; gap:56px; align-items:center;
+  }
+  @media (max-width:920px){ .hero-grid{grid-template-columns:1fr;} }
+
+  .eyebrow-line{
+    display:flex; align-items:center; gap:10px;
+    color:var(--slate); font-size:13.5px; margin-bottom:22px;
+  }
+  .eyebrow-line .dash{ width:26px; height:1px; background:var(--slate-dim); }
+
+  .hero h1{
+    font-size:clamp(34px, 5vw, 56px);
+    line-height:1.08;
+    color:var(--text);
+  }
+  .hero h1 span{ color:var(--amber); }
+
+  .hero p.lede{
+    margin-top:22px; max-width:52ch;
+    font-size:17.5px; color:var(--text-muted);
+  }
+  .hero-actions{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+
+  /* mock browser preview in hero */
+  .device{
+    border-radius:16px;
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    box-shadow:0 30px 80px rgba(0,0,0,0.45), 0 0 60px rgba(108,77,255,0.18);
+    overflow:hidden;
+  }
+  .device-bar{
+    display:flex; gap:6px; padding:12px 14px;
+    background:var(--bg-panel-2); border-bottom:1px solid var(--line);
+  }
+  .device-bar span{ width:9px;height:9px;border-radius:50%; background:var(--slate-dim); }
+  .device-body{ padding:26px 24px 30px; }
+  .glow-blob{
+    width:120px; height:120px; border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, var(--indigo), transparent 65%);
+    filter:blur(2px);
+    position:absolute; top:-30px; right:-20px; opacity:.9;
+    animation:float 7s ease-in-out infinite;
+  }
+  @keyframes float{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(14px);} }
+  .device-inner{ position:relative; }
+  .fake-h{ height:14px; width:70%; background:linear-gradient(90deg, var(--indigo), var(--amber)); border-radius:5px; margin-bottom:14px; }
+  .fake-line{ height:8px; border-radius:4px; background:rgba(241,237,255,0.14); margin-bottom:9px; }
+  .fake-line.w1{width:92%;} .fake-line.w2{width:78%;} .fake-line.w3{width:55%;}
+  .fake-btn{
+    margin-top:20px; display:inline-block; padding:9px 18px; border-radius:999px;
+    background:var(--amber); color:#241300; font-size:12.5px; font-weight:600;
+  }
+
+  /* ---------- SECTION HEADS ---------- */
+  .section-head{ max-width:640px; margin-bottom:48px; }
+  .section-head h2{ font-size:clamp(26px,3.4vw,36px); }
+  .section-head p{ margin-top:14px; color:var(--text-muted); font-size:16px; }
+
+  /* ---------- BLEND VS STAND (interactive) ---------- */
+  .compare{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:8px;
+  }
+  .toggle-row{
+    display:flex; align-items:center; justify-content:center; gap:18px;
+    padding:22px 20px 6px;
+  }
+  .toggle-label{ font-size:14.5px; color:var(--text-muted); font-weight:600; transition:color .2s; }
+  .toggle-label.active{ color:var(--text); }
+  .switch{
+    position:relative; width:60px; height:32px; border-radius:999px;
+    background:var(--bg-panel-2); border:1px solid var(--line);
+    cursor:pointer;
+  }
+  .switch .knob{
+    position:absolute; top:3px; left:3px; width:24px; height:24px; border-radius:50%;
+    background:var(--slate); transition:left .25s ease, background .25s ease, box-shadow .25s ease;
+  }
+  .switch.on .knob{ left:31px; background:var(--amber); box-shadow:0 0 14px rgba(255,182,39,0.75); }
+
+  .preview-stage{ padding:20px 28px 30px; }
+  .preview-window{
+    border-radius:14px; overflow:hidden; border:1px solid var(--line);
+    background:var(--bg-panel-2);
+    transition:box-shadow .3s ease;
+  }
+  .preview-window .pw-bar{ display:flex; gap:6px; padding:11px 14px; background:rgba(0,0,0,0.18); }
+  .preview-window .pw-bar span{ width:8px;height:8px;border-radius:50%;background:var(--slate-dim); }
+  .pw-body{ padding:34px 30px; display:grid; grid-template-columns:1fr 1fr; gap:26px; align-items:center; }
+  @media (max-width:640px){ .pw-body{ grid-template-columns:1fr; } }
+
+  .pw-h{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:22px; margin-bottom:10px; transition:all .3s; }
+  .pw-sub{ color:var(--text-muted); font-size:14px; margin-bottom:16px; transition:all .3s; }
+  .pw-cta{ display:inline-block; padding:9px 18px; border-radius:8px; font-size:13px; font-weight:600; transition:all .3s; }
+  .pw-card{ height:150px; border-radius:12px; transition:all .3s; }
+
+  /* blend-in (generic) state */
+  .pw-body.blend .pw-h{ color:#e9e9ee; font-family:'Inter',sans-serif; font-weight:700; }
+  .pw-body.blend .pw-cta{ background:#e9e9ee; color:#161616; border-radius:6px; }
+  .pw-body.blend .pw-card{ background:#232323; box-shadow:0 8px 18px rgba(0,0,0,0.35); border-radius:10px; }
+  .pw-body.blend .pw-sub{ color:#9a9a9a; }
+
+  /* stand-out (easylandx) state */
+  .pw-body.stand .pw-h{ color:var(--text); }
+  .pw-body.stand .pw-h .accent{ color:var(--amber); }
+  .pw-body.stand .pw-cta{ background:var(--amber); color:#241300; box-shadow:0 0 18px rgba(255,182,39,0.5); }
+  .pw-body.stand .pw-card{ background:linear-gradient(135deg, var(--indigo-soft), var(--bg-panel-2)); border:1px solid rgba(108,77,255,0.5); box-shadow:0 0 28px rgba(108,77,255,0.28); }
+
+  .compare-caption{ text-align:center; padding:0 20px 26px; color:var(--slate); font-size:13.5px; }
+
+  /* ---------- TEMPLATE TRAP ---------- */
+  .trap-grid{ display:grid; grid-template-columns:1fr 1fr; gap:50px; }
+  @media (max-width:840px){ .trap-grid{ grid-template-columns:1fr; } }
+  .trap-copy p{ color:var(--text-muted); font-size:16px; margin-top:16px; max-width:50ch; }
+  .trap-list{ list-style:none; margin:26px 0 0; padding:0; display:flex; flex-direction:column; gap:16px; }
+  .trap-list li{
+    display:flex; gap:14px; align-items:flex-start;
+    padding:16px 18px; border-radius:12px; border:1px solid var(--line); background:var(--bg-panel);
+  }
+  .trap-list .mark{ color:var(--amber); font-weight:700; font-family:'Space Grotesk',sans-serif; }
+  .trap-list strong{ color:var(--text); display:block; margin-bottom:3px; font-family:'Space Grotesk',sans-serif; font-weight:600;}
+  .trap-list span.desc{ color:var(--text-muted); font-size:14.5px; }
+
+  /* ---------- FRAMEWORK CARDS ---------- */
+  .framework-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  @media (max-width:900px){ .framework-grid{ grid-template-columns:1fr; } }
+  .fw-card{
+    border:1px solid var(--line); border-radius:16px; padding:28px 26px;
+    background:linear-gradient(180deg, var(--bg-panel), rgba(21,11,51,0.4));
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .fw-card:hover{ border-color:var(--indigo); transform:translateY(-4px); }
+  .fw-icon{
+    width:42px; height:42px; border-radius:10px; margin-bottom:18px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(108,77,255,0.16); border:1px solid rgba(108,77,255,0.4);
+  }
+  .fw-card h3{ font-size:19px; margin-bottom:10px; }
+  .fw-card p{ color:var(--text-muted); font-size:14.5px; margin:0; }
+
+  /* ---------- CONFORMITY AUDIT (interactive checklist) ---------- */
+  .audit{
+    display:grid; grid-template-columns:1fr 300px; gap:40px;
+    border:1px solid var(--line); border-radius:20px; padding:36px;
+    background:radial-gradient(600px 300px at 100% 0%, rgba(108,77,255,0.15), transparent 60%), var(--bg-panel);
+  }
+  @media (max-width:840px){ .audit{ grid-template-columns:1fr; } }
+  .audit-item{
+    display:flex; align-items:flex-start; gap:14px; padding:14px 0;
+    border-bottom:1px solid var(--line); cursor:pointer;
+  }
+  .audit-item:last-child{ border-bottom:none; }
+  .audit-check{
+    width:22px; height:22px; border-radius:6px; border:1px solid var(--slate-dim);
+    flex:none; margin-top:2px; position:relative; transition:all .2s ease;
+  }
+  .audit-item.checked .audit-check{ background:var(--amber); border-color:var(--amber); box-shadow:0 0 12px rgba(255,182,39,0.6); }
+  .audit-check::after{
+    content:""; position:absolute; left:6px; top:2px; width:6px; height:11px;
+    border-right:2px solid #241300; border-bottom:2px solid #241300; transform:rotate(45deg);
+    opacity:0; transition:opacity .15s;
+  }
+  .audit-item.checked .audit-check::after{ opacity:1; }
+  .audit-text{ font-size:15px; color:var(--text-muted); transition:color .2s; }
+  .audit-item.checked .audit-text{ color:var(--text); }
+
+  .audit-score{ text-align:center; }
+  .score-ring{
+    width:180px; height:180px; margin:0 auto 18px; position:relative;
+  }
+  .score-ring svg{ width:100%; height:100%; transform:rotate(-90deg); }
+  .score-ring circle{ fill:none; stroke-width:10; }
+  .score-num{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-size:30px; font-weight:700; color:var(--text);
+  }
+  .score-verdict{ font-size:14.5px; color:var(--text-muted); min-height:44px; }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    text-align:center; border-radius:24px; padding:70px 40px;
+    background:linear-gradient(160deg, var(--bg-panel), rgba(108,77,255,0.14));
+    border:1px solid var(--line);
+    position:relative; overflow:hidden;
+  }
+  .final-cta::before{
+    content:""; position:absolute; width:420px; height:420px; border-radius:50%;
+    background:radial-gradient(circle, rgba(108,77,255,0.35), transparent 65%);
+    top:-180px; left:50%; transform:translateX(-50%);
+  }
+  .final-cta h2{ font-size:clamp(26px,4vw,40px); position:relative; max-width:20ch; margin:0 auto; }
+  .final-cta p{ color:var(--text-muted); margin:18px auto 32px; max-width:46ch; position:relative; }
+  .final-cta .btn{ position:relative; font-size:16px; padding:15px 30px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ border-top:1px solid var(--line); padding:36px 0; }
+  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; color:var(--slate); font-size:13.5px; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-row">
+    <div class="logo"><span class="logo-mark"></span>easylandx</div>
+    <a class="btn btn-amber" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with EasyLandX</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow-line"><span class="dash"></span>a landing page builder for people who won't blend in</div>
+      <h1>Every landing page looks the same. <span>Yours doesn't have to.</span></h1>
+      <p class="lede">Psychiatry has a name for people who resist the pull of the crowd: outsiders. Most of them thrive because of it, not despite it. EasyLandX applies the same idea to your landing page — it's built to be distinctive in a sea of identical templates, not to fit in with them.</p>
+      <div class="hero-actions">
+        <a class="btn btn-amber" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with EasyLandX</a>
+        <a class="btn btn-ghost" href="#compare">See the difference</a>
+      </div>
+    </div>
+    <div class="device" style="position:relative;">
+      <div class="glow-blob"></div>
+      <div class="device-bar"><span></span><span></span><span></span></div>
+      <div class="device-body device-inner">
+        <div class="fake-h"></div>
+        <div class="fake-line w1"></div>
+        <div class="fake-line w2"></div>
+        <div class="fake-line w3"></div>
+        <div class="fake-btn">Get started</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="compare">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The belonging trap, applied to your homepage</h2>
+      <p>The pressure to conform doesn't just shape people — it shapes pages. Grab any three SaaS sites and you'll find the same layout wearing a different logo. Flip the switch and watch a page choose distinctiveness instead.</p>
+    </div>
+
+    <div class="compare">
+      <div class="toggle-row">
+        <span class="toggle-label active" id="labelBlend">Blend in</span>
+        <div class="switch" id="compareSwitch" role="button" tabindex="0" aria-label="Toggle between blending in and standing out"><div class="knob"></div></div>
+        <span class="toggle-label" id="labelStand">Stand out</span>
+      </div>
+      <div class="preview-stage">
+        <div class="preview-window">
+          <div class="pw-bar"><span></span><span></span><span></span></div>
+          <div class="pw-body blend" id="pwBody">
+            <div>
+              <div class="pw-h" id="pwHeadline">The all-in-one platform for your business</div>
+              <div class="pw-sub" id="pwSub">Trusted by teams everywhere. Start your free trial today.</div>
+              <div class="pw-cta" id="pwCta">Get started</div>
+            </div>
+            <div class="pw-card" id="pwCard"></div>
+          </div>
+        </div>
+      </div>
+      <div class="compare-caption" id="compareCaption">This is the page 40 other companies already shipped this year.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap trap-grid">
+    <div class="trap-copy">
+      <h2>The template trap</h2>
+      <p>The instinct to copy what already ranks, what already converts for someone else, what already "looks professional" — that instinct sacrifices the one thing a visitor actually remembers: that your page was different from the last five they closed.</p>
+      <p>EasyLandX doesn't start you from a shared component library. It starts by asking what makes your product genuinely unfamiliar, and builds the page around that.</p>
+    </div>
+    <ul class="trap-list">
+      <li><span class="mark">✓</span><div><strong>Detachment isn't a defect</strong><span class="desc">A page that departs from category convention isn't broken — it's the only one a visitor will describe to a colleague later.</span></div></li>
+      <li><span class="mark">✓</span><div><strong>Groupthink kills conversion</strong><span class="desc">When every competitor's hero says "the platform for X," visitors stop reading before the second word.</span></div></li>
+      <li><span class="mark">✓</span><div><strong>Originality comes from the perimeter</strong><span class="desc">The best positioning rarely comes from inside the category — it comes from studying it from just outside.</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Three ways EasyLandX keeps your page from blending in</h2>
+      <p>A framework for building pages with a point of view — not a set of steps to follow in order, but three angles you can lean on at once.</p>
+    </div>
+    <div class="framework-grid">
+      <div class="fw-card">
+        <div class="fw-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#a58bff" stroke-width="1.6"/><circle cx="12" cy="12" r="2.2" fill="#a58bff"/></svg>
+        </div>
+        <h3>Watch from the perimeter</h3>
+        <p>EasyLandX scans the layouts your competitors are already running and shows you where every single one of them agrees — so you know exactly which convention is worth breaking.</p>
+      </div>
+      <div class="fw-card">
+        <div class="fw-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="#a58bff" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Speak to one tribe, not everyone</h3>
+        <p>Pages written for "everyone" end up read by no one. Build sections addressed to a specific, self-selecting visitor, and let the wrong-fit visitor bounce on purpose.</p>
+      </div>
+      <div class="fw-card">
+        <div class="fw-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#a58bff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Build from the margins</h3>
+        <p>The unconventional headline, the honest pricing page, the CTA that says what actually happens next — the margins are where EasyLandX pages are built, deliberately, not accidentally.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Run a conformity audit on your current page</h2>
+      <p>Check off anything that's true right now. The score tells you how much of your page is a copy of everyone else's, and how much is actually yours.</p>
+    </div>
+    <div class="audit">
+      <div class="audit-list" id="auditList">
+        <div class="audit-item" data-weight="1">
+          <div class="audit-check"></div>
+          <div class="audit-text">Your headline could be pasted onto a competitor's site without anyone noticing.</div>
+        </div>
+        <div class="audit-item" data-weight="1">
+          <div class="audit-check"></div>
+          <div class="audit-text">Your hero image is a stock photo of people smiling at a laptop.</div>
+        </div>
+        <div class="audit-item" data-weight="1">
+          <div class="audit-check"></div>
+          <div class="audit-text">Your main button says "Get Started" or "Learn More."</div>
+        </div>
+        <div class="audit-item" data-weight="1">
+          <div class="audit-check"></div>
+          <div class="audit-text">Your layout is three feature cards under a centered headline, because that's what the last template used.</div>
+        </div>
+        <div class="audit-item" data-weight="1">
+          <div class="audit-check"></div>
+          <div class="audit-text">You added a logo strip because competitors have one, not because it changes anyone's mind.</div>
+        </div>
+        <div class="audit-item" data-weight="1">
+          <div class="audit-check"></div>
+          <div class="audit-text">You couldn't explain, in one sentence, what makes this page different from the category's average.</div>
+        </div>
+      </div>
+      <div class="audit-score">
+        <div class="score-ring">
+          <svg viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="52" stroke="rgba(159,179,209,0.18)"></circle>
+            <circle cx="60" cy="60" r="52" stroke="#ffb627" id="scoreArc" stroke-dasharray="326.7" stroke-dashoffset="326.7" stroke-linecap="round"></circle>
+          </svg>
+          <div class="score-num" id="scoreNum">0%</div>
+        </div>
+        <div class="score-verdict" id="scoreVerdict">Check a few boxes to see how templated your page really is.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="final-cta">
+      <h2>Stop building the page everyone already built.</h2>
+      <p>EasyLandX gives you the layout freedom, the copy prompts, and the perimeter view to ship a page that's unmistakably yours — live in an afternoon, not a sprint.</p>
+      <a class="btn btn-amber" href="https://easylandx.github.io" target="_blank" rel="noopener">Build with EasyLandX</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <div class="logo"><span class="logo-mark"></span>easylandx</div>
+    <div>Landing pages for people who'd rather stand apart than fit in.</div>
+  </div>
+</footer>
+
+<script>
+  // Blend-in vs Stand-out interactive toggle
+  const sw = document.getElementById('compareSwitch');
+  const pwBody = document.getElementById('pwBody');
+  const labelBlend = document.getElementById('labelBlend');
+  const labelStand = document.getElementById('labelStand');
+  const pwHeadline = document.getElementById('pwHeadline');
+  const pwSub = document.getElementById('pwSub');
+  const pwCta = document.getElementById('pwCta');
+  const caption = document.getElementById('compareCaption');
+
+  let standOut = false;
+
+  function renderCompare(){
+    if(standOut){
+      sw.classList.add('on');
+      pwBody.classList.remove('blend');
+      pwBody.classList.add('stand');
+      labelBlend.classList.remove('active');
+      labelStand.classList.add('active');
+      pwHeadline.innerHTML = 'The page your competitors won\'t <span class="accent">think to build</span>';
+      pwSub.textContent = 'Built for the visitors who already agree with you — not for everyone.';
+      pwCta.textContent = 'Build with EasyLandX';
+      caption.textContent = 'This is the page nobody else in your category is running.';
+    } else {
+      sw.classList.remove('on');
+      pwBody.classList.remove('stand');
+      pwBody.classList.add('blend');
+      labelBlend.classList.add('active');
+      labelStand.classList.remove('active');
+      pwHeadline.textContent = 'The all-in-one platform for your business';
+      pwSub.textContent = 'Trusted by teams everywhere. Start your free trial today.';
+      pwCta.textContent = 'Get started';
+      caption.textContent = 'This is the page 40 other companies already shipped this year.';
+    }
+  }
+
+  function toggleCompare(){ standOut = !standOut; renderCompare(); }
+  sw.addEventListener('click', toggleCompare);
+  sw.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); toggleCompare(); }});
+  renderCompare();
+
+  // Conformity audit checklist + score
+  const items = Array.from(document.querySelectorAll('.audit-item'));
+  const scoreArc = document.getElementById('scoreArc');
+  const scoreNum = document.getElementById('scoreNum');
+  const scoreVerdict = document.getElementById('scoreVerdict');
+  const CIRC = 2 * Math.PI * 52;
+
+  function updateScore(){
+    const checked = items.filter(i => i.classList.contains('checked')).length;
+    const pct = Math.round((checked / items.length) * 100);
+    const offset = CIRC - (CIRC * pct / 100);
+    scoreArc.style.strokeDasharray = CIRC;
+    scoreArc.style.strokeDashoffset = offset;
+    scoreNum.textContent = pct + '%';
+
+    let verdict;
+    if(checked === 0){ verdict = 'Check a few boxes to see how templated your page really is.'; }
+    else if(pct <= 33){ verdict = 'Mostly your own. A few habits worth questioning.'; }
+    else if(pct <= 66){ verdict = 'Halfway to invisible. Time for a conformity audit.'; }
+    else { verdict = 'This page could belong to almost anyone. That\'s the problem.'; }
+    scoreVerdict.textContent = verdict;
+  }
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('checked');
+      updateScore();
+    });
+  });
+  updateScore();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Build from Power, not Force</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold: #D9B54C;
+    --gold-light: #F1E3B0;
+    --gold-pale: #F8EFD3;
+    --gold-deep: #A9821B;
+    --violet: #5B2C83;
+    --violet-deep: #3B1B57;
+    --violet-mist: #8F6AAE;
+    --charcoal: #241F1B;
+    --charcoal-soft: #3A332C;
+    --cream: #F7F1DE;
+    --serif: "Fraunces", serif;
+    --sans: "Work Sans", sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--gold);
+    color: var(--charcoal);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  a{ color: inherit; }
+
+  :focus-visible{
+    outline: 2px solid var(--violet-deep);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+
+  .wrap{
+    width: min(1040px, calc(100% - 80px));
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* ---------- NAV ---------- */
+  nav.wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+  .brand{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+  }
+  .brand em{ font-style: normal; color: var(--violet-deep); }
+
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 12px 22px;
+    border: 1.5px solid var(--charcoal);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--charcoal);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .btn:hover{
+    background: var(--charcoal);
+    color: var(--gold-pale);
+  }
+  .btn-solid{
+    background: var(--violet-deep);
+    border-color: var(--violet-deep);
+    color: var(--gold-pale);
+  }
+  .btn-solid:hover{
+    background: var(--charcoal);
+    border-color: var(--charcoal);
+    color: var(--gold-pale);
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding: 64px 0 96px;
+  }
+  .kicker{
+    font-size: 1.02rem;
+    font-style: italic;
+    color: var(--violet-deep);
+    margin: 0 0 18px;
+    max-width: 32ch;
+  }
+  h1{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.4rem, 5.2vw, 4.1rem);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    margin: 0 0 28px;
+    max-width: 16ch;
+    color: var(--charcoal);
+  }
+  .hero-sub{
+    font-size: 1.15rem;
+    max-width: 46ch;
+    color: var(--charcoal-soft);
+    margin: 0 0 36px;
+  }
+  .hero-actions{
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* ---------- FORCE / POWER SPLIT ---------- */
+  section.split{
+    width: min(1040px, calc(100% - 80px));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 720px){
+    .wrap, section.split{ width: calc(100% - 32px); }
+    section.split{ grid-template-columns: 1fr; }
+  }
+  .panel{
+    padding: 72px 40px;
+  }
+  .panel-force{
+    background: var(--charcoal);
+    color: var(--gold-light);
+  }
+  .panel-power{
+    background: var(--violet-deep);
+    color: var(--gold-pale);
+  }
+  .panel h2{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.8rem;
+    margin: 0 0 6px;
+  }
+  .panel .tag{
+    display: block;
+    font-size: 0.85rem;
+    opacity: 0.65;
+    margin-bottom: 28px;
+  }
+  .panel ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .panel li{
+    padding: 14px 0;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    font-size: 1rem;
+    max-width: 40ch;
+  }
+  .panel li:last-child{ border-bottom: 1px solid rgba(255,255,255,0.14); }
+
+  /* ---------- MAP OF CONSCIOUSNESS (interactive) ---------- */
+  section.map{
+    background: var(--gold-pale);
+    padding: 96px max(40px, calc((100vw - 960px) / 2));
+    border-top: 1px solid var(--gold-deep);
+    border-bottom: 1px solid var(--gold-deep);
+  }
+  .map h2{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 2rem;
+    margin: 0 0 8px;
+    max-width: 22ch;
+  }
+  .map .map-intro{
+    max-width: 54ch;
+    color: var(--charcoal-soft);
+    margin: 0 0 48px;
+  }
+
+  .calibrator{
+    background: var(--charcoal);
+    color: var(--cream);
+    border-radius: 6px;
+    padding: 40px 44px 36px;
+  }
+  .calib-readout{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 28px;
+    transition: color 0.35s ease;
+  }
+  .calib-level{
+    font-family: var(--serif);
+    font-size: 3.2rem;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .calib-name{
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-align: right;
+  }
+  .calib-mode{
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    display: block;
+    margin-top: 4px;
+    text-align: right;
+  }
+  input[type="range"]{
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--gold-deep) 0%, var(--violet-mist) 40%, var(--violet) 100%);
+    margin: 8px 0 6px;
+  }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 3px solid var(--charcoal);
+    cursor: pointer;
+  }
+  input[type="range"]::-moz-range-thumb{
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 3px solid var(--charcoal);
+    cursor: pointer;
+  }
+  .calib-scale-labels{
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    opacity: 0.55;
+    margin-bottom: 24px;
+  }
+  .calib-desc{
+    font-size: 1rem;
+    max-width: 58ch;
+    border-top: 1px solid rgba(255,255,255,0.16);
+    padding-top: 20px;
+    min-height: 3.4em;
+  }
+
+  /* ---------- STRATEGIES ---------- */
+  section.strategies{
+    padding: 100px 0 90px;
+  }
+  section.strategies h2{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 2rem;
+    margin: 0 0 56px;
+    max-width: 24ch;
+  }
+  .steps{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 64px;
+  }
+  .step-row{
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 24px;
+    padding: 26px 0;
+    border-top: 1px solid var(--gold-deep);
+  }
+  .step-row:last-child{ border-bottom: 1px solid var(--gold-deep); }
+  .step-num{
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--violet-deep);
+  }
+  .step-row h3{
+    margin: 0 0 6px;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+  .step-row p{
+    margin: 0;
+    max-width: 56ch;
+    color: var(--charcoal-soft);
+  }
+
+  .branches{
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 0;
+    border-top: 2px solid var(--violet-deep);
+  }
+  @media (max-width: 780px){
+    .branches{ grid-template-columns: 1fr; }
+  }
+  .branch{
+    padding: 32px 28px;
+    border-right: 1px solid var(--gold-deep);
+  }
+  .branch:last-child{ border-right: none; }
+  .branch h4{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin: 0 0 10px;
+    color: var(--violet-deep);
+  }
+  .branch p{
+    margin: 0;
+    font-size: 0.96rem;
+    color: var(--charcoal-soft);
+  }
+
+  /* ---------- FOOTER / CTA ---------- */
+  footer{
+    background: var(--charcoal);
+    color: var(--gold-pale);
+    padding: 96px 0 56px;
+  }
+  footer .quote{
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.5rem;
+    max-width: 30ch;
+    line-height: 1.35;
+    margin: 0 0 40px;
+    color: var(--gold-light);
+  }
+  .footer-cta{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-top: 1px solid rgba(255,255,255,0.18);
+    padding-top: 36px;
+  }
+  .footer-fine{
+    font-size: 0.85rem;
+    opacity: 0.55;
+    margin-top: 48px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="wrap">
+  <div class="brand">easy<em>land</em>x</div>
+  <a class="btn btn-solid" href="https://easylandx.guithub.io/" target="_blank" rel="noopener">Get EasyLandX</a>
+</nav>
+
+<header class="hero wrap">
+  <p class="kicker">Landing pages built on Hawkins' Power vs Force</p>
+  <h1>Force pushes a visitor. Power moves with them.</h1>
+  <p class="hero-sub">Most landing pages are built from Force — urgency timers, guilt-laced copy, dark patterns dressed up as conversion tactics. EasyLandX starts from the other end of the scale: pages built on clarity, service, and truth convert because they don't have to fight the reader for attention.</p>
+  <div class="hero-actions">
+    <a class="btn btn-solid" href="https://easylandx.guithub.io/" target="_blank" rel="noopener">Get EasyLandX</a>
+    <a class="btn" href="#calibrator">Try the calibrator</a>
+  </div>
+</header>
+
+<section class="split">
+  <div class="panel panel-force">
+    <span class="tag">Below 200 · reactive, finite, draining</span>
+    <h2>How Force-built pages read</h2>
+    <ul>
+      <li>Countdown timers manufacturing panic instead of real scarcity</li>
+      <li>Copy that leans on guilt, fear of missing out, or shame</li>
+      <li>Dense walls of persuasion aimed at wearing the reader down</li>
+      <li>A design that fights for control of the visitor's next click</li>
+    </ul>
+  </div>
+  <div class="panel panel-power">
+    <span class="tag">200 and above · aligned, effortless, sustaining</span>
+    <h2>How Power-built pages read</h2>
+    <ul>
+      <li>A single honest claim the product can actually back up</li>
+      <li>Enough white space for the reader to think, not just react</li>
+      <li>Choices explained plainly, with nothing hidden in fine print</li>
+      <li>A layout that serves the visitor's decision, not the metrics</li>
+    </ul>
+  </div>
+</section>
+
+<section class="map wrap" id="calibrator">
+  <h2>Calibrate your page's energy</h2>
+  <p class="map-intro">Hawkins' Map of Consciousness runs on a logarithmic scale from 1 to 1000. Drag the slider to see which state a page — or a pitch, or a habit — is actually operating from, and read what tends to happen at that level.</p>
+
+  <div class="calibrator">
+    <div class="calib-readout">
+      <div>
+        <span class="calib-level" id="calibLevel">200</span>
+      </div>
+      <div>
+        <span class="calib-name" id="calibName">Courage</span>
+        <span class="calib-mode" id="calibMode">THE PIVOT POINT</span>
+      </div>
+    </div>
+    <input type="range" id="calibSlider" min="0" max="12" step="1" value="8" aria-label="Map of Consciousness level">
+    <div class="calib-scale-labels">
+      <span>Shame</span>
+      <span>Fear</span>
+      <span>Courage</span>
+      <span>Reason</span>
+      <span>Love</span>
+      <span>Enlightenment</span>
+    </div>
+    <p class="calib-desc" id="calibDesc">At 200, a page stops apologizing for existing and stops trying to overpower the reader. This is where a visitor starts making a decision instead of just reacting to one.</p>
+  </div>
+</section>
+
+<section class="strategies wrap">
+  <h2>Moves that EasyLandX builds into every template</h2>
+
+  <div class="steps">
+    <div class="step-row">
+      <span class="step-num">01</span>
+      <div>
+        <h3>Audit what's driving the page</h3>
+        <p>Before a single section is built, name the honest motive behind it. If the answer is fear, greed, or pride, EasyLandX flags the section for a rewrite before it flags it for a redesign.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <span class="step-num">02</span>
+      <div>
+        <h3>Cross the courage line</h3>
+        <p>Swap "buy now or miss out" framing for language that puts the choice back in the visitor's hands. Ownership language calibrates higher than pressure, and it converts people who stay.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="branches">
+    <div class="branch">
+      <h4>Shift from force to power</h4>
+      <p>Replace every demand in your copy with an offer of service. A headline that helps outperforms a headline that pushes.</p>
+    </div>
+    <div class="branch">
+      <h4>Build in acceptance</h4>
+      <p>Let objections sit on the page in plain sight instead of hiding them. A visitor who feels seen keeps reading.</p>
+    </div>
+    <div class="branch">
+      <h4>Serve a higher attractor</h4>
+      <p>Anchor the page to something true about the product, not something borrowed from a competitor's launch.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="quote">A page that has to shout for attention has already told you what it doesn't trust about itself.</p>
+    <div class="footer-cta">
+      <p style="max-width:38ch; margin:0; opacity:0.85;">EasyLandX is open on GitHub. Fork it, calibrate it, and build the next page from power instead of force.</p>
+      <a class="btn btn-solid" href="https://easylandx.guithub.io/" target="_blank" rel="noopener">Get EasyLandX</a>
+    </div>
+    <p class="footer-fine">Framework inspired by David R. Hawkins' Map of Consciousness. EasyLandX is an independent tool and is not affiliated with or endorsed by the Hawkins estate.</p>
+  </div>
+</footer>
+
+<script>
+  const levels = [
+    { level: 20,  name: "Shame",        mode: "FORCE",  desc: "The lowest calibration on the map. A page here treats the visitor as a problem to be managed, not a person to be served." },
+    { level: 30,  name: "Guilt",        mode: "FORCE",  desc: "Copy built on making the reader feel bad for not already owning the thing. It converts a little and corrodes trust a lot." },
+    { level: 100, name: "Fear",         mode: "FORCE",  desc: "Countdown clocks, red banners, 'only 2 left' — pages at this level manufacture urgency because they don't trust the offer to stand on its own." },
+    { level: 150, name: "Anger",        mode: "FORCE",  desc: "Aggressive, combative comparison copy that attacks competitors instead of making its own case. It burns energy fast and rarely holds it." },
+    { level: 175, name: "Pride",        mode: "FORCE",  desc: "Polished, self-congratulatory pages that talk about the brand more than the visitor's actual problem." },
+    { level: 200, name: "Courage",      mode: "PIVOT",  desc: "At 200, a page stops apologizing for existing and stops trying to overpower the reader. This is where a visitor starts making a decision instead of just reacting to one." },
+    { level: 250, name: "Neutrality",   mode: "POWER",  desc: "Even, unforced copy that presents options without spinning them. Nothing to defend, so nothing to push." },
+    { level: 310, name: "Willingness",  mode: "POWER",  desc: "The page invites the next step rather than engineering it — a clear form, a plain button, no hidden friction." },
+    { level: 350, name: "Acceptance",   mode: "POWER",  desc: "Objections are addressed in the open. A visitor who feels understood keeps reading instead of bouncing." },
+    { level: 400, name: "Reason",       mode: "POWER",  desc: "Clean data, real comparisons, honest specifications. Strong, but can tip into over-explaining if it forgets the person reading it." },
+    { level: 500, name: "Love",         mode: "POWER",  desc: "The page is built around what genuinely helps the visitor, even where that costs a sale. This is where loyalty starts." },
+    { level: 600, name: "Peace",        mode: "POWER",  desc: "Quiet confidence. Nothing left to prove, so the design has room to breathe." },
+    { level: 850, name: "Enlightenment",mode: "POWER",  desc: "Rare territory for a landing page — where the offer, the copy, and the visitor's actual need are simply the same thing." }
+  ];
+
+  const slider = document.getElementById('calibSlider');
+  const levelEl = document.getElementById('calibLevel');
+  const nameEl = document.getElementById('calibName');
+  const modeEl = document.getElementById('calibMode');
+  const descEl = document.getElementById('calibDesc');
+  const readout = document.querySelector('.calib-readout');
+
+  function render(i){
+    const item = levels[i];
+    levelEl.textContent = item.level;
+    nameEl.textContent = item.name;
+    descEl.textContent = item.desc;
+
+    if(item.mode === "FORCE"){
+      modeEl.textContent = "FORCE · below 200";
+      readout.style.color = "#E8C9A0";
+    } else if(item.mode === "PIVOT"){
+      modeEl.textContent = "THE PIVOT POINT";
+      readout.style.color = "#F7F1DE";
+    } else {
+      modeEl.textContent = "POWER · 200 and above";
+      readout.style.color = "#C9A9E8";
+    }
+  }
+
+  slider.addEventListener('input', (e) => render(parseInt(e.target.value, 10)));
+  render(parseInt(slider.value, 10));
+</script>
+
+</body>
+</html>

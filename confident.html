@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Build a Page With a Confident Mind</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky: #63E6FF;
+    --sky-deep: #63E6FF;
+    --sky-pale: #63E6FF;
+    --paper: #63E6FF;
+    --yellow: #F5FF3D;
+    --yellow-deep: #E2EE00;
+    --red: #FF2B54;
+    --red-deep: #E4123F;
+    --ink: #0B2A3D;
+    --ink-soft: #2E5163;
+    --line: rgba(11,42,61,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--sky) !important;
+    background-attachment:fixed;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
+  a{color:inherit;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:40;
+    background:rgba(99,230,255,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(11,42,61,0.18);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
+  .logo{font-weight:700;font-size:1.15rem;letter-spacing:-0.02px;}
+  .logo span{color:var(--red-deep);}
+  .navlinks{display:flex;gap:22px;font-size:0.92rem;font-weight:600;}
+  .navlinks a{text-decoration:none;opacity:0.82;}
+  .navlinks a:hover{opacity:1;text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:4px;}
+  .nav-cta{
+    background:var(--yellow);border:2px solid var(--ink);border-radius:999px;
+    padding:8px 18px;font-weight:700;font-size:0.88rem;text-decoration:none;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  .nav-cta:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink);}
+
+  /* HERO */
+  header.hero{padding:64px 0 40px;}
+  .eyebrow{
+    display:inline-block;background:var(--red);color:white;font-weight:700;
+    font-size:0.78rem;padding:5px 14px;border-radius:999px;margin-bottom:18px;
+  }
+  h1{font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.06;margin:0 0 18px;max-width:16ch;}
+  .lede{font-size:1.12rem;color:var(--ink-soft);max-width:52ch;line-height:1.55;margin:0 0 34px;}
+
+  /* CONFIDENCE BANK WIDGET */
+  .bank{
+    background:var(--paper);
+    border:2px solid var(--ink);
+    border-radius:22px;
+    padding:30px;
+    box-shadow:8px 8px 0 var(--ink);
+    margin-top:10px;
+  }
+  .bank-top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:18px;}
+  .bank-title{font-weight:700;font-size:1.05rem;}
+  .bank-title small{display:block;font-weight:500;font-size:0.85rem;color:var(--ink-soft);margin-top:2px;}
+  .balance{font-family:'Space Grotesk',sans-serif;font-size:2.1rem;font-weight:700;color:var(--red-deep);}
+  .meter{
+    height:22px;border-radius:999px;background:rgba(11,42,61,0.08);
+    border:2px solid var(--ink);overflow:hidden;margin-bottom:22px;
+  }
+  .meter-fill{
+    height:100%;width:0%;
+    background:repeating-linear-gradient(45deg,var(--yellow),var(--yellow) 10px,var(--yellow-deep) 10px,var(--yellow-deep) 20px);
+    transition:width 0.6s cubic-bezier(.2,.9,.3,1.2);
+  }
+  .deposits{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .deposit{
+    border:2px solid var(--ink);border-radius:14px;padding:16px;background:white;
+    cursor:pointer;text-align:left;font-family:inherit;transition:transform .15s ease, box-shadow .15s ease;
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .deposit:hover{transform:translateY(-2px);}
+  .deposit strong{display:block;font-size:0.94rem;margin-bottom:4px;}
+  .deposit span{font-size:0.82rem;color:var(--ink-soft);}
+  .deposit.done{
+    background:var(--yellow);cursor:default;transform:none;
+    box-shadow:4px 4px 0 var(--red-deep);
+  }
+  .deposit.done strong::before{content:"✓ "; color:var(--red-deep);}
+  .bank-note{margin-top:18px;font-size:0.92rem;font-weight:600;min-height:1.4em;color:var(--red-deep);}
+
+  /* SECTIONS */
+  section{padding:74px 0;}
+  .kicker{font-weight:700;color:var(--red-deep);font-size:0.86rem;letter-spacing:0.2px;margin-bottom:10px;}
+  h2{font-size:clamp(1.6rem,3.4vw,2.3rem);margin:0 0 16px;max-width:20ch;}
+  .col2{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;}
+  @media(max-width:820px){.col2{grid-template-columns:1fr;} .deposits{grid-template-columns:1fr;}}
+  p{line-height:1.65;color:var(--ink-soft);font-size:1rem;}
+
+  /* MIND TOGGLE */
+  .mind-card{
+    background:var(--paper);border:2px solid var(--ink);border-radius:20px;
+    box-shadow:8px 8px 0 var(--red);overflow:hidden;
+  }
+  .mind-switch{display:flex;border-bottom:2px solid var(--ink);}
+  .mind-switch button{
+    flex:1;padding:14px;border:none;background:white;font-family:inherit;font-weight:700;
+    cursor:pointer;font-size:0.92rem;color:var(--ink-soft);
+  }
+  .mind-switch button.active{background:var(--ink);color:var(--yellow);}
+  .mind-screen{padding:26px;min-height:210px;}
+  .mock-browser{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:white;}
+  .mock-bar{background:var(--sky-pale);padding:7px 10px;display:flex;gap:5px;border-bottom:1px solid var(--line);}
+  .mock-bar i{width:8px;height:8px;border-radius:50%;background:var(--line);display:inline-block;}
+  .mock-body{padding:20px;}
+  .mock-headline{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.15rem;margin:0 0 8px;}
+  .sticky{
+    display:none;background:var(--yellow);border:1px dashed var(--red-deep);
+    font-size:0.78rem;padding:6px 9px;border-radius:6px;margin:6px 0;color:var(--ink);
+  }
+  #screen-draft .sticky{display:inline-block;}
+  #screen-draft .mock-headline{color:var(--ink-soft);text-decoration:underline wavy var(--red);text-decoration-thickness:1px;}
+  #screen-live .mock-headline{color:var(--ink);}
+  #screen-live .mock-cta{
+    display:inline-block;margin-top:10px;background:var(--red);color:white;
+    padding:8px 16px;border-radius:8px;font-weight:700;font-size:0.85rem;
+  }
+  #screen-draft .mock-cta{
+    display:inline-block;margin-top:10px;background:transparent;border:1px dashed var(--ink-soft);color:var(--ink-soft);
+    padding:8px 16px;border-radius:8px;font-weight:600;font-size:0.85rem;
+  }
+  .hide{display:none !important;}
+
+  /* RESET RITUAL */
+  .ritual{background:var(--paper);border:2px solid var(--ink);border-radius:20px;padding:30px;box-shadow:8px 8px 0 var(--ink);}
+  .ritual-steps{display:flex;gap:14px;margin-bottom:24px;flex-wrap:wrap;}
+  .ritual-steps .step{
+    flex:1;min-width:140px;border:2px solid var(--line);border-radius:12px;padding:14px;
+    text-align:center;font-weight:700;font-size:0.88rem;color:var(--ink-soft);transition:all .3s ease;
+  }
+  .ritual-steps .step small{display:block;font-weight:500;font-size:0.75rem;margin-top:3px;}
+  .ritual-steps .step.live{border-color:var(--red);color:var(--red-deep);background:#FFF3F5;transform:scale(1.04);}
+  .ritual-steps .step.done{border-color:var(--ink);background:var(--yellow);color:var(--ink);}
+  .ritual-demo{
+    border:1px solid var(--line);border-radius:12px;background:white;padding:24px;text-align:center;min-height:100px;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.02rem;
+  }
+  .ritual-demo.broken{color:var(--red-deep);}
+  .ritual-demo.broken .glitch{display:inline-block;animation:jit 0.15s infinite;}
+  @keyframes jit{0%{transform:translate(0,0);}50%{transform:translate(1px,-1px);}100%{transform:translate(-1px,1px);}}
+  .ritual-demo.fixed{color:var(--ink);}
+  .runbtn{
+    margin-top:18px;background:var(--red);color:white;border:2px solid var(--ink);border-radius:999px;
+    padding:11px 24px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:4px 4px 0 var(--ink);font-size:0.92rem;
+  }
+  .runbtn:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink);}
+  .runbtn:disabled{opacity:0.55;cursor:default;}
+
+  /* CUE WORDS */
+  .cue-box{
+    background:var(--ink);color:var(--sky-pale);border-radius:20px;padding:38px;text-align:center;
+  }
+  .cue-word{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2.2rem,7vw,3.6rem);
+    color:var(--yellow);margin:14px 0;min-height:1.3em;
+  }
+  .cue-word.flash{animation:flash .5s ease;}
+  @keyframes flash{0%{opacity:0;transform:scale(0.85);}60%{opacity:1;transform:scale(1.03);}100%{transform:scale(1);}}
+  .cuebtn{
+    background:var(--yellow);border:2px solid var(--sky-pale);border-radius:999px;color:var(--ink);
+    font-weight:700;padding:11px 24px;font-family:inherit;cursor:pointer;font-size:0.92rem;
+  }
+  .cuebtn:hover{background:var(--red);color:white;border-color:var(--yellow);}
+
+  /* FRAMEWORK DIAGRAM */
+  .flow{display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .flow-box{
+    border:2px solid var(--ink);background:white;border-radius:14px;padding:14px 20px;
+    text-align:center;font-weight:700;font-size:0.92rem;box-shadow:4px 4px 0 var(--red);max-width:340px;
+  }
+  .flow-box small{display:block;font-weight:500;color:var(--ink-soft);font-size:0.78rem;margin-top:4px;}
+  .flow-arrow{font-size:1.3rem;color:var(--red-deep);}
+  .flow-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+
+  /* CTA */
+  .cta-final{
+    text-align:center;padding:70px 24px;background:var(--sky);
+    border-top:2px solid var(--ink);
+  }
+  .cta-final h2{max-width:none;}
+  .big-btn{
+    display:inline-block;margin-top:20px;background:var(--yellow);border:3px solid var(--ink);
+    border-radius:999px;padding:18px 42px;font-weight:700;font-size:1.1rem;text-decoration:none;color:var(--ink);
+    box-shadow:6px 6px 0 var(--red);transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .big-btn:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 var(--red);}
+
+  footer{padding:26px 24px;text-align:center;font-size:0.85rem;color:var(--ink-soft);background:var(--sky);border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <div class="navlinks">
+      <a href="#bank">Confidence Bank</a>
+      <a href="#mind">Two Minds</a>
+      <a href="#reset">Reset Ritual</a>
+      <a href="#cue">Cue Words</a>
+    </div>
+    <a class="nav-cta" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero" id="bank">
+  <div class="wrap">
+    <span class="eyebrow">Applying The Confident Mind — Dr. Nate Zinsser</span>
+    <h1>Your landing page needs a confident mind, not just a nice template.</h1>
+    <p class="lede">West Point's performance psychologist says confidence is a skill you deposit into, not a mood you wait for. EasyLandX builds pages the same way: every section is a deposit that makes a visitor trust you in seconds.</p>
+
+    <div class="bank">
+      <div class="bank-top">
+        <div class="bank-title">Confidence Bank Log<small>Make three deposits, watch your page's trust balance fill</small></div>
+        <div class="balance" id="balanceLabel">0%</div>
+      </div>
+      <div class="meter"><div class="meter-fill" id="meterFill"></div></div>
+      <div class="deposits">
+        <button class="deposit" data-fill="34" onclick="deposit(this)">
+          <strong>Proof of skill</strong>
+          <span>Show real results — a before/after, a client win, a number that matters.</span>
+        </button>
+        <button class="deposit" data-fill="33" onclick="deposit(this)">
+          <strong>Proof of effort</strong>
+          <span>Show the process — how the page (or the offer) was actually built.</span>
+        </button>
+        <button class="deposit" data-fill="33" onclick="deposit(this)">
+          <strong>Proof of purpose</strong>
+          <span>Say the mission plainly — who this is for and why it matters.</span>
+        </button>
+      </div>
+      <div class="bank-note" id="bankNote"></div>
+    </div>
+  </div>
+</header>
+
+<section id="myth">
+  <div class="wrap col2">
+    <div>
+      <div class="kicker">The myth of external validation</div>
+      <h2>A page can't borrow confidence from ad spend or luck.</h2>
+      <p>Zinsser's research on elite performers found real confidence has to be generated internally, before the moment that matters — not manufactured by outside praise. A landing page works the same way. Traffic doesn't make a headline believable. The copy either earns trust on its own, or it doesn't, no matter how much you spend getting people to see it.</p>
+      <p>That's why EasyLandX starts every project with the story and the proof, not the layout. The design only has to carry a message that's already confident.</p>
+    </div>
+    <div>
+      <div class="mind-card" style="box-shadow:8px 8px 0 var(--yellow-deep);">
+        <div class="mind-screen">
+          <div class="mock-browser">
+            <div class="mock-bar"><i></i><i></i><i></i></div>
+            <div class="mock-body">
+              <p class="mock-headline" style="color:var(--red-deep);">"We have amazing traffic but nobody converts."</p>
+              <p style="font-size:0.88rem;margin:0;">Usually the ads were never the problem — the landing page never made the case. Fix the confidence, not the budget.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mind">
+  <div class="wrap col2">
+    <div>
+      <div class="kicker">Training mind vs. trusting mind</div>
+      <h2>We edit like critics. We ship like we already won.</h2>
+      <p>During the build, EasyLandX is in "training mind" — analytical, picky, testing every headline and color. Once the page goes live, it has to switch to "trusting mind": clean, decisive, zero hedging. Toggle the mock page to see the difference a visitor actually feels.</p>
+    </div>
+    <div class="mind-card">
+      <div class="mind-switch">
+        <button class="active" id="btnDraft" onclick="setMind('draft')">Draft Mode — Training Mind</button>
+        <button id="btnLive" onclick="setMind('live')">Live Mode — Trusting Mind</button>
+      </div>
+      <div class="mind-screen">
+        <div class="mock-browser">
+          <div class="mock-bar"><i></i><i></i><i></i></div>
+          <div class="mock-body" id="screen-draft">
+            <span class="sticky">maybe shorten this?</span>
+            <p class="mock-headline">We think we might be able to help your business grow, possibly.</p>
+            <span class="sticky">is yellow too much here??</span>
+            <a class="mock-cta">Learn More, I Guess</a>
+          </div>
+          <div class="mock-body hide" id="screen-live">
+            <p class="mock-headline">Get a landing page that turns visitors into clients.</p>
+            <a class="mock-cta">Get My Page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reset">
+  <div class="wrap">
+    <div class="kicker" style="text-align:center;">Post-error reset ritual</div>
+    <h2 style="text-align:center;margin-left:auto;margin-right:auto;">A weak section on your page isn't a crisis. It's a fix in three steps.</h2>
+    <p style="text-align:center;max-width:56ch;margin:0 auto 30px;">Zinsser has athletes acknowledge a mistake, release it physically, then replay the correct version instantly — so it doesn't get relived on a loop. EasyLandX runs the same ritual on a page that isn't converting.</p>
+
+    <div class="ritual">
+      <div class="ritual-steps">
+        <div class="step" id="step1">Acknowledge<small>Name what isn't working</small></div>
+        <div class="step" id="step2">Release<small>Cut it, don't defend it</small></div>
+        <div class="step" id="step3">Replay<small>Ship the fixed version</small></div>
+      </div>
+      <div class="ritual-demo broken" id="ritualDemo">
+        <span class="glitch">"Click here to maybe contact us if you want!!"</span>
+      </div>
+      <div style="text-align:center;">
+        <button class="runbtn" id="runBtn" onclick="runRitual()">Run the reset</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="wrap">
+    <div class="kicker" style="text-align:center;">The framework, applied to your page</div>
+    <h2 style="text-align:center;margin-left:auto;margin-right:auto;">From confidence bank to a page that performs on command.</h2>
+    <div class="flow">
+      <div class="flow-box">Build the confidence bank<small>Collect proof, effort, and mission before writing a word of copy</small></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-box">Shift to trusting mind<small>Stop second-guessing — ship the decisive version</small></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-row">
+        <div class="flow-box">Reset ritual<small>Acknowledge, release, replace weak sections fast</small></div>
+        <div class="flow-box">Live rehearsal<small>Preview the page exactly as a visitor will see it</small></div>
+        <div class="flow-box">Launch cue<small>One clear action, one clear next step</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cue">
+  <div class="wrap">
+    <div class="cue-box">
+      <div class="kicker" style="color:var(--yellow);">Pre-launch cue words</div>
+      <h2 style="color:var(--sky-pale);max-width:none;">Elite performers use one short word instead of a checklist. Try yours.</h2>
+      <div class="cue-word" id="cueWord">—</div>
+      <button class="cuebtn" onclick="newCue()">Get today's launch cue</button>
+    </div>
+  </div>
+</section>
+
+<div class="cta-final">
+  <div class="kicker">EasyLandX</div>
+  <h2>Stop hoping your page converts. Build the confidence in first.</h2>
+  <p style="max-width:48ch;margin:0 auto;">Custom, conversion-focused landing pages for small businesses — built with the same deposit-first method as this page.</p>
+  <a class="big-btn" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+</div>
+
+<footer>
+  Built by EasyLandX · © 2026
+</footer>
+
+<script>
+  // Confidence bank
+  let balance = 0;
+  const notes = [
+    "Deposit logged: proof of skill. Balance rising.",
+    "Deposit logged: proof of effort. Almost fully funded.",
+    "Account fully funded — this page is ready to convert."
+  ];
+  let noteIndex = 0;
+  function deposit(btn){
+    if(btn.classList.contains('done')) return;
+    btn.classList.add('done');
+    balance += parseInt(btn.dataset.fill,10);
+    if(balance>100) balance = 100;
+    document.getElementById('meterFill').style.width = balance + '%';
+    document.getElementById('balanceLabel').textContent = balance + '%';
+    document.getElementById('bankNote').textContent = notes[Math.min(noteIndex,notes.length-1)];
+    noteIndex++;
+  }
+
+  // Training vs trusting mind toggle
+  function setMind(mode){
+    document.getElementById('btnDraft').classList.toggle('active', mode==='draft');
+    document.getElementById('btnLive').classList.toggle('active', mode==='live');
+    document.getElementById('screen-draft').classList.toggle('hide', mode!=='draft');
+    document.getElementById('screen-live').classList.toggle('hide', mode!=='live');
+  }
+
+  // Reset ritual
+  function runRitual(){
+    const btn = document.getElementById('runBtn');
+    const demo = document.getElementById('ritualDemo');
+    const steps = [document.getElementById('step1'), document.getElementById('step2'), document.getElementById('step3')];
+    btn.disabled = true;
+    steps.forEach(s=>{s.classList.remove('live','done');});
+    demo.className = 'ritual-demo broken';
+    demo.innerHTML = '<span class="glitch">"Click here to maybe contact us if you want!!"</span>';
+
+    setTimeout(()=>{ steps[0].classList.add('live'); }, 200);
+    setTimeout(()=>{
+      steps[0].classList.remove('live'); steps[0].classList.add('done');
+      steps[1].classList.add('live');
+    }, 1200);
+    setTimeout(()=>{
+      steps[1].classList.remove('live'); steps[1].classList.add('done');
+      steps[2].classList.add('live');
+      demo.className = 'ritual-demo';
+      demo.textContent = 'Rewriting...';
+    }, 2200);
+    setTimeout(()=>{
+      steps[2].classList.remove('live'); steps[2].classList.add('done');
+      demo.className = 'ritual-demo fixed';
+      demo.textContent = '"Book your free page preview — takes 2 minutes."';
+      btn.disabled = false;
+    }, 3200);
+  }
+
+  // Cue words
+  const cues = ["ATTACK","SMOOTH","TRUST","SHIP","DOMINATE","CLARITY","COMMIT","LAUNCH"];
+  function newCue(){
+    const el = document.getElementById('cueWord');
+    const word = cues[Math.floor(Math.random()*cues.length)];
+    el.classList.remove('flash');
+    void el.offsetWidth;
+    el.textContent = word;
+    el.classList.add('flash');
+  }
+</script>
+
+</body>
+</html>
