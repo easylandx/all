@@ -1,0 +1,1602 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasyLandX — Landing Pages That Truly Convert</title>
+  <style>
+    :root {
+      --bg: #1a0b2e;
+      --bg-deep: #12081f;
+      --surface: #2a1545;
+      --surface-hover: #351c56;
+      --border: #4a2d73;
+      --text: #f5f0ff;
+      --muted: #c4b5e0;
+      --accent: #c084fc;
+      --accent-bright: #e9d5ff;
+      --accent-soft: rgba(192, 132, 252, 0.18);
+      --radius: 14px;
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(168, 85, 247, 0.35), transparent),
+        radial-gradient(ellipse 60% 40% at 100% 100%, rgba(109, 40, 217, 0.25), transparent);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(26, 11, 46, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .search-box {
+      flex: 1;
+      max-width: 360px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.6rem 1rem 0.6rem 2.5rem;
+      color: var(--text);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .search-box input::placeholder { color: var(--muted); }
+
+    .search-box::before {
+      content: "⌕";
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, var(--accent-bright) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent-soft);
+      color: var(--accent-bright);
+      border: 1px solid rgba(192, 132, 252, 0.35);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .cat-nav {
+      max-width: 1200px;
+      margin: 0 auto 2.5rem;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .cat-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .cat-btn:hover, .cat-btn.active {
+      background: linear-gradient(135deg, #9333ea, #c084fc);
+      border-color: transparent;
+      color: white;
+      box-shadow: 0 4px 16px rgba(147, 51, 234, 0.4);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem 5rem;
+    }
+
+    .category {
+      margin-bottom: 3.5rem;
+    }
+
+    .category-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      letter-spacing: -0.02em;
+      color: var(--accent-bright);
+    }
+
+    .category-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      height: 100%;
+    }
+
+    .card:hover {
+      background: var(--surface-hover);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow), 0 0 0 1px var(--accent);
+    }
+
+    .card-emoji {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .card .link-hint {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 0.25rem;
+    }
+
+    .hidden { display: none !important; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.875rem;
+      border-top: 1px solid var(--border);
+      background: var(--bg-deep);
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { color: var(--accent-bright); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">🧲 <span>EasyLandX</span></div>
+    <div class="search-box">
+      <input type="search" id="search" placeholder="Search modules…" autocomplete="off">
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="badge">Behavioral Science · Real Results</div>
+  <h1>Landing Pages<br>That Truly Convert</h1>
+  <p>Proven principles, frameworks, and patterns for high-converting landing pages based on how real people make decisions.</p>
+</section>
+
+<nav class="cat-nav" id="catNav">
+  <button class="cat-btn active" data-cat="all">All</button>
+  <button class="cat-btn" data-cat="core">Core Methodology</button>
+  <button class="cat-btn" data-cat="psychology">Psychology & Influence</button>
+  <button class="cat-btn" data-cat="attention">Attention & Flow</button>
+  <button class="cat-btn" data-cat="copy">Copywriting & Messaging</button>
+  <button class="cat-btn" data-cat="mindset">Mindset & Habits</button>
+  <button class="cat-btn" data-cat="business">Business & Traction</button>
+  <button class="cat-btn" data-cat="sales-funnels">Sales & Funnels</button>
+  <button class="cat-btn" data-cat="behavioral-economics">Behavioral Economics</button>
+  <button class="cat-btn" data-cat="mindfulness-focus">Mindfulness & Deep Focus</button>
+  <button class="cat-btn" data-cat="strategy-execution">Strategy & Execution</button>
+  <button class="cat-btn" data-cat="communication-trust">Communication & Trust</button>
+</nav>
+
+<main id="main">
+
+  <!-- CORE METHODOLOGY -->
+  <section class="category" data-cat="core">
+    <h2 class="category-title">🍕 Core Methodology</h2>
+    <div class="grid">
+      <a class="card" href="https://easylandx.github.io/all/work.html" target="_blank" rel="noopener noreferrer" data-title="We Write the Ending First">
+        <div class="card-emoji">🍕</div>
+        <h3>We Write the Ending First</h3>
+        <p>Start with your desired outcome and work backward.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/make.html" target="_blank" rel="noopener noreferrer" data-title="How People Actually Use the Web">
+        <div class="card-emoji">🛠️</div>
+        <h3>How People Actually Use the Web</h3>
+        <p>Real user behavior beats best practices every time.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/give.html" target="_blank" rel="noopener noreferrer" data-title="Give Your Customer a Guide">
+        <div class="card-emoji">🧲</div>
+        <h3>Give Your Customer a Guide</h3>
+        <p>Make the pathway obvious and effortless.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/disc.html" target="_blank" rel="noopener noreferrer" data-title="Start Saying the One Thing That Converts">
+        <div class="card-emoji">🎯</div>
+        <h3>Start Saying the One Thing That Converts</h3>
+        <p>Clarity over cleverness.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/parad.html" target="_blank" rel="noopener noreferrer" data-title="Start Shipping">
+        <div class="card-emoji">🚀</div>
+        <h3>Start Shipping</h3>
+        <p>Momentum is everything.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/core.html" target="_blank" rel="noopener noreferrer" data-title="The Volume Rule">
+        <div class="card-emoji">⭐️</div>
+        <h3>The Volume Rule</h3>
+        <p>More attempts equal more learning.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/swan.html" target="_blank" rel="noopener noreferrer" data-title="Build Enough to Find Out">
+        <div class="card-emoji">🦢</div>
+        <h3>Build Enough to Find Out</h3>
+        <p>Iteration wins over perfection.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/scou.html" target="_blank" rel="noopener noreferrer" data-title="Scout Mindset">
+        <div class="card-emoji">⚜️</div>
+        <h3>Scout Mindset</h3>
+        <p>Stay curious and open to what works.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- PSYCHOLOGY & INFLUENCE -->
+  <section class="category" data-cat="psychology">
+    <h2 class="category-title">🧠 Psychology & Influence</h2>
+    <div class="grid">
+      <a class="card" href="https://easylandx.github.io/all/how.html" target="_blank" rel="noopener noreferrer" data-title="Why People Say Yes">
+        <div class="card-emoji">🏗️</div>
+        <h3>Why People Say Yes</h3>
+        <p>The psychology behind conversion decisions.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/brai.html" target="_blank" rel="noopener noreferrer" data-title="Behavioral Science Based">
+        <div class="card-emoji">🚢</div>
+        <h3>Behavioral Science Based</h3>
+        <p>Principles that actually trigger human action.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/trig.html" target="_blank" rel="noopener noreferrer" data-title="The Mechanism">
+        <div class="card-emoji">👉</div>
+        <h3>The Mechanism</h3>
+        <p>Turning a visitor into a buyer.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/change.html" target="_blank" rel="noopener noreferrer" data-title="Change">
+        <div class="card-emoji">🧬</div>
+        <h3>Change</h3>
+        <p>Behavioral science in action.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/influence.html" target="_blank" rel="noopener noreferrer" data-title="Influence">
+        <div class="card-emoji">🗣️</div>
+        <h3>Influence</h3>
+        <p>Patterns of persuasion and argument.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/social.html" target="_blank" rel="noopener noreferrer" data-title="Social Animal">
+        <div class="card-emoji">🧠</div>
+        <h3>Social Animal</h3>
+        <p>The social proof side of conversion.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/human.html" target="_blank" rel="noopener noreferrer" data-title="Human">
+        <div class="card-emoji">🧑🏻</div>
+        <h3>Human</h3>
+        <p>Instincts in web design.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/humannature.html" target="_blank" rel="noopener noreferrer" data-title="Human Nature">
+        <div class="card-emoji">🧍‍♀️</div>
+        <h3>Human Nature</h3>
+        <p>Unchanging behavioral principles.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/choice.html" target="_blank" rel="noopener noreferrer" data-title="The Choice">
+        <div class="card-emoji">🛒</div>
+        <h3>The Choice</h3>
+        <p>Why people decide to buy.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/alchemy.html" target="_blank" rel="noopener noreferrer" data-title="Alchemy">
+        <div class="card-emoji">🧙‍♂️</div>
+        <h3>Alchemy</h3>
+        <p>Reframing value, not rebuilding product.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/immunity.html" target="_blank" rel="noopener noreferrer" data-title="Immunity">
+        <div class="card-emoji">🛡️</div>
+        <h3>Immunity</h3>
+        <p>Overcoming decision immunity.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/autopilot.html" target="_blank" rel="noopener noreferrer" data-title="Autopilot">
+        <div class="card-emoji">🤖</div>
+        <h3>Autopilot</h3>
+        <p>Tapping into automated decision-making.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/rethink.html" target="_blank" rel="noopener noreferrer" data-title="Rethink">
+        <div class="card-emoji">🔍</div>
+        <h3>Rethink</h3>
+        <p>Researching core human motivation.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ATTENTION & FLOW -->
+  <section class="category" data-cat="attention">
+    <h2 class="category-title">👀 Attention & Flow</h2>
+    <div class="grid">
+      <a class="card" href="https://easylandx.github.io/all/pers.html" target="_blank" rel="noopener noreferrer" data-title="Mechanics of Attention">
+        <div class="card-emoji">👀</div>
+        <h3>Mechanics of Attention</h3>
+        <p>How to capture and hold focus.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/flow.html" target="_blank" rel="noopener noreferrer" data-title="Put Visitor in Flow">
+        <div class="card-emoji">🌊</div>
+        <h3>Put Visitor in Flow</h3>
+        <p>Remove friction, build momentum.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/blin.html" target="_blank" rel="noopener noreferrer" data-title="A Blink">
+        <div class="card-emoji">😉</div>
+        <h3>A Blink</h3>
+        <p>What visitors grasp in the first second.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/clic.html" target="_blank" rel="noopener noreferrer" data-title="Just Click">
+        <div class="card-emoji">🖱️</div>
+        <h3>Just Click</h3>
+        <p>Make the next click irresistible.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/cognitive.html" target="_blank" rel="noopener noreferrer" data-title="Digital Consumption">
+        <div class="card-emoji">🧠</div>
+        <h3>Digital Consumption</h3>
+        <p>CTAs tailored for 8-second attention spans.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/magi.html" target="_blank" rel="noopener noreferrer" data-title="Magic">
+        <div class="card-emoji">🧙</div>
+        <h3>Magic</h3>
+        <p>Seamless interactions that feel effortless.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/gorilla.html" target="_blank" rel="noopener noreferrer" data-title="Invisible Gorilla">
+        <div class="card-emoji">🦍</div>
+        <h3>Invisible Gorilla</h3>
+        <p>Selective attention and blind spots.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/breakthrough.html" target="_blank" rel="noopener noreferrer" data-title="Breakthrough Awareness">
+        <div class="card-emoji">👁️</div>
+        <h3>Breakthrough Awareness</h3>
+        <p>Matching visitor awareness levels.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- COPYWRITING & MESSAGING -->
+  <section class="category" data-cat="copy">
+    <h2 class="category-title">✍️ Copywriting & Messaging</h2>
+    <div class="grid">
+      <a class="card" href="https://easylandx.github.io/all/copy.html" target="_blank" rel="noopener noreferrer" data-title="Microcopy Rules">
+        <div class="card-emoji">🙋‍♂️</div>
+        <h3>Microcopy Rules</h3>
+        <p>Quick rules for voice and tone.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/writing.html" target="_blank" rel="noopener noreferrer" data-title="Writing">
+        <div class="card-emoji">👋</div>
+        <h3>Writing</h3>
+        <p>Icons as digital gestures.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/rebe.html" target="_blank" rel="noopener noreferrer" data-title="Pages Worth Talking About">
+        <div class="card-emoji">✍️</div>
+        <h3>Pages Worth Talking About</h3>
+        <p>Create memorable, shareable web pages.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/medium.html" target="_blank" rel="noopener noreferrer" data-title="The Medium">
+        <div class="card-emoji">📰</div>
+        <h3>The Medium</h3>
+        <p>The medium is the message.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/proo.html" target="_blank" rel="noopener noreferrer" data-title="Action Copy">
+        <div class="card-emoji">🤱🏻</div>
+        <h3>Action Copy</h3>
+        <p>Turn passive reading into action.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/grea.html" target="_blank" rel="noopener noreferrer" data-title="Push Momentum">
+        <div class="card-emoji">🚀</div>
+        <h3>Push Momentum</h3>
+        <p>Keep copy moving forward.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/words.html" target="_blank" rel="noopener noreferrer" data-title="Words">
+        <div class="card-emoji">📖</div>
+        <h3>Words</h3>
+        <p>What people actually read on screen.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/rhyme.html" target="_blank" rel="noopener noreferrer" data-title="Rhyme">
+        <div class="card-emoji">🎶</div>
+        <h3>Rhyme</h3>
+        <p>Rhythm and fluency that stick.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/copywriting.html" target="_blank" rel="noopener noreferrer" data-title="Copywriting Slide">
+        <div class="card-emoji">✍️</div>
+        <h3>Copywriting Slide</h3>
+        <p>A slippery slope straight to the CTA.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/boron.html" target="_blank" rel="noopener noreferrer" data-title="Boron Letters">
+        <div class="card-emoji">📦</div>
+        <h3>Boron Letters</h3>
+        <p>Direct response copy mechanics.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/questions.html" target="_blank" rel="noopener noreferrer" data-title="Questions">
+        <div class="card-emoji">❓</div>
+        <h3>Questions</h3>
+        <p>Asking the single key question.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- MINDSET & HABITS -->
+  <section class="category" data-cat="mindset">
+    <h2 class="category-title">💪 Mindset & Habits</h2>
+    <div class="grid">
+      <a class="card" href="https://easylandx.github.io/all/will.html" target="_blank" rel="noopener noreferrer" data-title="Willpower by Design">
+        <div class="card-emoji">🧠</div>
+        <h3>Willpower → Design</h3>
+        <p>Don't rely on willpower. Rely on design.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/willpower.html" target="_blank" rel="noopener noreferrer" data-title="Willpower Mechanics">
+        <div class="card-emoji">🧠</div>
+        <h3>Willpower Mechanics</h3>
+        <p>Prefrontal cortex limits and UX.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/discipline.html" target="_blank" rel="noopener noreferrer" data-title="Discipline Redesign">
+        <div class="card-emoji">🛡️</div>
+        <h3>Discipline Redesign</h3>
+        <p>Reshaping user habits.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/sevenhabits.html" target="_blank" rel="noopener noreferrer" data-title="Seven Habits">
+        <div class="card-emoji">🗓️</div>
+        <h3>Seven Habits</h3>
+        <p>Effective execution patterns.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/warofart.html" target="_blank" rel="noopener noreferrer" data-title="The War of Art">
+        <div class="card-emoji">🪖</div>
+        <h3>The War of Art</h3>
+        <p>Overcoming internal resistance to ship.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/canthurt.html" target="_blank" rel="noopener noreferrer" data-title="Can't Hurt Me">
+        <div class="card-emoji">💪</div>
+        <h3>Can't Hurt Me</h3>
+        <p>Eliminate excuses from building.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/sisyphus.html" target="_blank" rel="noopener noreferrer" data-title="Sisyphus">
+        <div class="card-emoji">🏔️</div>
+        <h3>Sisyphus</h3>
+        <p>Pushing past repetitive hurdles.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/goodvibes.html" target="_blank" rel="noopener noreferrer" data-title="Good Vibes">
+        <div class="card-emoji">🧘‍♂️</div>
+        <h3>Good Vibes</h3>
+        <p>High-energy positioning.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/happy.html" target="_blank" rel="noopener noreferrer" data-title="Happy">
+        <div class="card-emoji">😊</div>
+        <h3>Happy</h3>
+        <p>Delightful design research.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/happiness.html" target="_blank" rel="noopener noreferrer" data-title="Happiness">
+        <div class="card-emoji">😊</div>
+        <h3>Happiness</h3>
+        <p>Progress over perfection.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/quiet.html" target="_blank" rel="noopener noreferrer" data-title="Quiet">
+        <div class="card-emoji">🤫</div>
+        <h3>Quiet</h3>
+        <p>Designing for introverted buyers.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/uncertainty.html" target="_blank" rel="noopener noreferrer" data-title="Uncertainty">
+        <div class="card-emoji">🎲</div>
+        <h3>Uncertainty</h3>
+        <p>Embracing risk and possibility.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/later.html" target="_blank" rel="noopener noreferrer" data-title="Later">
+        <div class="card-emoji">⏳</div>
+        <h3>Later</h3>
+        <p>Why now is where conversion lives.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/beyond.html" target="_blank" rel="noopener noreferrer" data-title="Beyond">
+        <div class="card-emoji">🚀</div>
+        <h3>Beyond</h3>
+        <p>The effort and belief curve.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/wisdom.html" target="_blank" rel="noopener noreferrer" data-title="Wisdom">
+        <div class="card-emoji">🦉</div>
+        <h3>Wisdom</h3>
+        <p>The right page at the right time.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/perfect.html" target="_blank" rel="noopener noreferrer" data-title="Perfect">
+        <div class="card-emoji">✨</div>
+        <h3>Perfect</h3>
+        <p>Shipped beats perfect.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/mindset.html" target="_blank" rel="noopener noreferrer" data-title="Growth Mindset">
+        <div class="card-emoji">🧠</div>
+        <h3>Growth Mindset</h3>
+        <p>Operating system for builders.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/courage.html" target="_blank" rel="noopener noreferrer" data-title="Courage">
+        <div class="card-emoji">🛠️</div>
+        <h3>Courage</h3>
+        <p>Building simply despite fear.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/optimism.html" target="_blank" rel="noopener noreferrer" data-title="Learned Optimism">
+        <div class="card-emoji">☀️</div>
+        <h3>Learned Optimism</h3>
+        <p>Optimistic UX messaging.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- BUSINESS & TRACTION -->
+  <section class="category" data-cat="business">
+    <h2 class="category-title">📈 Business & Traction</h2>
+    <div class="grid">
+      <a class="card" href="https://easylandx.github.io/all/traction.html" target="_blank" rel="noopener noreferrer" data-title="Traction">
+        <div class="card-emoji">📈</div>
+        <h3>Traction</h3>
+        <p>Key distribution channels and focus.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/sold.html" target="_blank" rel="noopener noreferrer" data-title="Sold Out">
+        <div class="card-emoji">📅</div>
+        <h3>Sold Out</h3>
+        <p>From zero to fully booked.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/startup.html" target="_blank" rel="noopener noreferrer" data-title="Lean Startup Page">
+        <div class="card-emoji">💵</div>
+        <h3>Lean Startup Page</h3>
+        <p>A simple page that validates and sells.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/profit.html" target="_blank" rel="noopener noreferrer" data-title="Profit First">
+        <div class="card-emoji">💰</div>
+        <h3>Profit First</h3>
+        <p>Prioritizing conversion yield.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/simple.html" target="_blank" rel="noopener noreferrer" data-title="Simple Metrics">
+        <div class="card-emoji">📊</div>
+        <h3>Simple Metrics</h3>
+        <p>Numbers that actually matter.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/pareto.html" target="_blank" rel="noopener noreferrer" data-title="Pareto Principle">
+        <div class="card-emoji">📊</div>
+        <h3>Pareto Principle</h3>
+        <p>The 80/20 rule of page optimization.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/scale.html" target="_blank" rel="noopener noreferrer" data-title="Scale">
+        <div class="card-emoji">📈</div>
+        <h3>Scale</h3>
+        <p>Growth obeys precise laws.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/smart.html" target="_blank" rel="noopener noreferrer" data-title="Smart Business">
+        <div class="card-emoji">💼</div>
+        <h3>Smart Business</h3>
+        <p>Sales fix everything.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/customer.html" target="_blank" rel="noopener noreferrer" data-title="Customer Funded">
+        <div class="card-emoji">🤝</div>
+        <h3>Customer Funded</h3>
+        <p>Let pre-orders fund development.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/willfly.html" target="_blank" rel="noopener noreferrer" data-title="Will It Fly">
+        <div class="card-emoji">🦅</div>
+        <h3>Will It Fly</h3>
+        <p>Testing offer demand quickly.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/minimalist.html" target="_blank" rel="noopener noreferrer" data-title="Minimalist Entrepreneur">
+        <div class="card-emoji">📐</div>
+        <h3>Minimalist Entrepreneur</h3>
+        <p>Do more with less overhead.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/small.html" target="_blank" rel="noopener noreferrer" data-title="Company of One">
+        <div class="card-emoji">⛵</div>
+        <h3>Company of One</h3>
+        <p>Stay small, nimble, and profitable.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/smallbig.html" target="_blank" rel="noopener noreferrer" data-title="Small Giant Impact">
+        <div class="card-emoji">🔍</div>
+        <h3>Small Giant Impact</h3>
+        <p>Small footprint, high conversion.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/awesome.html" target="_blank" rel="noopener noreferrer" data-title="Awesome Launch">
+        <div class="card-emoji">🚀</div>
+        <h3>Awesome Launch</h3>
+        <p>Shipping remarkable offers.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/edge.html" target="_blank" rel="noopener noreferrer" data-title="Competitive Edge">
+        <div class="card-emoji">⚔️</div>
+        <h3>Competitive Edge</h3>
+        <p>Building distinct advantages.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/wild.html" target="_blank" rel="noopener noreferrer" data-title="Wild Business">
+        <div class="card-emoji">🦁</div>
+        <h3>Wild Business</h3>
+        <p>Navigating unpredictable markets.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/power.html" target="_blank" rel="noopener noreferrer" data-title="Power & Leverage">
+        <div class="card-emoji">⚡</div>
+        <h3>Power & Leverage</h3>
+        <p>Maximizing yield per visitor.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/one.html" target="_blank" rel="noopener noreferrer" data-title="One Page Plan">
+        <div class="card-emoji">📄</div>
+        <h3>One Page Plan</h3>
+        <p>Everything on a single screen.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/momtest.html" target="_blank" rel="noopener noreferrer" data-title="The Mom Test">
+        <div class="card-emoji">🕵️</div>
+        <h3>The Mom Test</h3>
+        <p>Extracting real market truth.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/sweat.html" target="_blank" rel="noopener noreferrer" data-title="Sweat Equity">
+        <div class="card-emoji">🏋️‍♂️</div>
+        <h3>Sweat Equity</h3>
+        <p>Designed to win through execution.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/art.html" target="_blank" rel="noopener noreferrer" data-title="Art of Business">
+        <div class="card-emoji">⚔️</div>
+        <h3>Art of Business</h3>
+        <p>The craft of closing deals.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/math.html" target="_blank" rel="noopener noreferrer" data-title="Conversion Math">
+        <div class="card-emoji">📝</div>
+        <h3>Conversion Math</h3>
+        <p>Prove value with unit economics.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/emyth.html" target="_blank" rel="noopener noreferrer" data-title="E-Myth Revisited">
+        <div class="card-emoji">🏗️</div>
+        <h3>E-Myth Revisited</h3>
+        <p>Systemizing your landing page engine.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/almanack.html" target="_blank" rel="noopener noreferrer" data-title="Almanack of Naval">
+        <div class="card-emoji">📙</div>
+        <h3>Almanack of Naval</h3>
+        <p>Leverage, judgment, and positioning.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/handbook.html" target="_blank" rel="noopener noreferrer" data-title="Practical Handbook">
+        <div class="card-emoji">🛠️</div>
+        <h3>Practical Handbook</h3>
+        <p>Short, actionable business rules.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- NEW CATEGORY 1: SALES & FUNNELS -->
+  <section class="category" data-cat="sales-funnels">
+    <h2 class="category-title">🎯 Sales & Funnels</h2>
+    <div class="grid">
+      <a class="card" href="https://easylandx.github.io/all/dotcom.html" target="_blank" rel="noopener noreferrer" data-title="DotCom Secrets">
+        <div class="card-emoji">💻</div>
+        <h3>DotCom Secrets</h3>
+        <p>Funnel architectures and sales scripts.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/offers.html" target="_blank" rel="noopener noreferrer" data-title="Grand Slam Offers">
+        <div class="card-emoji">🏆</div>
+        <h3>Grand Slam Offers</h3>
+        <p>Creating offers so good people feel stupid saying no.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/leads.html" target="_blank" rel="noopener noreferrer" data-title="100M Leads">
+        <div class="card-emoji">💼</div>
+        <h3>100M Leads</h3>
+        <p>Hook, story, offer mechanics for pipeline generation.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/sell.html" target="_blank" rel="noopener noreferrer" data-title="Little Red Book of Selling">
+        <div class="card-emoji">📈</div>
+        <h3>Little Red Book of Selling</h3>
+        <p>12.5 principles of sales greatness.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/salesmachine.html" target="_blank" rel="noopener noreferrer" data-title="Ultimate Sales Machine">
+        <div class="card-emoji">🏃‍♂️</div>
+        <h3>Ultimate Sales Machine</h3>
+        <p>Pigheaded determination in execution.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/jolt.html" target="_blank" rel="noopener noreferrer" data-title="The JOLT Effect">
+        <div class="card-emoji">🪝</div>
+        <h3>The JOLT Effect</h3>
+        <p>Overcoming buyer indecision and FOMU.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/closing.html" target="_blank" rel="noopener noreferrer" data-title="Secrets of Closing">
+        <div class="card-emoji">🎯</div>
+        <h3>Secrets of Closing</h3>
+        <p>Eliminating hesitations at the finish line.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/bettger.html" target="_blank" rel="noopener noreferrer" data-title="Enthusiasm in Sales">
+        <div class="card-emoji">🌟</div>
+        <h3>Enthusiasm in Sales</h3>
+        <p>How I raised myself from failure to success.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/fanatical.html" target="_blank" rel="noopener noreferrer" data-title="Fanatical Prospecting">
+        <div class="card-emoji">📖</div>
+        <h3>Fanatical Prospecting</h3>
+        <p>Filling the funnel one page at a time.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/start.html" target="_blank" rel="noopener noreferrer" data-title="Start with Conversion">
+        <div class="card-emoji">📈</div>
+        <h3>Start with Conversion</h3>
+        <p>Getting your prospect over the line.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- NEW CATEGORY 2: BEHAVIORAL ECONOMICS -->
+  <section class="category" data-cat="behavioral-economics">
+    <h2 class="category-title">📊 Behavioral Economics & CRO Science</h2>
+    <div class="grid">
+      <a class="card" href="https://easylandx.github.io/all/predict.html" target="_blank" rel="noopener noreferrer" data-title="Predictably Irrational">
+        <div class="card-emoji">🔮</div>
+        <h3>Predictably Irrational</h3>
+        <p>Hidden forces that shape user decisions.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/decoded.html" target="_blank" rel="noopener noreferrer" data-title="Decoded">
+        <div class="card-emoji">🔓</div>
+        <h3>Decoded</h3>
+        <p>The science behind why people buy.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/win.html" target="_blank" rel="noopener noreferrer" data-title="Making Websites Win">
+        <div class="card-emoji">🏆</div>
+        <h3>Making Websites Win</h3>
+        <p>Scientific CRO and evidence-based landing pages.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/buyology.html" target="_blank" rel="noopener noreferrer" data-title="Buyology">
+        <div class="card-emoji">💰</div>
+        <h3>Buyology</h3>
+        <p>Neuromarketing truths about customer desires.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/test.html" target="_blank" rel="noopener noreferrer" data-title="Test & Measure">
+        <div class="card-emoji">🧪</div>
+        <h3>Test & Measure</h3>
+        <p>A/B testing with statistical certainty.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/brain.html" target="_blank" rel="noopener noreferrer" data-title="Brain Fluency">
+        <div class="card-emoji">👁️</div>
+        <h3>Brain Fluency</h3>
+        <p>Reducing cognitive load for fast decisions.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/neuro.html" target="_blank" rel="noopener noreferrer" data-title="Neuro Web Design">
+        <div class="card-emoji">🧠</div>
+        <h3>Neuro Web Design</h3>
+        <p>Decisions made in 200 milliseconds.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/marshmallow.html" target="_blank" rel="noopener noreferrer" data-title="Marshmallow Test">
+        <div class="card-emoji">🧠</div>
+        <h3>Marshmallow Test</h3>
+        <p>Instant gratification vs delayed reward in UX.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/emotions.html" target="_blank" rel="noopener noreferrer" data-title="How Emotions Are Made">
+        <div class="card-emoji">🎭</div>
+        <h3>How Emotions Are Made</h3>
+        <p>Predictive brain and emotional triggers.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/descartes.html" target="_blank" rel="noopener noreferrer" data-title="Descartes' Error">
+        <div class="card-emoji">💡</div>
+        <h3>Descartes' Error</h3>
+        <p>Emotion and reason in decision-making.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/probability.html" target="_blank" rel="noopener noreferrer" data-title="Probability & Risk">
+        <div class="card-emoji">🎲</div>
+        <h3>Probability & Risk</h3>
+        <p>Framing probability and risk perception.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/behavior.html" target="_blank" rel="noopener noreferrer" data-title="Fogg Behavior Model">
+        <div class="card-emoji">👣</div>
+        <h3>Fogg Behavior Model</h3>
+        <p>Motivation, ability, and prompts combined.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- NEW CATEGORY 3: MINDFULNESS & DEEP FOCUS -->
+  <section class="category" data-cat="mindfulness-focus">
+    <h2 class="category-title">🧘 Mindfulness & Deep Focus</h2>
+    <div class="grid">
+      <a class="card" href="https://easylandx.github.io/all/deepwork.html" target="_blank" rel="noopener noreferrer" data-title="Deep Work">
+        <div class="card-emoji">🔬</div>
+        <h3>Deep Work</h3>
+        <p>Distraction-free focus for peak performance.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/hyperfocus.html" target="_blank" rel="noopener noreferrer" data-title="Hyperfocus">
+        <div class="card-emoji">🎯</div>
+        <h3>Hyperfocus</h3>
+        <p>Managing attention in a noisy world.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/indistractable.html" target="_blank" rel="noopener noreferrer" data-title="Indistractable">
+        <div class="card-emoji">🎯</div>
+        <h3>Indistractable</h3>
+        <p>Controlling attention and choosing traction.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/calm.html" target="_blank" rel="noopener noreferrer" data-title="It Doesn't Have to Be Crazy">
+        <div class="card-emoji">🍃</div>
+        <h3>It Doesn't Have to Be Crazy</h3>
+        <p>Calm design converts with quiet authority.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/notreacting.html" target="_blank" rel="noopener noreferrer" data-title="The Practice of Not Reacting">
+        <div class="card-emoji">🧘</div>
+        <h3>The Practice of Not Reacting</h3>
+        <p>Building from clarity and internal space.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/clarity.html" target="_blank" rel="noopener noreferrer" data-title="Clarity First">
+        <div class="card-emoji">🧘</div>
+        <h3>Clarity First</h3>
+        <p>Constructing messaging without reactive noise.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/presence.html" target="_blank" rel="noopener noreferrer" data-title="Presence">
+        <div class="card-emoji">🕯️</div>
+        <h3>Presence</h3>
+        <p>Bringing grounded authority to your brand.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/steady.html" target="_blank" rel="noopener noreferrer" data-title="Steady Mind">
+        <div class="card-emoji">⚓</div>
+        <h3>Steady Mind</h3>
+        <p>Maintaining composure under launch stress.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/rain.html" target="_blank" rel="noopener noreferrer" data-title="RAIN Mindfulness">
+        <div class="card-emoji">🌧️</div>
+        <h3>RAIN Mindfulness</h3>
+        <p>Recognize, allow, investigate, nurture.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/attention.html" target="_blank" rel="noopener noreferrer" data-title="Mindful Attention">
+        <div class="card-emoji">👀</div>
+        <h3>Mindful Attention</h3>
+        <p>Directing user focus intentionally.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/101.html" target="_blank" rel="noopener noreferrer" data-title="101 Essays That Will Change How You Think">
+        <div class="card-emoji">🧘</div>
+        <h3>101 Essays</h3>
+        <p>Shifting perspective on value and self.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/monks.html" target="_blank" rel="noopener noreferrer" data-title="Think Like a Monk">
+        <div class="card-emoji">🧹</div>
+        <h3>Think Like a Monk</h3>
+        <p>Sweep away complexity until pure value remains.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/affect.html" target="_blank" rel="noopener noreferrer" data-title="Serene Confidence">
+        <div class="card-emoji">🧘</div>
+        <h3>Serene Confidence</h3>
+        <p>A quieter, more sustainable path to growth.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/naturefix.html" target="_blank" rel="noopener noreferrer" data-title="The Nature Fix">
+        <div class="card-emoji">🌳</div>
+        <h3>The Nature Fix</h3>
+        <p>Restoring cognitive bandwidth.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/elephant.html" target="_blank" rel="noopener noreferrer" data-title="Rider and Elephant">
+        <div class="card-emoji">🐘</div>
+        <h3>Rider & Elephant</h3>
+        <p>Aligning rational logic with emotional impulse.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/power.html" target="_blank" rel="noopener noreferrer" data-title="Power of Attention">
+        <div class="card-emoji">⚡</div>
+        <h3>Power of Attention</h3>
+        <p>Laser-focused clarity.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- NEW CATEGORY 4: STRATEGY & EXECUTION -->
+  <section class="category" data-cat="strategy-execution">
+    <h2 class="category-title">🚀 Strategy & Execution</h2>
+    <div class="grid">
+      <a class="card" href="https://easylandx.github.io/all/antifragile.html" target="_blank" rel="noopener noreferrer" data-title="Antifragile">
+        <div class="card-emoji">💎</div>
+        <h3>Antifragile</h3>
+        <p>Systems that gain from disorder and testing.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/effortless.html" target="_blank" rel="noopener noreferrer" data-title="Effortless">
+        <div class="card-emoji">🔄</div>
+        <h3>Effortless</h3>
+        <p>Make the most important tasks the easiest ones.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/dontwait.html" target="_blank" rel="noopener noreferrer" data-title="Don't Wait">
+        <div class="card-emoji">🚀</div>
+        <h3>Don't Wait</h3>
+        <p>Ship now and iterate in public.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/fiveday.html" target="_blank" rel="noopener noreferrer" data-title="Five Day Sprint">
+        <div class="card-emoji">🖐️</div>
+        <h3>Five Day Sprint</h3>
+        <p>From idea to working page in a single week.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/ship.html" target="_blank" rel="noopener noreferrer" data-title="Ship It">
+        <div class="card-emoji">🚀</div>
+        <h3>Ship It</h3>
+        <p>Pushing past launch friction.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/manifesto.html" target="_blank" rel="noopener noreferrer" data-title="Execution Manifesto">
+        <div class="card-emoji">📜</div>
+        <h3>Execution Manifesto</h3>
+        <p>The fastest route from thought to code.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/birdbybird.html" target="_blank" rel="noopener noreferrer" data-title="Bird by Bird">
+        <div class="card-emoji">🐦</div>
+        <h3>Bird by Bird</h3>
+        <p>Tackling overwhelming projects step-by-step.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/positioning.html" target="_blank" rel="noopener noreferrer" data-title="Positioning">
+        <div class="card-emoji">🎯</div>
+        <h3>Positioning</h3>
+        <p>Owning a distinct territory in the prospect's mind.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/zag.html" target="_blank" rel="noopener noreferrer" data-title="Zag">
+        <div class="card-emoji">🦓</div>
+        <h3>Zag</h3>
+        <p>When everyone zigs, zag with radical difference.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/play.html" target="_blank" rel="noopener noreferrer" data-title="Play Bigger">
+        <div class="card-emoji">🕹️</div>
+        <h3>Play Bigger</h3>
+        <p>Define and dominate your own category.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/elon.html" target="_blank" rel="noopener noreferrer" data-title="Elon Musk Strategy">
+        <div class="card-emoji">🚀</div>
+        <h3>Elon Strategy</h3>
+        <p>First-principles design and bold bets.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/game.html" target="_blank" rel="noopener noreferrer" data-title="Game Theory">
+        <div class="card-emoji">🎮</div>
+        <h3>Game Theory</h3>
+        <p>Designing system rules to win.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/clearthinking.html" target="_blank" rel="noopener noreferrer" data-title="Clear Thinking">
+        <div class="card-emoji">🗺️</div>
+        <h3>Clear Thinking</h3>
+        <p>Designing ordinary moments for extraordinary results.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/cyber.html" target="_blank" rel="noopener noreferrer" data-title="Psycho-Cybernetics">
+        <div class="card-emoji">🌐</div>
+        <h3>Psycho-Cybernetics</h3>
+        <p>Reprogramming identity and brand vision.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/momentum.html" target="_blank" rel="noopener noreferrer" data-title="Momentum Engine">
+        <div class="card-emoji">📈</div>
+        <h3>Momentum Engine</h3>
+        <p>Compounding small wins into runaway success.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/power.html" target="_blank" rel="noopener noreferrer" data-title="The Power of Less">
+        <div class="card-emoji">🪵</div>
+        <h3>The Power of Less</h3>
+        <p>Streamline workflow down to essential levers.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/success.html" target="_blank" rel="noopener noreferrer" data-title="5-Step Restart">
+        <div class="card-emoji">🔄</div>
+        <h3>5-Step Restart</h3>
+        <p>Pivoting underperforming campaigns quickly.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/experiments.html" target="_blank" rel="noopener noreferrer" data-title="Micro-Experiments">
+        <div class="card-emoji">🧪</div>
+        <h3>Micro-Experiments</h3>
+        <p>Low-cost testing to find winners.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/chaos.html" target="_blank" rel="noopener noreferrer" data-title="Managing Chaos">
+        <div class="card-emoji">🕸️</div>
+        <h3>Managing Chaos</h3>
+        <p>Structuring complex marketing systems.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/puzzles.html" target="_blank" rel="noopener noreferrer" data-title="Solving Puzzles">
+        <div class="card-emoji">🧩</div>
+        <h3>Solving Puzzles</h3>
+        <p>Formatting pages as solvable problems.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- NEW CATEGORY 5: COMMUNICATION & TRUST -->
+  <section class="category" data-cat="communication-trust">
+    <h2 class="category-title">🤝 Communication, Trust & Connection</h2>
+    <div class="grid">
+      <a class="card" href="https://easylandx.github.io/all/transparency.html" target="_blank" rel="noopener noreferrer" data-title="Radical Transparency">
+        <div class="card-emoji">🛡️</div>
+        <h3>Radical Transparency</h3>
+        <p>Building instant credibility through openness.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/trust.html" target="_blank" rel="noopener noreferrer" data-title="Trust Architecture">
+        <div class="card-emoji">🤝</div>
+        <h3>Trust Architecture</h3>
+        <p>Lowering customer anxiety and build safety.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/friends.html" target="_blank" rel="noopener noreferrer" data-title="How to Win Friends">
+        <div class="card-emoji">👥</div>
+        <h3>How to Win Friends</h3>
+        <p>Conversational web design that builds rapport.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/talk.html" target="_blank" rel="noopener noreferrer" data-title="Word of Mouth">
+        <div class="card-emoji">📢</div>
+        <h3>Word of Mouth</h3>
+        <p>Triggering organic referral loops.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/magnetic.html" target="_blank" rel="noopener noreferrer" data-title="Magnetic Personality">
+        <div class="card-emoji">🧲</div>
+        <h3>Magnetic Personality</h3>
+        <p>Infusing human warmth into digital touchpoints.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/story.html" target="_blank" rel="noopener noreferrer" data-title="Storytelling">
+        <div class="card-emoji">🩹</div>
+        <h3>Storytelling</h3>
+        <p>Relatable narratives that resolve user pain.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/dragon.html" target="_blank" rel="noopener noreferrer" data-title="Captivating Narrative">
+        <div class="card-emoji">🐉</div>
+        <h3>Captivating Narrative</h3>
+        <p>Gripping copy structure that keeps readers hooked.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/captivate.html" target="_blank" rel="noopener noreferrer" data-title="Captivate">
+        <div class="card-emoji">⏱️</div>
+        <h3>Captivate</h3>
+        <p>Winning the first 5 seconds of interaction.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/listen.html" target="_blank" rel="noopener noreferrer" data-title="Listening First">
+        <div class="card-emoji">👂</div>
+        <h3>Listening First</h3>
+        <p>Reflecting user voice back in your headline.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/listening.html" target="_blank" rel="noopener noreferrer" data-title="Active Listening UX">
+        <div class="card-emoji">🎧</div>
+        <h3>Active Listening UX</h3>
+        <p>Designing pages that answer unspoken doubts.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/speak.html" target="_blank" rel="noopener noreferrer" data-title="Fluent Conversation">
+        <div class="card-emoji">🗣️</div>
+        <h3>Fluent Conversation</h3>
+        <p>Copy structured as an easy 1-on-1 dialog.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/conversations.html" target="_blank" rel="noopener noreferrer" data-title="Crucial Conversations">
+        <div class="card-emoji">🗣️</div>
+        <h3>Crucial Conversations</h3>
+        <p>Addressing high-stakes objections directly.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/safe.html" target="_blank" rel="noopener noreferrer" data-title="Psychological Safety">
+        <div class="card-emoji">🔒</div>
+        <h3>Psychological Safety</h3>
+        <p>Guarantees and risk reversals.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/smalltalk.html" target="_blank" rel="noopener noreferrer" data-title="Fine Art of Small Talk">
+        <div class="card-emoji">🎨</div>
+        <h3>Fine Art of Small Talk</h3>
+        <p>Connecting quickly through micro-moments.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/networking.html" target="_blank" rel="noopener noreferrer" data-title="Authentic Connections">
+        <div class="card-emoji">🌐</div>
+        <h3>Authentic Connections</h3>
+        <p>Building long-term customer relationships.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/seen.html" target="_blank" rel="noopener noreferrer" data-title="Show Your Work">
+        <div class="card-emoji">🖼️</div>
+        <h3>Show Your Work</h3>
+        <p>Behind-the-scenes build-in-public pages.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/identity.html" target="_blank" rel="noopener noreferrer" data-title="Target Identity">
+        <div class="card-emoji">🆔</div>
+        <h3>Target Identity</h3>
+        <p>Speaking to the specific person's self-image.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/confidence.html" target="_blank" rel="noopener noreferrer" data-title="Brand Confidence">
+        <div class="card-emoji">🦁</div>
+        <h3>Brand Confidence</h3>
+        <p>Unapologetic positioning that inspires trust.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/confident.html" target="_blank" rel="noopener noreferrer" data-title="Confident Mind">
+        <div class="card-emoji">🦁</div>
+        <h3>Confident Mind</h3>
+        <p>Projecting total assurance in your offer.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/poetic.html" target="_blank" rel="noopener noreferrer" data-title="Poetic Resonance">
+        <div class="card-emoji">🎭</div>
+        <h3>Poetic Resonance</h3>
+        <p>Expressive design that hits home emotionally.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/value.html" target="_blank" rel="noopener noreferrer" data-title="Customer Value">
+        <div class="card-emoji">💖</div>
+        <h3>Customer Value</h3>
+        <p>Aligning with what visitors actually treasure.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/gift.html" target="_blank" rel="noopener noreferrer" data-title="The Gift">
+        <div class="card-emoji">🎁</div>
+        <h3>The Gift</h3>
+        <p>Generous lead magnets and distinct value.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/therapy.html" target="_blank" rel="noopener noreferrer" data-title="Page Therapy">
+        <div class="card-emoji">👩🏼‍⚕️</div>
+        <h3>Page Therapy</h3>
+        <p>Diagnosing and healing underperforming copy.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/think.html" target="_blank" rel="noopener noreferrer" data-title="Feel the Experience">
+        <div class="card-emoji">❤️</div>
+        <h3>Feel the Experience</h3>
+        <p>Designing for visceral human resonance.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/noticing.html" target="_blank" rel="noopener noreferrer" data-title="The Art of Noticing">
+        <div class="card-emoji">👁️</div>
+        <h3>The Art of Noticing</h3>
+        <p>Capturing subtle details that build rapport.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/filter.html" target="_blank" rel="noopener noreferrer" data-title="Filter Your Audience">
+        <div class="card-emoji">⏳</div>
+        <h3>Filter Your Audience</h3>
+        <p>Attract the right clients, repel the wrong ones.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/purpose.html" target="_blank" rel="noopener noreferrer" data-title="Purpose Driven">
+        <div class="card-emoji">🧭</div>
+        <h3>Purpose Driven</h3>
+        <p>Anchoring landing pages in clear why statement.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/flexing.html" target="_blank" rel="noopener noreferrer" data-title="Continuous Learning">
+        <div class="card-emoji">📚</div>
+        <h3>Continuous Learning</h3>
+        <p>Adapting your page to customer feedback.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/skills.html" target="_blank" rel="noopener noreferrer" data-title="Underrated Skills">
+        <div class="card-emoji">🔑</div>
+        <h3>Underrated Skills</h3>
+        <p>Leveraging subtle soft skills in page design.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/hansei.html" target="_blank" rel="noopener noreferrer" data-title="Hansei Practice">
+        <div class="card-emoji">🎎</div>
+        <h3>Hansei Practice</h3>
+        <p>Self-reflection to improve campaign yield.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/method.html" target="_blank" rel="noopener noreferrer" data-title="Social Method">
+        <div class="card-emoji">🤝</div>
+        <h3>Social Method</h3>
+        <p>Applying social skills to user interface design.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/signal.html" target="_blank" rel="noopener noreferrer" data-title="Signal vs Noise">
+        <div class="card-emoji">📶</div>
+        <h3>Signal vs Noise</h3>
+        <p>Keeping only high-value signals on screen.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/minute.html" target="_blank" rel="noopener noreferrer" data-title="The First Minute">
+        <div class="card-emoji">⏳</div>
+        <h3>The First Minute</h3>
+        <p>Hooking attention within the opening 60 seconds.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/mypage.html" target="_blank" rel="noopener noreferrer" data-title="My Page">
+        <div class="card-emoji">🏠</div>
+        <h3>My Page</h3>
+        <p>Crafting your personal home base on the web.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/colors.html" target="_blank" rel="noopener noreferrer" data-title="Color Psychology">
+        <div class="card-emoji">🎨</div>
+        <h3>Color Psychology</h3>
+        <p>Reading landing pages through color harmony.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/eq.html" target="_blank" rel="noopener noreferrer" data-title="Emotional Intelligence">
+        <div class="card-emoji">🦉</div>
+        <h3>Emotional Intelligence</h3>
+        <p>Designing empathetic user experiences.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/growth.html" target="_blank" rel="noopener noreferrer" data-title="Iterative Growth">
+        <div class="card-emoji">🌱</div>
+        <h3>Iterative Growth</h3>
+        <p>Continuous feedback loops and effort.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/powervsforce.html" target="_blank" rel="noopener noreferrer" data-title="Power vs Force">
+        <div class="card-emoji">⚡</div>
+        <h3>Power vs Force</h3>
+        <p>Attracting buyers instead of forcing sales.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/future.html" target="_blank" rel="noopener noreferrer" data-title="Your Future Self">
+        <div class="card-emoji">⏳</div>
+        <h3>Your Future Self</h3>
+        <p>Connecting current action to long-term outcomes.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/changing.html" target="_blank" rel="noopener noreferrer" data-title="Inner Change">
+        <div class="card-emoji">🔄</div>
+        <h3>Inner Change</h3>
+        <p>Overcoming internal resistance to buy.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/standing.html" target="_blank" rel="noopener noreferrer" data-title="Structural Alignment">
+        <div class="card-emoji">🧍</div>
+        <h3>Structural Alignment</h3>
+        <p>Aligning headline, body, and CTA seamlessly.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/thoughts.html" target="_blank" rel="noopener noreferrer" data-title="Self-Esteem & Trust">
+        <div class="card-emoji">💭</div>
+        <h3>Self-Esteem & Trust</h3>
+        <p>Building buyer confidence in themselves.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/dream.html" target="_blank" rel="noopener noreferrer" data-title="The Dream Offer">
+        <div class="card-emoji">🚀</div>
+        <h3>The Dream Offer</h3>
+        <p>Painting an irresistible future state.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/forecast.html" target="_blank" rel="noopener noreferrer" data-title="Predictable Forecast">
+        <div class="card-emoji">📈</div>
+        <h3>Predictable Forecast</h3>
+        <p>Building pipeline with absolute confidence.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/freewill.html" target="_blank" rel="noopener noreferrer" data-title="Free Will">
+        <div class="card-emoji">🪂</div>
+        <h3>Free Will</h3>
+        <p>Empowering user choice while guiding action.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/leadership.html" target="_blank" rel="noopener noreferrer" data-title="Leadership in Copy">
+        <div class="card-emoji">🎬</div>
+        <h3>Leadership in Copy</h3>
+        <p>Taking charge and guiding the reader.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/design.html" target="_blank" rel="noopener noreferrer" data-title="Mind-Centered Design">
+        <div class="card-emoji">👁️</div>
+        <h3>Mind-Centered Design</h3>
+        <p>Designing directly for how the visitor thinks.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/patience.html" target="_blank" rel="noopener noreferrer" data-title="Patience in Growth">
+        <div class="card-emoji">🐢</div>
+        <h3>Patience in Growth</h3>
+        <p>Playing the long game with compounding pages.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/rewire.html" target="_blank" rel="noopener noreferrer" data-title="Rewire Behavior">
+        <div class="card-emoji">⚡</div>
+        <h3>Rewire Behavior</h3>
+        <p>How real mindset and habit shifts occur.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/resilience.html" target="_blank" rel="noopener noreferrer" data-title="Resilience">
+        <div class="card-emoji">🏹</div>
+        <h3>Resilience</h3>
+        <p>How fast you bounce back from failed tests.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/details.html" target="_blank" rel="noopener noreferrer" data-title="Micro-Details">
+        <div class="card-emoji">🔬</div>
+        <h3>Micro-Details</h3>
+        <p>Tiny polishes that drive major conversion lift.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/potential.html" target="_blank" rel="noopener noreferrer" data-title="Unlocking Potential">
+        <div class="card-emoji">🚀</div>
+        <h3>Unlocking Potential</h3>
+        <p>Helping users realize what's possible.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+      <a class="card" href="https://easylandx.github.io/all/ikigai.html" target="_blank" rel="noopener noreferrer" data-title="Ikigai Alignment">
+        <div class="card-emoji">🌸</div>
+        <h3>Ikigai Alignment</h3>
+        <p>Intersecting passion, skill, and market demand.</p>
+        <span class="link-hint">Open →</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>EasyLandX · Principles for high-converting landing pages · <a href="https://easylandx.github.io/all/" target="_blank" rel="noopener noreferrer">Original Library</a></p>
+</footer>
+
+<script>
+  const search = document.getElementById('search');
+  const catBtns = document.querySelectorAll('.cat-btn');
+  const categories = document.querySelectorAll('.category');
+  const cards = document.querySelectorAll('.card');
+
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      catBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+
+      categories.forEach(sec => {
+        if (cat === 'all' || sec.dataset.cat === cat) {
+          sec.classList.remove('hidden');
+        } else {
+          sec.classList.add('hidden');
+        }
+      });
+
+      cards.forEach(c => c.classList.remove('hidden'));
+      search.value = '';
+    });
+  });
+
+  search.addEventListener('input', (e) => {
+    const q = e.target.value.toLowerCase().trim();
+    catBtns.forEach(b => b.classList.remove('active'));
+    document.querySelector('[data-cat="all"]').classList.add('active');
+    categories.forEach(sec => sec.classList.remove('hidden'));
+
+    cards.forEach(card => {
+      const title = (card.dataset.title || card.querySelector('h3').textContent).toLowerCase();
+      const desc = card.querySelector('p').textContent.toLowerCase();
+      if (title.includes(q) || desc.includes(q)) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    categories.forEach(sec => {
+      const visible = sec.querySelectorAll('.card:not(.hidden)').length;
+      if (visible === 0) sec.classList.add('hidden');
+      else sec.classList.remove('hidden');
+    });
+  });
+</script>
+
+</body>
+</html>
