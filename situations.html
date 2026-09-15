@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages Built From Situations, Not Guesswork</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --coral:#FF3E63;
+    --coral-deep:#E11F47;
+    --yellow:#FFF01F;
+    --teal:#00F0C8;
+    --ink:#1A1330;
+    --ink-soft:#3A2E52;
+    --cream:#FFF7EC;
+    --white:#FFFFFF;
+    --shadow-hard: 6px 6px 0 var(--ink);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--coral);
+    line-height:1.5;
+  }
+  h1,h2,h3,.display{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:800;
+    line-height:1.05;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  section{padding:96px 0;position:relative;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--ink);
+    color:var(--cream);
+    padding:16px 0;
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.25rem;}
+  .brand span{color:var(--teal);}
+  .nav-cta{
+    background:var(--yellow);
+    color:var(--ink);
+    padding:10px 20px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:0.9rem;
+    text-decoration:none;
+    border:2px solid var(--ink);
+    transition:transform .15s ease;
+    display:inline-block;
+  }
+  .nav-cta:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--teal);}
+
+  /* ---------- HERO (Coral) ---------- */
+  .hero{
+    background:var(--coral);
+    padding:120px 0 100px;
+    overflow:hidden;
+  }
+  .hero .wrap{display:grid;grid-template-columns:1.15fr 0.85fr;gap:48px;align-items:center;}
+  .eyebrow-tag{
+    display:inline-block;
+    background:var(--ink);
+    color:var(--yellow);
+    padding:6px 14px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:0.85rem;
+    margin-bottom:20px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.8rem);
+    color:var(--ink);
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:var(--yellow);
+    padding:0 8px;
+    box-shadow:var(--shadow-hard);
+    display:inline-block;
+    transform:rotate(-1deg);
+  }
+  .hero p.lead{
+    margin-top:24px;
+    font-size:1.15rem;
+    color:var(--ink);
+    max-width:46ch;
+  }
+  .hero-actions{display:flex;gap:16px;margin-top:36px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--ink);
+    color:var(--teal);
+    padding:16px 30px;
+    border-radius:12px;
+    font-weight:700;
+    text-decoration:none;
+    border:2px solid var(--ink);
+    box-shadow:var(--shadow-hard);
+    transition:transform .15s ease, box-shadow .15s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+    padding:16px 24px;
+    border-radius:12px;
+    font-weight:700;
+    text-decoration:none;
+    border:2px dashed var(--ink);
+    display:inline-block;
+  }
+
+  /* room card — visual for "situation design" */
+  .room-card{
+    background:var(--white);
+    border:3px solid var(--ink);
+    border-radius:18px;
+    box-shadow:var(--shadow-hard);
+    padding:26px;
+    transform:rotate(2deg);
+  }
+  .room-card .room-label{
+    font-size:0.8rem;
+    font-weight:700;
+    color:var(--coral-deep);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+  .room-card .room-visitor{
+    display:flex;align-items:center;gap:10px;margin-top:14px;font-size:0.95rem;
+  }
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--teal);flex:none;}
+
+  /* ---------- SECTION: Teal (the illusion) ---------- */
+  .section-teal{
+    background:var(--teal);
+  }
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+  .section-teal h2{font-size:clamp(1.9rem,3.5vw,2.6rem);max-width:14ch;}
+  .compare-pair{display:grid;gap:16px;}
+  .compare-card{
+    background:var(--ink);
+    color:var(--cream);
+    border-radius:16px;
+    padding:24px;
+    border:3px solid var(--ink);
+  }
+  .compare-card.bad{background:var(--white);color:var(--ink);border-style:dashed;}
+  .compare-card .k{font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:.05em;opacity:.75;display:block;margin-bottom:8px;}
+  .compare-card p{margin:0;font-size:1.02rem;}
+
+  /* ---------- SECTION: Yellow (interactive lab) ---------- */
+  .section-yellow{
+    background:var(--yellow);
+  }
+  .lab-shell{
+    background:var(--white);
+    border:3px solid var(--ink);
+    border-radius:22px;
+    box-shadow:var(--shadow-hard);
+    padding:40px;
+    margin-top:44px;
+  }
+  .lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+  .lab-toggle{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap;}
+  .lab-toggle button{
+    flex:1;
+    min-width:150px;
+    padding:14px 18px;
+    border-radius:12px;
+    border:2px solid var(--ink);
+    background:var(--cream);
+    font-weight:700;
+    font-family:inherit;
+    font-size:0.95rem;
+    cursor:pointer;
+    transition:all .15s ease;
+    color:var(--ink);
+  }
+  .lab-toggle button.active{
+    background:var(--coral);
+    color:var(--white);
+    transform:translate(-2px,-2px);
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  .demo-page{
+    border:2px solid var(--ink);
+    border-radius:14px;
+    padding:26px 22px;
+    background:var(--cream);
+    min-height:170px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:14px;
+  }
+  .demo-page .demo-headline{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.15rem;}
+  .demo-btn{
+    align-self:flex-start;
+    padding:12px 22px;
+    border-radius:10px;
+    font-weight:700;
+    border:2px solid var(--ink);
+    background:var(--ink);
+    color:var(--yellow);
+    transition:all .2s ease;
+  }
+  .meter-wrap{margin-top:6px;}
+  .meter-label{display:flex;justify-content:space-between;font-size:0.85rem;font-weight:600;margin-bottom:6px;}
+  .meter-track{
+    height:20px;
+    background:var(--cream);
+    border:2px solid var(--ink);
+    border-radius:100px;
+    overflow:hidden;
+  }
+  .meter-fill{
+    height:100%;
+    background:linear-gradient(90deg,var(--teal),var(--coral));
+    width:24%;
+    transition:width .5s cubic-bezier(.4,0,.2,1);
+    border-right:2px solid var(--ink);
+  }
+  .meter-caption{margin-top:10px;font-size:0.92rem;color:var(--ink-soft);min-height:44px;}
+
+  /* ---------- SECTION: Framework timeline (Coral) ---------- */
+  .section-framework{background:var(--coral);}
+  .timeline{
+    margin-top:56px;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .t-step{
+    display:grid;
+    grid-template-columns:70px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-top:2px solid var(--ink);
+  }
+  .t-step:last-child{border-bottom:2px solid var(--ink);}
+  .t-num{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:800;
+    font-size:1.6rem;
+    color:var(--white);
+    -webkit-text-stroke:2px var(--ink);
+  }
+  .t-step h3{font-size:1.2rem;margin-bottom:6px;}
+  .t-step p{margin:0;color:var(--ink-soft);max-width:60ch;}
+
+  /* ---------- SECTION: Teal proof (belonging) ---------- */
+  .section-belonging{background:var(--teal);}
+  .belong-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px;}
+  .belong-card{
+    background:var(--ink);
+    color:var(--cream);
+    border-radius:16px;
+    padding:26px;
+  }
+  .belong-card .tag{color:var(--yellow);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:.05em;}
+  .belong-card p{margin-top:10px;font-size:0.98rem;}
+
+  /* ---------- FINAL CTA (Yellow) ---------- */
+  .section-final{
+    background:var(--yellow);
+    text-align:center;
+  }
+  .section-final h2{font-size:clamp(2rem,4vw,3rem);max-width:18ch;margin:0 auto;}
+  .section-final p{max-width:50ch;margin:20px auto 0;font-size:1.1rem;color:var(--ink-soft);}
+  .final-actions{margin-top:36px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+  footer{
+    background:var(--ink);
+    color:var(--cream);
+    padding:36px 0;
+    text-align:center;
+    font-size:0.9rem;
+  }
+  footer a{color:var(--teal);text-decoration:none;font-weight:600;}
+
+  @media (max-width:840px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .two-col{grid-template-columns:1fr;}
+    .lab-grid{grid-template-columns:1fr;}
+    .belong-grid{grid-template-columns:1fr;}
+    .room-card{transform:none;order:-1;}
+    section{padding:64px 0;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Easy<span>Land</span>X</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">See EasyLandX</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow-tag">Situational design for small businesses</span>
+      <h1>Your landing page isn't a brochure. It's <em>a situation</em>.</h1>
+      <p class="lead">Visitors don't decide to buy because of who they are. They decide because of where they land. EasyLandX builds pages that put people in the exact situation that leads to "yes."</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Get your page built</a>
+        <a class="btn-ghost" href="#lab">Try the CTA lab</a>
+      </div>
+    </div>
+    <div class="room-card">
+      <span class="room-label">A visitor lands here</span>
+      <h3 style="margin-top:10px;font-size:1.3rem;">What they do next depends on the room you built, not their willpower.</h3>
+      <div class="room-visitor"><span class="dot"></span> Clear layout, one path forward</div>
+      <div class="room-visitor"><span class="dot"></span> One direct, specific action</div>
+      <div class="room-visitor"><span class="dot"></span> Nothing pulling attention away</div>
+    </div>
+  </div>
+</section>
+
+<!-- THE ILLUSION -->
+<section class="section-teal">
+  <div class="wrap">
+    <div class="two-col">
+      <h2>We used to blame the visitor. Now we redesign the room.</h2>
+      <div>
+        <p style="font-size:1.05rem;margin-bottom:24px;">When a page underperforms, it's easy to assume visitors "just aren't interested." Situational psychology says otherwise: small, invisible details in a page's environment quietly decide whether someone stays, scrolls, or leaves.</p>
+        <div class="compare-pair">
+          <div class="compare-card bad">
+            <span class="k">Old assumption</span>
+            <p>"They left because they weren't ready to buy."</p>
+          </div>
+          <div class="compare-card">
+            <span class="k">What's actually happening</span>
+            <p>They left because the page gave them three competing actions and zero clear next step.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE LAB -->
+<section class="section-yellow" id="lab">
+  <div class="wrap">
+    <h2 style="max-width:20ch;font-size:clamp(1.9rem,3.5vw,2.6rem);">The single biggest lever: how specific is your ask?</h2>
+    <p style="margin-top:16px;max-width:60ch;font-size:1.05rem;">In a crowd, "someone help" gets ignored — "you, in the blue shirt, help me" gets action. The same rule runs every landing page. Try both versions below.</p>
+
+    <div class="lab-shell">
+      <div class="lab-grid">
+        <div>
+          <div class="lab-toggle">
+            <button id="btn-vague" class="active" onclick="setAsk('vague')">Vague ask</button>
+            <button id="btn-specific" onclick="setAsk('specific')">Specific ask</button>
+          </div>
+          <div class="demo-page">
+            <div class="demo-headline" id="demo-headline">Interested in working together? Feel free to reach out.</div>
+            <button class="demo-btn" id="demo-btn">Contact us</button>
+          </div>
+        </div>
+        <div>
+          <div class="meter-wrap">
+            <div class="meter-label"><span>Likelihood a visitor acts</span><span id="meter-pct">24%</span></div>
+            <div class="meter-track"><div class="meter-fill" id="meter-fill" style="width:24%;"></div></div>
+          </div>
+          <p class="meter-caption" id="meter-caption">A general invitation lets every visitor assume the page wasn't really talking to them — so most do nothing.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORK TIMELINE -->
+<section class="section-framework">
+  <div class="wrap">
+    <h2 style="font-size:clamp(1.9rem,3.5vw,2.6rem);max-width:18ch;">How we design the situation, step by step</h2>
+    <div class="timeline">
+      <div class="t-step">
+        <div class="t-num">01</div>
+        <div>
+          <h3>Audit the constraints first</h3>
+          <p>Before writing a word of copy, we map the real context your visitor arrives in: what device, what mood, what they saw right before landing here.</p>
+        </div>
+      </div>
+      <div class="t-step">
+        <div class="t-num">02</div>
+        <div>
+          <h3>Replace the crowd with a person</h3>
+          <p>Every page gets one clear action, addressed directly to the reader, instead of a menu of options that lets everyone assume someone else will click.</p>
+        </div>
+      </div>
+      <div class="t-step">
+        <div class="t-num">03</div>
+        <div>
+          <h3>Build belonging into the layout</h3>
+          <p>Real client stories and familiar framing turn "a stranger's website" into "a place people like me already trust."</p>
+        </div>
+      </div>
+      <div class="t-step">
+        <div class="t-num">04</div>
+        <div>
+          <h3>Use energy, not noise</h3>
+          <p>Color, motion, and pacing are tuned to create genuine excitement about the offer — not clutter that competes with it.</p>
+        </div>
+      </div>
+      <div class="t-step">
+        <div class="t-num">05</div>
+        <div>
+          <h3>Remove every point of friction</h3>
+          <p>Slow loads, buried buttons, and confusing forms are the environment working against you. We design them out from the start.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BELONGING -->
+<section class="section-belonging">
+  <div class="wrap">
+    <h2 style="max-width:18ch;">Small changes in framing turn browsers into believers</h2>
+    <div class="belong-grid">
+      <div class="belong-card">
+        <span class="tag">Wellness &amp; coaching</span>
+        <p>A page that speaks to "someone exactly like you" outperforms one that speaks to "everyone."</p>
+      </div>
+      <div class="belong-card">
+        <span class="tag">Food &amp; local business</span>
+        <p>Familiar neighborhood details make a first-time visitor feel like a regular before they've even ordered.</p>
+      </div>
+      <div class="belong-card">
+        <span class="tag">Creators &amp; pet services</span>
+        <p>Shared context — the same city, the same struggle, the same routine — quietly builds trust faster than any headline.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section-final">
+  <div class="wrap">
+    <h2>Let's design the situation that gets your visitors to say yes.</h2>
+    <p>EasyLandX builds custom, conversion-focused landing pages for small businesses — grounded in how people actually decide, not how we wish they did.</p>
+    <div class="final-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Built by EasyLandX · <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a> · &copy; 2026
+  </div>
+</footer>
+
+<script>
+  const askData = {
+    vague: {
+      headline: "Interested in working together? Feel free to reach out.",
+      button: "Contact us",
+      pct: 24,
+      caption: "A general invitation lets every visitor assume the page wasn't really talking to them — so most do nothing."
+    },
+    specific: {
+      headline: "Running a small business and ready to grow? This page was built for you.",
+      button: "Yes, build my page",
+      pct: 71,
+      caption: "Naming the exact person and the exact next step removes the doubt that stops someone from acting."
+    }
+  };
+
+  function setAsk(kind){
+    const data = askData[kind];
+    document.getElementById('demo-headline').textContent = data.headline;
+    document.getElementById('demo-btn').textContent = data.button;
+    document.getElementById('meter-fill').style.width = data.pct + '%';
+    document.getElementById('meter-pct').textContent = data.pct + '%';
+    document.getElementById('meter-caption').textContent = data.caption;
+
+    document.getElementById('btn-vague').classList.toggle('active', kind === 'vague');
+    document.getElementById('btn-specific').classList.toggle('active', kind === 'specific');
+  }
+</script>
+
+</body>
+</html>

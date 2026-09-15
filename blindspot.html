@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasylandX — Landing pages without the blindspot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=JetBrains+Mono:wght@400;500;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #D7FF1F;
+    --bg-soft: #C9F214;
+    --ink: #120221;
+    --panel: #150125;
+    --panel-2: #1D0330;
+    --violet: #8B00FF;
+    --violet-soft: #B25CFF;
+    --cyan: #00F0FF;
+    --panel-ink: #F2FFFA;
+    --panel-ink-dim: #C9B9E0;
+    --line: rgba(18,2,33,0.16);
+    --line-panel: rgba(242,255,250,0.14);
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.005em;
+    line-height: 0.92;
+    margin: 0;
+  }
+
+  .mono{
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  @media (max-width: 640px){
+    .wrap{ padding: 0 20px; }
+  }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 26px 0;
+  }
+  .nav .wrap{ display:flex; align-items:center; justify-content:space-between; }
+  .brand{
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 0.02em;
+  }
+  .brand span{ color: var(--violet); }
+  .nav-cta{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1.5px solid var(--ink);
+    padding: 9px 16px;
+    border-radius: 999px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .nav-cta:hover{ background: var(--ink); color: var(--bg); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 40px 0 84px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  @media (max-width: 900px){
+    .hero-grid{ grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .kicker{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--violet);
+    margin: 0 0 18px;
+  }
+
+  .hero h1{
+    font-size: clamp(44px, 6.4vw, 78px);
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.7s ease-out 0.05s forwards;
+  }
+  .hero h1 em{
+    font-style: normal;
+    color: var(--panel);
+    -webkit-text-stroke: 1.5px var(--panel);
+  }
+
+  @keyframes rise{
+    to{ opacity: 1; transform: translateY(0); }
+  }
+
+  .hero p.lead{
+    font-size: 18px;
+    line-height: 1.55;
+    max-width: 46ch;
+    margin: 26px 0 0;
+    color: var(--ink);
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.22s forwards;
+  }
+
+  .hero-note{
+    margin-top: 30px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: rgba(18,2,33,0.62);
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    opacity: 0;
+    animation: rise 0.7s ease-out 0.36s forwards;
+  }
+  .hero-note svg{ flex: none; }
+
+  /* ---------- Reflex test console ---------- */
+  .console{
+    background: var(--panel);
+    color: var(--panel-ink);
+    border-radius: 18px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line-panel);
+  }
+  .console::before{
+    content:"";
+    position:absolute; inset: -40% -20% auto auto;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, var(--violet) 0%, transparent 70%);
+    opacity: 0.35;
+    pointer-events:none;
+  }
+  .console-head{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .console-title{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--cyan);
+  }
+  .console-count{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--panel-ink-dim);
+  }
+
+  .console-body{ position: relative; min-height: 260px; }
+
+  .prompt-label{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--panel-ink-dim);
+    margin-bottom: 10px;
+  }
+
+  .reflex-options{
+    display:flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .reflex-btn{
+    text-align:left;
+    background: var(--panel-2);
+    color: var(--panel-ink);
+    border: 1px solid var(--line-panel);
+    border-radius: 12px;
+    padding: 18px 18px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+  }
+  .reflex-btn:hover{ border-color: var(--cyan); transform: translateX(3px); }
+  .reflex-btn:active{ transform: translateX(1px) scale(0.99); }
+  .reflex-btn.picked{ border-color: var(--violet-soft); background: #2A0648; }
+
+  .clock{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--cyan);
+    line-height: 1;
+  }
+  .clock-wrap{
+    display:flex; align-items: baseline; gap: 10px; margin-bottom: 20px;
+  }
+  .clock-unit{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--panel-ink-dim);
+  }
+
+  .console-start{
+    background: var(--cyan);
+    color: var(--panel);
+    border: none;
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: filter 0.12s ease;
+  }
+  .console-start:hover{ filter: brightness(1.08); }
+
+  .console-result{ display:none; }
+  .console-result.show{ display:block; }
+  .console-result .bignum{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 46px;
+    font-weight: 700;
+    color: var(--cyan);
+    line-height: 1;
+  }
+  .console-result .capt{
+    font-size: 13px;
+    color: var(--panel-ink-dim);
+    margin-top: 6px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .console-result p{
+    margin: 18px 0 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--panel-ink);
+  }
+  .console-retry{
+    margin-top: 18px;
+    background: transparent;
+    color: var(--panel-ink-dim);
+    border: 1px solid var(--line-panel);
+    border-radius: 10px;
+    padding: 11px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    cursor: pointer;
+  }
+  .console-retry:hover{ color: var(--panel-ink); border-color: var(--cyan); }
+
+  /* ---------- Two systems section ---------- */
+  .systems{
+    padding: 90px 0;
+  }
+  .systems h2{
+    font-size: clamp(32px, 4.4vw, 48px);
+    max-width: 16ch;
+    margin-bottom: 48px;
+  }
+  .systems-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  @media (max-width: 760px){
+    .systems-grid{ grid-template-columns: 1fr; }
+  }
+  .sys-col{
+    padding: 36px 32px;
+  }
+  .sys-col.instinct{
+    background: var(--bg-soft);
+    border-right: 1px solid var(--line);
+  }
+  .sys-col.evidence{
+    background: var(--panel);
+    color: var(--panel-ink);
+  }
+  @media (max-width: 760px){
+    .sys-col.instinct{ border-right: none; border-bottom: 1px solid var(--line); }
+  }
+  .sys-tag{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .sys-col.instinct .sys-tag{ color: rgba(18,2,33,0.55); }
+  .sys-col.evidence .sys-tag{ color: var(--cyan); }
+  .sys-col h3{
+    font-size: 30px;
+    margin: 12px 0 16px;
+  }
+  .sys-col ul{
+    margin: 0; padding: 0; list-style: none;
+  }
+  .sys-col li{
+    padding: 10px 0;
+    border-top: 1px solid var(--line);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .sys-col.evidence li{ border-top: 1px solid var(--line-panel); }
+  .sys-col li:first-of-type{ border-top: none; }
+
+  /* ---------- Method / timeline ---------- */
+  .method{
+    padding: 20px 0 100px;
+  }
+  .method-head{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 52px;
+    flex-wrap: wrap;
+  }
+  .method h2{
+    font-size: clamp(32px, 4.4vw, 48px);
+    max-width: 18ch;
+  }
+  .method-head p{
+    max-width: 36ch;
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(18,2,33,0.72);
+    margin: 0;
+  }
+
+  .steps{
+    display:flex;
+    flex-direction: column;
+  }
+  .step{
+    display:grid;
+    grid-template-columns: 110px 1fr;
+    gap: 28px;
+    padding: 30px 0;
+    border-top: 1px solid var(--line);
+    position: relative;
+  }
+  .step:last-child{ border-bottom: 1px solid var(--line); }
+  @media (max-width: 640px){
+    .step{ grid-template-columns: 60px 1fr; gap: 18px; }
+  }
+  .step-num{
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 56px;
+    color: var(--panel);
+    line-height: 0.85;
+  }
+  @media (max-width: 640px){
+    .step-num{ font-size: 36px; }
+  }
+  .step-body h3{
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .step-body p{
+    margin: 0;
+    font-size: 15.5px;
+    line-height: 1.6;
+    max-width: 62ch;
+    color: rgba(18,2,33,0.78);
+  }
+  .step-body .step-tag{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--violet);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  /* ---------- CTA ---------- */
+  .cta{
+    background: var(--panel);
+    color: var(--panel-ink);
+    padding: 90px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before{
+    content:"";
+    position:absolute; inset: -30% -10% auto auto;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, var(--violet) 0%, transparent 70%);
+    opacity: 0.4;
+  }
+  .cta::after{
+    content:"";
+    position:absolute; inset: auto auto -30% -8%;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, var(--cyan) 0%, transparent 70%);
+    opacity: 0.25;
+  }
+  .cta-inner{ position: relative; max-width: 620px; }
+  .cta h2{
+    font-size: clamp(34px, 5vw, 56px);
+    margin-bottom: 20px;
+  }
+  .cta p{
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--panel-ink-dim);
+    max-width: 50ch;
+    margin: 0 0 34px;
+  }
+  .cta-actions{ display:flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary{
+    background: var(--cyan);
+    color: var(--panel);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 17px 26px;
+    border-radius: 10px;
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    transition: transform 0.12s ease, filter 0.12s ease;
+  }
+  .btn-primary:hover{ filter: brightness(1.08); transform: translateY(-1px); }
+  .btn-ghost{
+    border: 1px solid var(--line-panel);
+    color: var(--panel-ink);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 17px 24px;
+    border-radius: 10px;
+    display:inline-flex;
+    align-items:center;
+  }
+  .btn-ghost:hover{ border-color: var(--cyan); color: var(--cyan); }
+
+  footer{
+    padding: 28px 0 40px;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: rgba(18,2,33,0.55);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand">easyland<span>x</span></div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Open EasylandX ↗</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kicker">// based on Blindspot, Banaji &amp; Greenwald</p>
+      <h1>Your gut has a <em>blindspot</em> problem.</h1>
+      <p class="lead">Most landing pages are built on instinct — the layout that "feels right," the button color someone liked in a meeting. Instinct isn't neutral. It's shaped by whatever you saw most recently, and it moves faster than judgment ever could.</p>
+      <p class="hero-note"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#8B00FF" stroke-width="1.4"/><path d="M8 4.5V8L10.3 9.6" stroke="#8B00FF" stroke-width="1.4" stroke-linecap="round"/></svg>Run the 5-question test on the right — it takes under 20 seconds.</p>
+    </div>
+
+    <div class="console" id="console">
+      <div class="console-head">
+        <span class="console-title mono">REFLEX_TEST.exe</span>
+        <span class="console-count mono" id="qCount">0 / 5</span>
+      </div>
+
+      <div class="console-body">
+
+        <div id="introPane">
+          <p class="prompt-label">You'll see a landing-page choice. Pick the one you'd click — as fast as you can. Don't think about it.</p>
+          <button class="console-start" id="startBtn">START TEST →</button>
+        </div>
+
+        <div id="quizPane" style="display:none;">
+          <div class="clock-wrap">
+            <span class="clock" id="clockDisplay">0.00</span>
+            <span class="clock-unit">sec elapsed</span>
+          </div>
+          <p class="prompt-label" id="promptLabel">Which would you click?</p>
+          <div class="reflex-options" id="optionsWrap"></div>
+        </div>
+
+        <div class="console-result" id="resultPane">
+          <span class="bignum" id="avgTime">—</span>
+          <div class="capt">AVG. REACTION TIME</div>
+          <p id="resultCopy"></p>
+          <button class="console-retry" id="retryBtn">RUN AGAIN</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="systems">
+  <div class="wrap">
+    <h2>Two systems build every page. Only one of them is honest about its limits.</h2>
+    <div class="systems-grid">
+      <div class="sys-col instinct">
+        <span class="sys-tag">System 1 — reflex</span>
+        <h3>The instinct build</h3>
+        <ul>
+          <li>Ships whatever layout feels familiar from the last page that worked</li>
+          <li>Picks colors, copy, and CTA placement by comfort, not measurement</li>
+          <li>Rewrites the brief mid-project to fit whichever version people already like</li>
+          <li>Can't explain, after the fact, why one version was chosen over another</li>
+        </ul>
+      </div>
+      <div class="sys-col evidence">
+        <span class="sys-tag">System 2 — deliberate</span>
+        <h3>The evidence build</h3>
+        <ul>
+          <li>Locks success criteria — scroll depth, click-through, form completion — before design starts</li>
+          <li>Tests structure blind to which version is the client's personal favorite</li>
+          <li>Keeps every layout decision traceable to a reason, not a preference</li>
+          <li>Treats a hunch as a hypothesis to test, never as a conclusion</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="method">
+  <div class="wrap">
+    <div class="method-head">
+      <h2>How EasylandX keeps instinct out of the driver's seat</h2>
+      <p>Five checks, run on every page, in this order — before a single pixel is treated as final.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <span class="step-tag">Audit the instinct</span>
+          <h3>Find the habit before you fix it</h3>
+          <p>Before redesigning anything, we map the assumptions already baked into a page — the CTA copy nobody questioned, the layout copied from the last client. Naming the habit is the only way to stop running it on autopilot.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <span class="step-tag">Blind the review</span>
+          <h3>Judge the layout, not the logo</h3>
+          <p>Draft versions are reviewed stripped of branding and client history, so "we've always used this color" can't quietly outvote what actually reads better on the page.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <span class="step-tag">Pre-commit the criteria</span>
+          <h3>Decide what "working" means first</h3>
+          <p>Scroll depth, click-through, time to first action — the metrics are set and written down before a single section is built, so they can't be quietly redefined to match whichever version someone prefers.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <span class="step-tag">Expose the counter-pattern</span>
+          <h3>Test the layout you wouldn't default to</h3>
+          <p>Every project includes at least one structure that deliberately breaks from the client's industry norm — the goal is to see it fairly, not to let "that's not how this industry's sites look" end the conversation early.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <span class="step-tag">Re-engineer the structure</span>
+          <h3>Fix the system, not the moment</h3>
+          <p>The final hierarchy, spacing rules, and CTA placement are locked as a system before content is dropped in — so the next update follows the same rules instead of whoever's gut is loudest that week.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="cta-inner">
+      <h2>Stop shipping your gut.</h2>
+      <p>EasylandX builds landing pages against a locked set of criteria, not a mood board. See the process and the pages it's built.</p>
+      <div class="cta-actions">
+        <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasylandX ↗</a>
+        <a class="btn-ghost" href="#console">Retake the reflex test</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>easylandx</span>
+    <span>Landing pages built against evidence, not instinct.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const pairs = [
+    { a: "Sign Up Now", b: "Start Free" },
+    { a: "Buy Now", b: "Get Yours" },
+    { a: "Submit", b: "Get My Quote" },
+    { a: "Click Here", b: "See the Price" },
+    { a: "Learn More", b: "Show Me How It Works" }
+  ];
+
+  const startBtn = document.getElementById('startBtn');
+  const retryBtn = document.getElementById('retryBtn');
+  const introPane = document.getElementById('introPane');
+  const quizPane = document.getElementById('quizPane');
+  const resultPane = document.getElementById('resultPane');
+  const optionsWrap = document.getElementById('optionsWrap');
+  const qCount = document.getElementById('qCount');
+  const clockDisplay = document.getElementById('clockDisplay');
+  const avgTimeEl = document.getElementById('avgTime');
+  const resultCopy = document.getElementById('resultCopy');
+
+  let order = [];
+  let idx = 0;
+  let qStart = 0;
+  let times = [];
+  let clockTimer = null;
+  let clockStart = 0;
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]]=[a[j],a[i]];
+    }
+    return a;
+  }
+
+  function startClock(){
+    clockStart = performance.now();
+    clockTimer = setInterval(()=>{
+      const t = (performance.now() - clockStart)/1000;
+      clockDisplay.textContent = t.toFixed(2);
+    }, 30);
+  }
+  function stopClock(){
+    clearInterval(clockTimer);
+  }
+
+  function renderQuestion(){
+    if(idx >= order.length){ finish(); return; }
+    qCount.textContent = (idx+1) + " / " + order.length;
+    const pair = order[idx];
+    const flip = Math.random() > 0.5;
+    const left = flip ? pair.b : pair.a;
+    const right = flip ? pair.a : pair.b;
+    optionsWrap.innerHTML = "";
+    [left, right].forEach(label=>{
+      const btn = document.createElement('button');
+      btn.className = 'reflex-btn';
+      btn.textContent = "\u201C" + label + "\u201D";
+      btn.addEventListener('click', ()=>onPick(btn));
+      optionsWrap.appendChild(btn);
+    });
+    qStart = performance.now();
+    startClock();
+  }
+
+  function onPick(btn){
+    stopClock();
+    const t = performance.now() - qStart;
+    times.push(t);
+    btn.classList.add('picked');
+    Array.from(optionsWrap.children).forEach(c => c.disabled = true);
+    setTimeout(()=>{
+      idx++;
+      renderQuestion();
+    }, 220);
+  }
+
+  function finish(){
+    quizPane.style.display = 'none';
+    resultPane.classList.add('show');
+    const avgMs = times.reduce((s,v)=>s+v,0) / times.length;
+    avgTimeEl.textContent = Math.round(avgMs) + "ms";
+    let note;
+    if(avgMs < 1200){
+      note = "Under 1.2 seconds a choice — that's faster than deliberate reading, closer to reflex. That's the reflex a page's actual click data has to correct for, since it isn't measuring what people say they'd choose, only what they did.";
+    } else {
+      note = "You paused before choosing — which is rarer than it sounds. Most page decisions, including the ones professionals make, get settled at reflex speed. EasylandX tests structure instead of trusting that pause to happen on its own.";
+    }
+    resultCopy.textContent = note;
+  }
+
+  startBtn.addEventListener('click', ()=>{
+    order = shuffle(pairs);
+    idx = 0;
+    times = [];
+    introPane.style.display = 'none';
+    quizPane.style.display = 'block';
+    renderQuestion();
+  });
+
+  retryBtn.addEventListener('click', ()=>{
+    resultPane.classList.remove('show');
+    introPane.style.display = 'block';
+    clockDisplay.textContent = '0.00';
+  });
+})();
+</script>
+
+</body>
+</html>
