@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Your Landing Page, Already Whole</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#170430;
+    --bg-violet:#3B0C78;
+    --bg-violet-2:#5B17B7;
+    --bg-violet-3:#7A2CD6;
+    --surface:rgba(122,44,214,0.16);
+    --surface-strong:rgba(122,44,214,0.30);
+    --border-soft:rgba(255,255,255,0.12);
+    --gold:#FFC94D;
+    --gold-soft:#F0B54A;
+    --cyan:#2EE9FF;
+    --cyan-soft:#7DF3FF;
+    --text-primary:#F7F1FF;
+    --text-secondary:#C6ADE8;
+    --text-muted:#9E86C4;
+    --radius-lg:28px;
+    --radius-md:18px;
+    --radius-sm:12px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -10%, rgba(122,44,214,0.55), transparent 60%),
+      radial-gradient(ellipse 800px 700px at 90% 15%, rgba(46,233,255,0.10), transparent 55%),
+      radial-gradient(ellipse 1000px 800px at 50% 100%, rgba(255,201,77,0.08), transparent 60%),
+      linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-violet) 45%, var(--bg-deep) 100%);
+    background-attachment:fixed;
+    color:var(--text-primary);
+    font-family:'Space Grotesk', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  #stars{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+  }
+
+  a{color:inherit;}
+
+  ::selection{ background:var(--gold); color:var(--bg-deep); }
+
+  :focus-visible{
+    outline:2px solid var(--cyan);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+
+  .wrap{
+    position:relative;
+    z-index:1;
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  .prose{
+    max-width:620px;
+  }
+  .prose.center{ margin-inline:auto; text-align:center; }
+
+  p{ color:var(--text-secondary); margin:0; }
+
+  /* NAV */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:20;
+    backdrop-filter:blur(14px);
+    background:rgba(23,4,48,0.55);
+    border-bottom:1px solid var(--border-soft);
+  }
+  .nav-inner{
+    max-width:1080px;
+    margin:0 auto;
+    padding:16px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.15rem;
+    color:var(--text-primary);
+  }
+  .brand span{ color:var(--cyan); }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 22px;
+    border-radius:999px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    text-decoration:none;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .btn-nav{
+    background:linear-gradient(135deg, var(--gold), var(--gold-soft));
+    color:var(--bg-deep);
+    box-shadow:0 0 0 rgba(255,201,77,0);
+    font-size:0.88rem;
+    padding:9px 18px;
+  }
+  .btn-nav:hover{
+    box-shadow:0 0 26px rgba(255,201,77,0.55);
+    transform:translateY(-1px);
+  }
+  .btn-gold{
+    background:linear-gradient(135deg, var(--gold), var(--gold-soft));
+    color:var(--bg-deep);
+  }
+  .btn-gold:hover{
+    box-shadow:0 0 34px rgba(255,201,77,0.6);
+    transform:translateY(-2px);
+  }
+  .btn-cyan-outline{
+    background:transparent;
+    color:var(--cyan-soft);
+    border:1px solid rgba(46,233,255,0.55);
+  }
+  .btn-cyan-outline:hover{
+    background:rgba(46,233,255,0.1);
+    box-shadow:0 0 24px rgba(46,233,255,0.35);
+    transform:translateY(-2px);
+  }
+
+  /* HERO */
+  header.hero{
+    padding:120px 0 90px;
+    text-align:center;
+    position:relative;
+  }
+  .glow-orb{
+    width:220px;
+    height:220px;
+    margin:0 auto 36px;
+    border-radius:50%;
+    background:radial-gradient(circle at 40% 35%, rgba(255,255,255,0.9), var(--cyan-soft) 30%, var(--bg-violet-3) 68%, transparent 72%);
+    box-shadow:0 0 90px rgba(46,233,255,0.35), 0 0 160px rgba(122,44,214,0.4);
+    animation:orbPulse 6s ease-in-out infinite;
+  }
+  @keyframes orbPulse{
+    0%,100%{ transform:scale(1); filter:brightness(1); }
+    50%{ transform:scale(1.05); filter:brightness(1.12); }
+  }
+  .eyebrow-tag{
+    display:inline-block;
+    color:var(--cyan-soft);
+    font-size:0.85rem;
+    letter-spacing:0.02em;
+    margin-bottom:22px;
+    font-family:'Space Grotesk', sans-serif;
+  }
+  h1.headline{
+    font-size:clamp(2.4rem, 5.6vw, 4.3rem);
+    line-height:1.08;
+    max-width:900px;
+    margin:0 auto 26px;
+    background:linear-gradient(100deg, var(--text-primary) 30%, var(--cyan-soft) 55%, var(--gold) 78%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero-sub{
+    max-width:560px;
+    margin:0 auto 40px;
+    font-size:1.1rem;
+    color:var(--text-secondary);
+  }
+  .hero-ctas{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  /* SECTIONS */
+  section{
+    padding:86px 0;
+    position:relative;
+  }
+  .section-tag{
+    color:var(--gold-soft);
+    font-size:0.95rem;
+    margin-bottom:14px;
+    display:block;
+  }
+  h2.section-title{
+    font-size:clamp(1.7rem, 3.4vw, 2.5rem);
+    margin-bottom:20px;
+  }
+  .divider{
+    width:64px;
+    height:2px;
+    background:linear-gradient(90deg, var(--cyan), var(--gold));
+    margin:0 auto 28px;
+    border-radius:2px;
+  }
+
+  .split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+    align-items:center;
+  }
+  @media (max-width:760px){
+    .split{ grid-template-columns:1fr; }
+  }
+  .figure-card{
+    background:var(--surface);
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius-lg);
+    padding:38px;
+    backdrop-filter:blur(10px);
+  }
+  .figure-card .mini-glow{
+    width:52px; height:52px;
+    border-radius:50%;
+    margin-bottom:22px;
+    background:radial-gradient(circle at 35% 30%, #fff, var(--cyan) 40%, transparent 75%);
+    box-shadow:0 0 30px rgba(46,233,255,0.45);
+  }
+  .figure-card.gold .mini-glow{
+    background:radial-gradient(circle at 35% 30%, #fff, var(--gold) 40%, transparent 75%);
+    box-shadow:0 0 30px rgba(255,201,77,0.45);
+  }
+  .figure-card p{ margin-top:0; }
+  .figure-card ul{ margin:18px 0 0; padding-left:20px; color:var(--text-secondary); }
+  .figure-card li{ margin-bottom:10px; }
+
+  /* FRAMEWORK */
+  .framework-head{ text-align:center; max-width:640px; margin:0 auto 56px; }
+
+  .steps{
+    display:grid;
+    gap:20px;
+    grid-template-columns:repeat(5, 1fr);
+    margin-bottom:56px;
+  }
+  @media (max-width:940px){
+    .steps{ grid-template-columns:repeat(2, 1fr); }
+  }
+  @media (max-width:560px){
+    .steps{ grid-template-columns:1fr; }
+  }
+  .step-card{
+    background:var(--surface);
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius-md);
+    padding:24px 20px;
+    position:relative;
+  }
+  .step-num{
+    font-family:'Fraunces', serif;
+    font-size:1.6rem;
+    color:var(--cyan-soft);
+    margin-bottom:12px;
+    display:block;
+  }
+  .step-card h3{
+    font-size:1.05rem;
+    margin-bottom:10px;
+    color:var(--text-primary);
+  }
+  .step-card p{ font-size:0.92rem; }
+
+  /* MANIFEST WIDGET */
+  .manifest-box{
+    background:linear-gradient(160deg, rgba(122,44,214,0.28), rgba(46,233,255,0.06));
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius-lg);
+    padding:44px;
+  }
+  @media (max-width:640px){ .manifest-box{ padding:28px 22px; } }
+
+  .field-label{
+    display:block;
+    font-size:0.85rem;
+    color:var(--text-secondary);
+    margin-bottom:8px;
+  }
+  .field-row{ margin-bottom:26px; }
+  input[type="text"]{
+    width:100%;
+    padding:14px 18px;
+    background:rgba(23,4,48,0.55);
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius-sm);
+    color:var(--text-primary);
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1rem;
+  }
+  input[type="text"]::placeholder{ color:var(--text-muted); }
+  input[type="text"]:focus{
+    border-color:var(--cyan);
+    outline:none;
+  }
+
+  .mood-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .chip{
+    padding:9px 18px;
+    border-radius:999px;
+    border:1px solid var(--border-soft);
+    background:rgba(255,255,255,0.03);
+    color:var(--text-secondary);
+    cursor:pointer;
+    font-size:0.9rem;
+    font-family:'Space Grotesk', sans-serif;
+    transition:all 0.2s ease;
+  }
+  .chip:hover{ border-color:var(--cyan); color:var(--text-primary); }
+  .chip.active{
+    background:linear-gradient(135deg, rgba(46,233,255,0.22), rgba(255,201,77,0.22));
+    border-color:var(--cyan);
+    color:var(--text-primary);
+    box-shadow:0 0 18px rgba(46,233,255,0.25);
+  }
+
+  .manifest-actions{
+    margin-top:34px;
+    display:flex;
+    justify-content:center;
+  }
+
+  /* PREVIEW REVEAL */
+  .preview-stage{
+    margin-top:44px;
+    min-height:210px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+  .preview-card{
+    width:100%;
+    max-width:520px;
+    padding:38px 34px;
+    border-radius:var(--radius-lg);
+    background:linear-gradient(150deg, rgba(46,233,255,0.10), rgba(255,201,77,0.08));
+    border:1px solid rgba(255,255,255,0.18);
+    text-align:center;
+    opacity:0;
+    transform:translateY(14px) scale(0.97);
+    position:relative;
+    overflow:hidden;
+  }
+  .preview-card.show{
+    animation:manifestIn 1.1s cubic-bezier(.2,.8,.25,1) forwards;
+  }
+  @keyframes manifestIn{
+    0%{ opacity:0; transform:translateY(14px) scale(0.97); filter:blur(6px); }
+    60%{ opacity:1; filter:blur(0); }
+    100%{ opacity:1; transform:translateY(0) scale(1); filter:blur(0); }
+  }
+  .preview-card::before{
+    content:"";
+    position:absolute;
+    inset:-40%;
+    background:radial-gradient(circle, rgba(46,233,255,0.18), transparent 60%);
+    animation:sweep 3.5s linear infinite;
+  }
+  @keyframes sweep{
+    0%{ transform:rotate(0deg); }
+    100%{ transform:rotate(360deg); }
+  }
+  .preview-inner{ position:relative; z-index:1; }
+  .preview-eyebrow{
+    font-size:0.8rem;
+    color:var(--gold-soft);
+    margin-bottom:10px;
+    display:block;
+  }
+  .preview-name{
+    font-family:'Fraunces', serif;
+    font-size:2rem;
+    color:var(--text-primary);
+    margin-bottom:10px;
+  }
+  .preview-tagline{
+    color:var(--cyan-soft);
+    font-size:1rem;
+    margin-bottom:22px;
+  }
+  .preview-cta{
+    display:inline-block;
+    padding:10px 22px;
+    border-radius:999px;
+    background:linear-gradient(135deg, var(--gold), var(--gold-soft));
+    color:var(--bg-deep);
+    font-weight:600;
+    font-size:0.9rem;
+  }
+  .preview-hint{
+    color:var(--text-muted);
+    font-size:0.88rem;
+    text-align:center;
+  }
+
+  .sparkle{
+    position:absolute;
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 10px 2px rgba(255,201,77,0.8);
+    pointer-events:none;
+    animation:sparkleFloat 1.6s ease-out forwards;
+  }
+  @keyframes sparkleFloat{
+    0%{ opacity:1; transform:translate(0,0) scale(1); }
+    100%{ opacity:0; transform:translate(var(--dx), var(--dy)) scale(0.3); }
+  }
+
+  /* FINAL CTA */
+  .final-cta{
+    text-align:center;
+    padding:100px 0 120px;
+  }
+  .final-cta h2{
+    font-size:clamp(1.9rem, 4vw, 3rem);
+    max-width:720px;
+    margin:0 auto 20px;
+  }
+  .final-cta p{
+    max-width:520px;
+    margin:0 auto 40px;
+    font-size:1.05rem;
+  }
+
+  footer{
+    border-top:1px solid var(--border-soft);
+    padding:34px 0;
+    text-align:center;
+    color:var(--text-muted);
+    font-size:0.88rem;
+    position:relative;
+    z-index:1;
+  }
+  footer a{ color:var(--cyan-soft); text-decoration:none; }
+  footer a:hover{ text-decoration:underline; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">easy<span>land</span>x</div>
+    <a class="btn btn-nav" href="https://easylandx.github.io" target="_blank" rel="noopener">Enter easylandx</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="glow-orb" aria-hidden="true"></div>
+    <span class="eyebrow-tag">A landing page, seen before it is built</span>
+    <h1 class="headline">Your perfect landing page already exists — in your imagination</h1>
+    <p class="hero-sub">easylandx brings visions into visible form: custom landing pages crafted freely around your business's true identity, built fresh for every client, always.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">Enter easylandx</a>
+      <a class="btn btn-cyan-outline" href="#manifest">Begin the manifestation</a>
+    </div>
+  </div>
+</header>
+
+<section id="origin">
+  <div class="wrap">
+    <div class="split">
+      <div class="figure-card">
+        <div class="mini-glow" aria-hidden="true"></div>
+        <span class="section-tag">Where your business truly comes from</span>
+        <h2 class="section-title" style="font-size:1.6rem;">Vision is the origin, not the template</h2>
+        <p>Your business's true identity originates from your vision, your story, and your craft — not from a generic builder or a borrowed layout. easylandx exists to receive that vision fully and translate it into a page that feels genuinely yours.</p>
+      </div>
+      <div class="prose">
+        <p style="color:var(--text-primary); font-size:1.1rem; font-family:'Fraunces', serif;">Every business already holds its finished form somewhere inside it — the way it wants to be seen, the tone it wants to speak in, the feeling it wants a visitor to carry away.</p>
+        <p style="margin-top:16px;">The work of a landing page is simply to make that form visible. That is the entire craft behind easylandx.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reflection">
+  <div class="wrap">
+    <div class="split">
+      <div class="prose" style="order:2;">
+        <p style="color:var(--text-primary); font-size:1.1rem; font-family:'Fraunces', serif;">A page mirrors the clarity behind it.</p>
+        <p style="margin-top:16px;">Hold a vivid, specific picture of your brand at its best — its colors, its voice, its offer — and that picture becomes the blueprint easylandx builds from, line by line.</p>
+      </div>
+      <div class="figure-card gold" style="order:1;">
+        <div class="mini-glow" aria-hidden="true"></div>
+        <span class="section-tag">Your website reflects your vision</span>
+        <h2 class="section-title" style="font-size:1.6rem;">Clarity becomes a live page</h2>
+        <p>The page your visitors see is a direct reflection of the clarity you bring to your own vision. Every animation, every word, every button is shaped to carry that same clear picture out into the world.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="freedom">
+  <div class="wrap prose center">
+    <span class="section-tag">Freedom begins the moment you imagine it</span>
+    <h2 class="section-title">Growth starts exactly where you picture it</h2>
+    <div class="divider"></div>
+    <p>Growth begins the instant you picture your business fully realized online. That single image becomes the seed of everything built next — every new client, every new page starts exactly there, in a moment of clear imagining.</p>
+  </div>
+</section>
+
+<section id="awaken">
+  <div class="wrap">
+    <div class="split">
+      <div class="figure-card">
+        <div class="mini-glow" aria-hidden="true"></div>
+        <span class="section-tag">Awakening your brand's full presence</span>
+        <h2 class="section-title" style="font-size:1.6rem;">Presence, fully recognized</h2>
+        <p>Every business carries dormant potential, ready to be seen in full daylight. Recognizing that presence — the true personality, the real offer, the honest voice — opens the way to a page that finally represents it completely.</p>
+        <ul>
+          <li>Your true personality, expressed in tone and visuals</li>
+          <li>Your real offer, presented with total clarity</li>
+          <li>Your honest voice, carried through every word</li>
+        </ul>
+      </div>
+      <div class="prose">
+        <p style="color:var(--text-primary); font-size:1.1rem; font-family:'Fraunces', serif;">A finished page is simply a business meeting its own reflection.</p>
+        <p style="margin-top:16px;">easylandx crafts that meeting one detail at a time, so the presence a business already holds finally has somewhere to stand.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="manifest">
+  <div class="wrap">
+    <div class="framework-head">
+      <span class="section-tag" style="text-align:center;">The easylandx manifestation framework</span>
+      <h2 class="section-title">Five steps, from vision to visible page</h2>
+      <div class="divider"></div>
+      <p>Drawn from the practice of imaginal creation, these five steps guide every easylandx landing page from a first spark of vision into a real, published, converting page.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step-card">
+        <span class="step-num">1</span>
+        <h3>Recognize your vision</h3>
+        <p>Picture your business exactly as you want the world to meet it.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">2</span>
+        <h3>Define your desired page</h3>
+        <p>Share your brand, your offer, and the feeling you want visitors to carry.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">3</span>
+        <h3>Enter a receptive state</h3>
+        <p>Relax, and let your story arrive fully, in your own words and images.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">4</span>
+        <h3>Assume the feeling</h3>
+        <p>Preview a living glimpse of your page glowing into shape below.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">5</span>
+        <h3>Persist and launch</h3>
+        <p>Carry that vision forward as easylandx builds it into a real, live page.</p>
+      </div>
+    </div>
+
+    <div class="manifest-box">
+      <div class="field-row">
+        <label class="field-label" for="bizname">Your business name</label>
+        <input type="text" id="bizname" placeholder="e.g. Luna Studio, Café Aurora, Casa Verde…" maxlength="40">
+      </div>
+      <div class="field-row">
+        <label class="field-label">The feeling you want your page to carry</label>
+        <div class="mood-chips" id="moodChips">
+          <button type="button" class="chip active" data-mood="Elegant">Elegant</button>
+          <button type="button" class="chip" data-mood="Playful">Playful</button>
+          <button type="button" class="chip" data-mood="Bold">Bold</button>
+          <button type="button" class="chip" data-mood="Warm">Warm</button>
+          <button type="button" class="chip" data-mood="Mystical">Mystical</button>
+          <button type="button" class="chip" data-mood="Minimal">Minimal</button>
+        </div>
+      </div>
+      <div class="manifest-actions">
+        <button type="button" class="btn btn-gold" id="manifestBtn">Manifest my preview</button>
+      </div>
+
+      <div class="preview-stage" id="previewStage">
+        <p class="preview-hint" id="previewHint">Your preview will glow into form here, the moment you assume the feeling.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Your landing page is already whole — let's make it visible</h2>
+    <p>Step through into easylandx, where visions become real, converting landing pages, crafted one business at a time.</p>
+    <a class="btn btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">Enter easylandx</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>easylandx — custom landing pages, individually crafted. <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a></p>
+  </div>
+</footer>
+
+<script>
+  // Ambient starfield
+  (function(){
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let w, h, stars;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function resize(){
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = document.documentElement.scrollHeight;
+    }
+    function makeStars(){
+      const count = Math.floor((w*h)/9000);
+      stars = Array.from({length: Math.min(count, 220)}, () => ({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*1.4 + 0.3,
+        tw: Math.random()*Math.PI*2,
+        speed: Math.random()*0.015 + 0.005,
+        hue: Math.random() > 0.5 ? '46,233,255' : '255,201,77'
+      }));
+    }
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      stars.forEach(s => {
+        s.tw += s.speed;
+        const alpha = 0.35 + Math.sin(s.tw)*0.35;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(${s.hue}, ${Math.max(alpha,0.08)})`;
+        ctx.fill();
+      });
+      if(!reduceMotion){ requestAnimationFrame(draw); }
+    }
+    window.addEventListener('resize', () => { resize(); makeStars(); });
+    resize(); makeStars(); draw();
+  })();
+
+  // Mood chip selection
+  const chips = document.querySelectorAll('.chip');
+  let selectedMood = 'Elegant';
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      selectedMood = chip.dataset.mood;
+    });
+  });
+
+  // Taglines per mood, positive framing
+  const taglines = {
+    Elegant: "A refined presence, crafted for those who notice every detail.",
+    Playful: "A page that greets every visitor with warmth and a smile.",
+    Bold: "A statement your visitors remember long after they leave.",
+    Warm: "A space that feels like home from the very first scroll.",
+    Mystical: "A page that carries wonder in every glowing detail.",
+    Minimal: "Clarity in every line, space to let your offer shine."
+  };
+
+  function spawnSparkles(container){
+    for(let i=0;i<14;i++){
+      const s = document.createElement('span');
+      s.className = 'sparkle';
+      const angle = Math.random()*Math.PI*2;
+      const dist = 60 + Math.random()*80;
+      s.style.setProperty('--dx', Math.cos(angle)*dist + 'px');
+      s.style.setProperty('--dy', Math.sin(angle)*dist + 'px');
+      s.style.left = (45 + Math.random()*10) + '%';
+      s.style.top = (45 + Math.random()*10) + '%';
+      s.style.animationDelay = (Math.random()*0.4) + 's';
+      container.appendChild(s);
+      setTimeout(() => s.remove(), 2200);
+    }
+  }
+
+  document.getElementById('manifestBtn').addEventListener('click', () => {
+    const stage = document.getElementById('previewStage');
+    const nameInput = document.getElementById('bizname').value.trim();
+    const name = nameInput || 'Your Business';
+    const tagline = taglines[selectedMood];
+
+    stage.innerHTML = `
+      <div class="preview-card" id="previewCard">
+        <div class="preview-inner">
+          <span class="preview-eyebrow">${selectedMood} · Assumed and taking form</span>
+          <div class="preview-name">${name}</div>
+          <div class="preview-tagline">${tagline}</div>
+          <span class="preview-cta">Get started</span>
+        </div>
+      </div>
+    `;
+    const card = document.getElementById('previewCard');
+    requestAnimationFrame(() => {
+      card.classList.add('show');
+      spawnSparkles(stage);
+    });
+  });
+</script>
+
+</body>
+</html>

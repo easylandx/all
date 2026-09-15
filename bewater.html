@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be Water. Build Pages. — EasyLandX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --aqua-1:#00E0CC;
+    --aqua-2:#00A69B;
+    --aqua-3:#016B63;
+    --ink:#04211D;
+    --ink-soft:#0A3630;
+    --paper:#EAFFF9;
+    --gold:#FFC94D;
+    --gold-deep:#E0A100;
+    --acid:#C6FF3D;
+    --acid-deep:#9FE000;
+    --line: rgba(4,33,29,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 700px at 15% -10%, rgba(198,255,61,0.18), transparent 60%),
+      radial-gradient(900px 600px at 100% 10%, rgba(255,201,77,0.15), transparent 55%),
+      linear-gradient(160deg, var(--aqua-1) 0%, var(--aqua-2) 45%, var(--aqua-3) 100%);
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Bricolage Grotesque', sans-serif;
+    margin:0;
+    line-height:1.05;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  a{color:inherit;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:40;
+    backdrop-filter: blur(10px);
+    background:rgba(1,66,60,0.28);
+    border-bottom:1px solid rgba(234,255,249,0.15);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-weight:700; font-size:1.05rem; color:var(--paper);
+  }
+  .brand-mark{
+    width:14px;height:14px;border-radius:50%;
+    background:var(--acid);
+    box-shadow:0 0 0 4px rgba(198,255,61,0.25);
+  }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--gold);
+    color:var(--ink);
+    font-weight:700;
+    padding:10px 18px;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:0.92rem;
+    transition:transform .18s ease, box-shadow .18s ease;
+    box-shadow:0 4px 0 var(--gold-deep);
+  }
+  .nav-cta:hover{transform:translateY(-2px); box-shadow:0 6px 0 var(--gold-deep);}
+  .nav-cta:active{transform:translateY(1px); box-shadow:0 2px 0 var(--gold-deep);}
+
+  /* ---------- Hero ---------- */
+  header.hero{
+    position:relative;
+    padding:100px 0 140px;
+    overflow:hidden;
+  }
+  .hero .wrap{position:relative; z-index:2;}
+  .eyebrow{
+    color:var(--paper);
+    opacity:0.85;
+    font-size:0.95rem;
+    max-width:480px;
+    margin-bottom:22px;
+  }
+  h1.headline{
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    color:var(--paper);
+    max-width:760px;
+    font-weight:800;
+  }
+  h1.headline em{
+    font-style:normal;
+    color:var(--acid);
+  }
+  .hero-sub{
+    margin-top:26px;
+    max-width:540px;
+    font-size:1.12rem;
+    line-height:1.55;
+    color:rgba(234,255,249,0.86);
+  }
+  .hero-actions{
+    margin-top:38px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--gold);
+    color:var(--ink);
+    font-weight:700;
+    padding:15px 26px;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:1rem;
+    box-shadow:0 5px 0 var(--gold-deep);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 7px 0 var(--gold-deep);}
+  .btn-ghost{
+    display:inline-flex; align-items:center; gap:8px;
+    border:1.5px solid rgba(234,255,249,0.5);
+    color:var(--paper);
+    padding:14px 24px;
+    border-radius:999px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:1rem;
+    transition: background .18s ease, border-color .18s ease;
+  }
+  .btn-ghost:hover{background:rgba(234,255,249,0.1); border-color:var(--acid);}
+
+  /* animated water ripples in hero */
+  .ripples{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+  }
+  .ripples svg{width:100%; height:100%;}
+  .ripple-path{
+    fill:none;
+    stroke:rgba(234,255,249,0.16);
+    stroke-width:1.4;
+  }
+
+  /* ---------- Section shared ---------- */
+  section{padding:96px 0;}
+  .kicker{
+    display:inline-block;
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--ink-soft);
+    background:rgba(255,255,255,0.5);
+    border:1px solid var(--line);
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:20px;
+  }
+  .section-title{
+    font-size:clamp(1.8rem, 3.4vw, 2.6rem);
+    max-width:640px;
+    color:var(--ink);
+    font-weight:800;
+  }
+  .section-lede{
+    margin-top:16px;
+    max-width:600px;
+    font-size:1.05rem;
+    line-height:1.6;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Principle rows (not cards) ---------- */
+  .principle{
+    display:grid;
+    grid-template-columns: 90px 1fr;
+    gap:26px;
+    padding:34px 0;
+    border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .principle:last-child{border-bottom:1px solid var(--line);}
+  .principle-glyph{
+    width:64px; height:64px;
+    border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, var(--acid), var(--aqua-2) 70%);
+    box-shadow: inset 0 0 0 3px rgba(4,33,29,0.12);
+  }
+  .principle h3{
+    font-size:1.35rem;
+    margin-bottom:10px;
+    color:var(--ink);
+  }
+  .principle p{
+    max-width:600px;
+    font-size:1rem;
+    line-height:1.6;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Interactive flow section ---------- */
+  .flow-section{
+    background:rgba(4,33,29,0.9);
+    color:var(--paper);
+    border-radius:28px;
+    margin:0 20px;
+    padding:64px 44px;
+  }
+  .flow-section .wrap{padding:0; max-width:100%;}
+  .flow-head{max-width:640px;}
+  .flow-head .kicker{background:rgba(234,255,249,0.08); color:var(--paper); border-color:rgba(234,255,249,0.2);}
+  .flow-head h2{color:var(--paper);}
+  .flow-head p{color:rgba(234,255,249,0.78); margin-top:16px; font-size:1.05rem; line-height:1.6;}
+
+  .flow-body{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .flow-path-wrap svg{width:100%; height:auto; overflow:visible;}
+  .flow-node{
+    cursor:pointer;
+  }
+  .flow-node circle.base{
+    fill: rgba(234,255,249,0.08);
+    stroke: rgba(234,255,249,0.35);
+    stroke-width:1.5;
+    transition: fill .25s ease, stroke .25s ease;
+  }
+  .flow-node.active circle.base{
+    fill: var(--acid);
+    stroke: var(--acid);
+  }
+  .flow-node text{
+    fill: rgba(234,255,249,0.7);
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    font-weight:600;
+  }
+  .flow-node.active text{ fill: var(--ink); }
+  .flow-droplet{
+    fill: var(--gold);
+    filter: drop-shadow(0 0 6px rgba(255,201,77,0.7));
+  }
+
+  .flow-panel{
+    background:rgba(234,255,249,0.06);
+    border:1px solid rgba(234,255,249,0.18);
+    border-radius:18px;
+    padding:30px;
+    min-height:230px;
+  }
+  .flow-panel .step-tag{
+    display:inline-block;
+    font-size:0.8rem;
+    font-weight:700;
+    color:var(--ink);
+    background:var(--acid);
+    padding:4px 12px;
+    border-radius:999px;
+    margin-bottom:16px;
+  }
+  .flow-panel h3{
+    font-size:1.4rem;
+    color:var(--paper);
+    margin-bottom:12px;
+  }
+  .flow-panel p{
+    font-size:0.98rem;
+    line-height:1.6;
+    color:rgba(234,255,249,0.82);
+  }
+  .flow-controls{
+    margin-top:22px;
+    display:flex;
+    gap:10px;
+  }
+  .flow-btn{
+    background:transparent;
+    border:1.5px solid rgba(234,255,249,0.35);
+    color:var(--paper);
+    padding:9px 16px;
+    border-radius:999px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:0.88rem;
+    cursor:pointer;
+    transition: border-color .18s ease, background .18s ease;
+  }
+  .flow-btn:hover{border-color:var(--gold); background:rgba(255,201,77,0.1);}
+
+  @media (max-width: 860px){
+    .flow-body{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Balance / yin-yang section ---------- */
+  .balance{
+    display:grid;
+    grid-template-columns: 320px 1fr;
+    gap:56px;
+    align-items:center;
+    margin-top:60px;
+  }
+  .balance-visual{
+    display:flex;
+    justify-content:center;
+  }
+  .balance-copy h3{
+    font-size:1.5rem;
+    margin-bottom:14px;
+    color:var(--ink);
+  }
+  .balance-copy p{
+    font-size:1rem;
+    line-height:1.65;
+    color:var(--ink-soft);
+    max-width:560px;
+  }
+  .balance-slider-row{
+    margin-top:26px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .balance-slider-row span{
+    font-size:0.85rem;
+    font-weight:700;
+    color:var(--ink-soft);
+    min-width:70px;
+  }
+  input[type="range"].balance-range{
+    -webkit-appearance:none;
+    flex:1;
+    height:6px;
+    border-radius:999px;
+    background: linear-gradient(90deg, var(--gold), var(--acid));
+    outline:none;
+  }
+  input[type="range"].balance-range::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width:22px;height:22px;
+    border-radius:50%;
+    background:var(--ink);
+    border:3px solid var(--paper);
+    cursor:pointer;
+    box-shadow:0 2px 5px rgba(0,0,0,0.3);
+  }
+  #balance-readout{
+    margin-top:14px;
+    font-size:0.95rem;
+    font-weight:600;
+    color:var(--ink);
+  }
+  @media (max-width: 760px){
+    .balance{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    text-align:center;
+    padding:100px 0 120px;
+  }
+  .final-cta h2{
+    font-size:clamp(2rem, 4vw, 3rem);
+    max-width:680px;
+    margin:0 auto;
+    color:var(--ink);
+  }
+  .final-cta p{
+    margin:20px auto 0;
+    max-width:520px;
+    font-size:1.05rem;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .final-cta .hero-actions{justify-content:center; margin-top:34px;}
+  .final-cta .btn-primary, .final-cta .btn-ghost{color:var(--ink);}
+  .final-cta .btn-ghost{border-color:var(--ink-soft); color:var(--ink);}
+  .final-cta .btn-ghost:hover{background:rgba(4,33,29,0.06); border-color:var(--ink);}
+
+  footer{
+    padding:34px 0 50px;
+    text-align:center;
+    color:rgba(4,33,29,0.6);
+    font-size:0.88rem;
+  }
+
+  /* floating easylandx button */
+  .floating-btn{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    z-index:50;
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    background:var(--gold);
+    color:var(--ink);
+    font-weight:700;
+    padding:13px 20px;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:0.92rem;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25), 0 3px 0 var(--gold-deep);
+    transition:transform .18s ease;
+  }
+  .floating-btn:hover{transform:translateY(-3px);}
+  .floating-btn .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--acid);
+  }
+
+  /* reveal on scroll */
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1; transform:none; transition:none;}
+    .floating-btn, .btn-primary, .nav-cta{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="brand-mark"></span> EasyLandX</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="ripples" aria-hidden="true">
+    <svg viewBox="0 0 1200 500" preserveAspectRatio="none">
+      <path class="ripple-path" d="M -50 380 Q 200 320 450 380 T 950 380 T 1350 380"/>
+      <path class="ripple-path" d="M -50 430 Q 200 370 450 430 T 950 430 T 1350 430"/>
+      <path class="ripple-path" d="M -50 470 Q 200 420 450 470 T 950 470 T 1350 470"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <p class="eyebrow">A landing page philosophy, borrowed from water</p>
+    <h1 class="headline">Be water, <em>build pages</em> that flow around your business.</h1>
+    <p class="hero-sub">Bruce Lee taught that water takes the shape of whatever holds it, and wears down whatever blocks it. EasyLandX builds the same way — every landing page shaped around the business it carries, never the other way around.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to EasyLandX →</a>
+      <a class="btn-ghost" href="#flow">See the fluid process</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <span class="kicker reveal">Core message</span>
+    <h2 class="section-title reveal">Water doesn't fight the rock in its path.</h2>
+    <p class="section-lede reveal">It flows around it, or wears it down over time. Most page builders hand every business the same rigid mold and hope the business bends to fit. EasyLandX moves the other way — the page adapts to the business, the copy adapts to the offer, and the layout adapts to how people actually decide to book, buy, or message.</p>
+
+    <div style="margin-top:56px;">
+      <div class="principle reveal">
+        <div class="principle-glyph"></div>
+        <div>
+          <h3>Adaptability over rigidity</h3>
+          <p>A Pilates studio, a paramotor pilot, and a chocolate maker don't convert the same way. Each EasyLandX page bends its structure, tone, and calls to action to the shape of the business it represents — no forced templates.</p>
+        </div>
+      </div>
+      <div class="principle reveal">
+        <div class="principle-glyph"></div>
+        <div>
+          <h3>Honest self-expression</h3>
+          <p>Every page is built to say what the business actually is, in its own voice — the real offer, the real photos, the real way clients reach out — stripped of generic stock-site language.</p>
+        </div>
+      </div>
+      <div class="principle reveal">
+        <div class="principle-glyph"></div>
+        <div>
+          <h3>An empty, receptive mind</h3>
+          <p>Every project starts from a blank container, not a locked-in template. That openness is what lets the page respond accurately to what a specific business and its audience need.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="flow">
+  <div class="wrap">
+    <div class="flow-section">
+      <div class="flow-head">
+        <span class="kicker reveal">Try it — the fluid build process</span>
+        <h2 class="reveal">Absorb what's useful. Reject what's useless. Add what's yours.</h2>
+        <p class="reveal">This is Bruce Lee's rule for self-mastery, and it's also how every EasyLandX page gets built. Click each drop along the path to see the step in motion.</p>
+      </div>
+
+      <div class="flow-body">
+        <div class="flow-path-wrap">
+          <svg viewBox="0 0 460 460" id="flow-svg">
+            <path id="flow-line" d="M 60 60 C 220 20, 340 100, 300 180 C 260 260, 100 240, 90 320 C 82 380, 200 400, 380 390"
+                  fill="none" stroke="rgba(234,255,249,0.25)" stroke-width="2" stroke-dasharray="6 8"/>
+            <circle id="droplet" class="flow-droplet" r="7" cx="60" cy="60"/>
+
+            <g class="flow-node" data-step="0" data-x="60" data-y="60">
+              <circle class="base" cx="60" cy="60" r="26"/>
+              <text x="60" y="65" text-anchor="middle">1</text>
+            </g>
+            <g class="flow-node" data-step="1" data-x="300" data-y="180">
+              <circle class="base" cx="300" cy="180" r="26"/>
+              <text x="300" y="185" text-anchor="middle">2</text>
+            </g>
+            <g class="flow-node" data-step="2" data-x="90" data-y="320">
+              <circle class="base" cx="90" cy="320" r="26"/>
+              <text x="90" y="325" text-anchor="middle">3</text>
+            </g>
+            <g class="flow-node" data-step="3" data-x="230" data-y="380">
+              <circle class="base" cx="230" cy="380" r="26"/>
+              <text x="230" y="385" text-anchor="middle">4</text>
+            </g>
+            <g class="flow-node" data-step="4" data-x="380" data-y="390">
+              <circle class="base" cx="380" cy="390" r="26"/>
+              <text x="380" y="395" text-anchor="middle">5</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="flow-panel">
+          <span class="step-tag" id="flow-tag">Step 1 of 5</span>
+          <h3 id="flow-title">Empty the container</h3>
+          <p id="flow-copy">We start every page from a blank canvas — no locked-in theme, no borrowed layout. That empty space is what makes room for a business's real shape to come through.</p>
+          <div class="flow-controls">
+            <button class="flow-btn" id="flow-prev">← Back</button>
+            <button class="flow-btn" id="flow-next">Next drop →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="kicker reveal">Yin and yang</span>
+    <h2 class="section-title reveal">Softness and strength, balanced on purpose.</h2>
+    <div class="balance">
+      <div class="balance-visual reveal">
+        <svg width="220" height="220" viewBox="0 0 220 220">
+          <circle cx="110" cy="110" r="100" fill="var(--ink)"/>
+          <path d="M110 10 A100 100 0 0 1 110 210 A50 50 0 0 1 110 110 A50 50 0 0 0 110 10 Z" fill="var(--paper)"/>
+          <circle cx="110" cy="60" r="14" fill="var(--paper)"/>
+          <circle cx="110" cy="160" r="14" fill="var(--ink)"/>
+          <circle cx="110" cy="60" r="5" fill="var(--acid)"/>
+          <circle cx="110" cy="160" r="5" fill="var(--gold)"/>
+        </svg>
+      </div>
+      <div class="balance-copy reveal">
+        <h3>Speed is the softness. Craft is the strength.</h3>
+        <p>Real power, Bruce Lee wrote, isn't brute force — it's the dynamic balance between yielding and striking. EasyLandX pages ship fast, the yielding side, while still carrying enough craft in copy, layout, and detail to actually convert visitors — the striking side. Drag the slider to see where a page sits at each end.</p>
+        <div class="balance-slider-row">
+          <span>Fast</span>
+          <input type="range" min="0" max="100" value="50" class="balance-range" id="balance-slider">
+          <span>Crafted</span>
+        </div>
+        <p id="balance-readout">Balanced: shipped quickly, built to hold up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <span class="kicker reveal">Ready when you are</span>
+    <h2 class="reveal">Stop forcing your business into someone else's mold.</h2>
+    <p class="reveal">Bring your business as it is. EasyLandX will build the page that flows around it.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build my page on EasyLandX →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">EasyLandX — pages that take the shape of your business.</div>
+</footer>
+
+<a class="floating-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">
+  <span class="dot"></span> EasyLandX
+</a>
+
+<script>
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // fluid framework step data
+  const steps = [
+    {
+      tag: "Step 1 of 5",
+      title: "Empty the container",
+      copy: "We start every page from a blank canvas — no locked-in theme, no borrowed layout. That empty space is what makes room for a business's real shape to come through."
+    },
+    {
+      tag: "Step 2 of 5",
+      title: "Research the business",
+      copy: "Before a single section gets written, we study the offer, the audience, and how people already reach out — the same way Bruce Lee said to research your own experience before drawing conclusions."
+    },
+    {
+      tag: "Step 3 of 5",
+      title: "Absorb what's useful",
+      copy: "Proven layouts, clear calls to action, fast load times — we keep every element that genuinely helps a visitor decide, and nothing that's there just for decoration."
+    },
+    {
+      tag: "Step 4 of 5",
+      title: "Reject what's useless",
+      copy: "Bloated menus, walls of stock copy, sliders nobody reads — anything that slows a visitor down without earning its place gets left out of the page entirely."
+    },
+    {
+      tag: "Step 5 of 5",
+      title: "Add what's uniquely yours",
+      copy: "The final layer is the business's own voice, photos, and offer — the part no template can supply. This is what makes the page unmistakably theirs."
+    }
+  ];
+
+  const nodes = Array.from(document.querySelectorAll('.flow-node'));
+  const droplet = document.getElementById('droplet');
+  const flowTag = document.getElementById('flow-tag');
+  const flowTitle = document.getElementById('flow-title');
+  const flowCopy = document.getElementById('flow-copy');
+  let current = 0;
+
+  function renderStep(i){
+    current = (i + steps.length) % steps.length;
+    const s = steps[current];
+    flowTag.textContent = s.tag;
+    flowTitle.textContent = s.title;
+    flowCopy.textContent = s.copy;
+
+    nodes.forEach(n => n.classList.remove('active'));
+    const activeNode = nodes.find(n => n.dataset.step == current);
+    activeNode.classList.add('active');
+    droplet.setAttribute('cx', activeNode.dataset.x);
+    droplet.setAttribute('cy', activeNode.dataset.y);
+  }
+
+  nodes.forEach(n => {
+    n.addEventListener('click', () => renderStep(Number(n.dataset.step)));
+  });
+  document.getElementById('flow-next').addEventListener('click', () => renderStep(current + 1));
+  document.getElementById('flow-prev').addEventListener('click', () => renderStep(current - 1));
+
+  renderStep(0);
+
+  // balance slider readout
+  const slider = document.getElementById('balance-slider');
+  const readout = document.getElementById('balance-readout');
+  slider.addEventListener('input', () => {
+    const v = Number(slider.value);
+    if (v < 35) readout.textContent = "Leaning fast: light, quick to launch, still holds its shape.";
+    else if (v > 65) readout.textContent = "Leaning crafted: extra detail and polish, worth the added time.";
+    else readout.textContent = "Balanced: shipped quickly, built to hold up.";
+  });
+</script>
+
+</body>
+</html>
