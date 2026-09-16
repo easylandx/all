@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyLandX — Landing pages your visitor's nervous system can read</title>
+<meta name="description" content="EasyLandX applies Dr. Aditi Nerurkar's 5 Resets to landing page design: one clear action, protected rest, natural rhythm, quiet intake and reassuring copy. Tune a live page preview.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sea-950:#03332C;
+    --sea-900:#064A40;
+    --sea-700:#0A7A68;
+    --sea-500:#12B398;
+    --sea-300:#2FF0C8;
+    --coral:#FF6B52;
+    --coral-soft:#FFA48F;
+    --cyan:#25F4EE;
+    --cyan-soft:#A6FFFB;
+    --ink:#EFFFF9;
+    --ink-dim:#A8DCCE;
+    --line:rgba(47,240,200,.32);
+    --panel:rgba(3,51,44,.58);
+    --panel-solid:#053B33;
+    --display:"Instrument Serif",Georgia,serif;
+    --body:"Outfit","Segoe UI",system-ui,sans-serif;
+  }
+  /* The brief pins a seafoam identity, so the palette stays constant in either viewer theme. */
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --panel:rgba(2,40,34,.68); } }
+  :root[data-theme="dark"]{ --panel:rgba(2,40,34,.68); }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:
+      radial-gradient(900px 560px at 88% -6%, var(--sea-300) 0%, rgba(47,240,200,0) 58%),
+      radial-gradient(760px 520px at 6% 12%, rgba(255,107,82,.26) 0%, rgba(255,107,82,0) 62%),
+      radial-gradient(1000px 680px at 50% 108%, rgba(37,244,238,.18) 0%, rgba(37,244,238,0) 66%),
+      linear-gradient(172deg, var(--sea-700) 0%, var(--sea-900) 46%, var(--sea-950) 100%);
+    background-color:var(--sea-950);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:17px;
+    font-weight:300;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--cyan-soft)}
+  :focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:5px}
+  .wrap{width:min(1120px,92vw);margin-inline:auto}
+  section{padding:clamp(54px,8vw,100px) 0}
+  h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.06;letter-spacing:-.012em;margin:0}
+  h2{font-size:clamp(30px,5vw,50px)}
+  h3{font-size:1.32rem}
+  p{margin:0 0 1em}
+  .lede{font-size:clamp(17px,1.9vw,21px);color:var(--ink-dim);max-width:60ch}
+  em{font-style:italic}
+
+  header.bar{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg, rgba(3,51,44,.94), rgba(3,51,44,.6));
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .bar .wrap{display:flex;align-items:center;gap:18px;min-height:66px;flex-wrap:wrap}
+  .mark{font-family:var(--display);font-size:1.4rem;display:flex;align-items:center;gap:10px;letter-spacing:.005em}
+  .mark i{width:11px;height:11px;border-radius:50%;background:var(--coral);box-shadow:0 0 16px var(--coral);display:block}
+  .bar nav{margin-left:auto;display:flex;gap:22px;font-size:.93rem}
+  .bar nav a{color:var(--ink-dim);text-decoration:none}
+  .bar nav a:hover{color:var(--coral-soft)}
+  @media (max-width:760px){ .bar nav{display:none} }
+
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;border:0;
+    font-family:var(--body);font-weight:500;font-size:1rem;
+    padding:14px 24px;border-radius:14px;
+    background:linear-gradient(100deg,var(--coral),#FF8467);
+    color:#22110C;
+    box-shadow:0 12px 30px rgba(255,107,82,.3), inset 0 0 0 1px rgba(255,255,255,.3);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(255,107,82,.45)}
+  .btn.ghost{background:transparent;color:var(--cyan-soft);box-shadow:inset 0 0 0 1.5px var(--cyan)}
+  .btn.ghost:hover{background:rgba(37,244,238,.12);box-shadow:inset 0 0 0 1.5px var(--cyan),0 0 24px rgba(37,244,238,.3)}
+  .btn i{width:8px;height:8px;border-radius:50%;background:#22110C;display:block}
+  .btn.ghost i{background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+
+  /* hero */
+  .hero{padding-top:clamp(44px,6vw,76px)}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,60px);align-items:center}
+  @media (max-width:920px){ .hero .wrap{grid-template-columns:1fr} }
+  .hero h1{font-size:clamp(40px,7.6vw,82px)}
+  .hero h1 .a{display:block;color:var(--coral-soft)}
+  .hero h1 .b{display:block;font-style:italic;color:var(--cyan-soft)}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+  .hero-note{margin-top:20px;font-size:.92rem;color:var(--ink-dim)}
+
+  /* breath widget */
+  .breath{
+    border:1px solid var(--line);border-radius:26px;padding:30px 26px;background:var(--panel);
+    box-shadow:0 26px 70px rgba(0,25,20,.5);text-align:center;
+  }
+  .breath h3{font-size:1.1rem;color:var(--cyan-soft)}
+  .breath .sub{font-size:.88rem;color:var(--ink-dim);margin:6px 0 20px}
+  .ring{width:190px;height:190px;margin:0 auto;position:relative;display:grid;place-items:center}
+  .ring .halo{
+    position:absolute;inset:0;border-radius:50%;
+    background:radial-gradient(circle, rgba(47,240,200,.35), rgba(37,244,238,.05) 62%, transparent 70%);
+    border:1.5px solid var(--sea-300);
+    transform:scale(.72);transition:transform 4s ease-in-out;
+  }
+  .ring.inhale .halo{transform:scale(1)}
+  .ring .cue{position:relative;font-family:var(--display);font-size:1.5rem;color:var(--ink)}
+  .breath .count{font-size:.86rem;color:var(--ink-dim);margin-top:16px;min-height:1.4em}
+  @media (prefers-reduced-motion: reduce){ .ring .halo{transition:none} .btn{transition:none} }
+
+  .panel{border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:24px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:34px}
+  .card .tag{display:inline-block;font-size:.76rem;font-weight:500;letter-spacing:.04em;
+    color:#22110C;background:var(--coral-soft);border-radius:7px;padding:3px 10px;margin-bottom:12px}
+  .card h3{margin-bottom:8px;font-size:1.22rem}
+  .card p{font-size:.95rem;color:var(--ink-dim);margin:0}
+  .card p + p{margin-top:10px;color:var(--ink)}
+  .card b{color:var(--cyan-soft);font-weight:500}
+
+  /* tuner */
+  .tuner{display:grid;grid-template-columns:1fr .9fr;gap:22px;margin-top:34px;align-items:start}
+  @media (max-width:940px){ .tuner{grid-template-columns:1fr} }
+  .switches{display:grid;gap:12px}
+  .sw{
+    display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start;
+    border:1px solid rgba(168,220,206,.22);border-radius:16px;padding:14px 16px;cursor:pointer;
+    background:rgba(5,59,51,.4);transition:border-color .2s ease, background .2s ease;
+  }
+  .sw:hover{border-color:var(--line)}
+  .sw input{position:absolute;opacity:0;width:0;height:0}
+  .knob{width:46px;height:26px;border-radius:999px;background:rgba(239,255,249,.18);position:relative;margin-top:3px;transition:background .2s ease}
+  .knob::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;
+    background:var(--ink);transition:transform .2s ease, background .2s ease}
+  .sw.on{background:rgba(47,240,200,.1);border-color:var(--line)}
+  .sw.on .knob{background:var(--sea-300)}
+  .sw.on .knob::after{transform:translateX(20px);background:var(--sea-950)}
+  .sw b{display:block;font-weight:500;font-size:1rem}
+  .sw small{display:block;color:var(--ink-dim);font-size:.85rem;line-height:1.5}
+  .sw .reset-no{font-size:.76rem;color:var(--coral-soft);display:block;margin-bottom:3px;letter-spacing:.03em}
+
+  .preview-col{position:sticky;top:84px}
+  .meter{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+  .meter .num{font-family:var(--display);font-size:2.6rem;line-height:1;color:var(--coral-soft)}
+  .meter .bar{flex:1;height:10px;border-radius:999px;background:rgba(239,255,249,.16);overflow:hidden}
+  .meter .bar span{display:block;height:100%;width:20%;border-radius:999px;
+    background:linear-gradient(90deg,var(--coral),var(--sea-300),var(--cyan));transition:width .35s ease}
+  .meter .lab{font-size:.85rem;color:var(--ink-dim)}
+
+  /* mini page mock */
+  .mock{
+    border-radius:16px;background:#F2FBF7;color:#0B3830;overflow:hidden;position:relative;
+    box-shadow:0 20px 50px rgba(0,25,20,.45);font-size:.8rem;
+  }
+  .mock .mnav{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid #D6EBE3}
+  .mock .mnav i{width:8px;height:8px;border-radius:50%;background:var(--coral);display:block}
+  .mock .mnav b{font-family:var(--display);font-weight:400;font-size:.95rem}
+  .mock .mnav .links{margin-left:auto;display:flex;gap:9px;color:#5D8C82;font-size:.7rem}
+  .mock .alert{background:#FFE2DB;color:#8C2A17;padding:7px 14px;font-size:.72rem;text-align:center}
+  .mock .body{padding:20px 16px;transition:padding .3s ease}
+  .mock.tight .body{padding:9px 12px}
+  .mock h4{font-family:var(--display);font-weight:400;font-size:1.22rem;line-height:1.15;margin:0 0 8px}
+  .mock p.blurb{color:#4A7A70;margin:0 0 14px;font-size:.78rem;line-height:1.55}
+  .mock .row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
+  .mock .cta{background:var(--coral);color:#22110C;border-radius:9px;padding:8px 14px;font-weight:500;font-size:.76rem}
+  .mock .cta.alt{background:#D8EDE6;color:#3F6E64;font-weight:400}
+  .mock .reassure{color:#4A7A70;font-size:.72rem;display:flex;gap:6px;align-items:center}
+  .mock .reassure em{color:var(--sea-700);font-style:normal}
+  .mock .blocks{margin-top:14px;display:grid;gap:10px;transition:gap .3s ease}
+  .mock.tight .blocks{gap:4px}
+  .mock .blocks div{height:26px;border-radius:8px;background:#E2F2EC}
+  .mock .blocks div:nth-child(2){height:40px}
+  .mock .popup{
+    position:absolute;inset:auto 12px 12px 12px;background:#0B3830;color:#EFFFF9;
+    border-radius:12px;padding:12px 14px;font-size:.74rem;display:flex;gap:10px;align-items:center;
+    box-shadow:0 10px 26px rgba(0,25,20,.4);
+  }
+  .mock .popup span{margin-left:auto;background:var(--cyan);color:#06302A;border-radius:7px;padding:5px 10px}
+  .mock .hidden{display:none}
+  .verdict{margin-top:16px;border-top:1px solid var(--line);padding-top:16px;font-size:.95rem}
+  .verdict b{color:var(--cyan-soft);font-weight:500}
+
+  /* steps */
+  ol.steps{list-style:none;counter-reset:s;margin:34px 0 0;padding:0;display:grid;gap:14px}
+  ol.steps li{counter-increment:s;display:grid;grid-template-columns:52px 1fr;gap:18px;align-items:start;
+    border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:20px 22px}
+  ol.steps li::before{
+    content:counter(s);font-family:var(--display);font-size:1.6rem;color:var(--sea-950);
+    background:linear-gradient(140deg,var(--coral),var(--sea-300));
+    width:42px;height:42px;border-radius:12px;display:grid;place-items:center;line-height:1;
+  }
+  ol.steps h3{font-size:1.18rem;margin-bottom:5px}
+  ol.steps p{margin:0;font-size:.95rem;color:var(--ink-dim)}
+
+  .close{text-align:center}
+  .close .panel{padding:clamp(30px,5vw,58px);background:linear-gradient(140deg, rgba(18,179,152,.34), rgba(3,51,44,.72))}
+  .close h2{max-width:22ch;margin-inline:auto}
+  .close p{margin:16px auto 26px;max-width:54ch;color:var(--ink-dim)}
+  footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:.86rem;color:var(--ink-dim)}
+  footer .wrap{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <span class="mark"><i></i>EasyLandX</span>
+    <nav>
+      <a href="#resets">The 5 resets</a>
+      <a href="#tuner">Focus tuner</a>
+      <a href="#method">Method</a>
+    </nav>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener"><i></i>Visit EasyLandX</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Calm converts.<span class="a">Your visitor arrives</span><span class="b">already overstimulated.</span></h1>
+      <p class="lede">In <em>The 5 Resets</em>, Harvard physician Dr. Aditi Nerurkar describes a nervous system built for short, sharp threats and now living through constant pinging, task-switching and scrolling. The person landing on your page brings that state with them. EasyLandX builds conversion-focused landing pages that send safety signals instead of adding to the noise — one clear action, room to breathe, and copy that steadies a decision.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener"><i></i>Visit EasyLandX</a>
+        <a class="btn ghost" href="#tuner"><i></i>Tune a live page</a>
+      </div>
+      <p class="hero-note">Affordable, single-purpose pages for small businesses — designed for how attention actually works.</p>
+    </div>
+
+    <aside class="breath">
+      <h3>Stop · Breathe · Notice</h3>
+      <p class="sub">The book's 30-second micro-break. It is also the pace a good page should let someone read at.</p>
+      <div class="ring" id="ring">
+        <div class="halo"></div>
+        <div class="cue" id="cue">Ready</div>
+      </div>
+      <p class="count" id="count">Three slow breaths, about 25 seconds.</p>
+      <button class="btn ghost" id="breathe" type="button"><i></i>Start the micro-break</button>
+    </aside>
+  </div>
+</section>
+
+<section id="resets">
+  <div class="wrap">
+    <h2>Five resets, five page decisions</h2>
+    <p class="lede" style="margin-top:16px">Dr. Nerurkar's resets work through physical anchors rather than willpower, and micro-shifts rather than overhauls. The same logic applies to a landing page: small, deliberate choices that lower the effort of understanding you.</p>
+
+    <div class="grid">
+      <article class="card panel">
+        <span class="tag">Reset 1</span>
+        <h3>Get clear on what matters</h3>
+        <p>The book asks you to name one Most Important Task each morning and protect your best hours for it.</p>
+        <p><b>On the page:</b> one offer, one primary button, one job. Everything competing for that click moves off the page or below the decision.</p>
+      </article>
+
+      <article class="card panel">
+        <span class="tag">Reset 2</span>
+        <h3>Find rest in a restless world</h3>
+        <p>Rest is an active biological process — repair, consolidation, balance — rather than idleness.</p>
+        <p><b>On the page:</b> generous white space, short paragraphs, and visual pauses between sections so the eye can rest and keep reading.</p>
+      </article>
+
+      <article class="card panel">
+        <span class="tag">Reset 3</span>
+        <h3>Sync the body clock</h3>
+        <p>Morning light and steady rhythm keep cortisol and melatonin predictable.</p>
+        <p><b>On the page:</b> a predictable rhythm — promise, proof, price, action — repeated in the same order, so each scroll lands where the visitor expects.</p>
+      </article>
+
+      <article class="card panel">
+        <span class="tag">Reset 4</span>
+        <h3>Curb digital intake</h3>
+        <p>A digital sunset and fewer alerts protect cognitive reserves from constant hyper-arousal.</p>
+        <p><b>On the page:</b> quiet intake by design — no interrupting overlays, no autoplay, light assets, and a form asking only for what you truly need.</p>
+      </article>
+
+      <article class="card panel">
+        <span class="tag">Reset 5</span>
+        <h3>Shift the relationship with stress</h3>
+        <p>Naming a sensation reduces the second layer of anxiety that sits on top of it.</p>
+        <p><b>On the page:</b> microcopy that names the hesitation and answers it — what happens after the click, how long it takes, how easy it is to change course.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="tuner">
+  <div class="wrap">
+    <h2>Tune the page, watch the load drop</h2>
+    <p class="lede" style="margin-top:16px">Turn each reset on and watch a live landing page settle. The focus score tracks how much attention the page asks for before someone can act.</p>
+
+    <div class="tuner">
+      <div class="switches" id="switches">
+        <label class="sw" data-k="mit">
+          <input type="checkbox" id="k-mit">
+          <span class="knob" aria-hidden="true"></span>
+          <span>
+            <span class="reset-no">Reset 1</span>
+            <b>One primary action</b>
+            <small>A single button carries the page. Secondary links step back.</small>
+          </span>
+        </label>
+
+        <label class="sw" data-k="rest">
+          <input type="checkbox" id="k-rest">
+          <span class="knob" aria-hidden="true"></span>
+          <span>
+            <span class="reset-no">Reset 2</span>
+            <b>Protected breathing room</b>
+            <small>Space between blocks, so each idea arrives on its own.</small>
+          </span>
+        </label>
+
+        <label class="sw" data-k="rhythm">
+          <input type="checkbox" id="k-rhythm">
+          <span class="knob" aria-hidden="true"></span>
+          <span>
+            <span class="reset-no">Reset 3</span>
+            <b>Predictable rhythm</b>
+            <small>Promise, proof, price, action — always in that order.</small>
+          </span>
+        </label>
+
+        <label class="sw" data-k="intake">
+          <input type="checkbox" id="k-intake">
+          <span class="knob" aria-hidden="true"></span>
+          <span>
+            <span class="reset-no">Reset 4</span>
+            <b>Quiet intake</b>
+            <small>Overlays and flashing banners stay off. The page loads light.</small>
+          </span>
+        </label>
+
+        <label class="sw" data-k="reframe">
+          <input type="checkbox" id="k-reframe">
+          <span class="knob" aria-hidden="true"></span>
+          <span>
+            <span class="reset-no">Reset 5</span>
+            <b>Reassuring microcopy</b>
+            <small>The line under the button that names the next step plainly.</small>
+          </span>
+        </label>
+      </div>
+
+      <div class="panel preview-col">
+        <div class="meter" aria-live="polite">
+          <div class="num"><span id="score">20</span><span style="font-size:1rem;color:var(--ink-dim)">/100</span></div>
+          <div style="flex:1">
+            <div class="bar"><span id="fill"></span></div>
+            <div class="lab" id="band">Focus score</div>
+          </div>
+        </div>
+
+        <div class="mock" id="mock">
+          <div class="mnav">
+            <i></i><b>Your business</b>
+            <span class="links" id="mock-links"><span>Home</span><span>About</span><span>Blog</span><span>Team</span><span>Careers</span></span>
+          </div>
+          <div class="alert" id="mock-alert">Flash sale ends soon · Subscribe for alerts · New post</div>
+          <div class="body">
+            <h4 id="mock-head">Fast, friendly service for your area</h4>
+            <p class="blurb" id="mock-blurb">Trusted by local customers. Book a visit this week and pick a time that suits you.</p>
+            <div class="row">
+              <span class="cta">Book a visit</span>
+              <span class="cta alt extra">Newsletter</span>
+              <span class="cta alt extra">Download guide</span>
+              <span class="cta alt extra">Chat now</span>
+            </div>
+            <div class="reassure hidden" id="mock-reassure"><em>●</em> Takes about a minute, and you choose the time.</div>
+            <div class="blocks"><div></div><div></div><div></div></div>
+          </div>
+          <div class="popup" id="mock-popup">Wait — grab 10% off <span>Sign up</span></div>
+        </div>
+
+        <p class="verdict" id="verdict"></p>
+
+        <div class="cta-row" style="margin-top:6px">
+          <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener"><i></i>Build this page with EasyLandX</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <h2>How an EasyLandX page gets built</h2>
+    <ol class="steps">
+      <li><div>
+        <h3>Name the page's Most Important Task</h3>
+        <p>One action, chosen before a word of copy is written. Calls, bookings and quotes each shape a different page, so the goal comes first.</p>
+      </div></li>
+      <li><div>
+        <h3>Give the content room to land</h3>
+        <p>Short blocks, real pauses, and a length matched to the decision. Rest on a page is active work, the same way it is in the body.</p>
+      </div></li>
+      <li><div>
+        <h3>Set a rhythm the visitor can follow</h3>
+        <p>Promise, proof, price, action — a steady sequence that makes the next scroll feel predictable and light to read.</p>
+      </div></li>
+      <li><div>
+        <h3>Keep the intake quiet</h3>
+        <p>Light assets, calm motion, a short form, and space left for the offer itself to be the loudest thing present.</p>
+      </div></li>
+      <li><div>
+        <h3>Answer the hesitation out loud</h3>
+        <p>Name what happens after the click. Naming the feeling settles it — on a page, that is microcopy doing quiet, measurable work.</p>
+      </div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap">
+    <div class="panel">
+      <h2>A page that lets someone decide easily</h2>
+      <p>EasyLandX builds affordable, conversion-focused landing pages for small businesses — one clear action, honest proof, and a calm path to the button.</p>
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener"><i></i>Go to EasyLandX</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="mark"><i></i>EasyLandX</span>
+    <span>Framework credit: <em>The 5 Resets</em> by Dr. Aditi Nerurkar.</span>
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---- Stop-Breathe-Notice micro-break ---- */
+  var ring=document.getElementById('ring'), cue=document.getElementById('cue'),
+      count=document.getElementById('count'), start=document.getElementById('breathe');
+  var running=false;
+
+  function phase(text, inhale){
+    cue.textContent=text;
+    ring.classList.toggle('inhale', !!inhale);
+  }
+  start.addEventListener('click', function(){
+    if(running) return;
+    running=true; start.disabled=true;
+    var steps=[
+      ['Stop',0,1200],['Breathe in',1,4000],['Out',0,4000],
+      ['In',1,4000],['Out',0,4000],['In',1,4000],['Out',0,4000],
+      ['Notice',0,2500]
+    ];
+    var t=0, done=0;
+    steps.forEach(function(s,idx){
+      setTimeout(function(){
+        phase(s[0], s[1]);
+        count.textContent = (idx<steps.length-1) ? 'Breath ' + Math.min(3, Math.ceil((idx)/2)) + ' of 3' : 'Check in with your shoulders and jaw.';
+      }, t);
+      t += s[2];
+      done = t;
+    });
+    setTimeout(function(){
+      phase('Ready',0);
+      count.textContent='Three slow breaths, about 25 seconds.';
+      running=false; start.disabled=false;
+    }, done+2200);
+  });
+
+  /* ---- focus tuner ---- */
+  var keys=['mit','rest','rhythm','intake','reframe'];
+  var mock=document.getElementById('mock');
+  var extras=document.querySelectorAll('.mock .extra');
+  var links=document.getElementById('mock-links');
+  var alertBar=document.getElementById('mock-alert');
+  var popup=document.getElementById('mock-popup');
+  var reassure=document.getElementById('mock-reassure');
+  var head=document.getElementById('mock-head');
+  var blurb=document.getElementById('mock-blurb');
+  var score=document.getElementById('score'), fill=document.getElementById('fill'),
+      band=document.getElementById('band'), verdict=document.getElementById('verdict');
+
+  var notes={
+    mit:'A single button gives the page one job, and the visitor one decision.',
+    rest:'Space between blocks lets each idea arrive on its own and keeps reading effortless.',
+    rhythm:'A repeating order — promise, proof, price, action — makes every scroll predictable.',
+    intake:'With overlays and flashing banners off, the offer becomes the loudest thing on screen.',
+    reframe:'One reassuring line under the button answers the hesitation before it grows.'
+  };
+  var bands=[
+    'Plenty of room to settle this page',
+    'Beginning to clear',
+    'Reading comfortably',
+    'Calm and legible',
+    'Close to effortless',
+    'One clear path to the button'
+  ];
+
+  function update(){
+    var on={}, n=0;
+    keys.forEach(function(k){
+      var el=document.getElementById('k-'+k);
+      on[k]=el.checked;
+      el.closest('.sw').classList.toggle('on', el.checked);
+      if(el.checked) n++;
+    });
+
+    /* Reset 1 — one primary action */
+    extras.forEach(function(e){ e.classList.toggle('hidden', on.mit); });
+    links.innerHTML = on.mit
+      ? '<span>Contact</span>'
+      : '<span>Home</span><span>About</span><span>Blog</span><span>Team</span><span>Careers</span>';
+
+    /* Reset 2 — breathing room */
+    mock.classList.toggle('tight', !on.rest);
+
+    /* Reset 3 — predictable rhythm */
+    head.textContent = on.rhythm ? 'Same-week service, at a price agreed up front' : 'Fast, friendly service for your area';
+    blurb.textContent = on.rhythm
+      ? 'What you get, who already trusts us, what it costs, and how to book — in that order.'
+      : 'Trusted by local customers. Book a visit this week and pick a time that suits you.';
+
+    /* Reset 4 — quiet intake */
+    alertBar.classList.toggle('hidden', on.intake);
+    popup.classList.toggle('hidden', on.intake);
+
+    /* Reset 5 — reassuring microcopy */
+    reassure.classList.toggle('hidden', !on.reframe);
+
+    var pts = 20 + n*16;
+    score.textContent = pts;
+    fill.style.width = pts + '%';
+    band.textContent = bands[n];
+
+    if(n===0){
+      verdict.innerHTML='<b>Start anywhere.</b> Each reset lifts the score, and the page gets easier to read as you go.';
+    } else if(n===5){
+      verdict.innerHTML='<b>All five resets active.</b> One action, room to breathe, a steady rhythm, quiet intake and a reassuring line — this is the shape EasyLandX ships.';
+    } else {
+      var last=null;
+      keys.forEach(function(k){ if(document.getElementById('k-'+k).checked) last=k; });
+      verdict.innerHTML='<b>' + bands[n] + '.</b> ' + notes[last];
+    }
+  }
+
+  keys.forEach(function(k){ document.getElementById('k-'+k).addEventListener('change', update); });
+  update();
+})();
+</script>
+</body>
+</html>

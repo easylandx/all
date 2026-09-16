@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyLandX — Landing pages built on your unfair advantage</title>
+<meta name="description" content="EasyLandX turns your MILES advantages — Money, Insight, Location &amp; Luck, Expertise, Status — into a conversion-focused landing page. Build your advantage stack live.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violet-900:#1B0442;
+    --violet-800:#2E0870;
+    --violet-700:#4A0FB0;
+    --violet-600:#7A1FFF;
+    --violet-400:#A768FF;
+    --gold:#FFC61A;
+    --gold-soft:#FFE17A;
+    --cyan:#25F4EE;
+    --cyan-soft:#9BFFFA;
+    --ink:#F6EEFF;
+    --ink-dim:#CBB4F0;
+    --line:rgba(167,104,255,.38);
+    --panel:rgba(27,4,66,.62);
+    --display:"Syne",'Trebuchet MS',sans-serif;
+    --body:"Manrope","Segoe UI",system-ui,sans-serif;
+  }
+  /* The brief pins an electric-violet identity, so the palette holds steady in either viewer theme. */
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --panel:rgba(20,2,52,.72); } }
+  :root[data-theme="dark"]{ --panel:rgba(20,2,52,.72); }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 620px at 12% -8%, var(--violet-600) 0%, rgba(122,31,255,0) 62%),
+      radial-gradient(760px 520px at 92% 8%, rgba(37,244,238,.22) 0%, rgba(37,244,238,0) 60%),
+      radial-gradient(900px 700px at 70% 104%, rgba(255,198,26,.16) 0%, rgba(255,198,26,0) 64%),
+      linear-gradient(176deg, var(--violet-800) 0%, var(--violet-900) 58%, #14023A 100%);
+    background-color:var(--violet-900);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%}
+  a{color:var(--cyan-soft)}
+  :focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+  .wrap{width:min(1120px,92vw);margin-inline:auto}
+  section{padding:clamp(56px,8vw,104px) 0}
+  h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.04;margin:0}
+  h2{font-size:clamp(28px,4.4vw,46px)}
+  h3{font-size:1.14rem;letter-spacing:-.01em}
+  p{margin:0 0 1em}
+  .lede{font-size:clamp(17px,1.9vw,21px);color:var(--ink-dim);max-width:62ch}
+
+  /* ---------- header ---------- */
+  header.bar{
+    position:sticky;top:0;z-index:40;
+    backdrop-filter:blur(12px);
+    background:linear-gradient(180deg, rgba(27,4,66,.92), rgba(27,4,66,.55));
+    border-bottom:1px solid var(--line);
+  }
+  .bar .wrap{display:flex;align-items:center;gap:18px;min-height:66px;flex-wrap:wrap}
+  .mark{font-family:var(--display);font-weight:800;font-size:1.16rem;letter-spacing:-.03em;display:flex;align-items:center;gap:10px}
+  .mark i{
+    width:13px;height:13px;border-radius:3px;display:block;
+    background:linear-gradient(135deg,var(--gold),var(--cyan));
+    box-shadow:0 0 18px rgba(255,198,26,.75);
+  }
+  .bar nav{margin-left:auto;display:flex;gap:20px;font-size:.93rem}
+  .bar nav a{color:var(--ink-dim);text-decoration:none}
+  .bar nav a:hover{color:var(--gold-soft)}
+  @media (max-width:720px){ .bar nav{display:none} }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--display);font-weight:700;font-size:1rem;
+    padding:14px 24px;border-radius:999px;border:0;cursor:pointer;text-decoration:none;
+    background:linear-gradient(100deg,var(--gold),#FFD75E 55%,var(--gold-soft));
+    color:#2A0654;
+    box-shadow:0 10px 30px rgba(255,198,26,.32), inset 0 0 0 1px rgba(255,255,255,.35);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(255,198,26,.45)}
+  .btn.ghost{
+    background:transparent;color:var(--cyan-soft);
+    box-shadow:inset 0 0 0 1.5px var(--cyan);
+  }
+  .btn.ghost:hover{background:rgba(37,244,238,.12);box-shadow:inset 0 0 0 1.5px var(--cyan),0 0 26px rgba(37,244,238,.35)}
+  .btn i{width:9px;height:9px;border-radius:50%;background:#2A0654;display:block}
+  .btn.ghost i{background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+
+  /* ---------- hero ---------- */
+  .hero{padding-top:clamp(46px,6vw,78px)}
+  .hero .wrap{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(28px,5vw,64px);align-items:center}
+  @media (max-width:900px){ .hero .wrap{grid-template-columns:1fr} }
+  .hero h1{font-size:clamp(38px,7.2vw,76px)}
+  .hero h1 .line2{display:block;color:var(--gold)}
+  .hero h1 .line3{display:block;-webkit-text-stroke:1.5px var(--cyan);color:transparent}
+  .hero .lede{margin-top:22px}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+  .hero-note{margin-top:22px;font-size:.92rem;color:var(--ink-dim)}
+
+  /* stack graphic */
+  .stack{
+    border:1px solid var(--line);border-radius:22px;padding:26px 24px 22px;
+    background:var(--panel);
+    box-shadow:0 26px 70px rgba(10,0,40,.55);
+  }
+  .stack h3{font-size:.98rem;color:var(--cyan-soft);margin-bottom:4px}
+  .stack .sub{font-size:.86rem;color:var(--ink-dim);margin-bottom:18px}
+  .bars{display:grid;gap:12px}
+  .barrow{display:grid;grid-template-columns:104px 1fr;align-items:center;gap:12px;font-size:.88rem}
+  .barrow b{font-weight:700;color:var(--ink)}
+  .track{height:13px;border-radius:999px;background:rgba(246,238,255,.13);overflow:hidden}
+  .fill{height:100%;width:0;border-radius:999px;transition:width 1.1s cubic-bezier(.22,.9,.24,1)}
+  .f1{background:linear-gradient(90deg,var(--gold),var(--gold-soft))}
+  .f2{background:linear-gradient(90deg,var(--cyan),var(--cyan-soft))}
+  .f3{background:linear-gradient(90deg,var(--violet-400),var(--gold))}
+  .f4{background:linear-gradient(90deg,var(--gold),var(--cyan))}
+  .f5{background:linear-gradient(90deg,var(--cyan),var(--gold-soft))}
+  @media (prefers-reduced-motion: reduce){ .fill{transition:none} .btn{transition:none} }
+
+  /* ---------- generic panels ---------- */
+  .panel{border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:24px}
+  .grid5{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px;margin-top:34px}
+  .card h3{margin-bottom:8px}
+  .card .tag{
+    display:inline-block;font-family:var(--display);font-weight:700;font-size:.74rem;
+    color:#2A0654;background:var(--gold);border-radius:6px;padding:3px 9px;margin-bottom:12px;letter-spacing:.02em;
+  }
+  .card p{font-size:.94rem;color:var(--ink-dim);margin:0}
+  .card p + p{margin-top:10px;color:var(--ink)}
+  .card p b{color:var(--cyan-soft);font-weight:700}
+
+  /* ---------- builder ---------- */
+  .builder{display:grid;grid-template-columns:1fr .86fr;gap:22px;margin-top:34px;align-items:start}
+  @media (max-width:900px){ .builder{grid-template-columns:1fr} }
+  .slider{margin:0 0 20px}
+  .slider:last-of-type{margin-bottom:6px}
+  .slider .top{display:flex;align-items:baseline;gap:10px;font-size:.95rem}
+  .slider .top b{font-family:var(--display);font-weight:700}
+  .slider .top span{margin-left:auto;font-family:var(--display);font-weight:800;color:var(--gold);font-size:1.05rem}
+  .slider small{display:block;color:var(--ink-dim);font-size:.83rem;margin-bottom:9px}
+  input[type=range]{
+    -webkit-appearance:none;appearance:none;width:100%;height:22px;background:transparent;cursor:grab;margin:0;
+  }
+  input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:999px;background:linear-gradient(90deg,var(--violet-400),rgba(246,238,255,.16))}
+  input[type=range]::-moz-range-track{height:8px;border-radius:999px;background:linear-gradient(90deg,var(--violet-400),rgba(246,238,255,.16))}
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;margin-top:-7px;
+    background:radial-gradient(circle at 34% 30%, #fff, var(--cyan));
+    border:2px solid var(--gold);box-shadow:0 0 16px rgba(37,244,238,.8);
+  }
+  input[type=range]::-moz-range-thumb{
+    width:20px;height:20px;border-radius:50%;
+    background:radial-gradient(circle at 34% 30%, #fff, var(--cyan));
+    border:2px solid var(--gold);box-shadow:0 0 16px rgba(37,244,238,.8);
+  }
+  .readout{position:sticky;top:84px}
+  .gauge{display:flex;align-items:center;gap:18px}
+  .gauge svg{flex:0 0 auto}
+  .gauge .num{font-family:var(--display);font-weight:800;font-size:2.5rem;line-height:1;color:var(--gold)}
+  .gauge .lab{font-size:.86rem;color:var(--ink-dim)}
+  .play{margin-top:20px;border-top:1px solid var(--line);padding-top:18px}
+  .play .kicker{font-size:.82rem;color:var(--cyan);font-family:var(--display);font-weight:700;margin-bottom:6px}
+  .play h3{color:var(--gold-soft);margin-bottom:8px;font-size:1.22rem}
+  .play p{font-size:.95rem;margin-bottom:12px}
+  .play ul{margin:0;padding-left:1.1em;font-size:.94rem;color:var(--ink-dim)}
+  .play li{margin-bottom:7px}
+  .play li b{color:var(--ink);font-weight:700}
+  .amp{margin-top:16px;background:rgba(37,244,238,.09);border:1px solid rgba(37,244,238,.4);border-radius:14px;padding:14px 16px;font-size:.92rem}
+  .amp b{color:var(--cyan-soft)}
+
+  /* ---------- steps ---------- */
+  ol.steps{list-style:none;counter-reset:s;margin:34px 0 0;padding:0;display:grid;gap:14px}
+  ol.steps li{
+    counter-increment:s;display:grid;grid-template-columns:54px 1fr;gap:18px;align-items:start;
+    border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:20px 22px;
+  }
+  ol.steps li::before{
+    content:counter(s);font-family:var(--display);font-weight:800;font-size:1.5rem;
+    color:var(--violet-900);background:linear-gradient(135deg,var(--gold),var(--cyan));
+    width:44px;height:44px;border-radius:12px;display:grid;place-items:center;
+  }
+  ol.steps h3{margin-bottom:5px}
+  ol.steps p{margin:0;font-size:.95rem;color:var(--ink-dim)}
+
+  /* ---------- flywheel ---------- */
+  .fly{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:30px}
+  .fly div{border:1px dashed rgba(255,198,26,.5);border-radius:16px;padding:18px;font-size:.93rem;color:var(--ink-dim)}
+  .fly b{display:block;font-family:var(--display);color:var(--gold);margin-bottom:5px}
+
+  /* ---------- closing ---------- */
+  .close{text-align:center}
+  .close .panel{padding:clamp(30px,5vw,58px);background:linear-gradient(140deg, rgba(122,31,255,.42), rgba(27,4,66,.7))}
+  .close h2{max-width:20ch;margin-inline:auto}
+  .close p{margin:16px auto 26px;max-width:54ch;color:var(--ink-dim)}
+  footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:.86rem;color:var(--ink-dim)}
+  footer .wrap{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <span class="mark"><i></i>EasyLandX</span>
+    <nav>
+      <a href="#miles">MILES</a>
+      <a href="#builder">Advantage builder</a>
+      <a href="#method">Method</a>
+      <a href="#flywheel">Flywheel</a>
+    </nav>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener"><i></i>Visit EasyLandX</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Your edge is<span class="line2">already yours.</span><span class="line3">Put it on a page.</span></h1>
+      <p class="lede">Ash Ali and Hasan Kubba make a simple case in <em>The Unfair Advantage</em>: effort multiplies, and what it multiplies is the specific set of assets you already hold. EasyLandX takes that set — your money, insight, location, expertise and status — and turns it into a conversion-focused landing page that a copy-paste competitor finds hard to imitate.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener"><i></i>Visit EasyLandX</a>
+        <a class="btn ghost" href="#builder"><i></i>Build your advantage stack</a>
+      </div>
+      <p class="hero-note">Affordable pages for small businesses, shaped around the owner behind them.</p>
+    </div>
+
+    <aside class="stack" aria-label="Sample advantage stack">
+      <h3>A live advantage stack</h3>
+      <p class="sub">Five dimensions, one page that leads with the tallest bar.</p>
+      <div class="bars">
+        <div class="barrow"><b>Money</b><div class="track"><div class="fill f1" data-w="35"></div></div></div>
+        <div class="barrow"><b>Insight</b><div class="track"><div class="fill f2" data-w="88"></div></div></div>
+        <div class="barrow"><b>Location&nbsp;&amp;&nbsp;Luck</b><div class="track"><div class="fill f3" data-w="62"></div></div></div>
+        <div class="barrow"><b>Expertise</b><div class="track"><div class="fill f4" data-w="74"></div></div></div>
+        <div class="barrow"><b>Status</b><div class="track"><div class="fill f5" data-w="48"></div></div></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section id="miles">
+  <div class="wrap">
+    <h2>MILES, translated into page decisions</h2>
+    <p class="lede" style="margin-top:16px">Each of the five advantage types shows up somewhere concrete: a headline, a proof block, a form, a price. Here is how EasyLandX puts each one to work.</p>
+
+    <div class="grid5">
+      <article class="card panel">
+        <span class="tag">M — Money</span>
+        <h3>Budget becomes momentum</h3>
+        <p>A lean budget favours one sharp page over a ten-page build, and one page is where conversion lives anyway.</p>
+        <p><b>On the page:</b> a single offer, a single action, and copy that carries the weight paid traffic usually carries.</p>
+      </article>
+
+      <article class="card panel">
+        <span class="tag">I — Insight</span>
+        <h3>What you know that the market missed</h3>
+        <p>Your read on your customers is the asset a competitor finds hardest to copy, because it lives in your head.</p>
+        <p><b>On the page:</b> headlines written in your customers' own words, objections answered in the order they arise.</p>
+      </article>
+
+      <article class="card panel">
+        <span class="tag">L — Location &amp; Luck</span>
+        <h3>Where you stand is leverage</h3>
+        <p>A neighbourhood, a city, a language, a season, a moment of good timing — each one narrows the field in your favour.</p>
+        <p><b>On the page:</b> local signals, map and hours, plus timing-aware offers that greet visitors the week they search.</p>
+      </article>
+
+      <article class="card panel">
+        <span class="tag">E — Expertise</span>
+        <h3>Years of craft, made visible</h3>
+        <p>Formal schooling and hands-on mastery both count. What matters is that a visitor senses it inside five seconds.</p>
+        <p><b>On the page:</b> credentials, before-and-after work, method explained plainly, and numbers that stand up.</p>
+      </article>
+
+      <article class="card panel">
+        <span class="tag">S — Status</span>
+        <h3>Trust you have earned or borrowed</h3>
+        <p>Reviews, referrals, memberships, press, and the reputation of everyone you partner with all add up.</p>
+        <p><b>On the page:</b> testimonials near the button, recognisable logos, and endorsements placed where the decision happens.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="builder">
+  <div class="wrap">
+    <h2>Build your advantage stack</h2>
+    <p class="lede" style="margin-top:16px">Grade yourself 1 to 10 on each dimension, the way the MILES audit asks. The panel updates live: your tallest bar decides what the page leads with, and your most open dimension decides which strength gets amplified.</p>
+
+    <div class="builder">
+      <form class="panel" id="audit" aria-label="MILES self-audit">
+        <div class="slider">
+          <label class="top" for="m"><b>Money</b><span id="m-val">4</span></label>
+          <small>Capital on hand, a financial cushion, or access to early funding.</small>
+          <input type="range" id="m" min="1" max="10" value="4" step="1" aria-describedby="m-val">
+        </div>
+        <div class="slider">
+          <label class="top" for="i"><b>Intelligence &amp; Insight</b><span id="i-val">8</span></label>
+          <small>Specialised knowledge, creative problem-solving, deep feel for the market.</small>
+          <input type="range" id="i" min="1" max="10" value="8" step="1">
+        </div>
+        <div class="slider">
+          <label class="top" for="l"><b>Location &amp; Luck</b><span id="l-val">6</span></label>
+          <small>Being in a strong city, niche or moment for what you sell.</small>
+          <input type="range" id="l" min="1" max="10" value="6" step="1">
+        </div>
+        <div class="slider">
+          <label class="top" for="e"><b>Education &amp; Expertise</b><span id="e-val">7</span></label>
+          <small>Schooling, certifications, domain authority, technical craft.</small>
+          <input type="range" id="e" min="1" max="10" value="7" step="1">
+        </div>
+        <div class="slider">
+          <label class="top" for="s"><b>Status</b><span id="s-val">5</span></label>
+          <small>Personal brand, network reach, referrals, cultural trust.</small>
+          <input type="range" id="s" min="1" max="10" value="5" step="1">
+        </div>
+      </form>
+
+      <div class="panel readout" aria-live="polite">
+        <div class="gauge">
+          <svg width="112" height="112" viewBox="0 0 112 112" role="img" aria-label="Advantage stack score dial">
+            <circle cx="56" cy="56" r="46" fill="none" stroke="rgba(246,238,255,.15)" stroke-width="11"></circle>
+            <circle id="arc" cx="56" cy="56" r="46" fill="none" stroke="url(#g1)" stroke-width="11"
+                    stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="289"
+                    transform="rotate(-90 56 56)"></circle>
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#FFC61A"></stop>
+                <stop offset="1" stop-color="#25F4EE"></stop>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div>
+            <div class="num"><span id="score">30</span><span style="font-size:1rem;color:var(--ink-dim)">/50</span></div>
+            <div class="lab" id="band">Stack in motion</div>
+          </div>
+        </div>
+
+        <div class="play">
+          <div class="kicker">Your page leads with</div>
+          <h3 id="play-title">Insight</h3>
+          <p id="play-copy">Copy that proves you understand the customer better than anyone else selling to them.</p>
+          <ul id="play-list"></ul>
+          <div class="amp" id="amp"></div>
+        </div>
+
+        <div class="cta-row" style="margin-top:22px">
+          <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener"><i></i>Build this page with EasyLandX</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <h2>The five-step method, applied to one page</h2>
+    <ol class="steps">
+      <li>
+        <div>
+          <h3>Audit your MILES assets</h3>
+          <p>Grade all five dimensions honestly. Self-aware beats self-made, and the scores tell you which story the page should carry.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Map advantage to real demand</h3>
+          <p>Match your strongest asset to a live search, a busy season, or a question customers already ask out loud.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Flip every constraint into speed</h3>
+          <p>A lean budget points you toward high-margin, service-led offers where personal insight and quick moves win.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Ship early traction</h3>
+          <p>A page live this week gathers real signals. Those signals beat another month of planning, every time.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Borrow status through association</h3>
+          <p>Partners, platforms, accreditations and happy customers lend you authority. Feature them near the button.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="flywheel">
+  <div class="wrap">
+    <h2>Early traction spins a flywheel</h2>
+    <p class="lede" style="margin-top:16px">Small wins compound. A page that converts today funds the visibility that earns the next advantage, which raises conversion again.</p>
+    <div class="fly">
+      <div><b>One page live</b>A focused offer meets real visitors and starts producing data.</div>
+      <div><b>First clear wins</b>Enquiries and sales arrive with names, words and reasons attached.</div>
+      <div><b>Fresh proof</b>Those wins become testimonials, cases and numbers on the page.</div>
+      <div><b>Wider reach</b>Proof attracts partners, referrals and stronger traffic.</div>
+      <div><b>A deeper moat</b>Your stack grows, and the page grows with it.</div>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap">
+    <div class="panel">
+      <h2>Lead with the advantage only you hold</h2>
+      <p>EasyLandX builds conversion-focused landing pages for small businesses at a friendly price — shaped around your MILES stack, written in your customers' language, and live soon enough to matter.</p>
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener"><i></i>Go to EasyLandX</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="mark"><i></i>EasyLandX</span>
+    <span>Framework credit: <em>The Unfair Advantage</em> by Ash Ali &amp; Hasan Kubba.</span>
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* hero stack animation: one orchestrated reveal */
+  var fills = document.querySelectorAll('.stack .fill');
+  requestAnimationFrame(function(){
+    setTimeout(function(){
+      fills.forEach(function(f,idx){
+        setTimeout(function(){ f.style.width = f.dataset.w + '%'; }, idx*110);
+      });
+    }, 240);
+  });
+
+  /* ---- advantage builder ---- */
+  var keys = ['m','i','l','e','s'];
+  var meta = {
+    m:{ name:'Money',
+        copy:'Room to invest means the page can carry a bolder offer and support paid traffic from day one.',
+        list:['<b>Hero:</b> a strong, well-backed guarantee or starter offer.',
+              '<b>Proof:</b> scale signals — volume served, coverage, capacity.',
+              '<b>Action:</b> multiple entry points, from a quick quote to a premium package.'],
+        amp:'Pair spend with a tight single-page funnel so every visit earns its keep.' },
+    i:{ name:'Insight',
+        copy:'Copy that proves you understand the customer better than anyone else selling to them.',
+        list:['<b>Hero:</b> the exact sentence your customer says about their goal.',
+              '<b>Proof:</b> answers to the three questions they always ask, in order.',
+              '<b>Action:</b> a form that speaks their vocabulary, kept to the essentials.'],
+        amp:'Insight travels fastest on a page that loads quickly and reads in one scroll.' },
+    l:{ name:'Location &amp; Luck',
+        copy:'Geography, niche and timing narrow the field, and a page can claim that ground clearly.',
+        list:['<b>Hero:</b> the place or moment named outright in the headline.',
+              '<b>Proof:</b> map, service radius, hours, and neighbours who vouch for you.',
+              '<b>Action:</b> a seasonal or same-week offer with a visible window.'],
+        amp:'Local search terms in the page title turn a good position into steady discovery.' },
+    e:{ name:'Expertise',
+        copy:'Depth of craft reassures fast, once a visitor can see it inside the first screen.',
+        list:['<b>Hero:</b> years, specialism and standard of work stated plainly.',
+              '<b>Proof:</b> before-and-after gallery, certifications, and your method in three lines.',
+              '<b>Action:</b> an invitation to a short consultation where the craft speaks for itself.'],
+        amp:'Expertise reads even stronger beside two or three named customer quotes.' },
+    s:{ name:'Status',
+        copy:'Recognition and relationships do the persuading, so the page puts them front and centre.',
+        list:['<b>Hero:</b> a headline that leans on your name, following or standout result.',
+              '<b>Proof:</b> logos, press, memberships and referral partners above the fold.',
+              '<b>Action:</b> social proof placed right beside the button.'],
+        amp:'Reputation converts best when the next step is one tap away.' }
+  };
+  var flip = {
+    m:'A lean budget keeps you quick: lean, high-margin, service-led offers reward speed and personal attention, so the page stays sharp and ships sooner.',
+    i:'Fresh eyes are an asset — the page invites customers to tell you what they want, and each reply sharpens the next version.',
+    l:'Anywhere works when the page travels: clear service coverage, remote-friendly delivery and wide-reaching search terms open the map.',
+    e:'Learning in public wins trust — show work in progress, results so far, and the standards you hold yourself to.',
+    s:'Borrowed status is real status: partners, platforms and early customer praise lend authority the page displays with pride.'
+  };
+  var bands = [
+    {min:0,  label:'Stack taking shape'},
+    {min:20, label:'Stack in motion'},
+    {min:30, label:'Stack with real leverage'},
+    {min:38, label:'Stack ready to compound'},
+    {min:45, label:'Stack at full strength'}
+  ];
+
+  var scoreEl=document.getElementById('score'), bandEl=document.getElementById('band'),
+      arc=document.getElementById('arc'), titleEl=document.getElementById('play-title'),
+      copyEl=document.getElementById('play-copy'), listEl=document.getElementById('play-list'),
+      ampEl=document.getElementById('amp');
+  var CIRC=289;
+
+  function update(){
+    var vals={}, total=0, top=keys[0], low=keys[0];
+    keys.forEach(function(k){
+      var v=parseInt(document.getElementById(k).value,10);
+      vals[k]=v; total+=v;
+      document.getElementById(k+'-val').textContent=v;
+      if(v>vals[top]) top=k;
+      if(v<vals[low]) low=k;
+    });
+
+    scoreEl.textContent=total;
+    arc.style.strokeDashoffset = CIRC - (CIRC*total/50);
+
+    var band=bands[0];
+    bands.forEach(function(b){ if(total>=b.min) band=b; });
+    bandEl.textContent=band.label;
+
+    var t=meta[top];
+    titleEl.innerHTML=t.name;
+    copyEl.innerHTML=t.copy;
+    listEl.innerHTML=t.list.map(function(x){return '<li>'+x+'</li>';}).join('');
+    ampEl.innerHTML = (low===top)
+      ? '<b>Amplifier:</b> an even stack favours one clear offer and one clear action, tested week by week.'
+      : '<b>Amplifier — ' + meta[low].name + ':</b> ' + flip[low];
+  }
+
+  keys.forEach(function(k){
+    var el=document.getElementById(k);
+    el.addEventListener('input',update);
+    el.addEventListener('change',update);
+  });
+  update();
+})();
+</script>
+</body>
+</html>

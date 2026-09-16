@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Do It Now. Launch It Live.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crimson: #E31C3D;
+    --crimson-deep: #8C0F26;
+    --crimson-void: #300712;
+    --lime: #C6FF00;
+    --lime-dim: #8FB300;
+    --amber: #FFB300;
+    --amber-dim: #C68600;
+    --ink: #1A0308;
+    --paper: #FFF6EC;
+    --line: rgba(255,246,236,0.18);
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--crimson);
+    color: var(--paper);
+    font-family: 'Archivo', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1,h2,h3{
+    font-family: 'Archivo Black', sans-serif;
+    line-height: 1.02;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  p{ margin:0; }
+  a{ color: inherit; }
+  ::selection{ background: var(--lime); color: var(--ink); }
+
+  :focus-visible{
+    outline: 3px solid var(--lime);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(227,28,61,0.86);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-space-between;
+    padding: 18px 32px;
+    max-width: 1180px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Archivo Black', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+  }
+  .logo span{ color: var(--lime); }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background: var(--lime);
+    color: var(--ink);
+    font-weight: 800;
+    font-size: 0.92rem;
+    padding: 10px 20px;
+    border-radius: 999px;
+    text-decoration:none;
+    box-shadow: 0 0 0 2px transparent;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .nav-cta:hover{ transform: translateY(-2px); box-shadow: 0 8px 22px rgba(198,255,0,0.35); }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding: 96px 0 84px;
+    position: relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .kicker{
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--amber);
+    margin-bottom: 18px;
+  }
+  .hero h1{
+    font-size: clamp(2.6rem, 5.4vw, 4.4rem);
+    color: var(--paper);
+  }
+  .hero h1 em{
+    font-style: normal;
+    color: var(--lime);
+  }
+  .hero p.lede{
+    margin-top: 24px;
+    font-size: 1.18rem;
+    line-height: 1.55;
+    max-width: 46ch;
+    color: rgba(255,246,236,0.88);
+  }
+  .hero-actions{
+    margin-top: 36px;
+    display:flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding: 15px 26px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration:none;
+    cursor:pointer;
+    border: none;
+    transition: transform .16s ease, box-shadow .16s ease;
+    font-family: 'Archivo', sans-serif;
+  }
+  .btn-lime{ background: var(--lime); color: var(--ink); }
+  .btn-lime:hover{ transform: translateY(-2px); box-shadow: 0 10px 26px rgba(198,255,0,0.32); }
+  .btn-outline{
+    background: transparent; color: var(--paper);
+    border: 2px solid rgba(255,246,236,0.4);
+  }
+  .btn-outline:hover{ border-color: var(--amber); color: var(--amber); transform: translateY(-2px); }
+
+  /* countdown card */
+  .countdown-card{
+    background: linear-gradient(160deg, var(--crimson-deep), var(--crimson-void));
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 34px 30px;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(48,7,18,0.5);
+  }
+  .countdown-label{
+    font-size: 0.82rem;
+    text-transform: none;
+    color: var(--amber);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .countdown-number{
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 5.4rem;
+    color: var(--lime);
+    margin: 14px 0 6px;
+    line-height: 1;
+    min-height: 5.4rem;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .countdown-sub{
+    font-size: 0.95rem;
+    color: rgba(255,246,236,0.75);
+    min-height: 1.4em;
+  }
+  .countdown-btn{
+    margin-top: 22px;
+    width: 100%;
+  }
+  .mini-browser{
+    margin-top: 22px;
+    border-radius: 12px;
+    overflow:hidden;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    opacity: 0;
+    max-height: 0;
+    transition: opacity .5s ease, max-height .6s ease;
+  }
+  .mini-browser.show{ opacity: 1; max-height: 220px; }
+  .mini-browser .bar{
+    background: #EFE6D8; padding: 8px 12px; display:flex; gap:6px;
+  }
+  .mini-browser .bar span{ width:8px; height:8px; border-radius:50%; background:#D8C7AE; display:inline-block; }
+  .mini-browser .screen{
+    padding: 18px;
+    color: var(--ink);
+  }
+  .mini-browser .screen strong{ display:block; font-family:'Archivo Black'; font-size:1.05rem; margin-bottom:6px; }
+  .mini-browser .screen p{ font-size: 0.85rem; color:#5A4234; line-height:1.4; }
+  .mini-browser .screen .go{
+    display:inline-block; margin-top:12px; background: var(--crimson); color:#fff;
+    padding:7px 14px; border-radius:8px; font-size:0.78rem; font-weight:700;
+  }
+
+  /* ---------- SECTION shared ---------- */
+  section{ padding: 88px 0; }
+  .section-head{ max-width: 640px; margin-bottom: 52px; }
+  .eyebrow-plain{
+    color: var(--amber);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+  .section-head h2{
+    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+  }
+  .section-head p{
+    margin-top: 16px;
+    font-size: 1.05rem;
+    color: rgba(255,246,236,0.82);
+    line-height: 1.55;
+  }
+
+  /* ---------- CORE MESSAGES ---------- */
+  .messages{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .msg-card{
+    background: var(--crimson);
+    padding: 34px 32px;
+  }
+  .msg-card h3{
+    font-size: 1.28rem;
+    color: var(--lime);
+    margin-bottom: 12px;
+  }
+  .msg-card p{
+    color: rgba(255,246,236,0.85);
+    line-height: 1.55;
+    font-size: 0.98rem;
+  }
+
+  /* ---------- FRAMEWORK FLOW ---------- */
+  .flow{
+    display:flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .flow-step{
+    display:grid;
+    grid-template-columns: 64px 1fr;
+    gap: 22px;
+    padding: 26px 0;
+    border-top: 1px solid var(--line);
+    align-items: flex-start;
+  }
+  .flow-step:last-child{ border-bottom: 1px solid var(--line); }
+  .flow-mark{
+    width: 52px; height:52px; border-radius: 50%;
+    background: var(--crimson-deep);
+    border: 1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Archivo Black';
+    color: var(--amber);
+    font-size: 1.1rem;
+  }
+  .flow-step h3{
+    font-size: 1.18rem;
+    margin-bottom: 6px;
+    color: var(--paper);
+  }
+  .flow-step p{
+    color: rgba(255,246,236,0.8);
+    font-size: 0.98rem;
+    line-height: 1.5;
+    max-width: 58ch;
+  }
+  .flow-step .tag{
+    display:inline-block;
+    margin-top: 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--crimson-void);
+    background: var(--amber);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  /* ---------- CHECKLIST / CLARITY METER ---------- */
+  .clarity-panel{
+    background: linear-gradient(160deg, var(--crimson-deep), var(--crimson-void));
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 40px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+  }
+  .clarity-panel h3{
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--paper);
+  }
+  .clarity-panel > div > p.desc{
+    color: rgba(255,246,236,0.75);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 22px;
+  }
+  .check-item{
+    display:flex; align-items:center; gap:12px;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--line);
+    cursor: pointer;
+    user-select: none;
+  }
+  .check-item:last-child{ border-bottom: none; }
+  .box{
+    width: 22px; height:22px; flex: 0 0 22px;
+    border-radius: 6px;
+    border: 2px solid rgba(255,246,236,0.5);
+    display:flex; align-items:center; justify-content:center;
+    font-size: 0.8rem;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .check-item.done .box{
+    background: var(--lime);
+    border-color: var(--lime);
+    color: var(--ink);
+  }
+  .check-item span.label{
+    font-size: 0.98rem;
+    color: rgba(255,246,236,0.9);
+  }
+  .check-item.done span.label{
+    color: var(--paper);
+  }
+  .meter-side{
+    display:flex; flex-direction: column; justify-content: center;
+  }
+  .meter-title{
+    font-size: 0.9rem; font-weight:700; color: var(--amber);
+    margin-bottom: 14px;
+  }
+  .meter-track{
+    width:100%; height: 20px; border-radius: 999px;
+    background: rgba(255,246,236,0.12);
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .meter-fill{
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--amber), var(--lime));
+    transition: width .5s cubic-bezier(.2,.8,.2,1);
+    border-radius: 999px;
+  }
+  .meter-readout{
+    margin-top: 14px;
+    font-size: 1.6rem;
+    font-family: 'Archivo Black';
+    color: var(--lime);
+  }
+  .meter-caption{
+    margin-top: 8px;
+    font-size: 0.92rem;
+    color: rgba(255,246,236,0.75);
+    min-height: 2.6em;
+  }
+
+  /* ---------- LESSONS ---------- */
+  .lessons{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+  }
+  .lesson-card{
+    background: var(--crimson-deep);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 30px 26px;
+  }
+  .lesson-num{
+    font-family:'Archivo Black';
+    font-size: 0.85rem;
+    color: var(--crimson-void);
+    background: var(--lime);
+    display:inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+  .lesson-card h3{
+    font-size: 1.12rem;
+    margin-bottom: 10px;
+    color: var(--paper);
+  }
+  .lesson-card p{
+    font-size: 0.95rem;
+    color: rgba(255,246,236,0.8);
+    line-height: 1.5;
+  }
+
+  /* ---------- CLOSING ---------- */
+  .closing{
+    text-align:center;
+    padding: 110px 0 120px;
+    background: radial-gradient(circle at 50% 0%, var(--crimson-deep), var(--crimson) 70%);
+  }
+  .closing h2{
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    max-width: 18ch;
+    margin: 0 auto;
+  }
+  .closing h2 em{ font-style:normal; color: var(--lime); }
+  .closing p{
+    margin: 22px auto 0;
+    max-width: 52ch;
+    font-size: 1.08rem;
+    color: rgba(255,246,236,0.85);
+    line-height: 1.55;
+  }
+  .closing .btn{ margin-top: 34px; }
+
+  footer{
+    padding: 34px 0 46px;
+    text-align:center;
+    font-size: 0.85rem;
+    color: rgba(255,246,236,0.55);
+    border-top: 1px solid var(--line);
+  }
+  footer a{ color: var(--amber); text-decoration:none; font-weight:700; }
+
+  /* reveal */
+  .reveal{ opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 880px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .messages{ grid-template-columns: 1fr; }
+    .clarity-panel{ grid-template-columns: 1fr; }
+    .lessons{ grid-template-columns: 1fr; }
+    .flow-step{ grid-template-columns: 48px 1fr; }
+    .wrap{ padding: 0 20px; }
+    .nav-inner{ padding: 16px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker">Do It Now — for your landing page</div>
+      <h1>A live page today<br>beats <em>a perfect one</em> someday.</h1>
+      <p class="lede">Most businesses lose customers not from a bad page, but from no page — stuck planning, tweaking, waiting for the right moment. EasyLandX turns that hesitation into a page that's live, working, and bringing in leads.</p>
+      <div class="hero-actions">
+        <a class="btn btn-lime" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your Page Live — EasyLandX</a>
+        <a class="btn btn-outline" href="#framework">See the framework</a>
+      </div>
+    </div>
+
+    <div class="countdown-card">
+      <div class="countdown-label">Try the 5-second rule</div>
+      <div class="countdown-number" id="countNum">5</div>
+      <div class="countdown-sub" id="countSub">Count down, then commit to the click.</div>
+      <button class="btn btn-lime countdown-btn" id="countBtn">Start the countdown</button>
+      <div class="mini-browser" id="miniBrowser">
+        <div class="bar"><span></span><span></span><span></span></div>
+        <div class="screen">
+          <strong>Your Bakery, Live in Minutes</strong>
+          <p>Headline, offer, and contact form — published while the idea is still fresh.</p>
+          <span class="go">Visit page →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="messages">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow-plain">Why speed wins</div>
+      <h2>Four things every business owner should know before they wait one more week.</h2>
+    </div>
+    <div class="messages reveal">
+      <div class="msg-card">
+        <h3>Launching beats perfecting</h3>
+        <p>Waiting for the ideal logo, the ideal words, the ideal moment is just a slower way of never publishing. A page that's live and imperfect earns customers; a page that's flawless and private earns nothing.</p>
+      </div>
+      <div class="msg-card">
+        <h3>The first click clears the path</h3>
+        <p>Starting is the hard part. Once your page is up, every next step — a new section, a new photo, a new offer — gets easier, because momentum is already carrying you.</p>
+      </div>
+      <div class="msg-card">
+        <h3>Motivation follows action</h3>
+        <p>Owners often wait to "feel ready" before building their page. In practice it works the other way: publishing something real is what makes you feel ready to keep going.</p>
+      </div>
+      <div class="msg-card">
+        <h3>Every live day counts</h3>
+        <p>Each day your page is online is a day it can be found, shared, and trusted. Time spent live compounds — in searches, in referrals, in customers who found you first.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow-plain">The framework</div>
+      <h2>Five moves that take a landing page from idea to live.</h2>
+      <p>Adapted for landing pages from Daniel Walter's action-and-momentum principles in <em>The Power of Action: Do It Now.</em></p>
+    </div>
+    <div class="flow reveal">
+      <div class="flow-step">
+        <div class="flow-mark">1</div>
+        <div>
+          <h3>Apply the 5-second rule</h3>
+          <p>When you catch yourself hesitating over the "publish" button, count down: 5-4-3-2-1 — then click. The countdown above works the same way; try it before you read on.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-mark">2</div>
+        <div>
+          <h3>Deploy the 5-minute tactic</h3>
+          <p>Give yourself five minutes to get one section done — the headline, the offer, the contact form. Five minutes rarely feels like a threat, and most owners keep going once they start.</p>
+          <span class="tag">EasyLandX builds the first version in minutes, not weeks</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-mark">3</div>
+        <div>
+          <h3>Batch your focus time</h3>
+          <p>Set one block of undistracted time for your page's content — photos, prices, hours — instead of scattering it across a dozen half-attempts. One focused sprint finishes what ten interruptions never will.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-mark">4</div>
+        <div>
+          <h3>Pre-decide the essentials</h3>
+          <p>Write down your headline, your offer, and your contact details the night before you sit down to build. Fewer choices in the moment means fewer reasons to put it off.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-mark">5</div>
+        <div>
+          <h3>Close the small loops</h3>
+          <p>An unwritten phone number or an unpicked photo stays open in your mind long after you've closed the laptop. Finish the two-minute tasks the moment they appear — try it below.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="clarity">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow-plain">Try it</div>
+      <h2>Close your open loops and watch your clarity rise.</h2>
+      <p>Every unfinished task on your landing page sits open in the back of your mind. Check each one off and feel the difference.</p>
+    </div>
+    <div class="clarity-panel reveal">
+      <div>
+        <h3>Your launch checklist</h3>
+        <p class="desc">These are the five small tasks that stand between "someday" and "live." Click each one as you complete it.</p>
+        <div class="check-item" data-item="1"><div class="box"></div><span class="label">Write your headline</span></div>
+        <div class="check-item" data-item="2"><div class="box"></div><span class="label">Add your offer or price</span></div>
+        <div class="check-item" data-item="3"><div class="box"></div><span class="label">Choose your photos</span></div>
+        <div class="check-item" data-item="4"><div class="box"></div><span class="label">Set your contact details</span></div>
+        <div class="check-item" data-item="5"><div class="box"></div><span class="label">Pick your call-to-action</span></div>
+      </div>
+      <div class="meter-side">
+        <div class="meter-title">Clarity meter</div>
+        <div class="meter-track"><div class="meter-fill" id="meterFill"></div></div>
+        <div class="meter-readout" id="meterReadout">0%</div>
+        <div class="meter-caption" id="meterCaption">Every open task takes up space in your head. Start checking them off.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lessons">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow-plain">Essential lessons</div>
+      <h2>What actually stands between you and a live page.</h2>
+    </div>
+    <div class="lessons reveal">
+      <div class="lesson-card">
+        <div class="lesson-num">Lesson 1</div>
+        <h3>Perfectionism is a disguise</h3>
+        <p>What feels like a high standard is often fear wearing a nicer name. Lowering the bar to start — one section, one sentence — is what actually gets a page finished.</p>
+      </div>
+      <div class="lesson-card">
+        <div class="lesson-num">Lesson 2</div>
+        <h3>Unfinished pages stay loud</h3>
+        <p>A half-built page keeps running in the background of your mind long after you've closed the tab. Publishing it — even simply — is what finally goes quiet.</p>
+      </div>
+      <div class="lesson-card">
+        <div class="lesson-num">Lesson 3</div>
+        <h3>Small launches build trust</h3>
+        <p>Every time you follow through on starting, you build trust in your own follow-through. A live page, however simple, is proof you can keep that promise to yourself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2 class="reveal">Enough planning it. <em>Start living it.</em></h2>
+    <p class="reveal">EasyLandX gets small businesses and creators from idea to live landing page — fast, affordable, and ready the moment you are.</p>
+    <a class="btn btn-lime reveal" href="https://easylandx.github.io" target="_blank" rel="noopener">Start With EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    EasyLandX — <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ---- audio synthesis via Web Audio API ----
+  let actx;
+  function ping(freq, dur, type, vol){
+    try{
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      const o = actx.createOscillator();
+      const g = actx.createGain();
+      o.type = type || 'sine';
+      o.frequency.value = freq;
+      g.gain.value = (vol !== undefined ? vol : 0.06);
+      o.connect(g); g.connect(actx.destination);
+      o.start();
+      g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + dur);
+      o.stop(actx.currentTime + dur + 0.02);
+    }catch(e){}
+  }
+
+  // ---- scroll reveal observer ----
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.14 });
+  revealEls.forEach(el=> io.observe(el));
+
+  // ---- 5-second countdown widget ----
+  const countNum = document.getElementById('countNum');
+  const countSub = document.getElementById('countSub');
+  const countBtn = document.getElementById('countBtn');
+  const miniBrowser = document.getElementById('miniBrowser');
+  let counting = false;
+
+  countBtn.addEventListener('click', ()=>{
+    if(counting) return;
+    counting = true;
+    miniBrowser.classList.remove('show');
+    countBtn.textContent = 'Counting...';
+    countSub.textContent = 'Momentum is building.';
+    let n = 5;
+    countNum.textContent = n;
+    ping(320, 0.12, 'square', 0.05);
+
+    const tick = setInterval(()=>{
+      n -= 1;
+      if(n > 0){
+        countNum.textContent = n;
+        ping(320 + (5-n)*30, 0.12, 'square', 0.05);
+      } else {
+        clearInterval(tick);
+        countNum.textContent = '✓';
+        countSub.textContent = 'You clicked. That\'s the whole trick.';
+        countBtn.textContent = 'Run it again';
+        ping(660, 0.35, 'sine', 0.08);
+        counting = false;
+        requestAnimationFrame(()=> miniBrowser.classList.add('show'));
+      }
+    }, 650);
+  });
+
+  // ---- clarity checklist & meter ----
+  const items = Array.from(document.querySelectorAll('.check-item'));
+  const meterFill = document.getElementById('meterFill');
+  const meterReadout = document.getElementById('meterReadout');
+  const meterCaption = document.getElementById('meterCaption');
+  const captions = [
+    'Every open task takes up space in your head. Start checking them off.',
+    'One loop closed. The rest already feel lighter.',
+    'Two down. Your page is taking real shape.',
+    'Halfway clear. Notice the difference?',
+    'Almost there — just one loop left open.',
+    'All closed. That\'s a page ready to go live.'
+  ];
+
+  function updateMeter(){
+    const done = items.filter(i=> i.classList.contains('done')).length;
+    const pct = Math.round((done/items.length)*100);
+    meterFill.style.width = pct + '%';
+    meterReadout.textContent = pct + '%';
+    meterCaption.textContent = captions[done];
+  }
+
+  items.forEach(item=>{
+    item.addEventListener('click', ()=>{
+      item.classList.toggle('done');
+      const box = item.querySelector('.box');
+      box.textContent = item.classList.contains('done') ? '✓' : '';
+      ping(item.classList.contains('done') ? 520 : 260, 0.1, 'triangle', 0.04);
+      updateMeter();
+    });
+  });
+  updateMeter();
+})();
+</script>
+
+</body>
+</html>
