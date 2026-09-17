@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages, Fully Realized</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --solar-gold: #F5A93B;
+    --solar-gold-deep: #D9820F;
+    --solar-gold-pale: #FCE4B8;
+    --river-cyan: #14C6BE;
+    --river-cyan-deep: #0C9A96;
+    --cyber-saffron: #FF7A1F;
+    --cyber-saffron-bright: #FF9944;
+    --ink: #2E1B06;
+    --ink-soft: #5A3E19;
+    --paper: #FFF6E4;
+    --paper-line: rgba(46,27,6,0.14);
+    --max-w: 880px;
+    --radius: 14px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    font-family: 'Manrope', sans-serif;
+    color: var(--ink);
+    background: var(--solar-gold);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0 0 0.5em 0;
+  }
+
+  p{ margin: 0 0 1em 0; }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+  .nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size: 1.25rem;
+    letter-spacing: 0.01em;
+  }
+  .nav-btn{
+    display:inline-block;
+    text-decoration:none;
+    font-weight:600;
+    font-size:0.85rem;
+    color: var(--paper);
+    background: var(--ink);
+    padding: 9px 18px;
+    border-radius: 999px;
+    transition: transform 0.15s ease;
+  }
+  .nav-btn:hover{ transform: translateY(-2px); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, var(--cyber-saffron-bright) 0%, transparent 60%),
+      linear-gradient(180deg, var(--solar-gold) 0%, var(--solar-gold-deep) 100%);
+  }
+  .hero .wrap{ text-align:center; padding-top: 30px; padding-bottom: 60px; }
+  .hero h1{
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    color: var(--ink);
+    max-width: 14ch;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .hero .lede{
+    max-width: 52ch;
+    margin: 0 auto 2em auto;
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+  }
+  .cta-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    font-weight:700;
+    font-size: 1rem;
+    color: var(--ink);
+    background: linear-gradient(180deg, var(--river-cyan) 0%, var(--river-cyan-deep) 100%);
+    padding: 14px 30px;
+    border-radius: 999px;
+    box-shadow: 0 6px 0 rgba(12,90,90,0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .cta-btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 9px 0 rgba(12,90,90,0.35);
+  }
+  .cta-btn svg{ width:18px; height:18px; }
+
+  /* flowing river divider under hero */
+  .river-divider{ display:block; width:100%; height:auto; margin-top: 10px; }
+  .river-line{
+    stroke: var(--river-cyan);
+    stroke-width: 3;
+    fill:none;
+    stroke-dasharray: 14 10;
+    animation: flow 5s linear infinite;
+  }
+  @keyframes flow{ to{ stroke-dashoffset: -240; } }
+  @media (prefers-reduced-motion: reduce){
+    .river-line{ animation: none; }
+  }
+
+  /* ---------- Sections ---------- */
+  section{ padding-top: 64px; padding-bottom: 64px; }
+  .section-alt{ background: var(--paper); }
+  .eyebrow-free-title{ font-size: clamp(1.5rem, 3.4vw, 2.1rem); }
+
+  .lead-text{ max-width: 62ch; color: var(--ink-soft); }
+
+  blockquote{
+    font-family:'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--ink);
+    border-left: 3px solid var(--cyber-saffron);
+    margin: 1.6em 0;
+    padding: 0.2em 0 0.2em 1.2em;
+  }
+
+  /* ---------- Timeline (Unity) ---------- */
+  .timeline{
+    position:relative;
+    margin-top: 48px;
+    padding: 0 10px;
+  }
+  .timeline-line{
+    position:relative;
+    height: 4px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--river-cyan) 0%, var(--cyber-saffron) 100%);
+  }
+  .timeline-points{
+    display:flex;
+    justify-content: space-between;
+    margin-top: -8px;
+  }
+  .tl-point{ text-align:center; width: 33%; }
+  .tl-dot{
+    width:18px; height:18px; border-radius:50%;
+    background: var(--paper);
+    border: 4px solid var(--river-cyan-deep);
+    margin: 0 auto 14px auto;
+  }
+  .tl-point:nth-child(2) .tl-dot{ border-color: var(--cyber-saffron); }
+  .tl-point:nth-child(3) .tl-dot{ border-color: var(--ink); }
+  .tl-label{ font-weight:700; font-size:0.95rem; }
+  .tl-cap{ font-size:0.9rem; color: var(--ink-soft); max-width: 22ch; margin: 4px auto 0 auto; }
+
+  /* ---------- River Listening (interactive) ---------- */
+  .river-stage{
+    position:relative;
+    width:100%;
+    aspect-ratio: 16 / 7;
+    margin-top: 40px;
+  }
+  .river-stage svg.bg-path{ position:absolute; inset:0; width:100%; height:100%; }
+  .river-node{
+    position:absolute;
+    transform: translate(-50%, -50%);
+    width: 46px; height:46px;
+    border-radius:50%;
+    border: none;
+    cursor:pointer;
+    background: radial-gradient(circle at 35% 30%, var(--cyber-saffron-bright), var(--cyber-saffron) 70%);
+    box-shadow: 0 0 0 6px rgba(255,122,31,0.18);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--paper);
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  .river-node:hover{ transform: translate(-50%, -50%) scale(1.08); }
+  .river-node.active{
+    background: radial-gradient(circle at 35% 30%, #fff, var(--river-cyan) 70%);
+    box-shadow: 0 0 0 8px rgba(20,198,190,0.28);
+    color: var(--ink);
+  }
+  .river-panel{
+    margin-top: 34px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: var(--radius);
+    padding: 26px 28px;
+    min-height: 108px;
+  }
+  .river-panel h3{ color: var(--cyber-saffron-bright); font-size:1.15rem; margin-bottom:8px; }
+  .river-panel p{ margin:0; color: rgba(255,246,228,0.88); }
+
+  /* ---------- Trinity tabs ---------- */
+  .trinity-tabs{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top: 30px;
+  }
+  .tab-btn{
+    flex:1 1 160px;
+    text-align:left;
+    border: 2px solid var(--paper-line);
+    background: var(--paper);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    cursor:pointer;
+    font-family:'Manrope', sans-serif;
+  }
+  .tab-btn .tt{ font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem; display:block; margin-bottom:2px; }
+  .tab-btn .ts{ font-size:0.85rem; color: var(--ink-soft); }
+  .tab-btn.active{
+    border-color: var(--river-cyan-deep);
+    background: var(--solar-gold-pale);
+  }
+  .tab-panel{
+    margin-top: 22px;
+    background: var(--paper);
+    border-radius: var(--radius);
+    padding: 26px 28px;
+    border: 2px solid var(--paper-line);
+  }
+  .tab-panel h3{ font-size:1.2rem; margin-bottom: 8px; }
+  .tab-panel p{ color: var(--ink-soft); margin:0; }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    text-align:center;
+    background:
+      radial-gradient(ellipse 700px 400px at 50% 110%, var(--river-cyan) 0%, transparent 60%),
+      linear-gradient(180deg, var(--solar-gold-deep) 0%, var(--solar-gold) 100%);
+  }
+  .final-cta h2{ font-size: clamp(1.7rem, 4vw, 2.5rem); }
+  .final-cta .lead-text{ margin: 0 auto 1.6em auto; text-align:center; }
+
+  footer{
+    padding: 30px 0 40px 0;
+    text-align:center;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    background: var(--solar-gold-deep);
+  }
+  footer a{ text-decoration: underline; }
+
+  @media (max-width: 640px){
+    section{ padding-top: 46px; padding-bottom: 46px; }
+    .river-stage{ aspect-ratio: 4 / 5; }
+    .timeline-points{ flex-direction: row; }
+    .tl-cap{ font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <span class="brand">EasyLandX</span>
+    <a class="nav-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Your Landing Page, Fully Realized</h1>
+    <p class="lede">A landing page grows best when it is lived, not memorized from a doctrine. EasyLandX shapes every page from your business's own journey, so every word and every pixel carries something real.</p>
+    <a class="cta-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">
+      Visit EasyLandX
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+  <svg class="river-divider" viewBox="0 0 1200 90" preserveAspectRatio="none">
+    <path class="river-line" d="M0,45 C 200,10 350,80 600,45 C 850,10 1000,80 1200,45" />
+  </svg>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2 class="eyebrow-free-title">Wisdom that lives in your page</h2>
+    <p class="lead-text">Hermann Hesse's Siddhartha wanders through every teacher, every doctrine, and every shortcut before he discovers that truth is felt, rather than memorized. EasyLandX designs the same way. Instead of dropping your business into someone else's mold, we begin with your actual story — your product, your voice, your customers — and shape a page around what is real.</p>
+    <blockquote>&ldquo;Knowledge can be communicated, but wisdom cannot.&rdquo;</blockquote>
+    <p class="lead-text">The result reads like something only your business could say, because it is.</p>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <h2 class="eyebrow-free-title">One river, every milestone</h2>
+    <p class="lead-text">Siddhartha learns that the river holds every moment at once — the source, the rapids, the sea — flowing together as a single, living whole. Your landing page can hold the same kind of unity: the day you started, the offer you are building today, and the growth you are moving toward all belong on one page, flowing as one story.</p>
+
+    <div class="timeline">
+      <div class="timeline-line"></div>
+      <div class="timeline-points">
+        <div class="tl-point">
+          <div class="tl-dot"></div>
+          <div class="tl-label">Day One</div>
+          <div class="tl-cap">The story that started it all, kept close at hand.</div>
+        </div>
+        <div class="tl-point">
+          <div class="tl-dot"></div>
+          <div class="tl-label">Right Now</div>
+          <div class="tl-cap">Your current offer, presented with clarity and confidence.</div>
+        </div>
+        <div class="tl-point">
+          <div class="tl-dot"></div>
+          <div class="tl-label">What's Next</div>
+          <div class="tl-cap">Room for your business to keep growing into the page.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="eyebrow-free-title">River listening</h2>
+    <p class="lead-text">Before Siddhartha becomes a ferryman, he learns to listen to the river without judging what it says — every voice, every current, held as part of one song. EasyLandX listens to your page the same way. Tap a current below to see what we're listening for.</p>
+
+    <div class="river-stage" id="riverStage">
+      <svg class="bg-path" viewBox="0 0 1000 440" preserveAspectRatio="none">
+        <path class="river-line" d="M20,380 C 180,300 220,160 380,180 C 540,200 560,60 720,80 C 860,96 900,220 980,60" />
+      </svg>
+      <button class="river-node active" style="left:2%; top:86%;" data-node="behavior">1</button>
+      <button class="river-node" style="left:24%; top:41%;" data-node="feedback">2</button>
+      <button class="river-node" style="left:48%; top:44%;" data-node="market">3</button>
+      <button class="river-node" style="left:70%; top:17%;" data-node="voice">4</button>
+      <button class="river-node" style="left:96%; top:14%;" data-node="quiet">5</button>
+    </div>
+
+    <div class="river-panel" id="riverPanel">
+      <h3>Visitor behavior</h3>
+      <p>Every scroll, pause, and click on your page becomes a signal that shapes the next version.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <h2 class="eyebrow-free-title">The builder's trinity</h2>
+    <p class="lead-text">Siddhartha carries three quiet strengths wherever he goes: I can think, I can wait, I can fast. EasyLandX carries the same three into every build.</p>
+
+    <div class="trinity-tabs" id="trinityTabs">
+      <button class="tab-btn active" data-tab="think">
+        <span class="tt">Think</span>
+        <span class="ts">Strategic reasoning</span>
+      </button>
+      <button class="tab-btn" data-tab="wait">
+        <span class="tt">Wait</span>
+        <span class="ts">Patient craft</span>
+      </button>
+      <button class="tab-btn" data-tab="fast">
+        <span class="tt">Fast</span>
+        <span class="ts">Lean building</span>
+      </button>
+    </div>
+
+    <div class="tab-panel" id="tabPanel">
+      <h3>Strategic Thinking</h3>
+      <p>Every headline, layout, and call to action is reasoned through conversion psychology before a single pixel is placed.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>See your business, fully realized</h2>
+    <p class="lead-text">Every business carries its own current, already flowing toward the sea. EasyLandX simply gives it a page to flow through.</p>
+    <a class="cta-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">
+      Visit EasyLandX
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    EasyLandX — Landing pages built from your story. <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+<script>
+  const riverData = {
+    behavior: { title: "Visitor behavior", text: "Every scroll, pause, and click on your page becomes a signal that shapes the next version." },
+    feedback: { title: "Direct feedback", text: "Comments and questions from real visitors flow straight back into the copy." },
+    market: { title: "Market currents", text: "Trends in your industry keep the page current and confident." },
+    voice: { title: "Your brand voice", text: "The words you already use with customers stay woven through every section." },
+    quiet: { title: "Quiet moments", text: "Even the pages nobody clicks teach us something about what to try next." }
+  };
+
+  const riverNodes = document.querySelectorAll('.river-node');
+  const riverPanel = document.getElementById('riverPanel');
+
+  riverNodes.forEach(node => {
+    node.addEventListener('click', () => {
+      riverNodes.forEach(n => n.classList.remove('active'));
+      node.classList.add('active');
+      const data = riverData[node.dataset.node];
+      riverPanel.innerHTML = `<h3>${data.title}</h3><p>${data.text}</p>`;
+    });
+  });
+
+  const trinityData = {
+    think: { title: "Strategic Thinking", text: "Every headline, layout, and call to action is reasoned through conversion psychology before a single pixel is placed." },
+    wait: { title: "Patient Craft", text: "Pages grow wiser with time. Real feedback and gentle testing refine each version, so your page keeps improving long after launch." },
+    fast: { title: "Lean Building", text: "Like Siddhartha's discipline of fasting — doing more with less — EasyLandX builds lean, keeping pages affordable and quick to launch, with plenty of polish." }
+  };
+
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabPanel = document.getElementById('tabPanel');
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const data = trinityData[btn.dataset.tab];
+      tabPanel.innerHTML = `<h3>${data.title}</h3><p>${data.text}</p>`;
+    });
+  });
+</script>
+
+</body>
+</html>
