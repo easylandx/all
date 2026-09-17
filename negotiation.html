@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Your Page Already Knows How To Win</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#FFC300;
+    --gold-deep:#E8AE00;
+    --ink:#15120A;
+    --panel:#0B0A10;
+    --panel-2:#151220;
+    --cyan:#00F0FF;
+    --crimson:#FF1F4C;
+    --cream:#FFF7DE;
+  }
+  :root:not([data-theme="light"]){ }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ } }
+  :root[data-theme="dark"]{ }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--gold);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Chakra Petch',sans-serif;
+    letter-spacing:0.01em;
+    line-height:1.08;
+    margin:0;
+  }
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px;}
+  a{color:inherit;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:100px 0 90px;
+    background:
+      radial-gradient(120% 90% at 85% -10%, rgba(0,240,255,0.28), transparent 55%),
+      radial-gradient(90% 70% at -10% 110%, rgba(255,31,76,0.22), transparent 55%),
+      var(--gold);
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+  }
+  .eyebrow-tag{
+    display:inline-block;
+    background:var(--panel);
+    color:var(--cyan);
+    padding:6px 14px;
+    border-radius:3px;
+    font-size:13px;
+    font-weight:600;
+    border-left:3px solid var(--crimson);
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5.4vw, 4.1rem);
+    max-width:11ch;
+  }
+  .hero h1 span{
+    display:block;
+    color:var(--panel);
+    -webkit-text-stroke: 1px var(--panel);
+  }
+  .hero p.lede{
+    max-width:52ch;
+    font-size:1.15rem;
+    margin-top:22px;
+    color:#241E0C;
+  }
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:36px; align-items:center;}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 26px;
+    border-radius:4px;
+    font-weight:700;
+    font-size:1rem;
+    text-decoration:none;
+    border:2px solid transparent;
+    cursor:pointer;
+    font-family:'Inter',sans-serif;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{
+    background:var(--panel);
+    color:var(--cyan);
+    box-shadow:0 0 0 0 rgba(0,240,255,0.5);
+  }
+  .btn-primary:hover{ box-shadow:0 6px 26px rgba(0,240,255,0.45); }
+  .btn-outline{
+    background:transparent;
+    border-color:var(--panel);
+    color:var(--panel);
+  }
+  .btn-outline:hover{ background:var(--panel); color:var(--crimson); }
+
+  .anchor-stat{
+    margin-top:56px;
+    display:flex;
+    gap:36px;
+    flex-wrap:wrap;
+    border-top:2px solid rgba(21,18,10,0.25);
+    padding-top:26px;
+  }
+  .anchor-stat div b{
+    display:block;
+    font-family:'Chakra Petch',sans-serif;
+    font-size:1.9rem;
+  }
+  .anchor-stat div span{ font-size:0.95rem; color:#3a3115; }
+
+  /* ---------- SECTIONS GENERAL ---------- */
+  section.dark{
+    background:var(--panel);
+    color:var(--cream);
+    padding:80px 0;
+  }
+  .kicker{
+    color:var(--crimson);
+    font-weight:600;
+    font-size:0.95rem;
+    margin-bottom:10px;
+  }
+  section.dark h2{
+    color:var(--cream);
+    font-size:clamp(1.7rem,3.4vw,2.4rem);
+    max-width:22ch;
+  }
+  section.dark h2 em{ font-style:normal; color:var(--cyan); }
+  .section-intro{ max-width:60ch; color:#C9C6D8; margin-top:16px; font-size:1.05rem;}
+
+  /* ---------- QUIZ ---------- */
+  .quiz-box{
+    margin-top:44px;
+    background:var(--panel-2);
+    border:1px solid rgba(0,240,255,0.25);
+    border-radius:10px;
+    padding:36px;
+  }
+  .quiz-progress{ display:flex; gap:8px; margin-bottom:26px; }
+  .quiz-progress i{ flex:1; height:4px; background:rgba(255,255,255,0.12); border-radius:2px; overflow:hidden; }
+  .quiz-progress i b{ display:block; height:100%; width:0%; background:var(--cyan); transition:width .3s ease; }
+  .quiz-q{ font-size:1.25rem; margin-bottom:20px; color:var(--cream); }
+  .quiz-options{ display:grid; gap:12px; }
+  @media(min-width:640px){ .quiz-options{ grid-template-columns:1fr 1fr 1fr; } }
+  .qopt{
+    background:transparent;
+    border:1.5px solid rgba(255,247,222,0.3);
+    color:var(--cream);
+    padding:16px;
+    border-radius:8px;
+    font-family:'Inter',sans-serif;
+    font-size:0.98rem;
+    cursor:pointer;
+    text-align:left;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .qopt:hover{ border-color:var(--cyan); background:rgba(0,240,255,0.08); }
+  .qopt.picked{ border-color:var(--crimson); background:rgba(255,31,76,0.14); }
+
+  .quiz-pause{
+    display:none;
+    align-items:center;
+    gap:14px;
+    color:#C9C6D8;
+    font-size:0.98rem;
+  }
+  .dot-flash{ display:flex; gap:6px; }
+  .dot-flash span{ width:8px; height:8px; border-radius:50%; background:var(--cyan); animation:flash 1.1s infinite ease-in-out; }
+  .dot-flash span:nth-child(2){ animation-delay:.18s; }
+  .dot-flash span:nth-child(3){ animation-delay:.36s; }
+  @keyframes flash{ 0%,80%,100%{opacity:.25;} 40%{opacity:1;} }
+
+  .quiz-result{
+    display:none;
+    border-top:1px solid rgba(255,255,255,0.14);
+    margin-top:28px;
+    padding-top:26px;
+  }
+  .quiz-result .tag{ color:var(--crimson); font-weight:700; font-size:0.9rem; margin-bottom:10px; }
+  .quiz-result p{ font-size:1.15rem; color:var(--cream); max-width:56ch; }
+  .quiz-result .btn{ margin-top:20px; }
+
+  /* ---------- TIERS ---------- */
+  .tiers{
+    display:grid;
+    gap:20px;
+    margin-top:40px;
+  }
+  @media(min-width:760px){ .tiers{ grid-template-columns:repeat(3,1fr); } }
+  .tier{
+    background:var(--panel-2);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:10px;
+    padding:28px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .tier h3{ color:var(--cream); font-size:1.3rem; }
+  .tier .price{ color:var(--cyan); font-family:'Chakra Petch',sans-serif; font-size:1.4rem; margin:10px 0 14px; }
+  .tier ul{ padding-left:18px; margin:0; color:#C9C6D8; font-size:0.95rem; line-height:1.7; }
+  .tier.win{ border-color:var(--crimson); box-shadow:0 0 40px rgba(255,31,76,0.18); }
+  .tier.pulse{ animation:pulseGlow 1.4s ease 2; }
+  @keyframes pulseGlow{
+    0%,100%{ box-shadow:0 0 0 rgba(0,240,255,0); }
+    50%{ box-shadow:0 0 44px rgba(0,240,255,0.55); }
+  }
+
+  /* ---------- EXCHANGE ---------- */
+  .exchange{ display:grid; gap:18px; margin-top:40px; }
+  @media(min-width:700px){ .exchange{ grid-template-columns:1fr 1fr; } }
+  .ex-card{
+    background:transparent;
+    border-left:3px solid var(--cyan);
+    padding:6px 0 6px 20px;
+  }
+  .ex-card.give{ border-left-color:var(--crimson); }
+  .ex-card h4{ margin:0 0 8px; color:var(--cream); font-family:'Chakra Petch',sans-serif; font-size:1.1rem;}
+  .ex-card p{ color:#C9C6D8; margin:0; font-size:0.98rem; }
+
+  /* ---------- FINAL CTA ---------- */
+  .final{
+    background:var(--gold);
+    padding:90px 0 100px;
+    text-align:center;
+  }
+  .final h2{ font-size:clamp(1.8rem,4vw,2.7rem); max-width:20ch; margin:0 auto; }
+  .final p{ max-width:52ch; margin:18px auto 34px; color:#241E0C; font-size:1.08rem; }
+  footer{ text-align:center; padding:26px 0; font-size:0.85rem; color:#5a4c1a; background:var(--gold); }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow-tag">EASYLANDX</span>
+    <h1>Every visitor is already saying yes to someone.<span>Make it you.</span></h1>
+    <p class="lede">A great landing page works the way a great negotiator works: it frames the value first, asks the right question, and makes the good outcome feel obvious. EasyLandX builds that page for you — fast, clear, and ready to close.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your EasyLandX Page ⚡</a>
+      <a class="btn btn-outline" href="#discover">Find Your Fit First</a>
+    </div>
+    <div class="anchor-stat">
+      <div><b>€48</b><span>starting anchor</span></div>
+      <div><b>48h</b><span>from brief to live page</span></div>
+      <div><b>1 page</b><span>built to earn one clear yes</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="discover">
+  <div class="wrap">
+    <p class="kicker">STEP ONE — ASK BEFORE YOU OFFER</p>
+    <h2>The strongest opening move is a <em>good question.</em></h2>
+    <p class="section-intro">Skilled negotiators let the other side speak first — it reveals exactly what matters to them. Answer three quick questions and EasyLandX will hand you the opening line your page should lead with.</p>
+
+    <div class="quiz-box">
+      <div class="quiz-progress"><i><b id="p1"></b></i><i><b id="p2"></b></i><i><b id="p3"></b></i></div>
+
+      <div id="q1" class="quiz-step">
+        <div class="quiz-q">What best describes what you do?</div>
+        <div class="quiz-options">
+          <button class="qopt" data-q="1" data-v="your art">I create — art, design, or craft</button>
+          <button class="qopt" data-q="1" data-v="your business">I run a local business</button>
+          <button class="qopt" data-q="1" data-v="your service">I offer a service or freelance work</button>
+        </div>
+      </div>
+
+      <div id="q2" class="quiz-step" style="display:none;">
+        <div class="quiz-q">What's the one move you want a visitor to make?</div>
+        <div class="quiz-options">
+          <button class="qopt" data-q="2" data-v="booking a call with you">Book a call</button>
+          <button class="qopt" data-q="2" data-v="messaging you on WhatsApp">Message on WhatsApp</button>
+          <button class="qopt" data-q="2" data-v="buying directly, right there">Buy directly</button>
+        </div>
+      </div>
+
+      <div id="q3" class="quiz-step" style="display:none;">
+        <div class="quiz-q">How fast do you want this page live?</div>
+        <div class="quiz-options">
+          <button class="qopt" data-q="3" data-v="quick" data-tier="quick">This week — full speed</button>
+          <button class="qopt" data-q="3" data-v="solid" data-tier="solid">Whenever it's ready, done right</button>
+          <button class="qopt" data-q="3" data-v="dream" data-tier="dream">No rush — I want the full build</button>
+        </div>
+      </div>
+
+      <div class="quiz-pause" id="pause">
+        <div class="dot-flash"><span></span><span></span><span></span></div>
+        <span>Holding the pause — the best offers land right after the silence.</span>
+      </div>
+
+      <div class="quiz-result" id="result">
+        <div class="tag">YOUR OPENING LINE</div>
+        <p id="resultText"></p>
+        <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build This Page ⚡</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" style="background:var(--panel-2);">
+  <div class="wrap">
+    <p class="kicker">STEP TWO — MAP THE WIN BEFORE YOU BUILD</p>
+    <h2>Know your <em>best case</em>, your <em>fair case</em>, and your <em>fast case.</em></h2>
+    <p class="section-intro">Confident negotiators walk in already knowing three numbers. EasyLandX gives your page the same clarity — pick the shape that matches where you're starting from today.</p>
+
+    <div class="tiers" id="tiers">
+      <div class="tier" id="tier-quick">
+        <h3>Quick Start</h3>
+        <div class="price">Live this week</div>
+        <ul>
+          <li>One focused page, one clear action</li>
+          <li>Your best offer, anchored up front</li>
+          <li>Perfect for testing an idea fast</li>
+        </ul>
+      </div>
+      <div class="tier win" id="tier-solid">
+        <h3>Solid Win</h3>
+        <div class="price">Most requested</div>
+        <ul>
+          <li>Full story: offer, proof, and trust</li>
+          <li>Built-in path to WhatsApp or booking</li>
+          <li>Tuned for real conversions, not just clicks</li>
+        </ul>
+      </div>
+      <div class="tier" id="tier-dream">
+        <h3>Dream Build</h3>
+        <div class="price">Full craft</div>
+        <ul>
+          <li>Custom interaction and motion</li>
+          <li>Every section negotiated for maximum yes</li>
+          <li>Room for revisions until it feels right</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <p class="kicker">STEP THREE — TRADE VALUE, NOT FAVORS</p>
+    <h2>Every good deal moves <em>both</em> ways.</h2>
+    <p class="section-intro">The strongest agreements happen when both sides gain something specific. Here's the trade EasyLandX offers you:</p>
+    <div class="exchange">
+      <div class="ex-card">
+        <h4>What EasyLandX brings</h4>
+        <p>A fast, single-page build, a clear conversion path, and a design that earns trust in the first three seconds.</p>
+      </div>
+      <div class="ex-card give">
+        <h4>What you bring</h4>
+        <p>Your brand, your voice, and the one action you most want visitors to take — the rest gets shaped around it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Take the pause. Then make the easy call.</h2>
+    <p>Your visitors are already deciding. Give them a page built to make that decision effortless — and confident.</p>
+    <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX ⚡</a>
+  </div>
+</section>
+
+<footer>EasyLandX — pages built to open strong and close well.</footer>
+
+<script>
+(function(){
+  const state = { 1:null, 2:null, 3:null, tier:null };
+  const progress = { 1:document.getElementById('p1'), 2:document.getElementById('p2'), 3:document.getElementById('p3') };
+
+  document.querySelectorAll('.qopt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const q = btn.dataset.q;
+      document.querySelectorAll('.qopt[data-q="'+q+'"]').forEach(b => b.classList.remove('picked'));
+      btn.classList.add('picked');
+      state[q] = btn.dataset.v;
+      if (btn.dataset.tier) state.tier = btn.dataset.tier;
+      progress[q].style.width = '100%';
+
+      setTimeout(() => {
+        if (q === '1') {
+          document.getElementById('q1').style.display = 'none';
+          document.getElementById('q2').style.display = 'block';
+        } else if (q === '2') {
+          document.getElementById('q2').style.display = 'none';
+          document.getElementById('q3').style.display = 'block';
+        } else if (q === '3') {
+          document.getElementById('q3').style.display = 'none';
+          revealResult();
+        }
+      }, 260);
+    });
+  });
+
+  function revealResult(){
+    const pause = document.getElementById('pause');
+    pause.style.display = 'flex';
+    setTimeout(() => {
+      pause.style.display = 'none';
+      const result = document.getElementById('result');
+      const text = document.getElementById('resultText');
+      text.textContent = 'For ' + state[1] + ', built around ' + state[2] + ' — this is the opening line your page leads with, anchored clearly before anyone has time to hesitate.';
+      result.style.display = 'block';
+
+      const tierEl = document.getElementById('tier-' + state.tier);
+      if (tierEl) {
+        tierEl.classList.add('pulse');
+        tierEl.scrollIntoView({ behavior:'smooth', block:'center' });
+      }
+    }, 1500);
+  }
+})();
+</script>
+
+</body>
+</html>
