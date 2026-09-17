@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages Built On Genuine Psychology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue-950:#0A1247;
+    --blue-800:#12207A;
+    --blue-600:#1E3FE5;
+    --blue-500:#3454F4;
+    --blue-400:#5B74FF;
+    --gold:#FFDA00;
+    --gold-dim:#B99E00;
+    --magenta:#FF2AD4;
+    --magenta-dim:#7A1466;
+    --ink:#F5F7FF;
+    --ink-dim:#B9C4FF;
+    --line: rgba(245,247,255,0.18);
+    --max: 1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(255,42,212,0.16), transparent 60%),
+      radial-gradient(1000px 700px at -10% 20%, rgba(255,218,0,0.10), transparent 55%),
+      var(--blue-600);
+    color:var(--ink);
+    font-family:'Manrope', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Unbounded', sans-serif;
+    line-height:1.15;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px;
+  }
+  @media (min-width:900px){
+    .wrap{padding:0 48px;}
+  }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:26px;
+    padding-bottom:26px;
+  }
+  .brand{
+    font-family:'Unbounded', sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .brand-mark{
+    width:14px; height:14px;
+    background: linear-gradient(135deg, var(--gold), var(--magenta));
+    border-radius:3px;
+    transform:rotate(10deg);
+    flex-shrink:0;
+  }
+  .nav-cta{
+    font-family:'Manrope';
+    font-weight:700;
+    font-size:0.92rem;
+    padding:10px 20px;
+    border-radius:999px;
+    background:var(--gold);
+    color:var(--blue-950);
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:#FFE84D;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding-top:64px;
+    padding-bottom:88px;
+    display:grid;
+    gap:36px;
+  }
+  .hero-eyebrow{
+    color:var(--ink-dim);
+    font-size:0.98rem;
+    max-width:36ch;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5.2vw, 4.1rem);
+    max-width:15ch;
+    opacity:0;
+    transform:translateY(14px);
+    animation: rise 0.7s ease-out forwards;
+  }
+  .hero h1 .accent{color:var(--gold);}
+  .hero p.lead{
+    font-size:1.15rem;
+    color:var(--ink-dim);
+    max-width:52ch;
+    opacity:0;
+    transform:translateY(14px);
+    animation: rise 0.7s ease-out 0.12s forwards;
+  }
+  .hero-ctas{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    opacity:0;
+    transform:translateY(14px);
+    animation: rise 0.7s ease-out 0.22s forwards;
+  }
+  @keyframes rise{ to{opacity:1; transform:translateY(0);} }
+  @media (prefers-reduced-motion: reduce){
+    .hero h1, .hero p.lead, .hero-ctas{ animation:none; opacity:1; transform:none; }
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:15px 28px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:1rem;
+    text-decoration:none;
+    border:2px solid transparent;
+    cursor:pointer;
+    font-family:'Manrope';
+  }
+  .btn-gold{
+    background:var(--gold);
+    color:var(--blue-950);
+  }
+  .btn-gold:hover{background:#FFE84D;}
+  .btn-outline{
+    border-color:var(--magenta);
+    color:var(--ink);
+    background:transparent;
+  }
+  .btn-outline:hover{background:rgba(255,42,212,0.12);}
+
+  /* ---------- Section shared ---------- */
+  section{padding:76px 0;}
+  .section-head{
+    max-width:60ch;
+    margin-bottom:44px;
+  }
+  .section-head h2{
+    font-size:clamp(1.7rem, 3.4vw, 2.3rem);
+    margin-bottom:16px;
+  }
+  .section-head p{
+    color:var(--ink-dim);
+    font-size:1.05rem;
+  }
+  .divider{
+    height:1px;
+    background:var(--line);
+  }
+
+  /* ---------- Mind cards ---------- */
+  .mind-grid{
+    display:grid;
+    gap:22px;
+    grid-template-columns:1fr;
+  }
+  @media (min-width:820px){
+    .mind-grid{grid-template-columns:repeat(3,1fr);}
+  }
+  .mind-card{
+    background:rgba(10,18,71,0.35);
+    border:1px solid var(--line);
+    border-left:3px solid var(--gold);
+    padding:26px 24px;
+    border-radius:6px;
+  }
+  .mind-card:nth-child(2){border-left-color:var(--magenta);}
+  .mind-card:nth-child(3){border-left-color:#8FA1FF;}
+  .mind-card h3{
+    font-size:1.1rem;
+    margin-bottom:12px;
+  }
+  .mind-card p{
+    color:var(--ink-dim);
+    font-size:0.98rem;
+    margin:0;
+  }
+
+  /* ---------- Framework ---------- */
+  .framework{
+    display:grid;
+    gap:14px;
+  }
+  .fw-node{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:18px;
+    align-items:flex-start;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:20px 22px;
+    cursor:pointer;
+    background:rgba(10,18,71,0.25);
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .fw-node.active{
+    border-color:var(--gold);
+    background:rgba(255,218,0,0.06);
+  }
+  .fw-num{
+    font-family:'Unbounded';
+    font-size:1.3rem;
+    font-weight:700;
+    color:var(--blue-950);
+    background:var(--gold);
+    width:38px; height:38px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .fw-node:nth-child(2) .fw-num, .fw-node:nth-child(4) .fw-num{
+    background:var(--magenta);
+    color:var(--ink);
+  }
+  .fw-title{
+    font-family:'Unbounded';
+    font-size:1.05rem;
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .fw-body{
+    max-height:0;
+    overflow:hidden;
+    color:var(--ink-dim);
+    font-size:0.98rem;
+    transition:max-height 0.35s ease;
+  }
+  .fw-node.active .fw-body{
+    max-height:200px;
+    margin-top:8px;
+  }
+
+  /* ---------- Quiz ---------- */
+  .quiz{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:34px;
+    background:linear-gradient(160deg, rgba(255,42,212,0.08), rgba(255,218,0,0.05));
+  }
+  .quiz-question{display:none;}
+  .quiz-question.current{display:block;}
+  .quiz-progress{
+    display:flex;
+    gap:6px;
+    margin-bottom:26px;
+  }
+  .quiz-progress span{
+    height:4px;
+    flex:1;
+    background:var(--line);
+    border-radius:2px;
+  }
+  .quiz-progress span.done{background:var(--gold);}
+  .quiz-q-text{
+    font-family:'Unbounded';
+    font-size:1.15rem;
+    margin-bottom:20px;
+  }
+  .quiz-options{
+    display:grid;
+    gap:12px;
+  }
+  .quiz-option{
+    text-align:left;
+    padding:14px 18px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:rgba(10,18,71,0.3);
+    color:var(--ink);
+    font-family:'Manrope';
+    font-size:1rem;
+    cursor:pointer;
+  }
+  .quiz-option:hover{border-color:var(--gold);}
+  .quiz-result{display:none;}
+  .quiz-result.current{display:block;}
+  .quiz-score{
+    font-family:'Unbounded';
+    font-size:3rem;
+    color:var(--gold);
+    margin-bottom:6px;
+  }
+  .quiz-msg{
+    color:var(--ink-dim);
+    font-size:1.05rem;
+    max-width:56ch;
+    margin-bottom:24px;
+  }
+  .quiz-restart{
+    background:none;
+    border:1px solid var(--line);
+    color:var(--ink-dim);
+    padding:10px 18px;
+    border-radius:999px;
+    font-family:'Manrope';
+    cursor:pointer;
+    margin-right:12px;
+  }
+
+  /* ---------- Process ---------- */
+  .process{
+    display:grid;
+    gap:24px;
+    grid-template-columns:1fr;
+  }
+  @media (min-width:820px){
+    .process{grid-template-columns:repeat(4,1fr);}
+  }
+  .process-step{
+    padding-top:18px;
+    border-top:2px solid var(--gold);
+  }
+  .process-step:nth-child(2){border-top-color:var(--magenta);}
+  .process-step:nth-child(3){border-top-color:#8FA1FF;}
+  .process-step:nth-child(4){border-top-color:var(--gold);}
+  .process-step h3{
+    font-size:1rem;
+    margin-bottom:8px;
+  }
+  .process-step p{
+    color:var(--ink-dim);
+    font-size:0.95rem;
+    margin:0;
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final{
+    text-align:left;
+    padding-top:80px;
+    padding-bottom:100px;
+  }
+  .final h2{
+    font-size:clamp(1.9rem, 4vw, 2.7rem);
+    max-width:20ch;
+    margin-bottom:18px;
+  }
+  .final p{
+    color:var(--ink-dim);
+    font-size:1.08rem;
+    max-width:52ch;
+    margin-bottom:30px;
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding-top:32px;
+    padding-bottom:32px;
+    color:var(--ink-dim);
+    font-size:0.9rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    justify-content:space-between;
+  }
+  footer a{color:var(--ink); text-decoration:underline;}
+
+  :focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap nav">
+  <div class="brand"><span class="brand-mark"></span>EasyLandX</div>
+  <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+</div>
+
+<header class="wrap hero">
+  <p class="hero-eyebrow">Landing pages for small businesses, grounded in real psychology</p>
+  <h1>Pages built on the <span class="accent">psychology</span> of genuine connection</h1>
+  <p class="lead">EasyLandX blends behavioral insight with clean, confident design — turning quiet visits into engaged customers, one honest page at a time.</p>
+  <div class="hero-ctas">
+    <a class="btn btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+    <a class="btn btn-outline" href="#framework">Explore the framework</a>
+  </div>
+</header>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section class="wrap" id="mind">
+  <div class="section-head">
+    <h2>Every visitor carries a mind of their own</h2>
+    <p>Research on leadership psychology shows that real influence starts with understanding the subconscious drivers behind human decisions. We apply that same thinking to every page we design — because a click is powered by the same instincts, emotions, and mental shortcuts as any confident decision.</p>
+  </div>
+  <div class="mind-grid">
+    <div class="mind-card">
+      <h3>Awareness before action</h3>
+      <p>Strong pages start with genuine understanding. We study how your audience thinks before choosing a single word or color, so every choice reflects real insight rather than a guess.</p>
+    </div>
+    <div class="mind-card">
+      <h3>Trust fuels momentum</h3>
+      <p>People move forward when they feel at ease. Clear pricing, honest messaging, and real social proof help visitors feel confident enough to take the next step.</p>
+    </div>
+    <div class="mind-card">
+      <h3>Empathy is strategy</h3>
+      <p>Knowing what your customers truly value — independence, expertise, or connection — lets us craft messages that resonate personally and drive lasting growth.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section class="wrap" id="framework">
+  <div class="section-head">
+    <h2>The EasyLandX conversion psychology framework</h2>
+    <p>Five deliberate moves, applied to every page we build. Tap each one to see it in action.</p>
+  </div>
+  <div class="framework" id="fw-list">
+    <div class="fw-node active" data-index="0">
+      <div class="fw-num">1</div>
+      <div>
+        <div class="fw-title">Audience mind mapping</div>
+        <div class="fw-body">We identify the beliefs, motivations, and mental shortcuts that shape how your specific visitors decide — before any design work begins.</div>
+      </div>
+    </div>
+    <div class="fw-node" data-index="1">
+      <div class="fw-num">2</div>
+      <div>
+        <div class="fw-title">Instant trust design</div>
+        <div class="fw-body">Clarity, transparency, and real social proof are layered in from the start, so visitors feel comfortable within seconds of arriving.</div>
+      </div>
+    </div>
+    <div class="fw-node" data-index="2">
+      <div class="fw-num">3</div>
+      <div>
+        <div class="fw-title">Aligned calls-to-action</div>
+        <div class="fw-body">Every button and headline points toward one genuine, valuable action, so visitors always know exactly what happens next.</div>
+      </div>
+    </div>
+    <div class="fw-node" data-index="3">
+      <div class="fw-num">4</div>
+      <div>
+        <div class="fw-title">Success rehearsal</div>
+        <div class="fw-body">We picture your launch succeeding brilliantly, then work backward to make sure every detail on the page earns that outcome.</div>
+      </div>
+    </div>
+    <div class="fw-node" data-index="4">
+      <div class="fw-num">5</div>
+      <div>
+        <div class="fw-title">Personal value mapping</div>
+        <div class="fw-body">We tailor your message around what matters most to your audience: independence, expertise, or a larger sense of purpose.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section class="wrap" id="quiz-section">
+  <div class="section-head">
+    <h2>Discover your landing page's psychology score</h2>
+    <p>Three quick questions. One personalized read on where your page shines brightest right now.</p>
+  </div>
+
+  <div class="quiz" id="quiz">
+    <div class="quiz-progress">
+      <span class="done"></span><span></span><span></span>
+    </div>
+
+    <div class="quiz-question current" data-q="0">
+      <div class="quiz-q-text">How clearly does your headline state the value visitors gain?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-points="3">Crystal clear, in one glance</button>
+        <button class="quiz-option" data-points="2">Getting there, with room to sharpen</button>
+        <button class="quiz-option" data-points="1">Still taking shape</button>
+      </div>
+    </div>
+
+    <div class="quiz-question" data-q="1">
+      <div class="quiz-q-text">How quickly could a new visitor find your main call-to-action?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-points="3">Instantly, it stands right out</button>
+        <button class="quiz-option" data-points="2">Within a few seconds of looking</button>
+        <button class="quiz-option" data-points="1">Somewhere further down the page</button>
+      </div>
+    </div>
+
+    <div class="quiz-question" data-q="2">
+      <div class="quiz-q-text">How confident do visitors likely feel about taking the next step?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-points="3">Very confident, trust is built in</button>
+        <button class="quiz-option" data-points="2">Fairly confident, with more to add</button>
+        <button class="quiz-option" data-points="1">Confidence is still building</button>
+      </div>
+    </div>
+
+    <div class="quiz-result" id="quiz-result">
+      <div class="quiz-score" id="quiz-score-num">0/100</div>
+      <div class="quiz-msg" id="quiz-msg"></div>
+      <button class="quiz-restart" id="quiz-restart">Take it again</button>
+      <a class="btn btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">Let EasyLandX bring this to life</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section class="wrap">
+  <div class="section-head">
+    <h2>How EasyLandX brings this to life</h2>
+    <p>A simple, human process — built around independence, mastery, and purpose for every business we work with.</p>
+  </div>
+  <div class="process">
+    <div class="process-step">
+      <h3>Discover</h3>
+      <p>We learn your business, your customers, and your goals, building real understanding before a single pixel appears.</p>
+    </div>
+    <div class="process-step">
+      <h3>Design</h3>
+      <p>We craft a page around proven psychology and striking visuals, shaped specifically around your voice.</p>
+    </div>
+    <div class="process-step">
+      <h3>Launch</h3>
+      <p>You keep full ownership of your domain, your content, and your growth story from day one.</p>
+    </div>
+    <div class="process-step">
+      <h3>Grow</h3>
+      <p>Every page keeps sharpening through real visitor insight, always tied back to your bigger vision.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap final">
+  <h2>Your next landing page could be your best conversation yet</h2>
+  <p>Join the small businesses already growing with pages designed around real psychology, at a genuinely affordable price.</p>
+  <a class="btn btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">Start with EasyLandX</a>
+</section>
+
+<footer class="wrap">
+  <span>EasyLandX — affordable, conversion-focused landing pages for small businesses.</span>
+  <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+</footer>
+
+<script>
+  // Framework accordion
+  document.querySelectorAll('.fw-node').forEach(function(node){
+    node.addEventListener('click', function(){
+      var isActive = node.classList.contains('active');
+      document.querySelectorAll('.fw-node').forEach(function(n){ n.classList.remove('active'); });
+      if(!isActive){ node.classList.add('active'); }
+    });
+  });
+
+  // Quiz logic
+  (function(){
+    var questions = document.querySelectorAll('.quiz-question');
+    var progress = document.querySelectorAll('.quiz-progress span');
+    var result = document.getElementById('quiz-result');
+    var scoreEl = document.getElementById('quiz-score-num');
+    var msgEl = document.getElementById('quiz-msg');
+    var restartBtn = document.getElementById('quiz-restart');
+    var current = 0;
+    var total = 0;
+
+    function showQuestion(index){
+      questions.forEach(function(q, i){
+        q.classList.toggle('current', i === index);
+      });
+      progress.forEach(function(p, i){
+        p.classList.toggle('done', i <= index);
+      });
+    }
+
+    function finish(){
+      questions.forEach(function(q){ q.classList.remove('current'); });
+      result.classList.add('current');
+      var pct = Math.round((total / 9) * 100);
+      scoreEl.textContent = pct + '/100';
+
+      var message;
+      if(pct >= 85){
+        message = "Your page is already speaking the language of confident visitors. A few thoughtful refinements from EasyLandX could turn that clarity into even stronger results.";
+      } else if(pct >= 60){
+        message = "Your page already has real strengths to build on. EasyLandX can sharpen the details that turn a good first impression into a confident click.";
+      } else {
+        message = "Every strong page starts exactly where yours is now. EasyLandX takes that foundation and shapes it into a page visitors feel instantly comfortable acting on.";
+      }
+      msgEl.textContent = message;
+    }
+
+    questions.forEach(function(q, index){
+      q.querySelectorAll('.quiz-option').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          total += parseInt(btn.getAttribute('data-points'), 10);
+          current = index + 1;
+          if(current < questions.length){
+            showQuestion(current);
+          } else {
+            finish();
+          }
+        });
+      });
+    });
+
+    restartBtn.addEventListener('click', function(){
+      current = 0;
+      total = 0;
+      result.classList.remove('current');
+      showQuestion(0);
+    });
+  })();
+</script>
+
+</body>
+</html>

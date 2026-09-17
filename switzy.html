@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX | What Remains — Landing Pages Built to Endure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --slate-red: #a4283a;
+    --slate-red-deep: #7c1e2c;
+    --midnight-white: #f7f5f9;
+    --midnight-white-dim: #ece8f2;
+    --champagne-gold: #d9ad63;
+    --champagne-gold-deep: #b8863f;
+    --ink: #241417;
+    --ink-soft: #4a3339;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    overflow-x:hidden;
+    background:var(--midnight-white);
+  }
+  h1,h2,h3{font-family:'Playfair Display', serif;}
+  .section{padding:5rem 1.5rem; position:relative;}
+  .wrap{max-width:1100px; margin:0 auto;}
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.visible{opacity:1; transform:translateY(0);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background: radial-gradient(ellipse at top left, var(--slate-red) 0%, var(--slate-red-deep) 60%, #5e161f 100%);
+    color: var(--midnight-white);
+    min-height: 92vh;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    padding: 6rem 1.5rem 4rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(217,173,99,0.18) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(247,245,249,0.10) 0%, transparent 45%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    letter-spacing:.22em; text-transform:uppercase; font-size:.78rem; font-weight:700;
+    color: var(--champagne-gold);
+    margin-bottom:1.4rem;
+  }
+  .hero h1{
+    font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+    line-height:1.08;
+    max-width:900px; margin:0 auto 1.5rem;
+    font-weight:900;
+  }
+  .hero h1 em{
+    font-style:italic; color: var(--champagne-gold);
+  }
+  .hero p.lede{
+    max-width:640px; margin:0 auto 2.5rem;
+    font-size:1.15rem; line-height:1.7; color: rgba(247,245,249,0.88);
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:.6rem;
+    padding: 1rem 2.1rem;
+    border-radius: 999px;
+    font-weight:700; font-size:1rem;
+    text-decoration:none;
+    border: 2px solid transparent;
+    transition: transform .25s ease, box-shadow .25s ease;
+    cursor:pointer;
+  }
+  .btn:hover{ transform: translateY(-3px); }
+  .btn-gold{
+    background: linear-gradient(135deg, var(--champagne-gold), var(--champagne-gold-deep));
+    color: var(--ink);
+    box-shadow: 0 10px 30px rgba(217,173,99,0.35);
+  }
+  .btn-gold:hover{ box-shadow: 0 16px 40px rgba(217,173,99,0.5); }
+  .btn-outline{
+    border-color: rgba(247,245,249,0.6);
+    color: var(--midnight-white);
+  }
+  .btn-outline:hover{ background: rgba(247,245,249,0.12); }
+  .hero-ctas{ display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
+
+  /* ---------- CORE MESSAGES (Midnight White) ---------- */
+  .messages{ background: var(--midnight-white); }
+  .section-head{ text-align:center; max-width:700px; margin:0 auto 3.2rem; }
+  .section-head .tag{
+    letter-spacing:.2em; text-transform:uppercase; font-size:.75rem; font-weight:700;
+    color: var(--slate-red-deep); margin-bottom:1rem; display:block;
+  }
+  .section-head h2{ font-size: clamp(1.7rem, 3.4vw, 2.6rem); color:var(--ink); }
+  .section-head p{ margin-top:1rem; color:var(--ink-soft); line-height:1.7; }
+
+  .card-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:1.6rem; }
+  @media(max-width:720px){ .card-grid{ grid-template-columns:1fr; } }
+  .card{
+    background: #ffffff;
+    border: 1px solid var(--midnight-white-dim);
+    border-radius: 18px;
+    padding: 2rem;
+    box-shadow: 0 12px 30px rgba(36,20,23,0.06);
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .card:hover{ transform: translateY(-6px); box-shadow: 0 20px 44px rgba(36,20,23,0.10); }
+  .card .num{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:38px; height:38px; border-radius:50%;
+    background: var(--slate-red); color: var(--midnight-white);
+    font-weight:800; font-size:.95rem; margin-bottom:1rem;
+  }
+  .card h3{ font-size:1.25rem; margin-bottom:.7rem; color:var(--ink); }
+  .card p{ color:var(--ink-soft); line-height:1.65; font-size:.97rem; }
+
+  /* ---------- ARCHITECTURE DIAGRAM (Champagne Gold) ---------- */
+  .architecture{
+    background: linear-gradient(180deg, var(--champagne-gold) 0%, var(--champagne-gold-deep) 100%);
+    color: var(--ink);
+  }
+  .architecture .section-head .tag{ color: var(--slate-red-deep); }
+  .architecture .section-head h2{ color: var(--ink); }
+  .architecture .section-head p{ color: var(--ink-soft); }
+
+  .flow{ display:flex; flex-direction:column; align-items:center; gap:0; }
+  .flow-box{
+    background: var(--midnight-white);
+    border-radius: 16px;
+    padding: 1.3rem 1.8rem;
+    text-align:center;
+    box-shadow: 0 14px 30px rgba(36,20,23,0.18);
+    max-width: 420px;
+    width:100%;
+  }
+  .flow-box .flow-step{
+    font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; font-weight:800;
+    color: var(--slate-red); margin-bottom:.35rem;
+  }
+  .flow-box h4{ font-family:'Playfair Display', serif; font-size:1.15rem; margin-bottom:.4rem; }
+  .flow-box p{ font-size:.88rem; color: var(--ink-soft); line-height:1.5; }
+  .flow-arrow{
+    font-size:1.8rem; color: var(--ink); opacity:.55;
+    margin: .3rem 0;
+  }
+  .flow-branch{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:1.2rem;
+    width:100%; max-width: 980px; margin-top:.3rem;
+  }
+  @media(max-width:820px){ .flow-branch{ grid-template-columns:1fr; } }
+  .flow-branch .flow-box{ max-width:none; }
+
+  /* ---------- LESSONS (Slate Red) ---------- */
+  .lessons{
+    background: linear-gradient(160deg, var(--slate-red-deep) 0%, var(--slate-red) 55%, #8a2230 100%);
+    color: var(--midnight-white);
+  }
+  .lessons .section-head .tag{ color: var(--champagne-gold); }
+  .lessons .section-head h2{ color: var(--midnight-white); }
+  .lessons .section-head p{ color: rgba(247,245,249,0.82); }
+  .lesson-row{ display:flex; flex-direction:column; gap:1.4rem; max-width:800px; margin:0 auto; }
+  .lesson{
+    background: rgba(247,245,249,0.07);
+    border: 1px solid rgba(247,245,249,0.18);
+    border-radius: 16px;
+    padding: 1.6rem 1.9rem;
+    display:flex; gap:1.2rem; align-items:flex-start;
+  }
+  .lesson .mark{
+    font-family:'Playfair Display', serif; font-weight:900; font-size:1.6rem;
+    color: var(--champagne-gold); flex-shrink:0; line-height:1;
+  }
+  .lesson h3{ font-size:1.1rem; margin-bottom:.4rem; color: var(--midnight-white); }
+  .lesson p{ color: rgba(247,245,249,0.82); line-height:1.6; font-size:.95rem; }
+
+  /* ---------- INTERACTIVE LAB (Midnight White) ---------- */
+  .lab{ background: var(--midnight-white-dim); }
+  .lab-panel{
+    display:grid; grid-template-columns: 1.05fr 1fr; gap:2.5rem; align-items:center;
+    background: #ffffff; border-radius: 22px; padding: 2.4rem;
+    box-shadow: 0 18px 44px rgba(36,20,23,0.08);
+  }
+  @media(max-width:860px){ .lab-panel{ grid-template-columns:1fr; } }
+  .toggle-list{ display:flex; flex-direction:column; gap:.85rem; }
+  .toggle-row{
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    background: var(--midnight-white); border:1px solid var(--midnight-white-dim);
+    border-radius:12px; padding:.85rem 1.1rem;
+  }
+  .toggle-row span{ font-weight:600; font-size:.95rem; }
+  .toggle-row small{ display:block; font-weight:400; color:var(--ink-soft); font-size:.78rem; margin-top:.15rem; }
+  .switch{ position:relative; width:48px; height:26px; flex-shrink:0; }
+  .switch input{ opacity:0; width:0; height:0; }
+  .slider-el{
+    position:absolute; cursor:pointer; inset:0;
+    background: #d8d2d0; border-radius:999px; transition:.3s;
+  }
+  .slider-el::before{
+    content:""; position:absolute; height:20px; width:20px; left:3px; top:3px;
+    background:white; border-radius:50%; transition:.3s;
+    box-shadow:0 2px 4px rgba(0,0,0,.2);
+  }
+  .switch input:checked + .slider-el{ background: var(--slate-red); }
+  .switch input:checked + .slider-el::before{ transform: translateX(22px); }
+
+  .meter-wrap{ text-align:center; }
+  .meter-label{
+    letter-spacing:.18em; text-transform:uppercase; font-size:.75rem; font-weight:700;
+    color: var(--ink-soft); margin-bottom:.6rem;
+  }
+  .meter-score{
+    font-family:'Playfair Display', serif; font-weight:900;
+    font-size: clamp(2.6rem, 6vw, 3.6rem);
+    color: var(--slate-red);
+    transition: color .4s ease;
+  }
+  .meter-status{ font-weight:700; margin: .3rem 0 1.2rem; font-size:1.05rem; }
+  .meter-track{
+    width:100%; height:16px; background:#e9e3e0; border-radius:999px; overflow:hidden;
+    margin-bottom: 1rem;
+  }
+  .meter-fill{
+    height:100%; width:8%;
+    background: linear-gradient(90deg, var(--slate-red), var(--champagne-gold));
+    border-radius:999px; transition: width .5s ease;
+  }
+  .meter-note{ color: var(--ink-soft); font-size:.9rem; line-height:1.6; }
+
+  /* ---------- FINAL CTA (Champagne Gold) ---------- */
+  .final-cta{
+    background: radial-gradient(ellipse at bottom right, var(--champagne-gold) 0%, var(--champagne-gold-deep) 70%);
+    text-align:center;
+  }
+  .final-cta h2{ font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--ink); margin-bottom:1rem; }
+  .final-cta p{ max-width:560px; margin:0 auto 2.2rem; color: var(--ink-soft); line-height:1.7; font-size:1.05rem; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background: var(--ink); color: rgba(247,245,249,0.7);
+    text-align:center; padding: 2.2rem 1.5rem; font-size:.88rem;
+  }
+  footer strong{ color: var(--champagne-gold); }
+
+  /* ---------- FLOATING BUTTON ---------- */
+  .floating-btn{
+    position:fixed; bottom:22px; right:22px; z-index:999;
+    display:flex; align-items:center; gap:.55rem;
+    background: linear-gradient(135deg, var(--slate-red), var(--slate-red-deep));
+    color: var(--midnight-white);
+    padding: .85rem 1.3rem; border-radius: 999px;
+    text-decoration:none; font-weight:700; font-size:.9rem;
+    box-shadow: 0 12px 28px rgba(124,30,44,0.4);
+    transition: transform .25s ease;
+  }
+  .floating-btn:hover{ transform: translateY(-4px) scale(1.03); }
+  .floating-btn .dot{
+    width:8px; height:8px; border-radius:50%; background: var(--champagne-gold);
+    box-shadow: 0 0 0 4px rgba(217,173,99,0.3);
+  }
+</style>
+</head>
+<body>
+
+<a class="floating-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">
+  <span class="dot"></span> Visit EasyLandX
+</a>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <span class="eyebrow">A Concept Page by EasyLandX</span>
+    <h1>What remains, when the <em>scroll</em> stops and the noise fades.</h1>
+    <p class="lede">
+      Every landing page eventually loses its scaffolding — the animations, the offer copy, the seasonal promotion.
+      What we build for is the part that stays: the single clear impression a visitor carries with them.
+      This is landing page design built for what endures.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn btn-gold" href="#lab">Test Your Page's Coherence</a>
+      <a class="btn btn-outline" href="https://easylandx.github.io" target="_blank" rel="noopener">See EasyLandX Work →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CORE MESSAGES -->
+<section class="section messages" id="messages">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag">Core Principles</span>
+      <h2>The four truths behind pages that hold up</h2>
+      <p>Great design and a generous budget are not what make a landing page convert. These four principles decide what actually survives contact with a real visitor.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card reveal">
+        <div class="num">1</div>
+        <h3>Polish Is Not Protection</h3>
+        <p>A stunning hero image or a premium animation offers no defense against a confusing offer or a buried call-to-action. Clarity is the only real safeguard — everything else is decoration standing on top of it.</p>
+      </div>
+      <div class="card reveal">
+        <div class="num">2</div>
+        <h3>A Brand Is a House of Small Cards</h3>
+        <p>A page's identity is built from many small, consistent signals — tone, colour, testimonials, the promise in the headline. Keep them aligned and the brand feels solid. Let them drift and the whole impression comes apart.</p>
+      </div>
+      <div class="card reveal">
+        <div class="num">3</div>
+        <h3>Generic Feels Like Distance</h3>
+        <p>A page that could belong to anyone belongs to no one in the visitor's mind. Specific language, real photos, and a real voice close the gap that template defaults quietly leave open.</p>
+      </div>
+      <div class="card reveal">
+        <div class="num">4</div>
+        <h3>Feeling Outlasts Detail</h3>
+        <p>Visitors forget headlines and button copy within minutes. What stays is the feeling the page left them with — confident, cared for, curious. Design for the residue, not just the read.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="section architecture" id="architecture">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag">The EasyLandX Architecture</span>
+      <h2>Five stages that carry a visitor to "yes"</h2>
+      <p>Every page we build moves through the same interior architecture — the same structure that carries a reader through a story they can't put down.</p>
+    </div>
+
+    <div class="flow reveal">
+      <div class="flow-box">
+        <div class="flow-step">Stage 1</div>
+        <h4>Anchor Points</h4>
+        <p>Trust badges, familiar layout patterns, and a clear promise that ground a first-time visitor in three seconds or less.</p>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-box">
+        <div class="flow-step">Stage 2</div>
+        <h4>Sensory Proof</h4>
+        <p>Real photos, real numbers, real voices — set against the page's polish so the offer feels tangible, not staged.</p>
+      </div>
+      <div class="flow-arrow">↓</div>
+
+      <div class="flow-branch">
+        <div class="flow-box">
+          <div class="flow-step">Stage 3</div>
+          <h4>Blended Narrative</h4>
+          <p>The offer in front of the visitor, woven with the founder's story behind it — present need, past proof.</p>
+        </div>
+        <div class="flow-box">
+          <div class="flow-step">Stage 4</div>
+          <h4>The Conversion Itinerary</h4>
+          <p>One deliberate step at a time — headline, proof, offer, action — so nothing is left for the visitor to figure out alone.</p>
+        </div>
+        <div class="flow-box">
+          <div class="flow-step">Stage 5</div>
+          <h4>Reconciliation Signals</h4>
+          <p>The FAQ, the guarantee, the testimonial that answers the doubt a visitor hasn't said out loud yet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LESSONS -->
+<section class="section lessons" id="lessons">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag">Essential Lessons</span>
+      <h2>What we carry into every build</h2>
+      <p>Three working principles, drawn straight into how EasyLandX approaches every client page.</p>
+    </div>
+    <div class="lesson-row">
+      <div class="lesson reveal">
+        <div class="mark">01</div>
+        <div>
+          <h3>Automation brings visitors. Relationship keeps them.</h3>
+          <p>Ads and funnels are excellent at logistics — getting someone to the page. They cannot replace a real voice, a real photo, and a real reason to trust what happens next.</p>
+        </div>
+      </div>
+      <div class="lesson reveal">
+        <div class="mark">02</div>
+        <div>
+          <h3>Unspoken doubts surface right at the button.</h3>
+          <p>The hesitation a visitor never types into a search bar still shows up the instant they reach your call-to-action. We design the page to answer it before it's asked.</p>
+        </div>
+      </div>
+      <div class="lesson reveal">
+        <div class="mark">03</div>
+        <div>
+          <h3>You can't control every visitor. You can control every pixel they meet.</h3>
+          <p>No page controls who arrives or what mood they're in. What we can hold steady is the headline, the proof, and the path — the moments that actually decide the outcome.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE LAB -->
+<section class="section lab" id="lab">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="tag">Try It Yourself</span>
+      <h2>The Identity Coherence Lab</h2>
+      <p>Toggle the elements a landing page usually leans on. Watch how quickly the brand's "self" holds together — or comes apart — as pieces go missing.</p>
+    </div>
+
+    <div class="lab-panel reveal">
+      <div class="toggle-list">
+        <div class="toggle-row">
+          <span>Clear Headline<small>States the promise in one line</small></span>
+          <label class="switch"><input type="checkbox" class="lab-toggle" data-weight="22" checked><span class="slider-el"></span></label>
+        </div>
+        <div class="toggle-row">
+          <span>Real Photos<small>Not stock imagery</small></span>
+          <label class="switch"><input type="checkbox" class="lab-toggle" data-weight="20" checked><span class="slider-el"></span></label>
+        </div>
+        <div class="toggle-row">
+          <span>Founder / Client Story<small>Present offer, tied to real past proof</small></span>
+          <label class="switch"><input type="checkbox" class="lab-toggle" data-weight="18"><span class="slider-el"></span></label>
+        </div>
+        <div class="toggle-row">
+          <span>Consistent Call-to-Action<small>Same action, repeated with intent</small></span>
+          <label class="switch"><input type="checkbox" class="lab-toggle" data-weight="22" checked><span class="slider-el"></span></label>
+        </div>
+        <div class="toggle-row">
+          <span>Objection Answers<small>FAQ or guarantee near the CTA</small></span>
+          <label class="switch"><input type="checkbox" class="lab-toggle" data-weight="18"><span class="slider-el"></span></label>
+        </div>
+      </div>
+
+      <div class="meter-wrap">
+        <div class="meter-label">Brand Coherence</div>
+        <div class="meter-score" id="score">62</div>
+        <div class="meter-status" id="status">Holding Together</div>
+        <div class="meter-track"><div class="meter-fill" id="fill" style="width:62%"></div></div>
+        <p class="meter-note" id="note">A solid start — the page reads clearly, but a couple of gaps leave visitors filling in blanks on their own.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section final-cta">
+  <div class="wrap">
+    <h2 class="reveal">Build the page that holds up after the scroll ends.</h2>
+    <p class="reveal">EasyLandX designs and builds custom, conversion-focused landing pages for small businesses — no templates, no generic builders, just a page made to carry your visitor all the way through.</p>
+    <a class="btn btn-gold reveal" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Built by EasyLandX</strong> — custom landing pages, made to last.</p>
+  <p>&copy; 2026 EasyLandX. All rights reserved.</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Coherence Lab
+  const toggles = document.querySelectorAll('.lab-toggle');
+  const scoreEl = document.getElementById('score');
+  const fillEl = document.getElementById('fill');
+  const statusEl = document.getElementById('status');
+  const noteEl = document.getElementById('note');
+
+  const bands = [
+    { max: 30,  status: 'Fragile',            note: 'Too many pieces are missing — visitors have to guess what the page is asking of them, and most will leave before they figure it out.' },
+    { max: 55,  status: 'Coming Apart',       note: 'The page has some good pieces, but the gaps are wide enough that the overall impression feels thin and unfinished.' },
+    { max: 80,  status: 'Holding Together',   note: 'A solid start — the page reads clearly, but a couple of gaps leave visitors filling in blanks on their own.' },
+    { max: 101, status: 'Unshakeable',        note: 'Every signal lines up. The page tells one coherent story from headline to click, and that\'s what a visitor remembers.' }
+  ];
+
+  function updateScore(){
+    let total = 0;
+    toggles.forEach(t => { if(t.checked) total += parseInt(t.dataset.weight, 10); });
+    scoreEl.textContent = total;
+    fillEl.style.width = total + '%';
+    const band = bands.find(b => total < b.max);
+    statusEl.textContent = band.status;
+    noteEl.textContent = band.note;
+  }
+  toggles.forEach(t => t.addEventListener('change', updateScore));
+  updateScore();
+</script>
+
+</body>
+</html>
