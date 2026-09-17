@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages Built To Send One Clear Signal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lime: #C8F400;
+    --lime-deep: #9FCC00;
+    --lime-pale: #E7FF7A;
+    --ink: #14150F;
+    --paper: #FFFFFF;
+    --yellow: #FFD400;
+    --red: #FF2E2E;
+    --red-deep: #C71F1F;
+    --line: rgba(20,21,15,0.16);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--lime);
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 0.94;
+    margin: 0;
+  }
+
+  a { color: inherit; }
+
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- hazard stripe divider ---------- */
+  .stripe{
+    height: 14px;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--ink) 0 18px,
+      var(--yellow) 18px 36px
+    );
+  }
+  .stripe.thin{ height: 8px; }
+
+  /* ---------- header ---------- */
+  header{
+    padding: 28px 0 0;
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-bottom: 22px;
+  }
+  .wordmark{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    text-transform: uppercase;
+  }
+  .wordmark span{ color: var(--red); }
+  .nav-link{
+    text-decoration:none;
+    font-weight:600;
+    font-size: 14px;
+    border: 2px solid var(--ink);
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--paper);
+    transition: transform .15s ease;
+  }
+  .nav-link:hover{ transform: translateY(-2px); }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding: 54px 0 60px;
+  }
+  .hero h1{
+    font-size: clamp(44px, 7.4vw, 96px);
+    max-width: 920px;
+  }
+  .hero-sub{
+    margin-top: 26px;
+    max-width: 560px;
+    font-size: 19px;
+    line-height: 1.55;
+  }
+  .hero-actions{
+    margin-top: 34px;
+    display:flex;
+    align-items:center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background: var(--red);
+    color: var(--paper);
+    text-decoration:none;
+    font-weight:700;
+    font-size: 17px;
+    padding: 16px 28px;
+    border-radius: 10px;
+    border: 3px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary:hover{
+    transform: translate(-3px,-3px);
+    box-shadow: 9px 9px 0 var(--ink);
+  }
+  .hero-note{
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(20,21,15,0.72);
+  }
+
+  /* ---------- section shell ---------- */
+  section{ padding: 68px 0; }
+  .kicker{
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .section-title{
+    font-size: clamp(30px, 4.4vw, 52px);
+    max-width: 740px;
+  }
+  .section-lede{
+    margin-top: 18px;
+    max-width: 640px;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  /* ---------- compare panel ---------- */
+  .compare{
+    margin-top: 40px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .compare-card{
+    border-radius: 14px;
+    padding: 26px;
+  }
+  .compare-card h3{
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 14px;
+  }
+  .compare-card p{
+    font-size: 15.5px;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .compare-card.cam{
+    background: var(--lime-pale);
+    border: 2px dashed var(--ink);
+    opacity: 0.82;
+  }
+  .compare-card.sig{
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--red);
+  }
+  .tag{
+    display:inline-block;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .tag.cam{ background: var(--lime-deep); color: var(--ink); }
+  .tag.sig{ background: var(--red); color: var(--paper); }
+
+  /* ---------- framework sequence ---------- */
+  .steps{
+    margin-top: 44px;
+    display:flex;
+    flex-direction:column;
+  }
+  .step{
+    display:grid;
+    grid-template-columns: 84px 1fr;
+    gap: 22px;
+    padding: 26px 0;
+    border-top: 2px solid var(--line);
+  }
+  .step:last-child{ border-bottom: 2px solid var(--line); }
+  .step-num{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 46px;
+    color: var(--red);
+    line-height: 1;
+  }
+  .step h3{
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: 8px;
+  }
+  .step p{
+    font-size: 15.5px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 560px;
+  }
+
+  /* ---------- signal test (interactive) ---------- */
+  .test-panel{
+    margin-top: 44px;
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    border-radius: 18px;
+    padding: 36px;
+    box-shadow: 10px 10px 0 var(--yellow);
+  }
+  .gauge-row{
+    display:flex;
+    align-items:center;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin-bottom: 34px;
+  }
+  .gauge{
+    flex: 1 1 280px;
+    height: 26px;
+    border-radius: 999px;
+    background: var(--lime-pale);
+    border: 2px solid var(--ink);
+    overflow: hidden;
+    position: relative;
+  }
+  .gauge-fill{
+    height: 100%;
+    width: 20%;
+    background: linear-gradient(90deg, var(--yellow), var(--red));
+    transition: width .5s cubic-bezier(.2,.8,.2,1);
+    border-radius: 999px 0 0 999px;
+  }
+  .gauge-readout{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+    min-width: 168px;
+    text-align: right;
+  }
+  .gauge-caption{
+    font-size: 13.5px;
+    font-weight: 600;
+    color: rgba(20,21,15,0.7);
+    margin-top: 6px;
+  }
+
+  .round{
+    padding: 20px 0;
+    border-top: 2px solid var(--line);
+  }
+  .round:first-of-type{ border-top: none; }
+  .round-label{
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: rgba(20,21,15,0.62);
+    margin-bottom: 12px;
+  }
+  .choice-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .choice{
+    text-align:left;
+    cursor:pointer;
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 15px;
+    line-height: 1.45;
+    background: var(--lime-pale);
+    border: 2px solid var(--ink);
+    transition: transform .12s ease, box-shadow .12s ease, background .15s ease;
+  }
+  .choice:hover{ transform: translateY(-2px); }
+  .choice.selected.cam{
+    background: var(--lime-deep);
+  }
+  .choice.selected.sig{
+    background: var(--red);
+    color: var(--paper);
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+  .choice-kind{
+    display:block;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+    opacity: 0.65;
+  }
+
+  /* ---------- closing ---------- */
+  .closing{
+    text-align:center;
+    padding: 76px 0 84px;
+  }
+  .closing h2{
+    font-size: clamp(34px, 6vw, 64px);
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .closing p{
+    margin: 20px auto 0;
+    max-width: 480px;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  .closing .btn-primary{ margin-top: 30px; }
+
+  footer{
+    padding: 26px 0 40px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: rgba(20,21,15,0.68);
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  @media (max-width: 720px){
+    .compare, .choice-grid{ grid-template-columns: 1fr; }
+    .step{ grid-template-columns: 52px 1fr; }
+    .step-num{ font-size: 32px; }
+    .gauge-readout{ text-align:left; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; scroll-behavior: auto !important; }
+  }
+
+  :focus-visible{
+    outline: 3px solid var(--red);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="wordmark">Easy<span>Land</span>X</div>
+    <a class="nav-link" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</header>
+
+<div class="stripe"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Landing pages built to send one clear signal</h1>
+    <p class="hero-sub">Vague pages blend into the noise. EasyLandX pages stand out, say exactly what they offer, and give visitors one obvious step to take next.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+      <span class="hero-note">One page. One signal. One clear next step.</span>
+    </div>
+  </div>
+</section>
+
+<div class="stripe thin"></div>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Where this comes from</p>
+    <h2 class="section-title">Clarity reads as trust. Hedging reads as background noise.</h2>
+    <p class="section-lede">Clinical psychologist Dr. George K. Simon spent his career studying why direct, plainly stated behavior earns confidence instantly, while soft, evasive, over-qualified language gets tuned out. The same pattern plays out on a screen in about three seconds. EasyLandX builds every page to land on the right side of that gap.</p>
+
+    <div class="compare">
+      <div class="compare-card cam">
+        <span class="tag cam">Blends in</span>
+        <h3>Camouflage copy</h3>
+        <p>"We offer a comprehensive range of digital solutions tailored to a variety of business needs, leveraging modern best practices."</p>
+      </div>
+      <div class="compare-card sig">
+        <span class="tag sig">Stands out</span>
+        <h3>Signal copy</h3>
+        <p>"Get a landing page that turns visitors into customers — live in 5 days."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">The EasyLandX signal framework</p>
+    <h2 class="section-title">Five moves that turn a quiet page into a clear one</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Spot the camouflage</h3>
+          <p>Phrases like "comprehensive solutions" or "a wide range of services" let a page blend into every other page. EasyLandX opens by naming exactly what a visitor gets, in plain words.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Choose clarity over cover</h3>
+          <p>Clever hedging can feel safer to write, but it reads as vague to read. Every EasyLandX page commits to one plain claim a visitor can trust on sight.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Ask for a clear yes</h3>
+          <p>One action, stated plainly, outperforms five soft links. Each page points to a single next step and names it exactly — "Start my page," not "Learn more."</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <h3>State it plainly</h3>
+          <p>Real confidence needs no footnotes. EasyLandX copy makes its promise once, cleanly, and lets the design carry the rest of the weight.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div>
+          <h3>Make the next step instant</h3>
+          <p>The gap between interest and action stays short: one click, one form, one clear result — delivered right away.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe thin"></div>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Try it yourself</p>
+    <h2 class="section-title">The signal test</h2>
+    <p class="section-lede">Pick a version for each line below and watch the signal strength move. Camouflage copy is safe and soft. Signal copy is plain and direct. Notice the difference in how each one lands.</p>
+
+    <div class="test-panel">
+      <div class="gauge-row">
+        <div class="gauge"><div class="gauge-fill" id="gaugeFill"></div></div>
+        <div>
+          <div class="gauge-readout" id="gaugeReadout">20%</div>
+          <div class="gauge-caption" id="gaugeCaption">Quiet signal</div>
+        </div>
+      </div>
+
+      <div class="round" data-round="0">
+        <p class="round-label">HEADLINE</p>
+        <div class="choice-grid">
+          <button class="choice cam" data-round="0" data-kind="cam" data-value="20">
+            <span class="choice-kind">Camouflage</span>
+            We provide comprehensive solutions for your online presence needs.
+          </button>
+          <button class="choice sig" data-round="0" data-kind="sig" data-value="95">
+            <span class="choice-kind">Signal</span>
+            Get a landing page that turns visitors into customers — this week.
+          </button>
+        </div>
+      </div>
+
+      <div class="round" data-round="1">
+        <p class="round-label">BUTTON TEXT</p>
+        <div class="choice-grid">
+          <button class="choice cam" data-round="1" data-kind="cam" data-value="20">
+            <span class="choice-kind">Camouflage</span>
+            Learn More
+          </button>
+          <button class="choice sig" data-round="1" data-kind="sig" data-value="95">
+            <span class="choice-kind">Signal</span>
+            Start My Page
+          </button>
+        </div>
+      </div>
+
+      <div class="round" data-round="2">
+        <p class="round-label">VALUE PROMISE</p>
+        <div class="choice-grid">
+          <button class="choice cam" data-round="2" data-kind="cam" data-value="20">
+            <span class="choice-kind">Camouflage</span>
+            Our team leverages best practices to help you achieve results over time.
+          </button>
+          <button class="choice sig" data-round="2" data-kind="sig" data-value="95">
+            <span class="choice-kind">Signal</span>
+            Your page goes live in 5 days, built by a real designer, ready to convert.
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>Say it once. Say it plainly. Let it land.</h2>
+    <p>EasyLandX builds landing pages that skip the camouflage and go straight to the signal — clear enough to trust in three seconds.</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
+    <span>EasyLandX — clear, direct landing pages</span>
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var scores = [20, 20, 20];
+  var fill = document.getElementById('gaugeFill');
+  var readout = document.getElementById('gaugeReadout');
+  var caption = document.getElementById('gaugeCaption');
+
+  function captionFor(v){
+    if (v >= 85) return 'Strong, unmistakable signal';
+    if (v >= 60) return 'Clear signal, coming through';
+    if (v >= 40) return 'Getting louder';
+    return 'Quiet signal';
+  }
+
+  function update(){
+    var avg = Math.round((scores[0] + scores[1] + scores[2]) / 3);
+    fill.style.width = avg + '%';
+    readout.textContent = avg + '%';
+    caption.textContent = captionFor(avg);
+  }
+
+  document.querySelectorAll('.choice').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var round = parseInt(btn.getAttribute('data-round'), 10);
+      var value = parseInt(btn.getAttribute('data-value'), 10);
+      scores[round] = value;
+
+      document.querySelectorAll('.choice[data-round="' + round + '"]').forEach(function(b){
+        b.classList.remove('selected');
+      });
+      btn.classList.add('selected');
+      update();
+    });
+  });
+
+  update();
+})();
+</script>
+
+</body>
+</html>
