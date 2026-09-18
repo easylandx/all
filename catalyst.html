@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing Pages That Move People</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-1:#1c0b2e;
+    --bg-2:#120720;
+    --bg-3:#26103d;
+    --lime:#d4ff2a;
+    --blue:#00e5ff;
+    --ink:#f5eeff;
+    --muted:#b8a3da;
+    --card:#231037;
+    --card-line: rgba(212,255,42,0.25);
+    --radius: 14px;
+    --maxw: 1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% 8%, rgba(0,229,255,0.16), transparent 42%),
+      radial-gradient(circle at 88% 18%, rgba(212,255,42,0.14), transparent 45%),
+      var(--bg-1);
+    color:var(--ink);
+    font-family:'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .brand{
+    font-family:'Bebas Neue', 'Space Grotesk', sans-serif;
+    letter-spacing:0.01em;
+    line-height:1;
+    margin:0;
+  }
+
+  a{color:inherit;}
+  img{max-width:100%;}
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* subtle grain texture */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:1; opacity:0.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:20;
+    background:rgba(18,7,32,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(212,255,42,0.18);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+    max-width:var(--maxw); margin:0 auto;
+  }
+  .brand{
+    font-size:26px; color:var(--lime);
+    text-shadow:0 0 18px rgba(212,255,42,0.45);
+  }
+  .brand span{color:var(--blue); text-shadow:0 0 18px rgba(0,229,255,0.5);}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:15px;
+    padding:12px 22px; border-radius:999px; text-decoration:none;
+    cursor:pointer; border:2px solid transparent;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn:focus-visible{outline:3px solid var(--blue); outline-offset:3px;}
+  .btn-lime{
+    background:var(--lime); color:#171017;
+    box-shadow:0 0 0 rgba(212,255,42,0);
+  }
+  .btn-lime:hover{box-shadow:0 8px 30px rgba(212,255,42,0.4);}
+  .btn-outline{
+    background:transparent; color:var(--blue); border-color:var(--blue);
+  }
+  .btn-outline:hover{box-shadow:0 8px 24px rgba(0,229,255,0.3);}
+  .btn-small{padding:9px 16px; font-size:13px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; z-index:2;
+    padding:96px 24px 80px;
+    text-align:left;
+  }
+  .hero-inner{max-width:var(--maxw); margin:0 auto; display:grid; grid-template-columns: 1.1fr 0.9fr; gap:48px; align-items:center;}
+  .eyebrow-tag{
+    display:inline-block; font-size:14px; font-weight:600; color:var(--blue);
+    background:rgba(0,229,255,0.1); border:1px solid rgba(0,229,255,0.4);
+    padding:6px 14px; border-radius:999px; margin-bottom:22px;
+  }
+  h1.headline{
+    font-size:clamp(48px, 7vw, 84px);
+    color:var(--ink);
+  }
+  h1.headline .accent{color:var(--lime); text-shadow:0 0 30px rgba(212,255,42,0.35);}
+  .hero p.lead{
+    font-size:19px; color:var(--muted); max-width:46ch; margin:26px 0 34px;
+  }
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+
+  /* hero visual: mini glowing browser mockup */
+  .mock{
+    background:var(--card);
+    border:1px solid var(--card-line);
+    border-radius:18px;
+    padding:14px;
+    box-shadow:0 30px 70px rgba(0,0,0,0.5), 0 0 60px rgba(0,229,255,0.08);
+    transform:rotate(2deg);
+  }
+  .mock-bar{display:flex; gap:6px; padding:6px 8px 14px;}
+  .mock-dot{width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,0.18);}
+  .mock-screen{
+    background:linear-gradient(160deg, var(--bg-3), var(--bg-2));
+    border-radius:10px; padding:26px 22px; min-height:230px;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .mock-title{width:70%; height:16px; border-radius:5px; background:var(--lime); opacity:0.9;}
+  .mock-line{height:9px; border-radius:5px; background:rgba(245,238,255,0.25);}
+  .mock-line.w1{width:90%;} .mock-line.w2{width:75%;} .mock-line.w3{width:55%;}
+  .mock-btn{
+    margin-top:10px; width:130px; height:34px; border-radius:8px;
+    background:var(--blue); box-shadow:0 0 22px rgba(0,229,255,0.45);
+  }
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{position:relative; z-index:2; padding:70px 24px;}
+  .section-head{max-width:640px; margin:0 auto 46px;}
+  .section-head.left{margin-left:0;}
+  .kicker{
+    color:var(--blue); font-weight:700; font-size:14px; margin-bottom:10px; display:block;
+  }
+  h2.section-title{font-size:clamp(32px,4.4vw,48px); margin-bottom:14px;}
+  .section-title .hl{color:var(--lime);}
+  .section-sub{color:var(--muted); font-size:16.5px; max-width:56ch;}
+
+  /* ---------- STYLE PICKER (autonomy) ---------- */
+  .picker{
+    display:grid; grid-template-columns: 300px 1fr; gap:36px;
+  }
+  .chip-list{display:flex; flex-direction:column; gap:10px;}
+  .chip{
+    text-align:left; padding:16px 18px; border-radius:12px;
+    background:var(--card); border:1px solid rgba(255,255,255,0.08);
+    color:var(--ink); font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:15px;
+    cursor:pointer; transition:all .2s ease; display:flex; justify-content:space-between; align-items:center;
+  }
+  .chip small{display:block; font-weight:400; color:var(--muted); margin-top:3px; font-size:12.5px;}
+  .chip:hover{border-color:var(--blue);}
+  .chip.active{
+    background:linear-gradient(120deg, rgba(212,255,42,0.14), rgba(0,229,255,0.10));
+    border-color:var(--lime);
+    box-shadow:0 0 24px rgba(212,255,42,0.15);
+  }
+  .preview-panel{
+    background:var(--card); border:1px solid var(--card-line); border-radius:18px;
+    padding:34px; min-height:280px;
+  }
+  .preview-eyebrow{font-size:13px; color:var(--blue); font-weight:700; margin-bottom:8px;}
+  .preview-h{font-family:'Bebas Neue'; font-size:34px; color:var(--lime); margin-bottom:10px; transition:opacity .25s ease;}
+  .preview-body{color:var(--muted); font-size:15.5px; max-width:52ch; margin-bottom:20px;}
+
+  /* ---------- CLEAR THE PATH (friction remover, main interactive centerpiece) ---------- */
+  .path-shell{
+    background:linear-gradient(150deg, var(--bg-3), var(--bg-2));
+    border:1px solid var(--card-line);
+    border-radius:22px; padding:48px 36px;
+    position:relative; overflow:hidden;
+  }
+  .path-shell::before{
+    content:""; position:absolute; width:420px; height:420px; border-radius:50%;
+    background:radial-gradient(circle, rgba(0,229,255,0.18), transparent 65%);
+    top:-160px; right:-140px; pointer-events:none;
+  }
+  .path-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin:34px 0 30px; position:relative; z-index:2;}
+  .obstacle{
+    background:rgba(18,7,32,0.7); border:1px solid rgba(255,255,255,0.12);
+    border-radius:14px; padding:20px; cursor:pointer; user-select:none;
+    transition: transform .25s ease, opacity .35s ease, border-color .2s ease;
+    display:flex; align-items:flex-start; gap:12px;
+  }
+  .obstacle:hover{border-color:var(--lime);}
+  .obstacle .mark{
+    flex:0 0 26px; height:26px; border-radius:50%; border:2px solid var(--muted);
+    display:flex; align-items:center; justify-content:center; font-size:14px; color:transparent;
+    transition:all .2s ease;
+  }
+  .obstacle .otext strong{display:block; font-size:15px; margin-bottom:4px;}
+  .obstacle .otext span{font-size:13.5px; color:var(--muted);}
+  .obstacle.cleared{
+    transform:scale(0.97);
+    border-color:var(--lime);
+    background:rgba(212,255,42,0.07);
+  }
+  .obstacle.cleared .mark{
+    background:var(--lime); border-color:var(--lime); color:#171017; content:"";
+  }
+  .obstacle.cleared .otext strong{color:var(--lime);}
+
+  .path-status{
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:18px;
+    position:relative; z-index:2;
+  }
+  .progress-track{
+    flex:1; min-width:220px; height:10px; border-radius:999px; background:rgba(255,255,255,0.08); overflow:hidden;
+  }
+  .progress-fill{
+    height:100%; width:0%; border-radius:999px;
+    background:linear-gradient(90deg, var(--blue), var(--lime));
+    transition:width .4s ease;
+  }
+  .path-msg{font-weight:700; font-size:15px; color:var(--ink); min-width:230px;}
+  .path-msg .n{color:var(--lime);}
+
+  /* ---------- STEPS (distance) ---------- */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .step{
+    background:var(--card); border:1px solid rgba(255,255,255,0.08); border-radius:16px;
+    padding:28px 24px; position:relative; cursor:pointer; transition:border-color .2s ease, transform .2s ease;
+  }
+  .step:hover{transform:translateY(-4px); border-color:var(--blue);}
+  .step .snum{
+    font-family:'Bebas Neue'; font-size:44px; color:var(--blue); opacity:0.5; display:block; margin-bottom:8px;
+  }
+  .step h3{font-size:19px; margin-bottom:8px; font-family:'Space Grotesk'; font-weight:700;}
+  .step p{color:var(--muted); font-size:14.5px; margin:0;}
+  .step-connector{
+    display:none;
+  }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .quotes{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .quote-card{
+    background:var(--card); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:26px;
+  }
+  .quote-card p{font-size:15px; color:var(--ink); margin:0 0 16px;}
+  .quote-who{display:flex; align-items:center; gap:10px;}
+  .avatar{
+    width:38px; height:38px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Bebas Neue'; font-size:16px; color:#171017;
+  }
+  .quote-who .name{font-weight:700; font-size:14px;}
+  .quote-who .role{font-size:12.5px; color:var(--muted);}
+
+  /* ---------- FINAL CTA ---------- */
+  .final{
+    text-align:center; padding:100px 24px 110px;
+    background:radial-gradient(circle at 50% 0%, rgba(212,255,42,0.12), transparent 60%);
+  }
+  .final h2{font-size:clamp(36px,5.6vw,64px); margin-bottom:18px;}
+  .final p{color:var(--muted); max-width:52ch; margin:0 auto 36px; font-size:17px;}
+  .final .btn{font-size:17px; padding:16px 34px;}
+
+  footer{
+    border-top:1px solid rgba(255,255,255,0.08); padding:30px 24px; text-align:center; color:var(--muted); font-size:13.5px;
+  }
+
+  @media (max-width: 880px){
+    .hero-inner{grid-template-columns:1fr;}
+    .picker{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+    .quotes{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header>
+  <nav>
+    <div class="brand">Easy<span>Land</span>X</div>
+    <a class="btn btn-lime btn-small" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow-tag">Landing pages for small business</span>
+      <h1 class="headline">Give visitors a clear reason to <span class="accent">stay</span>.</h1>
+      <p class="lead">EasyLandX builds affordable, conversion-focused landing pages for small businesses — designed by hand, launched fast, and built to turn browsing into booking.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-lime" href="https://easylandx.github.io" target="_blank" rel="noopener">Start your page →</a>
+        <a class="btn btn-outline" href="#path">See how it works</a>
+      </div>
+    </div>
+    <div class="mock" aria-hidden="true">
+      <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+      <div class="mock-screen">
+        <div class="mock-title"></div>
+        <div class="mock-line w1"></div>
+        <div class="mock-line w2"></div>
+        <div class="mock-line w3"></div>
+        <div class="mock-btn"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTONOMY / STYLE PICKER -->
+<section id="picker">
+  <div class="wrap">
+    <div class="section-head left">
+      <span class="kicker">Pick your lane</span>
+      <h2 class="section-title">Your business, your <span class="hl">headline</span>.</h2>
+      <p class="section-sub">Choose the kind of business you run and watch the page adjust. This is the same thinking your finished EasyLandX page will use to speak straight to your customers.</p>
+    </div>
+
+    <div class="picker">
+      <div class="chip-list" role="tablist" aria-label="Business type">
+        <button class="chip active" data-key="cafe" role="tab" aria-selected="true">Café or bakery<small>Warm, local, inviting</small></button>
+        <button class="chip" data-key="studio" role="tab" aria-selected="false">Studio or gym<small>Bold, energetic, direct</small></button>
+        <button class="chip" data-key="shop" role="tab" aria-selected="false">Boutique or shop<small>Curated, visual, personal</small></button>
+        <button class="chip" data-key="service" role="tab" aria-selected="false">Home or local service<small>Trusted, clear, fast to book</small></button>
+      </div>
+
+      <div class="preview-panel">
+        <div class="preview-eyebrow">Live preview</div>
+        <div class="preview-h" id="prevH">Fresh pastries, made this morning.</div>
+        <div class="preview-body" id="prevB">A single page that shows your menu, your hours, and a map — so hungry neighbors become regulars.</div>
+        <a class="btn btn-outline btn-small" href="https://easylandx.github.io" target="_blank" rel="noopener">See a real example</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLEAR THE PATH (main interactive centerpiece) -->
+<section id="path">
+  <div class="wrap">
+    <div class="section-head left">
+      <span class="kicker">Clear the path</span>
+      <h2 class="section-title">Tap what's standing <span class="hl">between</span> you and more customers.</h2>
+      <p class="section-sub">Each tap clears one thing off your plate. That's what EasyLandX does for you, before your page even goes live.</p>
+    </div>
+
+    <div class="path-shell">
+      <div class="path-grid" id="obstacleGrid">
+        <div class="obstacle" data-benefit="A page that speaks for your business, day and night — no extra hours needed.">
+          <span class="mark">✓</span>
+          <div class="otext"><strong>Time to build a site</strong><span>Hours you'd rather spend with customers</span></div>
+        </div>
+        <div class="obstacle" data-benefit="A clean, focused layout with proven copy patterns — your message, made clear.">
+          <span class="mark">✓</span>
+          <div class="otext"><strong>Design know-how</strong><span>Fonts, colors, and layout choices</span></div>
+        </div>
+        <div class="obstacle" data-benefit="One page built to move people from curious to committed — visitor to customer.">
+          <span class="mark">✓</span>
+          <div class="otext"><strong>A plan that converts</strong><span>Turning visits into bookings and sales</span></div>
+        </div>
+        <div class="obstacle" data-benefit="A price built for small businesses — real quality, real budget.">
+          <span class="mark">✓</span>
+          <div class="otext"><strong>Budget for a big agency</strong><span>Studio-level results, small-business price</span></div>
+        </div>
+      </div>
+
+      <div class="path-status">
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="path-msg" id="pathMsg">Tap a card to clear the way — <span class="n">0/4</span> cleared</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISTANCE / STEPS -->
+<section>
+  <div class="wrap">
+    <div class="section-head left">
+      <span class="kicker">Three small steps</span>
+      <h2 class="section-title">From idea to <span class="hl">live</span> page.</h2>
+      <p class="section-sub">No long onboarding. Just three simple moves, each one small enough to start today.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step" tabindex="0">
+        <span class="snum">1</span>
+        <h3>Share what makes you, you</h3>
+        <p>A short form tells us about your business, your customers, and your goals — five minutes, done.</p>
+      </div>
+      <div class="step" tabindex="0">
+        <span class="snum">2</span>
+        <h3>Review your preview</h3>
+        <p>We hand-build your page and send it over for a look. Ask for changes until it feels exactly right.</p>
+      </div>
+      <div class="step" tabindex="0">
+        <span class="snum">3</span>
+        <h3>Go live and grow</h3>
+        <p>Your page goes live, ready to greet every visitor with a clear reason to reach out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CORROBORATING EVIDENCE -->
+<section>
+  <div class="wrap">
+    <div class="section-head left">
+      <span class="kicker">From the neighborhood</span>
+      <h2 class="section-title">Small businesses, <span class="hl">real</span> momentum.</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote-card">
+        <p>"Our booking requests picked up within the first week our page went live. Customers finally see what we're about."</p>
+        <div class="quote-who">
+          <div class="avatar" style="background:var(--lime);">M</div>
+          <div><div class="name">Maren, Studio Owner</div><div class="role">Yoga &amp; movement studio</div></div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <p>"I sent EasyLandX a few photos and a paragraph. A week later I had a page that actually sounds like me."</p>
+        <div class="quote-who">
+          <div class="avatar" style="background:var(--blue);">D</div>
+          <div><div class="name">Diego, Café Owner</div><div class="role">Neighborhood café</div></div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <p>"Straightforward pricing, fast turnaround, and a page that looks like it cost ten times more. Easy choice."</p>
+        <div class="quote-who">
+          <div class="avatar" style="background:var(--lime);">S</div>
+          <div><div class="name">Sana, Boutique Owner</div><div class="role">Handmade goods shop</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <h2>Your customers are searching <span class="hl" style="color:var(--lime);">right now</span>.</h2>
+  <p>Give them a page worth landing on. See real examples and start your own at EasyLandX.</p>
+  <a class="btn btn-lime" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx.github.io →</a>
+</section>
+
+<footer>
+  EasyLandX — affordable, conversion-focused landing pages, built by hand for small businesses.
+</footer>
+
+<script>
+  // Style picker
+  const previews = {
+    cafe: {
+      h: "Fresh pastries, made this morning.",
+      b: "A single page that shows your menu, your hours, and a map — so hungry neighbors become regulars."
+    },
+    studio: {
+      h: "Your first class is on us.",
+      b: "A bold, energetic page built to fill your schedule — class times, instructor bios, and a booking link up top."
+    },
+    shop: {
+      h: "Handmade, one piece at a time.",
+      b: "A visual, story-led page that lets your best photos and products do the talking."
+    },
+    service: {
+      h: "Fast, friendly, five stars.",
+      b: "A trust-building page with reviews, service areas, and a click-to-call button front and center."
+    }
+  };
+
+  const chips = document.querySelectorAll('.chip');
+  const prevH = document.getElementById('prevH');
+  const prevB = document.getElementById('prevB');
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => { c.classList.remove('active'); c.setAttribute('aria-selected','false'); });
+      chip.classList.add('active');
+      chip.setAttribute('aria-selected','true');
+      const data = previews[chip.dataset.key];
+      prevH.style.opacity = 0;
+      prevB.style.opacity = 0;
+      setTimeout(() => {
+        prevH.textContent = data.h;
+        prevB.textContent = data.b;
+        prevH.style.opacity = 1;
+        prevB.style.opacity = 1;
+      }, 180);
+    });
+  });
+
+  // Clear the path
+  const obstacles = document.querySelectorAll('.obstacle');
+  const fill = document.getElementById('progressFill');
+  const msg = document.getElementById('pathMsg');
+  let cleared = 0;
+  const total = obstacles.length;
+
+  const messages = [
+    'Tap a card to clear the way',
+    'Great start — the path is opening up',
+    'More than halfway there',
+    'Almost fully clear',
+    'The path is wide open — you\'re ready to launch'
+  ];
+
+  obstacles.forEach(o => {
+    o.addEventListener('click', () => {
+      if (!o.classList.contains('cleared')) {
+        o.classList.add('cleared');
+        cleared++;
+      } else {
+        o.classList.remove('cleared');
+        cleared--;
+      }
+      const pct = Math.round((cleared/total)*100);
+      fill.style.width = pct + '%';
+      const label = messages[cleared] || messages[0];
+      msg.innerHTML = label + ' — <span class="n">' + cleared + '/' + total + '</span> cleared';
+    });
+    o.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); o.click(); }
+    });
+    o.setAttribute('tabindex','0');
+    o.setAttribute('role','button');
+  });
+</script>
+
+</body>
+</html>

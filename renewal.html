@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Energy Neon Green</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --neon:#39FF14;
+    --neon-glow:#00FF66;
+    --ink:#040D04;
+    --ink-soft:#0A1F0A;
+    --panel:#0F2E0F;
+    --coral:#CCFF00;
+    --paper:#F0FFF0;
+    --line: rgba(57,255,20,0.25);
+    --maxw: 1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background: radial-gradient(120% 140% at 20% -10%, #0F2E0F 0%, #0A1F0A 50%, var(--ink) 100%);
+    color: var(--paper);
+    font-family:'Sora', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Unbounded', sans-serif;
+    line-height:1.06;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Sora',sans-serif; font-weight:700; font-size:15px;
+    padding:14px 26px; border-radius:999px;
+    border:1.5px solid var(--neon);
+    color: var(--ink);
+    background: var(--neon);
+    cursor:pointer; text-decoration:none;
+    transition: transform .25s ease, background .25s ease;
+    box-shadow: none;
+  }
+  .btn:hover{ transform: translateY(-2px); box-shadow: none; }
+  .btn.ghost{
+    background:transparent; color:var(--paper); border-color: var(--line);
+  }
+  .btn.ghost:hover{ border-color:var(--neon); box-shadow:none; }
+  .btn.coral{ background:var(--coral); border-color:var(--coral); color:var(--ink);}
+  .btn.coral:hover{ box-shadow:none; }
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background: rgba(4,13,4,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; padding:16px 28px; }
+  .logo{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:19px; letter-spacing:-0.02em;}
+  .logo span{color:var(--neon);}
+
+  /* HERO */
+  header.hero{ padding:110px 0 90px; position:relative; }
+  .hero-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap:56px; align-items:center; }
+  .eyebrow{ font-size:14px; color:var(--neon); font-weight:600; margin-bottom:18px; }
+  .hero h1{ font-size:clamp(38px, 5.4vw, 64px); font-weight:900; }
+  .hero h1 .accent{ color:var(--neon); }
+  .hero p.lead{ font-size:18px; max-width:520px; margin-top:22px; color:rgba(240,255,240,0.88); }
+  .hero-ctas{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+
+  .beam-stage{ position:relative; height:380px; }
+  svg{ display:block; width:100%; height:100%; }
+  .glow-pulse{ animation: pulse 2.6s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ opacity:.55; } 50%{ opacity:1; } }
+  .sweep{ stroke-dasharray: 900; stroke-dashoffset:900; animation: draw 2.4s ease forwards; }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+
+  /* SECTIONS shared */
+  section{ padding:88px 0; position:relative; }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head .eyebrow{ margin-bottom:14px; }
+  .section-head h2{ font-size:clamp(28px,3.6vw,40px); font-weight:800; }
+  .section-head p{ margin-top:16px; color:rgba(240,255,240,0.85); font-size:16px; }
+
+  /* PATH / FRAMEWORK */
+  .path-wrap{ position:relative; }
+  .path-track{ position:relative; padding:20px 0 8px; }
+  .path-line-svg{ position:absolute; top:34px; left:0; width:100%; height:6px; }
+  .stages{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; position:relative; z-index:2; }
+  .stage-node{
+    background:transparent; border:none; cursor:pointer; color:inherit;
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+    font-family:'Sora',sans-serif; padding:0; text-align:center;
+  }
+  .dot{
+    width:22px; height:22px; border-radius:50%;
+    background: var(--ink); border:3px solid var(--paper);
+    transition: all .3s ease;
+  }
+  .stage-node .label{ font-size:13.5px; font-weight:600; color:rgba(240,255,240,0.75); transition:color .3s ease;}
+  .stage-node.active .dot{ background:var(--neon); border-color:var(--neon); box-shadow:none; transform:scale(1.15); }
+  .stage-node.active .label{ color:var(--neon); }
+  .stage-panel{
+    margin-top:44px; background:var(--panel); border:1px solid var(--line);
+    border-radius:22px; padding:36px 40px; min-height:150px;
+    display:grid; grid-template-columns: 90px 1fr; gap:26px; align-items:flex-start;
+  }
+  .stage-panel .num{ font-family:'Unbounded',sans-serif; font-size:44px; font-weight:900; color: var(--neon); }
+  .stage-panel h3{ font-size:21px; font-weight:700; margin-bottom:10px; }
+  .stage-panel p{ color:rgba(240,255,240,0.85); font-size:15.5px; }
+
+  /* AUDIT / REFRESH CHECKLIST */
+  .audit-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:16px; }
+  .audit-item{
+    background:var(--panel); border:1px solid var(--line); border-radius:18px;
+    padding:22px 24px; display:flex; align-items:center; gap:18px; cursor:pointer;
+    transition: border-color .25s ease, transform .2s ease;
+  }
+  .audit-item:hover{ transform: translateY(-2px); }
+  .audit-item .check{
+    flex:0 0 34px; height:34px; border-radius:50%; border:2px solid var(--line);
+    display:flex; align-items:center; justify-content:center; transition: all .3s ease;
+  }
+  .audit-item .check svg{ width:16px; height:16px; opacity:0; transition:opacity .25s ease; }
+  .audit-item span.txt{ font-size:15px; color:rgba(240,255,240,0.9); transition: color .3s ease;}
+  .audit-item.done{ border-color: var(--neon); background: rgba(57,255,20,0.15); }
+  .audit-item.done .check{ background:var(--neon); border-color:var(--neon); }
+  .audit-item.done .check svg{ opacity:1; }
+  .audit-item.done span.txt{ color:var(--paper); text-decoration: line-through; text-decoration-color: rgba(240,255,240,0.4); }
+  .audit-progress{ margin-top:26px; display:flex; align-items:center; gap:16px; }
+  .bar{ flex:1; height:10px; border-radius:999px; background:rgba(240,255,240,0.14); overflow:hidden; }
+  .bar-fill{ height:100%; width:0%; background: linear-gradient(90deg, var(--neon), var(--coral)); transition: width .4s ease; }
+  .audit-progress .pct{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:18px; color:var(--neon); min-width:56px; text-align:right; }
+
+  /* QUESTIONS */
+  .q-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:22px;
+    padding:34px 38px; margin-bottom:18px;
+  }
+  .q-card h3{ font-size:19px; font-weight:700; margin-bottom:18px; }
+  .q-choices{ display:flex; gap:12px; flex-wrap:wrap; }
+  .q-choices button{
+    font-family:'Sora',sans-serif; font-weight:600; font-size:14px;
+    padding:10px 22px; border-radius:999px; border:1.5px solid var(--line);
+    background:transparent; color:var(--paper); cursor:pointer;
+    transition: all .25s ease;
+  }
+  .q-choices button:hover{ border-color: var(--neon); }
+  .q-choices button.picked{ background:var(--neon); border-color:var(--neon); color:var(--ink); }
+  .q-answer{
+    margin-top:18px; padding-top:18px; border-top:1px dashed var(--line);
+    font-size:15px; color:rgba(240,255,240,0.9); max-height:0; overflow:hidden;
+    opacity:0; transition: max-height .4s ease, opacity .4s ease;
+  }
+  .q-answer.open{ max-height:200px; opacity:1; }
+
+  /* FINAL CTA */
+  .cta-final{
+    text-align:center; padding:100px 0 120px;
+  }
+  .cta-final h2{ font-size:clamp(30px,4.4vw,46px); font-weight:900; max-width:720px; margin:0 auto; }
+  .cta-final p{ margin-top:18px; color:rgba(240,255,240,0.85); font-size:17px; }
+  .cta-final .btn{ margin-top:34px; font-size:16px; padding:18px 36px; }
+
+  footer{ border-top:1px solid var(--line); padding:34px 0; text-align:center; color:rgba(240,255,240,0.6); font-size:13.5px; }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (max-width: 880px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .stages{ grid-template-columns:repeat(5,1fr); gap:6px; }
+    .stage-node .label{ font-size:11px; }
+    .stage-panel{ grid-template-columns:1fr; }
+    .audit-grid{ grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001s !important; transition-duration:0.001s !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">easyland<span>x</span></div>
+    <a class="btn ghost" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx →</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">A framework for landing pages, always in motion</div>
+      <h1>Every page gets its <span class="accent">moving‑on</span> moment</h1>
+      <p class="lead">Inspired by John Purkiss's ideas on letting go and moving forward, easylandx brings the same energy to your landing page: notice what's ready for a refresh, welcome new ideas in, and build something that flows.</p>
+      <div class="hero-ctas">
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Start your refresh with easylandx</a>
+        <a class="btn ghost" href="#path">See the framework</a>
+      </div>
+    </div>
+    <div class="beam-stage">
+      <svg viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="beamGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#39FF14"/>
+            <stop offset="100%" stop-color="#CCFF00"/>
+          </linearGradient>
+        </defs>
+        <circle cx="210" cy="190" r="150" fill="none" stroke="rgba(57,255,20,0.2)" stroke-width="1.5"/>
+        <circle cx="210" cy="190" r="108" fill="none" stroke="rgba(57,255,20,0.2)" stroke-width="1.5"/>
+        <path class="sweep" d="M 60 300 C 120 120, 300 260, 360 80" fill="none" stroke="url(#beamGrad)" stroke-width="5" stroke-linecap="round"/>
+        <g class="glow-pulse">
+          <circle cx="60" cy="300" r="9" fill="#39FF14"/>
+          <circle cx="360" cy="80" r="9" fill="#CCFF00"/>
+        </g>
+        <g font-family="Sora, sans-serif" font-size="12" fill="#F0FFF0" opacity="0.85">
+          <text x="30" y="326">Ready for renewal</text>
+          <text x="300" y="62">Bright new page</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="path">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">The five‑stage renewal path</div>
+      <h2>How a page moves forward</h2>
+      <p>Tap each stage to see how easylandx brings it to life for your business.</p>
+    </div>
+
+    <div class="path-track">
+      <svg class="path-line-svg" viewBox="0 0 1000 6" preserveAspectRatio="none">
+        <line x1="60" y1="3" x2="940" y2="3" stroke="rgba(57,255,20,0.25)" stroke-width="2"/>
+      </svg>
+      <div class="stages" id="stageNodes">
+        <button class="stage-node active" data-stage="0"><span class="dot"></span><span class="label">Notice</span></button>
+        <button class="stage-node" data-stage="1"><span class="dot"></span><span class="label">Welcome</span></button>
+        <button class="stage-node" data-stage="2"><span class="dot"></span><span class="label">Release</span></button>
+        <button class="stage-node" data-stage="3"><span class="dot"></span><span class="label">Open</span></button>
+        <button class="stage-node" data-stage="4"><span class="dot"></span><span class="label">Build</span></button>
+      </div>
+
+      <div class="stage-panel" id="stagePanel">
+        <div class="num">01</div>
+        <div>
+          <h3>Notice what's ready</h3>
+          <p>Look at your page with fresh eyes. easylandx helps you spot the copy, colors, and layout choices that are ready to grow into something brighter — no guesswork required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="audit" style="background:linear-gradient(180deg, rgba(15,46,15,0.5), rgba(10,31,10,0.9));">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">The space audit</div>
+      <h2>Clear the way for your best page yet</h2>
+      <p>Tap each item as you welcome a lighter, brighter version of it. Watch your renewal meter glow.</p>
+    </div>
+
+    <div class="audit-grid" id="auditGrid">
+      <div class="audit-item" data-item="0"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#040D04" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg></span><span class="txt">Yesterday's headline, ready for a brighter one</span></div>
+      <div class="audit-item" data-item="1"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#040D04" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg></span><span class="txt">A crowded layout, ready to breathe</span></div>
+      <div class="audit-item" data-item="2"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#040D04" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg></span><span class="txt">Mismatched colors, ready to align with your brand</span></div>
+      <div class="audit-item" data-item="3"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#040D04" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg></span><span class="txt">A quiet call‑to‑action, ready to shine</span></div>
+      <div class="audit-item" data-item="4"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#040D04" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg></span><span class="txt">Old photos, ready for a fresh visual story</span></div>
+      <div class="audit-item" data-item="5"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#040D04" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg></span><span class="txt">A loading page, ready to feel instant</span></div>
+    </div>
+
+    <div class="audit-progress">
+      <div class="bar"><div class="bar-fill" id="auditBar"></div></div>
+      <div class="pct" id="auditPct">0%</div>
+    </div>
+  </div>
+</section>
+
+<section id="questions">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Three questions, answered honestly</div>
+      <h2>Ask yourself, then let easylandx answer</h2>
+      <p>A simple way to check whether your page is ready for its next chapter.</p>
+    </div>
+
+    <div class="q-card reveal">
+      <h3>Could this page feel lighter?</h3>
+      <div class="q-choices" data-q="0">
+        <button data-a="yes">Yes, absolutely</button>
+        <button data-a="curious">I'm curious</button>
+      </div>
+      <div class="q-answer" id="ans0">Wonderful — that curiosity is exactly where every great refresh begins. easylandx turns "lighter" into a page that loads fast, reads clearly, and glows with your brand.</div>
+    </div>
+
+    <div class="q-card reveal">
+      <h3>Would you love it to convert more visitors into clients?</h3>
+      <div class="q-choices" data-q="1">
+        <button data-a="yes">Yes, love that</button>
+        <button data-a="curious">Tell me more</button>
+      </div>
+      <div class="q-answer" id="ans1">Every easylandx page is built around one clear, glowing call‑to‑action — so visitors always know their next happy step.</div>
+    </div>
+
+    <div class="q-card reveal">
+      <h3>When would you enjoy seeing the new version?</h3>
+      <div class="q-choices" data-q="2">
+        <button data-a="now">Right away</button>
+        <button data-a="soon">Soon</button>
+      </div>
+      <div class="q-answer" id="ans2">Either way, easylandx moves at your pace — single‑page builds that come together quickly, so "soon" often feels like "now."</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final reveal">
+  <div class="wrap">
+    <h2>Your page's brightest chapter is one click away</h2>
+    <p>Bring your business a landing page built to glow — vibrant, fast, and fully yours.</p>
+    <a class="btn coral" href="https://easylandx.github.io" target="_blank" rel="noopener">Begin with easylandx →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">easylandx — bright landing pages, built to move forward.</div>
+</footer>
+
+<script>
+// ---------- Stage path interactivity ----------
+const stagesData = [
+  {
+    title: "Notice what's ready",
+    body: "Look at your page with fresh eyes. easylandx helps you spot the copy, colors, and layout choices that are ready to grow into something brighter — no guesswork required."
+  },
+  {
+    title: "Welcome the new idea",
+    body: "Bring in the direction that excites you: a bolder headline, a friendlier layout, a palette that finally feels like you. easylandx welcomes every idea to the table."
+  },
+  {
+    title: "Release the old version, warmly",
+    body: "Say a fond thank‑you to the page that got you here, then let it step aside. easylandx keeps a clean copy so you can move forward without losing anything."
+  },
+  {
+    title: "Open space for what's next",
+    body: "A lighter layout means more room for your offer to shine. easylandx trims the extra weight so your message travels clearly and quickly."
+  },
+  {
+    title: "Build the vibrant new page",
+    body: "One glowing, single‑page site — fast, clear, and ready to welcome visitors. This is where your renewal becomes real, live at easylandx.github.io."
+  }
+];
+
+const nodes = document.querySelectorAll('.stage-node');
+const panel = document.getElementById('stagePanel');
+
+function renderStage(i){
+  const d = stagesData[i];
+  panel.innerHTML = `<div class="num">0${i+1}</div><div><h3>${d.title}</h3><p>${d.body}</p></div>`;
+}
+
+nodes.forEach(node => {
+  node.addEventListener('click', () => {
+    nodes.forEach(n => n.classList.remove('active'));
+    node.classList.add('active');
+    renderStage(parseInt(node.dataset.stage, 10));
+    chime(440 + parseInt(node.dataset.stage,10)*60);
+  });
+});
+
+// ---------- Audit checklist ----------
+const auditItems = document.querySelectorAll('.audit-item');
+const bar = document.getElementById('auditBar');
+const pct = document.getElementById('auditPct');
+
+function updateAudit(){
+  const total = auditItems.length;
+  const done = document.querySelectorAll('.audit-item.done').length;
+  const percent = Math.round((done/total)*100);
+  bar.style.width = percent + '%';
+  pct.textContent = percent + '%';
+}
+
+auditItems.forEach(item => {
+  item.addEventListener('click', () => {
+    item.classList.toggle('done');
+    updateAudit();
+    chime(item.classList.contains('done') ? 660 : 330);
+  });
+});
+
+// ---------- Questions ----------
+document.querySelectorAll('.q-choices').forEach(group => {
+  const q = group.dataset.q;
+  const answer = document.getElementById('ans'+q);
+  group.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      group.querySelectorAll('button').forEach(b => b.classList.remove('picked'));
+      btn.classList.add('picked');
+      answer.classList.add('open');
+      chime(520);
+    });
+  });
+});
+
+// ---------- Reveal on scroll ----------
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.15 });
+revealEls.forEach(el => io.observe(el));
+
+// ---------- Gentle synthesized chime ----------
+let actx;
+function chime(freq){
+  try{
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    const osc = actx.createOscillator();
+    const gain = actx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    gain.gain.value = 0.0001;
+    osc.connect(gain); gain.connect(actx.destination);
+    const now = actx.currentTime;
+    gain.gain.exponentialRampToValueAtTime(0.06, now + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+    osc.start(now); osc.stop(now + 0.55);
+  }catch(e){ /* audio is optional */ }
+}
+</script>
+
+</body>
+</html>
