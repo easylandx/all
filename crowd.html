@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Pages Built to Move Crowds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold-1:#FFE07A;
+    --gold-2:#F6C324;
+    --gold-3:#E9A800;
+    --crimson:#FF1E4B;
+    --crimson-deep:#C60031;
+    --violet:#5B12A8;
+    --violet-glow:#8B2FE0;
+    --ink:#241033;
+    --ink-soft:#4A2E63;
+    --cream:#FFF6DE;
+    --line:rgba(36,16,51,0.14);
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Manrope', system-ui, sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 15% -10%, #FFF3C4 0%, transparent 60%),
+      radial-gradient(900px 500px at 110% 10%, #FFEFAF 0%, transparent 55%),
+      linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 45%, var(--gold-3) 100%);
+    background-attachment:fixed;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(255,224,122,0.72);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:74px;}
+  .brand{font-family:'Unbounded',sans-serif; font-weight:800; font-size:1.15rem; letter-spacing:0.01em;}
+  .brand span{color:var(--crimson);}
+  .navlink{
+    font-weight:600; font-size:0.95rem; text-decoration:none;
+    padding:10px 20px; border-radius:999px;
+    background:var(--violet); color:#fff;
+    box-shadow:0 0 0 rgba(139,47,224,0); transition:box-shadow .25s ease, transform .2s ease;
+  }
+  .navlink:hover{ box-shadow:0 0 22px 4px rgba(139,47,224,0.55); transform:translateY(-1px); }
+
+  /* HERO */
+  header.hero{ padding:96px 0 64px; position:relative; }
+  .eyebrow-free{ font-weight:700; color:var(--crimson-deep); font-size:1.02rem; margin-bottom:18px; }
+  h1{
+    font-family:'Unbounded',sans-serif; font-weight:900;
+    font-size:clamp(2.4rem, 5.4vw, 4.4rem);
+    line-height:1.03; margin:0 0 26px; letter-spacing:-0.01em;
+    max-width:15ch;
+  }
+  h1 em{ font-style:normal; color:var(--crimson); }
+  .lede{ font-size:1.22rem; line-height:1.6; max-width:56ch; color:var(--ink-soft); margin:0 0 38px; }
+  .cta-row{ display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:10px;
+    background:linear-gradient(135deg, var(--crimson) 0%, var(--crimson-deep) 100%);
+    color:#fff; font-weight:700; font-size:1.05rem;
+    padding:17px 30px; border-radius:14px; text-decoration:none;
+    box-shadow:0 8px 24px -6px rgba(198,0,49,0.55), 0 0 0px rgba(255,30,75,0);
+    transition:transform .22s ease, box-shadow .22s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-3px); box-shadow:0 14px 34px -8px rgba(198,0,49,0.65), 0 0 28px 4px rgba(255,30,75,0.45); }
+  .btn-ghost{
+    font-weight:700; padding:16px 6px; text-decoration:none; color:var(--violet);
+    border-bottom:2px solid var(--violet); 
+  }
+
+  /* PRINCIPLES */
+  section.principles{ padding:80px 0 40px; }
+  .sec-head{ max-width:60ch; margin-bottom:56px; }
+  .sec-head h2{ font-family:'Unbounded',sans-serif; font-size:clamp(1.7rem,3.4vw,2.4rem); font-weight:800; margin:0 0 14px; }
+  .sec-head p{ color:var(--ink-soft); font-size:1.08rem; line-height:1.6; margin:0; }
+
+  .principle-list{ display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); }
+  .principle{
+    display:grid; grid-template-columns:110px 1fr; gap:28px;
+    padding:38px 0; border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .principle .mark{
+    font-family:'Unbounded',sans-serif; font-weight:900; font-size:2.6rem;
+    color:transparent; -webkit-text-stroke:1.6px var(--violet);
+  }
+  .principle h3{ font-family:'Unbounded',sans-serif; font-size:1.28rem; font-weight:700; margin:0 0 10px; }
+  .principle p{ color:var(--ink-soft); line-height:1.65; margin:0; max-width:62ch; }
+  .principle:hover .mark{ color:var(--crimson); -webkit-text-stroke:1.6px var(--crimson); transition:color .3s; }
+
+  /* MOMENTUM LOOP */
+  section.loop{ padding:70px 0; }
+  .loop-card{
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-radius:26px;
+    padding:52px 40px;
+    box-shadow:0 20px 50px -20px rgba(91,18,168,0.25);
+  }
+  .loop-title{ font-family:'Unbounded',sans-serif; font-weight:800; font-size:1.5rem; margin:0 0 34px; text-align:center;}
+  .loop-steps{ display:flex; align-items:stretch; justify-content:center; gap:0; flex-wrap:wrap; }
+  .loop-step{
+    flex:1 1 220px; text-align:center; padding:0 18px; position:relative;
+  }
+  .loop-step .num{
+    width:54px; height:54px; border-radius:50%; margin:0 auto 16px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Unbounded',sans-serif; font-weight:800; color:#fff; font-size:1.1rem;
+  }
+  .loop-step:nth-child(1) .num{ background:var(--crimson); box-shadow:0 0 0 rgba(255,30,75,0.6); animation:pulse-crimson 2.6s ease-in-out infinite; }
+  .loop-step:nth-child(3) .num{ background:var(--violet); box-shadow:0 0 0 rgba(139,47,224,0.6); animation:pulse-violet 2.6s ease-in-out infinite 0.9s; }
+  .loop-step:nth-child(5) .num{ background:var(--gold-3); color:var(--ink); animation:pulse-gold 2.6s ease-in-out infinite 1.8s; }
+  @keyframes pulse-crimson{ 0%,100%{box-shadow:0 0 0 0 rgba(255,30,75,0.5);} 50%{box-shadow:0 0 0 14px rgba(255,30,75,0);} }
+  @keyframes pulse-violet{ 0%,100%{box-shadow:0 0 0 0 rgba(139,47,224,0.5);} 50%{box-shadow:0 0 0 14px rgba(139,47,224,0);} }
+  @keyframes pulse-gold{ 0%,100%{box-shadow:0 0 0 0 rgba(233,168,0,0.5);} 50%{box-shadow:0 0 0 14px rgba(233,168,0,0);} }
+  .loop-step h4{ font-family:'Unbounded',sans-serif; font-size:1.02rem; margin:0 0 8px; }
+  .loop-step p{ font-size:0.95rem; color:var(--ink-soft); margin:0; line-height:1.55; }
+  .loop-arrow{ align-self:center; font-size:1.6rem; color:var(--violet); padding:0 6px; opacity:0.55; }
+
+  /* INTERACTIVE DEMO */
+  section.demo{ padding:90px 0; }
+  .demo-card{
+    border-radius:28px; overflow:hidden; position:relative;
+    background:linear-gradient(160deg, #2A0E4A 0%, #3D0B5C 55%, #4B0F63 100%);
+    box-shadow:0 30px 70px -24px rgba(75,15,99,0.6);
+  }
+  .demo-header{ padding:38px 40px 6px; }
+  .demo-header h2{ font-family:'Unbounded',sans-serif; color:#FFF3D6; font-size:clamp(1.5rem,3vw,2.1rem); margin:0 0 10px; }
+  .demo-header p{ color:#E6CFFF; max-width:56ch; line-height:1.6; margin:0 0 6px; }
+  #field-wrap{ padding:10px 20px 30px; }
+  canvas{ display:block; width:100%; height:380px; cursor:pointer; border-radius:18px; }
+  .demo-controls{ display:flex; justify-content:space-between; align-items:center; padding:0 40px 34px; flex-wrap:wrap; gap:14px;}
+  .demo-hint{ color:#FFE9A8; font-size:0.92rem; font-weight:600; }
+  .btn-reset{
+    background:rgba(255,255,255,0.12); color:#FFF3D6; border:1px solid rgba(255,255,255,0.35);
+    padding:11px 22px; border-radius:10px; font-weight:700; cursor:pointer; font-size:0.92rem;
+    transition:background .2s ease;
+  }
+  .btn-reset:hover{ background:rgba(255,255,255,0.22); }
+
+  /* CLOSING CTA */
+  section.close{ padding:90px 0 110px; text-align:center; }
+  .close-inner{ max-width:640px; margin:0 auto; }
+  section.close h2{ font-family:'Unbounded',sans-serif; font-weight:900; font-size:clamp(2rem,4.4vw,3rem); margin:0 0 20px; line-height:1.08;}
+  section.close p{ color:var(--ink-soft); font-size:1.12rem; line-height:1.6; margin:0 0 36px; }
+
+  footer{ padding:34px 0; border-top:1px solid var(--line); }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:0.88rem; color:var(--ink-soft);}
+
+  @media (max-width:720px){
+    .principle{ grid-template-columns:1fr; gap:10px; }
+    .principle .mark{ font-size:1.8rem; }
+    .loop-arrow{ display:none; }
+    .demo-controls{ flex-direction:column; align-items:flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .loop-step .num{ animation:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+
+  :focus-visible{ outline:3px solid var(--violet); outline-offset:3px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">easyland<span>x</span></div>
+    <a class="navlink" href="https://easylandx.github.io" target="_blank" rel="noopener">See the portfolio</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow-free">The psychology of a page that gets remembered</div>
+    <h1>Landing pages built to move <em>crowds</em>, not just visitors.</h1>
+    <p class="lede">easylandx designs single-page websites around the same forces that have always carried an idea from one mind to a thousand — a clear image, a confident voice, a feeling worth sharing. Every page is hand-built for one business, one story, one moment of attention.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Explore easylandx →</a>
+      <a class="btn-ghost" href="#demo">Watch an idea spread</a>
+    </div>
+  </div>
+</header>
+
+<section class="principles">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Five instincts every strong page is built on</h2>
+      <p>Long before screens existed, thinkers studied how attention moves through a crowd — what catches it, what holds it, what makes it act. easylandx translates those same instincts into pages that welcome new customers instead of losing them.</p>
+    </div>
+    <div class="principle-list">
+      <div class="principle">
+        <div class="mark">01</div>
+        <div>
+          <h3>Speak in one image before a single word</h3>
+          <p>A visitor decides how they feel about a page in seconds, and they decide with their eyes first. Every easylandx page opens with one vivid, unmistakable moment — a photo, a shape, a line of motion — that carries the whole story before anyone reads a sentence.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="mark">02</div>
+        <div>
+          <h3>Say it plainly, and say it once with total clarity</h3>
+          <p>Confidence reads faster than caveats. Your strongest promise gets a single clean line, free of qualifiers — because certainty is what a visitor remembers, and remembering is what turns into a message.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="mark">03</div>
+        <div>
+          <h3>Look like the authority you already are</h3>
+          <p>Polish is a language of its own. A page with confident typography, considered color, and a sense of craft signals — instantly and wordlessly — that this business can be trusted with someone's time and money.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="mark">04</div>
+        <div>
+          <h3>Reach the heart before the calculator</h3>
+          <p>People act on how something makes them feel, then look for reasons afterward. easylandx writes toward warmth, belonging, and aspiration first, and lets the details — pricing, specs, logistics — support the feeling rather than replace it.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="mark">05</div>
+        <div>
+          <h3>Give people a story worth joining</h3>
+          <p>A transaction is easy to forget. A story is not. The best pages frame a business as something to belong to — a craft, a mission, a community — so visitors leave feeling like participants, not just customers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="loop">
+  <div class="wrap">
+    <div class="loop-card">
+      <div class="loop-title">The momentum loop behind every message that spreads</div>
+      <div class="loop-steps">
+        <div class="loop-step">
+          <div class="num">1</div>
+          <h4>Affirm</h4>
+          <p>One clear, confident statement of value — no hedging, no fine print.</p>
+        </div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step">
+          <div class="num">2</div>
+          <h4>Repeat</h4>
+          <p>The same promise echoed through headline, imagery, and call to action until it settles in.</p>
+        </div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step">
+          <div class="num">3</div>
+          <h4>Spread</h4>
+          <p>A message that feels certain is a message people carry further — to a friend, a group, a feed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="demo" id="demo">
+  <div class="wrap">
+    <div class="demo-card">
+      <div class="demo-header">
+        <h2>Watch an idea spread</h2>
+        <p>Every point of light below is one person's attention. Click anywhere in the field — watch how a single idea, once affirmed, travels from one mind to the next. This is the same current that a well-built landing page rides from the first visitor to the hundredth.</p>
+      </div>
+      <div id="field-wrap"><canvas id="field"></canvas></div>
+      <div class="demo-controls">
+        <span class="demo-hint">Tap or click the field to start a wave</span>
+        <button class="btn-reset" id="resetBtn">Start again</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap close-inner">
+    <h2>Ready to give your business a page people carry forward?</h2>
+    <p>easylandx designs and builds a custom landing page around your story — crafted individually, launched fast, and made to be remembered.</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 easylandx</div>
+    <div>Custom landing pages, crafted one story at a time</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const canvas = document.getElementById('field');
+  const ctx = canvas.getContext('2d');
+  const wrap = document.getElementById('field-wrap');
+  let W, H, dpr;
+  let nodes = [];
+  const COLORS = { gold:'#F6C324', crimson:'#FF1E4B', violet:'#B778FF', dim:'rgba(255,255,255,0.14)' };
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = canvas.getBoundingClientRect();
+    W = rect.width; H = rect.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    buildNodes();
+  }
+
+  function buildNodes(){
+    nodes = [];
+    const cols = Math.max(10, Math.floor(W / 46));
+    const rows = Math.max(6, Math.floor(H / 46));
+    const gx = W / cols, gy = H / rows;
+    for(let i=0;i<cols;i++){
+      for(let j=0;j<rows;j++){
+        nodes.push({
+          x: gx*i + gx/2 + (Math.random()-0.5)*gx*0.4,
+          y: gy*j + gy/2 + (Math.random()-0.5)*gy*0.4,
+          base: 2.1 + Math.random()*1.4,
+          lit: 0,
+          litTarget: 0,
+          delay: 0,
+          hue: Math.random()
+        });
+      }
+    }
+  }
+
+  function colorFor(t, hue){
+    // t: 0..1 lit intensity. Cycle through gold -> crimson -> violet based on hue seed
+    if(hue < 0.34) return mix('rgba(246,195,36,', t);
+    if(hue < 0.67) return mix('rgba(255,30,75,', t);
+    return mix('rgba(183,120,255,', t);
+  }
+  function mix(prefix, t){
+    return prefix + (0.15 + 0.85*t) + ')';
+  }
+
+  function triggerWave(px, py){
+    nodes.forEach(n=>{
+      const d = Math.hypot(n.x-px, n.y-py);
+      n.delay = d / 380; // seconds until it lights
+      n.litTarget = 1;
+      n._triggeredAt = performance.now();
+    });
+  }
+
+  function reset(){
+    nodes.forEach(n=>{ n.lit = 0; n.litTarget = 0; n.delay = 0; n._triggeredAt = null; });
+  }
+
+  let last = performance.now();
+  function tick(now){
+    const dt = Math.min(0.05, (now-last)/1000); last = now;
+    ctx.clearRect(0,0,W,H);
+
+    // faint connecting hint (static dim grid glow, subtle)
+    for(const n of nodes){
+      let target = 0;
+      if(n._triggeredAt !== null){
+        const elapsed = (now - n._triggeredAt)/1000;
+        target = elapsed > n.delay ? 1 : 0;
+      }
+      // ease lit toward target/decay
+      if(target === 1){
+        n.lit += (1 - n.lit) * Math.min(1, dt*4);
+      } else {
+        n.lit += (0 - n.lit) * Math.min(1, dt*1.2);
+      }
+
+      const r = n.base + n.lit*4.2;
+      ctx.beginPath();
+      ctx.fillStyle = n.lit > 0.02 ? colorFor(n.lit, n.hue) : COLORS.dim;
+      ctx.arc(n.x, n.y, r, 0, Math.PI*2);
+      ctx.fill();
+
+      if(n.lit > 0.35){
+        ctx.beginPath();
+        ctx.fillStyle = colorFor(n.lit*0.35, n.hue);
+        ctx.arc(n.x, n.y, r*2.6, 0, Math.PI*2);
+        ctx.fill();
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function pointerPos(e){
+    const rect = canvas.getBoundingClientRect();
+    const cx = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+    const cy = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+    return {x:cx, y:cy};
+  }
+
+  canvas.addEventListener('click', (e)=>{
+    const p = pointerPos(e);
+    triggerWave(p.x, p.y);
+  });
+  canvas.addEventListener('touchstart', (e)=>{
+    e.preventDefault();
+    const p = pointerPos(e);
+    triggerWave(p.x, p.y);
+  }, {passive:false});
+
+  document.getElementById('resetBtn').addEventListener('click', reset);
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(tick);
+
+  // gentle auto-start so the field feels alive on load
+  setTimeout(()=>{ triggerWave(W*0.5, H*0.55); }, 700);
+})();
+</script>
+
+</body>
+</html>
