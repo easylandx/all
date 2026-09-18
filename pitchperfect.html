@@ -1,0 +1,877 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — Say It Right, First Time</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cyan-1:#CFFFFB;
+    --cyan-2:#5BE9F0;
+    --cyan-3:#00C4D6;
+    --cyan-deep:#00A5B8;
+    --coral:#FF4D6D;
+    --coral-deep:#E01E44;
+    --gold:#FFC72C;
+    --gold-deep:#E8A400;
+    --ink:#062E36;
+    --ink-soft:#175A66;
+    --cream:#F1FFFE;
+    --line:rgba(6,46,54,0.14);
+    --maxw:1120px;
+  }
+
+  *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    font-family:'Manrope', system-ui, sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1100px 560px at 10% -8%, #E9FFFE 0%, transparent 60%),
+      radial-gradient(900px 520px at 108% 6%, #C8FBFC 0%, transparent 55%),
+      linear-gradient(180deg, var(--cyan-1) 0%, var(--cyan-2) 46%, var(--cyan-3) 100%);
+    background-attachment:fixed;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(207,255,251,0.72);
+    border-bottom:1px solid var(--line);
+  }
+
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:74px;
+  }
+
+  .brand{
+    font-family:'Sora',sans-serif;
+    font-weight:800;
+    font-size:1.15rem;
+  }
+
+  .brand span{color:var(--coral-deep);}
+
+  .navlink{
+    font-weight:700;
+    font-size:0.95rem;
+    text-decoration:none;
+    padding:10px 20px;
+    border-radius:999px;
+    background:var(--gold);
+    color:var(--ink);
+    box-shadow:0 0 0 rgba(255,199,44,0);
+    transition:box-shadow .25s ease, transform .2s ease;
+  }
+
+  .navlink:hover{
+    box-shadow:0 0 22px 4px rgba(255,199,44,0.6);
+    transform:translateY(-1px);
+  }
+
+  header.hero{
+    padding:96px 0 60px;
+  }
+
+  .eyebrow-free{
+    font-weight:700;
+    color:var(--coral-deep);
+    font-size:1.02rem;
+    margin-bottom:18px;
+  }
+
+  h1{
+    font-family:'Sora',sans-serif;
+    font-weight:800;
+    font-size:clamp(2.3rem, 5.2vw, 4.2rem);
+    line-height:1.06;
+    margin:0 0 26px;
+    letter-spacing:-0.01em;
+    max-width:16ch;
+  }
+
+  h1 em{
+    font-style:normal;
+    color:var(--coral-deep);
+  }
+
+  .lede{
+    font-size:1.2rem;
+    line-height:1.6;
+    max-width:56ch;
+    color:var(--ink-soft);
+    margin:0 0 38px;
+  }
+
+  .cta-row{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:linear-gradient(135deg, var(--coral) 0%, var(--coral-deep) 100%);
+    color:#fff;
+    font-weight:700;
+    font-size:1.05rem;
+    padding:17px 30px;
+    border-radius:14px;
+    text-decoration:none;
+    box-shadow:0 8px 24px -6px rgba(224,30,68,0.5);
+    transition:transform .22s ease, box-shadow .22s ease;
+  }
+
+  .btn-primary:hover{
+    transform:translateY(-3px);
+    box-shadow:
+      0 14px 34px -8px rgba(224,30,68,0.6),
+      0 0 28px 4px rgba(255,77,109,0.4);
+  }
+
+  .btn-ghost{
+    font-weight:700;
+    padding:16px 6px;
+    text-decoration:none;
+    color:var(--gold-deep);
+    border-bottom:2px solid var(--gold-deep);
+  }
+
+  section.principles{
+    padding:80px 0 40px;
+  }
+
+  .sec-head{
+    max-width:60ch;
+    margin-bottom:56px;
+  }
+
+  .sec-head h2{
+    font-family:'Sora',sans-serif;
+    font-size:clamp(1.7rem,3.4vw,2.4rem);
+    font-weight:800;
+    margin:0 0 14px;
+  }
+
+  .sec-head p{
+    color:var(--ink-soft);
+    font-size:1.08rem;
+    line-height:1.6;
+    margin:0;
+  }
+
+  .principle-list{
+    display:flex;
+    flex-direction:column;
+    border-top:1px solid var(--line);
+  }
+
+  .principle{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:28px;
+    padding:38px 0;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+
+  .principle .mark{
+    font-family:'Sora',sans-serif;
+    font-weight:800;
+    font-size:2.5rem;
+    color:transparent;
+    -webkit-text-stroke:1.6px var(--coral-deep);
+  }
+
+  .principle h3{
+    font-family:'Sora',sans-serif;
+    font-size:1.24rem;
+    font-weight:700;
+    margin:0 0 10px;
+  }
+
+  .principle p{
+    color:var(--ink-soft);
+    line-height:1.65;
+    margin:0;
+    max-width:62ch;
+  }
+
+  .principle:hover .mark{
+    color:var(--gold-deep);
+    -webkit-text-stroke:1.6px var(--gold-deep);
+    transition:color .3s;
+  }
+
+  section.flow{
+    padding:70px 0;
+  }
+
+  .flow-card{
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-radius:26px;
+    padding:52px 40px;
+    box-shadow:0 20px 50px -20px rgba(0,164,182,0.3);
+  }
+
+  .flow-title{
+    font-family:'Sora',sans-serif;
+    font-weight:800;
+    font-size:1.45rem;
+    margin:0 0 10px;
+    text-align:center;
+  }
+
+  .flow-sub{
+    text-align:center;
+    color:var(--ink-soft);
+    margin:0 0 34px;
+  }
+
+  .flow-top{
+    display:flex;
+    justify-content:center;
+    margin-bottom:10px;
+  }
+
+  .flow-pill{
+    background:var(--coral);
+    color:#fff;
+    font-family:'Sora',sans-serif;
+    font-weight:700;
+    padding:14px 26px;
+    border-radius:14px;
+    text-align:center;
+    font-size:1rem;
+    box-shadow:0 8px 20px -6px rgba(224,30,68,0.5);
+  }
+
+  .flow-arrow-down{
+    text-align:center;
+    font-size:1.5rem;
+    color:var(--ink-soft);
+    opacity:0.6;
+    margin:6px 0 18px;
+  }
+
+  .flow-branches{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .flow-branch{
+    flex:1 1 220px;
+    background:#fff;
+    border-radius:16px;
+    padding:22px 20px;
+    border:1px solid var(--line);
+    text-align:left;
+  }
+
+  .flow-branch .tag{
+    display:inline-block;
+    font-family:'Sora',sans-serif;
+    font-weight:700;
+    font-size:0.82rem;
+    color:#fff;
+    background:var(--gold-deep);
+    padding:5px 12px;
+    border-radius:999px;
+    margin-bottom:12px;
+  }
+
+  .flow-branch h4{
+    font-family:'Sora',sans-serif;
+    font-size:1.02rem;
+    margin:0 0 8px;
+  }
+
+  .flow-branch p{
+    font-size:0.94rem;
+    color:var(--ink-soft);
+    margin:0;
+    line-height:1.55;
+  }
+
+  section.demo{
+    padding:90px 0;
+  }
+
+  .demo-card{
+    border-radius:28px;
+    overflow:hidden;
+    position:relative;
+    background:linear-gradient(160deg, #013640 0%, #024C57 55%, #016472 100%);
+    box-shadow:0 30px 70px -24px rgba(1,54,64,0.6);
+  }
+
+  .demo-header{
+    padding:38px 40px 6px;
+  }
+
+  .demo-header h2{
+    font-family:'Sora',sans-serif;
+    color:#EFFFFE;
+    font-size:clamp(1.5rem,3vw,2.1rem);
+    margin:0 0 10px;
+  }
+
+  .demo-header p{
+    color:#BFF4F0;
+    max-width:58ch;
+    line-height:1.6;
+    margin:0 0 6px;
+  }
+
+  .demo-body{
+    padding:14px 40px 40px;
+  }
+
+  .slider-row{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:26px;
+    flex-wrap:wrap;
+  }
+
+  .slider-row label{
+    color:#FFE9A8;
+    font-weight:700;
+    font-size:0.92rem;
+    white-space:nowrap;
+  }
+
+  input[type=range]{
+    flex:1;
+    min-width:200px;
+    -webkit-appearance:none;
+    height:8px;
+    border-radius:999px;
+    background:linear-gradient(90deg, var(--coral), var(--gold));
+    outline:none;
+  }
+
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:#fff;
+    border:4px solid var(--coral-deep);
+    cursor:pointer;
+    box-shadow:0 0 12px rgba(255,255,255,0.7);
+  }
+
+  input[type=range]::-moz-range-thumb{
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:#fff;
+    border:4px solid var(--coral-deep);
+    cursor:pointer;
+  }
+
+  .stage{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.16);
+    border-radius:18px;
+    padding:32px;
+    min-height:150px;
+    display:flex;
+    align-items:center;
+  }
+
+  .stage p{
+    font-family:'Sora',sans-serif;
+    color:#FFFDF5;
+    margin:0;
+    line-height:1.5;
+    font-size:1.2rem;
+    font-weight:600;
+    transition:font-size .25s ease;
+  }
+
+  .stage-meta{
+    display:flex;
+    justify-content:space-between;
+    margin-top:16px;
+    color:#9FE7E2;
+    font-size:0.88rem;
+    font-weight:600;
+  }
+
+  .stage-meta .highlight{
+    color:var(--gold);
+  }
+
+  section.close{
+    padding:90px 0 110px;
+    text-align:center;
+  }
+
+  .close-inner{
+    max-width:640px;
+    margin:0 auto;
+  }
+
+  section.close h2{
+    font-family:'Sora',sans-serif;
+    font-weight:800;
+    font-size:clamp(2rem,4.4vw,3rem);
+    margin:0 0 20px;
+    line-height:1.1;
+  }
+
+  section.close p{
+    color:var(--ink-soft);
+    font-size:1.12rem;
+    line-height:1.6;
+    margin:0 0 36px;
+  }
+
+  footer{
+    padding:34px 0;
+    border-top:1px solid var(--line);
+  }
+
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    font-size:0.88rem;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:720px){
+    .principle{
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+
+    .principle .mark{
+      font-size:1.7rem;
+    }
+
+    .demo-header{
+      padding:32px 24px 6px;
+    }
+
+    .demo-body{
+      padding:14px 24px 30px;
+    }
+
+    .stage{
+      padding:24px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+
+  :focus-visible{
+    outline:3px solid var(--coral-deep);
+    outline-offset:3px;
+  }
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">easyland<span>x</span></div>
+    <a class="navlink"
+       href="https://easylandx.github.io"
+       target="_blank"
+       rel="noopener">
+      See the portfolio
+    </a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow-free">
+      The craft of saying it right, the first time
+    </div>
+
+    <h1>
+      A landing page has one shot to <em>land</em> the point.
+    </h1>
+
+    <p class="lede">
+      easylandx builds pages the way a great communicator builds a pitch:
+      lead with the strongest line, cut everything that doesn't earn its
+      place, and let the visuals carry what words alone can't.
+      Clear beats clever, every time.
+    </p>
+
+    <div class="cta-row">
+      <a class="btn-primary"
+         href="https://easylandx.github.io"
+         target="_blank"
+         rel="noopener">
+        Explore easylandx →
+      </a>
+
+      <a class="btn-ghost" href="#demo">
+        Try boiling it down
+      </a>
+    </div>
+  </div>
+</header>
+
+<section class="principles">
+  <div class="wrap">
+
+    <div class="sec-head">
+      <h2>
+        What a strong pitch and a strong page have in common
+      </h2>
+
+      <p>
+        Decades of coaching high-stakes speakers turned up the same handful
+        of truths that hold for a landing page: attention is won in seconds,
+        kept by clarity, and lost the moment a message wanders.
+      </p>
+    </div>
+
+    <div class="principle-list">
+
+      <div class="principle">
+        <div class="mark">01</div>
+
+        <div>
+          <h3>The verdict is instant</h3>
+
+          <p>
+            Visitors size up a page — and the business behind it — within
+            seconds of arriving. easylandx puts the strongest, clearest
+            signal of quality in that opening moment, so the first
+            impression is already the right one.
+          </p>
+        </div>
+      </div>
+
+      <div class="principle">
+        <div class="mark">02</div>
+
+        <div>
+          <h3>Fewer words carry more weight</h3>
+
+          <p>
+            Every sentence a visitor has to work through is a chance for
+            their attention to drift. easylandx keeps copy lean and direct,
+            so the one idea that matters most is the one that actually gets read.
+          </p>
+        </div>
+      </div>
+
+      <div class="principle">
+        <div class="mark">03</div>
+
+        <div>
+          <h3>How it's shown carries the message</h3>
+
+          <p>
+            Pace, spacing, contrast, and rhythm do as much work as the words
+            themselves. A page's visual delivery — where the eye pauses,
+            what stands out — decides whether the message actually sinks in.
+          </p>
+        </div>
+      </div>
+
+      <div class="principle">
+        <div class="mark">04</div>
+
+        <div>
+          <h3>Every detail is placed on purpose</h3>
+
+          <p>
+            A page that lands well is never improvised. Each section, image,
+            and call to action is planned around what a visitor needs to see
+            next — so nothing is left to chance.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="flow">
+  <div class="wrap">
+
+    <div class="flow-card">
+
+      <div class="flow-title">
+        How easylandx structures a page that lands
+      </div>
+
+      <div class="flow-sub">
+        The same four moves behind any pitch that sticks — applied to a
+        single scrolling page.
+      </div>
+
+      <div class="flow-top">
+        <div class="flow-pill">
+          1 · Lead with the headline that matters most
+        </div>
+      </div>
+
+      <div class="flow-arrow-down">↓</div>
+
+      <div class="flow-top">
+        <div class="flow-pill"
+             style="background:var(--gold-deep); color:var(--ink);">
+          2 · Boil the message down to its essence
+        </div>
+      </div>
+
+      <div class="flow-arrow-down">↓</div>
+
+      <div class="flow-branches">
+
+        <div class="flow-branch">
+          <span class="tag">3</span>
+
+          <h4>Say it, then stop</h4>
+
+          <p>
+            Once a section makes its point, it moves on — no trailing
+            sentences that dilute what was just said.
+          </p>
+        </div>
+
+        <div class="flow-branch">
+          <span class="tag">4</span>
+
+          <h4>Show, don't just tell</h4>
+
+          <p>
+            Photos, mockups, and real examples anchor each claim, so a
+            visitor sees the value instead of just reading about it.
+          </p>
+        </div>
+
+        <div class="flow-branch">
+          <span class="tag">5</span>
+
+          <h4>Redirect, gracefully</h4>
+
+          <p>
+            Any doubt a visitor might raise — price, trust, effort — is
+            met head-on, then guided straight back to the next step.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="demo" id="demo">
+  <div class="wrap">
+
+    <div class="demo-card">
+
+      <div class="demo-header">
+
+        <h2>Try the Pasta Sauce Rule</h2>
+
+        <p>
+          Good copy isn't about saying more. It's about finding the part
+          worth keeping.
+        </p>
+
+        <p>
+          Start with a messy, over-explained message. Then reduce it.
+          With every pass, remove the filler, the hedging, and the things
+          that don't help the reader understand the point.
+        </p>
+
+        <p>
+          <strong>Keep reducing until the message can stand on its own.</strong>
+        </p>
+
+      </div>
+
+      <div class="demo-body">
+
+        <div class="slider-row">
+
+          <label for="boil">
+            Raw
+          </label>
+
+          <input
+            type="range"
+            id="boil"
+            min="0"
+            max="4"
+            step="1"
+            value="0"
+            aria-label="Reduce the message"
+          >
+
+          <label for="boil">
+            Reduced
+          </label>
+
+        </div>
+
+        <div class="stage">
+          <p id="stageText"></p>
+        </div>
+
+        <div class="stage-meta">
+          <span id="wordCount">— words</span>
+          <span class="highlight" id="stageLabel">
+            Raw draft
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap close-inner">
+
+    <h2>
+      Give your visitors the version worth remembering.
+    </h2>
+
+    <p>
+      easylandx writes and builds a custom landing page that leads with
+      your strongest point and gets out of its own way.
+    </p>
+
+    <a class="btn-primary"
+       href="https://easylandx.github.io"
+       target="_blank"
+       rel="noopener">
+      Visit easylandx →
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 easylandx</div>
+    <div>Custom landing pages, said right the first time</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+
+  const stages = [
+
+    {
+      label:'Raw draft',
+      text:"So, um, we basically wanted to let you know a little bit about what we do here, and, you know, over the years we've kind of built up a lot of experience helping all sorts of different businesses with a bunch of different needs."
+    },
+
+    {
+      label:'Trimmed',
+      text:"We've spent years helping businesses like yours with different needs, and we'd love to help with yours too."
+    },
+
+    {
+      label:'Focused',
+      text:"We build landing pages for small businesses that need a clearer way to explain what they do."
+    },
+
+    {
+      label:'Sharpened',
+      text:"We turn what your business does into a landing page people understand."
+    },
+
+    {
+      label:'The line worth remembering',
+      text:"Your business, made instantly clear."
+    }
+
+  ];
+
+  const slider = document.getElementById('boil');
+  const stageText = document.getElementById('stageText');
+  const wordCount = document.getElementById('wordCount');
+  const stageLabel = document.getElementById('stageLabel');
+
+  function countWords(str){
+    return str
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
+      .length;
+  }
+
+  function render(i){
+
+    const s = stages[i];
+
+    /*
+      As the message gets reduced, the type gets slightly larger.
+      This reinforces the idea visually:
+      less copy = more emphasis.
+    */
+    stageText.style.fontSize = (1.08 + i * 0.16) + 'rem';
+
+    stageText.textContent = s.text;
+
+    wordCount.textContent =
+      countWords(s.text) + ' words';
+
+    stageLabel.textContent =
+      s.label;
+  }
+
+  slider.addEventListener('input', (e)=>{
+    render(parseInt(e.target.value, 10));
+  });
+
+  render(0);
+
+})();
+</script>
+
+</body>
+</html>
+```
