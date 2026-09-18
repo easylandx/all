@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Build the Moat Around Your Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,560;9..144,650;9..144,780&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --emerald-900:#082C20;
+    --emerald-700:#0B4A35;
+    --emerald-600:#12603F;
+    --emerald-500:#177049;
+    --sapphire:#3465FF;
+    --sapphire-soft:#8AA6FF;
+    --amber:#FFB627;
+    --amber-soft:#FFD98D;
+    --ivory:#F2FAF5;
+    --muted:#9FCBB4;
+    --line: rgba(242,250,245,0.14);
+    --maxw: 1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 620px at 84% -8%, rgba(52,101,255,0.16), transparent 60%),
+      radial-gradient(900px 560px at -10% 18%, rgba(255,182,39,0.10), transparent 55%),
+      linear-gradient(180deg, var(--emerald-900) 0%, var(--emerald-700) 42%, var(--emerald-800,#0A4130) 100%);
+    background-color:var(--emerald-700);
+    color:var(--ivory);
+    font-family:'Manrope', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:650;
+    line-height:1.08;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+  section{padding:112px 0;}
+  @media (max-width:720px){ section{padding:76px 0;} .wrap{padding:0 22px;} }
+
+  /* ---------- nav ---------- */
+  nav.top{
+    position:sticky; top:0; z-index:40;
+    backdrop-filter: blur(10px);
+    background:rgba(8,44,32,0.72);
+    border-bottom:1px solid var(--line);
+  }
+  nav.top .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-weight:650; font-size:1.08rem;
+    letter-spacing:-0.01em;
+  }
+  .brand svg{width:24px; height:24px; flex:none;}
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 18px; border-radius:999px;
+    background:var(--amber); color:var(--emerald-900);
+    font-weight:700; font-size:0.92rem; text-decoration:none;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .nav-cta:hover{transform:translateY(-1px); box-shadow:0 8px 22px rgba(255,182,39,0.28);}
+
+  /* ---------- hero ---------- */
+  .hero .wrap{
+    display:grid; grid-template-columns: 1.15fr 0.85fr; gap:56px; align-items:center;
+    padding-top:96px; padding-bottom:88px;
+  }
+  @media (max-width:920px){ .hero .wrap{grid-template-columns:1fr; padding-top:56px;} }
+  .hero h1{ font-size: clamp(2.4rem, 4.6vw, 3.6rem); }
+  .hero .lede{
+    margin-top:22px; max-width:46ch; color:var(--muted); font-size:1.12rem;
+  }
+  .hero-ctas{ display:flex; gap:14px; margin-top:36px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:12px; font-weight:700; font-size:0.98rem;
+    text-decoration:none; border:1px solid transparent; cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn-primary{ background:var(--sapphire); color:var(--ivory); }
+  .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 26px rgba(52,101,255,0.35); }
+  .btn-ghost{ background:transparent; border-color:var(--line); color:var(--ivory); }
+  .btn-ghost:hover{ border-color:var(--sapphire-soft); background:rgba(138,166,255,0.08); }
+
+  .shield-wrap{ display:flex; justify-content:center; }
+  .shield-wrap svg{ width:min(360px, 82vw); height:auto; }
+  .ring{ transform-origin:200px 210px; animation: spin 26s linear infinite; }
+  .ring.r2{ animation-duration:38s; animation-direction:reverse; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .glow{ animation: pulse 3.6s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ opacity:.55; } 50%{ opacity:1; } }
+  @media (prefers-reduced-motion: reduce){
+    .ring, .glow{ animation:none; }
+  }
+
+  /* ---------- section headers ---------- */
+  .kicker-block{ max-width:640px; }
+  .kicker-block h2{ font-size: clamp(1.8rem, 3vw, 2.5rem); }
+  .kicker-block p{ margin-top:16px; color:var(--muted); font-size:1.06rem; max-width:56ch; }
+
+  /* ---------- framework path ---------- */
+  .path-section{ border-top:1px solid var(--line); }
+  .path-svg-wrap{ margin-top:64px; overflow-x:auto; }
+  .path-svg-wrap svg{ min-width:760px; width:100%; height:auto; display:block; }
+  .path-step-label{ font-family:'Fraunces', serif; font-weight:650; font-size:0.98rem; fill:var(--ivory); }
+  .path-step-num{ font-family:'Manrope', sans-serif; font-weight:800; font-size:0.78rem; }
+  .path-step-desc{ font-family:'Manrope', sans-serif; font-size:0.82rem; fill:var(--muted); }
+
+  /* ---------- advantages ---------- */
+  .adv-grid{
+    margin-top:60px; display:grid; grid-template-columns:repeat(3,1fr); gap:2px;
+    background:var(--line); border:1px solid var(--line); border-radius:18px; overflow:hidden;
+  }
+  @media (max-width:860px){ .adv-grid{ grid-template-columns:1fr; } }
+  .adv-card{
+    background:var(--emerald-700); padding:38px 32px; display:flex; flex-direction:column; gap:16px;
+  }
+  .adv-icon{ width:44px; height:44px; }
+  .adv-card h3{ font-size:1.24rem; }
+  .adv-card p{ color:var(--muted); font-size:0.98rem; }
+  .adv-card.amber .adv-icon{ color:var(--amber); }
+  .adv-card.sapphire .adv-icon{ color:var(--sapphire-soft); }
+  .adv-card.mixed .adv-icon{ color:var(--amber-soft); }
+
+  /* ---------- strategy vs operations ---------- */
+  .strategy-section{ border-top:1px solid var(--line); }
+  .strategy-grid{
+    margin-top:56px; display:grid; grid-template-columns:1fr 1fr; gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:18px; overflow:hidden;
+  }
+  @media (max-width:760px){ .strategy-grid{ grid-template-columns:1fr; } }
+  .strategy-col{ padding:40px 36px; background:var(--emerald-700); }
+  .strategy-col h3{ font-size:1.3rem; }
+  .strategy-col .tag{
+    display:inline-block; font-size:0.78rem; font-weight:700; letter-spacing:0.02em;
+    padding:5px 12px; border-radius:999px; margin-bottom:14px;
+  }
+  .strategy-col.left .tag{ background:rgba(159,203,180,0.14); color:var(--muted); }
+  .strategy-col.right .tag{ background:rgba(255,182,39,0.16); color:var(--amber); }
+  .strategy-col p{ margin-top:14px; color:var(--muted); }
+  .strategy-col.right{ background:linear-gradient(180deg, rgba(255,182,39,0.06), transparent 60%), var(--emerald-700); }
+
+  /* ---------- builder ---------- */
+  .builder-section{ border-top:1px solid var(--line); }
+  .builder-shell{
+    margin-top:56px; display:grid; grid-template-columns:1.05fr 0.95fr; gap:48px; align-items:center;
+    background:var(--emerald-600); border:1px solid var(--line); border-radius:24px; padding:44px;
+  }
+  @media (max-width:920px){ .builder-shell{ grid-template-columns:1fr; padding:30px; } }
+  .control{ margin-bottom:28px; }
+  .control:last-child{ margin-bottom:0; }
+  .control-top{ display:flex; align-items:center; justify-content:space-between; gap:14px; }
+  .control-top strong{ font-family:'Fraunces', serif; font-weight:650; font-size:1.02rem; }
+  .control p.hint{ color:var(--muted); font-size:0.9rem; margin-top:6px; max-width:44ch; }
+
+  .switch{ position:relative; width:52px; height:30px; flex:none; }
+  .switch input{ opacity:0; width:100%; height:100%; position:absolute; margin:0; cursor:pointer; }
+  .switch .track{
+    position:absolute; inset:0; border-radius:999px; background:rgba(242,250,245,0.16);
+    transition:background .2s ease; pointer-events:none;
+  }
+  .switch .knob{
+    position:absolute; top:3px; left:3px; width:24px; height:24px; border-radius:50%;
+    background:var(--ivory); transition:transform .2s ease, background .2s ease; pointer-events:none;
+  }
+  .switch input:checked + .track{ background:var(--sapphire); }
+  .switch input:checked ~ .knob{ transform:translateX(22px); background:var(--ivory); }
+  .switch input:focus-visible ~ .track{ outline:2px solid var(--amber); outline-offset:2px; }
+
+  .range-row{ display:flex; align-items:center; gap:14px; margin-top:10px; }
+  input[type="range"]{
+    -webkit-appearance:none; appearance:none; width:100%; height:6px; border-radius:999px;
+    background:rgba(242,250,245,0.16); outline:none;
+  }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; width:20px; height:20px; border-radius:50%;
+    background:var(--amber); cursor:pointer; border:3px solid var(--emerald-600);
+    box-shadow:0 0 0 2px rgba(255,182,39,0.35);
+  }
+  input[type="range"]::-moz-range-thumb{
+    width:20px; height:20px; border-radius:50%; background:var(--amber); cursor:pointer;
+    border:3px solid var(--emerald-600);
+  }
+  #focusVal{ font-family:'Fraunces', serif; font-weight:650; min-width:48px; text-align:right; }
+
+  .meter-panel{ display:flex; flex-direction:column; align-items:center; gap:18px; }
+  .gauge-svg{ width:min(280px, 74vw); height:auto; }
+  #scoreLabel{ font-family:'Fraunces', serif; font-weight:650; font-size:1.5rem; text-align:center; }
+  #scoreSub{ color:var(--muted); text-align:center; font-size:0.94rem; max-width:34ch; }
+
+  /* ---------- final cta ---------- */
+  .final-cta{
+    border-top:1px solid var(--line);
+    text-align:center;
+  }
+  .final-cta h2{ font-size:clamp(1.9rem, 3.4vw, 2.7rem); max-width:16ch; margin:0 auto; }
+  .final-cta p{ color:var(--muted); margin-top:18px; max-width:48ch; margin-left:auto; margin-right:auto; }
+  .final-cta .hero-ctas{ justify-content:center; margin-top:34px; }
+
+  footer{
+    border-top:1px solid var(--line); padding:36px 0; color:var(--muted); font-size:0.86rem;
+  }
+  footer .wrap{ display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; }
+
+  /* reveal */
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 L21 6 V12 C21 17 17 20.5 12 22 C7 20.5 3 17 3 12 V6 Z" stroke="var(--amber)" stroke-width="1.6"/></svg>
+      EasyLandX
+    </div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Every market has walls.<br>Build yours before someone else does.</h1>
+      <p class="lede">EasyLandX designs landing pages the way a strategist designs a moat: a clear position that's hard to cross, easy to defend, and built around the one reason customers keep choosing you.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#builder">Build your moat score</a>
+        <a class="btn btn-ghost" href="#framework">See the framework</a>
+      </div>
+    </div>
+    <div class="shield-wrap">
+      <svg viewBox="0 0 400 420" aria-hidden="true">
+        <g class="ring" opacity="0.5">
+          <circle cx="200" cy="210" r="168" fill="none" stroke="var(--sapphire-soft)" stroke-width="1" stroke-dasharray="2 10"/>
+        </g>
+        <g class="ring r2" opacity="0.4">
+          <circle cx="200" cy="210" r="140" fill="none" stroke="var(--amber-soft)" stroke-width="1" stroke-dasharray="1 8"/>
+        </g>
+        <g class="glow">
+          <path d="M200 60 L320 100 V210 C320 290 270 340 200 370 C130 340 80 290 80 210 V100 Z"
+                fill="url(#shieldFill)" stroke="var(--amber)" stroke-width="2"/>
+        </g>
+        <path d="M200 130 L200 250 M150 190 L250 190" stroke="var(--emerald-900)" stroke-width="10" stroke-linecap="round" opacity="0.0"/>
+        <path d="M150 210 L188 246 L256 168" fill="none" stroke="var(--emerald-900)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+        <defs>
+          <linearGradient id="shieldFill" x1="80" y1="60" x2="320" y2="370" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="var(--sapphire)"/>
+            <stop offset="1" stop-color="var(--amber)"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section class="path-section" id="framework">
+  <div class="wrap">
+    <div class="kicker-block reveal">
+      <h2>Barriers to entry are the whole strategy</h2>
+      <p>A page that ranks well and loads fast is table stakes — every competitor can match it in time. What holds ground long-term is a genuine barrier: a cost edge, a habit, or a share of the market no one else has claimed. Here's the path from an open field to a defended position.</p>
+    </div>
+    <div class="path-svg-wrap reveal">
+      <svg viewBox="0 0 1180 260" preserveAspectRatio="xMidYMid meet">
+        <path d="M20 200 C 150 120, 250 260, 380 170 C 500 90, 600 220, 730 150 C 850 90, 950 210, 1080 130"
+              fill="none" stroke="url(#pathGrad)" stroke-width="4" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="pathGrad" x1="0" y1="0" x2="1180" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="var(--sapphire-soft)"/>
+            <stop offset="1" stop-color="var(--amber)"/>
+          </linearGradient>
+        </defs>
+        <!-- markers -->
+        <g>
+          <circle cx="20" cy="200" r="9" fill="var(--emerald-700)" stroke="var(--sapphire-soft)" stroke-width="3"/>
+          <text x="20" y="168" text-anchor="middle" class="path-step-num" fill="var(--sapphire-soft)">1</text>
+          <text x="20" y="230" text-anchor="middle" class="path-step-label">Map the moat</text>
+          <text x="20" y="248" text-anchor="middle" class="path-step-desc">Find where a barrier could exist</text>
+        </g>
+        <g>
+          <circle cx="380" cy="170" r="9" fill="var(--emerald-700)" stroke="var(--sapphire-soft)" stroke-width="3"/>
+          <text x="380" y="138" text-anchor="middle" class="path-step-num" fill="var(--sapphire-soft)">2</text>
+          <text x="380" y="200" text-anchor="middle" class="path-step-label">Measure local share</text>
+          <text x="380" y="218" text-anchor="middle" class="path-step-desc">Check if focus is working for you</text>
+        </g>
+        <g>
+          <circle cx="730" cy="150" r="9" fill="var(--emerald-700)" stroke="var(--amber)" stroke-width="3"/>
+          <text x="730" y="118" text-anchor="middle" class="path-step-num" fill="var(--amber)">3</text>
+          <text x="730" y="180" text-anchor="middle" class="path-step-label">Defend the core</text>
+          <text x="730" y="198" text-anchor="middle" class="path-step-desc">Strengthen home ground first</text>
+        </g>
+        <g>
+          <circle cx="1080" cy="130" r="9" fill="var(--emerald-700)" stroke="var(--amber)" stroke-width="3"/>
+          <text x="1080" y="98" text-anchor="middle" class="path-step-num" fill="var(--amber)">4</text>
+          <text x="1080" y="160" text-anchor="middle" class="path-step-label">Deepen captivity</text>
+          <text x="1080" y="178" text-anchor="middle" class="path-step-desc">Make staying easier than leaving</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="advantages">
+  <div class="wrap">
+    <div class="kicker-block reveal">
+      <h2>Three ways a landing page holds ground</h2>
+      <p>Sustainable advantage only comes from a handful of real sources. Each one has a direct landing-page equivalent.</p>
+    </div>
+    <div class="adv-grid reveal">
+      <div class="adv-card sapphire">
+        <svg class="adv-icon" viewBox="0 0 24 24" fill="none"><path d="M4 17 L10 11 L14 15 L20 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 7 H20 V13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Cost edge</h3>
+        <p>A lightweight page, built once and hosted for almost nothing, lets you compete on price without giving up margin. The efficiency lives in the build, not in cutting corners on the result.</p>
+      </div>
+      <div class="adv-card amber">
+        <svg class="adv-icon" viewBox="0 0 24 24" fill="none"><path d="M12 21 C12 21 4 15.5 4 9.5 C4 6.5 6.5 4 9.5 4 C11 4 12 5 12 5 C12 5 13 4 14.5 4 C17.5 4 20 6.5 20 9.5 C20 15.5 12 21 12 21 Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        <h3>Customer captivity</h3>
+        <p>A single clear promise and an answer to the visitor's real question lowers the effort of choosing you again. Familiarity becomes the reason they come back before they compare.</p>
+      </div>
+      <div class="adv-card mixed">
+        <svg class="adv-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8" stroke-dasharray="2 4"/></svg>
+        <h3>Local density</h3>
+        <p>One page, sharpened for one audience, earns a reputation faster than the same message spread thin across everyone. Depth in a defined market compounds; breadth resets to zero each time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="strategy-section">
+  <div class="wrap">
+    <div class="kicker-block reveal">
+      <h2>Running faster vs. building walls</h2>
+      <p>These are two different jobs, and a landing page has to do both — but only one of them is the actual strategy.</p>
+    </div>
+    <div class="strategy-grid reveal">
+      <div class="strategy-col left">
+        <span class="tag">Operational effectiveness</span>
+        <h3>Running faster</h3>
+        <p>Fast load times, clean design, working forms, mobile-friendly layouts. Necessary, expected, and — eventually — something every competitor can match.</p>
+      </div>
+      <div class="strategy-col right">
+        <span class="tag">Strategy</span>
+        <h3>Building walls</h3>
+        <p>A position no one else occupies: a specific promise, a proof point, a niche you know better than anyone. This is the part that keeps you out of price wars.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="builder-section" id="builder">
+  <div class="wrap">
+    <div class="kicker-block reveal">
+      <h2>Try the moat strength builder</h2>
+      <p>A wider net usually means a thinner moat. Adjust the levers below the way you'd adjust them on a real page, and watch how a focused position changes your strength score.</p>
+    </div>
+    <div class="builder-shell reveal">
+      <div class="controls">
+        <div class="control">
+          <div class="control-top">
+            <strong>Cost edge</strong>
+            <label class="switch">
+              <input type="checkbox" id="toggleCost" checked>
+              <span class="track"></span>
+              <span class="knob"></span>
+            </label>
+          </div>
+          <p class="hint">The page is light, fast, and cheap to keep running.</p>
+        </div>
+        <div class="control">
+          <div class="control-top">
+            <strong>Customer captivity</strong>
+            <label class="switch">
+              <input type="checkbox" id="toggleCaptivity" checked>
+              <span class="track"></span>
+              <span class="knob"></span>
+            </label>
+          </div>
+          <p class="hint">One clear promise, answered before visitors have to ask.</p>
+        </div>
+        <div class="control">
+          <div class="control-top">
+            <strong>Local focus</strong>
+            <span id="focusVal">60%</span>
+          </div>
+          <div class="range-row">
+            <input type="range" id="focusRange" min="0" max="100" value="60">
+          </div>
+          <p class="hint">How tightly the page speaks to one audience instead of everyone.</p>
+        </div>
+      </div>
+      <div class="meter-panel">
+        <svg class="gauge-svg" viewBox="0 0 240 240" aria-hidden="true">
+          <circle cx="120" cy="120" r="98" fill="none" stroke="rgba(242,250,245,0.14)" stroke-width="14"/>
+          <circle id="gaugeArc" cx="120" cy="120" r="98" fill="none" stroke="url(#gaugeGrad)"
+                  stroke-width="14" stroke-linecap="round" transform="rotate(-90 120 120)"
+                  stroke-dasharray="615.75" stroke-dashoffset="400"/>
+          <defs>
+            <linearGradient id="gaugeGrad" x1="0" y1="0" x2="240" y2="240" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="var(--sapphire)"/>
+              <stop offset="1" stop-color="var(--amber)"/>
+            </linearGradient>
+          </defs>
+          <text id="gaugeNum" x="120" y="130" text-anchor="middle" font-family="Fraunces, serif" font-weight="650" font-size="46" fill="var(--ivory)">72</text>
+        </svg>
+        <div id="scoreLabel">Defensible</div>
+        <div id="scoreSub">Two real barriers and a focused audience — this position holds against most challengers.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>EasyLandX builds the page. You hold the ground.</h2>
+    <p>Every landing page we design starts with the same question: what makes this one hard to copy? Bring that answer, and we'll build the moat around it.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+      <a class="btn btn-ghost" href="#builder">Rebuild my score</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>EasyLandX — landing pages built to hold ground.</span>
+    <span>easylandx.github.io</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // scroll reveal
+  var els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.18});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // audio blip
+  var audioCtx = null;
+  function blip(freq){
+    try{
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      var t = audioCtx.currentTime;
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, t);
+      gain.gain.setValueAtTime(0.0001, t);
+      gain.gain.exponentialRampToValueAtTime(0.05, t + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
+      osc.connect(gain).connect(audioCtx.destination);
+      osc.start(t);
+      osc.stop(t + 0.24);
+    }catch(e){ /* audio unavailable, ignore */ }
+  }
+
+  var toggleCost = document.getElementById('toggleCost');
+  var toggleCaptivity = document.getElementById('toggleCaptivity');
+  var focusRange = document.getElementById('focusRange');
+  var focusVal = document.getElementById('focusVal');
+  var gaugeArc = document.getElementById('gaugeArc');
+  var gaugeNum = document.getElementById('gaugeNum');
+  var scoreLabel = document.getElementById('scoreLabel');
+  var scoreSub = document.getElementById('scoreSub');
+  var CIRC = 615.75;
+
+  function bandFor(score){
+    if(score <= 25) return {label:'Undefended', sub:'Open field: anyone offering something similar can take this visitor. Turn on a lever to see the difference.'};
+    if(score <= 50) return {label:'Contested', sub:'A start, but still an even fight. One more real barrier changes the odds.'};
+    if(score <= 78) return {label:'Defensible', sub:'Two real barriers and a focused audience — this position holds against most challengers.'};
+    return {label:'Dominant moat', sub:'Cost edge, captivity, and a tightly focused market — this is the position competitors avoid.'};
+  }
+
+  function update(playSound){
+    var score = 20;
+    if(toggleCost.checked) score += 20;
+    if(toggleCaptivity.checked) score += 20;
+    var focus = parseInt(focusRange.value, 10);
+    score += Math.round(focus * 0.40);
+    score = Math.min(100, score);
+
+    focusVal.textContent = focus + '%';
+    gaugeNum.textContent = score;
+    var offset = CIRC - (CIRC * score / 100);
+    gaugeArc.setAttribute('stroke-dashoffset', offset);
+
+    var band = bandFor(score);
+    scoreLabel.textContent = band.label;
+    scoreSub.textContent = band.sub;
+
+    if(playSound){ blip(320 + score * 3); }
+  }
+
+  toggleCost.addEventListener('change', function(){ update(true); });
+  toggleCaptivity.addEventListener('change', function(){ update(true); });
+  focusRange.addEventListener('input', function(){ update(false); });
+  focusRange.addEventListener('change', function(){ update(true); });
+
+  update(false);
+})();
+</script>
+
+</body>
+</html>
