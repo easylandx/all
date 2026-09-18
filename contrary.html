@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX × The Art of Contrary Thinking</title>
+<style>
+  :root{
+    --lime:#ccff00;
+    --lime-deep:#9ee600;
+    --purple:#9b30ff;
+    --purple-glow:#c774ff;
+    --orange:#ff7a1a;
+    --orange-glow:#ffb347;
+    --ink:#101507;
+    --paper:#0f1400;
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{
+    margin:0;
+    padding:0;
+    font-family:'Segoe UI', Arial, sans-serif;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(155,48,255,0.35), transparent 40%),
+      radial-gradient(circle at 85% 20%, rgba(255,122,26,0.30), transparent 45%),
+      linear-gradient(160deg, var(--lime) 0%, var(--lime-deep) 55%, #7fce00 100%);
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  a{ text-decoration:none; }
+
+  /* ---------- NAV ---------- */
+  nav.topnav{
+    background:var(--lime);
+    padding-top:22px;
+    padding-bottom:22px;
+  }
+  .topnav .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .brand{
+    font-weight:900;
+    font-size:1.3rem;
+    color:var(--ink);
+    letter-spacing:0.5px;
+  }
+  .brand span{ color:var(--purple); }
+  .cta-nav{
+    background:var(--orange);
+    color:#fff;
+    font-weight:800;
+    padding:10px 20px;
+    border-radius:999px;
+    box-shadow:0 0 0 3px var(--ink), 0 6px 18px rgba(255,122,26,0.55);
+    transition:transform .2s ease;
+  }
+  .cta-nav:hover{ transform:translateY(-2px) scale(1.03); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(circle at 15% 15%, rgba(155,48,255,0.28), transparent 38%),
+      radial-gradient(circle at 88% 25%, rgba(255,122,26,0.24), transparent 42%),
+      var(--lime);
+    padding-top:60px;
+    padding-bottom:70px;
+    text-align:center;
+    position:relative;
+  }
+  .kicker{
+    display:inline-block;
+    background:var(--purple);
+    color:#fff;
+    font-weight:800;
+    font-size:0.78rem;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    padding:7px 16px;
+    border-radius:999px;
+    margin-bottom:22px;
+    box-shadow:0 0 22px rgba(155,48,255,0.65);
+  }
+  h1{
+    font-size:clamp(2.1rem, 5vw, 3.4rem);
+    line-height:1.12;
+    margin:0 0 20px;
+    font-weight:900;
+  }
+  h1 .accent{
+    color:var(--orange);
+    text-shadow:0 0 18px rgba(255,122,26,0.5);
+  }
+  h1 .accent2{
+    color:var(--purple);
+    text-shadow:0 0 18px rgba(155,48,255,0.5);
+  }
+  .sub{
+    max-width:660px;
+    margin:0 auto 34px;
+    font-size:1.12rem;
+    line-height:1.6;
+    color:#1c2408;
+    font-weight:500;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .btn-primary, .btn-ghost{
+    display:inline-block;
+    font-weight:800;
+    padding:15px 30px;
+    border-radius:999px;
+    font-size:1.02rem;
+  }
+  .btn-primary{
+    background:var(--orange);
+    color:#fff;
+    box-shadow:0 0 0 3px var(--ink), 0 10px 26px rgba(255,122,26,0.55);
+    transition:transform .2s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-3px); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+    border:3px solid var(--purple);
+  }
+
+  /* ---------- SECTION SHELLS ---------- */
+  section{
+    padding-top:56px;
+    padding-bottom:56px;
+  }
+  .panel{
+    background:var(--paper);
+    color:#f4ffd6;
+    border-radius:28px;
+    padding:48px 8px;
+  }
+  .panel h2, .light h2{
+    text-align:center;
+    font-size:clamp(1.6rem, 4vw, 2.3rem);
+    font-weight:900;
+    margin:0 0 12px;
+  }
+  .panel .lead, .light .lead{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 42px;
+    font-size:1.02rem;
+    line-height:1.6;
+    opacity:0.9;
+  }
+  .panel .lead{ color:#d8f79c; }
+
+  /* ---------- CONSENSUS VS CONTRARY GRID ---------- */
+  .cv-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+  @media (max-width:720px){ .cv-grid{ grid-template-columns:1fr; } }
+
+  .cv-card{
+    background:rgba(255,255,255,0.04);
+    border:2px solid rgba(255,255,255,0.08);
+    border-radius:20px;
+    padding:26px;
+  }
+  .cv-card.consensus{ border-color:rgba(199,116,255,0.5); }
+  .cv-card.contrary{ border-color:rgba(255,179,71,0.6); }
+  .cv-tag{
+    font-size:0.72rem;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    font-weight:800;
+    padding:5px 12px;
+    border-radius:999px;
+    display:inline-block;
+    margin-bottom:14px;
+  }
+  .cv-card.consensus .cv-tag{ background:var(--purple); color:#fff; }
+  .cv-card.contrary .cv-tag{ background:var(--orange); color:#fff; }
+  .cv-card p{ line-height:1.55; margin:0; font-size:0.98rem; }
+  .cv-row{
+    display:flex;
+    align-items:center;
+    gap:22px;
+    margin-bottom:26px;
+  }
+  @media (max-width:720px){ .cv-row{ flex-direction:column; } }
+  .cv-row:last-child{ margin-bottom:0; }
+  .cv-arrow{
+    font-size:1.6rem;
+    color:var(--lime);
+    flex:0 0 auto;
+  }
+  @media (max-width:720px){ .cv-arrow{ transform:rotate(90deg); } }
+
+  /* ---------- FRAMEWORK STEPPER (interactive) ---------- */
+  .light{ }
+  .stepper{
+    display:flex;
+    gap:14px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-bottom:34px;
+  }
+  .step-btn{
+    background:#fff;
+    border:3px solid var(--ink);
+    border-radius:16px;
+    padding:14px 18px;
+    font-weight:800;
+    font-size:0.9rem;
+    cursor:pointer;
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    transition:all .2s ease;
+    box-shadow:0 6px 0 var(--ink);
+  }
+  .step-btn .num{
+    background:var(--ink);
+    color:var(--lime);
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.85rem;
+  }
+  .step-btn.active{
+    background:var(--purple);
+    color:#fff;
+    box-shadow:0 6px 0 #5c1899;
+  }
+  .step-btn.active .num{ background:#fff; color:var(--purple); }
+  .step-btn:hover{ transform:translateY(-2px); }
+
+  .step-panel{
+    background:#fff;
+    border-radius:24px;
+    padding:36px 34px;
+    max-width:760px;
+    margin:0 auto;
+    border:3px solid var(--ink);
+    box-shadow:0 10px 0 var(--ink);
+    min-height:150px;
+  }
+  .step-panel h3{
+    margin:0 0 12px;
+    font-size:1.3rem;
+    color:var(--orange);
+  }
+  .step-panel p{
+    line-height:1.65;
+    margin:0;
+    font-size:1.02rem;
+    color:#1c2408;
+  }
+
+  /* ---------- OPPOSITE ASSUMPTION GENERATOR ---------- */
+  .generator{
+    background:linear-gradient(135deg, rgba(155,48,255,0.12), rgba(255,122,26,0.12));
+    border-radius:28px;
+    padding:46px 30px;
+    text-align:center;
+    border:2px dashed var(--purple);
+  }
+  .generator h2{
+    font-size:clamp(1.5rem, 4vw, 2.1rem);
+    font-weight:900;
+    margin:0 0 10px;
+  }
+  .generator p.lead2{
+    max-width:600px;
+    margin:0 auto 30px;
+    line-height:1.6;
+    color:#1c2408;
+    font-weight:500;
+  }
+  #beliefBox{
+    background:#fff;
+    border:3px solid var(--purple);
+    border-radius:20px;
+    padding:26px;
+    max-width:640px;
+    margin:0 auto 22px;
+    font-weight:700;
+    font-size:1.08rem;
+    min-height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 8px 0 var(--purple);
+  }
+  #resultBox{
+    background:var(--ink);
+    color:var(--lime);
+    border-radius:20px;
+    padding:26px;
+    max-width:640px;
+    margin:0 auto 30px;
+    font-weight:600;
+    font-size:1.02rem;
+    line-height:1.55;
+    min-height:70px;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 0 26px rgba(200,255,46,0.35);
+  }
+  #resultBox.show{ display:flex; }
+  .gen-btn{
+    background:var(--orange);
+    color:#fff;
+    font-weight:800;
+    padding:16px 34px;
+    border-radius:999px;
+    border:none;
+    font-size:1.05rem;
+    cursor:pointer;
+    box-shadow:0 0 0 3px var(--ink), 0 10px 26px rgba(255,122,26,0.5);
+    transition:transform .15s ease;
+  }
+  .gen-btn:active{ transform:scale(0.97); }
+  .counter{
+    margin-top:16px;
+    font-size:0.85rem;
+    font-weight:700;
+    color:var(--purple);
+  }
+
+  /* ---------- SENTIMENT METER ---------- */
+  .meter-wrap{
+    max-width:640px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .meter-track{
+    position:relative;
+    height:26px;
+    border-radius:999px;
+    background:linear-gradient(90deg, var(--orange) 0%, var(--lime) 50%, var(--purple) 100%);
+    border:3px solid var(--ink);
+    margin:22px 0 14px;
+  }
+  .meter-marker{
+    position:absolute;
+    top:-14px;
+    width:4px;
+    height:52px;
+    background:var(--ink);
+    left:50%;
+    border-radius:4px;
+    transition:left .4s ease;
+  }
+  .meter-labels{
+    display:flex;
+    justify-content:space-between;
+    font-size:0.78rem;
+    font-weight:800;
+    color:#1c2408;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+  input[type="range"]{
+    width:100%;
+    margin-top:8px;
+    accent-color:var(--purple);
+  }
+  #meterMsg{
+    margin-top:18px;
+    background:#fff;
+    border:3px solid var(--ink);
+    border-radius:16px;
+    padding:16px 20px;
+    font-weight:700;
+    font-size:0.98rem;
+    box-shadow:0 6px 0 var(--ink);
+  }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    text-align:center;
+    padding-top:70px;
+    padding-bottom:90px;
+  }
+  .final-cta h2{
+    font-size:clamp(1.8rem, 5vw, 2.7rem);
+    font-weight:900;
+    margin:0 0 18px;
+  }
+  .final-cta p{
+    max-width:560px;
+    margin:0 auto 32px;
+    line-height:1.6;
+    font-size:1.05rem;
+    color:#1c2408;
+  }
+  .big-btn{
+    display:inline-block;
+    background:var(--purple);
+    color:#fff;
+    font-weight:900;
+    font-size:1.15rem;
+    padding:20px 44px;
+    border-radius:999px;
+    box-shadow:0 0 0 4px var(--ink), 0 14px 30px rgba(155,48,255,0.55);
+    transition:transform .2s ease;
+  }
+  .big-btn:hover{ transform:translateY(-4px) scale(1.02); }
+
+  footer{
+    text-align:center;
+    padding:26px 0 40px;
+    font-size:0.85rem;
+    color:#1c2408;
+    opacity:0.75;
+  }
+  footer a{ color:var(--purple); font-weight:700; }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <div class="brand">Easy<span>Land</span>X</div>
+    <a class="cta-nav" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Inspired by The Art of Contrary Thinking · Humphrey B. Neill</span>
+    <h1>While everyone builds the <span class="accent2">same</span> website,<br> smart businesses go <span class="accent">contrary</span>.</h1>
+    <p class="sub">Humphrey B. Neill spent a career proving that when everyone agrees, the crowd is usually about to be surprised. EasyLandX applies that exact discipline to your online presence: skip the expensive, bloated, everyone-does-it-this-way website, and launch a fast, affordable, conversion-focused page that stands apart while the crowd keeps waiting.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your EasyLandX Page →</a>
+      <a class="btn-ghost" href="#framework">Explore the Framework</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap panel">
+    <h2>What The Crowd Believes vs. What EasyLandX Knows</h2>
+    <p class="lead">Neill's core insight: unanimous agreement is a signal, not a strategy. Here's how that plays out in small-business websites.</p>
+    <div class="cv-grid" style="max-width:820px;margin:0 auto;">
+      <div class="cv-card consensus">
+        <span class="cv-tag">Popular Consensus</span>
+        <p>"A great website has to be big, complex, and expensive — the more pages and features, the more professional it looks."</p>
+      </div>
+      <div class="cv-card contrary">
+        <span class="cv-tag">EasyLandX Contrary View</span>
+        <p>One sharp, focused, single page converts faster than a bloated ten-tab site — because visitors act on clarity, not complexity.</p>
+      </div>
+      <div class="cv-card consensus">
+        <span class="cv-tag">Popular Consensus</span>
+        <p>"You need a big agency retainer and months of development before you can launch anything at all."</p>
+      </div>
+      <div class="cv-card contrary">
+        <span class="cv-tag">EasyLandX Contrary View</span>
+        <p>Speed wins the moment. EasyLandX ships an affordable, ready-to-convert page while the crowd is still in a discovery call.</p>
+      </div>
+      <div class="cv-card consensus">
+        <span class="cv-tag">Popular Consensus</span>
+        <p>"Trendy design templates that everyone else is using are the safe choice."</p>
+      </div>
+      <div class="cv-card contrary">
+        <span class="cv-tag">EasyLandX Contrary View</span>
+        <p>Standing apart from the template crowd is exactly what makes a small business memorable and trustworthy to new visitors.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="wrap light">
+    <h2>Neill's Contrary Thinking Framework, Applied to Your Page</h2>
+    <p class="lead">Click through the five steps to see how EasyLandX turns each one into a concrete advantage for your business.</p>
+    <div class="stepper" id="stepper"></div>
+    <div class="step-panel" id="stepPanel"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="generator">
+      <h2>The Opposite Assumption Generator</h2>
+      <p class="lead2">Neill recommended a daily exercise: take a widely accepted belief and write down its opposite. Try it below with common website beliefs — then see the EasyLandX-powered counter-view.</p>
+      <div id="beliefBox">Press the button to reveal a popular web-design belief.</div>
+      <div id="resultBox"></div>
+      <button class="gen-btn" onclick="generateOpposite()">Reveal the Contrary View →</button>
+      <div class="counter" id="counterLabel">Beliefs flipped so far: 0</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap panel">
+    <h2>Your Personal Sentiment Meter</h2>
+    <p class="lead">Neill tracked crowd optimism to time smart decisions. Slide to where your business currently sits, and get a contrarian-inspired next move.</p>
+    <div class="meter-wrap" style="color:#f4ffd6;">
+      <div class="meter-track">
+        <div class="meter-marker" id="marker"></div>
+      </div>
+      <div class="meter-labels">
+        <span>Still Waiting</span>
+        <span>Considering</span>
+        <span>Ready to Launch</span>
+      </div>
+      <input type="range" min="0" max="100" value="50" id="sentimentSlider" oninput="updateMeter(this.value)">
+      <div id="meterMsg">Slide to see your move.</div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Be the Page Everyone Notices — <span style="color:var(--orange);">Before</span> the Crowd Catches Up</h2>
+    <p>Neill's readers learned to act while others hesitated. Your business can do the same: launch an affordable, sharp, single-page site with EasyLandX and be visible while competitors are still debating their homepage copy.</p>
+    <a class="big-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch on EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  Built with the contrary-thinking spirit of Humphrey B. Neill · <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+</footer>
+
+<script>
+  const steps = [
+    {
+      title: "1 · Identify the Popular Consensus",
+      body: "Every industry has a default: the website everyone assumes they need. EasyLandX starts by naming that default out loud — the big multi-page site, the long build timeline, the generic template — so you can see exactly what the crowd is doing before choosing your own path."
+    },
+    {
+      title: "2 · Formulate the Opposite Hypothesis",
+      body: "What if the opposite were true? What if one clear page converts better than ten cluttered ones? EasyLandX is built around this exact hypothesis, and it's the one small businesses are proving right every day."
+    },
+    {
+      title: "3 · Analyze the Psychology Behind the Trend",
+      body: "Most businesses copy competitors out of comfort, not evidence. EasyLandX separates that comfort-driven momentum from what visitors actually respond to: clarity, speed, and a page that gets straight to the point."
+    },
+    {
+      title: "4 · Look Past the Headlines",
+      body: "Flashy agency portfolios and trendy design blogs set expectations that don't always convert. EasyLandX looks past the surface-level narrative and focuses on what turns a visitor into a customer."
+    },
+    {
+      title: "5 · Time Your Move",
+      body: "Contrary thinking isn't about rushing — it's about acting with confidence once you see the opportunity clearly. With EasyLandX, that opportunity is one message away: a page live in days, ready while others are still planning."
+    }
+  ];
+
+  const stepper = document.getElementById('stepper');
+  const stepPanel = document.getElementById('stepPanel');
+
+  function renderStep(i){
+    document.querySelectorAll('.step-btn').forEach((b,idx)=>{
+      b.classList.toggle('active', idx===i);
+    });
+    stepPanel.innerHTML = `<h3>${steps[i].title}</h3><p>${steps[i].body}</p>`;
+  }
+
+  steps.forEach((s,i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'step-btn' + (i===0 ? ' active' : '');
+    btn.innerHTML = `<span class="num">${i+1}</span> ${s.title.split('·')[1].trim()}`;
+    btn.onclick = () => renderStep(i);
+    stepper.appendChild(btn);
+  });
+  renderStep(0);
+
+  const beliefs = [
+    {
+      belief: "\"A website needs at least 10 pages to look credible.\"",
+      counter: "Contrary view: a single, well-crafted page focused on one clear action converts better than a maze of tabs. EasyLandX proves less can absolutely be more."
+    },
+    {
+      belief: "\"You should wait until the business is fully ready before launching a site.\"",
+      counter: "Contrary view: launching an affordable page early lets you gather real interest now, while competitors are still 'getting ready.' EasyLandX gets you visible today."
+    },
+    {
+      belief: "\"Design trends everyone else is following are the safest bet.\"",
+      counter: "Contrary view: standing apart from the crowd is what makes visitors remember you. EasyLandX builds pages that reflect your business, not the trend of the month."
+    },
+    {
+      belief: "\"More features and animations always make a site more impressive.\"",
+      counter: "Contrary view: every extra distraction pulls attention away from the one action that matters. EasyLandX keeps the focus exactly where conversions happen."
+    },
+    {
+      belief: "\"Only large budgets can produce a professional-looking page.\"",
+      counter: "Contrary view: sharp, focused design costs far less than the crowd assumes. EasyLandX delivers a polished, conversion-ready page at a price built for small businesses."
+    },
+    {
+      belief: "\"A site should be perfected fully before it ever goes live.\"",
+      counter: "Contrary view: momentum favors the business that launches, learns, and improves in motion. EasyLandX gets a strong page live fast, then refines it with you."
+    }
+  ];
+
+  let flipCount = 0;
+  let lastIndex = -1;
+
+  function generateOpposite(){
+    let idx;
+    do { idx = Math.floor(Math.random()*beliefs.length); } while(idx===lastIndex && beliefs.length>1);
+    lastIndex = idx;
+
+    document.getElementById('beliefBox').textContent = beliefs[idx].belief;
+    const resultBox = document.getElementById('resultBox');
+    resultBox.textContent = beliefs[idx].counter;
+    resultBox.classList.remove('show');
+    void resultBox.offsetWidth;
+    resultBox.classList.add('show');
+
+    flipCount++;
+    document.getElementById('counterLabel').textContent = `Beliefs flipped so far: ${flipCount}`;
+  }
+
+  function updateMeter(val){
+    document.getElementById('marker').style.left = val + '%';
+    const msgBox = document.getElementById('meterMsg');
+    let msg;
+    if (val < 33){
+      msg = "You're in 'still waiting' territory — Neill would call this the calm before a great opportunity. This is exactly when moving first pays off. EasyLandX can get your page live before the crowd even starts.";
+    } else if (val < 66){
+      msg = "You're weighing your options — a strong, contrarian position. Turn that consideration into momentum with a fast, affordable EasyLandX page.";
+    } else {
+      msg = "You're ready to launch — perfect timing to act with confidence. EasyLandX turns that readiness into a live, converting page right away.";
+    }
+    msgBox.textContent = msg;
+  }
+  updateMeter(50);
+</script>
+
+</body>
+</html>
