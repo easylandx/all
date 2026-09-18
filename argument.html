@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Every Page Is an Argument for Yes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#1E3AE0;
+    --blue-deep:#122A9E;
+    --amber:#FFB020;
+    --amber-deep:#E89400;
+    --rose:#FF2D78;
+    --rose-deep:#D8195E;
+    --ink:#181240;
+    --cream:#FFF6E8;
+    --white:#FFFFFF;
+    --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#181240;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#181240;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    background:var(--blue);
+    color:var(--cream);
+    overflow-x:hidden;
+    line-height:1.5;
+  }
+  img,svg{ max-width:100%; }
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+  section{ padding:96px 0; overflow-x:hidden; }
+  h1,h2,h3{
+    font-family:var(--font-display);
+    margin:0 0 0.4em 0;
+    line-height:1.08;
+    font-weight:700;
+  }
+  p{ margin:0 0 1em 0; max-width:62ch; }
+  .lede{ font-size:1.2rem; max-width:52ch; }
+  a{ color:inherit; }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:var(--font-body);
+    font-weight:700;
+    font-size:1.02rem;
+    padding:16px 30px;
+    border-radius:999px;
+    text-decoration:none;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn:focus-visible{ outline:3px solid var(--white); outline-offset:3px; }
+  .btn-amber{ background:var(--amber); color:var(--ink); box-shadow:0 10px 24px rgba(255,176,32,.35); }
+  .btn-amber:hover{ box-shadow:0 14px 30px rgba(255,176,32,.45); }
+  .btn-rose{ background:var(--rose); color:var(--white); box-shadow:0 10px 24px rgba(255,45,120,.4); }
+  .btn-rose:hover{ box-shadow:0 14px 30px rgba(255,45,120,.5); }
+  .btn-outline{ background:transparent; border-color:currentColor; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:
+      radial-gradient(1100px 600px at 85% -10%, rgba(255,176,32,.35), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(255,45,120,.30), transparent 60%),
+      var(--blue);
+    padding-top:110px;
+    padding-bottom:120px;
+    position:relative;
+  }
+  .hero .kicker{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--amber);
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5.4vw, 4.4rem);
+    color:var(--white);
+    max-width:14ch;
+  }
+  .hero .lede{ color:var(--cream); margin-top:18px; }
+  .hero .cta-row{ margin-top:34px; display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+  .hero .note{ margin-top:18px; font-size:.92rem; opacity:.8; max-width:40ch; }
+
+  /* ---------- rose section ---------- */
+  .section-rose{ background:var(--rose); color:var(--white); }
+  .section-rose h2{ color:var(--white); font-size:clamp(1.9rem,3.6vw,2.7rem); max-width:16ch; }
+  .section-rose .lede{ color:rgba(255,255,255,.92); }
+
+  /* ---------- amber section ---------- */
+  .section-amber{ background:var(--amber); color:var(--ink); }
+  .section-amber h2{ color:var(--ink); font-size:clamp(1.9rem,3.6vw,2.7rem); }
+  .section-amber .lede{ color:rgba(24,18,64,.82); }
+
+  /* ---------- blue section variant ---------- */
+  .section-blue{ background:var(--blue-deep); color:var(--cream); }
+  .section-blue h2{ color:var(--white); font-size:clamp(1.9rem,3.6vw,2.7rem); }
+
+  /* ---------- timeline (three tenses) ---------- */
+  .timeline{ margin-top:56px; display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+  .timeline .stage{
+    background:rgba(24,18,64,.08);
+    border-radius:18px;
+    padding:26px 22px;
+    border:1px solid rgba(24,18,64,.14);
+  }
+  .timeline .stage .tag{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:.95rem;
+    color:var(--rose-deep);
+    margin-bottom:10px;
+    display:block;
+  }
+  .timeline .stage h3{ font-size:1.3rem; margin-bottom:8px; }
+  .timeline .stage p{ font-size:.98rem; margin:0; }
+  @media (max-width:760px){ .timeline{ grid-template-columns:1fr; } }
+
+  /* ---------- triad grid ---------- */
+  .triad{ margin-top:56px; display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .triad .panel{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:18px;
+    padding:28px 24px;
+  }
+  .triad .panel h3{ color:var(--amber); font-size:1.35rem; margin-bottom:10px; }
+  .triad .panel p{ color:rgba(255,246,232,.88); margin:0; font-size:.98rem; }
+  @media (max-width:760px){ .triad{ grid-template-columns:1fr; } }
+
+  /* ---------- persuasion lab ---------- */
+  .lab{
+    margin-top:50px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:22px;
+    padding:36px;
+  }
+  .toggle-list{ display:flex; flex-direction:column; gap:14px; margin:26px 0 30px; }
+  .toggle-row{
+    display:flex; align-items:center; justify-content:space-between; gap:18px;
+    background:rgba(255,255,255,.06);
+    border-radius:14px;
+    padding:16px 18px;
+  }
+  .toggle-row .label{ font-weight:600; font-size:1rem; }
+  .toggle-row .desc{ font-size:.86rem; opacity:.82; margin-top:3px; font-weight:400; }
+  .switch{
+    position:relative; width:54px; height:30px; flex:0 0 auto;
+    background:rgba(255,255,255,.25);
+    border-radius:999px;
+    border:none;
+    cursor:pointer;
+    transition:background .2s ease;
+  }
+  .switch::after{
+    content:''; position:absolute; top:3px; left:3px; width:24px; height:24px;
+    background:var(--white); border-radius:50%;
+    transition:transform .2s ease;
+  }
+  .switch.on{ background:var(--amber); }
+  .switch.on::after{ transform:translateX(24px); }
+  .switch:focus-visible{ outline:3px solid var(--white); outline-offset:3px; }
+
+  .meter-wrap{ margin-top:8px; }
+  .meter-label{ display:flex; justify-content:space-between; font-weight:600; margin-bottom:8px; }
+  .meter-track{ background:rgba(255,255,255,.18); border-radius:999px; height:18px; overflow:hidden; }
+  .meter-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg, var(--amber), var(--rose));
+    border-radius:999px;
+    transition:width .5s ease;
+  }
+  .meter-status{ margin-top:12px; font-family:var(--font-display); font-style:italic; font-size:1.15rem; color:var(--amber); }
+
+  /* ---------- concession pivot ---------- */
+  .chips{ display:flex; flex-wrap:wrap; gap:12px; margin:26px 0; }
+  .chip{
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:.96rem;
+    padding:12px 20px;
+    border-radius:999px;
+    border:2px solid var(--ink);
+    background:transparent;
+    color:var(--ink);
+    cursor:pointer;
+    transition:background .2s ease, color .2s ease, transform .15s ease;
+  }
+  .chip:hover{ transform:translateY(-2px); }
+  .chip.active{ background:var(--ink); color:var(--amber); }
+  .chip:focus-visible{ outline:3px solid var(--rose); outline-offset:3px; }
+  .pivot-box{
+    margin-top:8px;
+    background:rgba(24,18,64,.08);
+    border-left:5px solid var(--rose);
+    border-radius:0 14px 14px 0;
+    padding:22px 24px;
+    min-height:70px;
+    font-size:1.02rem;
+  }
+  .pivot-box .who{ font-weight:700; display:block; margin-bottom:6px; font-size:.9rem; text-transform:none; color:var(--rose-deep); }
+
+  /* ---------- commonplace ---------- */
+  .quote-band{
+    margin-top:44px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .quote-band .card{
+    background:rgba(255,255,255,.06);
+    border-radius:16px;
+    padding:22px;
+    border:1px solid rgba(255,255,255,.14);
+    font-size:.98rem;
+  }
+  @media (max-width:760px){ .quote-band{ grid-template-columns:1fr; } }
+
+  /* ---------- closing ---------- */
+  .closing{ text-align:center; }
+  .closing h2{ max-width:none; margin:0 auto .3em; }
+  .closing .lede{ margin:0 auto 34px; }
+
+  footer{
+    background:var(--blue-deep);
+    color:rgba(255,246,232,.75);
+    text-align:center;
+    padding:38px 20px;
+    font-size:.9rem;
+  }
+  footer strong{ color:var(--cream); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ scroll-behavior:auto !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Thank You for Arguing, applied to landing pages</span>
+    <h1>Every Page Is an Argument for Yes</h1>
+    <p class="lede">EasyLandX builds landing pages the way a great rhetorician builds a case — with credibility, feeling, logic, and timing working together toward one clear, welcome outcome: the click that says yes.</p>
+    <div class="cta-row">
+      <a class="btn btn-amber" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+      <a class="btn btn-outline" style="color:var(--white)" href="#lab">Try the Persuasion Lab</a>
+    </div>
+    <p class="note">Custom, conversion-focused pages for small businesses across Spain and Latin America.</p>
+  </div>
+</header>
+
+<section class="section-rose">
+  <div class="wrap">
+    <h2>A Landing Page Is Not a Brochure — It's an Argument</h2>
+    <p class="lede">A brochure lists features and waits politely. An argument invites someone toward a decision, warmly and clearly, with a specific action in mind. Every EasyLandX page is built as a strategic conversation with one visitor at a time, aimed at a single graceful outcome: a confident yes.</p>
+  </div>
+</section>
+
+<section class="section-amber">
+  <div class="wrap">
+    <h2>The Three Timeframes of a Great Page</h2>
+    <p class="lede">Classical rhetoric moves through past, present, and future. A landing page can follow the same rhythm — and the future is where the real persuasion lives.</p>
+    <div class="timeline">
+      <div class="stage">
+        <span class="tag">Past · Proof</span>
+        <h3>Where results speak</h3>
+        <p>Testimonials and transformations, shown with confidence and kept brief — enough to build credibility, never enough to slow the visitor down.</p>
+      </div>
+      <div class="stage">
+        <span class="tag">Present · Identity</span>
+        <h3>Where trust takes shape</h3>
+        <p>The about section, the voice, the photos — the moment a visitor recognizes a business that shares their own values.</p>
+      </div>
+      <div class="stage">
+        <span class="tag">Future · Action</span>
+        <h3>Where the page does its work</h3>
+        <p>The offer and the call to action, framed around what happens next — this is the timeframe that turns attention into momentum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-blue">
+  <div class="wrap">
+    <h2>Aristotle's Triad, Built Into Every Page</h2>
+    <p class="lede">Persuasion balances three appeals, plus one sense of timing that ties them together.</p>
+    <div class="triad">
+      <div class="panel">
+        <h3>Ethos — Character</h3>
+        <p>Credentials, real testimonials, and a design that looks cared for — the visual signals that say "this business can be trusted."</p>
+      </div>
+      <div class="panel">
+        <h3>Pathos — Feeling</h3>
+        <p>A hero moment, an image, or a line of copy that meets the visitor exactly where their motivation already lives.</p>
+      </div>
+      <div class="panel">
+        <h3>Logos — Logic</h3>
+        <p>Clear pricing, guarantees, and simple cause-and-effect copy that makes the next step feel like the obvious one.</p>
+      </div>
+      <div class="panel">
+        <h3>Kairos — Timing</h3>
+        <p>Placing the call to action at exactly the moment a visitor is ready — not before interest builds, not after it fades.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-rose" id="lab">
+  <div class="wrap">
+    <h2>Build Your Persuasion Score</h2>
+    <p class="lede">Turn each rhetorical element on and watch a page's persuasive strength grow, live.</p>
+    <div class="lab">
+      <div class="toggle-list">
+        <div class="toggle-row">
+          <div>
+            <div class="label">Ethos</div>
+            <div class="desc">Add trust signals and real credentials</div>
+          </div>
+          <button class="switch" data-weight="25" aria-label="Toggle Ethos" aria-pressed="false"></button>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="label">Pathos</div>
+            <div class="desc">Add an emotional hero moment</div>
+          </div>
+          <button class="switch" data-weight="25" aria-label="Toggle Pathos" aria-pressed="false"></button>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="label">Logos</div>
+            <div class="desc">Add clear proof and a guarantee</div>
+          </div>
+          <button class="switch" data-weight="25" aria-label="Toggle Logos" aria-pressed="false"></button>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="label">Kairos</div>
+            <div class="desc">Place the call to action at the peak moment</div>
+          </div>
+          <button class="switch" data-weight="25" aria-label="Toggle Kairos" aria-pressed="false"></button>
+        </div>
+      </div>
+      <div class="meter-wrap">
+        <div class="meter-label"><span>Persuasion strength</span><span id="meterPct">0%</span></div>
+        <div class="meter-track"><div class="meter-fill" id="meterFill"></div></div>
+        <div class="meter-status" id="meterStatus">Warming up the argument</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-amber">
+  <div class="wrap">
+    <h2>Turn Hesitation Into Momentum</h2>
+    <p class="lede">Every visitor arrives with a thought worth honoring. A well-built page meets that thought, agrees with it, and gently pivots toward what comes next. Choose a thought to see the pivot.</p>
+    <div class="chips" id="chipRow">
+      <button class="chip" data-key="have">"I already have a website"</button>
+      <button class="chip" data-key="think">"I'd like to think about it"</button>
+      <button class="chip" data-key="compare">"I'm comparing a few options"</button>
+    </div>
+    <div class="pivot-box" id="pivotBox">
+      <span class="who">EasyLandX page copy</span>
+      Choose a thought above to see the concession and the future-tense pivot it opens up.
+    </div>
+  </div>
+</section>
+
+<section class="section-blue">
+  <div class="wrap">
+    <h2>Speaking in the Audience's Own Language</h2>
+    <p class="lede">The clearest arguments borrow the listener's own words. EasyLandX gathers the phrases, values, and everyday language a business's own audience already uses — in DMs, reviews, and conversations — and builds headlines that feel instantly familiar.</p>
+    <div class="quote-band">
+      <div class="card">"A visitor's own commonplaces — the beliefs and phrases they already hold — make the strongest opening line. The page simply reflects them back."</div>
+      <div class="card">"Agreement opens the door that persuasion walks through. Every EasyLandX page starts by finding common ground with the visitor, then moves forward together."</div>
+    </div>
+  </div>
+</section>
+
+<section class="section-rose closing">
+  <div class="wrap">
+    <h2>Ready to Make the Argument for Your Business?</h2>
+    <p class="lede">A page built on character, feeling, logic, and timing — ready to earn a confident yes from the visitors who matter most.</p>
+    <a class="btn btn-amber" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Built by EasyLandX</strong> — landing pages designed to persuade, not just present.</p>
+  <p>© 2026 EasyLandX. All rights reserved.</p>
+</footer>
+
+<script>
+(function(){
+  var switches = document.querySelectorAll('.switch');
+  var fill = document.getElementById('meterFill');
+  var pct = document.getElementById('meterPct');
+  var status = document.getElementById('meterStatus');
+
+  var statuses = [
+    [0, 'Warming up the argument'],
+    [25, 'Building trust'],
+    [50, 'Gaining momentum'],
+    [75, 'Nearly persuasive'],
+    [100, 'Ready for yes']
+  ];
+
+  function updateMeter(){
+    var total = 0;
+    switches.forEach(function(s){
+      if (s.classList.contains('on')) total += parseInt(s.dataset.weight, 10);
+    });
+    fill.style.width = total + '%';
+    pct.textContent = total + '%';
+    var label = statuses[0][1];
+    statuses.forEach(function(entry){ if (total >= entry[0]) label = entry[1]; });
+    status.textContent = label;
+  }
+
+  switches.forEach(function(s){
+    s.addEventListener('click', function(){
+      var on = s.classList.toggle('on');
+      s.setAttribute('aria-pressed', on ? 'true' : 'false');
+      updateMeter();
+    });
+  });
+
+  var pivots = {
+    have: {
+      who: 'On "I already have a website"',
+      text: 'Absolutely — having a website is a great foundation. Here is how a page built to persuade can turn that same visitor traffic into more conversations this month.'
+    },
+    think: {
+      who: 'On "I\'d like to think about it"',
+      text: 'That is a thoughtful approach. While the idea settles, here is a quick preview of what the page could look like — ready the moment it feels right.'
+    },
+    compare: {
+      who: 'On "I\'m comparing a few options"',
+      text: 'A smart step — comparing leads to a confident choice. Here is what makes a page genuinely built to persuade, beyond how it looks.'
+    }
+  };
+
+  var chips = document.querySelectorAll('.chip');
+  var pivotBox = document.getElementById('pivotBox');
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      var data = pivots[chip.dataset.key];
+      pivotBox.innerHTML = '<span class="who">' + data.who + '</span>' + data.text;
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
