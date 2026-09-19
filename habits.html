@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing pages that turn into habits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violet-1:#5B0EEA;
+    --violet-2:#33076B;
+    --violet-bg: radial-gradient(120% 140% at 15% -10%, #7B2FF7 0%, #5B0EEA 32%, #33076B 68%, #1E0640 100%);
+    --panel: rgba(255,255,255,0.05);
+    --panel-border: rgba(255,255,255,0.12);
+    --ink: #F3EEFF;
+    --ink-dim: #C9BCEF;
+    --green: #39FF14;
+    --green-soft: #9CFF7A;
+    --gold: #FFC72C;
+    --gold-soft: #FFE29A;
+    --radius-lg: 22px;
+    --radius-sm: 10px;
+    --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+    --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  }
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink: #F3EEFF;
+    }
+  }
+  :root[data-theme="dark"]{ --ink:#F3EEFF; }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background: var(--violet-bg);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+
+  .wrap{
+    max-width:960px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  a{ color:inherit; }
+
+  :focus-visible{
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:30;
+    backdrop-filter: blur(10px);
+    background: rgba(30,6,64,0.55);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-inner{
+    max-width:960px; margin:0 auto; padding:16px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.15rem;
+    letter-spacing:0.01em;
+    display:flex; align-items:center; gap:8px;
+  }
+  .brand-dot{
+    width:10px; height:10px; border-radius:50%;
+    background: var(--green);
+    box-shadow: 0 0 10px 2px var(--green);
+  }
+  .nav-cta{
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:0.92rem;
+    padding:9px 18px;
+    border-radius:999px;
+    border:1.5px solid var(--green);
+    color:var(--green-soft);
+    text-decoration:none;
+    transition: background .18s ease, color .18s ease, box-shadow .18s ease;
+  }
+  .nav-cta:hover{
+    background:var(--green);
+    color:#0E1A00;
+    box-shadow: 0 0 22px 2px rgba(57,255,20,0.55);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding:88px 0 64px; text-align:center; }
+  .eyebrow{
+    display:inline-block;
+    font-family:var(--font-body);
+    font-size:0.86rem;
+    color:var(--gold-soft);
+    background: rgba(255,199,44,0.1);
+    border:1px solid rgba(255,199,44,0.35);
+    padding:6px 16px;
+    border-radius:999px;
+    margin-bottom:26px;
+  }
+  h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(2.1rem, 5vw, 3.6rem);
+    line-height:1.08;
+    margin:0 0 22px;
+    letter-spacing:-0.01em;
+  }
+  .hero p.lede{
+    font-size:1.15rem;
+    color:var(--ink-dim);
+    max-width:600px;
+    margin:0 auto 38px;
+  }
+  .hero-actions{
+    display:flex; gap:16px; justify-content:center; flex-wrap:wrap;
+  }
+  .btn-primary{
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:1rem;
+    padding:15px 30px;
+    border-radius:999px;
+    background: var(--green);
+    color:#0E1A00;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    box-shadow: 0 0 0 0 rgba(57,255,20,0.0);
+    transition: transform .18s ease, box-shadow .25s ease;
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow: 0 8px 30px -4px rgba(57,255,20,0.65);
+  }
+  .btn-ghost{
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:1rem;
+    padding:14px 28px;
+    border-radius:999px;
+    background:transparent;
+    color:var(--gold-soft);
+    border:1.5px solid rgba(255,199,44,0.55);
+    text-decoration:none;
+    transition: background .18s ease, box-shadow .2s ease;
+  }
+  .btn-ghost:hover{
+    background:rgba(255,199,44,0.12);
+    box-shadow: 0 0 20px -2px rgba(255,199,44,0.4);
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ padding:76px 0; }
+  .section-head{ max-width:640px; margin:0 0 44px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .section-tag{
+    font-family:var(--font-body);
+    font-size:0.86rem;
+    color:var(--green-soft);
+    margin:0 0 12px;
+    font-weight:600;
+  }
+  h2{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(1.6rem, 3.4vw, 2.3rem);
+    margin:0 0 14px;
+    line-height:1.15;
+  }
+  .section-head p{ color:var(--ink-dim); font-size:1.02rem; margin:0; }
+
+  /* ---------- Habit loop diagram ---------- */
+  .loop-card{
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:var(--radius-lg);
+    padding:40px 28px;
+    display:grid;
+    grid-template-columns: 300px 1fr;
+    gap:40px;
+    align-items:center;
+  }
+  .loop-svg-wrap{ position:relative; }
+  .loop-node{ cursor:pointer; }
+  .loop-node circle.ring{ fill:none; stroke:rgba(255,255,255,0.18); stroke-width:1.5; transition: stroke .2s ease; }
+  .loop-node circle.dot{ fill:var(--ink-dim); transition: fill .2s ease, r .2s ease; }
+  .loop-node text{
+    font-family:var(--font-body);
+    font-size:12.5px;
+    font-weight:600;
+    fill:var(--ink-dim);
+    transition: fill .2s ease;
+  }
+  .loop-node.active circle.ring{ stroke: var(--active-color, var(--green)); }
+  .loop-node.active circle.dot{ fill: var(--active-color, var(--green)); r:9; }
+  .loop-node.active text{ fill:#fff; }
+  .loop-path{ fill:none; stroke:rgba(255,255,255,0.22); stroke-width:1.5; stroke-dasharray:4 6; }
+  .loop-travel{
+    fill: var(--gold);
+    filter: drop-shadow(0 0 5px var(--gold));
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .loop-travel{ animation: travel 6s linear infinite; }
+  }
+  @keyframes travel{
+    0%   { offset-distance: 0%; }
+    100% { offset-distance: 100%; }
+  }
+
+  .loop-detail{ min-height:150px; }
+  .loop-detail .step-label{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.3rem;
+    margin:0 0 4px;
+  }
+  .loop-detail .step-kicker{
+    font-size:0.82rem;
+    color:var(--ink-dim);
+    margin:0 0 14px;
+  }
+  .loop-detail p{ margin:0; color:var(--ink-dim); }
+  .loop-hint{
+    margin-top:18px;
+    font-size:0.84rem;
+    color:rgba(243,238,255,0.55);
+  }
+
+  /* ---------- Golden rule swap ---------- */
+  .swap-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:20px;
+  }
+  .swap-card{
+    border-radius:var(--radius-lg);
+    padding:28px;
+    border:1px solid var(--panel-border);
+  }
+  .swap-card.old{
+    background:rgba(255,255,255,0.03);
+    opacity:0.72;
+  }
+  .swap-card.new{
+    background:linear-gradient(160deg, rgba(57,255,20,0.09), rgba(255,199,44,0.06));
+    border-color: rgba(57,255,20,0.4);
+  }
+  .swap-kicker{ font-size:0.8rem; font-weight:600; margin:0 0 10px; letter-spacing:0.01em; }
+  .swap-card.old .swap-kicker{ color:var(--ink-dim); }
+  .swap-card.new .swap-kicker{ color:var(--green-soft); }
+  .swap-card h3{
+    font-family:var(--font-display);
+    font-size:1.15rem;
+    margin:0 0 10px;
+  }
+  .swap-card p{ margin:0; color:var(--ink-dim); font-size:0.95rem; }
+  .swap-bind{
+    text-align:center;
+    font-size:0.88rem;
+    color:var(--gold-soft);
+    margin:18px 0;
+  }
+
+  /* ---------- Keystone ripple ---------- */
+  .ripple-card{
+    border-radius:var(--radius-lg);
+    border:1px solid var(--panel-border);
+    background:var(--panel);
+    padding:48px 28px;
+    display:grid;
+    grid-template-columns: 220px 1fr;
+    gap:36px;
+    align-items:center;
+  }
+  .ripple-stage{
+    position:relative;
+    width:220px; height:220px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .ripple-core{
+    width:34px; height:34px; border-radius:50%;
+    background: var(--gold);
+    box-shadow: 0 0 18px 4px rgba(255,199,44,0.7);
+    z-index:2;
+  }
+  .ring{
+    position:absolute;
+    border-radius:50%;
+    border:1.5px solid rgba(255,199,44,0.5);
+    opacity:0;
+  }
+  .ring.animate{ animation: ripple 1.8s ease-out forwards; }
+  @keyframes ripple{
+    0%   { width:34px; height:34px; opacity:0.9; }
+    100% { width:220px; height:220px; opacity:0; }
+  }
+  .ripple-btn{
+    margin-top:22px;
+    font-family:var(--font-body);
+    font-size:0.86rem;
+    font-weight:600;
+    color:var(--gold-soft);
+    background:transparent;
+    border:1px solid rgba(255,199,44,0.5);
+    padding:9px 18px;
+    border-radius:999px;
+    cursor:pointer;
+    transition: background .18s ease;
+  }
+  .ripple-btn:hover{ background:rgba(255,199,44,0.12); }
+  .ripple-copy h3{
+    font-family:var(--font-display);
+    font-size:1.2rem;
+    margin:0 0 10px;
+  }
+  .ripple-copy p{ color:var(--ink-dim); margin:0; font-size:0.97rem; }
+
+  /* ---------- If-Then builder ---------- */
+  .builder{
+    border-radius:var(--radius-lg);
+    border:1px solid var(--panel-border);
+    background:var(--panel);
+    padding:36px 28px;
+  }
+  .builder-steps{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:14px;
+    margin-bottom:30px;
+  }
+  .builder-step{
+    font-size:0.78rem;
+    color:var(--ink-dim);
+    border-left:2px solid rgba(255,255,255,0.16);
+    padding-left:10px;
+  }
+  .builder-step b{ display:block; color:var(--ink); font-size:0.86rem; margin-bottom:2px; }
+  .builder-row{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:16px;
+    margin-bottom:22px;
+  }
+  .field label{
+    display:block;
+    font-size:0.82rem;
+    color:var(--ink-dim);
+    margin-bottom:8px;
+  }
+  .field select{
+    width:100%;
+    font-family:var(--font-body);
+    font-size:0.96rem;
+    color:var(--ink);
+    background:rgba(255,255,255,0.06);
+    border:1px solid var(--panel-border);
+    border-radius:var(--radius-sm);
+    padding:11px 12px;
+  }
+  .field select:focus{ outline:none; border-color:var(--green); }
+  /* Keep native dropdown option text readable against the light browser menu */
+  .field select option{ color:#111111; background:#ffffff; }
+  .builder-output{
+    border-radius:var(--radius-sm);
+    background:rgba(57,255,20,0.06);
+    border:1px solid rgba(57,255,20,0.3);
+    padding:20px;
+  }
+  .builder-output p{ margin:0 0 8px; }
+  .builder-output .tag{
+    display:inline-block;
+    font-size:0.76rem;
+    color:#0E1A00;
+    background:var(--green);
+    padding:3px 10px;
+    border-radius:999px;
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .builder-output .script{
+    font-family:var(--font-display);
+    font-size:1.05rem;
+    color:#fff;
+  }
+  .builder-output .note{
+    font-size:0.85rem;
+    color:var(--ink-dim);
+    margin-top:10px;
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    text-align:center;
+    border-radius:var(--radius-lg);
+    padding:56px 28px;
+    background: linear-gradient(160deg, rgba(57,255,20,0.1), rgba(255,199,44,0.08));
+    border:1px solid rgba(255,255,255,0.14);
+  }
+  .final-cta h2{ margin-bottom:14px; }
+  .final-cta p{ color:var(--ink-dim); max-width:480px; margin:0 auto 30px; }
+
+  footer{
+    padding:36px 0 56px;
+    text-align:center;
+    font-size:0.85rem;
+    color:rgba(243,238,255,0.5);
+  }
+  footer a{ color:var(--gold-soft); text-decoration:none; }
+  footer a:hover{ text-decoration:underline; }
+
+  @media (max-width: 720px){
+    .loop-card, .ripple-card{ grid-template-columns:1fr; }
+    .swap-grid{ grid-template-columns:1fr; }
+    .builder-row{ grid-template-columns:1fr; }
+    .builder-steps{ grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="brand-dot" aria-hidden="true"></span>EasyLandX</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Open EasyLandX</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Built on the science of habit</span>
+      <h1>Landing pages your visitors don't decide to click.<br>They just do.</h1>
+      <p class="lede">EasyLandX builds pages around the same loop that runs every habit in your visitor's brain: a cue that catches them, a routine so small it needs no willpower, and a reward that lands before they can overthink it.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start a page on EasyLandX</a>
+        <a class="btn-ghost" href="#loop">See the loop</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="loop">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-tag">The neurological habit loop</p>
+        <h2>Every converting page runs on three parts</h2>
+        <p>Charles Duhigg's research on habit formation found that automatic behavior always runs on the same three-part loop. EasyLandX gives each part its own block on your page, so the loop is never left to chance. Click a step.</p>
+      </div>
+
+      <div class="loop-card">
+        <div class="loop-svg-wrap">
+          <svg viewBox="0 0 300 300" width="100%" height="100%" role="img" aria-label="Diagram of the cue, routine and reward loop">
+            <path id="loopPath" class="loop-path" d="M150,55 A100,100 0 1,1 149.9,55" />
+            <circle class="loop-travel" r="4">
+              <animateMotion dur="6s" repeatCount="indefinite">
+                <mpath href="#loopPath"/>
+              </animateMotion>
+            </circle>
+
+            <g class="loop-node active" data-step="cue" style="--active-color:#FFC72C" tabindex="0" role="button" aria-pressed="true" aria-label="Cue step">
+              <circle class="ring" cx="150" cy="45" r="30"></circle>
+              <circle class="dot" cx="150" cy="45" r="9"></circle>
+              <text x="150" y="18" text-anchor="middle">CUE</text>
+            </g>
+
+            <g class="loop-node" data-step="routine" style="--active-color:#39FF14" tabindex="0" role="button" aria-pressed="false" aria-label="Routine step">
+              <circle class="ring" cx="237" cy="200" r="30"></circle>
+              <circle class="dot" cx="237" cy="200" r="7"></circle>
+              <text x="237" y="238" text-anchor="middle">ROUTINE</text>
+            </g>
+
+            <g class="loop-node" data-step="reward" style="--active-color:#FFC72C" tabindex="0" role="button" aria-pressed="false" aria-label="Reward step">
+              <circle class="ring" cx="63" cy="200" r="30"></circle>
+              <circle class="dot" cx="63" cy="200" r="7"></circle>
+              <text x="63" y="238" text-anchor="middle">REWARD</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="loop-detail" id="loopDetail">
+          <p class="step-kicker">Step 1 of 3</p>
+          <p class="step-label">The Cue</p>
+          <p>A headline, a price, a face, a countdown — one clear trigger that tells the visitor's brain "pay attention here" before they've read a word of copy. EasyLandX's hero blocks are built to be that single trigger, not a wall of competing ones.</p>
+          <p class="loop-hint">Click Routine or Reward on the diagram to keep reading.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rule">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-tag">The golden rule of habit change</p>
+        <h2>Don't fight the visitor's habit. Redirect it.</h2>
+        <p>You can't make a distracted, skeptical visitor into a patient reader. Duhigg's research shows the only habits that actually change are the ones where the cue and the reward stay put, and only the routine in between gets swapped for something easier.</p>
+      </div>
+
+      <div class="swap-grid">
+        <div class="swap-card old">
+          <p class="swap-kicker">Old routine</p>
+          <h3>Read three paragraphs, find the form, fill six fields, wait</h3>
+          <p>Same cue that brought them in. Same reward they were promised. But the routine between the two is long enough that most visitors quietly leave before they reach it.</p>
+        </div>
+        <div class="swap-card new">
+          <p class="swap-kicker">Swapped routine, EasyLandX build</p>
+          <h3>One tap, one field, confirmation on screen</h3>
+          <p>Same cue. Same reward. The only thing EasyLandX changes is the routine standing between them — compressed to the smallest action that still earns the reward.</p>
+        </div>
+      </div>
+      <p class="swap-bind">Cue stays fixed above · Reward stays fixed below — only the middle step moves</p>
+    </div>
+  </section>
+
+  <section id="keystone">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-tag">Keystone habits</p>
+        <h2>One page can move your whole funnel</h2>
+        <p>Duhigg's research on organizations found that certain habits — a daily workout, a nightly checklist — act as keystones: change that one behavior and disciplines you never touched start improving on their own. A landing page can work the same way inside a business.</p>
+      </div>
+
+      <div class="ripple-card">
+        <div class="ripple-stage">
+          <div class="ripple-core" aria-hidden="true"></div>
+          <div id="ringHost"></div>
+        </div>
+        <div class="ripple-copy">
+          <h3>Fix the page visitors land on first, and the effect spreads</h3>
+          <p>Teams that rebuild their primary landing page with EasyLandX report the same ripple pattern: the ad copy upstream tightens to match it, the follow-up email downstream starts quoting its language, and the sales call finally opens with the same promise the page made. One keystone page, rebuilt once, resets the habits around it.</p>
+          <button class="ripple-btn" id="rippleBtn" type="button">Trigger the ripple</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="builder">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-tag">Your if-then plan</p>
+        <h2>Build the exact page response to your visitor's cue</h2>
+        <p>Duhigg's protocol for a new habit is a pre-written "if-then" plan: name the cue, pre-decide the response. Pick what triggers your visitor below, and EasyLandX writes the on-page response to pre-program.</p>
+      </div>
+
+      <div class="builder">
+        <div class="builder-steps">
+          <div class="builder-step"><b>1. Routine</b>the action you want</div>
+          <div class="builder-step"><b>2. Reward test</b>find what they crave</div>
+          <div class="builder-step"><b>3. Cue</b>name the trigger</div>
+          <div class="builder-step"><b>4. If-then</b>pre-write the page</div>
+        </div>
+
+        <div class="builder-row">
+          <div class="field">
+            <label for="cueSelect">When the visitor arrives because of...</label>
+            <select id="cueSelect">
+              <option value="ad">a paid ad they just clicked</option>
+              <option value="search">a search result they were scanning</option>
+              <option value="referral">a link a friend or colleague sent</option>
+              <option value="return">a page they've visited before</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="rewardSelect">...and what they're really craving is</label>
+            <select id="rewardSelect">
+              <option value="certainty">certainty this will actually work</option>
+              <option value="speed">to be done in under a minute</option>
+              <option value="belonging">proof people like them use this</option>
+              <option value="savings">to know exactly what it costs</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="builder-output" id="builderOutput">
+          <span class="tag">Your if-then page</span>
+          <p class="script" id="builderScript">If a visitor lands from a paid ad, then show the exact promise from that ad in the first line, before anything else.</p>
+          <p class="note" id="builderNote">EasyLandX pins this response to your hero block automatically, so the cue and the routine always line up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta">
+    <div class="wrap">
+      <div class="final-cta">
+        <h2>Build the page. Let the habit do the converting.</h2>
+        <p>Set your cue, shorten your routine, and let EasyLandX hold the reward steady every time someone lands.</p>
+        <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Open EasyLandX</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>EasyLandX — landing pages built on the habit loop. <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a></p>
+  </div>
+</footer>
+
+<script>
+  // ---- Habit loop interactivity ----
+  const stepContent = {
+    cue: {
+      kicker: "Step 1 of 3",
+      label: "The Cue",
+      body: "A headline, a price, a face, a countdown — one clear trigger that tells the visitor's brain \"pay attention here\" before they've read a word of copy. EasyLandX's hero blocks are built to be that single trigger, not a wall of competing ones."
+    },
+    routine: {
+      kicker: "Step 2 of 3",
+      label: "The Routine",
+      body: "The action itself: a tap, a scroll, a single field filled in. This is the only part of the loop EasyLandX ever rewrites — shortened until it takes less effort than looking away."
+    },
+    reward: {
+      kicker: "Step 3 of 3",
+      label: "The Reward",
+      body: "Confirmation the visitor can feel immediately — a number, a checkmark, a next step that appears without delay. The reward is what the brain files away, so next time the same cue appears, the loop fires on its own."
+    }
+  };
+
+  const nodes = document.querySelectorAll(".loop-node");
+  const detail = document.getElementById("loopDetail");
+
+  function setStep(step){
+    nodes.forEach(n => {
+      const isActive = n.dataset.step === step;
+      n.classList.toggle("active", isActive);
+      n.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+    const c = stepContent[step];
+    detail.innerHTML =
+      '<p class="step-kicker">' + c.kicker + '</p>' +
+      '<p class="step-label">' + c.label + '</p>' +
+      '<p>' + c.body + '</p>' +
+      '<p class="loop-hint">Click another step on the diagram to keep reading.</p>';
+  }
+
+  nodes.forEach(n => {
+    n.addEventListener("click", () => setStep(n.dataset.step));
+    n.addEventListener("keydown", (e) => {
+      if(e.key === "Enter" || e.key === " "){
+        e.preventDefault();
+        setStep(n.dataset.step);
+      }
+    });
+  });
+
+  // ---- Keystone ripple ----
+  const rippleBtn = document.getElementById("rippleBtn");
+  const ringHost = document.getElementById("ringHost");
+  rippleBtn.addEventListener("click", () => {
+    for(let i = 0; i < 3; i++){
+      setTimeout(() => {
+        const ring = document.createElement("div");
+        ring.className = "ring animate";
+        ring.style.left = "50%";
+        ring.style.top = "50%";
+        ring.style.transform = "translate(-50%, -50%)";
+        ringHost.style.position = "absolute";
+        ringHost.style.left = "50%";
+        ringHost.style.top = "50%";
+        ring.style.position = "absolute";
+        ringHost.appendChild(ring);
+        ring.addEventListener("animationend", () => ring.remove());
+      }, i * 260);
+    }
+  });
+
+  // ---- If-then builder ----
+  const cueSelect = document.getElementById("cueSelect");
+  const rewardSelect = document.getElementById("rewardSelect");
+  const builderScript = document.getElementById("builderScript");
+  const builderNote = document.getElementById("builderNote");
+
+  const cueText = {
+    ad: "a visitor lands from a paid ad",
+    search: "a visitor lands from a search result",
+    referral: "a visitor lands from a friend's link",
+    return: "a returning visitor lands again"
+  };
+
+  const rewardResponse = {
+    certainty: {
+      then: "show one concrete proof point — a number, a guarantee, a result — in the first line, before any explanation.",
+      note: "Certainty-seeking visitors leave during explanation. EasyLandX moves proof ahead of persuasion."
+    },
+    speed: {
+      then: "cut the page to a single action above the fold, with every other detail collapsed until they ask for it.",
+      note: "Speed-seeking visitors reward pages that get out of their way. EasyLandX hides the extra steps, not the value."
+    },
+    belonging: {
+      then: "open with a name, a logo, or a number of people already using it, before making any claim of its own.",
+      note: "Belonging-seeking visitors trust other visitors more than they trust the page. EasyLandX surfaces that proof first."
+    },
+    savings: {
+      then: "state the exact price or range in the first screen, with no click required to reveal it.",
+      note: "Cost-seeking visitors treat a hidden price as a hidden catch. EasyLandX puts the number where the cue already is."
+    }
+  };
+
+  function updateBuilder(){
+    const cueKey = cueSelect.value;
+    const rewardKey = rewardSelect.value;
+    const response = rewardResponse[rewardKey];
+    builderScript.textContent = "If " + cueText[cueKey] + ", then " + response.then;
+    builderNote.textContent = response.note;
+  }
+
+  cueSelect.addEventListener("change", updateBuilder);
+  rewardSelect.addEventListener("change", updateBuilder);
+</script>
+
+</body>
+</html>
