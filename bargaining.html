@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — The Page That Negotiates For You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --blue:#2A46FF;
+    --blue-2:#1B2FDB;
+    --blue-3:#101E96;
+    --blue-deep:#080F52;
+    --ink:#EEF1FF;
+    --ink-soft:#C4CCFF;
+    --gold:#FFB800;
+    --gold-bright:#FFD35C;
+    --lime:#AEFF2E;
+    --lime-bright:#D3FF8F;
+    --panel-bg: rgba(8,15,82,0.92);
+    --panel-border: rgba(174,255,46,0.26);
+    --shadow: 0 18px 44px rgba(8,15,82,0.35);
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --blue:#0E1854;
+      --blue-2:#0A1240;
+      --blue-3:#070C2E;
+      --blue-deep:#03051A;
+      --panel-bg: rgba(3,5,26,0.94);
+      --panel-border: rgba(174,255,46,0.3);
+      --shadow: 0 18px 44px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --blue:#0E1854; --blue-2:#0A1240; --blue-3:#070C2E; --blue-deep:#03051A;
+    --panel-bg: rgba(3,5,26,0.94); --panel-border: rgba(174,255,46,0.3);
+    --shadow: 0 18px 44px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 92% -4%, var(--gold) 0%, transparent 22%),
+      radial-gradient(circle at 4% 100%, var(--lime) 0%, transparent 20%),
+      linear-gradient(160deg, var(--blue) 0%, var(--blue-2) 48%, var(--blue-3) 80%, var(--blue-deep) 100%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family:'Manrope', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{ background: var(--gold); color: var(--blue-deep); }
+  a{ color:inherit; }
+  button{ font-family:inherit; }
+  .serif{ font-family:'Fraunces', serif; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 28px; }
+
+  header.site{
+    position:sticky; top:0; z-index:40;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(180deg, rgba(8,15,82,0.55), rgba(8,15,82,0.16));
+    border-bottom: 1px solid var(--panel-border);
+  }
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:15px 0; }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-weight:700; font-size:1.22rem;
+    color:#FFF6E0;
+  }
+  .brand svg{ width:26px; height:26px; }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background: linear-gradient(135deg, var(--lime-bright), var(--lime));
+    color: var(--blue-deep);
+    font-weight:800; font-size:.9rem;
+    padding:10px 20px; border-radius:8px;
+    text-decoration:none;
+    box-shadow: 0 8px 20px rgba(174,255,46,0.3);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .nav-cta:hover{ transform: translateY(-2px); box-shadow: 0 12px 26px rgba(174,255,46,0.45); }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding: 84px 0 40px; text-align:center; }
+  .hero .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Manrope', sans-serif; font-weight:700;
+    color: var(--blue-deep);
+    background: var(--gold-bright);
+    padding: 6px 14px; border-radius: 999px;
+    font-size:.78rem; letter-spacing:.05em;
+    margin-bottom:26px;
+  }
+  .hero h1{
+    font-family:'Fraunces', serif; font-weight:700;
+    font-size: clamp(2.3rem, 5vw, 3.9rem);
+    line-height:1.14; margin: 0 0 20px; color:#FBFBFF;
+  }
+  .hero h1 em{ font-style:italic; color: var(--lime-bright); }
+  .hero p.lede{ max-width:620px; margin:0 auto 36px; font-size:1.12rem; line-height:1.72; color: var(--ink-soft); }
+  .hero-actions{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:60px; }
+  .btn-gold{
+    display:inline-flex; align-items:center; gap:10px;
+    background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+    color: var(--blue-deep);
+    font-weight:800; font-size:1rem;
+    padding:15px 32px; border-radius:10px; text-decoration:none;
+    box-shadow: 0 12px 28px rgba(255,184,0,0.35);
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-gold:hover{ transform: translateY(-3px); box-shadow: 0 18px 36px rgba(255,184,0,0.5); }
+  .btn-outline{
+    display:inline-flex; align-items:center; gap:10px;
+    background: transparent; color:#FBFBFF;
+    font-weight:700; font-size:1rem;
+    padding:14px 28px; border-radius:10px;
+    border: 1.5px solid rgba(255,255,255,0.35); text-decoration:none;
+    transition: background .25s ease;
+  }
+  .btn-outline:hover{ background: rgba(255,255,255,0.08); }
+
+  /* anchor graphic */
+  .anchor-wrap{ max-width:220px; margin: 0 auto; position:relative; }
+  .anchor-wrap svg{ width:100%; height:auto; display:block; }
+  @media (prefers-reduced-motion: no-preference){
+    .anchor-drop{ animation: drop 1.6s cubic-bezier(.34,1.56,.64,1) forwards; animation-delay:.2s; transform: translateY(-40px); opacity:0; }
+    .ripple{ opacity:0; animation: rippleIn 1.6s ease forwards; animation-delay: 1.4s; }
+  }
+  @keyframes drop{ 0%{ transform: translateY(-40px); opacity:0; } 60%{ opacity:1; } 100%{ transform: translateY(0); opacity:1; } }
+  @keyframes rippleIn{ 0%{ opacity:0; transform: scale(0.8); } 40%{ opacity:.6; } 100%{ opacity:0; transform: scale(1.4); } }
+
+  /* ---------- INTRO ---------- */
+  .intro{ padding: 20px 0 76px; }
+  .intro-card{
+    background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius:18px;
+    padding: 36px clamp(22px,5vw,52px); box-shadow: var(--shadow); text-align:center;
+  }
+  .intro-card h2{ font-family:'Fraunces', serif; color: var(--gold-bright); font-size:1.55rem; margin:0 0 16px; font-weight:700; }
+  .intro-card p{ color: var(--ink-soft); font-size:1.04rem; line-height:1.8; max-width:660px; margin:0 auto; }
+  .intro-card p + p{ margin-top:14px; }
+
+  /* ---------- FOUNDATIONS GRID ---------- */
+  .foundations{ padding: 10px 0 80px; }
+  .section-title{
+    text-align:center; font-family:'Fraunces', serif; font-weight:700;
+    font-size: clamp(1.7rem, 3.2vw, 2.3rem); color:#FBFBFF; margin: 0 0 8px;
+  }
+  .section-sub{ text-align:center; color: var(--ink-soft); max-width:580px; margin:0 auto 44px; line-height:1.7; }
+
+  .grid6{ display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; }
+  @media (max-width: 860px){ .grid6{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 540px){ .grid6{ grid-template-columns: 1fr; } }
+  .found-card{
+    background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius:16px;
+    padding: 24px 22px; box-shadow: var(--shadow);
+    transition: transform .25s ease, border-color .25s ease;
+  }
+  .found-card:hover{ transform: translateY(-4px); border-color: var(--lime-bright); }
+  .found-num{ font-family:'Fraunces', serif; font-weight:700; font-size:.85rem; color: var(--lime-bright); margin-bottom:10px; }
+  .found-card h3{ font-family:'Fraunces', serif; font-weight:700; color:#FBFBFF; font-size:1.12rem; margin:0 0 10px; }
+  .found-card p{ color: var(--ink-soft); font-size:.92rem; line-height:1.65; margin:0; }
+
+  /* ---------- ROADMAP ---------- */
+  .roadmap{ padding: 10px 0 80px; }
+  .roadmap-track{
+    display:flex; gap:0; overflow-x:auto; padding-bottom: 6px;
+    scrollbar-width: thin;
+  }
+  .rm-step{
+    flex: 1 1 200px; min-width:180px;
+    background: var(--panel-bg); border: 1px solid var(--panel-border);
+    padding: 22px 20px; position:relative;
+  }
+  .rm-step:first-child{ border-radius: 14px 0 0 14px; }
+  .rm-step:last-child{ border-radius: 0 14px 14px 0; }
+  .rm-step:not(:last-child){ border-right: none; }
+  .rm-step .rm-num{
+    font-family:'Fraunces', serif; font-weight:800; font-size:1.3rem; color: var(--gold-bright); margin-bottom:8px;
+  }
+  .rm-step h4{ font-family:'Fraunces', serif; color:#FBFBFF; font-size:.98rem; margin:0 0 8px; font-weight:700; }
+  .rm-step p{ color: var(--ink-soft); font-size:.84rem; line-height:1.55; margin:0; }
+
+  /* ---------- OBJECTION VAULT (chat) ---------- */
+  .vault{ padding: 10px 0 90px; }
+  .vault-card{
+    background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 22px;
+    padding: 38px clamp(20px,5vw,52px); box-shadow: var(--shadow);
+  }
+  .vault-head{ text-align:center; margin-bottom: 30px; }
+  .vault-head h2{ font-family:'Fraunces', serif; color:#FBFBFF; font-size: clamp(1.5rem,3vw,2rem); margin:0 0 10px; font-weight:700; }
+  .vault-head p{ color: var(--ink-soft); max-width:580px; margin:0 auto; line-height:1.7; }
+
+  .chat-window{
+    max-width: 640px; margin: 0 auto;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px;
+    padding: 22px;
+    min-height: 150px;
+  }
+  .bubble{
+    max-width: 84%;
+    padding: 13px 16px;
+    border-radius: 16px;
+    font-size: .95rem;
+    line-height:1.55;
+    margin-bottom: 12px;
+    animation: bubbleIn .35s ease;
+  }
+  @keyframes bubbleIn{ from{ opacity:0; transform: translateY(8px);} to{ opacity:1; transform:translateY(0);} }
+  .bubble.visitor{
+    background: rgba(255,255,255,0.09);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    margin-right:auto;
+  }
+  .bubble.easylandx{
+    background: linear-gradient(135deg, var(--lime-bright), var(--lime));
+    color: var(--blue-deep);
+    font-weight:600;
+    border-bottom-right-radius: 4px;
+    margin-left:auto;
+  }
+  .typing{
+    display:flex; gap:5px; padding: 13px 16px; border-radius:16px;
+    background: rgba(255,255,255,0.09); width:fit-content; margin-left:auto; margin-bottom:12px;
+  }
+  .typing span{ width:7px; height:7px; border-radius:50%; background: var(--ink-soft); animation: bounce 1s infinite; }
+  .typing span:nth-child(2){ animation-delay:.15s; }
+  .typing span:nth-child(3){ animation-delay:.3s; }
+  @keyframes bounce{ 0%,60%,100%{ transform: translateY(0); opacity:.4; } 30%{ transform: translateY(-4px); opacity:1; } }
+
+  .chat-empty{ color: var(--ink-soft); text-align:center; padding: 30px 10px; font-size:.92rem; }
+
+  .objection-buttons{
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top: 22px;
+  }
+  .obj-btn{
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.16);
+    color: var(--ink);
+    font-size:.86rem; font-weight:600;
+    padding: 10px 16px; border-radius: 999px;
+    cursor:pointer;
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .obj-btn:hover{ background: rgba(255,184,0,0.14); border-color: var(--gold-bright); }
+  .obj-btn.used{ opacity:.4; pointer-events:none; }
+
+  /* ---------- CLOSING ---------- */
+  .closing{ padding: 10px 0 100px; text-align:center; }
+  .closing-card{
+    background: linear-gradient(135deg, rgba(255,184,0,0.12), rgba(174,255,46,0.1));
+    border: 1px solid var(--panel-border); border-radius: 26px;
+    padding: 54px clamp(22px,6vw,60px); box-shadow: var(--shadow);
+  }
+  .closing h2{ font-family:'Fraunces', serif; color:#FBFBFF; font-size: clamp(1.6rem,3.4vw,2.3rem); margin: 0 0 14px; font-weight:700; }
+  .closing p{ color: var(--ink-soft); max-width:560px; margin:0 auto 32px; line-height:1.75; }
+
+  footer{ text-align:center; padding: 24px 0 40px; color: var(--ink-soft); font-size:.85rem; opacity:.85; }
+  footer a{ color: var(--gold-bright); font-weight:700; text-decoration:none; }
+  footer a:hover{ text-decoration:underline; }
+
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="8" r="3" fill="none" stroke="#FFB800" stroke-width="1.6"/>
+        <path d="M16 11 L16 26" stroke="#FFB800" stroke-width="1.8"/>
+        <path d="M6 20 a10 10 0 0 0 20 0" fill="none" stroke="#AEFF2E" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M16 22 L11 26 M16 22 L21 26" stroke="#AEFF2E" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      EasyLandX
+    </div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">INFORMATION-BASED DESIGN, APPLIED TO THE WEB</span>
+      <h1>A landing page is a <em>negotiation.</em><br>Make sure yours wins it.</h1>
+      <p class="lede">EasyLandX builds affordable, conversion-focused landing pages for small businesses — shaped by the same discipline that wins any negotiation: understand what the other side truly needs, and answer it before they have to ask.</p>
+      <div class="hero-actions">
+        <a class="btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">Explore EasyLandX →</a>
+        <a class="btn-outline" href="#vault">Open the objection vault</a>
+      </div>
+
+      <div class="anchor-wrap" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <circle class="ripple" cx="100" cy="170" r="60" fill="none" stroke="#AEFF2E" stroke-width="2"/>
+          <g class="anchor-drop">
+            <circle cx="100" cy="26" r="10" fill="none" stroke="#FFD35C" stroke-width="4"/>
+            <line x1="100" y1="36" x2="100" y2="150" stroke="#FFD35C" stroke-width="6" stroke-linecap="round"/>
+            <line x1="80" y1="70" x2="120" y2="70" stroke="#FFD35C" stroke-width="6" stroke-linecap="round"/>
+            <path d="M60 130 a40 40 0 0 0 80 0" fill="none" stroke="#FFD35C" stroke-width="6" stroke-linecap="round"/>
+            <path d="M60 130 L48 118 M60 130 L52 144" stroke="#FFD35C" stroke-width="6" stroke-linecap="round"/>
+            <path d="M140 130 L152 118 M140 130 L148 144" stroke="#FFD35C" stroke-width="6" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="wrap">
+      <div class="intro-card">
+        <h2>Every page is making a case</h2>
+        <p>In <em>Bargaining for Advantage</em>, Wharton professor G. Richard Shell shows that the best negotiators don't overpower the other side — they out-prepare and out-listen them, gathering the information that lets both sides reach a confident yes.</p>
+        <p>EasyLandX treats every landing page the same way: as an ongoing exchange of information with your visitor. We anticipate their questions, answer their real concerns, and frame your offer around standards they already trust — so saying yes feels like the obvious, easy choice.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="foundations">
+    <div class="wrap">
+      <h2 class="section-title">Six Foundations, Built Into Every Page</h2>
+      <p class="section-sub">The same building blocks Shell uses to prepare any negotiation, applied to how EasyLandX plans your page.</p>
+
+      <div class="grid6">
+        <div class="found-card">
+          <div class="found-num">01 · STYLE</div>
+          <h3>Your brand's natural voice</h3>
+          <p>We start by learning how your business naturally communicates, then shape the page's tone to match it closely.</p>
+        </div>
+        <div class="found-card">
+          <div class="found-num">02 · GOALS</div>
+          <h3>Target outcome &amp; baseline</h3>
+          <p>We define the ambitious result you're aiming for, and the minimum result that still makes the page worthwhile.</p>
+        </div>
+        <div class="found-card">
+          <div class="found-num">03 · STANDARDS</div>
+          <h3>Trust signals &amp; norms</h3>
+          <p>Testimonials, credentials, and familiar benchmarks show visitors your offer matches standards they already believe in.</p>
+        </div>
+        <div class="found-card">
+          <div class="found-num">04 · RELATIONSHIPS</div>
+          <h3>Give before you ask</h3>
+          <p>Helpful answers and clear value come first, building goodwill before the page ever asks a visitor for their details.</p>
+        </div>
+        <div class="found-card">
+          <div class="found-num">05 · INTERESTS</div>
+          <h3>What visitors truly want</h3>
+          <p>Copy is shaped around the real motivation behind a visit — not just the surface-level request.</p>
+        </div>
+        <div class="found-card">
+          <div class="found-num">06 · LEVERAGE</div>
+          <h3>A page worth choosing</h3>
+          <p>A clear, distinct offer that makes your business the obvious choice, not just one option among many.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="roadmap">
+    <div class="wrap">
+      <h2 class="section-title">The Deal-Closing Roadmap</h2>
+      <p class="section-sub">Five stages that take a page from first draft to a confident yes.</p>
+
+      <div class="roadmap-track">
+        <div class="rm-step"><div class="rm-num">01</div><h4>Prepare the foundations</h4><p>Style, goals, standards, relationships, interests, and leverage — all mapped before design begins.</p></div>
+        <div class="rm-step"><div class="rm-num">02</div><h4>Audit the situation</h4><p>We identify whether this page is a quick transaction or the start of an ongoing relationship, and design accordingly.</p></div>
+        <div class="rm-step"><div class="rm-num">03</div><h4>Anchor &amp; frame</h4><p>The headline and opening offer set a confident, well-supported anchor for everything that follows.</p></div>
+        <div class="rm-step"><div class="rm-num">04</div><h4>Exchange information</h4><p>FAQs, proof points, and clear answers give visitors everything they need to decide with confidence.</p></div>
+        <div class="rm-step"><div class="rm-num">05</div><h4>Close &amp; commit</h4><p>One clear call to action turns an interested visitor into a committed lead or customer.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vault" id="vault">
+    <div class="wrap">
+      <div class="vault-card">
+        <div class="vault-head">
+          <h2>Open the objection vault</h2>
+          <p>Click what a visitor might be silently wondering. This is exactly how EasyLandX plans every page — answering the real question before it's ever asked.</p>
+        </div>
+
+        <div class="chat-window" id="chatWindow">
+          <div class="chat-empty">Select a question below to see the answer appear.</div>
+        </div>
+
+        <div class="objection-buttons" id="objButtons">
+          <button class="obj-btn" data-a="Every EasyLandX page comes with clear, upfront pricing — no hidden fees, ever.">Is this affordable for a small business?</button>
+          <button class="obj-btn" data-a="We build every layout around proven conversion principles, and share real examples from similar businesses before you decide.">How do I know it will actually convert?</button>
+          <button class="obj-btn" data-a="You review every draft and request refinements — a project isn't finished until you're genuinely happy with it.">What if I don't love the design?</button>
+          <button class="obj-btn" data-a="Most EasyLandX pages go from first conversation to live page in a matter of days.">How long will this take to launch?</button>
+          <button class="obj-btn" data-a="You can see our full portfolio and process any time at easylandx.github.io before committing to anything.">Can I trust a small studio with this?</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <div class="closing-card">
+        <h2>Let your page make the case for you</h2>
+        <p>EasyLandX designs affordable, conversion-focused landing pages for small businesses — prepared, informed, and built to earn a confident yes.</p>
+        <a class="btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Inspired by <em>Bargaining for Advantage</em>, G. Richard Shell · Crafted by <a href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+  </div>
+</footer>
+
+<script>
+  var chatWindow = document.getElementById('chatWindow');
+  var buttons = document.querySelectorAll('.obj-btn');
+  var started = false;
+
+  buttons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if(btn.classList.contains('used')) return;
+      if(!started){ chatWindow.innerHTML = ''; started = true; }
+      btn.classList.add('used');
+
+      var vBubble = document.createElement('div');
+      vBubble.className = 'bubble visitor';
+      vBubble.textContent = btn.textContent;
+      chatWindow.appendChild(vBubble);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+
+      var typing = document.createElement('div');
+      typing.className = 'typing';
+      typing.innerHTML = '<span></span><span></span><span></span>';
+      chatWindow.appendChild(typing);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+
+      setTimeout(function(){
+        typing.remove();
+        var eBubble = document.createElement('div');
+        eBubble.className = 'bubble easylandx';
+        eBubble.textContent = btn.dataset.a;
+        chatWindow.appendChild(eBubble);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+      }, 750);
+    });
+  });
+</script>
+
+</body>
+</html>

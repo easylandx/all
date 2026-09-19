@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — The Landing Page Worth the Risk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --red:#FF2138;
+    --red-2:#E8102B;
+    --red-3:#A30017;
+    --red-deep:#5A000E;
+    --ink:#210306;
+    --ink-soft:#5A1218;
+    --cyan:#14E1E1;
+    --cyan-bright:#6FFBFB;
+    --lime:#C6FF2E;
+    --lime-bright:#E4FF7A;
+    --panel-bg: rgba(33,3,6,0.94);
+    --panel-border: rgba(198,255,46,0.28);
+    --shadow: 0 18px 44px rgba(33,3,6,0.32);
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --red:#7A0013;
+      --red-2:#5C000E;
+      --red-3:#3B0009;
+      --red-deep:#1C0004;
+      --ink:#FBE9E9;
+      --ink-soft:#E7BEC2;
+      --panel-bg: rgba(12,2,3,0.94);
+      --panel-border: rgba(198,255,46,0.32);
+      --shadow: 0 18px 44px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --red:#7A0013; --red-2:#5C000E; --red-3:#3B0009; --red-deep:#1C0004;
+    --ink:#FBE9E9; --ink-soft:#E7BEC2;
+    --panel-bg: rgba(12,2,3,0.94); --panel-border: rgba(198,255,46,0.32);
+    --shadow: 0 18px 44px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 90% 0%, var(--cyan) 0%, transparent 24%),
+      radial-gradient(circle at 6% 100%, var(--lime) 0%, transparent 22%),
+      linear-gradient(160deg, var(--red) 0%, var(--red-2) 45%, var(--red-3) 78%, var(--red-deep) 100%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{ background: var(--lime); color: var(--red-deep); }
+  a{ color:inherit; }
+  button{ font-family:inherit; }
+  .mono{ font-family:'Space Mono', monospace; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 28px; }
+
+  header.site{
+    position:sticky; top:0; z-index:40;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(180deg, rgba(33,3,6,0.55), rgba(33,3,6,0.16));
+    border-bottom: 1px solid var(--panel-border);
+  }
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:15px 0; }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Archivo', sans-serif; font-weight:800; font-size:1.2rem;
+    color:#FFE7E9;
+  }
+  .brand svg{ width:26px; height:26px; }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background: linear-gradient(135deg, var(--lime-bright), var(--lime));
+    color: var(--red-deep);
+    font-weight:800; font-size:.9rem;
+    padding:10px 20px; border-radius:8px;
+    text-decoration:none;
+    box-shadow: 0 8px 20px rgba(198,255,46,0.3);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .nav-cta:hover{ transform: translateY(-2px); box-shadow: 0 12px 26px rgba(198,255,46,0.45); }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding: 88px 0 40px; text-align:center; }
+  .hero .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Space Mono', monospace;
+    color: var(--red-deep);
+    background: var(--cyan);
+    padding: 6px 14px; border-radius: 999px;
+    font-size:.78rem; letter-spacing:.06em; font-weight:700;
+    margin-bottom:24px;
+  }
+  .hero h1{
+    font-family:'Archivo', sans-serif; font-weight:800;
+    font-size: clamp(2.3rem, 5.2vw, 4rem);
+    line-height:1.1; margin: 0 0 20px; color:#FFF0F1;
+  }
+  .hero h1 .accent{ color: var(--lime-bright); }
+  .hero p.lede{ max-width:620px; margin:0 auto 36px; font-size:1.12rem; line-height:1.7; color:#F6D3D6; }
+  .hero-actions{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:56px; }
+  .btn-lime{
+    display:inline-flex; align-items:center; gap:10px;
+    background: linear-gradient(135deg, var(--lime-bright), var(--lime));
+    color: var(--red-deep);
+    font-weight:800; font-size:1rem;
+    padding:15px 32px; border-radius:10px; text-decoration:none;
+    box-shadow: 0 12px 28px rgba(198,255,46,0.35);
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-lime:hover{ transform: translateY(-3px); box-shadow: 0 18px 36px rgba(198,255,46,0.5); }
+  .btn-outline{
+    display:inline-flex; align-items:center; gap:10px;
+    background: transparent; color:#FFF0F1;
+    font-weight:700; font-size:1rem;
+    padding:14px 28px; border-radius:10px;
+    border: 1.5px solid rgba(255,255,255,0.4); text-decoration:none;
+    transition: background .25s ease;
+  }
+  .btn-outline:hover{ background: rgba(255,255,255,0.08); }
+
+  /* risk chart */
+  .chart-card{
+    max-width: 760px; margin:0 auto;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 18px;
+    padding: 24px clamp(18px,4vw,38px) 30px;
+    box-shadow: var(--shadow);
+  }
+  .chart-label{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:'Space Mono', monospace; color:#C9AEB0; font-size:.75rem;
+    letter-spacing:.06em; margin-bottom:12px;
+  }
+  .chart-label .hi{ color: var(--lime-bright); }
+  .chart-card svg{ width:100%; height:auto; display:block; }
+  .risk-line{
+    fill:none; stroke: var(--cyan-bright); stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round;
+  }
+  .risk-fill{ opacity:.16; }
+  @media (prefers-reduced-motion: no-preference){
+    .risk-line{
+      stroke-dasharray: 1000; stroke-dashoffset:1000;
+      animation: draw 2.4s cubic-bezier(.4,0,.2,1) forwards; animation-delay:.25s;
+    }
+    .risk-fill{ opacity:0; animation: fillIn 1s ease forwards; animation-delay: 2.2s; }
+    .risk-dot{ opacity:0; animation: dotIn .5s ease forwards; animation-delay: 2.3s; }
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @keyframes fillIn{ to{ opacity:.16; } }
+  @keyframes dotIn{ to{ opacity:1; } }
+  .risk-dot{ fill: var(--lime-bright); filter: drop-shadow(0 0 6px rgba(230,255,120,0.8)); }
+
+  /* ---------- INTRO ---------- */
+  .intro{ padding: 60px 0 70px; }
+  .intro-card{
+    background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius:18px;
+    padding: 36px clamp(22px,5vw,52px); box-shadow: var(--shadow); text-align:center;
+  }
+  .intro-card h2{ font-family:'Archivo', sans-serif; color: var(--lime-bright); font-size:1.55rem; margin:0 0 16px; font-weight:800; }
+  .intro-card p{ color:#F1D6D8; font-size:1.04rem; line-height:1.8; max-width:660px; margin:0 auto; }
+  .intro-card p + p{ margin-top:14px; }
+
+  /* ---------- PROCESS RAIL ---------- */
+  .process{ padding: 20px 0 80px; }
+  .section-title{
+    text-align:center; font-family:'Archivo', sans-serif; font-weight:800;
+    font-size: clamp(1.7rem, 3.2vw, 2.3rem); color:#FFF0F1; margin: 0 0 8px;
+  }
+  .section-sub{ text-align:center; color:#F1C3C6; max-width:580px; margin:0 auto 44px; line-height:1.7; }
+
+  .rail{
+    display:grid; grid-template-columns: 260px 1fr; gap: 28px;
+    background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 20px;
+    padding: 22px; box-shadow: var(--shadow);
+  }
+  @media (max-width: 720px){ .rail{ grid-template-columns:1fr; } }
+
+  .rail-steps{ display:flex; flex-direction:column; gap:4px; }
+  .rail-step{
+    display:flex; align-items:center; gap:14px;
+    padding: 14px 16px; border-radius:12px; cursor:pointer;
+    border: 1px solid transparent; background: transparent;
+    transition: background .2s ease, border-color .2s ease;
+    text-align:left; color:#EBC7CA; font-family:'Work Sans', sans-serif;
+  }
+  .rail-step .num{
+    font-family:'Space Mono', monospace; font-weight:700; font-size:.85rem;
+    width:30px; height:30px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    border: 1.5px solid var(--cyan-bright); color: var(--cyan-bright);
+    transition: background .2s ease, color .2s ease;
+  }
+  .rail-step .lbl{ font-weight:600; font-size:.97rem; }
+  .rail-step:hover{ background: rgba(255,255,255,0.04); }
+  .rail-step.active{ background: rgba(198,255,46,0.08); border-color: var(--panel-border); }
+  .rail-step.active .num{ background: var(--lime-bright); border-color: var(--lime-bright); color: var(--red-deep); }
+  .rail-step.active .lbl{ color:#FFF6D8; }
+
+  .rail-detail{
+    background: rgba(255,255,255,0.02); border: 1px dashed var(--panel-border);
+    border-radius: 14px; padding: 28px clamp(18px,3vw,34px);
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .rail-detail .tag{ font-family:'Space Mono', monospace; color: var(--cyan-bright); font-size:.78rem; letter-spacing:.06em; margin-bottom:10px; }
+  .rail-detail h3{ font-family:'Archivo', sans-serif; color:#FFF6F6; font-size:1.4rem; margin:0 0 12px; font-weight:800; }
+  .rail-detail p{ color:#EBC7CA; line-height:1.75; margin:0; }
+
+  /* ---------- RISK DIAL ---------- */
+  .dial-section{ padding: 10px 0 90px; }
+  .dial-card{
+    background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 22px;
+    padding: 40px clamp(20px,5vw,52px); box-shadow: var(--shadow);
+  }
+  .dial-head{ text-align:center; margin-bottom: 34px; }
+  .dial-head h2{ font-family:'Archivo', sans-serif; color:#FFF6F6; font-size: clamp(1.5rem,3vw,2rem); margin:0 0 10px; font-weight:800; }
+  .dial-head p{ color:#EBC7CA; max-width:580px; margin:0 auto; line-height:1.7; }
+
+  .slider-row{ max-width: 560px; margin: 0 auto 30px; }
+  .slider-labels{ display:flex; justify-content:space-between; font-family:'Space Mono', monospace; font-size:.78rem; color:#D9A9AC; margin-bottom:10px; }
+  input[type="range"]{
+    width:100%; -webkit-appearance:none; appearance:none;
+    height:8px; border-radius:999px;
+    background: linear-gradient(90deg, var(--cyan), var(--lime));
+    outline:none;
+  }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; appearance:none;
+    width:26px; height:26px; border-radius:50%;
+    background:#FFF6F6; border: 3px solid var(--red-deep);
+    cursor:pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  }
+  input[type="range"]::-moz-range-thumb{
+    width:26px; height:26px; border-radius:50%;
+    background:#FFF6F6; border: 3px solid var(--red-deep);
+    cursor:pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  }
+
+  .dial-readout{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width:560px; margin: 0 auto 20px;
+  }
+  @media (max-width:520px){ .dial-readout{ grid-template-columns:1fr; } }
+  .meter{
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px; padding: 18px 20px;
+  }
+  .meter .mlabel{ font-family:'Space Mono', monospace; font-size:.72rem; letter-spacing:.06em; color:#D9A9AC; margin-bottom:10px; }
+  .meter .mtrack{ width:100%; height:12px; border-radius:999px; background: rgba(255,255,255,0.1); overflow:hidden; margin-bottom:10px; }
+  .meter .mfill{ height:100%; border-radius:999px; transition: width .3s ease; }
+  .meter.reward .mfill{ background: linear-gradient(90deg, var(--lime), var(--lime-bright)); }
+  .meter.safety .mfill{ background: linear-gradient(90deg, var(--cyan), var(--cyan-bright)); }
+  .meter .mval{ font-family:'Archivo', sans-serif; font-weight:800; font-size:1.3rem; color:#FFF6F6; }
+
+  .dial-status{ text-align:center; color:#F6D3D6; font-size:.95rem; max-width:520px; margin: 6px auto 0; line-height:1.7; }
+  .dial-status strong{ color: var(--lime-bright); }
+
+  /* ---------- CLOSING ---------- */
+  .closing{ padding: 10px 0 100px; text-align:center; }
+  .closing-card{
+    background: linear-gradient(135deg, rgba(20,225,225,0.12), rgba(198,255,46,0.12));
+    border: 1px solid var(--panel-border); border-radius: 26px;
+    padding: 54px clamp(22px,6vw,60px); box-shadow: var(--shadow);
+  }
+  .closing h2{ font-family:'Archivo', sans-serif; color:#FFF0F1; font-size: clamp(1.6rem,3.4vw,2.3rem); margin: 0 0 14px; font-weight:800; }
+  .closing p{ color:#F1C3C6; max-width:560px; margin:0 auto 32px; line-height:1.75; }
+
+  footer{ text-align:center; padding: 24px 0 40px; color:#E7ABAE; font-size:.85rem; }
+  footer a{ color: var(--lime-bright); font-weight:700; text-decoration:none; }
+  footer a:hover{ text-decoration:underline; }
+
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="3" y="3" width="26" height="26" rx="6" fill="none" stroke="#14E1E1" stroke-width="1.6"/>
+        <path d="M8 21 L14 13 L19 17 L25 8" stroke="#C6FF2E" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="25" cy="8" r="2.2" fill="#C6FF2E"/>
+      </svg>
+      EasyLandX
+    </div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">CALCULATED RISK, APPLIED TO THE WEB</span>
+      <h1>Playing it safe is <span class="accent">its own risk.</span></h1>
+      <p class="lede">EasyLandX builds affordable, conversion-focused landing pages for small businesses — using the same discipline economists use to size up any bet: define the target, hedge the downside, and take the calculated leap.</p>
+      <div class="hero-actions">
+        <a class="btn-lime" href="https://easylandx.github.io" target="_blank" rel="noopener">Explore EasyLandX →</a>
+        <a class="btn-outline" href="#dial">Try the risk dial</a>
+      </div>
+
+      <div class="chart-card" aria-hidden="true">
+        <div class="chart-label"><span>GROWTH PATH — VOLATILITY VS. TRUE LOSS</span><span class="hi">HEDGED &amp; CLIMBING</span></div>
+        <svg viewBox="0 0 640 200">
+          <path class="risk-fill" d="M10 170 L70 150 L130 175 L190 120 L250 140 L310 90 L370 110 L430 60 L490 80 L550 35 L620 20 L620 190 L10 190 Z" fill="#14E1E1"/>
+          <path class="risk-line" d="M10 170 L70 150 L130 175 L190 120 L250 140 L310 90 L370 110 L430 60 L490 80 L550 35 L620 20"/>
+          <circle class="risk-dot" cx="620" cy="20" r="6"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="wrap">
+      <div class="intro-card">
+        <h2>Every worthwhile page is a calculated bet</h2>
+        <p>In <em>Worth the Risk</em>, economist Allison Schrager shows that total safety is an illusion — the real skill is sizing up a bet well: define the reward you're after, know your downside, and hedge it before you commit.</p>
+        <p>EasyLandX applies that same framework to landing pages. A bold, distinctive design earns more attention and more conversions than a safe, generic template — and we build in the safeguards that keep that boldness fully protected.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="process">
+    <div class="wrap">
+      <h2 class="section-title">The Risk Management Framework, Built Into Every Page</h2>
+      <p class="section-sub">Five moves, taken from professional risk management, that shape how EasyLandX plans and ships your page.</p>
+
+      <div class="rail">
+        <div class="rail-steps" role="tablist">
+          <button class="rail-step active" data-step="0"><span class="num">1</span><span class="lbl">Define the target &amp; reward</span></button>
+          <button class="rail-step" data-step="1"><span class="num">2</span><span class="lbl">Audit the downside</span></button>
+          <button class="rail-step" data-step="2"><span class="num">3</span><span class="lbl">Hedge against ruin</span></button>
+          <button class="rail-step" data-step="3"><span class="num">4</span><span class="lbl">Diversify exposure</span></button>
+          <button class="rail-step" data-step="4"><span class="num">5</span><span class="lbl">Rebalance &amp; adapt</span></button>
+        </div>
+
+        <div class="rail-detail" id="railDetail">
+          <div class="tag">STEP 01 / DEFINE TARGET &amp; REWARD</div>
+          <h3>Name the exact outcome</h3>
+          <p>Before any design work starts, we define precisely what a win looks like for your page — a booked call, a completed order, a signed-up lead. Every layout choice is made to serve that one target.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dial-section" id="dial">
+    <div class="wrap">
+      <div class="dial-card">
+        <div class="dial-head">
+          <h2>Try the risk dial</h2>
+          <p>Slide toward a bolder, more distinctive design and watch reward potential climb — while your safety net, the hedges EasyLandX builds in by default, stays strong the whole way.</p>
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-labels"><span>PLAY IT SAFE</span><span>TAKE THE CALCULATED LEAP</span></div>
+          <input type="range" id="riskSlider" min="0" max="100" value="35">
+        </div>
+
+        <div class="dial-readout">
+          <div class="meter reward">
+            <div class="mlabel">REWARD POTENTIAL</div>
+            <div class="mtrack"><div class="mfill" id="rewardFill" style="width:53%;"></div></div>
+            <div class="mval" id="rewardVal">53%</div>
+          </div>
+          <div class="meter safety">
+            <div class="mlabel">DOWNSIDE HEDGED</div>
+            <div class="mtrack"><div class="mfill" id="safetyFill" style="width:90%;"></div></div>
+            <div class="mval" id="safetyVal">90%</div>
+          </div>
+        </div>
+
+        <p class="dial-status" id="dialStatus">A <strong>balanced growth zone</strong> — distinctive enough to stand out, with every hedge already in place.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <div class="closing-card">
+        <h2>Take the calculated leap with your page</h2>
+        <p>EasyLandX designs affordable, conversion-focused landing pages for small businesses — bold enough to earn attention, hedged enough to protect every visit.</p>
+        <a class="btn-lime" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Inspired by <em>Worth the Risk</em>, Allison Schrager · Crafted by <a href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+  </div>
+</footer>
+
+<script>
+  // Process rail
+  var steps = document.querySelectorAll('.rail-step');
+  var detail = document.getElementById('railDetail');
+  var content = [
+    { tag:'STEP 01 / DEFINE TARGET & REWARD', h:'Name the exact outcome', p:'Before any design work starts, we define precisely what a win looks like for your page — a booked call, a completed order, a signed-up lead. Every layout choice is made to serve that one target.' },
+    { tag:'STEP 02 / AUDIT THE DOWNSIDE', h:'Know the worst case, first', p:'We check what could hold a section back — slow load times, confusing copy, an unclear offer — and solve for it before launch, not after your visitors arrive.' },
+    { tag:'STEP 03 / HEDGE AGAINST RUIN', h:'Build in safety nets', p:'Fast hosting, mobile-first layouts, and tested forms keep your page reliable, so a single hiccup never costs you a visit or a lead.' },
+    { tag:'STEP 04 / DIVERSIFY EXPOSURE', h:'Open more than one door', p:'Forms, direct email, click-to-call, and chat links give visitors more than one way to say yes — so no single channel carries all the weight.' },
+    { tag:'STEP 05 / REBALANCE & ADAPT', h:'Adjust as real data comes in', p:'Once your page is live, we watch how visitors actually behave and refine layout, copy, and offers to match — a page that keeps improving with evidence.' }
+  ];
+  steps.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      steps.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var i = parseInt(btn.dataset.step, 10);
+      detail.innerHTML = '<div class="tag">'+content[i].tag+'</div><h3>'+content[i].h+'</h3><p>'+content[i].p+'</p>';
+    });
+  });
+
+  // Risk dial
+  var slider = document.getElementById('riskSlider');
+  var rewardFill = document.getElementById('rewardFill');
+  var rewardVal = document.getElementById('rewardVal');
+  var safetyFill = document.getElementById('safetyFill');
+  var safetyVal = document.getElementById('safetyVal');
+  var status = document.getElementById('dialStatus');
+
+  function updateDial(){
+    var v = parseInt(slider.value, 10);
+    var reward = Math.round(30 + v * 0.65);
+    var safety = Math.round(88 + Math.sin(v/18) * 4);
+    rewardFill.style.width = reward + '%';
+    rewardVal.textContent = reward + '%';
+    safetyFill.style.width = safety + '%';
+    safetyVal.textContent = safety + '%';
+
+    if(v < 30){
+      status.innerHTML = 'A <strong>steady, comfortable start</strong> — dependable, with plenty of room to grow bolder later.';
+    } else if(v < 70){
+      status.innerHTML = 'A <strong>balanced growth zone</strong> — distinctive enough to stand out, with every hedge already in place.';
+    } else {
+      status.innerHTML = 'The <strong>calculated leap</strong> — a bold, memorable page, fully hedged so the upside stays yours to keep.';
+    }
+  }
+  slider.addEventListener('input', updateDial);
+  updateDial();
+</script>
+
+</body>
+</html>

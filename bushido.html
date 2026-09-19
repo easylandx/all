@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — The Way of the Landing Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --pink-1:#FF4F92;
+    --pink-2:#FF7CAE;
+    --pink-3:#D9386F;
+    --pink-deep:#7A1440;
+    --ink:#2B0F1E;
+    --ink-soft:#4A2337;
+    --silver:#DEE4EA;
+    --silver-bright:#F4F7FA;
+    --silver-line: rgba(222,228,234,.55);
+    --gold:#F0B429;
+    --gold-bright:#FFD65C;
+    --card-bg: rgba(43,15,30,0.92);
+    --card-border: rgba(222,228,234,0.35);
+    --shadow: 0 18px 44px rgba(122,20,64,0.28);
+  }
+
+  :root:not([data-theme="light"]){
+    /* dark mode defaults follow the system query below */
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --pink-1:#B62D65;
+      --pink-2:#8C2050;
+      --pink-3:#5C1338;
+      --pink-deep:#3A0A21;
+      --ink:#F4E9EE;
+      --ink-soft:#E3C7D3;
+      --card-bg: rgba(20,7,14,0.92);
+      --card-border: rgba(240,180,41,0.28);
+      --shadow: 0 18px 44px rgba(0,0,0,0.45);
+    }
+  }
+
+  :root[data-theme="dark"]{
+    --pink-1:#B62D65;
+    --pink-2:#8C2050;
+    --pink-3:#5C1338;
+    --pink-deep:#3A0A21;
+    --ink:#F4E9EE;
+    --ink-soft:#E3C7D3;
+    --card-bg: rgba(20,7,14,0.92);
+    --card-border: rgba(240,180,41,0.28);
+    --shadow: 0 18px 44px rgba(0,0,0,0.45);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% -10%, var(--pink-2), transparent 55%),
+      radial-gradient(circle at 100% 10%, var(--gold) 0%, transparent 30%),
+      linear-gradient(160deg, var(--pink-1) 0%, var(--pink-3) 55%, var(--pink-deep) 100%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x:hidden;
+  }
+
+  ::selection{ background: var(--gold); color: var(--pink-deep); }
+
+  a{ color:inherit; }
+  button{ font-family:inherit; }
+
+  .wrap{ max-width: 1040px; margin:0 auto; padding: 0 28px; }
+
+  header.site{
+    position: sticky; top:0; z-index: 40;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(180deg, rgba(122,20,64,0.55), rgba(122,20,64,0.18));
+    border-bottom: 1px solid var(--silver-line);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 0;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Shippori Mincho', serif;
+    font-weight:800; letter-spacing:.01em;
+    font-size: 1.25rem;
+    color: var(--silver-bright);
+  }
+  .brand .mark{
+    width:30px; height:30px; display:block;
+  }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+    color: var(--pink-deep);
+    font-weight:900;
+    padding: 10px 20px;
+    border-radius: 999px;
+    text-decoration:none;
+    font-size:.92rem;
+    box-shadow: 0 8px 20px rgba(240,180,41,0.35);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .nav-cta:hover{ transform: translateY(-2px); box-shadow: 0 12px 26px rgba(240,180,41,0.5); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 0 70px;
+    position:relative;
+    text-align:center;
+  }
+  .hero .eyebrow{
+    color: var(--gold-bright);
+    font-family:'Shippori Mincho', serif;
+    font-size: 1rem;
+    letter-spacing: .12em;
+    margin-bottom: 18px;
+  }
+  .hero h1{
+    font-family:'Shippori Mincho', serif;
+    font-weight:800;
+    font-size: clamp(2.4rem, 5.4vw, 4.2rem);
+    line-height:1.14;
+    margin: 0 0 22px;
+    color: var(--silver-bright);
+    text-shadow: 0 2px 30px rgba(0,0,0,0.25);
+  }
+  .hero p.lede{
+    max-width: 620px;
+    margin: 0 auto 40px;
+    font-size: 1.15rem;
+    line-height:1.7;
+    color: var(--silver);
+  }
+  .hero-actions{
+    display:flex; gap:16px; justify-content:center; flex-wrap:wrap;
+  }
+  .btn-gold{
+    display:inline-flex; align-items:center; gap:10px;
+    background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+    color: var(--pink-deep);
+    font-weight:900;
+    font-size:1.02rem;
+    padding: 16px 34px;
+    border-radius: 999px;
+    text-decoration:none;
+    box-shadow: 0 12px 30px rgba(240,180,41,0.4);
+    transition: transform .25s ease, box-shadow .25s ease;
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+  .btn-gold:hover{ transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 40px rgba(240,180,41,0.55); }
+  .btn-ghost{
+    display:inline-flex; align-items:center; gap:10px;
+    background: transparent;
+    color: var(--silver-bright);
+    font-weight:700;
+    font-size:1.02rem;
+    padding: 15px 30px;
+    border-radius: 999px;
+    border: 1px solid var(--silver-line);
+    text-decoration:none;
+    transition: background .25s ease, border-color .25s ease;
+  }
+  .btn-ghost:hover{ background: rgba(222,228,234,0.12); border-color: var(--silver-bright); }
+
+  /* blade svg */
+  .blade-wrap{ margin: 54px auto 0; max-width: 720px; }
+  .blade-wrap svg{ width:100%; height:auto; display:block; }
+  .blade-path{
+    fill:none;
+    stroke: var(--silver-bright);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 6px rgba(244,247,250,0.55));
+  }
+  .blade-edge{
+    fill:none;
+    stroke: var(--gold-bright);
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 8px rgba(255,214,92,0.7));
+  }
+  .blade-dot{ fill: var(--gold-bright); filter: drop-shadow(0 0 6px rgba(255,214,92,0.9)); }
+
+  @media (prefers-reduced-motion: no-preference){
+    .blade-path, .blade-edge{
+      stroke-dasharray: 900;
+      stroke-dashoffset: 900;
+      animation: draw 2.2s cubic-bezier(.4,0,.2,1) forwards;
+      animation-delay: .2s;
+    }
+    .blade-dot{ opacity:0; animation: dotIn .6s ease forwards; animation-delay: 2.1s; }
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @keyframes dotIn{ to{ opacity:1; } }
+
+  /* ---------- INTRO ---------- */
+  .intro{
+    padding: 20px 0 80px;
+  }
+  .intro-card{
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 22px;
+    padding: 40px clamp(24px,5vw,56px);
+    box-shadow: var(--shadow);
+    text-align:center;
+  }
+  .intro-card h2{
+    font-family:'Shippori Mincho', serif;
+    color: var(--gold-bright);
+    font-size: 1.7rem;
+    margin: 0 0 18px;
+    font-weight:700;
+  }
+  .intro-card p{
+    color: var(--silver);
+    font-size:1.06rem;
+    line-height:1.8;
+    max-width: 660px;
+    margin: 0 auto;
+  }
+  .intro-card p + p{ margin-top:14px; }
+
+  /* ---------- VIRTUES PATH ---------- */
+  .virtues{ padding: 20px 0 90px; position:relative; }
+  .virtues > .wrap > h2.section-title{
+    text-align:center;
+    font-family:'Shippori Mincho', serif;
+    font-weight:800;
+    font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+    color: var(--silver-bright);
+    margin: 0 0 8px;
+  }
+  .section-sub{
+    text-align:center;
+    color: var(--silver);
+    max-width: 560px;
+    margin: 0 auto 56px;
+    line-height:1.7;
+  }
+
+  .path{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap: 0;
+  }
+  .path::before{
+    content:"";
+    position:absolute;
+    left: 39px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold-bright), var(--silver) 40%, var(--gold-bright) 100%);
+    opacity:.55;
+  }
+
+  .virtue{
+    position:relative;
+    display:grid;
+    grid-template-columns: 80px 1fr;
+    gap: 20px;
+    padding: 18px 0;
+  }
+  .virtue .node{
+    position:relative;
+    z-index:2;
+    width:80px; height:80px;
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, var(--gold-bright), var(--gold) 60%, var(--pink-deep) 100%);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 0 0 4px rgba(43,15,30,0.6), 0 10px 24px rgba(0,0,0,0.35);
+    font-family:'Shippori Mincho', serif;
+    font-weight:800;
+    color: var(--pink-deep);
+    font-size:1.7rem;
+  }
+  .virtue-card{
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 22px 26px;
+    cursor:pointer;
+    box-shadow: var(--shadow);
+    transition: border-color .25s ease;
+  }
+  .virtue-card:hover, .virtue-card:focus-visible{
+    border-color: var(--gold-bright);
+    outline: none;
+  }
+  .virtue-head{
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+  }
+  .virtue-titles{ display:flex; flex-direction:column; gap:4px; }
+  .virtue-kanji{
+    font-family:'Shippori Mincho', serif;
+    color: var(--gold-bright);
+    font-size:.9rem;
+    letter-spacing:.06em;
+  }
+  .virtue-name{
+    font-family:'Shippori Mincho', serif;
+    font-weight:700;
+    font-size:1.28rem;
+    color: var(--silver-bright);
+  }
+  .virtue-tag{
+    color: var(--silver);
+    font-size:.92rem;
+    font-weight:500;
+  }
+  .chevron{
+    width:22px; height:22px;
+    flex-shrink:0;
+    color: var(--gold-bright);
+    transition: transform .3s ease;
+  }
+  .virtue-card[aria-expanded="true"] .chevron{ transform: rotate(180deg); }
+
+  .virtue-panel{
+    display:grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .38s ease;
+  }
+  .virtue-card[aria-expanded="true"] .virtue-panel{ grid-template-rows: 1fr; }
+  .virtue-panel-inner{ overflow:hidden; }
+  .virtue-panel p{
+    margin: 18px 0 4px;
+    padding-top: 16px;
+    border-top: 1px solid var(--silver-line);
+    color: var(--silver);
+    line-height:1.75;
+    font-size: .99rem;
+  }
+  .virtue-panel .apply-label{
+    display:inline-block;
+    font-family:'Shippori Mincho', serif;
+    color: var(--gold-bright);
+    font-size:.86rem;
+    letter-spacing:.04em;
+    margin-top:16px;
+  }
+
+  /* ---------- CLOSING CTA ---------- */
+  .closing{
+    padding: 20px 0 100px;
+    text-align:center;
+  }
+  .closing-card{
+    background: linear-gradient(135deg, rgba(240,180,41,0.14), rgba(222,228,234,0.06));
+    border: 1px solid var(--card-border);
+    border-radius: 26px;
+    padding: 56px clamp(24px,6vw,64px);
+    box-shadow: var(--shadow);
+  }
+  .closing h2{
+    font-family:'Shippori Mincho', serif;
+    color: var(--silver-bright);
+    font-size: clamp(1.7rem, 3.6vw, 2.4rem);
+    margin: 0 0 16px;
+  }
+  .closing p{
+    color: var(--silver);
+    max-width: 560px;
+    margin: 0 auto 34px;
+    line-height:1.75;
+  }
+
+  footer{
+    text-align:center;
+    padding: 26px 0 40px;
+    color: var(--silver);
+    font-size:.86rem;
+    opacity:.85;
+  }
+  footer a{ color: var(--gold-bright); text-decoration:none; font-weight:700; }
+  footer a:hover{ text-decoration:underline; }
+
+  @media (max-width: 620px){
+    .virtue{ grid-template-columns: 56px 1fr; gap:14px; }
+    .virtue .node{ width:56px; height:56px; font-size:1.2rem; }
+    .path::before{ left:27px; }
+    .nav-cta span.long{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="none" stroke="#F0B429" stroke-width="1.6"/>
+        <path d="M9 20 L23 8" stroke="#F4F7FA" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M9 20 L11.4 20.6 L10.8 18.2 Z" fill="#F0B429"/>
+      </svg>
+      EasyLandX
+    </div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">
+      <span class="long">Visit</span> easylandx.github.io
+    </a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">道 — The Way of the Landing Page</p>
+      <h1>Seven virtues.<br>One page built to earn trust.</h1>
+      <p class="lede">EasyLandX designs affordable, conversion-ready landing pages for small businesses — shaped by the same discipline that guided the samurai: clarity, courage, and complete sincerity in every detail.</p>
+      <div class="hero-actions">
+        <a class="btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">Explore EasyLandX →</a>
+        <a class="btn-ghost" href="#virtues">See the seven virtues</a>
+      </div>
+
+      <div class="blade-wrap" aria-hidden="true">
+        <svg viewBox="0 0 700 90">
+          <path class="blade-path" d="M20 70 C 160 70, 240 20, 420 20 L 640 20"/>
+          <path class="blade-edge" d="M20 70 C 160 70, 240 20, 420 20 L 640 20"/>
+          <circle class="blade-dot" cx="640" cy="20" r="5"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="wrap">
+      <div class="intro-card">
+        <h2>Bushido, applied to the web</h2>
+        <p>In 1899, Inazo Nitobe wrote <em>Bushido: The Soul of Japan</em> to explain the unwritten code that shaped the samurai — a fusion of Buddhist composure, Shinto loyalty, and Confucian duty, built entirely around honor, courtesy, and sincere action.</p>
+        <p>EasyLandX borrows that same discipline for the craft of building landing pages. Every project we ship for a small business follows the same seven virtues that guided the warrior's path — turned into a practical standard for design, copy, and craftsmanship.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="virtues" id="virtues">
+    <div class="wrap">
+      <h2 class="section-title">The Seven Virtues, Built Into Every Page</h2>
+      <p class="section-sub">Tap any virtue to see how it shapes the way EasyLandX designs, writes, and ships your landing page.</p>
+
+      <div class="path">
+
+        <article class="virtue">
+          <div class="node">義</div>
+          <div class="virtue-card" tabindex="0" role="button" aria-expanded="false">
+            <div class="virtue-head">
+              <div class="virtue-titles">
+                <span class="virtue-kanji">GI · Rectitude</span>
+                <span class="virtue-name">One clear, honest purpose</span>
+                <span class="virtue-tag">Every page opens with a single, true promise</span>
+              </div>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="virtue-panel"><div class="virtue-panel-inner">
+              <p>Rectitude is the backbone of character — deciding on the right course and holding to it. On an EasyLandX page, that means the headline says exactly what the business offers, the value is stated plainly, and every visitor knows precisely what they're being invited to do.</p>
+              <span class="apply-label">Applied as: a single clear promise above the fold</span>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="virtue">
+          <div class="node">勇</div>
+          <div class="virtue-card" tabindex="0" role="button" aria-expanded="false">
+            <div class="virtue-head">
+              <div class="virtue-titles">
+                <span class="virtue-kanji">YU · Courage</span>
+                <span class="virtue-name">Decisive design, confident calls to action</span>
+                <span class="virtue-tag">Bold layouts that move visitors forward</span>
+              </div>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="virtue-panel"><div class="virtue-panel-inner">
+              <p>Courage is righteous action taken without hesitation. We design pages that commit fully to one strong idea and one confident call to action, so visitors always know exactly what step to take next.</p>
+              <span class="apply-label">Applied as: one hero, one clear action</span>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="virtue">
+          <div class="node">仁</div>
+          <div class="virtue-card" tabindex="0" role="button" aria-expanded="false">
+            <div class="virtue-head">
+              <div class="virtue-titles">
+                <span class="virtue-kanji">JIN · Benevolence</span>
+                <span class="virtue-name">Every layout built around the visitor</span>
+                <span class="virtue-tag">Compassion for how people actually browse</span>
+              </div>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="virtue-panel"><div class="virtue-panel-inner">
+              <p>Benevolence shines brightest when it protects the vulnerable. Applied to design, that means fast load times, generous spacing, and legible type — a page that meets a first-time visitor with genuine care rather than friction.</p>
+              <span class="apply-label">Applied as: fast, gentle, easy-to-read pages</span>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="virtue">
+          <div class="node">礼</div>
+          <div class="virtue-card" tabindex="0" role="button" aria-expanded="false">
+            <div class="virtue-head">
+              <div class="virtue-titles">
+                <span class="virtue-kanji">REI · Respect &amp; Courtesy</span>
+                <span class="virtue-name">Polished craft in every detail</span>
+                <span class="virtue-tag">Courtesy expressed through careful design</span>
+              </div>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="virtue-panel"><div class="virtue-panel-inner">
+              <p>Courtesy is love in action, not empty etiquette. We treat alignment, spacing, and typography as an expression of respect for the visitor — every pixel considered, nothing left careless.</p>
+              <span class="apply-label">Applied as: refined typography and spacing</span>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="virtue">
+          <div class="node">誠</div>
+          <div class="virtue-card" tabindex="0" role="button" aria-expanded="false">
+            <div class="virtue-head">
+              <div class="virtue-titles">
+                <span class="virtue-kanji">MAKOTO · Sincerity</span>
+                <span class="virtue-name">Words that match reality</span>
+                <span class="virtue-tag">Copy as good as a spoken promise</span>
+              </div>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="virtue-panel"><div class="virtue-panel-inner">
+              <p>To a samurai, a spoken intention carried the full weight of a written oath. Every word on an EasyLandX page is held to that same standard — the copy says only what the business can truly deliver, plainly and transparently.</p>
+              <span class="apply-label">Applied as: honest copy, transparent pricing</span>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="virtue">
+          <div class="node">名誉</div>
+          <div class="virtue-card" tabindex="0" role="button" aria-expanded="false">
+            <div class="virtue-head">
+              <div class="virtue-titles">
+                <span class="virtue-kanji">MEIYO · Honor</span>
+                <span class="virtue-name">A brand's true character, on display</span>
+                <span class="virtue-tag">Design that earns trust at first glance</span>
+              </div>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="virtue-panel"><div class="virtue-panel-inner">
+              <p>Personal dignity was the samurai's measure of worth. For a small business, a landing page carries that same weight — it's often the very first impression. We build pages that represent the business's true character with pride and consistency.</p>
+              <span class="apply-label">Applied as: consistent, trust-building branding</span>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="virtue">
+          <div class="node">忠</div>
+          <div class="virtue-card" tabindex="0" role="button" aria-expanded="false">
+            <div class="virtue-head">
+              <div class="virtue-titles">
+                <span class="virtue-kanji">CHUGI · Loyalty &amp; Duty</span>
+                <span class="virtue-name">A lasting partnership, not a one-time build</span>
+                <span class="virtue-tag">Faithful support long after launch</span>
+              </div>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="virtue-panel"><div class="virtue-panel-inner">
+              <p>Loyalty to one's calling was the samurai's highest duty. EasyLandX stays committed to every client's growth well beyond delivery day — refining, supporting, and standing behind each page we build.</p>
+              <span class="apply-label">Applied as: ongoing care for every client</span>
+            </div></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <div class="closing-card">
+        <h2>Build your page with the same discipline</h2>
+        <p>EasyLandX creates affordable, conversion-focused landing pages for small businesses — crafted with clarity, courage, and complete sincerity, from the first sketch to the final pixel.</p>
+        <a class="btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Inspired by <em>Bushido: The Soul of Japan</em>, Inazo Nitobe (1899) · Crafted by <a href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.virtue-card').forEach(function(card){
+    function toggle(){
+      var expanded = card.getAttribute('aria-expanded') === 'true';
+      card.setAttribute('aria-expanded', String(!expanded));
+    }
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

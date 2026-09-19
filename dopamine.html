@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Landing pages built for your brain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --magenta: #E4007C;
+    --magenta-deep: #AD0062;
+    --magenta-darker: #74003F;
+    --cyan: #00F0FF;
+    --yellow: #F5FF3D;
+    --ink: #FFF6FB;
+    --ink-dim: rgba(255,246,251,0.78);
+    --ink-faint: rgba(255,246,251,0.5);
+    --radius: 18px;
+    --serif: "Space Grotesk", "Manrope", sans-serif;
+    --sans: "Manrope", sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --magenta: #E4007C;
+      --magenta-deep: #AD0062;
+      --magenta-darker: #63003A;
+      --ink: #FFF6FB;
+    }
+  }
+  :root[data-theme="dark"]{
+    --magenta: #E4007C;
+    --magenta-deep: #AD0062;
+    --magenta-darker: #63003A;
+    --ink: #FFF6FB;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--magenta);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;}
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter: blur(10px);
+    background:rgba(228,0,124,0.82);
+    border-bottom:1px solid rgba(255,246,251,0.14);
+  }
+  .header-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+  }
+  .logo{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:1.25rem;
+    letter-spacing:-0.01em;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--yellow);
+    box-shadow:0 0 12px 2px var(--yellow);
+  }
+  nav{display:flex; gap:26px; align-items:center;}
+  nav a.navlink{
+    font-size:0.92rem; color:var(--ink-dim); text-decoration:none;
+    transition:color .2s ease;
+  }
+  nav a.navlink:hover{color:var(--cyan);}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--sans);
+    font-weight:700;
+    font-size:0.95rem;
+    padding:12px 22px;
+    border-radius:999px;
+    text-decoration:none;
+    cursor:pointer;
+    border:none;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn:active{transform:scale(0.97);}
+  .btn-cyan{
+    background:var(--cyan);
+    color:#012026;
+    box-shadow:0 0 0 0 rgba(0,240,255,0.6);
+  }
+  .btn-cyan:hover{
+    box-shadow:0 0 26px 4px rgba(0,240,255,0.55);
+    transform:translateY(-2px);
+  }
+  .btn-yellow{
+    background:var(--yellow);
+    color:#2b2800;
+  }
+  .btn-yellow:hover{
+    box-shadow:0 0 26px 4px rgba(245,255,61,0.55);
+    transform:translateY(-2px);
+  }
+  .btn-outline{
+    background:transparent;
+    border:1.5px solid rgba(255,246,251,0.5);
+    color:var(--ink);
+  }
+  .btn-outline:hover{
+    border-color:var(--cyan);
+    color:var(--cyan);
+  }
+  .btn-sm{padding:9px 16px; font-size:0.85rem;}
+  header .btn{padding:10px 18px; font-size:0.88rem;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:96px 0 64px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:48px;
+    align-items:center;
+  }
+  .eyebrow-line{
+    font-size:0.95rem;
+    color:var(--yellow);
+    font-weight:600;
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:var(--serif);
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.06;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    margin:0 0 22px;
+    opacity:0;
+    transform:translateY(14px);
+    animation:riseIn .8s ease forwards .15s;
+  }
+  .lede{
+    font-size:1.15rem;
+    color:var(--ink-dim);
+    max-width:46ch;
+    margin:0 0 34px;
+    opacity:0;
+    transform:translateY(14px);
+    animation:riseIn .8s ease forwards .32s;
+  }
+  .hero-actions{
+    display:flex; gap:16px; flex-wrap:wrap;
+    opacity:0;
+    transform:translateY(14px);
+    animation:riseIn .8s ease forwards .48s;
+  }
+  @keyframes riseIn{ to{opacity:1; transform:translateY(0);} }
+  @media (prefers-reduced-motion: reduce){
+    h1,.lede,.hero-actions{animation:none; opacity:1; transform:none;}
+  }
+
+  .wave-card{
+    background:var(--magenta-deep);
+    border-radius:var(--radius);
+    padding:26px 22px 20px;
+    border:1px solid rgba(255,246,251,0.12);
+  }
+  .wave-card h3{
+    font-family:var(--serif);
+    margin:0 0 4px;
+    font-size:1.02rem;
+  }
+  .wave-card p{
+    margin:0 0 14px;
+    font-size:0.85rem;
+    color:var(--ink-faint);
+  }
+  svg#wave{ display:block; width:100%; height:auto; }
+  .wave-path{
+    fill:none;
+    stroke:var(--cyan);
+    stroke-width:3;
+    stroke-linecap:round;
+    filter:drop-shadow(0 0 6px rgba(0,240,255,0.7));
+    stroke-dasharray:1200;
+    stroke-dashoffset:1200;
+    animation:drawWave 2.6s ease forwards .5s, floatWave 5s ease-in-out infinite 3.1s;
+  }
+  .wave-path2{
+    fill:none;
+    stroke:var(--yellow);
+    stroke-width:2;
+    stroke-linecap:round;
+    opacity:0.55;
+    filter:drop-shadow(0 0 5px rgba(245,255,61,0.6));
+    stroke-dasharray:1200;
+    stroke-dashoffset:1200;
+    animation:drawWave 2.6s ease forwards .8s, floatWave 6s ease-in-out infinite 3.4s reverse;
+  }
+  @keyframes drawWave{ to{stroke-dashoffset:0;} }
+  @keyframes floatWave{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-4px);} }
+  @media (prefers-reduced-motion: reduce){
+    .wave-path,.wave-path2{animation:none; stroke-dashoffset:0;}
+  }
+
+  /* ---------- Sections ---------- */
+  section{padding:70px 0;}
+  .section-head{max-width:640px; margin:0 0 40px;}
+  h2{
+    font-family:var(--serif);
+    font-size:clamp(1.7rem, 3vw, 2.3rem);
+    font-weight:700;
+    letter-spacing:-0.01em;
+    margin:0 0 14px;
+  }
+  .section-head p{
+    color:var(--ink-dim);
+    font-size:1.05rem;
+    margin:0;
+  }
+
+  .engine-panel{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+    background:var(--magenta-deep);
+    border-radius:24px;
+    padding:44px;
+    border:1px solid rgba(255,246,251,0.1);
+  }
+  .engine-panel p{color:var(--ink-dim); font-size:1.02rem;}
+  .stat-row{display:flex; gap:28px; margin-top:24px; flex-wrap:wrap;}
+  .stat{min-width:120px;}
+  .stat .num{
+    font-family:var(--serif);
+    font-size:2.1rem;
+    font-weight:700;
+    color:var(--cyan);
+  }
+  .stat .lbl{font-size:0.82rem; color:var(--ink-faint);}
+
+  .pulse-orb{
+    position:relative;
+    width:100%;
+    aspect-ratio:1/1;
+    max-width:280px;
+    margin:0 auto;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, rgba(0,240,255,0.5), transparent 60%),
+               radial-gradient(circle at 65% 70%, rgba(245,255,61,0.4), transparent 60%),
+               var(--magenta-darker);
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid rgba(255,246,251,0.12);
+  }
+  .pulse-orb::before{
+    content:"";
+    position:absolute; inset:0;
+    border-radius:50%;
+    border:2px solid rgba(0,240,255,0.5);
+    animation:orbPulse 2.8s ease-out infinite;
+  }
+  @keyframes orbPulse{
+    0%{transform:scale(0.9); opacity:0.9;}
+    100%{transform:scale(1.35); opacity:0;}
+  }
+  @media (prefers-reduced-motion: reduce){ .pulse-orb::before{animation:none;} }
+  .pulse-orb span{
+    font-family:var(--serif); font-weight:700; font-size:1rem; text-align:center;
+    color:var(--ink);
+  }
+
+  /* ---------- Framework ---------- */
+  .momentum-wrap{
+    display:flex; align-items:center; gap:14px;
+    margin-bottom:34px;
+    background:var(--magenta-deep);
+    border-radius:999px;
+    padding:10px 18px 10px 10px;
+    width:fit-content;
+    border:1px solid rgba(255,246,251,0.12);
+  }
+  .ring-box{position:relative; width:52px; height:52px;}
+  .ring-box svg{transform:rotate(-90deg);}
+  .ring-bg{fill:none; stroke:rgba(255,246,251,0.15); stroke-width:5;}
+  .ring-fg{
+    fill:none; stroke:var(--cyan); stroke-width:5; stroke-linecap:round;
+    stroke-dasharray:138; stroke-dashoffset:138;
+    transition:stroke-dashoffset .5s ease;
+    filter:drop-shadow(0 0 5px rgba(0,240,255,0.7));
+  }
+  .ring-label{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:0.68rem; font-weight:700; font-family:var(--serif);
+  }
+  #momentum-text{font-size:0.88rem; color:var(--ink-dim);}
+  #momentum-text b{color:var(--yellow);}
+
+  .flow{
+    display:flex; flex-direction:column; align-items:center; gap:0;
+  }
+  .flow-arrow{
+    width:2px; height:30px;
+    background:linear-gradient(var(--cyan), transparent);
+    margin:2px 0;
+  }
+  .step-card.top, .step-card.wide{width:100%; max-width:640px;}
+  .branch-row{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+    width:100%; margin-top:0;
+  }
+  .step-card{
+    background:var(--magenta-deep);
+    border:1px solid rgba(255,246,251,0.12);
+    border-radius:16px;
+    padding:22px 22px 20px;
+    cursor:pointer;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .step-card:hover{border-color:rgba(0,240,255,0.5);}
+  .step-card.active{
+    background:var(--magenta-darker);
+    border-color:var(--cyan);
+    box-shadow:0 0 0 1px var(--cyan), 0 0 24px rgba(0,240,255,0.25);
+  }
+  .step-top{display:flex; align-items:center; gap:12px;}
+  .step-num{
+    font-family:var(--serif); font-weight:700; font-size:0.85rem;
+    color:var(--magenta-darker);
+    background:var(--yellow);
+    width:30px; height:30px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .step-card.active .step-num{background:var(--cyan);}
+  .step-title{font-family:var(--serif); font-weight:600; font-size:1.02rem;}
+  .step-sub{font-size:0.85rem; color:var(--ink-faint); margin:4px 0 0 42px;}
+  .step-detail{
+    max-height:0; overflow:hidden; opacity:0;
+    transition:max-height .35s ease, opacity .3s ease, margin .3s ease;
+    font-size:0.9rem; color:var(--ink-dim); margin-left:42px;
+  }
+  .step-card.active .step-detail{
+    max-height:200px; opacity:1; margin-top:12px;
+  }
+
+  /* ---------- Quick wins ---------- */
+  .checklist-panel{
+    background:var(--magenta-deep);
+    border-radius:24px;
+    padding:40px;
+    border:1px solid rgba(255,246,251,0.1);
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:44px;
+    align-items:start;
+  }
+  .checklist{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px;}
+  .checklist li{
+    display:flex; align-items:center; gap:14px;
+    background:var(--magenta-darker);
+    border-radius:12px;
+    padding:14px 16px;
+    border:1px solid rgba(255,246,251,0.08);
+    transition:border-color .2s ease;
+  }
+  .checklist li.checked{border-color:var(--yellow);}
+  .checklist input[type="checkbox"]{
+    appearance:none; -webkit-appearance:none;
+    width:22px; height:22px; border-radius:6px;
+    border:2px solid var(--ink-faint);
+    display:grid; place-content:center;
+    cursor:pointer; flex-shrink:0;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .checklist input[type="checkbox"]::after{
+    content:"";
+    width:12px; height:12px;
+    clip-path:polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 45% 62%);
+    background:#2b2800;
+    transform:scale(0);
+    transition:transform .18s ease;
+  }
+  .checklist input[type="checkbox"]:checked{
+    background:var(--yellow); border-color:var(--yellow);
+  }
+  .checklist input[type="checkbox"]:checked::after{transform:scale(1);}
+  .checklist label{font-size:0.95rem; cursor:pointer;}
+  .checklist li.checked label{color:var(--ink); text-decoration:line-through; text-decoration-color:var(--yellow); opacity:0.85;}
+
+  .momentum-side{
+    background:var(--magenta-darker);
+    border-radius:16px;
+    padding:26px;
+    text-align:center;
+    border:1px solid rgba(255,246,251,0.1);
+  }
+  #win-count{
+    font-family:var(--serif); font-weight:700; font-size:2.6rem; color:var(--yellow);
+    display:block;
+    text-shadow:0 0 18px rgba(245,255,61,0.5);
+  }
+  .win-bar-track{
+    width:100%; height:10px; border-radius:999px;
+    background:rgba(255,246,251,0.15);
+    margin:16px 0 12px;
+    overflow:hidden;
+  }
+  .win-bar-fill{
+    height:100%; width:0%;
+    background:linear-gradient(90deg, var(--cyan), var(--yellow));
+    border-radius:999px;
+    transition:width .45s ease;
+  }
+  #win-msg{font-size:0.9rem; color:var(--ink-dim); min-height:2.4em;}
+
+  /* ---------- Energy blocks ---------- */
+  .energy-toggle{
+    display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px;
+  }
+  .mode-btn{
+    font-family:var(--sans); font-weight:700; font-size:0.9rem;
+    padding:11px 20px; border-radius:999px;
+    border:1.5px solid rgba(255,246,251,0.3);
+    background:transparent; color:var(--ink-dim);
+    cursor:pointer; transition:all .2s ease;
+  }
+  .mode-btn.on{
+    color:var(--magenta-darker);
+    border-color:transparent;
+  }
+  .mode-btn[data-mode="focus"].on{background:var(--cyan);}
+  .mode-btn[data-mode="social"].on{background:var(--yellow);}
+  .mode-btn[data-mode="admin"].on{background:var(--ink); color:var(--magenta-deep);}
+
+  .energy-display{
+    background:var(--magenta-deep);
+    border-radius:20px;
+    padding:38px;
+    border:2px solid var(--cyan);
+    transition:border-color .3s ease, box-shadow .3s ease;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:26px;
+    align-items:flex-start;
+  }
+  .energy-display.social{border-color:var(--yellow); box-shadow:0 0 32px rgba(245,255,61,0.18);}
+  .energy-display.focus{border-color:var(--cyan); box-shadow:0 0 32px rgba(0,240,255,0.18);}
+  .energy-display.admin{border-color:var(--ink); box-shadow:0 0 32px rgba(255,246,251,0.14);}
+  .energy-icon{
+    width:52px; height:52px; border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem; flex-shrink:0;
+    background:var(--magenta-darker);
+  }
+  .energy-display h3{font-family:var(--serif); margin:0 0 8px; font-size:1.2rem;}
+  .energy-display p{color:var(--ink-dim); margin:0 0 14px; font-size:0.97rem;}
+  .energy-tasks{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
+  .energy-tasks li{
+    font-size:0.9rem; color:var(--ink-dim);
+    padding-left:20px; position:relative;
+  }
+  .energy-tasks li::before{
+    content:"";
+    position:absolute; left:0; top:0.55em;
+    width:7px; height:7px; border-radius:50%;
+    background:var(--yellow);
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    text-align:center;
+    background:linear-gradient(160deg, var(--magenta-deep), var(--magenta-darker));
+    border-radius:28px;
+    padding:70px 30px;
+    border:1px solid rgba(255,246,251,0.1);
+  }
+  .final-cta h2{margin-bottom:12px;}
+  .final-cta p{color:var(--ink-dim); max-width:52ch; margin:0 auto 30px; font-size:1.05rem;}
+  .final-actions{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+
+  footer{
+    padding:36px 0 50px;
+    text-align:center;
+    color:var(--ink-faint);
+    font-size:0.85rem;
+  }
+  footer a{color:var(--ink-dim); text-decoration:underline; text-underline-offset:3px;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:860px){
+    nav{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .engine-panel{grid-template-columns:1fr; padding:30px;}
+    .branch-row{grid-template-columns:1fr;}
+    .checklist-panel{grid-template-columns:1fr; padding:28px;}
+    .energy-display{grid-template-columns:1fr;}
+  }
+
+  :focus-visible{outline:2px solid var(--yellow); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-row">
+    <div class="logo"><span class="dot"></span>EasyLandX</div>
+    <nav>
+      <a class="navlink" href="#framework">Framework</a>
+      <a class="navlink" href="#quickwins">Quick wins</a>
+      <a class="navlink" href="#energy">Energy blocks</a>
+    </nav>
+    <a class="btn btn-cyan" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch EasyLandX</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow-line">Built for the interest-based nervous system</div>
+        <h1>Landing pages built the way your brain already works.</h1>
+        <p class="lede">EasyLandX turns novelty, urgency, and hyperfocus into a page that ships today — powered by quick wins instead of willpower.</p>
+        <div class="hero-actions">
+          <a class="btn btn-yellow" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch EasyLandX →</a>
+          <a class="btn btn-outline" href="#framework">See the framework</a>
+        </div>
+      </div>
+      <div class="wave-card">
+        <h3>Your dopamine wave</h3>
+        <p>Every page-building session rides its own energy curve. EasyLandX matches the work to the wave.</p>
+        <svg id="wave" viewBox="0 0 400 140" preserveAspectRatio="none">
+          <path class="wave-path" d="M0,90 C40,20 80,150 120,70 C160,10 200,130 240,60 C280,10 320,110 360,50 C380,25 390,60 400,45" />
+          <path class="wave-path2" d="M0,60 C40,120 80,10 120,90 C160,140 200,30 240,100 C280,140 320,40 360,90 C380,110 390,70 400,90" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTEREST ENGINE -->
+  <section id="engine">
+    <div class="wrap">
+      <div class="engine-panel">
+        <div>
+          <h2>Your energy runs on interest — so EasyLandX builds around it.</h2>
+          <p>Standard page builders assume steady focus and a long to-do list. EasyLandX assumes something better: that you move fastest when a task feels new, urgent, or genuinely exciting. Every layout, prompt, and shortcut is designed to meet that energy the moment it shows up.</p>
+          <div class="stat-row">
+            <div class="stat"><span class="num">3</span><div class="lbl">clicks to a live page</div></div>
+            <div class="stat"><span class="num">1</span><div class="lbl">headline to start</div></div>
+            <div class="stat"><span class="num">∞</span><div class="lbl">room for your spark</div></div>
+          </div>
+        </div>
+        <div class="pulse-orb"><span>Interest<br>Powered</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRAMEWORK -->
+  <section id="framework">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The EasyLandX framework</h2>
+        <p>Five steps, matched to how your attention naturally moves. Tap each one to open it up.</p>
+      </div>
+
+      <div class="momentum-wrap">
+        <div class="ring-box">
+          <svg viewBox="0 0 50 50" width="52" height="52">
+            <circle class="ring-bg" cx="25" cy="25" r="22"></circle>
+            <circle class="ring-fg" id="ring-fg" cx="25" cy="25" r="22"></circle>
+          </svg>
+          <div class="ring-label" id="ring-label">0%</div>
+        </div>
+        <div id="momentum-text">Momentum: <b>tap a step</b> to open it</div>
+      </div>
+
+      <div class="flow">
+        <div class="step-card top" data-step="1">
+          <div class="step-top">
+            <div class="step-num">1</div>
+            <div class="step-title">Spot your spark</div>
+          </div>
+          <div class="step-sub">Find what already pulls your attention toward this page.</div>
+          <div class="step-detail">Name the one part of your offer that excites you most right now. EasyLandX opens the builder straight on that section first, so the page starts from genuine interest instead of a blank top-to-bottom list.</div>
+        </div>
+
+        <div class="flow-arrow"></div>
+
+        <div class="step-card top" data-step="2">
+          <div class="step-top">
+            <div class="step-num">2</div>
+            <div class="step-title">Build your interest engine</div>
+          </div>
+          <div class="step-sub">Center the whole page around what genuinely energizes you.</div>
+          <div class="step-detail">EasyLandX suggests headline and section options that echo the language you're excited to use, so the page reads like you — and keeps you coming back to finish it.</div>
+        </div>
+
+        <div class="flow-arrow"></div>
+
+        <div class="branch-row">
+          <div class="step-card" data-step="3">
+            <div class="step-top">
+              <div class="step-num">3</div>
+              <div class="step-title">Shrink the first step</div>
+            </div>
+            <div class="step-sub">One tiny action to begin.</div>
+            <div class="step-detail">"Add a headline" is the entire first prompt. Every EasyLandX block starts with a one-line action, so momentum starts in seconds.</div>
+          </div>
+          <div class="step-card" data-step="4">
+            <div class="step-top">
+              <div class="step-num">4</div>
+              <div class="step-title">Let EasyLandX hold the structure</div>
+            </div>
+            <div class="step-sub">Templates and auto-save carry the details.</div>
+            <div class="step-detail">Layout, spacing, and saving are handled automatically, so your working memory stays free for the words and ideas only you can bring.</div>
+          </div>
+          <div class="step-card" data-step="5">
+            <div class="step-top">
+              <div class="step-num">5</div>
+              <div class="step-title">Protect your momentum</div>
+            </div>
+            <div class="step-sub">Pace the build to your real energy.</div>
+            <div class="step-detail">Energy-tiered blocks let you match each building session to how you're feeling right now — see the Energy Blocks section below.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK WINS -->
+  <section id="quickwins">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The quick-win protocol</h2>
+        <p>Break the page into small, checkable actions. Each one delivers a hit of progress on the spot.</p>
+      </div>
+      <div class="checklist-panel">
+        <ul class="checklist" id="checklist">
+          <li><input type="checkbox" id="c1"><label for="c1">Open EasyLandX and write one headline</label></li>
+          <li><input type="checkbox" id="c2"><label for="c2">Add your call-to-action button and link</label></li>
+          <li><input type="checkbox" id="c3"><label for="c3">Pick your accent glow colors</label></li>
+          <li><input type="checkbox" id="c4"><label for="c4">Drop in one line about what you offer</label></li>
+          <li><input type="checkbox" id="c5"><label for="c5">Publish the page</label></li>
+        </ul>
+        <div class="momentum-side">
+          <span id="win-count">0/5</span>
+          <div class="win-bar-track"><div class="win-bar-fill" id="win-bar"></div></div>
+          <div id="win-msg">Check off a step to spark your first quick win.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENERGY BLOCKS -->
+  <section id="energy">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Energy-based building blocks</h2>
+        <p>Skip the fixed schedule. Choose the block that matches your energy right now, and EasyLandX matches the task to it.</p>
+      </div>
+      <div class="energy-toggle">
+        <button class="mode-btn on" data-mode="focus">High-Focus Creative</button>
+        <button class="mode-btn" data-mode="social">Client &amp; Social</button>
+        <button class="mode-btn" data-mode="admin">Low-Energy Admin</button>
+      </div>
+
+      <div class="energy-display focus" id="energy-display">
+        <div class="energy-icon" id="energy-icon">✦</div>
+        <div id="energy-content">
+          <h3>High-Focus Creative</h3>
+          <p>Ride hyperfocus toward the parts of the page only you can shape.</p>
+          <ul class="energy-tasks">
+            <li>Write the headline and hero story</li>
+            <li>Design the section flow and visual rhythm</li>
+            <li>Pick the glow palette and typography</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section>
+    <div class="wrap">
+      <div class="final-cta">
+        <h2>Your next landing page is one spark away.</h2>
+        <p>Open EasyLandX, follow your interest, and let the momentum carry the rest.</p>
+        <div class="final-actions">
+          <a class="btn btn-yellow" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch EasyLandX →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Built on a dopamine-driven, interest-based framework for entrepreneurial energy. ·
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+<script>
+  // ---- Framework step cards + momentum ring ----
+  const steps = document.querySelectorAll('.step-card');
+  const ringFg = document.getElementById('ring-fg');
+  const ringLabel = document.getElementById('ring-label');
+  const momentumText = document.getElementById('momentum-text');
+  const CIRC = 138;
+
+  function updateMomentum(){
+    const activeCount = document.querySelectorAll('.step-card.active').length;
+    const pct = Math.round((activeCount/steps.length)*100);
+    const offset = CIRC - (CIRC*pct/100);
+    ringFg.style.strokeDashoffset = offset;
+    ringLabel.textContent = pct + '%';
+    if(activeCount === 0){
+      momentumText.innerHTML = 'Momentum: <b>tap a step</b> to open it';
+    } else if(activeCount === steps.length){
+      momentumText.innerHTML = '<b>Full momentum</b> — every step explored';
+    } else {
+      momentumText.innerHTML = 'Momentum building: <b>' + activeCount + ' of ' + steps.length + '</b> steps open';
+    }
+  }
+
+  steps.forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('active');
+      updateMomentum();
+    });
+    card.setAttribute('tabindex','0');
+    card.setAttribute('role','button');
+    card.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
+
+  // ---- Quick-win checklist ----
+  const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+  const winCount = document.getElementById('win-count');
+  const winBar = document.getElementById('win-bar');
+  const winMsg = document.getElementById('win-msg');
+  const messages = [
+    'Check off a step to spark your first quick win.',
+    'First win logged — momentum is already moving.',
+    'Two down. The page is taking real shape.',
+    'Halfway there, and the energy is holding steady.',
+    'One step from a published page — keep riding it.',
+    'All quick wins locked in. Momentum secured.'
+  ];
+
+  function updateWins(){
+    let checked = 0;
+    checkboxes.forEach((cb,i) => {
+      const li = cb.closest('li');
+      li.classList.toggle('checked', cb.checked);
+      if(cb.checked) checked++;
+    });
+    winCount.textContent = checked + '/' + checkboxes.length;
+    winBar.style.width = (checked/checkboxes.length*100) + '%';
+    winMsg.textContent = messages[checked];
+  }
+  checkboxes.forEach(cb => cb.addEventListener('change', updateWins));
+
+  // ---- Energy mode toggle ----
+  const modeBtns = document.querySelectorAll('.mode-btn');
+  const energyDisplay = document.getElementById('energy-display');
+  const energyIcon = document.getElementById('energy-icon');
+  const energyContent = document.getElementById('energy-content');
+
+  const modes = {
+    focus: {
+      icon:'✦',
+      title:'High-Focus Creative',
+      desc:'Ride hyperfocus toward the parts of the page only you can shape.',
+      tasks:['Write the headline and hero story','Design the section flow and visual rhythm','Pick the glow palette and typography']
+    },
+    social: {
+      icon:'◈',
+      title:'Client & Social',
+      desc:'Use outward energy for the parts that involve other people.',
+      tasks:['Share a preview link for quick feedback','Add testimonials or social proof','Line up your launch announcement']
+    },
+    admin: {
+      icon:'◉',
+      title:'Low-Energy Admin',
+      desc:'Quick, low-lift tasks that still move the page forward.',
+      tasks:['Check links and button destinations','Tidy spacing and image sizing','Confirm the page on mobile view']
+    }
+  };
+
+  modeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      modeBtns.forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      const mode = btn.dataset.mode;
+      energyDisplay.className = 'energy-display ' + mode;
+      const m = modes[mode];
+      energyIcon.textContent = m.icon;
+      energyContent.innerHTML = '<h3>' + m.title + '</h3><p>' + m.desc + '</p><ul class="energy-tasks">' +
+        m.tasks.map(t => '<li>' + t + '</li>').join('') + '</ul>';
+    });
+  });
+</script>
+
+</body>
+</html>

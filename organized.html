@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — One clear page instead of 174 newspapers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lime: #C6FF00;
+    --lime-soft: #DFFF66;
+    --black: #0B0B10;
+    --black-soft: #18181F;
+    --black-softer: #232330;
+    --red: #FF1F3D;
+    --ink-dark: #0B0B10;
+    --ink-dark-dim: rgba(11,11,16,0.72);
+    --ink-light: #F5FFE0;
+    --ink-light-dim: rgba(245,255,224,0.76);
+    --ink-light-faint: rgba(245,255,224,0.5);
+    --sans: "Manrope", sans-serif;
+    --serif: "Space Grotesk", "Manrope", sans-serif;
+    --mono: "IBM Plex Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --lime:#C6FF00; --black:#0B0B10; }
+  }
+  :root[data-theme="dark"]{ --lime:#C6FF00; --black:#0B0B10; }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--lime); color:var(--ink-dark);
+    font-family:var(--sans); line-height:1.55; overflow-x:hidden;
+  }
+  a{color:inherit;}
+  img{max-width:100%;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+
+  header{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(11,11,16,0.9);
+    border-bottom:1px solid rgba(245,255,224,0.12);
+  }
+  .header-row{display:flex; align-items:center; justify-content:space-between; padding:16px 28px;}
+  .logo{font-family:var(--serif); font-weight:700; font-size:1.25rem; color:var(--ink-light); display:flex; align-items:center; gap:8px;}
+  .logo .dot{width:9px; height:9px; border-radius:50%; background:var(--red); box-shadow:0 0 12px 2px var(--red);}
+  nav{display:flex; gap:24px;}
+  nav a{font-size:0.9rem; color:var(--ink-light-dim); text-decoration:none; transition:color .2s ease;}
+  nav a:hover{color:var(--red);}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--sans); font-weight:700; font-size:0.95rem;
+    padding:12px 22px; border-radius:999px; text-decoration:none; cursor:pointer; border:none;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:active{transform:scale(0.97);}
+  .btn-red{background:var(--red); color:var(--ink-light);}
+  .btn-red:hover{box-shadow:0 0 26px 4px rgba(255,31,61,0.55); transform:translateY(-2px);}
+  .btn-lime{background:var(--lime); color:var(--ink-dark);}
+  .btn-lime:hover{box-shadow:0 0 26px 4px rgba(198,255,0,0.45); transform:translateY(-2px);}
+  .btn-outline-dark{background:transparent; border:1.5px solid rgba(11,11,16,0.45); color:var(--ink-dark);}
+  .btn-outline-dark:hover{border-color:var(--red); color:var(--red);}
+  .btn-outline-light{background:transparent; border:1.5px solid rgba(245,255,224,0.4); color:var(--ink-light);}
+  .btn-outline-light:hover{border-color:var(--red); color:var(--red);}
+  header .btn{padding:10px 18px; font-size:0.88rem;}
+
+  .hero{padding:88px 0 60px;}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;}
+  .eyebrow-line{font-size:0.95rem; font-weight:600; color:var(--black); opacity:0.75; margin-bottom:16px;}
+  h1{font-family:var(--serif); font-size:clamp(2.3rem,5vw,3.4rem); font-weight:700; line-height:1.07; letter-spacing:-0.02em; margin:0 0 20px;
+     opacity:0; transform:translateY(14px); animation:riseIn .8s ease forwards .15s;}
+  .lede{font-size:1.12rem; color:var(--ink-dark-dim); max-width:46ch; margin:0 0 32px;
+        opacity:0; transform:translateY(14px); animation:riseIn .8s ease forwards .32s;}
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap; opacity:0; transform:translateY(14px); animation:riseIn .8s ease forwards .48s;}
+  @keyframes riseIn{ to{opacity:1; transform:translateY(0);} }
+  @media (prefers-reduced-motion:reduce){ h1,.lede,.hero-actions{animation:none; opacity:1; transform:none;} }
+
+  .chaos-card{
+    background:var(--black); border-radius:20px; padding:26px 24px 24px;
+    border:1px solid rgba(245,255,224,0.1); color:var(--ink-light);
+  }
+  .chaos-card h3{font-family:var(--serif); margin:0 0 4px; font-size:1.02rem;}
+  .chaos-card > p{margin:0 0 16px; font-size:0.85rem; color:var(--ink-light-faint);}
+  .chaos-stage{
+    position:relative; height:190px; background:var(--black-soft); border-radius:14px;
+    overflow:hidden; margin-bottom:16px;
+  }
+  .chaos-item{
+    position:absolute; width:22px; height:22px; border-radius:6px;
+    background:var(--lime); box-shadow:0 0 8px rgba(198,255,0,0.5);
+    transition:transform 1s cubic-bezier(.2,.8,.2,1), background .4s ease;
+  }
+  .chaos-item.red{background:var(--red); box-shadow:0 0 8px rgba(255,31,61,0.5);}
+  .chaos-toggle-row{display:flex; align-items:center; justify-content:space-between;}
+  #chaos-state{font-size:0.86rem; color:var(--ink-light-dim);}
+
+  section{padding:64px 0;}
+  .section-head{max-width:640px; margin:0 0 36px;}
+  h2{font-family:var(--serif); font-size:clamp(1.65rem,3vw,2.2rem); font-weight:700; letter-spacing:-0.01em; margin:0 0 14px;}
+  .section-head p{color:var(--ink-dark-dim); font-size:1.02rem; margin:0;}
+  .section-head.on-panel h2, .section-head.on-panel p{color:var(--ink-light);}
+  .section-head.on-panel p{color:var(--ink-light-dim);}
+
+  .momentum-wrap{
+    display:flex; align-items:center; gap:14px; margin-bottom:32px;
+    background:var(--black); border-radius:999px; padding:10px 18px 10px 10px;
+    width:fit-content; border:1px solid rgba(245,255,224,0.12); color:var(--ink-light);
+  }
+  .ring-box{position:relative; width:52px; height:52px;}
+  .ring-box svg{transform:rotate(-90deg);}
+  .ring-bg{fill:none; stroke:rgba(245,255,224,0.15); stroke-width:5;}
+  .ring-fg{fill:none; stroke:var(--red); stroke-width:5; stroke-linecap:round; stroke-dasharray:138; stroke-dashoffset:138;
+           transition:stroke-dashoffset .5s ease; filter:drop-shadow(0 0 5px rgba(255,31,61,0.7));}
+  .ring-label{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:0.65rem; font-weight:600;}
+  #momentum-text{font-size:0.88rem; color:var(--ink-light-dim);}
+  #momentum-text b{color:var(--red);}
+
+  .flow{display:flex; flex-direction:column; align-items:center;}
+  .flow-arrow{width:2px; height:30px; background:linear-gradient(var(--red), transparent); margin:2px 0;}
+  .step-card.top{width:100%; max-width:640px;}
+  .branch-row{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; width:100%;}
+  .step-card{
+    background:var(--black); border:1px solid rgba(245,255,224,0.12); border-radius:16px;
+    padding:22px 22px 20px; cursor:pointer; color:var(--ink-light);
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .step-card:hover{border-color:rgba(255,31,61,0.6);}
+  .step-card.active{background:#000000; border-color:var(--red); box-shadow:0 0 0 1px var(--red), 0 0 24px rgba(255,31,61,0.25);}
+  .step-top{display:flex; align-items:center; gap:12px;}
+  .step-num{font-family:var(--mono); font-weight:600; font-size:0.82rem; color:var(--black);
+             background:var(--lime); width:30px; height:30px; border-radius:50%;
+             display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .step-card.active .step-num{background:var(--red); color:var(--ink-light);}
+  .step-title{font-family:var(--serif); font-weight:600; font-size:1.02rem;}
+  .step-sub{font-size:0.85rem; color:var(--ink-light-faint); margin:4px 0 0 42px;}
+  .step-detail{max-height:0; overflow:hidden; opacity:0; transition:max-height .35s ease, opacity .3s ease, margin .3s ease;
+               font-size:0.9rem; color:var(--ink-light-dim); margin-left:42px;}
+  .step-card.active .step-detail{max-height:220px; opacity:1; margin-top:12px;}
+
+  /* ---------- Brain dump / working memory ---------- */
+  .memory-panel{background:var(--black); border-radius:24px; padding:40px; border:1px solid rgba(245,255,224,0.1); color:var(--ink-light);}
+  .memory-slots{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:14px;}
+  .slot{
+    height:60px; border-radius:10px; border:1.5px dashed rgba(245,255,224,0.3);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    font-size:0.78rem; padding:6px; color:var(--ink-light-faint); transition:all .25s ease;
+  }
+  .slot.filled{border-style:solid; border-color:var(--lime); background:var(--black-soft); color:var(--ink-light);}
+  .slot.shake{animation:shake .4s ease;}
+  @keyframes shake{ 0%,100%{transform:translateX(0);} 25%{transform:translateX(-4px);} 75%{transform:translateX(4px);} }
+  .capture-row{display:flex; gap:10px; margin-bottom:10px; flex-wrap:wrap;}
+  .capture-row input[type="text"]{
+    flex:1; min-width:200px; padding:13px 14px; border-radius:10px;
+    background:var(--black-soft); color:var(--ink-light); border:1px solid rgba(245,255,224,0.18);
+    font-family:var(--sans); font-size:0.92rem;
+  }
+  .capture-row input[type="text"]:focus{outline:none; border-color:var(--red);}
+  #overflow-msg{font-size:0.85rem; color:var(--red); min-height:1.4em; margin-bottom:8px;}
+  .braindump-head{display:flex; align-items:center; justify-content:space-between; margin:26px 0 12px; flex-wrap:wrap; gap:10px;}
+  .braindump-head h4{font-family:var(--serif); margin:0; font-size:1rem; color:var(--ink-light);}
+  #braindump-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  #braindump-list li{
+    background:var(--black-soft); border-radius:12px; padding:14px 16px;
+    border-left:4px solid rgba(245,255,224,0.3);
+    display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+  }
+  .bd-text{font-size:0.92rem;}
+  .tier-btns{display:flex; gap:6px; flex-wrap:wrap;}
+  .tier-btn{
+    font-family:var(--sans); font-size:0.74rem; font-weight:700; padding:6px 11px; border-radius:999px;
+    cursor:pointer; border:1.5px solid rgba(245,255,224,0.3); background:transparent; color:var(--ink-light-dim);
+    transition:all .18s ease;
+  }
+  .tier-btn.active-do{background:var(--red); border-color:var(--red); color:var(--ink-light);}
+  .tier-btn.active-delegate{background:var(--lime); border-color:var(--lime); color:var(--ink-dark);}
+  .tier-btn.active-schedule{background:var(--black-softer); border-color:var(--red); color:var(--ink-light);}
+  .tier-btn.active-someday{background:transparent; border-style:dashed; border-color:var(--lime); color:var(--lime);}
+  #empty-dump{font-size:0.88rem; color:var(--ink-light-faint);}
+
+  /* ---------- Switch cost ---------- */
+  .switch-panel{background:var(--black); border-radius:24px; padding:40px; border:1px solid rgba(245,255,224,0.1); color:var(--ink-light);}
+  .switch-buttons{display:flex; gap:14px; margin-bottom:24px; flex-wrap:wrap;}
+  .task-btn{
+    flex:1; min-width:160px; padding:20px; border-radius:14px; cursor:pointer;
+    background:var(--black-soft); border:2px solid rgba(245,255,224,0.15); color:var(--ink-light);
+    font-family:var(--serif); font-weight:600; font-size:1rem; text-align:left;
+    transition:all .2s ease;
+  }
+  .task-btn.current{border-color:var(--lime); box-shadow:0 0 18px rgba(198,255,0,0.2);}
+  .task-btn span{display:block; font-family:var(--sans); font-weight:400; font-size:0.8rem; color:var(--ink-light-faint); margin-top:4px;}
+  .switch-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px;}
+  .switch-stat{background:var(--black-soft); border-radius:12px; padding:16px; text-align:center;}
+  .switch-stat .num{font-family:var(--mono); font-size:1.6rem; font-weight:600; color:var(--red);}
+  .switch-stat.streak .num{color:var(--lime);}
+  .switch-stat .lbl{font-size:0.76rem; color:var(--ink-light-faint); margin-top:4px;}
+  .residue-track{height:12px; border-radius:999px; background:var(--black-soft); overflow:hidden; margin-bottom:10px;}
+  .residue-fill{height:100%; width:0%; background:linear-gradient(90deg, var(--lime), var(--red)); transition:width .35s ease;}
+  #switch-tip{font-size:0.9rem; color:var(--ink-light-dim);}
+
+  .final-cta{text-align:center; background:linear-gradient(160deg, var(--black), #000000); border-radius:28px; padding:68px 30px; border:1px solid rgba(245,255,224,0.1); color:var(--ink-light);}
+  .final-cta h2{color:var(--ink-light); margin-bottom:12px;}
+  .final-cta p{color:var(--ink-light-dim); max-width:52ch; margin:0 auto 30px; font-size:1.05rem;}
+  .final-actions{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+
+  footer{padding:36px 0 50px; text-align:center; color:var(--ink-dark-dim); font-size:0.85rem;}
+  footer a{color:var(--ink-dark); text-decoration:underline; text-underline-offset:3px;}
+
+  @media (max-width:860px){
+    nav{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .branch-row{grid-template-columns:1fr;}
+    .memory-slots{grid-template-columns:repeat(3,1fr);}
+    .switch-buttons{flex-direction:column;}
+    .switch-stats{grid-template-columns:1fr;}
+  }
+  :focus-visible{outline:2px solid var(--red); outline-offset:3px;}
+
+  /* Only requested switch-cost text */
+  #switch .section-head h2,
+  #switch .section-head p {
+    color: #000000 !important;
+  }
+
+  /* Only requested working-memory text */
+  #memory .section-head h2,
+  #memory .section-head p {
+    color: #000000 !important;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-row">
+    <div class="logo"><span class="dot"></span>EasyLandX</div>
+    <nav>
+      <a href="#framework">Framework</a>
+      <a href="#memory">Brain dump</a>
+      <a href="#switch">Switch cost</a>
+    </nav>
+    <a class="btn btn-red" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch EasyLandX</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow-line">Built for a brain that can hold about four things at once</div>
+        <h1>Your page ideas deserve one home, not 174 open tabs.</h1>
+        <p class="lede">EasyLandX externalizes the clutter of building a page — every headline, image, and idea gets a place, so your attention stays free for the one thing that actually needs it.</p>
+        <div class="hero-actions">
+          <a class="btn btn-red" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch EasyLandX →</a>
+          <a class="btn btn-outline-dark" href="#framework">See the framework</a>
+        </div>
+      </div>
+      <div class="chaos-card">
+        <h3>Scattered → Organized</h3>
+        <p>Every idea starts scattered. EasyLandX gives each one a home.</p>
+        <div class="chaos-stage" id="chaos-stage"></div>
+        <div class="chaos-toggle-row">
+          <span id="chaos-state">State: Scattered</span>
+          <button class="btn btn-lime" id="chaos-toggle" type="button">Organize it</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRAMEWORK -->
+  <section id="framework">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The EasyLandX attentional framework</h2>
+        <p>Five steps built on how the brain actually filters information, adapted from cognitive science to page building. Tap each one to open it.</p>
+      </div>
+
+      <div class="momentum-wrap">
+        <div class="ring-box">
+          <svg viewBox="0 0 50 50" width="52" height="52">
+            <circle class="ring-bg" cx="25" cy="25" r="22"></circle>
+            <circle class="ring-fg" id="ring-fg" cx="25" cy="25" r="22"></circle>
+          </svg>
+          <div class="ring-label" id="ring-label">0%</div>
+        </div>
+        <div id="momentum-text">Clarity: <b>tap a step</b> to open it</div>
+      </div>
+
+      <div class="flow">
+        <div class="step-card top" data-step="1">
+          <div class="step-top"><div class="step-num">1</div><div class="step-title">Externalize and brain-dump</div></div>
+          <div class="step-sub">Get every idea out of your head and into one inbox.</div>
+          <div class="step-detail">Headlines, images, offers, half-formed thoughts — all of it goes into one capture point before it goes near the page. Try the working-memory demo below to feel exactly where the overflow point is.</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="step-card top" data-step="2">
+          <div class="step-top"><div class="step-num">2</div><div class="step-title">Categorize and systematize</div></div>
+          <div class="step-sub">Give every element a dedicated home.</div>
+          <div class="step-detail">Hero, proof, offer, action — each captured idea gets sorted into a clear category the moment it leaves your head, so nothing has to be searched for or re-decided later.</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="branch-row">
+          <div class="step-card" data-step="3">
+            <div class="step-top"><div class="step-num">3</div><div class="step-title">Batch and block attention</div></div>
+            <div class="step-sub">Work one section at a time, in one sitting.</div>
+            <div class="step-detail">Switching between sections mid-thought costs more than it feels like. Try the switch-cost simulator below to see the difference between batching and bouncing around.</div>
+          </div>
+          <div class="step-card" data-step="4">
+            <div class="step-top"><div class="step-num">4</div><div class="step-title">Protect your rest mode</div></div>
+            <div class="step-sub">Step away and let ideas reconnect on their own.</div>
+            <div class="step-detail">EasyLandX auto-saves every draft, so a walk away from the screen costs nothing. Mind-wandering is where scattered ideas quietly find their best order.</div>
+          </div>
+          <div class="step-card" data-step="5">
+            <div class="step-top"><div class="step-num">5</div><div class="step-title">Automate the small decisions</div></div>
+            <div class="step-sub">Let defaults handle what doesn't need to be chosen.</div>
+            <div class="step-detail">Fonts, spacing, and layout come pre-decided by default, so your attention only spends itself on the words and choices that are genuinely yours to make.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAIN DUMP / WORKING MEMORY -->
+  <section id="memory">
+    <div class="wrap">
+      <div class="section-head on-panel">
+        <h2>How much can you hold at once?</h2>
+        <p>Working memory comfortably holds about four items, plus or minus one. Capture a few ideas below and see where the edge is.</p>
+      </div>
+      <div class="memory-panel">
+        <div class="memory-slots" id="memory-slots"></div>
+        <div id="overflow-msg"></div>
+        <div class="capture-row">
+          <input type="text" id="memory-input" placeholder="Type an idea — a headline, an image, a stat…" maxlength="40">
+          <button class="btn btn-lime" id="btn-capture" type="button">Capture</button>
+          <button class="btn btn-outline-light" id="btn-senddump" type="button">Send to brain dump</button>
+        </div>
+
+        <div class="braindump-head">
+          <h4>Your brain dump</h4>
+          <span id="empty-dump">Nothing captured yet</span>
+        </div>
+        <ul id="braindump-list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SWITCH COST -->
+  <section id="switch">
+    <div class="wrap">
+      <div class="section-head on-panel">
+        <h2>The real cost of switching</h2>
+        <p>What feels like multitasking is rapid task-switching. Alternate between the two sections below, then try working just one to compare.</p>
+      </div>
+      <div class="switch-panel">
+        <div class="switch-buttons">
+          <button class="task-btn" id="task-a" type="button">Section A — Headline &amp; Hero<span>Click to work on this section</span></button>
+          <button class="task-btn" id="task-b" type="button">Section B — Offer &amp; Pricing<span>Click to work on this section</span></button>
+        </div>
+        <div class="switch-stats">
+          <div class="switch-stat"><div class="num" id="stat-switches">0</div><div class="lbl">Switches made</div></div>
+          <div class="switch-stat streak"><div class="num" id="stat-streak">0</div><div class="lbl">Batched clicks in a row</div></div>
+          <div class="switch-stat"><div class="num" id="stat-residue">0%</div><div class="lbl">Cognitive residue</div></div>
+        </div>
+        <div class="residue-track"><div class="residue-fill" id="residue-fill"></div></div>
+        <div id="switch-tip">Click either section to begin. Bouncing between them raises residue fast — staying on one lets it settle.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section>
+    <div class="wrap">
+      <div class="final-cta">
+        <h2>One page. One home for every idea.</h2>
+        <p>Open EasyLandX, empty your head into it, and let the system hold the order while you focus on the words that matter.</p>
+        <div class="final-actions">
+          <a class="btn btn-red" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch EasyLandX →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Built on the science of attention and information overload, applied to landing page building. ·
+    <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</footer>
+
+<script>
+  // ---- Chaos → Order toggle ----
+  const stage = document.getElementById('chaos-stage');
+  const scattered = [
+    [10,8],[62,20],[140,10],[200,30],[30,70],
+    [95,60],[170,80],[225,55],[15,130],[80,120],
+    [150,140],[210,115]
+  ];
+  const cols = 4, rows = 3, cellW = 55, cellH = 45, startX = 14, startY = 12;
+  const items = [];
+  for(let i=0;i<12;i++){
+    const el = document.createElement('div');
+    el.className = 'chaos-item' + (i % 3 === 0 ? ' red' : '');
+    const [sx, sy] = scattered[i];
+    el.style.transform = 'translate(' + sx + 'px,' + sy + 'px)';
+    stage.appendChild(el);
+    items.push(el);
+  }
+  let organized = false;
+  document.getElementById('chaos-toggle').addEventListener('click', function(){
+    organized = !organized;
+    items.forEach((el,i) => {
+      if(organized){
+        const col = i % cols, row = Math.floor(i/cols);
+        el.style.transform = 'translate(' + (startX + col*cellW) + 'px,' + (startY + row*cellH) + 'px)';
+      } else {
+        const [sx, sy] = scattered[i];
+        el.style.transform = 'translate(' + sx + 'px,' + sy + 'px)';
+      }
+    });
+    document.getElementById('chaos-state').textContent = 'State: ' + (organized ? 'Organized' : 'Scattered');
+    this.textContent = organized ? 'Scatter it' : 'Organize it';
+  });
+
+  // ---- Framework step cards + momentum ring ----
+  const steps = document.querySelectorAll('.step-card');
+  const ringFg = document.getElementById('ring-fg');
+  const ringLabel = document.getElementById('ring-label');
+  const momentumText = document.getElementById('momentum-text');
+  const CIRC = 138;
+  function updateMomentum(){
+    const activeCount = document.querySelectorAll('.step-card.active').length;
+    const pct = Math.round((activeCount/steps.length)*100);
+    ringFg.style.strokeDashoffset = CIRC - (CIRC*pct/100);
+    ringLabel.textContent = pct + '%';
+    if(activeCount === 0){ momentumText.innerHTML = 'Clarity: <b>tap a step</b> to open it'; }
+    else if(activeCount === steps.length){ momentumText.innerHTML = '<b>Full clarity</b> — every step explored'; }
+    else{ momentumText.innerHTML = 'Clarity building: <b>' + activeCount + ' of ' + steps.length + '</b> steps open'; }
+  }
+  steps.forEach(card => {
+    card.setAttribute('tabindex','0');
+    card.setAttribute('role','button');
+    card.addEventListener('click', () => { card.classList.toggle('active'); updateMomentum(); });
+    card.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); card.click(); } });
+  });
+
+  // ---- Working memory / brain dump ----
+  const slotsWrap = document.getElementById('memory-slots');
+  const SLOT_COUNT = 5;
+  const slots = [];
+  for(let i=0;i<SLOT_COUNT;i++){
+    const d = document.createElement('div');
+    d.className = 'slot';
+    d.textContent = 'Empty';
+    slotsWrap.appendChild(d);
+    slots.push(d);
+  }
+  let filledCount = 0;
+  const memInput = document.getElementById('memory-input');
+  const overflowMsg = document.getElementById('overflow-msg');
+  const braindumpList = document.getElementById('braindump-list');
+  const emptyDumpLabel = document.getElementById('empty-dump');
+
+  document.getElementById('btn-capture').addEventListener('click', () => {
+    const val = memInput.value.trim();
+    if(!val) return;
+    if(filledCount < SLOT_COUNT){
+      slots[filledCount].textContent = val;
+      slots[filledCount].classList.add('filled');
+      filledCount++;
+      memInput.value = '';
+      overflowMsg.textContent = filledCount >= 4 ? 'Getting close — working memory holds about four items comfortably.' : '';
+    } else {
+      slots[SLOT_COUNT-1].classList.add('shake');
+      setTimeout(() => slots[SLOT_COUNT-1].classList.remove('shake'), 400);
+      overflowMsg.textContent = 'That is past capacity — five is already beyond the brain\'s comfortable four ± one. Send it to the brain dump.';
+    }
+  });
+  memInput.addEventListener('keydown', e => { if(e.key === 'Enter'){ document.getElementById('btn-capture').click(); } });
+
+  document.getElementById('btn-senddump').addEventListener('click', () => {
+    if(filledCount === 0) return;
+    for(let i=0;i<filledCount;i++){
+      const text = slots[i].textContent;
+      addToBrainDump(text);
+      slots[i].textContent = 'Empty';
+      slots[i].classList.remove('filled');
+    }
+    filledCount = 0;
+    overflowMsg.textContent = 'Working memory cleared — everything has a home now.';
+  });
+
+  function addToBrainDump(text){
+    emptyDumpLabel.style.display = 'none';
+    const li = document.createElement('li');
+    const tiers = [
+      ['Do now','active-do'],
+      ['Delegate','active-delegate'],
+      ['Schedule','active-schedule'],
+      ['Someday','active-someday']
+    ];
+    li.innerHTML = '<span class="bd-text">' + escapeHtml(text) + '</span><div class="tier-btns"></div>';
+    const btnWrap = li.querySelector('.tier-btns');
+    tiers.forEach(([label, cls]) => {
+      const b = document.createElement('button');
+      b.className = 'tier-btn';
+      b.type = 'button';
+      b.textContent = label;
+      b.addEventListener('click', () => {
+        tiers.forEach(([,c]) => b.parentNode.querySelectorAll('.tier-btn').forEach(x => x.classList.remove(c)));
+        b.classList.add(cls);
+      });
+      btnWrap.appendChild(b);
+    });
+    braindumpList.appendChild(li);
+  }
+  function escapeHtml(s){
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  // ---- Switch cost simulator ----
+  const taskA = document.getElementById('task-a');
+  const taskB = document.getElementById('task-b');
+  const statSwitches = document.getElementById('stat-switches');
+  const statStreak = document.getElementById('stat-streak');
+  const statResidue = document.getElementById('stat-residue');
+  const residueFill = document.getElementById('residue-fill');
+  const switchTip = document.getElementById('switch-tip');
+  let lastTask = null, switches = 0, streak = 0, residue = 0;
+
+  function renderSwitch(){
+    statSwitches.textContent = switches;
+    statStreak.textContent = streak;
+    statResidue.textContent = residue + '%';
+    residueFill.style.width = residue + '%';
+    taskA.classList.toggle('current', lastTask === 'a');
+    taskB.classList.toggle('current', lastTask === 'b');
+    if(residue > 65){ switchTip.textContent = 'Residue is high — quality is slipping. Stay on one section for a few clicks to let it settle.'; }
+    else if(streak >= 4){ switchTip.textContent = 'Batching is working — residue is dropping and this section is getting real attention.'; }
+    else if(switches === 0){ switchTip.textContent = 'Click either section to begin. Bouncing between them raises residue fast — staying on one lets it settle.'; }
+    else{ switchTip.textContent = 'Keep going. Notice how residue moves differently when you stay put versus when you bounce.'; }
+  }
+  function clickTask(id){
+    if(lastTask === id){ streak++; residue = Math.max(0, residue - 8); }
+    else{ if(lastTask !== null){ switches++; } streak = 1; residue = Math.min(100, residue + 20); lastTask = id; }
+    renderSwitch();
+  }
+  taskA.addEventListener('click', () => clickTask('a'));
+  taskB.addEventListener('click', () => clickTask('b'));
+  renderSwitch();
+</script>
+
+</body>
+</html>
