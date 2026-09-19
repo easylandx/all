@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Every Word Earns Its Place</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;1,500&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --yellow:#F5FF2E;
+    --yellow-2:#E2EE00;
+    --yellow-3:#B8C200;
+    --yellow-deep:#6B7300;
+    --ink:#1C1A00;
+    --ink-soft:#4A4500;
+    --pink:#FF2E9E;
+    --pink-bright:#FF7AC2;
+    --cyan:#12E4E4;
+    --cyan-bright:#6FF7F7;
+    --panel-bg: rgba(24,22,0,0.94);
+    --panel-border: rgba(18,228,228,0.28);
+    --shadow: 0 18px 44px rgba(24,22,0,0.3);
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --yellow:#6B6E00; --yellow-2:#4E5100; --yellow-3:#363800; --yellow-deep:#1C1D00;
+      --ink:#F7F6DE; --ink-soft:#D8D6A8;
+      --panel-bg: rgba(10,10,2,0.94); --panel-border: rgba(18,228,228,0.32);
+      --shadow: 0 18px 44px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --yellow:#6B6E00; --yellow-2:#4E5100; --yellow-3:#363800; --yellow-deep:#1C1D00;
+    --ink:#F7F6DE; --ink-soft:#D8D6A8;
+    --panel-bg: rgba(10,10,2,0.94); --panel-border: rgba(18,228,228,0.32);
+    --shadow: 0 18px 44px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 92% -6%, var(--pink) 0%, transparent 24%),
+      radial-gradient(circle at 4% 100%, var(--cyan) 0%, transparent 22%),
+      linear-gradient(160deg, var(--yellow) 0%, var(--yellow-2) 48%, var(--yellow-3) 80%, var(--yellow-deep) 100%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family:'Lora', serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{ background: var(--pink); color:#FFF6FA; }
+  a{ color:inherit; }
+  button{ font-family:inherit; }
+  .display{ font-family:'Libre Franklin', sans-serif; }
+  .mono{ font-family:'Courier Prime', monospace; }
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 28px; }
+
+  header.site{
+    position:sticky; top:0; z-index:40;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(180deg, rgba(24,22,0,0.55), rgba(24,22,0,0.14));
+    border-bottom: 1px solid var(--panel-border);
+  }
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:15px 0; }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Libre Franklin', sans-serif; font-weight:800; font-size:1.2rem;
+    color:#FFF9E0;
+  }
+  .brand svg{ width:26px; height:26px; }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background: linear-gradient(135deg, var(--cyan-bright), var(--cyan));
+    color: var(--ink);
+    font-weight:800; font-size:.9rem;
+    padding:10px 20px; border-radius:8px;
+    text-decoration:none;
+    box-shadow: 0 8px 20px rgba(18,228,228,0.32);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .nav-cta:hover{ transform: translateY(-2px); box-shadow: 0 12px 26px rgba(18,228,228,0.48); }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding: 90px 0 46px; text-align:center; }
+  .hero .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Courier Prime', monospace; font-weight:700;
+    color:#FFF6FA;
+    background: var(--pink);
+    padding: 6px 14px; border-radius: 999px;
+    font-size:.78rem; letter-spacing:.05em;
+    margin-bottom:28px;
+  }
+  .hero h1{
+    font-family:'Libre Franklin', sans-serif; font-weight:800;
+    font-size: clamp(2rem, 4.6vw, 3.4rem);
+    line-height:1.22; margin: 0 0 22px; color:#171500;
+    min-height: 2.6em;
+  }
+  #typedLine::after{
+    content:"|"; color: var(--pink); animation: blink 1s step-end infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .hero p.lede{ max-width:600px; margin:0 auto 36px; font-size:1.12rem; line-height:1.75; color: var(--ink-soft); }
+  .hero-actions{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .btn-cyan{
+    display:inline-flex; align-items:center; gap:10px;
+    background: linear-gradient(135deg, var(--cyan-bright), var(--cyan));
+    color: var(--ink);
+    font-weight:800; font-size:1rem;
+    padding:15px 32px; border-radius:10px; text-decoration:none;
+    box-shadow: 0 12px 28px rgba(18,228,228,0.34);
+    border: 1px solid rgba(0,0,0,0.08);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-cyan:hover{ transform: translateY(-3px); box-shadow: 0 18px 36px rgba(18,228,228,0.48); }
+  .btn-outline{
+    display:inline-flex; align-items:center; gap:10px;
+    background: transparent; color: var(--ink);
+    font-weight:700; font-size:1rem;
+    padding:14px 28px; border-radius:10px;
+    border: 1.5px solid var(--ink); text-decoration:none;
+    transition: background .25s ease;
+  }
+  .btn-outline:hover{ background: rgba(0,0,0,0.06); }
+
+  /* ---------- INTRO ---------- */
+  .intro{ padding: 56px 0 70px; }
+  .intro-card{
+    background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius:18px;
+    padding: 36px clamp(22px,5vw,52px); box-shadow: var(--shadow); text-align:center;
+  }
+  .intro-card h2{ font-family:'Libre Franklin', sans-serif; color: var(--cyan-bright); font-size:1.5rem; margin:0 0 16px; font-weight:800; }
+  .intro-card p{ color:#EDE9C4; font-size:1.04rem; line-height:1.85; max-width:660px; margin:0 auto; }
+  .intro-card p + p{ margin-top:14px; }
+
+  /* ---------- BRACKETS TEST ---------- */
+  .brackets{ padding: 10px 0 84px; }
+  .section-title{
+    text-align:center; font-family:'Libre Franklin', sans-serif; font-weight:800;
+    font-size: clamp(1.6rem, 3.2vw, 2.2rem); color:#181600; margin: 0 0 8px;
+  }
+  .section-sub{ text-align:center; color: var(--ink-soft); max-width:580px; margin:0 auto 40px; line-height:1.7; }
+
+  .bt-card{
+    background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 20px;
+    padding: 36px clamp(20px,5vw,48px); box-shadow: var(--shadow);
+  }
+  .bt-label{ font-family:'Courier Prime', monospace; color: var(--pink-bright); font-size:.78rem; letter-spacing:.06em; margin-bottom:16px; text-align:center; }
+  .bt-sentence{
+    font-family:'Lora', serif; font-size: clamp(1.15rem, 2.4vw, 1.5rem); line-height:1.9;
+    color:#F6F4DE; text-align:center; max-width: 720px; margin: 0 auto 30px;
+  }
+  .clutter{
+    font-family:'Courier Prime', monospace; font-size:.9em;
+    color: var(--pink-bright); background: rgba(255,46,158,0.1);
+    padding: 2px 4px; border-radius:4px; cursor:pointer; border:none;
+    display:inline; transition: opacity .35s ease, filter .35s ease;
+  }
+  .clutter:hover{ background: rgba(255,46,158,0.22); }
+  .clutter.removed{
+    opacity:0; filter: blur(2px);
+    display:none;
+  }
+  .bt-meter-row{ display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-bottom: 18px; }
+  .bt-meter{ text-align:center; }
+  .bt-meter .num{ font-family:'Libre Franklin', sans-serif; font-weight:800; font-size:2rem; color: var(--cyan-bright); }
+  .bt-meter .lbl{ font-family:'Courier Prime', monospace; font-size:.72rem; letter-spacing:.06em; color:#CFCBA0; margin-top:4px; }
+  .bt-status{ text-align:center; color:#EDE9C4; font-size:.95rem; margin-bottom: 20px; }
+  .bt-status strong{ color: var(--cyan-bright); }
+  .bt-actions{ text-align:center; }
+  .bt-reset{
+    font-family:'Courier Prime', monospace; font-size:.85rem; font-weight:700;
+    background: transparent; border: 1.5px dashed var(--panel-border); color:#EDE9C4;
+    padding: 9px 18px; border-radius: 8px; cursor:pointer; transition: background .2s ease;
+  }
+  .bt-reset:hover{ background: rgba(255,255,255,0.06); }
+  .bt-hint{ text-align:center; color:#CFCBA0; font-size:.82rem; margin-top:16px; font-family:'Courier Prime', monospace; }
+
+  /* ---------- FRAMEWORK MARGIN NOTES ---------- */
+  .framework{ padding: 10px 0 80px; }
+  .manuscript{
+    background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 20px;
+    padding: 8px clamp(6px,3vw,10px); box-shadow: var(--shadow);
+  }
+  .m-row{
+    display:grid; grid-template-columns: 64px 1fr; gap: 20px;
+    padding: 22px clamp(16px,3vw,30px);
+    border-bottom: 1px dashed rgba(255,255,255,0.1);
+  }
+  .m-row:last-child{ border-bottom:none; }
+  .m-num{
+    font-family:'Courier Prime', monospace; font-weight:700; color: var(--pink-bright);
+    font-size:1.6rem; text-align:center; padding-top:2px;
+  }
+  .m-body h3{ font-family:'Libre Franklin', sans-serif; color:#F6F4DE; font-size:1.14rem; margin:0 0 8px; font-weight:700; }
+  .m-body p{ color:#D9D5AE; line-height:1.75; margin:0; font-size:.97rem; }
+
+  /* ---------- CLOSING ---------- */
+  .closing{ padding: 10px 0 100px; text-align:center; }
+  .closing-card{
+    background: linear-gradient(135deg, rgba(255,46,158,0.12), rgba(18,228,228,0.12));
+    border: 1px solid var(--panel-border); border-radius: 26px;
+    padding: 54px clamp(22px,6vw,60px); box-shadow: var(--shadow);
+  }
+  .closing h2{ font-family:'Libre Franklin', sans-serif; color:#181600; font-size: clamp(1.5rem,3.2vw,2.2rem); margin: 0 0 14px; font-weight:800; }
+  .closing p{ color: var(--ink-soft); max-width:560px; margin:0 auto 32px; line-height:1.75; }
+
+  footer{ text-align:center; padding: 24px 0 40px; color: var(--ink-soft); font-size:.85rem; opacity:.9; }
+  footer a{ color: var(--pink); font-weight:700; text-decoration:none; }
+  footer a:hover{ text-decoration:underline; }
+
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M6 26 L9 19 L22 6 L26 10 L13 23 Z" fill="none" stroke="#FF2E9E" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M19 9 L23 13" stroke="#12E4E4" stroke-width="1.8"/>
+        <path d="M6 26 L9 23 L9 19 L6 26 Z" fill="#FF2E9E"/>
+      </svg>
+      EasyLandX
+    </div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">THE CRAFT OF CLEAR COPY, APPLIED TO THE WEB</span>
+      <h1 id="typedLine"></h1>
+      <p class="lede">EasyLandX writes and designs affordable, conversion-focused landing pages for small businesses — following the same discipline behind all good nonfiction: cut the clutter, keep the voice human, and make every word earn its place.</p>
+      <div class="hero-actions">
+        <a class="btn-cyan" href="https://easylandx.github.io" target="_blank" rel="noopener">Explore EasyLandX →</a>
+        <a class="btn-outline" href="#brackets">Try the brackets test</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="wrap">
+      <div class="intro-card">
+        <h2>Clarity is a craft, not a gift</h2>
+        <p>In <em>On Writing Well</em>, William Zinsser argues that clutter — not a lack of talent — is what weakens most writing. Every unnecessary word is friction between an idea and the person trying to understand it.</p>
+        <p>EasyLandX writes landing page copy with that same discipline. Headlines, buttons, and every line of body text go through the same rigorous edit: if a word isn't doing real work, it doesn't make it onto your page.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="brackets" id="brackets">
+    <div class="wrap">
+      <h2 class="section-title">Try the brackets test</h2>
+      <p class="section-sub">Zinsser's own editing method: bracket anything that isn't doing necessary work, then cut it. Click each bracket below and watch the sentence get stronger.</p>
+
+      <div class="bt-card">
+        <div class="bt-label">// DRAFT COPY — CLICK EACH BRACKET TO EDIT</div>
+        <p class="bt-sentence" id="btSentence">
+          <span class="clutter" data-words="2">[Quite frankly,]</span>
+          <span class="clutter" data-words="5">[at this point in time,]</span>
+          <span class="clutter" data-words="5">[it's fair to say that]</span>
+          EasyLandX pages are
+          <span class="clutter" data-words="3">[really and truly]</span>
+          built
+          <span class="clutter" data-words="5">[in a very real sense]</span>
+          to help
+          <span class="clutter" data-words="1">[essentially]</span>
+          every small business
+          <span class="clutter" data-words="4">[in a meaningful way]</span>
+          grow.
+        </p>
+
+        <div class="bt-meter-row">
+          <div class="bt-meter"><div class="num" id="wordCount">35</div><div class="lbl">WORDS ON THE PAGE</div></div>
+          <div class="bt-meter"><div class="num" id="clutterPct">0%</div><div class="lbl">CLUTTER REMOVED</div></div>
+        </div>
+
+        <p class="bt-status" id="btStatus">Every bracket you clear brings the sentence closer to <strong>clean</strong>.</p>
+
+        <div class="bt-actions"><button class="bt-reset" id="btReset">Reset the draft</button></div>
+        <p class="bt-hint">This is the exact edit EasyLandX runs on every headline before it goes live.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="framework">
+    <div class="wrap">
+      <h2 class="section-title">The Craft of Writing, Built Into Every Page</h2>
+      <p class="section-sub">Five disciplines from Zinsser's classic, applied to how EasyLandX writes and structures your copy.</p>
+
+      <div class="manuscript">
+        <div class="m-row">
+          <div class="m-num">01</div>
+          <div class="m-body">
+            <h3>Declutter and prune</h3>
+            <p>We strip filler words, jargon, and passive phrasing from every headline and paragraph, so visitors read only what earns its place.</p>
+          </div>
+        </div>
+        <div class="m-row">
+          <div class="m-num">02</div>
+          <div class="m-body">
+            <h3>Establish unity</h3>
+            <p>Voice, tense, and point of view stay consistent across the whole page, so it reads like one clear idea, not several stitched together.</p>
+          </div>
+        </div>
+        <div class="m-row">
+          <div class="m-num">03</div>
+          <div class="m-body">
+            <h3>Craft a strong lead</h3>
+            <p>The first sentence on your page is written to be read — built to pull visitors straight into the second, and the section that follows.</p>
+          </div>
+        </div>
+        <div class="m-row">
+          <div class="m-num">04</div>
+          <div class="m-body">
+            <h3>Elevate the human voice</h3>
+            <p>Copy sounds like a real person talking to another real person — warm and direct, never stiff, corporate, or over-explained.</p>
+          </div>
+        </div>
+        <div class="m-row">
+          <div class="m-num">05</div>
+          <div class="m-body">
+            <h3>Finish clean</h3>
+            <p>Every section ends on a clear, confident note — including the final call to action, with nothing extra tacked on.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <div class="closing-card">
+        <h2>Give your page copy that's actually worth reading</h2>
+        <p>EasyLandX designs affordable, conversion-focused landing pages for small businesses — written with the same discipline as good nonfiction, one clean sentence at a time.</p>
+        <a class="btn-cyan" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Inspired by <em>On Writing Well</em>, William Zinsser · Crafted by <a href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+  </div>
+</footer>
+
+<script>
+  // Typewriter hero line
+  var typedEl = document.getElementById('typedLine');
+  var fullText = "Every word on your page has to earn its place.";
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(reduceMotion){
+    typedEl.textContent = fullText;
+  } else {
+    var i = 0;
+    function typeStep(){
+      if(i <= fullText.length){
+        typedEl.textContent = fullText.slice(0, i);
+        i++;
+        setTimeout(typeStep, 38);
+      }
+    }
+    setTimeout(typeStep, 400);
+  }
+
+  // Brackets test
+  var TOTAL_WORDS = 35;
+  var clutterSpans = document.querySelectorAll('.clutter');
+  var wordCountEl = document.getElementById('wordCount');
+  var clutterPctEl = document.getElementById('clutterPct');
+  var statusEl = document.getElementById('btStatus');
+  var resetBtn = document.getElementById('btReset');
+  var totalClutterWords = Array.from(clutterSpans).reduce(function(s, el){ return s + parseInt(el.dataset.words,10); }, 0);
+
+  function recalcBrackets(){
+    var removedWords = Array.from(clutterSpans).reduce(function(s, el){
+      return s + (el.classList.contains('removed') ? parseInt(el.dataset.words,10) : 0);
+    }, 0);
+    var remaining = TOTAL_WORDS - removedWords;
+    var pct = Math.round((removedWords / totalClutterWords) * 100);
+    wordCountEl.textContent = remaining;
+    clutterPctEl.textContent = pct + '%';
+
+    if(pct === 0){
+      statusEl.innerHTML = 'Every bracket you clear brings the sentence closer to <strong>clean</strong>.';
+    } else if(pct < 100){
+      statusEl.innerHTML = 'Getting <strong>leaner</strong> — keep going.';
+    } else {
+      statusEl.innerHTML = 'That\u2019s the whole edit: <strong>clean, direct, and ready to publish.</strong>';
+    }
+  }
+
+  clutterSpans.forEach(function(span){
+    span.addEventListener('click', function(){
+      if(span.classList.contains('removed')) return;
+      span.classList.add('removed');
+      recalcBrackets();
+    });
+  });
+
+  resetBtn.addEventListener('click', function(){
+    clutterSpans.forEach(function(span){ span.classList.remove('removed'); });
+    recalcBrackets();
+  });
+
+  recalcBrackets();
+</script>
+
+</body>
+</html>
