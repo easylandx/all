@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Your Page Doesn't Mirror Your Business. It Builds One.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --slate-deep:#161F33;
+    --slate-main:#26344F;
+    --slate-light:#34455F;
+    --parchment:#F3E9D2;
+    --parchment-dim:#E8DAB8;
+    --ink-on-parchment:#2A2116;
+    --teal:#4FD8C4;
+    --teal-soft:#8FE9DB;
+    --teal-dim:#1F7A6C;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter', sans-serif;
+    background:var(--slate-main);
+    color:var(--parchment);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    line-height:1.1;
+    margin:0;
+    font-weight:600;
+  }
+  a{color:inherit;}
+  img,svg{max-width:100%;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+  .section{padding:96px 0;}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(22,31,51,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid rgba(243,233,210,0.14);
+  }
+  nav.wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
+  .logo{font-family:'Fraunces',serif; font-weight:700; font-size:1.35rem; display:flex; align-items:center; gap:9px;}
+  .logo-mark{width:10px;height:10px;border-radius:2px; background:var(--teal); box-shadow:0 0 10px var(--teal);}
+  .nav-links{display:flex; gap:26px; font-size:0.95rem; align-items:center;}
+  .nav-links a{text-decoration:none; color:var(--parchment); opacity:0.82; transition:opacity .2s, color .2s;}
+  .nav-links a:hover{opacity:1; color:var(--teal-soft);}
+  .nav-cta{
+    background:var(--teal); color:var(--slate-deep); font-weight:600;
+    padding:10px 18px; border-radius:8px; text-decoration:none; font-size:0.9rem;
+    transition:box-shadow .25s, transform .2s;
+  }
+  .nav-cta:hover{box-shadow:0 0 22px rgba(79,216,196,0.55); transform:translateY(-1px);}
+  .menu-toggle{display:none;}
+  .menu-btn{display:none; background:none; border:1px solid rgba(243,233,210,0.3); border-radius:8px; color:var(--parchment); padding:8px 10px; font-size:1.1rem; cursor:pointer;}
+
+  @media (max-width:760px){
+    .nav-links{
+      position:fixed; inset:0; top:64px;
+      background:var(--slate-deep);
+      flex-direction:column; align-items:flex-start; gap:0;
+      padding:16px 24px 32px;
+      transform:translateY(-8px); opacity:0; pointer-events:none;
+      transition:opacity .2s ease, transform .2s ease;
+    }
+    .nav-links a{padding:14px 0; width:100%; border-bottom:1px solid rgba(243,233,210,0.14); opacity:0.92;}
+    .menu-toggle:checked ~ .nav-links{opacity:1; pointer-events:auto; transform:translateY(0);}
+    .menu-btn{display:inline-block;}
+    .nav-cta.desktop-only{display:none;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; padding:112px 0 100px;
+    background:
+      radial-gradient(650px 420px at 12% 8%, rgba(79,216,196,0.16), transparent 60%),
+      radial-gradient(700px 480px at 92% 25%, rgba(243,233,210,0.08), transparent 60%),
+      var(--slate-main);
+    overflow:hidden;
+  }
+  .ink-lines{
+    position:absolute; inset:0; opacity:0.08; pointer-events:none;
+    background-image: repeating-linear-gradient(180deg, var(--parchment) 0, var(--parchment) 1px, transparent 1px, transparent 40px);
+    mask-image:linear-gradient(to bottom, black, transparent 85%);
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.85rem; font-weight:500; color:var(--teal-soft);
+    background:rgba(79,216,196,0.1); border:1px solid rgba(79,216,196,0.32);
+    padding:6px 14px; border-radius:999px; margin-bottom:28px;
+  }
+  .hero h1{position:relative; font-size:clamp(2.2rem, 5vw, 3.9rem); max-width:16ch;}
+  .hero h1 em{font-style:italic; color:var(--teal-soft);}
+  .hero p.lede{position:relative; font-size:1.18rem; max-width:54ch; margin-top:26px; color:rgba(243,233,210,0.82);}
+  .hero-ctas{position:relative; display:flex; gap:16px; margin-top:40px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--teal); color:var(--slate-deep); font-weight:600; font-size:1.02rem;
+    padding:15px 30px; border-radius:8px; text-decoration:none; display:inline-block;
+    transition:box-shadow .25s, transform .2s;
+  }
+  .btn-primary:hover{box-shadow:0 0 30px rgba(79,216,196,0.55); transform:translateY(-2px);}
+  .btn-ghost{
+    border:1px solid rgba(243,233,210,0.4); color:var(--parchment); font-weight:600; font-size:1.02rem;
+    padding:14px 28px; border-radius:8px; text-decoration:none; display:inline-block; transition:background .2s;
+  }
+  .btn-ghost:hover{background:rgba(243,233,210,0.08);}
+
+  /* ---------- Parchment section ---------- */
+  .section-parchment{background:var(--parchment); color:var(--ink-on-parchment);}
+  .section-parchment .kicker{color:var(--teal-dim);}
+  .truths-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:26px; margin-top:48px;}
+  @media (max-width:760px){.truths-grid{grid-template-columns:1fr;}}
+  .truth-card{
+    background:rgba(42,33,22,0.05);
+    border:1.5px solid rgba(42,33,22,0.16);
+    border-radius:14px; padding:28px 26px;
+  }
+  .truth-card .num{font-family:'Fraunces',serif; font-weight:600; font-size:0.88rem; color:var(--teal-dim);}
+  .truth-card h3{font-size:1.22rem; margin-top:10px; margin-bottom:10px; font-weight:600;}
+  .truth-card p{margin:0; font-size:0.98rem; color:rgba(42,33,22,0.82);}
+
+  .kicker{font-weight:600; color:var(--teal-soft); font-size:0.95rem; margin-bottom:14px; display:block; font-family:'Inter',sans-serif;}
+  .section h2{font-size:clamp(1.75rem, 3.2vw, 2.5rem); max-width:22ch;}
+  .section-lede{max-width:60ch; margin-top:16px; font-size:1.06rem; color:rgba(243,233,210,0.82);}
+
+  /* ---------- Framework diagram ---------- */
+  .section-deep{background:var(--slate-deep);}
+  .flow-wrap{margin-top:56px; display:flex; flex-direction:column; align-items:center;}
+  .flow-node{
+    border:1.5px solid var(--teal);
+    border-radius:12px; padding:20px 24px;
+    background:rgba(79,216,196,0.06);
+    text-align:center; max-width:420px;
+  }
+  .flow-node .step-label{font-size:0.76rem; color:var(--teal-soft); font-weight:600; letter-spacing:0.03em; display:block; margin-bottom:6px;}
+  .flow-node h4{font-family:'Fraunces',serif; font-weight:600; margin:0 0 8px; font-size:1.08rem;}
+  .flow-node p{margin:0; font-size:0.93rem; color:rgba(243,233,210,0.78);}
+  .flow-arrow{width:2px; height:36px; background:rgba(243,233,210,0.3); margin:0 auto;}
+  .flow-branches{display:grid; grid-template-columns:repeat(2,1fr); gap:22px; margin-top:36px; width:100%;}
+  @media (max-width:700px){.flow-branches{grid-template-columns:1fr;}}
+  .flow-branches .flow-node{max-width:none; background:rgba(243,233,210,0.06); border-color:rgba(243,233,210,0.35);}
+  .flow-branches .step-label{color:var(--parchment);}
+
+  /* ---------- Interactive: Prop Builder ---------- */
+  .builder-panel{
+    margin-top:48px; background:var(--slate-light);
+    border-radius:20px; padding:36px 32px; border:1px solid rgba(79,216,196,0.25);
+  }
+  .builder-top h3{font-size:1.3rem; margin-bottom:8px; color:var(--parchment);}
+  .builder-top p{margin:0; color:rgba(243,233,210,0.72); font-size:0.96rem; max-width:52ch;}
+  .chip-grid{display:flex; flex-wrap:wrap; gap:12px; margin-top:30px;}
+  .chip{
+    border:1.5px solid rgba(243,233,210,0.32);
+    border-radius:999px; padding:12px 20px; font-size:0.92rem;
+    cursor:pointer; user-select:none; background:transparent; color:var(--parchment);
+    transition:background .2s, border-color .2s, transform .15s;
+    font-family:'Inter', sans-serif;
+  }
+  .chip:hover{border-color:var(--teal); transform:translateY(-1px);}
+  .chip.active{background:var(--teal); color:var(--slate-deep); border-color:var(--teal); font-weight:600;}
+  .story-card{
+    margin-top:32px; background:var(--parchment); color:var(--ink-on-parchment);
+    border-radius:14px; padding:26px 28px; min-height:96px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .story-card .story-label{font-size:0.8rem; text-transform:none; color:var(--teal-dim); font-weight:600; margin-bottom:8px;}
+  .story-card p{margin:0; font-size:1.08rem; font-family:'Fraunces',serif; font-weight:500; line-height:1.5;}
+
+  /* ---------- Boot analogy flip card ---------- */
+  .analogy-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center; margin-top:48px;}
+  @media (max-width:820px){.analogy-grid{grid-template-columns:1fr;}}
+  .flip-card{perspective:1200px; height:220px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{
+    position:absolute; inset:0; backface-visibility:hidden;
+    border-radius:16px; padding:26px; display:flex; align-items:center; justify-content:center;
+    text-align:center; font-family:'Fraunces',serif; font-size:1.15rem; font-weight:500;
+  }
+  .flip-front{background:rgba(79,216,196,0.1); border:1.5px solid var(--teal); color:var(--parchment);}
+  .flip-back{background:var(--teal); color:var(--slate-deep); transform:rotateY(180deg); font-size:1.05rem;}
+  .analogy-hint{margin-top:14px; text-align:center; font-size:0.85rem; color:rgba(243,233,210,0.6);}
+
+  /* ---------- Lessons ---------- */
+  .lessons-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px;}
+  @media (max-width:900px){.lessons-grid{grid-template-columns:1fr;}}
+  .lesson-card{
+    background:rgba(243,233,210,0.05);
+    border:1px solid rgba(243,233,210,0.16);
+    border-radius:16px; padding:28px 24px;
+  }
+  .lesson-card .mark{
+    width:36px; height:36px; border-radius:8px; background:var(--teal);
+    display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+    color:var(--slate-deep); font-weight:700; font-family:'Fraunces',serif;
+  }
+  .lesson-card h3{font-size:1.1rem; margin-bottom:10px; font-weight:600;}
+  .lesson-card p{margin:0; font-size:0.95rem; color:rgba(243,233,210,0.78);}
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    background:radial-gradient(900px 500px at 50% 0%, rgba(79,216,196,0.14), transparent 60%), var(--slate-deep);
+    text-align:center; padding:110px 0;
+  }
+  .final-cta h2{max-width:20ch; margin:0 auto; font-size:clamp(1.9rem,4.2vw,2.8rem);}
+  .final-cta p{max-width:52ch; margin:20px auto 40px; color:rgba(243,233,210,0.82); font-size:1.06rem;}
+
+  footer{background:var(--slate-deep); padding:36px 0; text-align:center; color:rgba(243,233,210,0.55); font-size:0.9rem; border-top:1px solid rgba(243,233,210,0.1);}
+  footer a{color:var(--teal-soft); text-decoration:none; font-weight:600;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+    .flip-inner{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo"><span class="logo-mark"></span>EasyLandX</div>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <div class="nav-links">
+      <a href="#framework">Framework</a>
+      <a href="#builder">Story Builder</a>
+      <a href="#analogy">The Boot Analogy</a>
+      <a href="#lessons">Lessons</a>
+      <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your Page</a>
+    </div>
+    <label for="menu-toggle" class="menu-btn" aria-label="Open menu">☰</label>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="ink-lines" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow">✦ The EasyLandX Framework</span>
+    <h1>Your landing page doesn't mirror your business. <em>It builds one, in plain sight.</em></h1>
+    <p class="lede">There's no hidden "brand soul" waiting inside your business to be uncovered. What visitors trust is built entirely from what they can actually see — your words, your proof, your layout. Once you see that clearly, shaping trust becomes a craft, not a mystery.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build My EasyLandX Page →</a>
+      <a class="btn-ghost" href="#framework">See the framework</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-parchment">
+  <div class="wrap">
+    <span class="kicker">Four truths</span>
+    <h2>What a landing page actually is</h2>
+    <p class="section-lede" style="color:rgba(42,33,22,0.75);">A useful shift in thinking: your page isn't reporting on some private brand essence. It's the thing that creates the impression in the first place — and that's good news, because it means every part of it is yours to shape.</p>
+    <div class="truths-grid">
+      <div class="truth-card">
+        <span class="num">01 — No inner world required</span>
+        <h3>Trust lives on the page, not behind it</h3>
+        <p>Visitors never see your mission statement in your head. They see words, colors, and proof on a screen — and build every impression from exactly that.</p>
+      </div>
+      <div class="truth-card">
+        <span class="num">02 — A useful shorthand</span>
+        <h3>"This brand feels trustworthy" is a helpful story</h3>
+        <p>Calling a business "reliable" or "premium" isn't a literal fact about its soul — it's a shorthand visitors use to predict how you'll treat them. That shorthand is worth designing for.</p>
+      </div>
+      <div class="truth-card">
+        <span class="num">03 — Props, not magic</span>
+        <h3>Every element on the page is a prop in that story</h3>
+        <p>A testimonial, a founder photo, a clear price — each one hands visitors something concrete to build their impression from.</p>
+      </div>
+      <div class="truth-card">
+        <span class="num">04 — Keep the story, skip the mystery</span>
+        <h3>You don't need to abandon "brand feel" — just locate it correctly</h3>
+        <p>Brand personality stays a genuinely useful idea. It simply lives in your visible choices, ready to be shaped on purpose.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-deep" id="framework">
+  <div class="wrap">
+    <span class="kicker">The framework</span>
+    <h2>How trust actually gets built, from the outside in</h2>
+    <p class="section-lede">Instead of hunting for a hidden brand essence, EasyLandX starts where the visitor starts: what's actually on the page.</p>
+
+    <div class="flow-wrap">
+      <div class="flow-node">
+        <span class="step-label">WHAT VISITORS SEE</span>
+        <h4>Your visible page elements</h4>
+        <p>Words, images, proof, layout, and speed — everything a visitor can actually perceive in the first few seconds.</p>
+      </div>
+      <div class="flow-arrow"></div>
+      <div class="flow-node">
+        <span class="step-label">WHAT VISITORS DO WITH IT</span>
+        <h4>They build a story from those signals</h4>
+        <p>Visitors combine those visible elements into an impression — "trustworthy," "premium," "easy to work with" — without ever seeing behind the page.</p>
+      </div>
+      <div class="flow-arrow"></div>
+      <div class="flow-branches">
+        <div class="flow-node">
+          <span class="step-label">KEEPS DESIGN GROUNDED</span>
+          <h4>No mystical brand soul required</h4>
+          <p>You never need to search for some hidden essence to "capture." Every trust signal is something you can point to, add, or sharpen.</p>
+        </div>
+        <div class="flow-node">
+          <span class="step-label">KEEPS STORYTELLING ALIVE</span>
+          <h4>Brand personality stays essential</h4>
+          <p>The story visitors build still matters enormously — it's simply built from real, visible choices instead of guesswork.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="builder">
+  <div class="wrap">
+    <span class="kicker">Interactive · Story Builder</span>
+    <h2>Choose your props, watch the story change</h2>
+    <p class="section-lede">Each prop below is something a visitor can actually see on your page. Add and remove them to watch the story your page tells shift in real time.</p>
+
+    <div class="builder-panel">
+      <div class="builder-top">
+        <h3>Prop-Oriented Story Builder</h3>
+        <p>Tap the elements you'd include on your page. The story card below updates with exactly what visitors would read into it.</p>
+      </div>
+      <div class="chip-grid" id="chip-grid">
+        <button class="chip" data-trait="credible" data-label="A specific client testimonial">A specific client testimonial</button>
+        <button class="chip" data-trait="transparent" data-label="One clear, visible price">One clear, visible price</button>
+        <button class="chip" data-trait="personal" data-label="A founder photo & story">A founder photo & story</button>
+        <button class="chip" data-trait="professional" data-label="A fast-loading page">A fast-loading page</button>
+        <button class="chip" data-trait="approachable" data-label="Warm, human language">Warm, human language</button>
+        <button class="chip" data-trait="established" data-label="Recognizable client logos">Recognizable client logos</button>
+      </div>
+      <div class="story-card">
+        <span class="story-label">What visitors read into your page right now</span>
+        <p id="story-text">Add a prop above to begin building the story visitors will tell themselves about your business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-deep" id="analogy">
+  <div class="wrap">
+    <span class="kicker">The boot analogy</span>
+    <h2>"Literally false, practically useful" — and that's the point</h2>
+    <div class="analogy-grid">
+      <div>
+        <p class="section-lede" style="margin-top:0;">Saying "Rome sits in the shin of the boot" isn't a literal fact — Italy isn't footwear. Yet it hands anyone looking at a map exactly the information they need. Your landing page copy works the same way.</p>
+        <p class="section-lede">Calling your service "the easy button for small business websites" isn't literally true either. It's a story that accurately hands visitors what they need to understand you fast — and that's precisely why it earns its place on the page.</p>
+      </div>
+      <div>
+        <div class="flip-card" id="flip-card">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">Tap to reveal<br>the useful fiction</div>
+            <div class="flip-face flip-back">"Rome is in the boot's shin." Not literal. Still exactly what you needed to know.</div>
+          </div>
+        </div>
+        <p class="analogy-hint">Tap the card</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="lessons">
+  <div class="wrap">
+    <span class="kicker">Essential lessons</span>
+    <h2>Three ideas worth building into every page</h2>
+    <div class="lessons-grid">
+      <div class="lesson-card">
+        <div class="mark">01</div>
+        <h3>The story is metaphorical, not literal</h3>
+        <p>"This brand feels premium" is a projection built from real, external choices — a photo, a font, a price — not a hidden fact you're reporting on.</p>
+      </div>
+      <div class="lesson-card">
+        <div class="mark">02</div>
+        <h3>Meaning starts on the page, not in your head</h3>
+        <p>The clearest way to shape how visitors see your business is to shape exactly what they can see — words, proof, and layout come first.</p>
+      </div>
+      <div class="lesson-card">
+        <div class="mark">03</div>
+        <h3>Trust lives across every touchpoint</h3>
+        <p>A landing page, a WhatsApp reply, and a follow-up email all add props to the same story. Consistency across each one keeps that story coherent.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Ready to build a page that tells your story on purpose?</h2>
+    <p>EasyLandX designs custom, conversion-focused landing pages for small businesses — choosing every prop with intention, at a price built for where you are today.</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Built by <a href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a> · © 2026
+  </div>
+</footer>
+
+<script>
+  // Story Builder interaction
+  const chips = document.querySelectorAll('#chip-grid .chip');
+  const storyText = document.getElementById('story-text');
+
+  const traitPhrases = {
+    credible: "credible",
+    transparent: "transparent",
+    personal: "personal",
+    professional: "professional",
+    approachable: "approachable",
+    established: "established"
+  };
+
+  function updateStory(){
+    const active = Array.from(document.querySelectorAll('#chip-grid .chip.active'))
+      .map(chip => traitPhrases[chip.dataset.trait]);
+
+    if(active.length === 0){
+      storyText.textContent = "Add a prop above to begin building the story visitors will tell themselves about your business.";
+      return;
+    }
+
+    let list;
+    if(active.length === 1){
+      list = active[0];
+    } else if(active.length === 2){
+      list = active.join(" and ");
+    } else {
+      list = active.slice(0, -1).join(", ") + ", and " + active[active.length - 1];
+    }
+
+    storyText.textContent = "Right now, visitors are reading your page as " + list + " — built entirely from what they can see.";
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chip.classList.toggle('active');
+      updateStory();
+    });
+  });
+
+  // Flip card interaction
+  const flipCard = document.getElementById('flip-card');
+  flipCard.addEventListener('click', () => {
+    flipCard.classList.toggle('flipped');
+  });
+</script>
+
+</body>
+</html>
