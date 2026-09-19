@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX — Your Landing Page Has A Mind. Guide It.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple-deep:#3B0470;
+    --purple-main:#7209B7;
+    --purple-light:#9D4EDD;
+    --purple-glow:#B57BFF;
+    --green-laser:#39FF14;
+    --green-dim:#1F8A0C;
+    --yellow-cyber:#FFEC19;
+    --ink:#180030;
+    --paper:#F7F1FF;
+    --line: rgba(255,255,255,0.16);
+    --maxw: 1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Work Sans', sans-serif;
+    background:var(--purple-main);
+    color:var(--paper);
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    line-height:1.08;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img,svg{max-width:100%;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+  .section{padding:96px 0;}
+  .section-tight{padding:64px 0;}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(59,4,112,0.86);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
+  .logo{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.3rem; display:flex; align-items:center; gap:8px;}
+  .logo-dot{width:10px;height:10px;border-radius:50%;background:var(--green-laser); box-shadow:0 0 10px var(--green-laser), 0 0 20px var(--green-laser);}
+  .nav-links{display:flex; gap:28px; font-size:0.95rem;}
+  .nav-links a{text-decoration:none; color:var(--paper); opacity:0.85; transition:opacity .2s, color .2s;}
+  .nav-links a:hover{opacity:1; color:var(--yellow-cyber);}
+  .nav-cta{
+    background:var(--green-laser); color:var(--ink); font-weight:600;
+    padding:10px 18px; border-radius:999px; text-decoration:none; font-size:0.9rem;
+    box-shadow:0 0 0 rgba(57,255,20,0); transition:box-shadow .25s, transform .2s;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{ box-shadow:0 0 24px rgba(57,255,20,0.65); transform:translateY(-1px);}
+  .menu-toggle{display:none;}
+  .menu-btn{display:none; background:none; border:1px solid var(--line); border-radius:8px; color:var(--paper); padding:8px 10px; font-size:1.1rem; cursor:pointer;}
+
+  @media (max-width:760px){
+    .nav-links{
+      position:fixed; inset:0; top:64px;
+      background:var(--purple-deep);
+      flex-direction:column; align-items:flex-start; gap:0;
+      padding:16px 24px 32px;
+      transform:translateY(-8px);
+      opacity:0; pointer-events:none;
+      transition:opacity .2s ease, transform .2s ease;
+    }
+    .nav-links a{padding:14px 0; width:100%; border-bottom:1px solid var(--line); opacity:0.9;}
+    .menu-toggle:checked ~ .nav-links{opacity:1; pointer-events:auto; transform:translateY(0);}
+    .menu-btn{display:inline-block;}
+    .nav-cta.desktop-only{display:none;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:110px 0 100px;
+    background:
+      radial-gradient(600px 400px at 15% 10%, rgba(157,78,221,0.55), transparent 60%),
+      radial-gradient(700px 500px at 90% 30%, rgba(57,255,20,0.12), transparent 60%),
+      var(--purple-main);
+    overflow:hidden;
+  }
+  .cyber-grid{
+    position:absolute; inset:0; opacity:0.18; pointer-events:none;
+    background-image:
+      linear-gradient(var(--purple-glow) 1px, transparent 1px),
+      linear-gradient(90deg, var(--purple-glow) 1px, transparent 1px);
+    background-size:56px 56px;
+    mask-image:linear-gradient(to bottom, black, transparent 85%);
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.85rem; font-weight:500; color:var(--yellow-cyber);
+    background:rgba(255,236,25,0.1); border:1px solid rgba(255,236,25,0.35);
+    padding:6px 14px; border-radius:999px; margin-bottom:28px;
+  }
+  .hero h1{
+    position:relative; font-size:clamp(2.3rem, 5.4vw, 4.1rem); max-width:14ch; font-weight:700;
+  }
+  .hero h1 span{color:var(--green-laser); text-shadow:0 0 22px rgba(57,255,20,0.5);}
+  .hero p.lede{
+    position:relative; font-size:1.2rem; max-width:52ch; margin-top:26px; color:rgba(247,241,255,0.86);
+  }
+  .hero-ctas{position:relative; display:flex; gap:16px; margin-top:40px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--green-laser); color:var(--ink); font-weight:600; font-size:1.02rem;
+    padding:15px 30px; border-radius:999px; text-decoration:none; display:inline-block;
+    box-shadow:0 0 0 rgba(57,255,20,0); transition:box-shadow .25s, transform .2s;
+  }
+  .btn-primary:hover{box-shadow:0 0 32px rgba(57,255,20,0.6); transform:translateY(-2px);}
+  .btn-ghost{
+    border:1px solid rgba(255,236,25,0.55); color:var(--yellow-cyber); font-weight:600; font-size:1.02rem;
+    padding:14px 28px; border-radius:999px; text-decoration:none; display:inline-block; transition:background .2s;
+  }
+  .btn-ghost:hover{background:rgba(255,236,25,0.12);}
+
+  /* ---------- Truths section ---------- */
+  .section-yellow{
+    background:var(--yellow-cyber); color:var(--ink);
+  }
+  .section-yellow .kicker{color:var(--purple-main);}
+  .truths-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:28px; margin-top:48px;
+  }
+  @media (max-width:760px){.truths-grid{grid-template-columns:1fr;}}
+  .truth-card{
+    background:rgba(24,0,48,0.06);
+    border:1.5px solid rgba(24,0,48,0.16);
+    border-radius:18px; padding:28px 26px;
+  }
+  .truth-card .num{
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:0.85rem;
+    color:var(--purple-main); letter-spacing:0.02em;
+  }
+  .truth-card h3{font-size:1.25rem; margin-top:10px; margin-bottom:10px;}
+  .truth-card p{margin:0; font-size:0.98rem; color:rgba(24,0,48,0.82);}
+
+  /* ---------- Kicker/heading pattern ---------- */
+  .kicker{font-weight:600; color:var(--green-laser); font-size:0.95rem; margin-bottom:14px; display:block;}
+  .section h2{font-size:clamp(1.8rem, 3.4vw, 2.6rem); max-width:20ch;}
+  .section-lede{max-width:60ch; margin-top:16px; font-size:1.08rem; color:rgba(247,241,255,0.82);}
+
+  /* ---------- Framework diagram ---------- */
+  .section-purple-deep{background:var(--purple-deep);}
+  .flow-wrap{margin-top:56px;}
+  .flow-top, .flow-branches{display:flex; justify-content:center;}
+  .flow-node{
+    border:1.5px solid var(--green-laser);
+    border-radius:14px;
+    padding:18px 22px;
+    background:rgba(57,255,20,0.06);
+    text-align:center;
+    max-width:340px;
+  }
+  .flow-node .step-label{font-size:0.78rem; color:var(--yellow-cyber); font-weight:600; letter-spacing:0.03em; display:block; margin-bottom:6px;}
+  .flow-node h4{font-family:'Space Grotesk',sans-serif; margin:0 0 8px; font-size:1.05rem;}
+  .flow-node p{margin:0; font-size:0.92rem; color:rgba(247,241,255,0.78);}
+  .flow-arrow{
+    width:2px; height:36px; background:var(--purple-light); margin:0 auto;
+  }
+  .flow-branches{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:36px;}
+  @media (max-width:820px){.flow-branches{grid-template-columns:1fr;} .flow-node{max-width:none;}}
+  .flow-branches .flow-node{background:rgba(157,78,221,0.14); border-color:var(--purple-light);}
+  .flow-branches .step-label{color:var(--green-laser);}
+
+  /* ---------- Interactive: Focus Audit ---------- */
+  .section-light{background:var(--paper); color:var(--ink);}
+  .section-light .kicker{color:var(--purple-main);}
+  .audit-panel{
+    margin-top:48px;
+    background:var(--ink);
+    border-radius:22px;
+    padding:36px 32px;
+    color:var(--paper);
+  }
+  .audit-top{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap;}
+  .audit-top h3{font-size:1.3rem; margin-bottom:6px;}
+  .audit-top p{margin:0; color:rgba(247,241,255,0.7); font-size:0.95rem; max-width:44ch;}
+  .meter-box{min-width:220px;}
+  .meter-label{display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:6px; color:var(--yellow-cyber);}
+  .meter-track{height:14px; border-radius:999px; background:rgba(255,255,255,0.1); overflow:hidden;}
+  .meter-fill{
+    height:100%; width:0%; border-radius:999px;
+    background:linear-gradient(90deg, var(--green-dim), var(--green-laser));
+    transition:width .45s ease;
+    box-shadow:0 0 14px rgba(57,255,20,0.5);
+  }
+  .meter-status{margin-top:8px; font-size:0.85rem; color:rgba(247,241,255,0.75); min-height:1.3em;}
+  .chip-grid{display:flex; flex-wrap:wrap; gap:12px; margin-top:32px;}
+  .chip{
+    border:1.5px solid rgba(255,255,255,0.28);
+    border-radius:999px; padding:12px 20px; font-size:0.92rem;
+    cursor:pointer; user-select:none; background:transparent; color:var(--paper);
+    transition:background .2s, border-color .2s, transform .15s;
+    font-family:'Work Sans', sans-serif;
+  }
+  .chip:hover{border-color:var(--green-laser); transform:translateY(-1px);}
+  .chip.active{
+    background:var(--green-laser); color:var(--ink); border-color:var(--green-laser); font-weight:600;
+  }
+  .chip .tag{opacity:0.6; font-size:0.78rem; margin-left:6px;}
+  .chip.active .tag{opacity:0.55;}
+
+  /* ---------- Pause practice ---------- */
+  .pause-panel{
+    margin-top:48px;
+    border-radius:22px;
+    padding:44px 36px;
+    background:linear-gradient(135deg, rgba(157,78,221,0.9), rgba(114,9,183,0.9));
+    text-align:center;
+    border:1px solid rgba(255,236,25,0.25);
+  }
+  .pause-ring{
+    width:150px; height:150px; margin:0 auto 26px;
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    border:3px solid var(--yellow-cyber);
+    font-family:'Space Grotesk',sans-serif; font-size:2.4rem; font-weight:700;
+    color:var(--yellow-cyber);
+    box-shadow:0 0 0 rgba(255,236,25,0);
+    transition:box-shadow .3s;
+  }
+  .pause-ring.live{box-shadow:0 0 34px rgba(255,236,25,0.55);}
+  .pause-message{font-size:1.15rem; max-width:46ch; margin:0 auto 28px; min-height:2.6em;}
+  .btn-yellow{
+    background:var(--yellow-cyber); color:var(--ink); font-weight:600; font-size:1rem;
+    padding:14px 28px; border-radius:999px; border:none; cursor:pointer;
+    transition:box-shadow .25s, transform .2s;
+  }
+  .btn-yellow:hover{box-shadow:0 0 26px rgba(255,236,25,0.6); transform:translateY(-2px);}
+  .btn-yellow:disabled{opacity:0.6; cursor:default; transform:none; box-shadow:none;}
+
+  /* ---------- Lessons ---------- */
+  .lessons-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px;}
+  @media (max-width:900px){.lessons-grid{grid-template-columns:1fr;}}
+  .lesson-card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid var(--line);
+    border-radius:18px; padding:28px 24px;
+  }
+  .lesson-card .mark{
+    width:38px; height:38px; border-radius:10px; background:var(--green-laser);
+    display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+    color:var(--ink); font-weight:700; font-family:'Space Grotesk',sans-serif;
+  }
+  .lesson-card h3{font-size:1.12rem; margin-bottom:10px;}
+  .lesson-card p{margin:0; font-size:0.95rem; color:rgba(247,241,255,0.78);}
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    background:radial-gradient(900px 500px at 50% 0%, rgba(57,255,20,0.16), transparent 60%), var(--purple-deep);
+    text-align:center;
+    padding:110px 0;
+  }
+  .final-cta h2{max-width:18ch; margin:0 auto; font-size:clamp(2rem,4.4vw,3rem);}
+  .final-cta p{max-width:52ch; margin:20px auto 40px; color:rgba(247,241,255,0.82); font-size:1.08rem;}
+
+  footer{
+    background:var(--ink); padding:40px 0; text-align:center; color:rgba(247,241,255,0.6); font-size:0.9rem;
+  }
+  footer a{color:var(--green-laser); text-decoration:none; font-weight:600;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo"><span class="logo-dot"></span>EasyLandX</div>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <div class="nav-links">
+      <a href="#framework">Framework</a>
+      <a href="#audit">Focus Audit</a>
+      <a href="#pause">Pause Practice</a>
+      <a href="#lessons">Lessons</a>
+      <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Get Your Page</a>
+    </div>
+    <label for="menu-toggle" class="menu-btn" aria-label="Open menu">☰</label>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="cyber-grid" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow">✦ The EasyLandX Framework</span>
+    <h1>Your landing page has a mind of its own. <span>Give it direction.</span></h1>
+    <p class="lede">Left alone, a page wanders — scattering attention across too many messages, colors, and calls to action. Guided with intention, that same page becomes a calm, focused guide that leads every visitor toward one clear yes.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Build My EasyLandX Page →</a>
+      <a class="btn-ghost" href="#framework">See the framework</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-yellow">
+  <div class="wrap">
+    <span class="kicker">Four truths</span>
+    <h2>What every landing page already knows about itself</h2>
+    <p class="section-lede" style="color:rgba(24,0,48,0.75);">Before we talk tactics, it helps to see the page for what it is: a living surface with habits of its own. Once you can see those habits clearly, shaping them becomes simple.</p>
+    <div class="truths-grid">
+      <div class="truth-card">
+        <span class="num">01 — The willing servant</span>
+        <h3>Built for attention, not automatically for conversion</h3>
+        <p>A page is designed to hold eyes, not necessarily to earn clicks. Pointed with intention, it becomes your most consistent salesperson.</p>
+      </div>
+      <div class="truth-card">
+        <span class="num">02 — The power of framing</span>
+        <h3>Visitors respond to how something is framed</h3>
+        <p>The same offer, presented two different ways, earns two different reactions. Shaping that first impression is your highest-leverage move.</p>
+      </div>
+      <div class="truth-card">
+        <span class="num">03 — Patterns over luck</span>
+        <h3>High-converting pages follow repeatable laws</h3>
+        <p>Focus, energy, and clarity behave the same way across industries. Learn the pattern once and apply it to every page you build next.</p>
+      </div>
+      <div class="truth-card">
+        <span class="num">04 — Nothing is fixed</span>
+        <h3>Your page is a living surface, not a monument</h3>
+        <p>It can be observed, measured, and adjusted one intentional change at a time — which means today's version is only a starting point.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-purple-deep" id="framework">
+  <div class="wrap">
+    <span class="kicker">The framework</span>
+    <h2>Five moves that put your page back in your hands</h2>
+    <p class="section-lede">Inspired by how mental mastery works — awareness, reframing, pausing, redirecting, and repeating — here's how the same pattern builds a page that converts on purpose.</p>
+
+    <div class="flow-wrap">
+      <div class="flow-top">
+        <div class="flow-node">
+          <span class="step-label">STEP 1</span>
+          <h4>Notice what visitors see first</h4>
+          <p>Watch the page the way a stranger would — without judging it, just observing where the eye lands.</p>
+        </div>
+      </div>
+      <div class="flow-arrow"></div>
+      <div class="flow-top">
+        <div class="flow-node">
+          <span class="step-label">STEP 2</span>
+          <h4>Reframe every hesitation as clarity</h4>
+          <p>A visitor's doubt is a request for more information, not a rejection. Answer it in plain language, right where it appears.</p>
+        </div>
+      </div>
+      <div class="flow-arrow"></div>
+      <div class="flow-branches">
+        <div class="flow-node">
+          <span class="step-label">STEP 3</span>
+          <h4>Add a trust pause</h4>
+          <p>Give visitors one honest, breathing moment — a proof point or a plain answer — before you ask for the sale.</p>
+        </div>
+        <div class="flow-node">
+          <span class="step-label">STEP 4</span>
+          <h4>Focus energy where it converts</h4>
+          <p>Direct every color, word, and pixel toward the one action that matters most on this page.</p>
+        </div>
+        <div class="flow-node">
+          <span class="step-label">STEP 5</span>
+          <h4>Build small weekly rituals</h4>
+          <p>One tested tweak a week compounds into a page that keeps getting sharper, quietly and steadily.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-light" id="audit">
+  <div class="wrap">
+    <span class="kicker">Interactive · Focus Audit</span>
+    <h2>Where is your page's energy going right now?</h2>
+    <p class="section-lede" style="color:rgba(24,0,48,0.72);">Tap the elements that are fully within your control. Watch your Focus Score rise as your attention lines up with what you can actually shape today.</p>
+
+    <div class="audit-panel">
+      <div class="audit-top">
+        <div>
+          <h3>Control Filter Audit</h3>
+          <p>Six elements, all inside your reach. Activate the ones you're ready to focus on this week.</p>
+        </div>
+        <div class="meter-box">
+          <div class="meter-label"><span>Focus Score</span><span id="meter-percent">0%</span></div>
+          <div class="meter-track"><div class="meter-fill" id="meter-fill"></div></div>
+          <div class="meter-status" id="meter-status">Tap a chip to begin aligning your focus.</div>
+        </div>
+      </div>
+      <div class="chip-grid" id="chip-grid">
+        <button class="chip" data-tip="A clear headline earns the next five seconds of attention.">Headline clarity <span class="tag">yours to shape</span></button>
+        <button class="chip" data-tip="One visible action beats five competing ones.">One clear call to action <span class="tag">yours to shape</span></button>
+        <button class="chip" data-tip="Speed is a trust signal before a single word is read.">Page loading speed <span class="tag">yours to shape</span></button>
+        <button class="chip" data-tip="Most visits happen on a phone — design for that first.">Mobile experience <span class="tag">yours to shape</span></button>
+        <button class="chip" data-tip="Real results, in plain words, answer doubt before it grows.">Trust signals & proof <span class="tag">yours to shape</span></button>
+        <button class="chip" data-tip="Small, steady tweaks compound faster than big rewrites.">Weekly small tweaks <span class="tag">yours to shape</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-purple-deep" id="pause">
+  <div class="wrap">
+    <span class="kicker">Interactive · Pause Practice</span>
+    <h2>Give every launch a five-second pause</h2>
+    <p class="section-lede">A short pause before publishing creates space between impulse and intention — enough to catch one more improvement before your page goes live.</p>
+
+    <div class="pause-panel">
+      <div class="pause-ring" id="pause-ring">5</div>
+      <p class="pause-message" id="pause-message">Press start, breathe through the count, and receive one page-ready insight on the other side.</p>
+      <button class="btn-yellow" id="pause-btn">Begin the pause</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="lessons">
+  <div class="wrap">
+    <span class="kicker">Essential lessons</span>
+    <h2>Three ideas worth keeping on a sticky note</h2>
+    <div class="lessons-grid">
+      <div class="lesson-card">
+        <div class="mark">01</div>
+        <h3>What you highlight grows</h3>
+        <p>Every headline, button, and image you emphasize pulls attention toward it. Point that spotlight at your strongest offer, and let quieter elements stay quiet.</p>
+      </div>
+      <div class="lesson-card">
+        <div class="mark">02</div>
+        <h3>There's a gap before every click</h3>
+        <p>A visitor's hesitation is a pause, not a no. Use that gap to add one more piece of clarity, proof, or reassurance right where the pause happens.</p>
+      </div>
+      <div class="lesson-card">
+        <div class="mark">03</div>
+        <h3>Consistency beats intensity</h3>
+        <p>A single word change or a faster-loading image, tested weekly, builds more momentum than one giant redesign attempted all at once.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Ready to give your business a page that knows exactly what it's here to do?</h2>
+    <p>EasyLandX builds custom, conversion-focused landing pages for small businesses — designed with the same intention this framework describes, at a price built for where you are today.</p>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Built by <a href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a> · © 2026
+  </div>
+</footer>
+
+<script>
+  // Focus Audit interaction
+  const chips = document.querySelectorAll('#chip-grid .chip');
+  const fill = document.getElementById('meter-fill');
+  const percentLabel = document.getElementById('meter-percent');
+  const status = document.getElementById('meter-status');
+  const total = chips.length;
+
+  const statusMessages = [
+    "Tap a chip to begin aligning your focus.",
+    "A good start — your attention is beginning to gather.",
+    "Building momentum — your energy is finding its direction.",
+    "Well aligned — most of your focus is exactly where it belongs.",
+    "Fully aligned — every bit of energy is pointed at what converts."
+  ];
+
+  function updateMeter(){
+    const activeCount = document.querySelectorAll('#chip-grid .chip.active').length;
+    const pct = Math.round((activeCount / total) * 100);
+    fill.style.width = pct + '%';
+    percentLabel.textContent = pct + '%';
+    const idx = Math.min(statusMessages.length - 1, Math.round((activeCount/total) * (statusMessages.length - 1)));
+    status.textContent = activeCount === 0 ? statusMessages[0] : statusMessages[idx];
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chip.classList.toggle('active');
+      updateMeter();
+    });
+  });
+
+  // Pause Practice interaction
+  const pauseBtn = document.getElementById('pause-btn');
+  const pauseRing = document.getElementById('pause-ring');
+  const pauseMessage = document.getElementById('pause-message');
+  let pauseRunning = false;
+
+  const insights = [
+    "One more scroll before launch: does your headline say exactly what a visitor gets?",
+    "One more scroll before launch: is there a single, unmistakable next step on this page?",
+    "One more scroll before launch: would this load comfortably on a visitor's phone, right now?",
+    "One more scroll before launch: is there one real result or testimonial visible above the fold?",
+    "One more scroll before launch: could you remove one distraction without losing anything essential?"
+  ];
+
+  function runPause(){
+    if(pauseRunning) return;
+    pauseRunning = true;
+    pauseBtn.disabled = true;
+    pauseBtn.textContent = "Pausing...";
+    pauseRing.classList.add('live');
+    let count = 5;
+    pauseRing.textContent = count;
+    pauseMessage.textContent = "Breathe in for a moment. Clarity is on its way.";
+
+    const timer = setInterval(() => {
+      count -= 1;
+      if(count > 0){
+        pauseRing.textContent = count;
+      } else {
+        clearInterval(timer);
+        pauseRing.textContent = "✓";
+        pauseRing.classList.remove('live');
+        const pick = insights[Math.floor(Math.random() * insights.length)];
+        pauseMessage.textContent = pick;
+        pauseBtn.disabled = false;
+        pauseBtn.textContent = "Pause again";
+        pauseRunning = false;
+      }
+    }, 1000);
+  }
+
+  pauseBtn.addEventListener('click', runPause);
+</script>
+
+</body>
+</html>
