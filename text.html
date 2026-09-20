@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Comfortable or Unmistakable</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#160d02;
+    --gold-deep:#3d2705;
+    --gold:#caa23c;
+    --gold-neon:#ffd25a;
+    --crimson:#7a0f24;
+    --crimson-bright:#d1213f;
+    --parchment:#f4e8cb;
+    --parchment-ink:#2b1d0e;
+    --ink:#ffffff;
+    --muted:#fff2dc;
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html{ scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior:smooth; }
+  *{ box-sizing:inherit; }
+  body{
+    margin:0; min-height:100%;
+    font-family:'EB Garamond', Georgia, serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 20% 0%, rgba(255, 230, 0, 0.4) 0%, transparent 45%),
+      radial-gradient(circle at 90% 30%, rgba(255, 0, 60, 0.25) 0%, transparent 42%),
+      linear-gradient(170deg, #ff6a00 0%, #ff4500 50%, #cc2b00 100%);
+    background-attachment: fixed;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{ font-family:'EB Garamond', Georgia, serif; font-weight:600; margin:0; line-height:1.15; }
+  p{ margin:0; }
+  a{ color:inherit; }
+  .ui{ font-family:'Inter', sans-serif; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    padding-top: calc(18px + env(safe-area-inset-top, 0px));
+    padding-bottom:18px;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(to bottom, rgba(204, 43, 0, 0.85), rgba(255, 85, 0, 0));
+  }
+  .topbar .wrap{ display:flex; align-items:center; justify-content:space-between; }
+  .logo{ font-family:'EB Garamond', serif; font-weight:700; font-size:1.3rem; font-style:italic; }
+  .logo span{ color:var(--gold-neon); font-style:normal; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Inter', sans-serif; font-weight:600; font-size:0.9rem;
+    padding:11px 22px; border-radius:999px; border:1px solid transparent;
+    cursor:pointer; text-decoration:none; transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-primary{ background: #160d02; color:var(--parchment); box-shadow: 0 10px 26px -8px rgba(0,0,0,0.4); }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 14px 30px -6px rgba(0,0,0,0.6); }
+  .btn-ghost{ background: rgba(0,0,0,0.15); border-color: rgba(255,255,255,0.6); color:#ffffff; }
+  .btn-ghost:hover{ background: rgba(0,0,0,0.25); transform: translateY(-2px); }
+  .btn-small{ padding:9px 18px; font-size:0.82rem; }
+
+  .hero{ padding: 96px 0 60px; }
+  .hero h1{ font-size: clamp(2.3rem, 5.6vw, 3.8rem); max-width:17ch; }
+  .hero h1 em{ font-style:italic; color:var(--gold-neon); }
+  .hero p.lede{ margin-top:22px; max-width:60ch; font-size:1.2rem; line-height:1.7; color:var(--muted); }
+  .hero .actions{ margin-top:32px; display:flex; gap:16px; flex-wrap:wrap; font-family:'Inter', sans-serif; }
+
+  .intro{ padding: 10px 0 70px; }
+  .intro p{ max-width:66ch; font-size:1.18rem; line-height:1.8; color:var(--muted); }
+
+  .section-head{ max-width:60ch; margin-bottom:38px; }
+  .section-head h2{ font-size: clamp(1.8rem, 3.8vw, 2.4rem); }
+  .section-head p{ margin-top:12px; color:var(--muted); font-size:1.08rem; }
+
+  /* interactive */
+  .demo-section{ padding: 10px 0 90px; }
+  .demo-box{
+    background: rgba(0,0,0,0.2);
+    border:1px solid rgba(255,255,255,0.25);
+    border-radius: 26px;
+    padding: 36px 30px 40px;
+  }
+  .pills{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:26px; font-family:'Inter', sans-serif; }
+  .pill{
+    padding:9px 18px; border-radius:999px; border:1px solid rgba(255,255,255,0.3);
+    background: rgba(0,0,0,0.15); color: #ffffff; font-size:0.88rem; font-weight:500;
+    cursor:pointer; transition: all .25s ease;
+  }
+  .pill.active{ background: #ffffff; color:#2b1d0e; border-color: transparent; font-weight:600; }
+
+  .switch-row{ display:flex; align-items:center; justify-content:center; gap:16px; margin-bottom:34px; font-family:'Inter', sans-serif; flex-wrap:wrap; }
+  .switch-label{ font-size:0.92rem; color:var(--muted); cursor:pointer; text-align:center; transition: color .3s ease; }
+  .switch-label small{ display:block; font-style:italic; opacity:0.85; font-family:'EB Garamond', serif; font-size:0.85rem; }
+  .switch-label.active[data-side="plaisir"]{ color: var(--gold-neon); font-weight: 600; }
+  .switch-label.active[data-side="jouissance"]{ color: #ffffff; font-weight: 600; }
+
+  .switch{
+    position:relative; width:74px; height:38px; border-radius:999px;
+    background: rgba(0,0,0,0.4); border:2px solid rgba(255,255,255,0.3);
+    cursor:pointer; flex-shrink:0;
+  }
+  .switch .thumb{
+    position:absolute; top:3px; left:3px; width:28px; height:28px; border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, var(--gold-neon), var(--gold));
+    box-shadow: 0 0 14px rgba(255,210,90,0.7);
+    transition: transform .4s cubic-bezier(.5,0,.2,1), background .4s ease, box-shadow .4s ease;
+  }
+  .switch.is-jouissance .thumb{
+    transform: translateX(36px);
+    background: radial-gradient(circle at 35% 30%, #ffffff, #f4e8cb);
+    box-shadow: 0 0 14px rgba(255,255,255,0.8);
+  }
+  .switch:focus-visible{ outline:2px solid var(--gold-neon); outline-offset:3px; }
+
+  .page-card{
+    max-width:640px; margin:0 auto; padding:44px 38px;
+    background: var(--parchment); color: var(--parchment-ink);
+    border-radius:10px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.35);
+    background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.015) 0 2px, transparent 2px 4px);
+  }
+  .page-card .eyebrow{ font-family:'Inter', sans-serif; font-size:0.78rem; text-transform:none; letter-spacing:0.02em; color:#8a7550; margin-bottom:10px; }
+  .page-card h4{ font-size:1.9rem; margin-bottom:14px; transition: opacity .25s ease; }
+  .page-card p.sub{ font-size:1.1rem; line-height:1.6; color:#4a3a20; margin-bottom:22px; transition: opacity .25s ease; }
+  .page-card .cta{
+    display:inline-block; font-family:'Inter', sans-serif; font-weight:600; font-size:0.92rem;
+    padding:12px 24px; border-radius:8px; background: var(--crimson); color:var(--parchment);
+    transition: opacity .25s ease;
+  }
+  .fade{ animation: reveal .35s ease; }
+  @keyframes reveal{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);} }
+
+  /* steps */
+  .steps-section{ padding: 10px 0 90px; }
+  .steps-list{ display:grid; gap:16px; }
+  .step-item{
+    display:grid; grid-template-columns: 52px 1fr; gap:20px;
+    padding:22px 24px; border-radius:16px;
+    background: rgba(0,0,0,0.18); border:1px solid rgba(255,255,255,0.2);
+  }
+  .step-item .num{
+    font-family:'EB Garamond', serif; font-style:italic; font-size:1.3rem; color: var(--void);
+    background: var(--gold-neon);
+    width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-weight:600;
+  }
+  .step-item h3{ font-size:1.25rem; margin-bottom:8px; }
+  .step-item p{ color:var(--muted); font-size:1.05rem; line-height:1.65; }
+
+  /* insights */
+  .insights{ padding: 10px 0 90px; }
+  .duo{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  @media (max-width:760px){ .duo{ grid-template-columns:1fr; } }
+  .duo .piece{
+    padding:32px 28px; border-radius:14px; background: var(--parchment); color: var(--parchment-ink);
+  }
+  .piece h3{ font-size:1.3rem; margin-bottom:12px; }
+  .piece p{ color:#4a3a20; font-size:1.05rem; line-height:1.7; }
+
+  .final{ padding: 30px 0 110px; text-align:center; }
+  .final-box{
+    padding: 60px 30px; border-radius: 26px;
+    background: rgba(0,0,0,0.2);
+    border:1px solid rgba(255,255,255,0.25);
+  }
+  .final h2{ font-size: clamp(1.9rem, 4.2vw, 2.6rem); max-width:22ch; margin:0 auto; }
+  .final p{ margin-top:16px; color:var(--muted); font-size:1.12rem; }
+  .final .actions{ margin-top:28px; display:flex; justify-content:center; font-family:'Inter', sans-serif; }
+
+  footer{ padding: 34px 0 calc(34px + env(safe-area-inset-bottom, 0px)); text-align:center; color:var(--muted); font-size:0.92rem; border-top:1px solid rgba(255,255,255,0.2); font-family:'Inter', sans-serif; }
+
+  @media (max-width:620px){
+    .page-card{ padding:32px 24px; }
+    .step-item{ grid-template-columns: 42px 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap">
+      <div class="logo">easyland<span>x</span></div>
+      <a class="btn btn-ghost btn-small" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>Some pages are comfortable. Others are <em>unmistakable</em>.</h1>
+      <p class="lede">Roland Barthes described two ways a text can move a reader — the ease of the familiar, and the thrill of one that breaks the pattern just enough to matter. Most landing pages settle for comfortable. easylandx builds for the second kind.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#demo">Feel the difference</a>
+        <a class="btn btn-ghost" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="wrap">
+      <p>A landing page can be read the way a text can be read: as a message to extract, or as an experience to feel. Most small business websites are built for extraction — a few bullet points, one button, nothing left to interpret. easylandx treats a landing page as a text with its own grain: rhythm in the copy, texture in the layout, and a small rupture placed exactly where a visitor's attention starts to drift.</p>
+    </div>
+  </section>
+
+  <section class="demo-section" id="demo">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The same business, told two ways</h2>
+        <p>Choose a business, then flip the switch. The words are the only thing that changes.</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="pills" id="pills">
+          <button class="pill active" data-biz="bakery">Bakery</button>
+          <button class="pill" data-biz="yoga">Yoga studio</button>
+          <button class="pill" data-biz="electrician">Electrician</button>
+        </div>
+
+        <div class="switch-row">
+          <span class="switch-label active" data-side="plaisir" id="labelPlaisir">Comfortable<small>plaisir</small></span>
+          <div class="switch" id="styleSwitch" role="button" tabindex="0" aria-pressed="false" aria-label="Toggle between comfortable and unmistakable copy">
+            <div class="thumb"></div>
+          </div>
+          <span class="switch-label" data-side="jouissance" id="labelJouissance">Unmistakable<small>jouissance</small></span>
+        </div>
+
+        <div class="page-card">
+          <div class="eyebrow">Landing page preview</div>
+          <h4 id="cardTitle"></h4>
+          <p class="sub" id="cardSub"></p>
+          <span class="cta" id="cardCta"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="steps-section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>How easylandx finds the unmistakable version</h2>
+      </div>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="num">1</div>
+          <div><h3>Look beyond the message</h3><p>A landing page isn't only information to extract; it's an experience to feel. We start by asking what a visitor should feel, not only what they should learn.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="num">2</div>
+          <div><h3>Find the seams</h3><p>The gaps between sections, the whitespace around an image, the pause before a call to action — these seams are where a page's personality actually lives.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="num">3</div>
+          <div><h3>Let visitors wander</h3><p>A rigid, single-path layout treats every visitor the same. We design pages that reward exploring, so a visitor can drift toward the section that speaks to them first.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="num">4</div>
+          <div><h3>Tune the grain of the voice</h3><p>Every line of copy has a cadence. We shape the rhythm and texture of the words themselves, not only the information inside them.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="num">5</div>
+          <div><h3>Let go of the generic script</h3><p>A business's real identity shows up once it stops performing the safe, expected script — even when the unmistakable version feels like the bigger risk.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="insights">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What the two versions teach us</h2>
+      </div>
+      <div class="duo">
+        <div class="piece">
+          <h3>Comfort has its place. So does surprise.</h3>
+          <p>A landing page needs enough of the familiar to feel trustworthy — and just enough unexpected texture to be remembered.</p>
+        </div>
+        <div class="piece">
+          <h3>The reader finishes the sentence.</h3>
+          <p>A visitor isn't a passive audience for a page's message. The words, images, and pacing only become meaningful once someone moves through them in their own way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <div class="final-box">
+        <h2>Write the version that's unmistakably yours.</h2>
+        <p>A landing page built for 2026, with a voice no template could produce.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">easylandx — custom landing pages with a voice of their own. 2026 and beyond.</div>
+  </footer>
+
+<script>
+  const copy = {
+    bakery: {
+      plaisir: { h: "Fresh Bread Daily", s: "Quality ingredients, baked fresh every morning.", c: "Order Now" },
+      jouissance: { h: "The Crackle Before the Bite", s: "Crust that shatters, crumb that pulls apart in warm ribbons — baked before the sun's fully up.", c: "Taste What's Warm Today" }
+    },
+    yoga: {
+      plaisir: { h: "Yoga Classes for Everyone", s: "Beginner-friendly classes in a welcoming space.", c: "Book a Class" },
+      jouissance: { h: "The Breath Between Poses", s: "The stretch that aches just before it opens, the stillness that arrives only after you stop chasing it.", c: "Find Your Next Breath" }
+    },
+    electrician: {
+      plaisir: { h: "Licensed Electrician Services", s: "Reliable electrical work for homes and businesses.", c: "Get a Quote" },
+      jouissance: { h: "The Hum Behind Every Wall", s: "Wires that carry more than current — they carry the quiet confidence of a house that simply works.", c: "Wire It Right" }
+    }
+  };
+
+  let currentBiz = 'bakery';
+  let currentStyle = 'plaisir';
+
+  const pills = document.querySelectorAll('.pill');
+  const styleSwitch = document.getElementById('styleSwitch');
+  const labelPlaisir = document.getElementById('labelPlaisir');
+  const labelJouissance = document.getElementById('labelJouissance');
+  const cardTitle = document.getElementById('cardTitle');
+  const cardSub = document.getElementById('cardSub');
+  const cardCta = document.getElementById('cardCta');
+
+  function render(){
+    const data = copy[currentBiz][currentStyle];
+    cardTitle.textContent = data.h;
+    cardSub.textContent = data.s;
+    cardCta.textContent = data.c;
+    [cardTitle, cardSub, cardCta].forEach(el => {
+      el.classList.remove('fade');
+      void el.offsetWidth;
+      el.classList.add('fade');
+    });
+  }
+
+  pills.forEach(p => {
+    p.addEventListener('click', () => {
+      pills.forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      currentBiz = p.dataset.biz;
+      render();
+    });
+  });
+
+  function setStyle(isJouissance){
+    currentStyle = isJouissance ? 'jouissance' : 'plaisir';
+    styleSwitch.classList.toggle('is-jouissance', isJouissance);
+    styleSwitch.setAttribute('aria-pressed', String(isJouissance));
+    labelPlaisir.classList.toggle('active', !isJouissance);
+    labelJouissance.classList.toggle('active', isJouissance);
+    render();
+  }
+
+  styleSwitch.addEventListener('click', () => setStyle(currentStyle !== 'jouissance'));
+  styleSwitch.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      setStyle(currentStyle !== 'jouissance');
+    }
+  });
+  labelPlaisir.addEventListener('click', () => setStyle(false));
+  labelJouissance.addEventListener('click', () => setStyle(true));
+
+  render();
+</script>
+
+</body>
+</html>

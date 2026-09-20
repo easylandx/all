@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyLandX | Landing pages fluent in the language of love</title>
+<meta name="description" content="EasyLandX creates affordable, conversion-focused landing pages for small businesses, shaped by the figures of Roland Barthes' A Lover's Discourse.">
+<meta name="theme-color" content="#D4185A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23D4185A'/%3E%3Cpath d='M50 76 C20 54 24 30 40 30 C46 30 50 34 50 38 C50 34 54 30 60 30 C76 30 80 54 50 76Z' fill='%23FBE1E0'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rose:#D4185A;            /* Vibrant Passion Rose */
+  --indigo:#322E76;          /* Melancholy Indigo */
+  --indigo-deep:#25215C;
+  --blush:#FBE1E0;           /* Soft Paper Blush */
+  --blush-light:#FEF0EE;
+  --blush-deep:#F2C8CC;
+  --serif:'Bodoni Moda','Didot','Bodoni 72',Georgia,serif;
+  --sans:'Hanken Grotesk','Helvetica Neue',Arial,sans-serif;
+  --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .18 0 0 0 0 .46 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--rose);
+  color:var(--blush-light);
+  font-family:var(--sans);
+  font-size:1.0625rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+a{color:inherit}
+img,svg{max-width:100%}
+:focus-visible{outline:3px solid var(--blush);outline-offset:3px;border-radius:4px}
+.on-blush :focus-visible{outline-color:var(--indigo)}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(20px,5vw,56px)}
+.band{padding-block:clamp(64px,9vw,120px)}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;text-wrap:balance}
+h2{font-size:clamp(2rem,4.4vw,3.5rem);line-height:1.08;letter-spacing:-.01em;font-weight:500}
+cite{font-style:italic}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  font:600 1rem/1 var(--sans);text-decoration:none;cursor:pointer;
+  padding:1.05rem 1.7rem;border-radius:999px;border:2px solid transparent;
+  transition:transform .2s ease,background-color .2s ease,color .2s ease,box-shadow .2s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-indigo{background:var(--indigo);color:var(--blush-light);border-color:rgba(254,240,238,.55)}
+.btn-indigo:hover{background:var(--indigo-deep);box-shadow:0 12px 24px -10px rgba(37,33,92,.7)}
+.btn-blush{background:var(--blush);color:var(--indigo)}
+.btn-blush:hover{background:var(--blush-light);box-shadow:0 12px 24px -10px rgba(37,33,92,.6)}
+.btn-line{background:transparent;color:var(--indigo);border-color:var(--indigo)}
+.btn-line:hover{background:var(--indigo);color:var(--blush-light)}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* Header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:26px}
+.mark{font:700 1.55rem/1 var(--serif);letter-spacing:.005em}
+.top nav{display:flex;gap:28px;font-weight:500;font-size:.98rem}
+.top nav a{text-decoration:none;padding-block:4px;background:linear-gradient(currentColor,currentColor) 0 100%/0 2px no-repeat;transition:background-size .25s ease}
+.top nav a:hover{background-size:100% 2px}
+
+/* Hero */
+.hero{
+  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  gap:clamp(32px,6vw,88px);align-items:center;
+  padding-block:clamp(28px,5vw,72px) clamp(64px,9vw,120px);
+}
+.hero h1{
+  font-size:clamp(2.9rem,6.4vw,5.9rem);line-height:1.02;letter-spacing:-.018em;
+  font-weight:500;color:var(--blush);
+}
+.hero .lead{font-size:1.25rem;line-height:1.55;margin-top:28px;max-width:34rem}
+.hero .sub{margin-top:16px;max-width:33rem;opacity:.96}
+.hero .btn{margin-top:36px}
+
+/* Deck */
+.deck{display:flex;flex-direction:column;align-items:center;gap:26px}
+.slot{position:relative;width:min(360px,100%);height:430px}
+.card{
+  position:absolute;inset:0;perspective:1600px;
+  transform:rotate(-1.5deg);
+  transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .6s ease;
+}
+.card.dealing{transform:translate(50px,110px) rotate(10deg) scale(.9);opacity:0}
+.card.leaving{transform:translate(-80px,-36px) rotate(-12deg);opacity:0;pointer-events:none}
+.flip{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.2,.75,.2,1)}
+.flip.down{transform:rotateY(180deg)}
+.face{
+  position:absolute;inset:0;border-radius:6px;overflow:hidden;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden;
+  box-shadow:0 26px 40px -16px rgba(37,33,92,.6),0 2px 0 rgba(37,33,92,.12);
+}
+.front{display:flex;flex-direction:column;color:var(--indigo);background-color:var(--blush);background-image:var(--noise)}
+.front header{padding:22px 24px 10px;min-height:92px;display:flex;align-items:flex-end;border-bottom:2px solid var(--rose)}
+.front h3{font:italic 600 1.95rem/1.06 var(--serif);color:var(--indigo)}
+.thread{padding:10px 24px 0;font-size:.86rem;font-style:italic;color:var(--indigo)}
+.ruled{
+  flex:1;margin-top:10px;padding:0 24px;font-size:1rem;line-height:28px;color:var(--indigo);
+  background:repeating-linear-gradient(to bottom,transparent 0 27px,rgba(50,46,118,.17) 27px 28px);
+}
+.ruled p{margin:0 0 28px}
+.ruled b{font-weight:700}
+.back{background:var(--indigo);color:var(--blush-light);display:grid;place-items:center;transform:rotateY(180deg)}
+.back::before{content:"";position:absolute;inset:12px;border:1.5px solid rgba(254,240,238,.6);border-radius:3px}
+.back .b{text-align:center;display:grid;gap:6px}
+.back strong{font:italic 500 2.5rem/1 var(--serif)}
+.back span{font-size:.85rem;letter-spacing:.1em}
+.deck-ui{display:grid;gap:14px;justify-items:center;text-align:center;width:100%}
+#count{font-size:.95rem;max-width:26rem}
+.chips-list{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;min-height:36px}
+.chip-btn{
+  font:500 .9rem/1 var(--sans);color:var(--blush-light);background:transparent;cursor:pointer;
+  border:1.5px solid rgba(254,240,238,.65);border-radius:999px;padding:.5rem .95rem;
+  transition:background-color .2s,color .2s;
+}
+.chip-btn:hover{background:rgba(254,240,238,.16)}
+.chip-btn[aria-pressed="true"]{background:var(--blush);color:var(--indigo);border-color:var(--blush)}
+
+/* Indigo band */
+.band-indigo{background:var(--indigo)}
+.band-indigo h2{color:var(--blush)}
+.intro{margin-top:22px;max-width:44rem;font-size:1.15rem}
+.ideas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:60px clamp(40px,7vw,96px);margin-top:64px}
+.idea{border-top:2px solid var(--rose);padding-top:22px}
+.idea h3{font:italic 600 clamp(1.6rem,2.6vw,2.05rem)/1.12 var(--serif);color:var(--blush)}
+.from{font-size:.9rem;font-style:italic;color:var(--blush-deep);margin-top:6px}
+.idea p:not(.from){margin-top:14px;max-width:34rem}
+
+/* Lessons */
+.lessons{margin-top:56px}
+.lesson{
+  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.4fr);gap:24px clamp(28px,6vw,80px);
+  padding-block:44px;border-top:1px solid rgba(254,240,238,.45);
+}
+.lesson:last-child{border-bottom:1px solid rgba(254,240,238,.45)}
+.lesson h3{font:600 clamp(1.6rem,2.8vw,2.2rem)/1.12 var(--serif);color:var(--blush)}
+.lesson .from{color:var(--blush-light);opacity:.85}
+.lesson p{max-width:38rem}
+.move{margin-top:18px;padding-left:16px;border-left:3px solid var(--blush)}
+.move b{font-weight:700}
+
+/* Fragment playground */
+.playground{background:var(--indigo);border-radius:10px;padding:clamp(26px,4vw,48px);margin-top:72px}
+.playground h3{font:italic 500 clamp(1.7rem,3vw,2.4rem)/1.1 var(--serif);color:var(--blush)}
+.playground .intro{margin-top:12px;font-size:1.05rem}
+.play-row{display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px;margin-top:26px}
+#order{font-size:.95rem;color:var(--blush-deep)}
+.tiles{list-style:none;padding:0;margin-top:30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:18px}
+.tile{
+  background-color:var(--blush);background-image:var(--noise);color:var(--indigo);
+  border-radius:6px;padding:0 18px 22px;box-shadow:0 16px 26px -14px rgba(0,0,0,.45);
+}
+.tile h4{font:italic 600 1.4rem/1.1 var(--serif);padding:16px 0 8px;border-bottom:2px solid var(--rose);margin-bottom:12px}
+.tile p{font-size:.95rem;line-height:1.5}
+.bars{display:grid;gap:7px;margin-top:16px}
+.bars i{display:block;height:6px;border-radius:3px;background:rgba(50,46,118,.22)}
+
+/* Blush band */
+.band-blush{background:var(--blush);background-image:var(--noise);color:var(--indigo)}
+.band-blush h2{color:var(--indigo)}
+.band-blush .intro{color:var(--indigo)}
+.flow{margin-top:56px}
+.node{display:flex;gap:16px;background:var(--indigo);color:var(--blush-light);padding:22px 24px;border-radius:8px}
+.flow>.node{max-width:660px;margin-inline:auto}
+.num{
+  width:40px;height:40px;flex:none;border-radius:50%;background:var(--rose);color:var(--blush-light);
+  display:grid;place-items:center;font:600 1.2rem/1 var(--serif);
+}
+.node h4{font-size:1.35rem;line-height:1.15;color:var(--blush)}
+.node p{margin-top:8px;font-size:.98rem;line-height:1.55}
+.link{width:2px;height:32px;background:var(--rose);margin-inline:auto}
+.branch{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding-top:32px}
+.branch>.node{position:relative}
+.branch>.node::before{content:"";position:absolute;top:-32px;left:calc(50% - 1px);width:2px;height:32px;background:var(--rose)}
+.branch>.node::after{content:"";position:absolute;top:-32px;left:-10px;right:-10px;height:2px;background:var(--rose)}
+.branch>.node:first-child::after{left:50%}
+.branch>.node:last-child::after{right:50%}
+.practices-head{margin-top:96px;font-size:clamp(1.7rem,3.2vw,2.5rem);line-height:1.1;font-weight:500;color:var(--indigo)}
+.practices{margin-top:32px}
+.practices details{border-top:1.5px solid rgba(50,46,118,.4)}
+.practices details:last-child{border-bottom:1.5px solid rgba(50,46,118,.4)}
+.practices summary{
+  list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;
+  padding:24px 4px;font:600 clamp(1.3rem,2.6vw,1.9rem)/1.15 var(--serif);color:var(--indigo);
+}
+.practices summary::-webkit-details-marker{display:none}
+.practices summary::after{content:"+";font:400 2.2rem/1 var(--sans);color:var(--rose);transition:transform .25s ease;flex:none}
+.practices details[open] summary::after{transform:rotate(45deg)}
+.practices .body{padding:0 4px 30px;max-width:46rem}
+.practices .body .move{border-left-color:var(--rose)}
+
+/* Audit */
+.audit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,80px);align-items:start}
+.audit h2{color:var(--blush)}
+.audit .intro{font-size:1.1rem}
+fieldset{border:0;padding:0;margin:34px 0 0;min-width:0}
+legend{font:600 1.25rem/1.25 var(--serif);color:var(--blush);padding:0;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;pointer-events:none;inset:0}
+.chip span{
+  display:inline-block;padding:.65rem 1.1rem;border-radius:999px;border:2px solid rgba(254,240,238,.65);
+  cursor:pointer;font-weight:600;font-size:.97rem;line-height:1.1;transition:background-color .2s,color .2s;
+}
+.chip span:hover{background:rgba(254,240,238,.16)}
+.chip input:checked+span{background:var(--blush);color:var(--indigo);border-color:var(--blush)}
+.chip input:focus-visible+span{outline:3px solid var(--blush);outline-offset:3px}
+label.field{display:block;font:600 1.25rem/1.25 var(--serif);color:var(--blush);margin:34px 0 14px}
+#biz{
+  width:100%;max-width:26rem;font:500 1.05rem/1.2 var(--sans);color:var(--indigo);background:var(--blush-light);
+  border:2px solid transparent;border-radius:8px;padding:.85rem 1rem;
+}
+#biz::placeholder{color:rgba(50,46,118,.7)}
+.paper{
+  background-color:var(--blush);background-image:var(--noise);color:var(--indigo);
+  border-radius:6px;transform:rotate(1deg);box-shadow:0 30px 44px -18px rgba(37,33,92,.65);
+  overflow:hidden;
+}
+.paper header{padding:22px 28px 12px;border-bottom:2px solid var(--rose)}
+.paper header h3{font:italic 600 1.8rem/1.1 var(--serif);color:var(--indigo)}
+.paper .inner{padding:20px 28px 30px}
+.meta{font-size:.9rem;font-style:italic}
+.out-head{font:600 clamp(1.6rem,2.6vw,2.15rem)/1.18 var(--serif);margin-top:16px;color:var(--indigo);letter-spacing:-.005em}
+.out-head.mark{background:linear-gradient(transparent 64%,rgba(212,24,90,.3) 64%);}
+.out-sup{margin-top:12px}
+.mock{display:inline-block;margin-top:18px;background:var(--indigo);color:var(--blush-light);font-weight:600;padding:.8rem 1.4rem;border-radius:999px;transition:box-shadow .3s}
+.mock.glow{box-shadow:0 0 0 4px var(--blush),0 0 0 7px var(--rose)}
+.extra{margin-top:20px}
+.extra svg{display:block;width:100%;height:auto;border-radius:6px}
+.extra figcaption{font-size:.88rem;font-style:italic;margin-top:6px}
+.extra .pill{display:inline-block;border:2px solid var(--indigo);border-radius:999px;padding:.35rem .9rem;font-weight:600;font-size:.92rem}
+.extra blockquote{border-left:3px solid var(--rose);padding-left:14px;font:italic 500 1.2rem/1.35 var(--serif)}
+.extra blockquote cite{display:block;font:500 .88rem/1.4 var(--sans);margin-top:6px}
+.tip{margin-top:22px;padding-top:16px;border-top:1px solid rgba(50,46,118,.3);font-size:.98rem}
+.tip b{font-weight:700}
+.paper .btn{margin-top:22px;padding:.8rem 1.3rem;font-size:.95rem}
+.settle{animation:settle .4s cubic-bezier(.2,.8,.2,1)}
+@keyframes settle{from{opacity:.35;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* Closing */
+.cta{background:var(--indigo)}
+.cta h2{color:var(--blush);font-size:clamp(2.2rem,5.2vw,4.4rem);line-height:1.04;max-width:16em}
+.cta p{margin-top:24px;max-width:36rem;font-size:1.18rem}
+.cta .btn{margin-top:38px;font-size:1.1rem;padding:1.2rem 2.1rem}
+footer{background:var(--indigo-deep);color:var(--blush-deep);font-size:.92rem;padding-block:30px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 30px}
+
+/* Responsive */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .lesson{grid-template-columns:1fr;padding-block:36px}
+  .audit{grid-template-columns:1fr}
+  .paper{transform:none}
+}
+@media (max-width:820px){
+  .branch{grid-template-columns:1fr;padding-top:32px}
+  .branch>.node::after{display:none}
+  .branch>.node::before{top:-20px;height:20px}
+  .branch>.node:first-child::before{top:-32px;height:32px}
+}
+@media (max-width:760px){
+  .ideas{grid-template-columns:1fr;gap:44px}
+}
+@media (max-width:700px){
+  .top nav{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="top wrap">
+  <span class="mark">EasyLandX</span>
+  <nav aria-label="Sections">
+    <a href="#idea">The idea</a>
+    <a href="#lessons">Lessons</a>
+    <a href="#model">The model</a>
+    <a href="#audit">Figure Audit</a>
+  </nav>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero wrap" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <h1 id="hero-title">Landing pages fluent in the language of love.</h1>
+    <p class="lead">EasyLandX creates affordable, conversion-focused landing pages for small businesses, shaped by <cite>A Lover's Discourse: Fragments</cite>, where Roland Barthes gathers love into eighty luminous figures.</p>
+    <p class="sub">Every visitor arrives in a figure of their own: anticipation, curiosity, readiness. EasyLandX gives each one a page section that answers it beautifully. Draw a card from the deck and see how.</p>
+    <a class="btn btn-indigo" href="https://easylandx.github.io" target="_blank" rel="noopener noreferrer">Meet EasyLandX</a>
+  </div>
+
+  <div class="deck">
+    <div class="slot" id="slot" aria-live="polite"></div>
+    <div class="deck-ui">
+      <button class="btn btn-blush" id="draw" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="12" height="15" rx="2"/><path d="M8 3h10a2 2 0 0 1 2 2v12"/></svg>
+        <span id="draw-label">Draw a figure</span>
+      </button>
+      <p id="count">Eight figures are waiting in the deck.</p>
+      <ul class="chips-list" id="chips" aria-label="Figures drawn so far"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- CORE IDEAS -->
+<section class="band band-indigo" id="idea" aria-labelledby="idea-title">
+  <div class="wrap">
+    <h2 id="idea-title">Love arrives in fragments, and so does every wonderful visit.</h2>
+    <p class="intro">In <cite>A Lover's Discourse</cite>, Barthes speaks from inside the experience of love, gathering eighty figures, small recurring scenes of the heart, into one mosaic. EasyLandX applies four of his core ideas to landing pages, so every visitor feels understood from the very first screen.</p>
+
+    <div class="ideas">
+      <article class="idea">
+        <h3>A voice entirely your own</h3>
+        <p class="from">Barthes' idea: the lover's solitude</p>
+        <p>Barthes' lover speaks a dialect that is heartfelt and unmistakably individual. Small businesses speak this way too. EasyLandX turns that individuality into a page with a distinct voice, so your brand shines among familiar-looking pages, at a price made for small budgets.</p>
+      </article>
+      <article class="idea">
+        <h3>A language of figures</h3>
+        <p class="from">Barthes' idea: love as a language system</p>
+        <p>Love arrives as recurring scenes of anticipation, curiosity and delight, and visitors arrive in the same scenes. Each section of an EasyLandX page speaks to one figure and completes its thought, so the whole page reads like fluent conversation.</p>
+      </article>
+      <article class="idea">
+        <h3>Clear signs, calm minds</h3>
+        <p class="from">Barthes' idea: reading the beloved's signs</p>
+        <p>The lover reads every word, gesture and pause for meaning. Visitors read your headline, button color and photo the same way. EasyLandX gives each sign one clear message, so every cue confirms the promise and certainty grows naturally.</p>
+      </article>
+      <article class="idea">
+        <h3>Wholehearted affirmation</h3>
+        <p class="from">Barthes' idea: the affirmation of amorous devotion</p>
+        <p>Barthes celebrates choosing openness. Sincere, warm pages invite people in. EasyLandX helps you say what you love about your work in your own voice, and that sincerity turns visits into conversations.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- LESSONS -->
+<section class="band" id="lessons" aria-labelledby="lessons-title">
+  <div class="wrap">
+    <h2 id="lessons-title">Three lessons every page can enjoy.</h2>
+
+    <div class="lessons">
+      <article class="lesson">
+        <div>
+          <h3>Anticipation is the engine of attention</h3>
+          <p class="from">Barthes' lesson: waiting drives passion</p>
+        </div>
+        <div>
+          <p>Barthes describes the lover as a person alive with anticipation, awaiting a message, an arrival, a glance. Visitors arrive in the same state, eager for a sign that they have found the right place. The first screen is where anticipation meets its answer.</p>
+          <p class="move"><b>EasyLandX move.</b> Every page opens with a clear promise, a quick-loading hero and one warm invitation, so anticipation turns into delight.</p>
+        </div>
+      </article>
+
+      <article class="lesson">
+        <div>
+          <h3>The image and the real business, hand in hand</h3>
+          <p class="from">Barthes' lesson: the beloved is an image</p>
+        </div>
+        <div>
+          <p>People fall for the picture they build in their minds. Visitors do too: they imagine your product, your studio or your service before they scroll. When the real thing matches the picture, delight follows.</p>
+          <p class="move"><b>EasyLandX move.</b> Pages feature real photography, honest descriptions and clear prices, so the real business stays the star of the show.</p>
+        </div>
+      </article>
+
+      <article class="lesson">
+        <div>
+          <h3>Fragments that each stand complete</h3>
+          <p class="from">Barthes' lesson: love discourse is non-linear</p>
+        </div>
+        <div>
+          <p>Passion arrives in lively bursts instead of a straight line, and the book itself is a mosaic that welcomes readers at any fragment. Visitors browse the same way, jumping to the part that speaks to them first.</p>
+          <p class="move"><b>EasyLandX move.</b> Sections that each carry a complete message, so every visitor can begin wherever curiosity leads.</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- Interactive: rearrange fragments -->
+    <div class="playground" aria-labelledby="play-title">
+      <h3 id="play-title">Try it: rearrange the fragments</h3>
+      <p class="intro">Here are five sections of a landing page. Shuffle them and notice how every order reads beautifully, because each fragment carries a whole message.</p>
+      <div class="play-row">
+        <button class="btn btn-blush" id="shuffle" type="button">Rearrange the fragments</button>
+        <p id="order" aria-live="polite">Reading order: Welcome, Story, Offer, Kind words, Invitation.</p>
+      </div>
+      <ul class="tiles" id="tiles">
+        <li class="tile" data-name="Welcome"><h4>Welcome</h4><p>A warm headline that names the promise.</p><div class="bars" aria-hidden="true"><i style="width:88%"></i><i style="width:64%"></i></div></li>
+        <li class="tile" data-name="Story"><h4>Story</h4><p>The people and the passion behind the work.</p><div class="bars" aria-hidden="true"><i style="width:76%"></i><i style="width:92%"></i><i style="width:54%"></i></div></li>
+        <li class="tile" data-name="Offer"><h4>Offer</h4><p>What you provide, with clear and friendly prices.</p><div class="bars" aria-hidden="true"><i style="width:60%"></i><i style="width:84%"></i></div></li>
+        <li class="tile" data-name="Kind words"><h4>Kind words</h4><p>Customer voices that echo your promise.</p><div class="bars" aria-hidden="true"><i style="width:90%"></i><i style="width:70%"></i><i style="width:46%"></i></div></li>
+        <li class="tile" data-name="Invitation"><h4>Invitation</h4><p>One generous button to say hello.</p><div class="bars" aria-hidden="true"><i style="width:52%"></i><i style="width:80%"></i></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MODEL + PRACTICES -->
+<section class="band band-blush on-blush" id="model" aria-labelledby="model-title">
+  <div class="wrap">
+    <h2 id="model-title">The Amorous Discourse Model, arranged for landing pages.</h2>
+    <p class="intro">Barthes offers a way to map the inner language of love. EasyLandX turns it into a five-part model for shaping a page around the feelings your visitors already bring.</p>
+
+    <div class="flow">
+      <div class="node">
+        <span class="num">1</span>
+        <div><h4>Name the active figure</h4><p>Identify the emotional scene your visitor is living: anticipation, curiosity, discernment or readiness. Each section of the page serves one figure.</p></div>
+      </div>
+      <div class="link" aria-hidden="true"></div>
+      <div class="node">
+        <span class="num">2</span>
+        <div><h4>Let every sign carry one meaning</h4><p>Small cues are read closely. Headline, button, photo and page speed each receive a single, clear message.</p></div>
+      </div>
+      <div class="link" aria-hidden="true"></div>
+      <div class="branch">
+        <div class="node">
+          <span class="num">3</span>
+          <div><h4>Meet the image with the real thing</h4><p>Set the picture in the visitor's mind beside the real business, and let the two meet through real photos and honest details.</p></div>
+        </div>
+        <div class="node">
+          <span class="num">4</span>
+          <div><h4>Affirm the heart of the business</h4><p>Choose openness. A sincere voice and a proud story invite people in.</p></div>
+        </div>
+        <div class="node">
+          <span class="num">5</span>
+          <div><h4>Trust the visitor's pace</h4><p>Offer one generous invitation and let curiosity lead. Visitors who arrive at their own pace arrive warmly.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="practices-head">Four practices EasyLandX brings to every page</h3>
+    <div class="practices" id="practices">
+      <details open>
+        <summary>Perform a Figure Audit</summary>
+        <div class="body">
+          <p>Name the feeling that is active in each moment of the visit. Treating it as a familiar scene gives the page a clear sense of direction and gives your visitor a clear sense of welcome.</p>
+          <p class="move"><b>EasyLandX in action.</b> Each project begins by mapping your visitor's figures. Then every section of the page receives one figure to serve.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Read the small signs gently</summary>
+        <div class="body">
+          <p>A headline verb, a photo or a button color carries meaning, and simple meanings are the easiest to enjoy. A single cue needs to carry only one idea.</p>
+          <p class="move"><b>EasyLandX in action.</b> Pages use consistent, friendly cues: one button style, one tone of voice and one promise per section.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Keep the image and the real business side by side</summary>
+        <div class="body">
+          <p>Visitors carry an idealized picture, and the real business is the one they come to love. Letting the real one shine brings warmth and satisfaction to everyone.</p>
+          <p class="move"><b>EasyLandX in action.</b> Real photography, genuine testimonials and transparent pricing put the real business in the spotlight.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Choose radical affirmation</summary>
+        <div class="body">
+          <p>Barthes invites us to treat the capacity to feel deeply as a heroic gesture. Warmth, openness and sincerity are magnetic on a page, and they make your business memorable.</p>
+          <p class="move"><b>EasyLandX in action.</b> We help you say what you love about your work in your own voice, with a call to action that feels like an invitation between friends.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FIGURE AUDIT -->
+<section class="band" id="audit" aria-labelledby="audit-title">
+  <div class="wrap audit">
+    <div>
+      <h2 id="audit-title">Try a Figure Audit for your business.</h2>
+      <p class="intro">Choose the moment your visitor is living and the small sign you would like to shape. EasyLandX drafts a fragment of landing-page copy in seconds.</p>
+
+      <fieldset>
+        <legend>Which moment is your visitor living?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="figure" value="anticipation" checked><span>Just arrived</span></label>
+          <label class="chip"><input type="radio" name="figure" value="curiosity"><span>Exploring</span></label>
+          <label class="chip"><input type="radio" name="figure" value="discernment"><span>Weighing options</span></label>
+          <label class="chip"><input type="radio" name="figure" value="readiness"><span>Ready to act</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Which small sign would you like to shape?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="sign" value="headline" checked><span>Headline</span></label>
+          <label class="chip"><input type="radio" name="sign" value="button"><span>Button</span></label>
+          <label class="chip"><input type="radio" name="sign" value="photo"><span>Photo</span></label>
+          <label class="chip"><input type="radio" name="sign" value="opening"><span>Opening moment</span></label>
+          <label class="chip"><input type="radio" name="sign" value="words"><span>Kind words</span></label>
+        </div>
+      </fieldset>
+
+      <label class="field" for="biz">Your business name</label>
+      <input id="biz" type="text" value="Casa Aurora" placeholder="Casa Aurora" maxlength="40" autocomplete="off">
+    </div>
+
+    <div class="paper" id="out" role="region" aria-label="Your fragment">
+      <header><h3>Your fragment</h3></header>
+      <div class="inner">
+        <p class="meta" id="out-meta"></p>
+        <p class="out-head" id="out-head"></p>
+        <p class="out-sup" id="out-sup"></p>
+        <span class="mock" id="out-cta"></span>
+        <div class="extra" id="out-extra"></div>
+        <p class="tip"><b>How EasyLandX shapes it.</b> <span id="out-tip"></span></p>
+        <button class="btn btn-line" id="copy" type="button">Copy this fragment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="band cta" aria-labelledby="cta-title">
+  <div class="wrap">
+    <h2 id="cta-title">Ready to give your business a page that speaks from the heart?</h2>
+    <p>EasyLandX creates affordable, conversion-focused landing pages and websites for small businesses. Come say hello and watch your figures come to life.</p>
+    <a class="btn btn-blush" href="https://easylandx.github.io" target="_blank" rel="noopener noreferrer">Visit EasyLandX</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>EasyLandX. Landing pages with heart.</span>
+    <span>Inspired by Roland Barthes, <cite>A Lover's Discourse: Fragments</cite> (1977).</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Figure deck ---------- */
+  const figures = [
+    {t:'Anticipation', from:'Waiting',
+     body:'Visitors arrive full of expectation, and the first seconds hold the whole welcome.',
+     move:'A hero that answers in a heartbeat: a clear promise, a friendly face and a page that opens fast.'},
+    {t:'The Image', from:'The beloved as image',
+     body:'Every visitor carries a picture of what they hope to find, and it glows.',
+     move:'Real photos, honest descriptions and clear prices let the picture and the real business fit together.'},
+    {t:'The Small Sign', from:'Reading the signs',
+     body:'A headline verb, a button color, a photo: visitors read every small cue for meaning.',
+     move:'Each cue carries one clear message, so the whole page confirms the same warm promise.'},
+    {t:'The Open Heart', from:'Affirmation',
+     body:'Barthes celebrates choosing openness, and sincerity is magnetic on a page too.',
+     move:'Copy in the owner\u2019s own voice, sharing the true story and the joy behind the work.'},
+    {t:'The Welcome', from:'The embrace',
+     body:'The moment of contact is a gift, and it shines when it feels generous.',
+     move:'One inviting button and one clear next step: book a table, request a quote, say hello.'},
+    {t:'The Reply', from:'The phone call',
+     body:'Visitors treasure a quick, kind answer, the way a lover treasures a call.',
+     move:'Contact buttons and WhatsApp links that make reaching out feel as easy as a wave.'},
+    {t:'The Fragment', from:'Non-linear discourse',
+     body:'Love speaks in bursts that each stand complete, and visits unfold that way too.',
+     move:'Sections that each carry a full message, so visitors can begin anywhere and feel welcomed.'},
+    {t:'The Singular Voice', from:'The lover\u2019s own dialect',
+     body:'Every lover speaks a dialect all their own, and so does every small business.',
+     move:'A page tuned to your own voice, standing out gracefully at a price made for small budgets.'}
+  ];
+
+  const slot = document.getElementById('slot');
+  const drawBtn = document.getElementById('draw');
+  const drawLabel = document.getElementById('draw-label');
+  const countEl = document.getElementById('count');
+  const chipsEl = document.getElementById('chips');
+  let drawn = [];
+  let current = -1;
+
+  function buildCard(f){
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.setAttribute('aria-label', f.t + ' figure card');
+    el.innerHTML =
+      '<div class="flip">' +
+        '<div class="face front">' +
+          '<header><h3>' + f.t + '</h3></header>' +
+          '<p class="thread">Barthes\u2019 thread: ' + f.from + '</p>' +
+          '<div class="ruled"><p>' + f.body + '</p><p><b>EasyLandX move.</b> ' + f.move + '</p></div>' +
+        '</div>' +
+        '<div class="face back" aria-hidden="true"><div class="b"><strong>Figures</strong><span>EasyLandX</span></div></div>' +
+      '</div>';
+    return el;
+  }
+
+  function show(idx, animate){
+    const old = slot.querySelector('.card:not(.leaving)');
+    if (old){
+      old.classList.add('leaving');
+      setTimeout(() => old.remove(), reduced ? 0 : 650);
+    }
+    const el = buildCard(figures[idx]);
+    slot.appendChild(el);
+    if (animate && !reduced){
+      const flip = el.querySelector('.flip');
+      el.classList.add('dealing');
+      flip.classList.add('down');
+      el.getBoundingClientRect();
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        el.classList.remove('dealing');
+        flip.classList.remove('down');
+      }));
+    }
+  }
+
+  function renderUI(){
+    chipsEl.innerHTML = '';
+    drawn.forEach(i => {
+      const li = document.createElement('li');
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip-btn';
+      b.textContent = figures[i].t;
+      b.setAttribute('aria-pressed', i === current ? 'true' : 'false');
+      b.addEventListener('click', () => {
+        if (i === current) return;
+        current = i;
+        show(i, false);
+        renderUI();
+      });
+      li.appendChild(b);
+      chipsEl.appendChild(li);
+    });
+    const done = drawn.length === figures.length;
+    drawLabel.textContent = done ? 'Shuffle the deck' : (drawn.length ? 'Draw another figure' : 'Draw a figure');
+    countEl.textContent = done
+      ? 'All eight figures are on the table. Shuffle to begin a fresh spread.'
+      : drawn.length + ' of ' + figures.length + ' figures drawn. Tap any name to revisit it.';
+  }
+
+  function draw(forcedIdx){
+    if (drawn.length === figures.length) drawn = [];
+    const pool = figures.map((_, i) => i).filter(i => !drawn.includes(i));
+    const idx = (typeof forcedIdx === 'number') ? forcedIdx : pool[Math.floor(Math.random() * pool.length)];
+    drawn.push(idx);
+    current = idx;
+    show(idx, true);
+    renderUI();
+  }
+
+  drawBtn.addEventListener('click', () => draw());
+  slot.addEventListener('click', () => draw());
+  setTimeout(() => draw(0), reduced ? 0 : 450);
+
+  /* ---------- Rearrange fragments ---------- */
+  const tilesEl = document.getElementById('tiles');
+  const orderEl = document.getElementById('order');
+  const shuffleBtn = document.getElementById('shuffle');
+
+  const names = () => [...tilesEl.children].map(li => li.dataset.name);
+  function shuffleTiles(){
+    const items = [...tilesEl.children];
+    const before = names().join('|');
+    const firstRects = new Map(items.map(el => [el, el.getBoundingClientRect()]));
+    let next;
+    let guard = 0;
+    do {
+      next = items.slice();
+      for (let i = next.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [next[i], next[j]] = [next[j], next[i]];
+      }
+      guard++;
+    } while (next.map(li => li.dataset.name).join('|') === before && guard < 12);
+    next.forEach(el => tilesEl.appendChild(el));
+    if (!reduced){
+      next.forEach(el => {
+        const a = firstRects.get(el);
+        const b = el.getBoundingClientRect();
+        const dx = a.left - b.left, dy = a.top - b.top;
+        if (dx || dy){
+          el.animate(
+            [{transform:'translate(' + dx + 'px,' + dy + 'px) rotate(' + (dx > 0 ? -3 : 3) + 'deg)'}, {transform:'none'}],
+            {duration:700, easing:'cubic-bezier(.2,.8,.2,1)'}
+          );
+        }
+      });
+    }
+    orderEl.textContent = 'Reading order: ' + names().join(', ') + '.';
+  }
+  shuffleBtn.addEventListener('click', shuffleTiles);
+
+  /* ---------- Practices accordion (one open at a time) ---------- */
+  const details = [...document.querySelectorAll('#practices details')];
+  details.forEach(d => d.addEventListener('toggle', () => {
+    if (d.open) details.forEach(o => { if (o !== d) o.open = false; });
+  }));
+
+  /* ---------- Figure Audit ---------- */
+  const figs = {
+    anticipation:{name:'Anticipation', from:'Waiting',
+      head:n => n + ': everything you hoped to find is right here.',
+      sup:n => 'Warm, clear and ready in a heartbeat. Scroll to meet what ' + n + ' does best.',
+      cta:'Show me around'},
+    curiosity:{name:'Curiosity', from:'The beloved as image',
+      head:n => 'Meet the real ' + n + ', every bit as lovely as you imagined.',
+      sup:() => 'Real photos, real prices and the real people behind every detail.',
+      cta:'See what is inside'},
+    discernment:{name:'Discernment', from:'Reading the signs',
+      head:n => 'Every detail at ' + n + ' says the same thing: you are in good hands.',
+      sup:() => 'One promise, one clear price and one friendly next step.',
+      cta:'See the details'},
+    readiness:{name:'Readiness', from:'The embrace',
+      head:n => 'Ready when you are: your place at ' + n + ' is waiting.',
+      sup:() => 'One tap and you are in. We reply quickly, warmly and personally.',
+      cta:'Reserve my place'}
+  };
+  const signs = {
+    headline:{label:'Headline', tip:'Lead with one sentence that carries one meaning, written in the words your customers already use.', extra:''},
+    button:{label:'Button', tip:'Give it one verb and one destination, in a color that glows against the page.', extra:''},
+    photo:{label:'Photo', tip:'Choose a real image of your real work, so it becomes the friendly face of your promise.',
+      extra:'<figure><svg viewBox="0 0 320 110" role="img" aria-label="Photo placeholder"><rect width="320" height="110" fill="#F2C8CC"/><circle cx="242" cy="34" r="16" fill="#D4185A" opacity=".55"/><path d="M0 110 L92 48 L152 88 L212 56 L320 110Z" fill="#322E76" opacity=".45"/></svg><figcaption>A real photo of your real work goes here.</figcaption></figure>'},
+    opening:{label:'Opening moment', tip:'Keep the first screen light so the page opens instantly and the welcome arrives right on time.',
+      extra:'<span class="pill">Opens in a heartbeat</span>'},
+    words:{label:'Kind words', tip:'Place a warm customer sentence beside the button; kind voices keep good company with decisions.',
+      extra:'<blockquote>\u201CI felt welcome from the very first second.\u201D<cite>A happy customer</cite></blockquote>'}
+  };
+
+  const $ = id => document.getElementById(id);
+  const out = $('out'), meta = $('out-meta'), head = $('out-head'), sup = $('out-sup'),
+        cta = $('out-cta'), extra = $('out-extra'), tip = $('out-tip'), biz = $('biz'), copyBtn = $('copy');
+  const checked = name => document.querySelector('input[name="' + name + '"]:checked').value;
+
+  function renderAudit(animate){
+    const f = figs[checked('figure')];
+    const sKey = checked('sign');
+    const s = signs[sKey];
+    const n = biz.value.trim() || 'Casa Aurora';
+    meta.textContent = 'Figure: ' + f.name + ' (after Barthes\u2019 ' + f.from + '). Sign in focus: ' + s.label + '.';
+    head.textContent = f.head(n);
+    sup.textContent = f.sup(n);
+    cta.textContent = f.cta;
+    tip.textContent = s.tip;
+    extra.innerHTML = s.extra;
+    head.classList.toggle('mark', sKey === 'headline');
+    cta.classList.toggle('glow', sKey === 'button');
+    if (animate && !reduced){
+      out.classList.remove('settle');
+      void out.offsetWidth;
+      out.classList.add('settle');
+    }
+  }
+  document.querySelectorAll('input[name="figure"],input[name="sign"]').forEach(i => i.addEventListener('change', () => renderAudit(true)));
+  biz.addEventListener('input', () => renderAudit(false));
+  renderAudit(false);
+
+  let copyTimer;
+  copyBtn.addEventListener('click', async () => {
+    const text = head.textContent + '\n' + sup.textContent + '\n[' + cta.textContent + ']';
+    let ok = false;
+    try {
+      await navigator.clipboard.writeText(text);
+      ok = true;
+    } catch (e) {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        ok = document.execCommand('copy');
+        ta.remove();
+      } catch (e2) { ok = false; }
+    }
+    if (!ok){
+      const r = document.createRange();
+      r.selectNodeContents(head.parentNode);
+      const sel = window.getSelection();
+      sel.removeAllRanges(); sel.addRange(r);
+    }
+    copyBtn.textContent = ok ? 'Copied with love' : 'Text selected, press Ctrl or \u2318 + C';
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(() => { copyBtn.textContent = 'Copy this fragment'; }, 2200);
+  });
+})();
+</script>
+</body>
+</html>
