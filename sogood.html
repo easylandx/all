@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX | So Good They Can't Ignore You — Landing Pages Built on Capital, Not Hype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cyan:#00E1FF;
+    --cyan-deep:#00B3CC;
+    --lime:#C6FF00;
+    --lime-deep:#A3D400;
+    --violet:#7B2FF7;
+    --violet-deep:#5E1FC4;
+    --ink:#170826;
+    --white:#FFFFFF;
+    --cream:#F4FBFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--cyan);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(0,225,255,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:3px solid var(--ink);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
+  .logo{font-weight:800;font-size:1.3rem;letter-spacing:-0.5px;}
+  .logo span{color:var(--violet-deep);}
+  .nav-cta{
+    background:var(--ink);color:var(--cyan);
+    padding:10px 20px;border-radius:999px;font-weight:700;
+    font-size:0.9rem;border:2px solid var(--ink);
+    transition:transform .2s ease, background .2s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{transform:translateY(-2px);background:var(--lime);color:var(--ink);}
+
+  /* HERO */
+  .hero{
+    padding:90px 0 70px;
+    text-align:center;
+  }
+  .eyebrow{
+    display:inline-block;background:var(--ink);color:var(--cyan);
+    font-weight:700;font-size:0.8rem;letter-spacing:1.5px;text-transform:uppercase;
+    padding:8px 18px;border-radius:999px;margin-bottom:24px;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem,6vw,4rem);
+    line-height:1.05;font-weight:800;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:var(--violet);
+    color:var(--white);
+    padding:0 10px;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
+  }
+  .hero p{
+    font-size:1.15rem;max-width:620px;margin:0 auto 34px;
+    font-weight:500;line-height:1.6;
+  }
+  .hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:16px 30px;border-radius:14px;
+    font-weight:700;font-size:1rem;border:3px solid var(--ink);
+    transition:transform .2s ease, box-shadow .2s ease;
+    cursor:pointer;
+  }
+  .btn-primary{background:var(--ink);color:var(--cyan);}
+  .btn-primary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--lime);}
+  .btn-secondary{background:var(--lime);color:var(--ink);}
+  .btn-secondary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--ink);}
+
+  .mindset-strip{
+    margin-top:56px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap;
+  }
+  .mindset-card{
+    background:var(--white);color:var(--ink);border:3px solid var(--ink);
+    border-radius:16px;padding:20px 24px;max-width:260px;text-align:left;
+  }
+  .mindset-card h4{font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+  .mindset-card.passion h4{color:var(--violet-deep);}
+  .mindset-card.craftsman h4{color:var(--lime-deep);}
+  .mindset-card p{font-size:0.9rem;font-weight:500;line-height:1.5;}
+
+  /* SECTION GENERIC */
+  section{padding:80px 0;}
+  .section-title{
+    font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:14px;
+  }
+  .section-sub{font-size:1.05rem;max-width:640px;margin-bottom:44px;font-weight:500;line-height:1.6;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* LIME SECTION - FRAMEWORK */
+  .framework{
+    background:var(--lime);color:var(--ink);
+  }
+  .flow{
+    display:flex;flex-direction:column;align-items:center;gap:0;
+  }
+  .flow-step{
+    background:var(--white);border:3px solid var(--ink);border-radius:16px;
+    padding:22px 26px;width:100%;max-width:480px;text-align:center;
+    box-shadow:6px 6px 0 var(--ink);
+  }
+  .flow-step h3{font-size:1.1rem;margin-bottom:6px;}
+  .flow-step p{font-size:0.92rem;font-weight:500;line-height:1.5;}
+  .flow-arrow{font-size:1.8rem;margin:10px 0;font-weight:800;}
+  .branch{
+    display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:0;
+  }
+  .branch .flow-step{max-width:250px;}
+
+  /* CREAM SECTION - INTERACTIVE CAPITAL METER */
+  .capital{
+    background:var(--cream);color:var(--ink);
+  }
+  .cap-card{
+    background:var(--white);border:3px solid var(--ink);border-radius:20px;
+    padding:34px;box-shadow:8px 8px 0 var(--violet);
+  }
+  .chip-grid{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px;}
+  .cap-chip{
+    background:var(--cream);border:3px solid var(--ink);border-radius:14px;
+    padding:12px 18px;font-weight:700;font-size:0.9rem;cursor:pointer;
+    transition:transform .15s ease, background .2s ease;
+  }
+  .cap-chip:hover{transform:translateY(-2px);}
+  .cap-chip.active{background:var(--lime);}
+  .cap-chip .pts{font-size:0.75rem;font-weight:600;opacity:0.65;margin-left:6px;}
+
+  .meter-wrap{margin-bottom:20px;}
+  .meter-labels{display:flex;justify-content:space-between;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+  .meter-track{
+    height:26px;border-radius:999px;background:var(--cream);border:3px solid var(--ink);
+    overflow:hidden;position:relative;
+  }
+  .meter-fill{
+    height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--violet));
+    transition:width .5s ease;border-radius:999px;
+  }
+  .verdict{
+    background:var(--ink);color:var(--lime);border-radius:16px;padding:22px;
+    text-align:center;font-weight:700;min-height:60px;display:flex;align-items:center;justify-content:center;
+    flex-direction:column;gap:6px;
+  }
+  .verdict .sub{font-size:0.85rem;font-weight:500;color:var(--cream);}
+  .cap-actions{display:flex;justify-content:center;margin-top:20px;}
+  .btn-reset-cap{
+    background:var(--white);border:3px solid var(--ink);border-radius:12px;
+    padding:12px 24px;font-weight:700;cursor:pointer;
+  }
+
+  /* VIOLET SECTION - WHY */
+  .why-power{background:var(--violet);color:var(--white);}
+  .why-power .section-title, .why-power .section-sub{color:var(--white);}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;}
+  .why-card{
+    background:var(--white);color:var(--ink);border:3px solid var(--ink);border-radius:16px;padding:26px;
+  }
+  .why-card .icon{font-size:1.8rem;margin-bottom:10px;display:block;}
+  .why-card h3{font-size:1.05rem;margin-bottom:8px;}
+  .why-card p{font-size:0.92rem;line-height:1.5;font-weight:500;}
+
+  /* CYAN SECTION - TIMELINE */
+  .routine{background:var(--cyan);}
+  .timeline{position:relative;padding-left:36px;}
+  .timeline::before{
+    content:'';position:absolute;left:11px;top:6px;bottom:6px;width:4px;
+    background:var(--ink);border-radius:4px;
+  }
+  .t-item{position:relative;margin-bottom:30px;}
+  .t-item::before{
+    content:'';position:absolute;left:-36px;top:2px;width:24px;height:24px;
+    border-radius:50%;background:var(--lime);border:3px solid var(--ink);
+  }
+  .t-item:nth-child(even)::before{background:var(--violet);}
+  .t-item h3{font-size:1.05rem;margin-bottom:4px;}
+  .t-item p{font-size:0.92rem;font-weight:500;line-height:1.5;}
+
+  /* CTA FOOTER */
+  .cta-final{
+    background:var(--violet);color:var(--white);text-align:center;
+  }
+  .cta-final h2{font-size:clamp(1.8rem,4.5vw,2.6rem);margin-bottom:16px;color:var(--white);}
+  .cta-final p{color:var(--cream);max-width:560px;margin:0 auto 30px;font-weight:500;}
+
+  footer{
+    background:var(--ink);color:var(--cream);text-align:center;
+    padding:26px 20px 34px;font-size:0.85rem;font-weight:500;
+    border-top:3px solid var(--lime);
+  }
+  footer a{color:var(--lime);font-weight:700;}
+
+  .floating-btn{
+    position:fixed;bottom:22px;right:22px;z-index:200;
+    background:var(--lime);color:var(--ink);
+    padding:14px 22px;border-radius:999px;font-weight:800;
+    border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+    transition:transform .2s ease;font-size:0.95rem;
+  }
+  .floating-btn:hover{transform:translateY(-3px);}
+
+  @media (max-width:640px){
+    section{padding:56px 0;}
+    .hero{padding:64px 0 50px;}
+    .floating-btn{padding:12px 18px;font-size:0.85rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Inspired by So Good They Can't Ignore You · Cal Newport</span>
+    <h1>Stop chasing a page you'll <em>love</em>.<br>Build one that <em>earns</em> trust.</h1>
+    <p>A landing page doesn't convert because it matches your personal taste. It converts because it offers visitors something rare and valuable — clarity, proof, and one clear next step. EasyLandX builds for that, first.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start Your Page</a>
+      <a class="btn btn-secondary" href="#capital">Build Your Page's Capital ↓</a>
+    </div>
+    <div class="mindset-strip reveal">
+      <div class="mindset-card passion">
+        <h4>The Passion Mindset</h4>
+        <p>"What should my page give me?" — chasing trends and personal taste over what actually converts.</p>
+      </div>
+      <div class="mindset-card craftsman">
+        <h4>The Craftsman Mindset</h4>
+        <p>"What can my page offer a visitor?" — relentless focus on clarity, proof, and one clear ask.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="framework">
+  <div class="wrap">
+    <h2 class="section-title reveal">The EasyLandX Career Capital Engine</h2>
+    <p class="section-sub reveal">Every page we build follows the same capital-first path — earning trust before asking a visitor for anything.</p>
+    <div class="flow">
+      <div class="flow-step reveal">
+        <h3>1. Adopt the Craftsman Mindset</h3>
+        <p>We start by asking what your page can offer a visitor — not what look or trend feels exciting to us.</p>
+      </div>
+      <div class="flow-arrow reveal">↓</div>
+      <div class="flow-step reveal">
+        <h3>2. Practice Deliberately</h3>
+        <p>Headlines, offers, and calls-to-action get refined against real feedback, not guesswork.</p>
+      </div>
+      <div class="flow-arrow reveal">↓</div>
+      <div class="branch">
+        <div class="flow-step reveal">
+          <h3>3. Build Conversion Capital</h3>
+          <p>Clear proof, fast loading, and a focused message — the rare, valuable qualities that earn a visitor's trust.</p>
+        </div>
+        <div class="flow-step reveal">
+          <h3>4. Test Financial Readiness</h3>
+          <p>We check: are visitors actually responding? Real clicks and messages guide every next step.</p>
+        </div>
+        <div class="flow-step reveal">
+          <h3>5. Launch Little Bets</h3>
+          <p>Small, low-risk tests — a new headline, a new offer — reveal what truly resonates before a big change.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="capital" id="capital">
+  <div class="wrap">
+    <h2 class="section-title reveal">Try It: Build Your Page's Career Capital</h2>
+    <p class="section-sub reveal">Click the qualities your landing page currently has. Rare, high-value qualities carry more weight than common ones — just like real career capital.</p>
+    <div class="cap-card reveal">
+      <div class="chip-grid" id="chipGrid"></div>
+      <div class="meter-wrap">
+        <div class="meter-labels"><span>Building Capital</span><span>Full Autonomy</span></div>
+        <div class="meter-track"><div class="meter-fill" id="meterFill"></div></div>
+      </div>
+      <div class="verdict" id="verdict">
+        <div class="sub">Select the qualities your page has to see its capital score.</div>
+      </div>
+      <div class="cap-actions">
+        <button class="btn-reset-cap" id="capReset">Reset</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why-power">
+  <div class="wrap">
+    <h2 class="section-title reveal">Why EasyLandX Builds This Way</h2>
+    <p class="section-sub reveal">Visitors don't act because a page looks trendy. They act because it earns their trust with real value.</p>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="icon">🛠️</span>
+        <h3>Craftsman Over Trend-Chaser</h3>
+        <p>We focus on what your page delivers to a visitor, not what's currently fashionable in design.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="icon">📊</span>
+        <h3>Feedback-Driven Refinement</h3>
+        <p>Real visitor response — clicks, messages, bookings — shapes every update we make.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="icon">🎯</span>
+        <h3>Mission Comes After Mastery</h3>
+        <p>Once your page proves it converts, we help you scale it with confidence, not guesswork.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="icon">🎲</span>
+        <h3>Little Bets, Not Big Gambles</h3>
+        <p>Small tested changes replace risky, wholesale redesigns — steady progress you can trust.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="routine">
+  <div class="wrap">
+    <h2 class="section-title reveal">How We Build Your Page's Capital</h2>
+    <p class="section-sub reveal">Four checkpoints that turn a page from a guess into something visitors trust.</p>
+    <div class="timeline">
+      <div class="t-item reveal">
+        <h3>Define What You Offer</h3>
+        <p>We identify the rare, valuable thing your business gives clients — and build the page around it.</p>
+      </div>
+      <div class="t-item reveal">
+        <h3>Refine With Real Feedback</h3>
+        <p>Early visitor response shapes your headline and offer before a full launch.</p>
+      </div>
+      <div class="t-item reveal">
+        <h3>Earn the Right to Ask</h3>
+        <p>Proof and clarity come first, so your call-to-action feels earned, not forced.</p>
+      </div>
+      <div class="t-item reveal">
+        <h3>Test Small, Then Scale</h3>
+        <p>Once a small change proves itself, we roll it out with confidence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <h2 class="reveal">Build a Page So Good It Can't Be Ignored</h2>
+    <p class="reveal">Let EasyLandX help you build the rare, valuable page your business deserves — trust first, trend second.</p>
+    <a class="btn btn-secondary reveal" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <p>Built by EasyLandX · © 2026 EasyLandX. All rights reserved.</p>
+  <p><a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a></p>
+</footer>
+
+<a class="floating-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">🛠️ EasyLandX</a>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // Career Capital Meter
+  const qualities = [
+    { name: "One clear call-to-action", pts: 20 },
+    { name: "Real client proof or results", pts: 20 },
+    { name: "Fast-loading page", pts: 15 },
+    { name: "Focused, single-goal headline", pts: 20 },
+    { name: "Tested against real visitor feedback", pts: 15 },
+    { name: "Trendy font pairing", pts: 3 },
+    { name: "Decorative animation", pts: 2 },
+    { name: "Mobile-friendly layout", pts: 15 }
+  ];
+  const maxScore = qualities.reduce((a,q)=>a+q.pts,0);
+  const active = qualities.map(()=> false);
+
+  const chipGrid = document.getElementById('chipGrid');
+  const fillEl = document.getElementById('meterFill');
+  const verdictEl = document.getElementById('verdict');
+  const resetBtn = document.getElementById('capReset');
+
+  function buildChips(){
+    chipGrid.innerHTML = '';
+    qualities.forEach((q,i)=>{
+      const chip = document.createElement('div');
+      chip.className = 'cap-chip' + (active[i] ? ' active' : '');
+      chip.innerHTML = q.name + '<span class="pts">+'+q.pts+'</span>';
+      chip.addEventListener('click', ()=>{
+        active[i] = !active[i];
+        buildChips();
+        evaluate();
+      });
+      chipGrid.appendChild(chip);
+    });
+  }
+
+  function evaluate(){
+    const score = qualities.reduce((sum,q,i)=> sum + (active[i] ? q.pts : 0), 0);
+    const pct = (score/maxScore)*100;
+    fillEl.style.width = pct + '%';
+
+    let title, sub;
+    if(score === 0){
+      title = "No Capital Yet";
+      sub = "Select the qualities your page has to start building conversion capital.";
+    } else if(pct < 35){
+      title = "Building Capital";
+      sub = "A start — but not yet enough rare, valuable qualities to earn strong visitor trust.";
+    } else if(pct < 70){
+      title = "Real Capital Forming";
+      sub = "Your page is offering genuine value. A few more high-impact qualities and it earns real autonomy.";
+    } else if(pct < 100){
+      title = "Approaching Full Autonomy";
+      sub = "Visitors are likely responding well. You're close to a page so good it can't be ignored.";
+    } else {
+      title = "Full Autonomy Unlocked";
+      sub = "Every high-value quality is in place. This is a page that earns trust and action on its own merit.";
+    }
+    verdictEl.innerHTML = '<div>'+title+'</div><div class="sub">'+sub+'</div>';
+  }
+
+  resetBtn.addEventListener('click', ()=>{
+    for(let i=0;i<active.length;i++) active[i]=false;
+    buildChips();
+    evaluate();
+  });
+
+  buildChips();
+  evaluate();
+</script>
+
+</body>
+</html>

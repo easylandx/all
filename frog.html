@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX | Eat That Frog — Landing Pages That Move First</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --frog-green:#8CFF00;
+    --frog-green-deep:#67CC00;
+    --cyber-yellow:#FFE600;
+    --cyber-yellow-deep:#E6CE00;
+    --laser-blue:#00CFFF;
+    --laser-blue-deep:#00A3CC;
+    --ink:#0B1A0B;
+    --white:#FFFFFF;
+    --cream:#FFFBEA;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--frog-green);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(140,255,0,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:3px solid var(--ink);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
+  .logo{font-weight:800;font-size:1.3rem;letter-spacing:-0.5px;}
+  .logo span{color:var(--laser-blue-deep);}
+  .nav-cta{
+    background:var(--ink);color:var(--frog-green);
+    padding:10px 20px;border-radius:999px;font-weight:700;
+    font-size:0.9rem;border:2px solid var(--ink);
+    transition:transform .2s ease, background .2s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{transform:translateY(-2px);background:var(--laser-blue);color:var(--ink);}
+
+  /* HERO */
+  .hero{
+    padding:90px 0 70px;
+    text-align:center;
+    position:relative;
+  }
+  .eyebrow{
+    display:inline-block;background:var(--ink);color:var(--frog-green);
+    font-weight:700;font-size:0.8rem;letter-spacing:1.5px;text-transform:uppercase;
+    padding:8px 18px;border-radius:999px;margin-bottom:24px;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem,6vw,4rem);
+    line-height:1.05;font-weight:800;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:var(--laser-blue);
+    padding:0 10px;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
+  }
+  .hero p{
+    font-size:1.15rem;max-width:620px;margin:0 auto 34px;
+    font-weight:500;line-height:1.6;
+  }
+  .hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:16px 30px;border-radius:14px;
+    font-weight:700;font-size:1rem;border:3px solid var(--ink);
+    transition:transform .2s ease, box-shadow .2s ease;
+    cursor:pointer;
+  }
+  .btn-primary{background:var(--ink);color:var(--frog-green);}
+  .btn-primary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--laser-blue);}
+  .btn-secondary{background:var(--cyber-yellow);color:var(--ink);}
+  .btn-secondary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--ink);}
+
+  .frog-quote{
+    margin-top:56px;background:var(--white);border:3px solid var(--ink);
+    border-radius:16px;padding:22px 28px;max-width:560px;margin-left:auto;margin-right:auto;
+    font-weight:600;font-size:1rem;line-height:1.6;
+  }
+  .frog-quote span{font-weight:800;color:var(--laser-blue-deep);}
+
+  /* SECTION GENERIC */
+  section{padding:80px 0;}
+  .section-title{
+    font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:14px;
+  }
+  .section-sub{font-size:1.05rem;max-width:640px;margin-bottom:44px;font-weight:500;line-height:1.6;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* YELLOW SECTION - FRAMEWORK */
+  .framework{
+    background:var(--cyber-yellow);color:var(--ink);
+  }
+  .framework .section-title, .framework .section-sub{color:var(--ink);}
+  .flow{
+    display:flex;flex-direction:column;align-items:center;gap:0;
+  }
+  .flow-step{
+    background:var(--white);border:3px solid var(--ink);border-radius:16px;
+    padding:22px 26px;width:100%;max-width:480px;text-align:center;
+    box-shadow:6px 6px 0 var(--ink);
+  }
+  .flow-step h3{font-size:1.1rem;margin-bottom:6px;}
+  .flow-step p{font-size:0.92rem;font-weight:500;line-height:1.5;}
+  .flow-arrow{font-size:1.8rem;margin:10px 0;font-weight:800;}
+  .branch{
+    display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:0;
+  }
+  .branch .flow-step{max-width:250px;}
+
+  /* BLUE SECTION - INTERACTIVE */
+  .sorter{
+    background:var(--laser-blue);color:var(--ink);
+  }
+  .sorter .section-title, .sorter .section-sub{color:var(--ink);}
+  .sorter-card{
+    background:var(--white);border:3px solid var(--ink);border-radius:20px;
+    padding:34px;box-shadow:8px 8px 0 var(--ink);
+  }
+  .task-list{display:flex;flex-direction:column;gap:14px;margin-bottom:28px;}
+  .task-row{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    background:var(--cream);border:3px solid var(--ink);border-radius:14px;
+    padding:14px 18px;flex-wrap:wrap;
+  }
+  .task-row .task-name{font-weight:700;font-size:0.98rem;flex:1;min-width:180px;}
+  .label-btn{
+    width:42px;height:42px;border-radius:10px;border:3px solid var(--ink);
+    background:var(--white);font-weight:800;font-size:1rem;cursor:pointer;
+    transition:transform .15s ease;
+  }
+  .label-btn:hover{transform:translateY(-2px);}
+  .label-btn.active-A{background:var(--laser-blue);}
+  .label-btn.active-B{background:var(--cyber-yellow);}
+  .label-btn.active-C{background:var(--frog-green);}
+  .label-btn.active-D{background:#d8d8d8;}
+  .label-btn.active-E{background:#ff9d9d;}
+  .label-group{display:flex;gap:6px;}
+
+  .frog-result{
+    background:var(--ink);color:var(--frog-green);border-radius:16px;
+    padding:24px;text-align:center;font-weight:700;min-height:70px;
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;
+  }
+  .frog-result .frog-emoji{font-size:2rem;}
+  .frog-result .sub{font-size:0.85rem;font-weight:500;color:var(--cream);}
+  .sorter-actions{display:flex;justify-content:center;margin-top:20px;}
+  .btn-reset-sorter{
+    background:var(--white);border:3px solid var(--ink);border-radius:12px;
+    padding:12px 24px;font-weight:700;cursor:pointer;
+  }
+
+  /* GREEN SECTION - WHY POWER */
+  .why-power{background:var(--frog-green);}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;}
+  .why-card{
+    background:var(--white);border:3px solid var(--ink);border-radius:16px;padding:26px;
+  }
+  .why-card .icon{font-size:1.8rem;margin-bottom:10px;display:block;}
+  .why-card h3{font-size:1.05rem;margin-bottom:8px;}
+  .why-card p{font-size:0.92rem;line-height:1.5;font-weight:500;}
+
+  /* CREAM SECTION - PATH TIMELINE */
+  .routine{background:var(--cream);}
+  .timeline{position:relative;padding-left:36px;}
+  .timeline::before{
+    content:'';position:absolute;left:11px;top:6px;bottom:6px;width:4px;
+    background:var(--ink);border-radius:4px;
+  }
+  .t-item{position:relative;margin-bottom:30px;}
+  .t-item::before{
+    content:'';position:absolute;left:-36px;top:2px;width:24px;height:24px;
+    border-radius:50%;background:var(--laser-blue);border:3px solid var(--ink);
+  }
+  .t-item:nth-child(even)::before{background:var(--cyber-yellow);}
+  .t-item h3{font-size:1.05rem;margin-bottom:4px;}
+  .t-item p{font-size:0.92rem;font-weight:500;line-height:1.5;}
+
+  /* CTA FOOTER */
+  .cta-final{
+    background:var(--ink);color:var(--frog-green);text-align:center;
+  }
+  .cta-final h2{font-size:clamp(1.8rem,4.5vw,2.6rem);margin-bottom:16px;color:var(--white);}
+  .cta-final p{color:var(--cream);max-width:560px;margin:0 auto 30px;font-weight:500;}
+
+  footer{
+    background:var(--ink);color:var(--cream);text-align:center;
+    padding:26px 20px 34px;font-size:0.85rem;font-weight:500;
+    border-top:3px solid var(--frog-green);
+  }
+  footer a{color:var(--frog-green);font-weight:700;}
+
+  .floating-btn{
+    position:fixed;bottom:22px;right:22px;z-index:200;
+    background:var(--cyber-yellow);color:var(--ink);
+    padding:14px 22px;border-radius:999px;font-weight:800;
+    border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+    transition:transform .2s ease;font-size:0.95rem;
+  }
+  .floating-btn:hover{transform:translateY(-3px);}
+
+  @media (max-width:640px){
+    section{padding:56px 0;}
+    .hero{padding:64px 0 50px;}
+    .floating-btn{padding:12px 18px;font-size:0.85rem;}
+    .label-btn{width:36px;height:36px;font-size:0.85rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Inspired by Eat That Frog! · Brian Tracy</span>
+    <h1>Stop polishing the font.<br>Build the <em>frog</em> first.</h1>
+    <p>Most landing pages stall on the smallest decisions — a color, a font, a stock photo — while the one section that actually earns clients waits. EasyLandX builds your highest-impact section first, every time.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start Your Page</a>
+      <a class="btn btn-secondary" href="#sorter">Find Your Frog ↓</a>
+    </div>
+    <div class="frog-quote reveal">
+      🐸 "If it's your job to eat a frog, it's best to do it first thing in the morning." <span>Your landing page's frog is the headline and call-to-action that turns visitors into clients — everything else can wait.</span>
+    </div>
+  </div>
+</section>
+
+<section class="framework">
+  <div class="wrap">
+    <h2 class="section-title reveal">The EasyLandX Execution Engine</h2>
+    <p class="section-sub reveal">Every page we build follows the same five-step focus path, so your highest-value section is never the last one finished.</p>
+    <div class="flow">
+      <div class="flow-step reveal">
+        <h3>1. Define One Clear Goal</h3>
+        <p>Before a single pixel is placed, we write down exactly what a visitor should do on your page — book, message, or buy.</p>
+      </div>
+      <div class="flow-arrow reveal">↓</div>
+      <div class="flow-step reveal">
+        <h3>2. Sort Every Section by Impact</h3>
+        <p>Headline, offer, and call-to-action rank as your "A" priorities. Fonts and decorative extras rank lower — and wait their turn.</p>
+      </div>
+      <div class="flow-arrow reveal">↓</div>
+      <div class="branch">
+        <div class="flow-step reveal">
+          <h3>3. Build the Frog First</h3>
+          <p>Your headline, offer, and call-to-action go live before anything decorative — first thing, every project.</p>
+        </div>
+        <div class="flow-step reveal">
+          <h3>4. Save Low-Value Decisions for Later</h3>
+          <p>Font pairings and micro-styling get scheduled after the frog is done, so they never slow your launch.</p>
+        </div>
+        <div class="flow-step reveal">
+          <h3>5. Slice the Page Into Steps</h3>
+          <p>We build one focused section at a time — hero, proof, close — completing each fully before moving on.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sorter" id="sorter">
+  <div class="wrap">
+    <h2 class="section-title reveal">Try It: Find Your Landing Page's Frog</h2>
+    <p class="section-sub reveal">Label each task using the ABCDE method — A for highest impact, E for lowest. The task you mark "A" is your frog: the one to build first.</p>
+    <div class="sorter-card reveal">
+      <div class="task-list" id="taskList"></div>
+      <div class="frog-result" id="frogResult">
+        <div class="sub">Label your tasks above to reveal your frog.</div>
+      </div>
+      <div class="sorter-actions">
+        <button class="btn-reset-sorter" id="sorterReset">Reset Labels</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why-power">
+  <div class="wrap">
+    <h2 class="section-title reveal">Why EasyLandX Builds This Way</h2>
+    <p class="section-sub reveal">A landing page succeeds or waits on a handful of decisions. We put our energy exactly there, first.</p>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="icon">🐸</span>
+        <h3>Frog First, Always</h3>
+        <p>Your headline and call-to-action are designed and approved before any decorative choice is made.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="icon">📝</span>
+        <h3>Thinking on Paper</h3>
+        <p>We write your page's single goal down before building, so every section serves that one outcome.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="icon">🎯</span>
+        <h3>The Top 20% First</h3>
+        <p>A small set of sections drive most of your results. We build those with full focus before anything else.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="icon">🧀</span>
+        <h3>Momentum in Small Slices</h3>
+        <p>Big projects get broken into clear, finishable steps — so your page moves forward every single day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="routine">
+  <div class="wrap">
+    <h2 class="section-title reveal">How We Slice the Build</h2>
+    <p class="section-sub reveal">A full landing page can feel like a lot — so we break it down the way Tracy recommends: one clear slice at a time.</p>
+    <div class="timeline">
+      <div class="t-item reveal">
+        <h3>Salami Slice: The Hero</h3>
+        <p>Headline, subheadline, and one clear call-to-action — finished completely before anything else begins.</p>
+      </div>
+      <div class="t-item reveal">
+        <h3>Salami Slice: The Proof</h3>
+        <p>Your offerings, results, and contact links — the section that builds trust with a new visitor.</p>
+      </div>
+      <div class="t-item reveal">
+        <h3>Salami Slice: The Close</h3>
+        <p>One final, unmistakable call-to-action that repeats your main ask, exactly once more.</p>
+      </div>
+      <div class="t-item reveal">
+        <h3>Swiss Cheese: The Polish</h3>
+        <p>Short, focused rounds to refine fonts, spacing, and color — momentum built in 5-to-10 minute bursts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <h2 class="reveal">Ready to Eat Your Frog?</h2>
+    <p class="reveal">Let EasyLandX build the section that actually earns you clients — first, and without delay.</p>
+    <a class="btn btn-secondary reveal" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <p>Built by EasyLandX · © 2026 EasyLandX. All rights reserved.</p>
+  <p><a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a></p>
+</footer>
+
+<a class="floating-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">🐸 EasyLandX</a>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // ABCDE Frog Sorter
+  const tasks = [
+    { name: "Write a headline that speaks to one visitor", frogText: "This is a true frog — your headline decides whether visitors stay at all." },
+    { name: "Add one clear call-to-action button", frogText: "This is a true frog — a page without one clear ask rarely converts." },
+    { name: "Show proof: offerings, results, or contact links", frogText: "A strong frog — proof is what turns interest into trust." },
+    { name: "Pick a font pairing", frogText: "A low-impact task — pleasant, but it won't move a visitor to act." },
+    { name: "Add a decorative background pattern", frogText: "A low-impact task — nice polish, best saved for later." },
+    { name: "Choose an accent color for buttons", frogText: "A minor task — worth doing, but never before your frog." }
+  ];
+
+  const labels = ['A','B','C','D','E'];
+  const state = tasks.map(()=> null);
+
+  const taskListEl = document.getElementById('taskList');
+  const frogResultEl = document.getElementById('frogResult');
+  const resetBtn = document.getElementById('sorterReset');
+
+  function buildTasks(){
+    taskListEl.innerHTML = '';
+    tasks.forEach((t, i)=>{
+      const row = document.createElement('div');
+      row.className = 'task-row';
+
+      const name = document.createElement('div');
+      name.className = 'task-name';
+      name.textContent = t.name;
+      row.appendChild(name);
+
+      const group = document.createElement('div');
+      group.className = 'label-group';
+      labels.forEach(L=>{
+        const btn = document.createElement('button');
+        btn.className = 'label-btn';
+        btn.textContent = L;
+        btn.addEventListener('click', ()=>{
+          state[i] = (state[i] === L) ? null : L;
+          buildTasks();
+          evaluate();
+        });
+        if(state[i] === L) btn.classList.add('active-'+L);
+        group.appendChild(btn);
+      });
+      row.appendChild(group);
+      taskListEl.appendChild(row);
+    });
+  }
+
+  function evaluate(){
+    const aIndex = state.findIndex(s => s === 'A');
+    if(aIndex === -1){
+      frogResultEl.innerHTML = '<div class="sub">Label at least one task "A" to reveal your frog.</div>';
+      return;
+    }
+    const frog = tasks[aIndex];
+    frogResultEl.innerHTML =
+      '<div class="frog-emoji">🐸</div>' +
+      '<div>Your Frog: ' + frog.name + '</div>' +
+      '<div class="sub">' + frog.frogText + ' Build this first — everything else can wait.</div>';
+  }
+
+  resetBtn.addEventListener('click', ()=>{
+    for(let i=0;i<state.length;i++) state[i] = null;
+    buildTasks();
+    evaluate();
+  });
+
+  buildTasks();
+  evaluate();
+</script>
+
+</body>
+</html>

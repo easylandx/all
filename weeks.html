@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX | Four Thousand Weeks — A Landing Page With Limits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --amber:#FF9E2C;
+    --amber-deep:#E68300;
+    --cyan:#00E5FF;
+    --cyan-deep:#00B8CC;
+    --violet:#8C52FF;
+    --violet-deep:#6F2FE0;
+    --ink:#2B1400;
+    --white:#FFFFFF;
+    --cream:#FFF6E9;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--amber);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,158,44,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:3px solid var(--ink);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
+  .logo{font-weight:800;font-size:1.3rem;letter-spacing:-0.5px;}
+  .logo span{color:var(--violet-deep);}
+  .nav-cta{
+    background:var(--ink);color:var(--amber);
+    padding:10px 20px;border-radius:999px;font-weight:700;
+    font-size:0.9rem;border:2px solid var(--ink);
+    transition:transform .2s ease, background .2s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{transform:translateY(-2px);background:var(--cyan);color:var(--ink);}
+
+  /* HERO */
+  .hero{
+    padding:90px 0 70px;
+    text-align:center;
+  }
+  .eyebrow{
+    display:inline-block;background:var(--ink);color:var(--amber);
+    font-weight:700;font-size:0.8rem;letter-spacing:1.5px;text-transform:uppercase;
+    padding:8px 18px;border-radius:999px;margin-bottom:24px;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem,6vw,4rem);
+    line-height:1.05;font-weight:800;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:var(--violet);
+    color:var(--white);
+    padding:0 10px;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
+  }
+  .hero p{
+    font-size:1.15rem;max-width:620px;margin:0 auto 34px;
+    font-weight:500;line-height:1.6;
+  }
+  .hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:16px 30px;border-radius:14px;
+    font-weight:700;font-size:1rem;border:3px solid var(--ink);
+    transition:transform .2s ease, box-shadow .2s ease;
+    cursor:pointer;
+  }
+  .btn-primary{background:var(--ink);color:var(--amber);}
+  .btn-primary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--cyan);}
+  .btn-secondary{background:var(--cyan);color:var(--ink);}
+  .btn-secondary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--ink);}
+
+  .fact-strip{
+    margin-top:56px;display:inline-flex;align-items:center;gap:14px;
+    background:var(--white);border:3px solid var(--ink);border-radius:999px;
+    padding:14px 26px;font-weight:700;font-size:0.95rem;flex-wrap:wrap;justify-content:center;
+  }
+  .fact-strip .num{color:var(--violet-deep);font-family:'Space Grotesk',sans-serif;font-size:1.2rem;}
+
+  /* SECTION GENERIC */
+  section{padding:80px 0;}
+  .section-title{
+    font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:14px;
+  }
+  .section-sub{font-size:1.05rem;max-width:640px;margin-bottom:44px;font-weight:500;line-height:1.6;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* CYAN SECTION - FRAMEWORK */
+  .framework{
+    background:var(--cyan);color:var(--ink);
+  }
+  .flow{
+    display:flex;flex-direction:column;align-items:center;gap:0;
+  }
+  .flow-step{
+    background:var(--white);border:3px solid var(--ink);border-radius:16px;
+    padding:22px 26px;width:100%;max-width:480px;text-align:center;
+    box-shadow:6px 6px 0 var(--ink);
+  }
+  .flow-step h3{font-size:1.1rem;margin-bottom:6px;}
+  .flow-step p{font-size:0.92rem;font-weight:500;line-height:1.5;}
+  .flow-arrow{font-size:1.8rem;margin:10px 0;font-weight:800;}
+  .branch{
+    display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:0;
+  }
+  .branch .flow-step{max-width:250px;}
+
+  /* CREAM SECTION - INTERACTIVE CLOSED LIST */
+  .closed-list{
+    background:var(--cream);color:var(--ink);
+  }
+  .cl-card{
+    background:var(--white);border:3px solid var(--ink);border-radius:20px;
+    padding:34px;box-shadow:8px 8px 0 var(--violet);
+  }
+  .cl-columns{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+  @media (max-width:720px){.cl-columns{grid-template-columns:1fr;}}
+  .cl-col h4{
+    font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .cl-col.open h4{color:var(--amber-deep);}
+  .cl-col.closed h4{color:var(--violet-deep);}
+  .chip-pool{display:flex;flex-wrap:wrap;gap:10px;min-height:60px;}
+  .chip{
+    background:var(--cream);border:3px solid var(--ink);border-radius:999px;
+    padding:9px 16px;font-weight:700;font-size:0.85rem;cursor:pointer;
+    transition:transform .15s ease, background .2s ease;
+  }
+  .chip:hover{transform:translateY(-2px);}
+  .closed-slots{
+    display:flex;flex-direction:column;gap:10px;min-height:60px;
+  }
+  .closed-slot{
+    border:3px dashed var(--ink);border-radius:12px;padding:10px 14px;
+    font-weight:700;font-size:0.85rem;min-height:20px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .closed-slot.filled{
+    background:var(--violet);color:var(--white);border-style:solid;cursor:pointer;
+  }
+  .closed-slot.empty{color:#b8a798;}
+  .cl-note{
+    margin-top:22px;background:var(--ink);color:var(--amber);border-radius:14px;
+    padding:16px 20px;font-weight:700;text-align:center;font-size:0.92rem;
+  }
+  .cl-actions{display:flex;justify-content:center;margin-top:18px;}
+  .btn-reset-cl{
+    background:var(--white);border:3px solid var(--ink);border-radius:12px;
+    padding:12px 24px;font-weight:700;cursor:pointer;
+  }
+
+  /* VIOLET SECTION - WHY */
+  .why-power{background:var(--violet);color:var(--white);}
+  .why-power .section-title, .why-power .section-sub{color:var(--white);}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;}
+  .why-card{
+    background:var(--white);color:var(--ink);border:3px solid var(--ink);border-radius:16px;padding:26px;
+  }
+  .why-card .icon{font-size:1.8rem;margin-bottom:10px;display:block;}
+  .why-card h3{font-size:1.05rem;margin-bottom:8px;}
+  .why-card p{font-size:0.92rem;line-height:1.5;font-weight:500;}
+
+  /* AMBER SECTION - TIMELINE */
+  .routine{background:var(--amber);}
+  .timeline{position:relative;padding-left:36px;}
+  .timeline::before{
+    content:'';position:absolute;left:11px;top:6px;bottom:6px;width:4px;
+    background:var(--ink);border-radius:4px;
+  }
+  .t-item{position:relative;margin-bottom:30px;}
+  .t-item::before{
+    content:'';position:absolute;left:-36px;top:2px;width:24px;height:24px;
+    border-radius:50%;background:var(--cyan);border:3px solid var(--ink);
+  }
+  .t-item:nth-child(even)::before{background:var(--violet);}
+  .t-item h3{font-size:1.05rem;margin-bottom:4px;}
+  .t-item p{font-size:0.92rem;font-weight:500;line-height:1.5;}
+
+  /* CTA FOOTER */
+  .cta-final{
+    background:var(--violet);color:var(--white);text-align:center;
+  }
+  .cta-final h2{font-size:clamp(1.8rem,4.5vw,2.6rem);margin-bottom:16px;color:var(--white);}
+  .cta-final p{color:var(--cream);max-width:560px;margin:0 auto 30px;font-weight:500;}
+
+  footer{
+    background:var(--ink);color:var(--cream);text-align:center;
+    padding:26px 20px 34px;font-size:0.85rem;font-weight:500;
+    border-top:3px solid var(--cyan);
+  }
+  footer a{color:var(--cyan);font-weight:700;}
+
+  .floating-btn{
+    position:fixed;bottom:22px;right:22px;z-index:200;
+    background:var(--cyan);color:var(--ink);
+    padding:14px 22px;border-radius:999px;font-weight:800;
+    border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+    transition:transform .2s ease;font-size:0.95rem;
+  }
+  .floating-btn:hover{transform:translateY(-3px);}
+
+  @media (max-width:640px){
+    section{padding:56px 0;}
+    .hero{padding:64px 0 50px;}
+    .floating-btn{padding:12px 18px;font-size:0.85rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Inspired by Four Thousand Weeks · Oliver Burkeman</span>
+    <h1>Your page can't do <em>everything</em>.<br>That's exactly why it works.</h1>
+    <p>A landing page that tries to fit in every feature ends up saying nothing clearly. EasyLandX builds pages around a hard limit: one goal, a handful of sections, and the discipline to leave the rest out.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start Your Page</a>
+      <a class="btn btn-secondary" href="#closedlist">Build Your Closed List ↓</a>
+    </div>
+    <div class="fact-strip reveal">
+      <span>The average life is roughly</span>
+      <span class="num">4,000 weeks</span>
+      <span>— your homepage has about 8 seconds to matter.</span>
+    </div>
+  </div>
+</section>
+
+<section class="framework">
+  <div class="wrap">
+    <h2 class="section-title reveal">The EasyLandX Finite Page Framework</h2>
+    <p class="section-sub reveal">Every page we build accepts a limit from the start, so focus replaces overwhelm.</p>
+    <div class="flow">
+      <div class="flow-step reveal">
+        <h3>1. Accept the Limit</h3>
+        <p>A landing page cannot hold every feature, page, or idea. We start by naming the one goal it exists to serve.</p>
+      </div>
+      <div class="flow-arrow reveal">↓</div>
+      <div class="flow-step reveal">
+        <h3>2. Set a Closed List of Sections</h3>
+        <p>A fixed set of sections — hero, offer, proof, close — with a hard limit. Nothing new gets added until something else makes room.</p>
+      </div>
+      <div class="flow-arrow reveal">↓</div>
+      <div class="branch">
+        <div class="flow-step reveal">
+          <h3>3. Build the Core First</h3>
+          <p>Your headline and call-to-action are built before anything optional gets touched.</p>
+        </div>
+        <div class="flow-step reveal">
+          <h3>4. Choose What to Leave Out</h3>
+          <p>Extra pages, pop-ups, and animations are set aside on purpose — a deliberate choice, not an oversight.</p>
+        </div>
+        <div class="flow-step reveal">
+          <h3>5. Design for the Visitor Here Now</h3>
+          <p>Your page speaks to the person reading it today, not a hypothetical future audience.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closed-list" id="closedlist">
+  <div class="wrap">
+    <h2 class="section-title reveal">Try It: Build Your Page's Closed List</h2>
+    <p class="section-sub reveal">Every landing page idea below is real and useful. But a page that holds all of them holds none clearly. Click up to 5 into your Closed List — the rest stay in reserve.</p>
+    <div class="cl-card reveal">
+      <div class="cl-columns">
+        <div class="cl-col open">
+          <h4>Open List <span id="openCount">15</span></h4>
+          <div class="chip-pool" id="chipPool"></div>
+        </div>
+        <div class="cl-col closed">
+          <h4>Closed List <span id="closedCount">0 / 5</span></h4>
+          <div class="closed-slots" id="closedSlots"></div>
+        </div>
+      </div>
+      <div class="cl-note" id="clNote">Choose the 5 sections your page truly needs. Everything else is a conscious sacrifice, not a loss.</div>
+      <div class="cl-actions">
+        <button class="btn-reset-cl" id="clReset">Reset List</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why-power">
+  <div class="wrap">
+    <h2 class="section-title reveal">Why EasyLandX Builds This Way</h2>
+    <p class="section-sub reveal">More sections rarely mean more clients. A page with real limits converts because it's clear.</p>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="icon">⏳</span>
+        <h3>Clarity Over Completeness</h3>
+        <p>We accept that a page can't cover everything — and build the part that matters most, fully.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="icon">🗂️</span>
+        <h3>A Fixed Section Count</h3>
+        <p>Your page keeps a hard limit on sections, so it never grows into a cluttered scroll.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="icon">🎯</span>
+        <h3>One Goal, Fully Served</h3>
+        <p>Every section earns its place by serving the single action you want a visitor to take.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="icon">🌤️</span>
+        <h3>Present, Not Hypothetical</h3>
+        <p>We design for the visitor reading your page right now — not an imagined future audience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="routine">
+  <div class="wrap">
+    <h2 class="section-title reveal">A Page Built Within Its Limits</h2>
+    <p class="section-sub reveal">Four checkpoints that keep any landing page focused instead of overloaded.</p>
+    <div class="timeline">
+      <div class="t-item reveal">
+        <h3>Name the One Goal</h3>
+        <p>We write down the single action your page exists to drive, before any design begins.</p>
+      </div>
+      <div class="t-item reveal">
+        <h3>Set the Section Limit</h3>
+        <p>A fixed number of sections keeps the page focused and quick to read.</p>
+      </div>
+      <div class="t-item reveal">
+        <h3>Build the Core First</h3>
+        <p>Headline and call-to-action come first, fully finished, before anything optional.</p>
+      </div>
+      <div class="t-item reveal">
+        <h3>Leave Room to Breathe</h3>
+        <p>What doesn't make the closed list waits for a future update — on purpose, not by accident.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <h2 class="reveal">Build the Page You Actually Have Time For</h2>
+    <p class="reveal">Let EasyLandX help you choose the few sections that matter most — and build them well.</p>
+    <a class="btn btn-secondary reveal" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <p>Built by EasyLandX · © 2026 EasyLandX. All rights reserved.</p>
+  <p><a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a></p>
+</footer>
+
+<a class="floating-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">⏳ EasyLandX</a>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // Closed List Builder
+  const allItems = [
+    "Hero + Headline", "Clear Call-to-Action", "Offer / Services", "Client Proof",
+    "Contact Form", "Blog", "Live Chat Widget", "Animated Intro",
+    "Newsletter Pop-up", "Countdown Timer", "Video Background", "Pricing Table",
+    "Social Feed Embed", "Team Bios", "Map Widget"
+  ];
+  const MAX_CLOSED = 5;
+  let open = [...allItems];
+  let closed = [];
+
+  const chipPoolEl = document.getElementById('chipPool');
+  const closedSlotsEl = document.getElementById('closedSlots');
+  const openCountEl = document.getElementById('openCount');
+  const closedCountEl = document.getElementById('closedCount');
+  const clNote = document.getElementById('clNote');
+  const clReset = document.getElementById('clReset');
+
+  function render(){
+    chipPoolEl.innerHTML = '';
+    open.forEach(item=>{
+      const chip = document.createElement('div');
+      chip.className = 'chip';
+      chip.textContent = item;
+      chip.addEventListener('click', ()=> addToClosed(item));
+      chipPoolEl.appendChild(chip);
+    });
+
+    closedSlotsEl.innerHTML = '';
+    for(let i=0;i<MAX_CLOSED;i++){
+      const slot = document.createElement('div');
+      if(closed[i]){
+        slot.className = 'closed-slot filled';
+        slot.innerHTML = '<span>'+closed[i]+'</span><span>✕</span>';
+        slot.addEventListener('click', ()=> removeFromClosed(i));
+      } else {
+        slot.className = 'closed-slot empty';
+        slot.textContent = 'Empty slot';
+      }
+      closedSlotsEl.appendChild(slot);
+    }
+
+    openCountEl.textContent = open.length;
+    closedCountEl.textContent = closed.length + ' / ' + MAX_CLOSED;
+
+    if(closed.length === 0){
+      clNote.textContent = "Choose the 5 sections your page truly needs. Everything else is a conscious sacrifice, not a loss.";
+    } else if(closed.length < MAX_CLOSED){
+      clNote.textContent = "Good choices so far — " + (MAX_CLOSED - closed.length) + " slot(s) left. Choose deliberately.";
+    } else {
+      clNote.textContent = "Your closed list is full. To add anything new, remove one first — that's radical prioritization in action.";
+    }
+  }
+
+  function addToClosed(item){
+    if(closed.length >= MAX_CLOSED){
+      clNote.textContent = "Your closed list is full — remove one item first. That trade-off is the whole exercise.";
+      return;
+    }
+    closed.push(item);
+    open = open.filter(i => i !== item);
+    render();
+  }
+
+  function removeFromClosed(index){
+    const item = closed[index];
+    closed.splice(index,1);
+    open.push(item);
+    render();
+  }
+
+  clReset.addEventListener('click', ()=>{
+    open = [...allItems];
+    closed = [];
+    render();
+  });
+
+  render();
+</script>
+
+</body>
+</html>

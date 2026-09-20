@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX | The Compound Effect of Landing Pages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --laser-green:#3DFF3D;
+    --laser-green-deep:#22CC33;
+    --cyber-orange:#FF6A00;
+    --cyber-orange-deep:#E85A00;
+    --electric-blue:#00C2FF;
+    --electric-blue-deep:#0090CC;
+    --ink:#0B1A0B;
+    --white:#FFFFFF;
+    --cream:#FFF9EC;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--laser-green);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(61,255,61,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:3px solid var(--ink);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
+  .logo{font-weight:800;font-size:1.3rem;letter-spacing:-0.5px;}
+  .logo span{color:var(--cyber-orange);}
+  .nav-cta{
+    background:var(--ink);color:var(--laser-green);
+    padding:10px 20px;border-radius:999px;font-weight:700;
+    font-size:0.9rem;border:2px solid var(--ink);
+    transition:transform .2s ease, background .2s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{transform:translateY(-2px);background:var(--cyber-orange);border-color:var(--ink);}
+
+  /* HERO */
+  .hero{
+    padding:90px 0 70px;
+    text-align:center;
+    position:relative;
+  }
+  .eyebrow{
+    display:inline-block;background:var(--ink);color:var(--laser-green);
+    font-weight:700;font-size:0.8rem;letter-spacing:1.5px;text-transform:uppercase;
+    padding:8px 18px;border-radius:999px;margin-bottom:24px;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem,6vw,4rem);
+    line-height:1.05;font-weight:800;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:var(--cyber-orange);
+    padding:0 10px;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
+  }
+  .hero p{
+    font-size:1.15rem;max-width:620px;margin:0 auto 34px;
+    font-weight:500;line-height:1.6;
+  }
+  .hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:16px 30px;border-radius:14px;
+    font-weight:700;font-size:1rem;border:3px solid var(--ink);
+    transition:transform .2s ease, box-shadow .2s ease;
+    cursor:pointer;
+  }
+  .btn-primary{background:var(--ink);color:var(--laser-green);}
+  .btn-primary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--cyber-orange);}
+  .btn-secondary{background:var(--electric-blue);color:var(--ink);}
+  .btn-secondary:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--ink);}
+
+  .formula{
+    margin-top:60px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;
+    align-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;
+  }
+  .formula .piece{
+    background:var(--white);border:3px solid var(--ink);border-radius:12px;
+    padding:14px 18px;font-size:0.95rem;
+  }
+  .formula .op{font-size:1.4rem;}
+
+  /* SECTION GENERIC */
+  section{padding:80px 0;}
+  .section-title{
+    font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:14px;
+  }
+  .section-sub{font-size:1.05rem;max-width:640px;margin-bottom:44px;font-weight:500;line-height:1.6;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ORANGE SECTION - FRAMEWORK */
+  .framework{
+    background:var(--cyber-orange);color:var(--ink);
+  }
+  .framework .section-title, .framework .section-sub{color:var(--ink);}
+  .flow{
+    display:flex;flex-direction:column;align-items:center;gap:0;
+  }
+  .flow-step{
+    background:var(--white);border:3px solid var(--ink);border-radius:16px;
+    padding:22px 26px;width:100%;max-width:480px;text-align:center;
+    box-shadow:6px 6px 0 var(--ink);
+  }
+  .flow-step h3{font-size:1.1rem;margin-bottom:6px;}
+  .flow-step p{font-size:0.92rem;font-weight:500;line-height:1.5;}
+  .flow-arrow{font-size:1.8rem;margin:10px 0;font-weight:800;}
+  .branch{
+    display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:0;
+  }
+  .branch .flow-step{max-width:250px;}
+
+  /* BLUE SECTION - INTERACTIVE */
+  .simulator{
+    background:var(--electric-blue);color:var(--ink);
+  }
+  .simulator .section-title, .simulator .section-sub{color:var(--ink);}
+  .sim-card{
+    background:var(--white);border:3px solid var(--ink);border-radius:20px;
+    padding:34px;box-shadow:8px 8px 0 var(--ink);
+  }
+  .sim-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:24px;}
+  .sim-stat{text-align:center;}
+  .sim-stat .num{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:2.1rem;}
+  .sim-stat .lbl{font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:0.7;}
+  .sim-graph{
+    position:relative;height:220px;background:var(--cream);
+    border:3px solid var(--ink);border-radius:14px;overflow:hidden;margin-bottom:22px;
+  }
+  #graphCanvas{width:100%;height:100%;display:block;}
+  .day-dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:24px;}
+  .day-dot{
+    width:26px;height:26px;border-radius:50%;border:2.5px solid var(--ink);
+    background:var(--white);
+  }
+  .day-dot.done{background:var(--cyber-orange);}
+  .sim-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn-sim{
+    background:var(--laser-green);color:var(--ink);border:3px solid var(--ink);
+    padding:14px 26px;border-radius:12px;font-weight:700;cursor:pointer;font-size:0.95rem;
+    transition:transform .15s ease;
+  }
+  .btn-sim:hover{transform:translateY(-2px);}
+  .btn-sim:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+  .btn-reset{background:var(--white);}
+  .sim-note{font-size:0.85rem;font-weight:600;margin-top:16px;text-align:center;min-height:22px;}
+
+  /* GREEN SECTION - WHY POWER */
+  .why-power{background:var(--laser-green);}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;}
+  .why-card{
+    background:var(--white);border:3px solid var(--ink);border-radius:16px;padding:26px;
+  }
+  .why-card .icon{font-size:1.8rem;margin-bottom:10px;display:block;}
+  .why-card h3{font-size:1.05rem;margin-bottom:8px;}
+  .why-card p{font-size:0.92rem;line-height:1.5;font-weight:500;}
+
+  /* CREAM SECTION - PATH TIMELINE */
+  .routine{background:var(--cream);}
+  .timeline{position:relative;padding-left:36px;}
+  .timeline::before{
+    content:'';position:absolute;left:11px;top:6px;bottom:6px;width:4px;
+    background:var(--ink);border-radius:4px;
+  }
+  .t-item{position:relative;margin-bottom:30px;}
+  .t-item::before{
+    content:'';position:absolute;left:-36px;top:2px;width:24px;height:24px;
+    border-radius:50%;background:var(--electric-blue);border:3px solid var(--ink);
+  }
+  .t-item:nth-child(even)::before{background:var(--cyber-orange);}
+  .t-item h3{font-size:1.05rem;margin-bottom:4px;}
+  .t-item p{font-size:0.92rem;font-weight:500;line-height:1.5;}
+
+  /* CTA FOOTER */
+  .cta-final{
+    background:var(--ink);color:var(--laser-green);text-align:center;
+  }
+  .cta-final h2{font-size:clamp(1.8rem,4.5vw,2.6rem);margin-bottom:16px;color:var(--white);}
+  .cta-final p{color:var(--cream);max-width:560px;margin:0 auto 30px;font-weight:500;}
+
+  footer{
+    background:var(--ink);color:var(--cream);text-align:center;
+    padding:26px 20px 34px;font-size:0.85rem;font-weight:500;
+    border-top:3px solid var(--laser-green);
+  }
+  footer a{color:var(--laser-green);font-weight:700;}
+
+  .floating-btn{
+    position:fixed;bottom:22px;right:22px;z-index:200;
+    background:var(--cyber-orange);color:var(--ink);
+    padding:14px 22px;border-radius:999px;font-weight:800;
+    border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+    transition:transform .2s ease;font-size:0.95rem;
+  }
+  .floating-btn:hover{transform:translateY(-3px);}
+
+  @media (max-width:640px){
+    section{padding:56px 0;}
+    .hero{padding:64px 0 50px;}
+    .floating-btn{padding:12px 18px;font-size:0.85rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Inspired by The Compound Effect · Darren Hardy</span>
+    <h1>Your landing page doesn't need a <em>miracle</em>.<br>It needs <em>momentum</em>.</h1>
+    <p>Radical growth online isn't built from one lucky viral post. It's built from small, smart page choices, made consistently, compounding over time. That's exactly how EasyLandX designs.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start Your Page</a>
+      <a class="btn btn-secondary" href="#simulator">Try the Compound Simulator ↓</a>
+    </div>
+    <div class="formula reveal">
+      <span class="piece">Small Smart Page Choices</span>
+      <span class="op">+</span>
+      <span class="piece">Consistency</span>
+      <span class="op">+</span>
+      <span class="piece">Time</span>
+      <span class="op">=</span>
+      <span class="piece" style="background:var(--cyber-orange);">Radical Growth</span>
+    </div>
+  </div>
+</section>
+
+<section class="framework">
+  <div class="wrap">
+    <h2 class="section-title reveal">The EasyLandX Compound Framework</h2>
+    <p class="section-sub reveal">Every page we build follows the same five-step momentum path — the same one behind every lasting success story.</p>
+    <div class="flow">
+      <div class="flow-step reveal">
+        <h3>1. Take Full Ownership of Your Page</h3>
+        <p>We start by tracking exactly what your current page says, shows, and asks visitors to do — full clarity before anything changes.</p>
+      </div>
+      <div class="flow-arrow reveal">↓</div>
+      <div class="flow-step reveal">
+        <h3>2. Uncover Your "Why-Power"</h3>
+        <p>The reason clients choose you, in your own words. That emotional core becomes your headline, not a generic tagline.</p>
+      </div>
+      <div class="flow-arrow reveal">↓</div>
+      <div class="branch">
+        <div class="flow-step reveal">
+          <h3>3. Design Bookend Sections</h3>
+          <p>A hero that hooks and a closing call-to-action that converts — the two moments that matter most.</p>
+        </div>
+        <div class="flow-step reveal">
+          <h3>4. Build the Big Mo</h3>
+          <p>Fast load, clear flow, and one consistent action across the page so momentum never breaks.</p>
+        </div>
+        <div class="flow-step reveal">
+          <h3>5. Push Past the Wall</h3>
+          <p>The extra 1% — a micro-interaction, a sharper button, a warmer color — that multiplies your results.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="simulator" id="simulator">
+  <div class="wrap">
+    <h2 class="section-title reveal">Try It: The Compound Landing Page Simulator</h2>
+    <p class="section-sub reveal">Click "Apply a Small Optimization" once for each of 21 days. Watch how tiny, 1% improvements compound into a completely different growth curve than doing nothing at all.</p>
+    <div class="sim-card reveal">
+      <div class="sim-top">
+        <div class="sim-stat">
+          <div class="num" id="dayCount">0</div>
+          <div class="lbl">Days Applied</div>
+        </div>
+        <div class="sim-stat">
+          <div class="num" id="growthPct">+0%</div>
+          <div class="lbl">Compound Growth</div>
+        </div>
+        <div class="sim-stat">
+          <div class="num" id="flatPct">+0%</div>
+          <div class="lbl">Flat / No Changes</div>
+        </div>
+      </div>
+      <div class="sim-graph">
+        <canvas id="graphCanvas"></canvas>
+      </div>
+      <div class="day-dots" id="dayDots"></div>
+      <div class="sim-actions">
+        <button class="btn-sim" id="addDayBtn">+ Apply a Small Optimization (Day <span id="nextDay">1</span>)</button>
+        <button class="btn-sim btn-reset" id="resetBtn">Reset</button>
+      </div>
+      <div class="sim-note" id="simNote">Every click = one small, smart choice compounding on the last.</div>
+    </div>
+  </div>
+</section>
+
+<section class="why-power">
+  <div class="wrap">
+    <h2 class="section-title reveal">Why EasyLandX Builds This Way</h2>
+    <p class="section-sub reveal">A landing page is never one big swing. It's a system of small, deliberate decisions that add up in your favor, day after day.</p>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="icon">🎯</span>
+        <h3>Every Section Earns Its Place</h3>
+        <p>We track what each part of your page is doing for your goal — nothing sits there by accident.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="icon">⚡</span>
+        <h3>Momentum Over Mass</h3>
+        <p>A page that loads fast and flows clearly keeps visitors moving toward your call-to-action, effortlessly.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="icon">🌱</span>
+        <h3>Built to Compound</h3>
+        <p>Small, ongoing refinements — a sharper headline, a clearer button — multiply your results over months, not days.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="icon">🧭</span>
+        <h3>Anchored to Your Why</h3>
+        <p>Your page speaks from your real reason for doing this work, so it resonates instead of blending in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="routine">
+  <div class="wrap">
+    <h2 class="section-title reveal">Your Page's Bookend Routine</h2>
+    <p class="section-sub reveal">Just like a strong morning and evening ritual anchors a day, a strong hero and closing section anchor your page.</p>
+    <div class="timeline">
+      <div class="t-item reveal">
+        <h3>Opening: The Hook (0–5 seconds)</h3>
+        <p>A headline and visual that instantly tell a visitor they're in the right place.</p>
+      </div>
+      <div class="t-item reveal">
+        <h3>Middle: The Proof</h3>
+        <p>Clear, specific reasons to trust you — real offerings, real results, real contact links.</p>
+      </div>
+      <div class="t-item reveal">
+        <h3>Closing: The Ask</h3>
+        <p>One unmistakable call-to-action, repeated exactly once more than feels necessary.</p>
+      </div>
+      <div class="t-item reveal">
+        <h3>Ongoing: The 1% Extra</h3>
+        <p>After launch, we keep refining — small tweaks that keep compounding your growth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <h2 class="reveal">Start Your Compound Effect Today</h2>
+    <p class="reveal">One small, smart choice — building your landing page with EasyLandX — is the choice that compounds into everything else.</p>
+    <a class="btn btn-secondary reveal" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <p>Built by EasyLandX · © 2026 EasyLandX. All rights reserved.</p>
+  <p><a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a></p>
+</footer>
+
+<a class="floating-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">🚀 EasyLandX</a>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // Compound simulator
+  const TOTAL_DAYS = 21;
+  let day = 0;
+  const addBtn = document.getElementById('addDayBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const dayCountEl = document.getElementById('dayCount');
+  const growthPctEl = document.getElementById('growthPct');
+  const flatPctEl = document.getElementById('flatPct');
+  const nextDayEl = document.getElementById('nextDay');
+  const dayDotsEl = document.getElementById('dayDots');
+  const simNote = document.getElementById('simNote');
+  const canvas = document.getElementById('graphCanvas');
+  const ctx = canvas.getContext('2d');
+
+  const notes = [
+    "One small optimization. The compounding has begun.",
+    "Consistency is starting to build quiet momentum.",
+    "This is the invisible stage — keep applying small choices.",
+    "The gap between compound and flat growth is widening.",
+    "Big Mo is kicking in. Momentum makes this easier now.",
+    "This is what radical difference looks like in motion.",
+    "21 days of small, smart choices — completely different results."
+  ];
+
+  function buildDots(){
+    dayDotsEl.innerHTML = '';
+    for(let i=1;i<=TOTAL_DAYS;i++){
+      const dot = document.createElement('div');
+      dot.className = 'day-dot' + (i<=day ? ' done' : '');
+      dayDotsEl.appendChild(dot);
+    }
+  }
+
+  function resizeCanvas(){
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * devicePixelRatio;
+    canvas.height = rect.height * devicePixelRatio;
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  }
+
+  function drawGraph(){
+    resizeCanvas();
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+    ctx.clearRect(0,0,w,h);
+
+    const padding = 26;
+    const maxDay = TOTAL_DAYS;
+    const compoundMax = Math.pow(1.01, TOTAL_DAYS);
+    const flatMax = 1 + TOTAL_DAYS*0.003;
+    const yMax = Math.max(compoundMax, flatMax);
+
+    function xFor(d){ return padding + (d/maxDay)*(w-padding*2); }
+    function yFor(v){ return h-padding - ((v-1)/(yMax-1))*(h-padding*2); }
+
+    // axis
+    ctx.strokeStyle = '#0B1A0B';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(padding, padding*0.4);
+    ctx.lineTo(padding, h-padding);
+    ctx.lineTo(w-padding*0.4, h-padding);
+    ctx.stroke();
+
+    // flat line (dashed, muted)
+    ctx.setLineDash([5,5]);
+    ctx.strokeStyle = '#8a8a8a';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    for(let d=0; d<=day; d++){
+      const val = 1 + d*0.003;
+      const x = xFor(d), y = yFor(val);
+      if(d===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // compound line
+    ctx.strokeStyle = '#FF6A00';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    for(let d=0; d<=day; d++){
+      const val = Math.pow(1.01, d);
+      const x = xFor(d), y = yFor(val);
+      if(d===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+
+    if(day>0){
+      const val = Math.pow(1.01, day);
+      ctx.fillStyle = '#FF6A00';
+      ctx.beginPath();
+      ctx.arc(xFor(day), yFor(val), 6, 0, Math.PI*2);
+      ctx.fill();
+    }
+  }
+
+  function update(){
+    dayCountEl.textContent = day;
+    const compoundGrowth = (Math.pow(1.01, day) - 1) * 100;
+    const flatGrowth = day*0.3;
+    growthPctEl.textContent = '+' + compoundGrowth.toFixed(1) + '%';
+    flatPctEl.textContent = '+' + flatGrowth.toFixed(1) + '%';
+    nextDayEl.textContent = Math.min(day+1, TOTAL_DAYS);
+    buildDots();
+    drawGraph();
+    if(day>0){
+      const idx = Math.min(Math.floor((day-1)/3), notes.length-1);
+      simNote.textContent = notes[idx];
+    } else {
+      simNote.textContent = "Every click = one small, smart choice compounding on the last.";
+    }
+    addBtn.disabled = day>=TOTAL_DAYS;
+    if(day>=TOTAL_DAYS){
+      addBtn.textContent = "21 Days Complete — That's the Compound Effect";
+    } else {
+      addBtn.innerHTML = '+ Apply a Small Optimization (Day <span id="nextDay">'+(day+1)+'</span>)';
+    }
+  }
+
+  addBtn.addEventListener('click', ()=>{
+    if(day<TOTAL_DAYS){ day++; update(); }
+  });
+  resetBtn.addEventListener('click', ()=>{
+    day = 0; update();
+  });
+
+  window.addEventListener('resize', drawGraph);
+  update();
+</script>
+
+</body>
+</html>
