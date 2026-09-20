@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>easylandx — Every Business Carries an Idea Worth Meeting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --magenta-900:#54003F;
+    --magenta-700:#E4007A;
+    --magenta-600:#FF4FB2;
+    --gold:#FFD400;
+    --tangerine:#FF6A1A;
+    --ink:#FFF3FA;
+    --ink-dim:#FFCBEA;
+    --surface: rgba(255,255,255,0.08);
+    --surface-strong: rgba(255,255,255,0.18);
+    --border-soft: rgba(255,255,255,0.2);
+    --font-display:'Fraunces', serif;
+    --font-body:'Work Sans', sans-serif;
+    --font-mono:'Space Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:
+      radial-gradient(1000px 640px at 8% -8%, rgba(255,106,26,0.35), transparent 55%),
+      radial-gradient(900px 620px at 100% 0%, rgba(255,212,0,0.22), transparent 55%),
+      linear-gradient(180deg, var(--magenta-900) 0%, var(--magenta-700) 48%, #7A0057 100%);
+    background-attachment:fixed;
+    line-height:1.6;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:26px 28px; max-width:1040px; margin:0 auto;
+  }
+  .logo{font-family:var(--font-display); font-weight:600; font-size:1.2rem; display:flex; align-items:center; gap:10px;}
+  .logo-mark{width:15px; height:15px; border-radius:50%; background:radial-gradient(circle at 35% 30%, var(--gold), var(--tangerine)); box-shadow:0 0 14px rgba(255,212,0,0.55); flex-shrink:0;}
+  .nav-btn{
+    font-family:var(--font-mono); font-size:0.82rem;
+    color:var(--magenta-900); background:var(--gold);
+    border:none; padding:10px 18px; border-radius:999px;
+    text-decoration:none; font-weight:700;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .nav-btn:hover{transform:translateY(-2px); box-shadow:0 8px 24px rgba(255,212,0,0.4);}
+  .nav-btn:focus-visible{outline:3px solid var(--tangerine); outline-offset:3px;}
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:60px 0 44px;}
+  .eyebrow{font-family:var(--font-mono); font-size:0.82rem; color:var(--ink-dim); margin:0 0 18px;}
+  h1{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(2.2rem, 5.2vw, 3.5rem);
+    line-height:1.1;
+    margin:0 0 22px;
+    max-width:15ch;
+  }
+  h1 em{font-style:italic; color:var(--gold);}
+  .lede{font-size:1.13rem; color:var(--ink-dim); max-width:58ch; margin:0 0 32px;}
+  .hero-actions{display:flex; align-items:center; gap:22px; flex-wrap:wrap;}
+  .btn-primary{
+    font-family:var(--font-body); font-weight:600; font-size:1rem;
+    color:var(--magenta-900); background:var(--gold);
+    border:none; padding:15px 28px; border-radius:999px;
+    cursor:pointer; text-decoration:none; display:inline-block;
+    transition:transform 0.2s ease, box-shadow 0.25s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(255,212,0,0.4);}
+  .btn-primary:focus-visible{outline:3px solid var(--tangerine); outline-offset:3px;}
+  .scroll-note{font-family:var(--font-mono); font-size:0.82rem; color:var(--ink-dim); display:flex; align-items:center; gap:8px;}
+  .spark-dot{width:8px; height:8px; border-radius:50%; background:var(--tangerine); box-shadow:0 0 10px var(--tangerine); animation:flicker 1.6s ease-in-out infinite;}
+  @keyframes flicker{0%,100%{opacity:0.5; transform:scale(0.85);} 50%{opacity:1; transform:scale(1.15);}}
+
+  /* ---------- INTRO ---------- */
+  section.intro{padding:20px 0 60px;}
+  .section-head{max-width:62ch; margin-bottom:36px;}
+  .section-head h2{font-family:var(--font-display); font-weight:600; font-size:clamp(1.6rem,3vw,2.15rem); margin:0 0 14px;}
+  .section-head p{color:var(--ink-dim); margin:0; font-size:1.02rem;}
+
+  /* ---------- PROGRESS TRACKER ---------- */
+  .tracker{display:flex; align-items:center; gap:10px; margin-bottom:38px; flex-wrap:wrap;}
+  .tracker-label{font-family:var(--font-mono); font-size:0.78rem; color:var(--ink-dim); margin-right:6px;}
+  .tracker-dot{
+    width:13px; height:13px; border-radius:50%;
+    border:1px solid var(--border-soft);
+    background:transparent;
+    transition:background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .tracker-dot.lit{background:var(--gold); border-color:var(--gold); box-shadow:0 0 12px rgba(255,212,0,0.7);}
+
+  /* ---------- JOURNEY (flow) ---------- */
+  .journey{display:flex; flex-direction:column; align-items:center;}
+  .step-card{
+    width:100%; max-width:560px;
+    background:var(--surface); border:1px solid var(--border-soft);
+    border-radius:18px; padding:20px 24px; cursor:pointer;
+    transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    text-align:left;
+  }
+  .step-card:hover{border-color:rgba(255,255,255,0.4);}
+  .step-card.active{background:var(--surface-strong); border-color:var(--gold); box-shadow:0 0 26px rgba(255,212,0,0.22);}
+  .step-top{display:flex; align-items:center; justify-content:space-between; gap:12px;}
+  .step-name{font-family:var(--font-display); font-weight:600; font-size:1.08rem;}
+  .step-tag{font-family:var(--font-mono); font-size:0.72rem; color:var(--ink-dim);}
+  .step-short{margin:8px 0 0; color:var(--ink-dim); font-size:0.94rem;}
+  .step-detail{max-height:0; overflow:hidden; opacity:0; font-size:0.94rem; transition:max-height 0.35s ease, opacity 0.3s ease, margin 0.3s ease;}
+  .step-card.active .step-detail{max-height:200px; opacity:1; margin-top:12px;}
+  .spark-mark{
+    width:24px; height:24px; border-radius:50%; flex-shrink:0;
+    border:1px solid var(--border-soft);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono); font-size:0.9rem;
+    transition:background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  }
+  .step-card.active .spark-mark{background:var(--tangerine); border-color:var(--tangerine); color:var(--magenta-900); transform:scale(1.1);}
+
+  .connector{width:2px; height:30px; background:linear-gradient(180deg, var(--border-soft), transparent);}
+  .connector.lit{background:linear-gradient(180deg, var(--gold), var(--tangerine));}
+
+  .branch-row{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;
+    width:100%; max-width:900px; margin:0 auto;
+  }
+  @media (max-width:760px){ .branch-row{grid-template-columns:1fr;} }
+  .branch-row .step-card{max-width:none;}
+
+  .branch-connectors{display:flex; justify-content:center; gap:0; width:100%; max-width:900px; height:30px; position:relative;}
+
+  .builder-buttons{display:flex; gap:12px; margin-top:30px; flex-wrap:wrap; justify-content:center;}
+  .btn-ghost{
+    font-family:var(--font-mono); font-size:0.82rem; color:var(--ink);
+    background:transparent; border:1px solid var(--border-soft);
+    padding:11px 18px; border-radius:999px; cursor:pointer;
+    transition:border-color 0.2s ease, background 0.2s ease;
+  }
+  .btn-ghost:hover{border-color:var(--gold); background:rgba(255,212,0,0.1);}
+  .btn-ghost:focus-visible{outline:3px solid var(--tangerine); outline-offset:2px;}
+
+  /* ---------- LAUNCH PANEL ---------- */
+  section.launch{padding:50px 0 90px;}
+  .launch-panel{
+    background:linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
+    border:1px solid var(--border-soft); border-radius:26px;
+    padding:56px 44px; text-align:center;
+    transition:box-shadow 0.4s ease, border-color 0.4s ease;
+  }
+  .launch-panel.ready{border-color:var(--gold); box-shadow:0 0 60px rgba(255,212,0,0.25);}
+  .launch-panel h2{font-family:var(--font-display); font-weight:600; font-size:clamp(1.6rem,3.2vw,2.3rem); margin:0 0 16px;}
+  .launch-panel p{color:var(--ink-dim); max-width:54ch; margin:0 auto 14px; font-size:1.02rem;}
+  .launch-status{font-family:var(--font-mono); font-size:0.85rem; color:var(--gold); margin-bottom:26px; display:block; min-height:1.4em;}
+
+  footer{padding:34px 0 50px; text-align:center; color:var(--ink-dim); font-family:var(--font-mono); font-size:0.8rem;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="logo-mark"></span> easylandx</div>
+  <a class="nav-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">creative practice, applied to landing pages · 2026</p>
+    <h1>Every business carries an <em>idea</em> worth meeting.</h1>
+    <p class="lede">easylandx treats every new project the way a curious creator treats a spark of inspiration: worth welcoming, worth following, and worth finishing. Here's how that spirit shapes a small business's page from first idea to live launch.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#journey">Follow the journey</a>
+      <span class="scroll-note"><span class="spark-dot"></span> a page, built the way ideas want to arrive</span>
+    </div>
+  </header>
+
+  <section class="intro" id="journey">
+    <div class="section-head">
+      <h2>The collaboration path</h2>
+      <p>A business idea arrives with energy. easylandx meets it with curiosity, stays with it through the ordinary middle stretch, and ships it while it is still alive and eager — five moments that carry a page from spark to launch.</p>
+    </div>
+
+    <div class="tracker">
+      <span class="tracker-label">sparks collected</span>
+      <span class="tracker-dot" data-dot="welcome"></span>
+      <span class="tracker-dot" data-dot="curiosity"></span>
+      <span class="tracker-dot" data-dot="attachment"></span>
+      <span class="tracker-dot" data-dot="light"></span>
+      <span class="tracker-dot" data-dot="ship"></span>
+    </div>
+
+    <div class="journey">
+
+      <div class="step-card" data-step="welcome">
+        <div class="step-top">
+          <div>
+            <div class="step-name">Welcome the Idea</div>
+            <div class="step-tag">meet it with curiosity, not pressure</div>
+          </div>
+          <span class="spark-mark">✦</span>
+        </div>
+        <p class="step-short">A new business idea arrives with excitement and a little static.</p>
+        <div class="step-detail">easylandx greets every project as a visiting idea, ready to become real. Any early jitters about "how will this look" get noted gently and set to the side, while curiosity leads the first conversation.</div>
+      </div>
+
+      <div class="connector" data-connector="1"></div>
+
+      <div class="step-card" data-step="curiosity">
+        <div class="step-top">
+          <div>
+            <div class="step-name">Follow the Curiosity</div>
+            <div class="step-tag">small clues over grand plans</div>
+          </div>
+          <span class="spark-mark">✦</span>
+        </div>
+        <p class="step-short">Small clues start the process: a color, a phrase, a favorite photo.</p>
+        <div class="step-detail">Rather than waiting for a perfect brief, easylandx follows the smallest spark — a logo color, a favorite font, a customer's favorite product — and builds outward from there.</div>
+      </div>
+
+      <div class="connector" data-connector="2"></div>
+
+      <div class="branch-row">
+
+        <div class="step-card" data-step="attachment">
+          <div class="step-top">
+            <div>
+              <div class="step-name">Stay at the Desk</div>
+              <div class="step-tag">see the middle through</div>
+            </div>
+            <span class="spark-mark">✦</span>
+          </div>
+          <p class="step-short">The middle of a build can feel ordinary; commitment carries it forward.</p>
+          <div class="step-detail">When a layout gets tricky or a section feels flat, easylandx stays with the page through revisions until its structure clicks into place.</div>
+        </div>
+
+        <div class="step-card" data-step="light">
+          <div class="step-top">
+            <div>
+              <div class="step-name">Keep It Light</div>
+              <div class="step-tag">affordable, so it can breathe</div>
+            </div>
+            <span class="spark-mark">✦</span>
+          </div>
+          <p class="step-short">A page that costs little leaves room for a business to grow.</p>
+          <div class="step-detail">Custom pages stay affordable, so a small business can launch, learn, and expand without the page needing to carry heavy financial weight from day one.</div>
+        </div>
+
+        <div class="step-card" data-step="ship">
+          <div class="step-top">
+            <div>
+              <div class="step-name">Ship at "Good Enough"</div>
+              <div class="step-tag">launched teaches more than perfect</div>
+            </div>
+            <span class="spark-mark">✦</span>
+          </div>
+          <p class="step-short">A live page teaches more than a flawless page still in drafts.</p>
+          <div class="step-detail">easylandx favors shipping a strong, complete page today over polishing one forever — real visitors and real feedback shape whatever comes next.</div>
+        </div>
+
+      </div>
+
+      <div class="connector" data-connector="3"></div>
+
+      <div class="builder-buttons">
+        <button class="btn-ghost" id="ignite-all">Ignite every spark</button>
+        <button class="btn-ghost" id="begin-again">Begin again</button>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="launch">
+    <div class="launch-panel" id="launch-panel">
+      <h2>A page is born</h2>
+      <span class="launch-status" id="launch-status">collect all five sparks above to light up the launch pad</span>
+      <p>Explore real pages built with this same spirit for dietistas, surf schools, astrologers, and dozens of small businesses across Latin America and Spain.</p>
+      <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+    </div>
+  </section>
+
+  <footer>easylandx — custom landing pages, built with curiosity. 2026.</footer>
+
+</div>
+
+<script>
+  (function(){
+    var steps = ['welcome','curiosity','attachment','light','ship'];
+    var connectors = document.querySelectorAll('.connector');
+    var launchPanel = document.getElementById('launch-panel');
+    var launchStatus = document.getElementById('launch-status');
+
+    function activeCount(){
+      return steps.filter(function(s){
+        var card = document.querySelector('.step-card[data-step="' + s + '"]');
+        return card && card.classList.contains('active');
+      }).length;
+    }
+
+    function refreshState(){
+      var count = activeCount();
+
+      steps.forEach(function(s){
+        var dot = document.querySelector('.tracker-dot[data-dot="' + s + '"]');
+        var card = document.querySelector('.step-card[data-step="' + s + '"]');
+        if(dot && card){
+          dot.classList.toggle('lit', card.classList.contains('active'));
+        }
+      });
+
+      connectors[0].classList.toggle('lit', activeStep('welcome') && activeStep('curiosity'));
+      connectors[1].classList.toggle('lit', activeStep('curiosity'));
+      connectors[2].classList.toggle('lit', count === 5);
+
+      if(count === 5){
+        launchPanel.classList.add('ready');
+        launchStatus.textContent = 'every spark is lit — this page is ready for the world';
+      } else {
+        launchPanel.classList.remove('ready');
+        launchStatus.textContent = count + ' of 5 sparks collected — keep exploring the journey above';
+      }
+    }
+
+    function activeStep(name){
+      var card = document.querySelector('.step-card[data-step="' + name + '"]');
+      return card && card.classList.contains('active');
+    }
+
+    function setStep(name, on){
+      var card = document.querySelector('.step-card[data-step="' + name + '"]');
+      if(!card) return;
+      card.classList.toggle('active', on);
+      refreshState();
+    }
+
+    document.querySelectorAll('.step-card').forEach(function(card){
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+      card.addEventListener('click', function(){
+        setStep(card.getAttribute('data-step'), !card.classList.contains('active'));
+      });
+      card.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          card.click();
+        }
+      });
+    });
+
+    document.getElementById('ignite-all').addEventListener('click', function(){
+      steps.forEach(function(s){ setStep(s, true); });
+    });
+    document.getElementById('begin-again').addEventListener('click', function(){
+      steps.forEach(function(s){ setStep(s, false); });
+    });
+
+    refreshState();
+  })();
+</script>
+
+</body>
+</html>
