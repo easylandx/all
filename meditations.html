@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Build with Clarity. Launch with Purpose.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple-deep:#33124f;
+    --purple-core:#4a1a72;
+    --purple-mid:#5e2696;
+    --white-marble:#f8f5fb;
+    --white-marble-dim:#d9cdea;
+    --gold:#f6c445;
+    --gold-soft:#f9d878;
+    --line:rgba(248,245,251,0.14);
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+  *,*::before,*::after{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% 0%, var(--purple-mid) 0%, transparent 45%),
+      radial-gradient(circle at 90% 15%, var(--purple-mid) 0%, transparent 40%),
+      linear-gradient(180deg, var(--purple-deep) 0%, var(--purple-core) 55%, var(--purple-deep) 100%);
+    color:var(--white-marble);
+    font-family:"Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{max-width:100%;display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3{font-family:"Fraunces", Georgia, serif; font-weight:500; margin:0;}
+  a{color:inherit;}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:40;
+    background:rgba(51,18,79,0.72);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:"Fraunces",serif;font-size:20px;font-weight:600;letter-spacing:0.01em;}
+  .brand .mark{
+    width:26px;height:26px;border-radius:7px;
+    background:linear-gradient(135deg, var(--gold), var(--gold-soft));
+    box-shadow:0 0 14px 1px rgba(246,196,69,0.55);
+    display:inline-block;
+  }
+  .nav-links{display:flex;gap:28px;font-size:15px;color:var(--white-marble-dim);}
+  .nav-links a{text-decoration:none;transition:color .2s ease;}
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--gold);}
+  .nav-cta{
+    font-size:14px; padding:9px 18px; border-radius:999px;
+    background:var(--gold); color:var(--purple-deep); font-weight:600;
+    text-decoration:none; white-space:nowrap;
+    transition:transform .18s ease, box-shadow .18s ease;
+    box-shadow:0 0 0 rgba(246,196,69,0);
+  }
+  .nav-cta:hover, .nav-cta:focus-visible{transform:translateY(-1px); box-shadow:0 6px 20px rgba(246,196,69,0.35);}
+  @media (max-width:720px){ .nav-links{display:none;} }
+
+  /* ---------- Hero ---------- */
+  header.hero{padding:96px 0 84px; position:relative; overflow:hidden;}
+  .eyebrow-mark{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:14px; color:var(--gold-soft); margin-bottom:22px;
+  }
+  .eyebrow-mark .rule{width:34px;height:1px;background:var(--gold);display:inline-block;}
+  h1.headline{
+    font-size:clamp(40px, 6.4vw, 76px);
+    line-height:1.04;
+    max-width:15ch;
+    letter-spacing:-0.01em;
+  }
+  h1.headline em{
+    font-style:normal;
+    background:linear-gradient(100deg, var(--gold) 10%, var(--gold-soft) 60%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .sub{
+    margin-top:26px; max-width:52ch; font-size:19px; color:var(--white-marble-dim);
+  }
+  .hero-actions{display:flex; gap:16px; margin-top:38px; flex-wrap:wrap; align-items:center;}
+  .btn-gold{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--gold); color:var(--purple-deep);
+    font-weight:600; font-size:16px;
+    padding:15px 28px; border-radius:999px; text-decoration:none;
+    box-shadow:0 0 28px rgba(246,196,69,0.4);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-gold:hover, .btn-gold:focus-visible{transform:translateY(-2px); box-shadow:0 8px 32px rgba(246,196,69,0.55);}
+  .btn-ghost{
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--white-marble); font-size:16px; text-decoration:none;
+    border-bottom:1px solid var(--line); padding-bottom:2px;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .btn-ghost:hover, .btn-ghost:focus-visible{border-color:var(--gold); color:var(--gold-soft);}
+
+  .hero-orb{
+    position:absolute; right:-120px; top:-60px; width:420px; height:420px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, rgba(246,196,69,0.4), rgba(246,196,69,0) 65%);
+    filter:blur(4px);
+    pointer-events:none;
+  }
+
+  /* reveal on load */
+  .reveal{opacity:0; transform:translateY(14px); animation:rise .8s ease forwards;}
+  .reveal.d1{animation-delay:.05s;} .reveal.d2{animation-delay:.18s;} .reveal.d3{animation-delay:.3s;}
+  @keyframes rise{ to{opacity:1; transform:translateY(0);} }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{animation:none; opacity:1; transform:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- Section generic ---------- */
+  section{padding:88px 0;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head .kicker{color:var(--gold-soft); font-size:14px; margin-bottom:14px; display:block;}
+  .section-head h2{font-size:clamp(28px,3.6vw,42px); line-height:1.15;}
+  .section-head p{margin-top:16px; color:var(--white-marble-dim); font-size:17px; max-width:56ch;}
+
+  hr.divider{border:none; border-top:1px solid var(--line); margin:0;}
+
+  /* ---------- Principles cards ---------- */
+  .principles-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:18px; overflow:hidden;
+  }
+  .principle{
+    background:var(--purple-core); padding:32px 26px; min-height:230px;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .principle .num{font-family:"Fraunces",serif; font-size:15px; color:var(--gold);}
+  .principle h3{font-size:19px; color:var(--white-marble); font-weight:600; font-family:"Space Grotesk",sans-serif;}
+  .principle p{margin:0; font-size:14.5px; color:var(--white-marble-dim);}
+  @media (max-width:900px){ .principles-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .principles-grid{grid-template-columns:1fr;} }
+
+  /* ---------- Framework stepper ---------- */
+  .stepper{display:grid; grid-template-columns:280px 1fr; gap:44px; align-items:start;}
+  .step-list{display:flex; flex-direction:column; gap:2px;}
+  .step-btn{
+    text-align:left; background:transparent; border:none; cursor:pointer;
+    padding:16px 18px; border-radius:12px; color:var(--white-marble-dim);
+    font-family:"Space Grotesk",sans-serif; font-size:15.5px;
+    display:flex; align-items:center; gap:14px;
+    transition:background .2s ease, color .2s ease;
+  }
+  .step-btn .dot{
+    width:9px;height:9px;border-radius:50%; background:var(--white-marble-dim); flex:none;
+    transition:background .2s ease, box-shadow .2s ease;
+  }
+  .step-btn:hover{background:rgba(248,245,251,0.06); color:var(--white-marble);}
+  .step-btn[aria-selected="true"]{background:rgba(246,196,69,0.12); color:var(--gold-soft); font-weight:600;}
+  .step-btn[aria-selected="true"] .dot{background:var(--gold); box-shadow:0 0 10px rgba(246,196,69,0.8);}
+
+  .step-panel{
+    background:linear-gradient(160deg, rgba(94,38,150,0.55), rgba(51,18,79,0.55));
+    border:1px solid var(--line); border-radius:20px; padding:40px;
+    min-height:280px;
+  }
+  .step-panel .tag{color:var(--gold); font-size:13px; letter-spacing:.02em; margin-bottom:12px; display:block;}
+  .step-panel h3{font-size:26px; color:var(--white-marble); margin-bottom:14px;}
+  .step-panel p{color:var(--white-marble-dim); font-size:16px; max-width:56ch;}
+  @media (max-width:820px){ .stepper{grid-template-columns:1fr;} }
+
+  /* ---------- Live preview / customizer ---------- */
+  .studio{
+    display:grid; grid-template-columns:340px 1fr; gap:36px; align-items:start;
+  }
+  .controls{
+    background:var(--purple-core); border:1px solid var(--line); border-radius:18px; padding:28px;
+    display:flex; flex-direction:column; gap:22px;
+  }
+  .control-label{font-size:13px; color:var(--gold-soft); margin-bottom:10px; display:block;}
+  .field input[type="text"]{
+    width:100%; background:rgba(248,245,251,0.06); border:1px solid var(--line);
+    border-radius:10px; padding:12px 14px; color:var(--white-marble);
+    font-family:"Space Grotesk",sans-serif; font-size:15px;
+  }
+  .field input[type="text"]:focus-visible{outline:2px solid var(--gold); outline-offset:1px;}
+  .swatches{display:flex; gap:10px;}
+  .swatch{
+    width:36px;height:36px;border-radius:10px;border:2px solid transparent;cursor:pointer;
+    transition:transform .15s ease, border-color .15s ease;
+  }
+  .swatch:hover{transform:translateY(-2px);}
+  .swatch[aria-pressed="true"]{border-color:var(--white-marble);}
+  .align-toggle{display:flex; gap:8px;}
+  .align-toggle button{
+    flex:1; padding:10px 0; border-radius:9px; border:1px solid var(--line);
+    background:transparent; color:var(--white-marble-dim); cursor:pointer; font-family:inherit; font-size:14px;
+    transition:all .15s ease;
+  }
+  .align-toggle button[aria-pressed="true"]{background:var(--gold); color:var(--purple-deep); border-color:var(--gold); font-weight:600;}
+
+  .preview-frame{
+    background:var(--white-marble); border-radius:18px; padding:8px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.35);
+  }
+  .preview-inner{
+    border-radius:12px; min-height:340px; padding:52px 40px;
+    display:flex; flex-direction:column; justify-content:center; gap:16px;
+    transition:background .3s ease;
+  }
+  .preview-inner.left{align-items:flex-start; text-align:left;}
+  .preview-inner.center{align-items:center; text-align:center;}
+  .preview-headline{
+    font-family:"Fraunces",serif; font-weight:500; font-size:clamp(24px,3vw,34px);
+    color:var(--purple-deep); margin:0; max-width:22ch;
+  }
+  .preview-sub{color:#5b3d7a; font-size:15px; max-width:40ch; margin:0;}
+  .preview-cta{
+    margin-top:8px; display:inline-block; padding:11px 22px; border-radius:999px;
+    font-size:14px; font-weight:600; color:var(--purple-deep);
+    transition:background .3s ease;
+  }
+  .preview-chrome{display:flex; gap:6px; padding:10px 12px 0;}
+  .preview-chrome span{width:9px;height:9px;border-radius:50%; background:rgba(74,26,114,0.18);}
+  @media (max-width:820px){ .studio{grid-template-columns:1fr;} }
+
+  /* ---------- Practices list ---------- */
+  .practices{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:18px; overflow:hidden;}
+  .practice{background:var(--purple-core); padding:30px 28px;}
+  .practice h3{font-size:18px; color:var(--white-marble); margin-bottom:10px; font-family:"Space Grotesk",sans-serif; font-weight:600; display:flex; gap:12px; align-items:baseline;}
+  .practice h3 .mark{color:var(--gold); font-family:"Fraunces",serif; font-size:16px;}
+  .practice p{margin:0; color:var(--white-marble-dim); font-size:15px;}
+  @media (max-width:720px){ .practices{grid-template-columns:1fr;} }
+
+  /* ---------- Closing / CTA ---------- */
+  .closing{
+    text-align:center; padding:100px 0 120px;
+    background:radial-gradient(ellipse at 50% 0%, rgba(246,196,69,0.14), transparent 60%);
+  }
+  .closing blockquote{
+    font-family:"Fraunces",serif; font-style:italic; font-weight:500;
+    font-size:clamp(24px,3.4vw,36px); max-width:20ch; margin:0 auto 36px; color:var(--white-marble);
+  }
+  .closing cite{display:block; margin-top:18px; font-style:normal; font-size:14px; color:var(--gold-soft);}
+
+  footer{border-top:1px solid var(--line); padding:44px 0;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;}
+  .foot-links{display:flex; gap:24px; font-size:14px; color:var(--white-marble-dim);}
+  .foot-links a{text-decoration:none;}
+  .foot-links a:hover{color:var(--gold-soft);}
+  .foot-note{font-size:13px; color:var(--white-marble-dim); opacity:.7;}
+
+  :focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="mark" aria-hidden="true"></span>EasyLandX</div>
+    <div class="nav-links">
+      <a href="#principles">Principles</a>
+      <a href="#framework">Framework</a>
+      <a href="#studio">Try it</a>
+      <a href="#practices">Daily practice</a>
+    </div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Open EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-orb" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow-mark reveal d1"><span class="rule"></span>A calmer way to build landing pages</span>
+    <h1 class="headline reveal d2">Build with clarity.<br><em>Launch</em> with purpose.</h1>
+    <p class="sub reveal d3">EasyLandX is a landing page studio built on an old idea, freshly applied: give your full attention to what truly moves a visitor, and let the rest take care of itself. Clear structure, calm defaults, a page you can ship today.</p>
+    <div class="hero-actions reveal d3">
+      <a class="btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">
+        Open EasyLandX ↗
+      </a>
+      <a class="btn-ghost" href="#studio">Try the live preview</a>
+    </div>
+  </div>
+</header>
+
+<hr class="divider">
+
+<section id="principles">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Core principles</span>
+      <h2>Four ideas that shape every page you build.</h2>
+      <p>EasyLandX carries forward a simple, ancient discipline of attention — applied to modern pages, buttons, and copy.</p>
+    </div>
+    <div class="principles-grid">
+      <div class="principle">
+        <span class="num">I</span>
+        <h3>Command your canvas</h3>
+        <p>What a visitor thinks of your page depends far more on your message than on the noise around it. EasyLandX keeps the canvas quiet, so your words carry the weight.</p>
+      </div>
+      <div class="principle">
+        <span class="num">II</span>
+        <h3>Everything moves fast</h3>
+        <p>Attention is fleeting and moments matter more than permanence. Build lean, publish today, and let the page prove itself in the world rather than in a drafts folder.</p>
+      </div>
+      <div class="principle">
+        <span class="num">III</span>
+        <h3>Harmony by default</h3>
+        <p>Spacing, contrast, and responsive layout follow sound, natural proportions automatically — your page reads well on any screen, in any order it's discovered.</p>
+      </div>
+      <div class="principle">
+        <span class="num">IV</span>
+        <h3>Built for community</h3>
+        <p>A page works best in service of the people who land on it. Share, embed, and hand it off — EasyLandX pages are made to travel and to help others act.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="framework">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">The framework</span>
+      <h2>Five steps, practiced daily, for a confident launch.</h2>
+      <p>Select a step to see how it plays out inside EasyLandX.</p>
+    </div>
+
+    <div class="stepper">
+      <div class="step-list" role="tablist" aria-label="EasyLandX framework steps" id="stepList"></div>
+      <div class="step-panel" id="stepPanel" role="tabpanel"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="studio">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Try it yourself</span>
+      <h2>You hold the pen. EasyLandX holds the layout.</h2>
+      <p>Type your own headline, pick an accent, choose an alignment — watch the preview respond immediately. This is the one true "within your control" panel.</p>
+    </div>
+
+    <div class="studio">
+      <div class="controls">
+        <div class="field">
+          <label class="control-label" for="headlineInput">Your headline</label>
+          <input id="headlineInput" type="text" maxlength="60" value="Clarity converts.">
+        </div>
+        <div class="field">
+          <label class="control-label" for="subInput">Your subheading</label>
+          <input id="subInput" type="text" maxlength="90" value="A page built around one clear idea, well said.">
+        </div>
+        <div>
+          <span class="control-label">Accent</span>
+          <div class="swatches" id="swatches">
+            <button class="swatch" style="background:#f6c445" data-color="#f6c445" aria-pressed="true" aria-label="Gold accent"></button>
+            <button class="swatch" style="background:#5e2696" data-color="#5e2696" aria-pressed="false" aria-label="Purple accent"></button>
+            <button class="swatch" style="background:#2f8f6f" data-color="#2f8f6f" aria-pressed="false" aria-label="Green accent"></button>
+            <button class="swatch" style="background:#c65b3c" data-color="#c65b3c" aria-pressed="false" aria-label="Terracotta accent"></button>
+          </div>
+        </div>
+        <div>
+          <span class="control-label">Alignment</span>
+          <div class="align-toggle" id="alignToggle">
+            <button data-align="left" aria-pressed="true">Left</button>
+            <button data-align="center" aria-pressed="false">Centered</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview-frame">
+        <div class="preview-chrome" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="preview-inner left" id="previewInner">
+          <p class="preview-headline" id="previewHeadline">Clarity converts.</p>
+          <p class="preview-sub" id="previewSub">A page built around one clear idea, well said.</p>
+          <span class="preview-cta" id="previewCta" style="background:#f6c445">Get started</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="practices">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Daily practice</span>
+      <h2>Small habits that keep a page sharp.</h2>
+      <p>Borrowed from a two-thousand-year-old journal, applied to a browser tab.</p>
+    </div>
+    <div class="practices">
+      <div class="practice">
+        <h3><span class="mark">1</span>Morning clarity pass</h3>
+        <p>Open your page first thing and read it as a stranger would. Ask what a visitor needs to understand within five seconds, then make sure it's the first thing they see.</p>
+      </div>
+      <div class="practice">
+        <h3><span class="mark">2</span>View from above</h3>
+        <p>Zoom out. Preview your page at phone, tablet, and desktop width before you call it finished — a wide view reveals what a close-up misses.</p>
+      </div>
+      <div class="practice">
+        <h3><span class="mark">3</span>Strip to essentials</h3>
+        <p>Describe your offer in plain, physical terms. If a sentence can be said more simply, say it more simply — visitors reward directness.</p>
+      </div>
+      <div class="practice">
+        <h3><span class="mark">4</span>Treat feedback as material</h3>
+        <p>Every comment and click is raw material for a stronger page. Each visit teaches you something worth building on for the next version.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <blockquote>"Waste no more time arguing what a good page should be. Build one."</blockquote>
+    <a class="btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">Open EasyLandX ↗</a>
+    <cite>Inspired by the private notebooks of a Roman emperor, rebuilt for the browser.</cite>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><span class="mark" aria-hidden="true"></span>EasyLandX</div>
+    <div class="foot-links">
+      <a href="#principles">Principles</a>
+      <a href="#framework">Framework</a>
+      <a href="#studio">Try it</a>
+      <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+    </div>
+  </div>
+  <div class="wrap foot-note" style="margin-top:18px;">EasyLandX — build with clarity, launch with purpose.</div>
+</footer>
+
+<script>
+(function(){
+  // ---------- Framework stepper ----------
+  var steps = [
+    {
+      tag: "Step one",
+      title: "Master your message",
+      body: "Begin by naming, in one clear sentence, exactly what you want a visitor to understand and do. Everything else on the page exists to support that single sentence."
+    },
+    {
+      tag: "Step two",
+      title: "Meet reality where it is",
+      body: "Choose a starting structure that fits how people actually browse — a clear hero, a short proof point, one confident call to action. Work with attention spans as they are."
+    },
+    {
+      tag: "Step three",
+      title: "Build with steady hands",
+      body: "Assemble the page section by section. EasyLandX keeps spacing, type, and color in harmony automatically, so your focus stays on the words and the offer."
+    },
+    {
+      tag: "Step four",
+      title: "Treat every reaction as fuel",
+      body: "Watch how visitors respond, then adjust. A quiet click-through rate or a question in your inbox is simply information pointing you toward the next improvement."
+    },
+    {
+      tag: "Step five",
+      title: "Publish today",
+      body: "A page live today teaches you more than a perfect page still in draft next month. Ship it, learn from it, and let tomorrow's version be even clearer."
+    }
+  ];
+
+  var stepList = document.getElementById('stepList');
+  var stepPanel = document.getElementById('stepPanel');
+
+  steps.forEach(function(step, i){
+    var btn = document.createElement('button');
+    btn.className = 'step-btn';
+    btn.setAttribute('role','tab');
+    btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    btn.innerHTML = '<span class="dot" aria-hidden="true"></span>' + step.title;
+    btn.addEventListener('click', function(){ selectStep(i); });
+    stepList.appendChild(btn);
+  });
+
+  function selectStep(i){
+    var buttons = stepList.querySelectorAll('.step-btn');
+    buttons.forEach(function(b, idx){
+      b.setAttribute('aria-selected', idx === i ? 'true' : 'false');
+    });
+    var s = steps[i];
+    stepPanel.innerHTML =
+      '<span class="tag">' + s.tag + '</span>' +
+      '<h3>' + s.title + '</h3>' +
+      '<p>' + s.body + '</p>';
+  }
+  selectStep(0);
+
+  // ---------- Live studio ----------
+  var headlineInput = document.getElementById('headlineInput');
+  var subInput = document.getElementById('subInput');
+  var previewHeadline = document.getElementById('previewHeadline');
+  var previewSub = document.getElementById('previewSub');
+  var previewCta = document.getElementById('previewCta');
+  var previewInner = document.getElementById('previewInner');
+  var swatches = document.querySelectorAll('#swatches .swatch');
+  var alignBtns = document.querySelectorAll('#alignToggle button');
+
+  headlineInput.addEventListener('input', function(){
+    previewHeadline.textContent = headlineInput.value || 'Clarity converts.';
+  });
+  subInput.addEventListener('input', function(){
+    previewSub.textContent = subInput.value || 'A page built around one clear idea, well said.';
+  });
+
+  swatches.forEach(function(sw){
+    sw.addEventListener('click', function(){
+      swatches.forEach(function(s){ s.setAttribute('aria-pressed','false'); });
+      sw.setAttribute('aria-pressed','true');
+      var color = sw.getAttribute('data-color');
+      previewCta.style.background = color;
+    });
+  });
+
+  alignBtns.forEach(function(ab){
+    ab.addEventListener('click', function(){
+      alignBtns.forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+      ab.setAttribute('aria-pressed','true');
+      previewInner.classList.remove('left','center');
+      previewInner.classList.add(ab.getAttribute('data-align'));
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
