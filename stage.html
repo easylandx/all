@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Every Business Takes the Stage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0a0e;
+    --black-2:#18151b;
+    --black-3:#221d24;
+    --gold:#e9b949;
+    --gold-bright:#f5d787;
+    --crimson:#9c1c34;
+    --crimson-bright:#d1284a;
+    --ink:#f6f1e7;
+    --muted:#b7ac9e;
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html{ scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior:smooth; }
+  *{ box-sizing:inherit; }
+  body{
+    margin:0; min-height:100%;
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 22% 0%, rgba(233,185,73,0.10) 0%, transparent 40%),
+      radial-gradient(circle at 85% 65%, rgba(156,28,52,0.20) 0%, transparent 45%),
+      var(--black);
+    overflow-x:hidden;
+  }
+  h1,h2,h3{ font-family:'Playfair Display', Georgia, serif; margin:0; line-height:1.12; }
+  p{ margin:0; }
+  a{ color:inherit; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+
+  .topbar{
+    position:sticky; top:0; z-index:30;
+    padding-top: calc(18px + env(safe-area-inset-top, 0px));
+    padding-bottom:18px;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(to bottom, rgba(10,10,14,0.85), rgba(10,10,14,0));
+  }
+  .topbar .wrap{ display:flex; align-items:center; justify-content:space-between; }
+  .logo{ font-family:'Playfair Display', serif; font-weight:700; font-size:1.2rem; letter-spacing:0.01em; }
+  .logo span{ color:var(--gold); }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Inter', sans-serif; font-weight:600; font-size:0.95rem;
+    padding:11px 22px; border-radius:6px; border:1px solid transparent;
+    cursor:pointer; text-decoration:none; transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .btn-primary{ background: linear-gradient(100deg, var(--gold), var(--gold-bright)); color:#231604; box-shadow: 0 10px 26px -8px rgba(233,185,73,0.55); }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 14px 30px -6px rgba(233,185,73,0.7); }
+  .btn-ghost{ background: transparent; border-color: rgba(233,185,73,0.5); color:var(--gold); }
+  .btn-ghost:hover{ background: rgba(233,185,73,0.08); transform: translateY(-2px); }
+  .btn-small{ padding:9px 18px; font-size:0.85rem; }
+
+  /* hero + curtain */
+  .hero{ position:relative; padding: 100px 0 70px; overflow:hidden; min-height: 420px; display:flex; align-items:center; }
+  .hero-inner{ max-width: 720px; }
+  .hero h1{ font-size: clamp(2.2rem, 5.4vw, 3.6rem); font-weight:700; }
+  .hero h1 em{ font-style:italic; color:var(--gold); }
+  .hero p.lede{ margin-top:22px; max-width:58ch; font-size:1.1rem; line-height:1.7; color:var(--muted); }
+  .hero .actions{ margin-top:32px; display:flex; gap:16px; flex-wrap:wrap; }
+
+  .curtain-wrap{ position:absolute; inset:0; z-index:10; pointer-events:none; }
+  .curtain{
+    position:absolute; top:0; bottom:0; width:52%;
+    background:
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.18) 0 14px, transparent 14px 28px),
+      linear-gradient(180deg, var(--crimson-bright) 0%, var(--crimson) 55%, #4d0f1c 100%);
+    box-shadow: inset -20px 0 40px rgba(0,0,0,0.35);
+    transition: transform 1.15s cubic-bezier(.6,0,.2,1);
+  }
+  .curtain-left{ left:0; border-right: 3px solid var(--gold); transform: translateX(0); }
+  .curtain-right{ right:0; border-left: 3px solid var(--gold); transform: translateX(0); }
+  .curtain-wrap.open .curtain-left{ transform: translateX(-102%); }
+  .curtain-wrap.open .curtain-right{ transform: translateX(102%); }
+
+  /* intro */
+  .intro{ padding: 10px 0 70px; }
+  .intro p{ max-width:64ch; font-size:1.05rem; line-height:1.75; color:var(--muted); }
+
+  .section-head{ max-width:58ch; margin-bottom:40px; }
+  .section-head h2{ font-size: clamp(1.7rem, 3.6vw, 2.3rem); font-weight:700; }
+  .section-head p{ margin-top:12px; color:var(--muted); font-size:1.02rem; }
+
+  /* personal front */
+  .front{ padding: 20px 0 80px; }
+  .duo{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  @media (max-width:760px){ .duo{ grid-template-columns:1fr; } }
+  .duo .piece{ padding:32px 28px; border-radius:14px; background: var(--black-2); border:1px solid rgba(233,185,73,0.18); }
+  .duo .piece:nth-child(2){ border-color: rgba(156,28,52,0.4); }
+  .piece h3{ font-size:1.3rem; color:var(--gold); margin-bottom:12px; }
+  .duo .piece:nth-child(2) h3{ color: var(--crimson-bright); }
+  .piece p{ color:var(--muted); font-size:1rem; line-height:1.7; }
+
+  /* stage toggle */
+  .stage-section{ padding: 20px 0 90px; }
+  .stage-box{
+    background: var(--black-2);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 42px 32px 44px;
+  }
+  .switch-row{ display:flex; align-items:center; justify-content:center; gap:18px; margin-bottom:34px; flex-wrap:wrap; }
+  .switch-label{ font-family:'Playfair Display', serif; font-size:1.1rem; color:var(--muted); cursor:pointer; transition: color .3s ease; }
+  .switch-label.active{ color: var(--ink); }
+  .switch-label[data-side="front"].active{ color: var(--gold); }
+  .switch-label[data-side="back"].active{ color: var(--crimson-bright); }
+
+  .switch{
+    position:relative; width:74px; height:38px; border-radius:999px;
+    background: #000; border:2px solid rgba(255,255,255,0.18);
+    cursor:pointer;
+  }
+  .switch .thumb{
+    position:absolute; top:3px; left:3px; width:28px; height:28px; border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, var(--gold-bright), var(--gold));
+    box-shadow: 0 0 14px rgba(233,185,73,0.7);
+    transition: transform .4s cubic-bezier(.5,0,.2,1), background .4s ease, box-shadow .4s ease;
+  }
+  .switch.is-back .thumb{
+    transform: translateX(36px);
+    background: radial-gradient(circle at 35% 30%, var(--crimson-bright), var(--crimson));
+    box-shadow: 0 0 14px rgba(209,40,74,0.7);
+  }
+  .switch:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+  .stage-panels{ position:relative; min-height: 210px; }
+  .stage-panel{
+    display:none;
+    animation: reveal .4s ease;
+  }
+  .stage-panel.visible{ display:block; }
+  @keyframes reveal{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+  .stage-panel h4{ font-family:'Playfair Display', serif; font-size:1.25rem; margin-bottom:16px; }
+  .stage-panel[data-panel="front"] h4{ color: var(--gold); }
+  .stage-panel[data-panel="back"] h4{ color: var(--crimson-bright); }
+  .stage-list{ list-style:none; margin:0; padding:0; display:grid; gap:12px; max-width:60ch; margin:0 auto; }
+  .stage-list li{ color:var(--ink); font-size:1rem; line-height:1.6; padding-left:26px; position:relative; }
+  .stage-list li::before{ content:"—"; position:absolute; left:0; color: var(--muted); }
+
+  /* signals */
+  .signals{ padding: 10px 0 90px; }
+  .duo.signals-duo .piece{ background: transparent; border:1px solid rgba(255,255,255,0.1); }
+
+  /* final */
+  .final{ padding: 30px 0 110px; text-align:center; }
+  .final-box{
+    padding: 60px 30px; border-radius: 26px;
+    background: linear-gradient(135deg, rgba(233,185,73,0.10), rgba(156,28,52,0.14));
+    border:1px solid rgba(255,255,255,0.12);
+  }
+  .final h2{ font-size: clamp(1.8rem, 4vw, 2.5rem); max-width:22ch; margin:0 auto; font-weight:700; }
+  .final p{ margin-top:16px; color:var(--muted); font-size:1.05rem; }
+  .final .actions{ margin-top:28px; display:flex; justify-content:center; }
+
+  footer{ padding: 34px 0 calc(34px + env(safe-area-inset-bottom, 0px)); text-align:center; color:var(--muted); font-size:0.88rem; border-top:1px solid rgba(255,255,255,0.08); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+    .curtain-wrap{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap">
+      <div class="logo">easyland<span>x</span></div>
+      <a class="btn btn-ghost btn-small" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="curtain-wrap" id="curtainWrap">
+      <div class="curtain curtain-left"></div>
+      <div class="curtain curtain-right"></div>
+    </div>
+    <div class="wrap hero-inner">
+      <h1>Your business has a stage. We design the <em>performance</em>.</h1>
+      <p class="lede">Sociologist Erving Goffman argued that every social interaction is a performance — a front stage curated for an audience, and a back stage where the real work happens. Your landing page is that front stage. easylandx directs it from the first curtain to the final call to action.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#stage">Step behind the curtain</a>
+        <a class="btn btn-ghost" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="wrap">
+      <p>A landing page is rarely judged by everything a business does — it's judged by the brief, seconds-long performance a visitor sees the moment the page loads: the headline that opens the scene, the image that sets the tone, the button that invites the next act. easylandx directs that performance from the first pixel to the final click.</p>
+    </div>
+  </section>
+
+  <section class="front">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The personal front</h2>
+        <p>Goffman split every performance into two elements. So does every landing page.</p>
+      </div>
+      <div class="duo">
+        <div class="piece">
+          <h3>Appearance</h3>
+          <p>What the audience sees first: color, typography, imagery, layout. The costume and set design of your brand, built to signal credibility before a single word is read.</p>
+        </div>
+        <div class="piece">
+          <h3>Manner</h3>
+          <p>How the performance speaks: headline tone, call-to-action language, pacing. The voice and posture of your brand, tuned to match the role it plays for its audience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage-section" id="stage">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Front stage / back stage</h2>
+        <p>A visitor only ever sees one side of the performance. Flip the switch to see the other.</p>
+      </div>
+
+      <div class="stage-box">
+        <div class="switch-row">
+          <span class="switch-label active" data-side="front" id="labelFront">Front stage</span>
+          <div class="switch" id="stageSwitch" role="button" tabindex="0" aria-pressed="false" aria-label="Toggle between front stage and back stage">
+            <div class="thumb"></div>
+          </div>
+          <span class="switch-label" data-side="back" id="labelBack">Back stage</span>
+        </div>
+
+        <div class="stage-panels">
+          <div class="stage-panel visible" data-panel="front">
+            <h4>What the audience sees</h4>
+            <ul class="stage-list">
+              <li>A headline that opens the scene in a single line</li>
+              <li>One hero image that sets the tone instantly</li>
+              <li>A clear call to action, placed exactly where it's needed</li>
+              <li>A trust signal — a testimonial, a credential, a real result</li>
+              <li>A simple, obvious way to get in touch</li>
+            </ul>
+          </div>
+          <div class="stage-panel" data-panel="back">
+            <h4>What easylandx does behind the curtain</h4>
+            <ul class="stage-list">
+              <li>Drafting and refining the brand's voice, line by line</li>
+              <li>Curating and optimizing every image for its role on the page</li>
+              <li>Rehearsing the layout across phones, tablets, and desktops</li>
+              <li>Tuning load speed so the curtain rises instantly</li>
+              <li>Revising the performance until opening night is ready</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="signals">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Every signal counts</h2>
+        <p>Goffman noticed that people communicate two ways at once — what they say, and what they simply give off. A landing page does both.</p>
+      </div>
+      <div class="duo signals-duo">
+        <div class="piece">
+          <h3>What you say</h3>
+          <p>The headline, the pricing, the call to action — every deliberate word a page puts forward, chosen on purpose.</p>
+        </div>
+        <div class="piece">
+          <h3>What you show</h3>
+          <p>Load speed, spacing, consistency, how the page behaves on a phone — the quiet signals an audience reads before they read a single word.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <div class="final-box">
+        <h2>The curtain is ready to rise.</h2>
+        <p>Let's design the front-stage performance your business deserves for 2026.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">easylandx — landing pages directed for real audiences. Built for 2026 and beyond.</div>
+  </footer>
+
+<script>
+  // curtain reveal
+  window.addEventListener('load', () => {
+    const curtainWrap = document.getElementById('curtainWrap');
+    setTimeout(() => curtainWrap.classList.add('open'), 500);
+  });
+
+  // front/back stage toggle
+  const stageSwitch = document.getElementById('stageSwitch');
+  const labelFront = document.getElementById('labelFront');
+  const labelBack = document.getElementById('labelBack');
+  const panelFront = document.querySelector('.stage-panel[data-panel="front"]');
+  const panelBack = document.querySelector('.stage-panel[data-panel="back"]');
+
+  function setStage(isBack){
+    stageSwitch.classList.toggle('is-back', isBack);
+    stageSwitch.setAttribute('aria-pressed', String(isBack));
+    labelFront.classList.toggle('active', !isBack);
+    labelBack.classList.toggle('active', isBack);
+    panelFront.classList.toggle('visible', !isBack);
+    panelBack.classList.toggle('visible', isBack);
+  }
+
+  stageSwitch.addEventListener('click', () => setStage(!stageSwitch.classList.contains('is-back')));
+  stageSwitch.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      setStage(!stageSwitch.classList.contains('is-back'));
+    }
+  });
+  labelFront.addEventListener('click', () => setStage(false));
+  labelBack.addEventListener('click', () => setStage(true));
+</script>
+
+</body>
+</html>

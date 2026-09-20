@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Every Business Has a Mountain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0f0620;
+    --amethyst-deep:#2c0f5c;
+    --amethyst:#5b1fb0;
+    --amethyst-vivid:#8a2fe0;
+    --teal:#00f5d4;
+    --teal-soft:rgba(0,245,212,0.16);
+    --coral:#ff4d6d;
+    --coral-soft:rgba(255,77,109,0.18);
+    --ink:#f6f1ff;
+    --muted:#cdb9ee;
+    --serif-fallback: 'Space Grotesk', 'Segoe UI', sans-serif;
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html{ scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior:smooth; }
+  *{ box-sizing:inherit; }
+  body{
+    margin:0;
+    min-height:100%;
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 18% 8%, var(--amethyst-vivid) 0%, transparent 42%),
+      radial-gradient(circle at 88% 18%, var(--coral-soft) 0%, transparent 38%),
+      radial-gradient(circle at 80% 92%, var(--teal-soft) 0%, transparent 40%),
+      linear-gradient(165deg, var(--void) 0%, var(--amethyst-deep) 45%, var(--amethyst) 78%, var(--void) 100%);
+    background-attachment: fixed;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{ font-family:'Space Grotesk', var(--serif-fallback); margin:0; line-height:1.12; letter-spacing:-0.01em; }
+  p{ margin:0; }
+  a{ color:inherit; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+
+  /* topbar */
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    padding-top: calc(18px + env(safe-area-inset-top, 0px));
+    padding-bottom:18px;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(to bottom, rgba(15,6,32,0.75), rgba(15,6,32,0));
+  }
+  .topbar .wrap{ display:flex; align-items:center; justify-content:space-between; }
+  .logo{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.15rem; letter-spacing:0.01em; }
+  .logo span{ color:var(--teal); }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:0.95rem;
+    padding:11px 22px; border-radius:999px; border:1px solid transparent;
+    cursor:pointer; text-decoration:none; transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-primary{ background: linear-gradient(100deg, var(--coral), #ff7a5c); color:#1a0530; box-shadow: 0 10px 30px -8px rgba(255,77,109,0.55); }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 14px 34px -6px rgba(255,77,109,0.7); }
+  .btn-ghost{ background: transparent; border-color: rgba(0,245,212,0.55); color:var(--teal); }
+  .btn-ghost:hover{ background: rgba(0,245,212,0.1); transform: translateY(-2px); }
+  .btn-small{ padding:9px 18px; font-size:0.85rem; }
+
+  /* hero */
+  .hero{ padding: 96px 0 60px; text-align:left; }
+  .hero h1{ font-size: clamp(2.3rem, 5.6vw, 4rem); max-width: 14ch; }
+  .hero h1 em{ font-style:normal; color:var(--teal); }
+  .hero p.lede{ margin-top:22px; max-width:56ch; font-size:1.12rem; line-height:1.65; color:var(--muted); }
+  .hero .actions{ margin-top:34px; display:flex; gap:16px; flex-wrap:wrap; }
+
+  /* intro */
+  .intro{ padding: 20px 0 70px; }
+  .intro p{ max-width:62ch; font-size:1.05rem; line-height:1.75; color:var(--muted); }
+
+  /* climb section */
+  .climb{ padding: 40px 0 90px; }
+  .section-head{ max-width:56ch; margin-bottom:46px; }
+  .section-head h2{ font-size: clamp(1.7rem, 3.6vw, 2.4rem); }
+  .section-head p{ margin-top:12px; color:var(--muted); font-size:1.02rem; }
+
+  .climb-wrap{
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 28px;
+    padding: 46px 32px 38px;
+    position:relative;
+  }
+  .steps{
+    position:relative;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    gap: clamp(14px, 4vw, 34px);
+    padding-top: 54px;
+    margin-bottom: 40px;
+  }
+  .steps::before{
+    content:"";
+    position:absolute;
+    left:6%; right:6%; bottom:0;
+    height:2px;
+    background: repeating-linear-gradient(to right, rgba(255,255,255,0.25) 0 8px, transparent 8px 16px);
+    z-index:0;
+  }
+  .step{
+    position:relative; z-index:1;
+    width:52px; height:52px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.05rem;
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    color: var(--muted);
+    cursor:pointer;
+    transform: translateY(calc(var(--i, 0) * -20px));
+    transition: transform .35s ease, background .3s ease, border-color .3s ease, color .3s ease, box-shadow .3s ease;
+  }
+  .step:hover{ border-color: var(--teal); color: var(--ink); }
+  .step:focus-visible{ outline: 2px solid var(--teal); outline-offset:3px; }
+  .step.active{
+    background: linear-gradient(135deg, var(--teal), var(--coral));
+    border-color: transparent;
+    color: #0f0620;
+    box-shadow: 0 0 0 6px rgba(0,245,212,0.14), 0 12px 26px -6px rgba(255,77,109,0.45);
+  }
+  .marker{
+    position:absolute; z-index:2; font-size:1.35rem;
+    transition: left .5s cubic-bezier(.2,.8,.2,1), top .5s cubic-bezier(.2,.8,.2,1);
+    transform: translate(-50%, -100%);
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+    pointer-events:none;
+  }
+  .panel{ min-height: 150px; }
+  .panel h3{ font-size:1.4rem; color:var(--teal); }
+  .panel p{ margin-top:14px; max-width:60ch; color:var(--ink); font-size:1.02rem; line-height:1.7; opacity:0.92; }
+  .panel.fade{ animation: reveal .45s ease; }
+  @keyframes reveal{ from{ opacity:0; transform: translateY(6px); } to{ opacity:1; transform:translateY(0); } }
+
+  @media (max-width: 620px){
+    .steps{ flex-wrap:wrap; row-gap:26px; padding-top:20px; }
+    .step{ transform:none; }
+    .steps::before{ display:none; }
+  }
+
+  /* highlight cards */
+  .highlights{ padding: 10px 0 90px; }
+  .cards{ display:grid; grid-template-columns: repeat(3, 1fr); gap:22px; }
+  @media (max-width: 820px){ .cards{ grid-template-columns: 1fr; } }
+  .card{
+    padding:30px 26px; border-radius:20px;
+    background: rgba(255,255,255,0.04);
+    position:relative; overflow:hidden;
+  }
+  .card::before{
+    content:""; position:absolute; inset:0 auto auto 0; width:100%; height:3px;
+  }
+  .card:nth-child(1){ border:1px solid rgba(0,245,212,0.35); }
+  .card:nth-child(1)::before{ background: var(--teal); }
+  .card:nth-child(2){ border:1px solid rgba(255,77,109,0.35); }
+  .card:nth-child(2)::before{ background: var(--coral); }
+  .card:nth-child(3){ border:1px solid rgba(138,47,224,0.5); }
+  .card:nth-child(3)::before{ background: linear-gradient(90deg, var(--teal), var(--coral)); }
+  .card h3{ font-size:1.15rem; margin-bottom:12px; }
+  .card p{ color:var(--muted); font-size:0.98rem; line-height:1.65; }
+
+  /* final cta */
+  .final{ padding: 30px 0 110px; text-align:center; }
+  .final-box{
+    padding: 62px 30px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, rgba(0,245,212,0.12), rgba(255,77,109,0.12));
+    border:1px solid rgba(255,255,255,0.14);
+  }
+  .final h2{ font-size: clamp(1.8rem, 4vw, 2.6rem); max-width:20ch; margin:0 auto; }
+  .final p{ margin-top:16px; color:var(--muted); font-size:1.05rem; }
+  .final .actions{ margin-top:30px; display:flex; justify-content:center; }
+
+  footer{ padding: 34px 0 calc(34px + env(safe-area-inset-bottom, 0px)); text-align:center; color:var(--muted); font-size:0.88rem; border-top:1px solid rgba(255,255,255,0.08); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap">
+      <div class="logo">easyland<span>x</span></div>
+      <a class="btn btn-ghost btn-small" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>Every business has a mountain. Yours is ready to <em>climb</em>.</h1>
+      <p class="lede">The space between what your business offers and how the world sees it online — that's the mountain. easylandx builds the custom landing page that carries you to the top, one true detail at a time.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#climb">Start the climb</a>
+        <a class="btn btn-ghost" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="wrap">
+      <p>In 2026, growing brands are discovering something freeing: the online presence a business has today isn't a measure of what it can become — it's simply the version it's been climbing from. Comfort keeps things familiar and steady. A landing page shaped entirely around your story is what carries a business higher.</p>
+    </div>
+  </section>
+
+  <section class="climb" id="climb">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The easylandx climb</h2>
+        <p>Five stages, one mountain, and a landing page shaped entirely around your business. Tap a marker to follow the path.</p>
+      </div>
+
+      <div class="climb-wrap">
+        <div class="steps" id="steps">
+          <div class="marker" id="marker">🚩</div>
+          <button class="step active" data-stage="0" style="--i:0" aria-pressed="true">1</button>
+          <button class="step" data-stage="1" style="--i:1" aria-pressed="false">2</button>
+          <button class="step" data-stage="2" style="--i:2" aria-pressed="false">3</button>
+          <button class="step" data-stage="3" style="--i:3" aria-pressed="false">4</button>
+          <button class="step" data-stage="4" style="--i:4" aria-pressed="false">5</button>
+        </div>
+
+        <div class="panel" id="panel">
+          <h3 id="panel-title">Discover your true voice</h3>
+          <p id="panel-text">Every business carries a feeling, a rhythm, and a story that make it unmistakably its own. The climb begins here — finding the voice your brand has been ready to speak in all along.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="highlights">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What every climb teaches us</h2>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <h3>Familiar feels safe. Custom feels alive.</h3>
+          <p>The mind naturally reaches for what it already recognizes. A template offers that familiar comfort — a page built only for your business offers real altitude.</p>
+        </div>
+        <div class="card">
+          <h3>Every peak raises the next one</h3>
+          <p>Growth invites more growth. Once a landing page reflects a business's full potential, everything above it — bookings, messages, sales — rises to meet it.</p>
+        </div>
+        <div class="card">
+          <h3>The climb is the craft</h3>
+          <p>Each easylandx page is handcrafted from the ground up: single-file, fast-loading, and shaped entirely around one story — yours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <div class="final-box">
+        <h2>Your mountain is ready.</h2>
+        <p>Let's build the landing page that carries your business to the top of it.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">easylandx — custom, conversion-focused landing pages for small businesses. Built for 2026 and beyond.</div>
+  </footer>
+
+<script>
+  const stages = [
+    {
+      title: "Discover your true voice",
+      text: "Every business carries a feeling, a rhythm, and a story that make it unmistakably its own. The climb begins here — finding the voice your brand has been ready to speak in all along."
+    },
+    {
+      title: "Release the placeholder",
+      text: "A generic template can only carry a business so far. This step is where borrowed layouts step aside and a page built entirely for you takes their place."
+    },
+    {
+      title: "Find a steady rhythm",
+      text: "Confidence reads as calm. We shape the colors, spacing, and pacing of your page into a steady rhythm that puts every visitor instantly at ease."
+    },
+    {
+      title: "Build the small moments",
+      text: "A hover animation here, a perfectly timed button there, a message that arrives exactly when it matters — these small, deliberate touches turn visitors into customers."
+    },
+    {
+      title: "Arrive as your future brand",
+      text: "At the summit, your business looks like the version of itself it was always becoming: polished, distinct, and ready for what 2026 brings next."
+    }
+  ];
+
+  const stepsEl = document.getElementById('steps');
+  const buttons = Array.from(document.querySelectorAll('.step'));
+  const marker = document.getElementById('marker');
+  const panel = document.getElementById('panel');
+  const panelTitle = document.getElementById('panel-title');
+  const panelText = document.getElementById('panel-text');
+
+  function moveMarker(btn){
+    const wrapRect = stepsEl.getBoundingClientRect();
+    const btnRect = btn.getBoundingClientRect();
+    marker.style.left = (btnRect.left - wrapRect.left + btnRect.width / 2) + 'px';
+    marker.style.top = (btnRect.top - wrapRect.top - 6) + 'px';
+  }
+
+  function setStage(btn, animate){
+    buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
+    const idx = Number(btn.dataset.stage);
+    const data = stages[idx];
+    panelTitle.textContent = data.title;
+    panelText.textContent = data.text;
+    if (animate){
+      panel.classList.remove('fade');
+      void panel.offsetWidth;
+      panel.classList.add('fade');
+    }
+    moveMarker(btn);
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => setStage(btn, true));
+  });
+
+  window.addEventListener('load', () => {
+    const active = document.querySelector('.step.active');
+    moveMarker(active);
+  });
+  window.addEventListener('resize', () => {
+    const active = document.querySelector('.step.active');
+    moveMarker(active);
+  });
+</script>
+
+</body>
+</html>
