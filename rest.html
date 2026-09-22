@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyLandX | Landing Pages Built the Rested Way</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --neon-green: #39ff6a;
+    --neon-green-soft: #6dffa0;
+    --cyan: #00f6ff;
+    --violet: #a020ff;
+    --ink: #0a1f14;
+    --card: #eafff1;
+    --white: #ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Sora', sans-serif;
+    background: var(--neon-green);
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.brand{font-family:'Space Grotesk', sans-serif;}
+  a{text-decoration:none;color:inherit;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:18px 6%;
+    background: rgba(10,31,20,0.92);
+    backdrop-filter: blur(6px);
+  }
+  .brand{color:var(--white); font-size:1.3rem; font-weight:700; letter-spacing:0.5px;}
+  .brand span{color:var(--cyan);}
+  .nav-cta{
+    background: var(--violet);
+    color:var(--white);
+    padding:10px 22px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:0.95rem;
+    box-shadow:0 0 18px rgba(160,32,255,0.7);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .nav-cta:hover{ transform: translateY(-2px); box-shadow:0 0 28px rgba(160,32,255,0.95);}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding: 90px 8% 70px;
+    text-align:center;
+    position:relative;
+  }
+  .eyebrow{
+    display:inline-block;
+    background: var(--ink);
+    color: var(--neon-green-soft);
+    padding:8px 18px;
+    border-radius:999px;
+    font-size:0.85rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-bottom:26px;
+  }
+  header.hero h1{
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height:1.15;
+    max-width:900px;
+    margin:0 auto 22px;
+    color:var(--ink);
+  }
+  header.hero h1 em{
+    font-style:normal;
+    color:var(--white);
+    background:var(--violet);
+    padding:0 10px;
+    border-radius:8px;
+    box-shadow:0 0 30px rgba(160,32,255,0.6);
+  }
+  header.hero p.lead{
+    max-width:640px;
+    margin:0 auto 38px;
+    font-size:1.1rem;
+    color:#0a1f14;
+    opacity:0.85;
+  }
+  .hero-actions{ display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
+  .btn-primary, .btn-secondary{
+    padding:16px 34px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:1rem;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .btn-primary{
+    background: var(--cyan);
+    color: var(--ink);
+    box-shadow:0 0 24px rgba(0,246,255,0.75);
+  }
+  .btn-primary:hover{ transform: translateY(-3px); box-shadow:0 0 36px rgba(0,246,255,1); }
+  .btn-secondary{
+    background: var(--ink);
+    color: var(--white);
+    border:2px solid var(--violet);
+  }
+  .btn-secondary:hover{ transform: translateY(-3px); box-shadow:0 0 24px rgba(160,32,255,0.7); }
+
+  .float-orb{
+    position:absolute;
+    border-radius:50%;
+    filter: blur(2px);
+    opacity:0.55;
+    animation: float 7s ease-in-out infinite;
+  }
+  @keyframes float{ 0%,100%{transform: translateY(0);} 50%{transform: translateY(-22px);} }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding: 70px 8%; }
+  .section-title{
+    text-align:center;
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    margin-bottom:16px;
+  }
+  .section-sub{
+    text-align:center;
+    max-width:620px;
+    margin: 0 auto 50px;
+    opacity:0.85;
+    font-size:1.02rem;
+  }
+
+  .reveal{ opacity:0; transform: translateY(28px); transition: all 0.7s ease; }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  /* Source section */
+  .source-block{
+    background: var(--cyan);
+    border-radius:26px;
+    max-width:1000px;
+    margin:0 auto;
+    padding:44px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:32px;
+  }
+  @media(max-width:760px){ .source-block{grid-template-columns:1fr;} }
+  .source-block h3{ font-size:1.4rem; margin-bottom:12px; }
+  .source-block p{ font-size:0.98rem; line-height:1.6; }
+
+  /* Framework cards */
+  .framework-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+    gap:26px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .fw-card{
+    background: var(--card);
+    border-radius:22px;
+    padding:30px 26px;
+    position:relative;
+    border: 2px solid transparent;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .fw-card:hover{ transform: translateY(-8px); border-color: var(--violet); }
+  .fw-num{
+    width:44px; height:44px;
+    border-radius:50%;
+    background: var(--ink);
+    color: var(--neon-green-soft);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700;
+    margin-bottom:18px;
+  }
+  .fw-card h3{ font-size:1.15rem; margin-bottom:10px; }
+  .fw-card p{ font-size:0.94rem; line-height:1.55; opacity:0.85; }
+
+  /* ---------- SIMULATOR ---------- */
+  .simulator{
+    background: var(--ink);
+    border-radius:30px;
+    max-width:1000px;
+    margin:0 auto;
+    padding:50px 6%;
+    color: var(--white);
+    text-align:center;
+    box-shadow: 0 0 60px rgba(0,246,255,0.25);
+  }
+  .simulator h2{ color:var(--white); }
+  .simulator .section-sub{ color:#cfeee0; }
+  .sim-stage{
+    display:flex; gap:14px; justify-content:center; margin: 30px 0 26px; flex-wrap:wrap;
+  }
+  .sim-btn{
+    padding:14px 26px;
+    border-radius:14px;
+    font-weight:700;
+    font-size:0.95rem;
+    cursor:pointer;
+    border:none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .sim-btn.focus{ background: var(--cyan); color: var(--ink); box-shadow:0 0 18px rgba(0,246,255,0.6); }
+  .sim-btn.rest{ background: var(--violet); color: var(--white); box-shadow:0 0 18px rgba(160,32,255,0.6); }
+  .sim-btn:hover{ transform: translateY(-3px) scale(1.03); }
+  .sim-btn:disabled{ opacity:0.45; cursor:not-allowed; transform:none; }
+
+  .sim-readout{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:18px;
+    max-width:640px;
+    margin: 0 auto 26px;
+  }
+  @media(max-width:600px){ .sim-readout{grid-template-columns:1fr;} }
+  .sim-stat{
+    background: rgba(255,255,255,0.06);
+    border-radius:16px;
+    padding:18px 10px;
+  }
+  .sim-stat .val{ font-size:1.8rem; font-weight:700; color: var(--neon-green-soft); }
+  .sim-stat .lab{ font-size:0.8rem; opacity:0.75; text-transform:uppercase; letter-spacing:0.5px; }
+
+  .meter-track{
+    width:100%; max-width:640px; margin: 0 auto 18px;
+    height:22px; background: rgba(255,255,255,0.12); border-radius:999px; overflow:hidden;
+  }
+  .meter-fill{
+    height:100%;
+    width:0%;
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+    border-radius:999px;
+    transition: width 0.6s ease;
+    box-shadow: 0 0 20px rgba(0,246,255,0.7);
+  }
+  .sim-message{ min-height:50px; font-size:1rem; color:var(--neon-green-soft); font-weight:600; }
+  .sim-reset{
+    margin-top:14px;
+    background:none;
+    border:1.5px solid rgba(255,255,255,0.4);
+    color:var(--white);
+    padding:9px 20px;
+    border-radius:999px;
+    font-size:0.85rem;
+    cursor:pointer;
+  }
+  .sim-reset:hover{ border-color: var(--white); }
+
+  /* Gallery / testimonial-style feature strip */
+  .feature-strip{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap:24px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .feature-card{
+    background: var(--violet);
+    color:var(--white);
+    border-radius:22px;
+    padding:32px 28px;
+  }
+  .feature-card h3{ margin-bottom:10px; font-size:1.1rem; }
+  .feature-card p{ font-size:0.94rem; line-height:1.6; opacity:0.92; }
+
+  /* CTA band */
+  .cta-band{
+    background: var(--cyan);
+    border-radius:30px;
+    max-width:1000px;
+    margin: 0 auto;
+    padding:56px 6%;
+    text-align:center;
+  }
+  .cta-band h2{ margin-bottom:16px; }
+  .cta-band p{ max-width:540px; margin:0 auto 30px; opacity:0.85; }
+
+  footer{
+    text-align:center;
+    padding:40px 6% 60px;
+    color: var(--ink);
+    font-size:0.9rem;
+  }
+  footer a{ color: var(--ink); font-weight:700; }
+
+  /* Floating WhatsApp-style quick link */
+  .float-link{
+    position:fixed;
+    bottom:26px; right:26px;
+    background: var(--ink);
+    color: var(--neon-green-soft);
+    padding:14px 22px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.9rem;
+    box-shadow:0 0 22px rgba(0,0,0,0.35);
+    z-index:60;
+    display:flex; align-items:center; gap:8px;
+    transition: transform 0.25s ease;
+  }
+  .float-link:hover{ transform: translateY(-4px); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Easy<span>Land</span>X</div>
+  <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">Inspired by "Rest" — Alex Soojung-Kim Pang</div>
+  <h1>Your best landing page is built in <em>focused bursts</em>, not endless hours.</h1>
+  <p class="lead">Deliberate rest is the secret ingredient behind every high-performing page we craft at EasyLandX. Here's how we borrow the science of rest to make your landing page sharper, faster, and genuinely built to convert.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">🚀 Get Your EasyLandX Page</a>
+    <a class="btn-secondary" href="#simulator">Try the Focus-Rest Simulator</a>
+  </div>
+</header>
+
+<section id="source" class="reveal">
+  <h2 class="section-title">The Idea Behind This Page</h2>
+  <p class="section-sub">A quick look at the framework that shaped the way we approach every EasyLandX build.</p>
+  <div class="source-block">
+    <div>
+      <h3>Rest is an active skill</h3>
+      <p>Alex Soojung-Kim Pang's book shows that rest is not empty time — it's a trained, deliberate practice that fuels creativity and sustains great work over the long run.</p>
+    </div>
+    <div>
+      <h3>Focus and recovery are partners</h3>
+      <p>History's sharpest creators worked in short, intense bursts of around four hours, then let their minds recover. We apply the same rhythm to page design: sharp sprints of copywriting and layout, followed by space to let the best ideas surface.</p>
+    </div>
+  </div>
+</section>
+
+<section id="framework" class="reveal">
+  <h2 class="section-title">Our Deliberate-Rest Build Framework</h2>
+  <p class="section-sub">Five rhythms we borrow from peak performers, translated into how EasyLandX ships pages that convert.</p>
+  <div class="framework-grid">
+    <div class="fw-card">
+      <div class="fw-num">1</div>
+      <h3>A Firm Focus Window</h3>
+      <p>We give your page a concentrated build window — every detail, headline, and call-to-action gets full attention, no distractions.</p>
+    </div>
+    <div class="fw-card">
+      <div class="fw-num">2</div>
+      <h3>Movement Between Sprints</h3>
+      <p>Short breaks between design passes let fresh ideas surface, the same way a walk sparks new insight for a writer or scientist.</p>
+    </div>
+    <div class="fw-card">
+      <div class="fw-num">3</div>
+      <h3>The Strategic Pause</h3>
+      <p>A brief pause before final polish lets us catch small wins — a stronger headline, a cleaner layout — that a rushed page would miss.</p>
+    </div>
+    <div class="fw-card">
+      <div class="fw-num">4</div>
+      <h3>A Deep Craft Mindset</h3>
+      <p>We treat page design as a craft worth mastering, the way great performers pursue a hobby purely for the joy of getting better.</p>
+    </div>
+    <div class="fw-card">
+      <div class="fw-num">5</div>
+      <h3>A Clean Handoff</h3>
+      <p>Your finished page ships complete and ready to shine — clear boundaries between build time and launch time keep quality high.</p>
+    </div>
+  </div>
+</section>
+
+<section id="simulator" class="reveal">
+  <div class="simulator">
+    <h2 class="section-title">Focus → Rest Cycle Simulator</h2>
+    <p class="section-sub">Every EasyLandX page benefits from cycles of focus and rest. Run a few cycles below and watch your page's Insight & Conversion Score climb.</p>
+
+    <div class="sim-readout">
+      <div class="sim-stat"><div class="val" id="cycleCount">0</div><div class="lab">Cycles Completed</div></div>
+      <div class="sim-stat"><div class="val" id="scoreVal">0%</div><div class="lab">Insight Score</div></div>
+      <div class="sim-stat"><div class="val" id="stageVal">Ready</div><div class="lab">Current Stage</div></div>
+    </div>
+
+    <div class="meter-track"><div class="meter-fill" id="meterFill"></div></div>
+    <p class="sim-message" id="simMessage">Start with a Focus Sprint to begin building momentum.</p>
+
+    <div class="sim-stage">
+      <button class="sim-btn focus" id="focusBtn">⚡ Run Focus Sprint (4h)</button>
+      <button class="sim-btn rest" id="restBtn" disabled>🌿 Take a Rest Cycle</button>
+    </div>
+    <button class="sim-reset" id="resetBtn">Reset Simulation</button>
+  </div>
+</section>
+
+<section id="why" class="reveal">
+  <h2 class="section-title">Why Rested Pages Perform Better</h2>
+  <p class="section-sub">A few ways this rhythm shows up in the pages we deliver.</p>
+  <div class="feature-strip">
+    <div class="feature-card">
+      <h3>Sharper Headlines</h3>
+      <p>Space between drafts lets the strongest headline rise to the top, instead of settling for the first idea.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Cleaner Layouts</h3>
+      <p>A brief pause before final review helps us spot the small layout wins that make a page feel effortless to browse.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Stronger Calls-to-Action</h3>
+      <p>Fresh eyes on a call-to-action, after real recovery time, consistently land on wording that invites more clicks.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Lasting Craft</h3>
+      <p>A sustainable pace means every page we ship keeps the same level of care as the very first one we ever built.</p>
+    </div>
+  </div>
+</section>
+
+<section id="cta" class="reveal">
+  <div class="cta-band">
+    <h2 class="section-title">Ready for a Page Built With Intention?</h2>
+    <p>Let EasyLandX bring this same rhythm of focus and rest to your next landing page — crafted with care, shipped with clarity.</p>
+    <a class="btn-secondary" href="https://easylandx.github.io" target="_blank" rel="noopener" style="background:var(--ink);">🚀 Explore EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  <p>Built by <a href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a> · Landing pages crafted with focus, shipped with rest.</p>
+  <p>&copy; 2026 EasyLandX. All rights reserved.</p>
+</footer>
+
+<a class="float-link" href="https://easylandx.github.io" target="_blank" rel="noopener">🌐 easylandx.github.io</a>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Floating orbs in hero
+  const hero = document.querySelector('header.hero');
+  const orbColors = ['#00f6ff', '#a020ff', '#6dffa0'];
+  const positions = [
+    {top:'12%', left:'6%', size:70},
+    {top:'20%', right:'8%', size:50},
+    {bottom:'10%', left:'12%', size:40},
+  ];
+  positions.forEach((pos, i) => {
+    const orb = document.createElement('div');
+    orb.className = 'float-orb';
+    orb.style.width = pos.size + 'px';
+    orb.style.height = pos.size + 'px';
+    orb.style.background = orbColors[i % orbColors.length];
+    orb.style.animationDelay = (i * 0.8) + 's';
+    Object.keys(pos).forEach(k => { if(k !== 'size') orb.style[k] = pos[k]; });
+    hero.appendChild(orb);
+  });
+
+  // Focus / Rest simulator
+  const focusBtn = document.getElementById('focusBtn');
+  const restBtn = document.getElementById('restBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const cycleCount = document.getElementById('cycleCount');
+  const scoreVal = document.getElementById('scoreVal');
+  const stageVal = document.getElementById('stageVal');
+  const meterFill = document.getElementById('meterFill');
+  const simMessage = document.getElementById('simMessage');
+
+  const focusMessages = [
+    "Focus sprint complete — your headline and layout just got sharper.",
+    "Deep focus logged — the strongest ideas are starting to surface.",
+    "Another sprint done — momentum is building nicely.",
+    "Focus session complete — clarity is compounding with every round."
+  ];
+  const restMessages = [
+    "Rest cycle complete — your mind quietly connected a few new ideas.",
+    "Recovery logged — the next sprint will land even sharper.",
+    "Rest taken — fresh perspective unlocked for the next pass.",
+    "Cycle recharged — quality keeps climbing with every pause."
+  ];
+
+  let cycles = 0;
+  let score = 0;
+  let awaitingRest = false;
+
+  function updateReadout(){
+    cycleCount.textContent = cycles;
+    scoreVal.textContent = Math.min(score, 100) + '%';
+    meterFill.style.width = Math.min(score, 100) + '%';
+    stageVal.textContent = awaitingRest ? 'Resting' : (score >= 100 ? 'Peak Flow' : 'Focusing');
+  }
+
+  focusBtn.addEventListener('click', () => {
+    score = Math.min(score + 14, 100);
+    focusBtn.disabled = true;
+    restBtn.disabled = false;
+    awaitingRest = true;
+    simMessage.textContent = focusMessages[cycles % focusMessages.length];
+    updateReadout();
+  });
+
+  restBtn.addEventListener('click', () => {
+    cycles += 1;
+    score = Math.min(score + 8, 100);
+    restBtn.disabled = true;
+    focusBtn.disabled = false;
+    awaitingRest = false;
+    simMessage.textContent = restMessages[cycles % restMessages.length];
+    if(score >= 100){
+      simMessage.textContent = "Peak flow reached! This is exactly the rhythm behind every EasyLandX page.";
+    }
+    updateReadout();
+  });
+
+  resetBtn.addEventListener('click', () => {
+    cycles = 0;
+    score = 0;
+    awaitingRest = false;
+    focusBtn.disabled = false;
+    restBtn.disabled = true;
+    simMessage.textContent = "Start with a Focus Sprint to begin building momentum.";
+    updateReadout();
+  });
+
+  updateReadout();
+</script>
+
+</body>
+</html>
