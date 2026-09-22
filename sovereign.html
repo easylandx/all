@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Your Page. Your Rules.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #FFDE00;
+    --yellow-soft: #FFF089;
+    --ink: #14111E;
+    --panel: #100C18;
+    --panel-2: #191228;
+    --cyan: #17F2FF;
+    --pink: #FF2FB0;
+    --cream: #FFF7DE;
+    box-sizing: border-box;
+  }
+  * { box-sizing: inherit; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    background: var(--yellow);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.55;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    overflow-x: hidden;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+  h1, h2, h3, .display { font-family: 'Space Grotesk', sans-serif; font-weight: 700; line-height: 1.02; letter-spacing: -0.01em; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  /* header */
+  header.top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 26px 28px; max-width: 1080px; margin: 0 auto;
+  }
+  .brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.35rem; }
+  .brand span { color: var(--pink); }
+  nav.top-links { display: flex; gap: 22px; font-size: 0.95rem; font-weight: 600; }
+  nav.top-links a { text-decoration: none; border-bottom: 2px solid transparent; padding-bottom: 2px; transition: border-color 0.2s ease; }
+  nav.top-links a:hover, nav.top-links a:focus-visible { border-color: var(--ink); }
+  @media (max-width: 680px) { nav.top-links { display: none; } }
+
+  /* buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--panel); color: var(--yellow);
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.02rem;
+    text-decoration: none; padding: 15px 28px; border-radius: 999px;
+    border: 2px solid var(--pink);
+    box-shadow: 0 0 22px rgba(23,242,255,0.35), 0 0 14px rgba(255,47,176,0.45) inset;
+    transition: transform 0.15s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    cursor: pointer;
+  }
+  .btn:hover, .btn:focus-visible {
+    transform: translateY(-2px); border-color: var(--cyan);
+    box-shadow: 0 0 30px rgba(23,242,255,0.55), 0 0 18px rgba(255,47,176,0.55) inset;
+  }
+  .btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .btn-outline {
+    background: transparent; color: var(--ink); border: 2px solid var(--ink);
+    box-shadow: none; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.92rem;
+    padding: 11px 22px; border-radius: 999px;
+  }
+  .btn-outline:hover, .btn-outline:focus-visible { background: var(--ink); color: var(--yellow-soft); transform: none; box-shadow: none; }
+  .btn-small { padding: 11px 20px; font-size: 0.92rem; border-radius: 999px; }
+
+  /* signal divider */
+  .signal {
+    height: 3px; width: 100%;
+    background: linear-gradient(90deg, transparent, var(--cyan), var(--pink), transparent);
+    position: relative;
+    opacity: 0.9;
+  }
+  .signal::after {
+    content: ""; position: absolute; top: -3px; left: -6px; width: 12px; height: 9px;
+    background: var(--pink); border-radius: 50%; filter: blur(1px);
+    animation: sweep 5.5s linear infinite;
+  }
+  @keyframes sweep { from { left: -2%; } to { left: 98%; } }
+
+  /* hero */
+  .hero { padding: 62px 28px 66px; max-width: 1080px; margin: 0 auto; }
+  .hero-inner { max-width: 760px; }
+  .hero h1 { font-size: clamp(2.6rem, 8vw, 5rem); margin-bottom: 22px; }
+  .hero .hook-line {
+    font-weight: 700; font-size: clamp(1rem, 2.3vw, 1.3rem);
+    min-height: 2.6em; display: flex; align-items: center;
+    border-left: 4px solid var(--pink); padding-left: 16px; margin-bottom: 26px;
+  }
+  .hook-line .cursor { display: inline-block; width: 3px; background: var(--ink); margin-left: 3px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .hero p.lede { font-size: 1.08rem; max-width: 540px; margin-bottom: 34px; }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+
+  section { padding: 74px 0; }
+  .section-head { max-width: 620px; margin-bottom: 42px; }
+  .section-head h2 { font-size: clamp(2rem, 4.8vw, 3rem); margin-bottom: 14px; }
+  .section-head p { font-size: 1.03rem; }
+  .on-dark { color: var(--cream); }
+  .on-dark .section-head p { color: rgba(255,247,222,0.8); }
+
+  /* hell yeah tool */
+  .filter-box {
+    background: var(--panel-2); color: var(--cream);
+    border-radius: 20px; padding: 36px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
+  }
+  .filter-box label { font-weight: 700; display: block; margin-bottom: 10px; }
+  .filter-box input[type="text"] {
+    width: 100%; background: #0C0916; border: 1px solid rgba(255,247,222,0.25);
+    color: var(--cream); font-family: 'Inter', sans-serif; font-size: 1rem;
+    padding: 14px 16px; border-radius: 12px; margin-bottom: 20px;
+  }
+  .filter-box input[type="text"]:focus-visible { outline: 2px solid var(--cyan); outline-offset: 1px; }
+  .filter-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .filter-btn {
+    flex: 1; min-width: 160px; padding: 16px; border-radius: 14px; border: 2px solid transparent;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.2s ease;
+    background: #0C0916; color: var(--cream);
+  }
+  .filter-btn.yes { border-color: var(--cyan); }
+  .filter-btn.no { border-color: var(--pink); }
+  .filter-btn:hover, .filter-btn:focus-visible { transform: translateY(-2px); }
+  .filter-btn:focus-visible { outline: 2px solid var(--cream); outline-offset: 2px; }
+  .filter-result {
+    margin-top: 22px; padding: 20px; border-radius: 14px; font-size: 1.02rem; display: none;
+  }
+  .filter-result.show { display: block; animation: pop 0.35s ease; }
+  @keyframes pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .filter-result.yes { background: rgba(23,242,255,0.12); border-left: 4px solid var(--cyan); }
+  .filter-result.no { background: rgba(255,47,176,0.1); border-left: 4px solid var(--pink); }
+  .filter-result strong.tag { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; margin-bottom: 6px; }
+
+  /* engine panel */
+  .engine-panel { background: var(--panel); padding: 80px 0; }
+  .hub {
+    display: flex; flex-direction: column; align-items: center; gap: 0;
+  }
+  .hub-card {
+    background: var(--panel-2); border-radius: 20px; padding: 22px 30px;
+    text-align: center; max-width: 420px;
+  }
+  .hub-card h3 { font-size: 1.15rem; color: var(--cream); margin-bottom: 6px; }
+  .hub-card p { color: rgba(255,247,222,0.75); font-size: 0.95rem; }
+  .hub-stem { width: 2px; height: 40px; background: linear-gradient(var(--cyan), var(--pink)); }
+  .hub-branches {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; width: 100%;
+  }
+  @media (max-width: 760px) { .hub-branches { grid-template-columns: 1fr; } }
+  .branch-card {
+    background: var(--panel-2); border-radius: 18px; padding: 26px 22px; position: relative;
+  }
+  .branch-card::before {
+    content: ""; position: absolute; top: -22px; left: 50%; width: 2px; height: 22px;
+    background: linear-gradient(rgba(255,247,222,0.4), transparent);
+    display: none;
+  }
+  @media (min-width: 761px) { .branch-card::before { display: block; } }
+  .branch-card h3 { font-size: 1.05rem; color: var(--cream); margin-bottom: 8px; }
+  .branch-card:nth-child(1) h3 { color: var(--cyan); }
+  .branch-card:nth-child(2) h3 { color: var(--yellow-soft); }
+  .branch-card:nth-child(3) h3 { color: var(--pink); }
+  .branch-card p { color: rgba(255,247,222,0.75); font-size: 0.95rem; }
+
+  /* delight toggle */
+  .delight-box {
+    background: var(--panel-2); color: var(--cream); border-radius: 20px; padding: 36px;
+  }
+  .delight-toggle {
+    display: inline-flex; background: #0C0916; border-radius: 999px; padding: 4px; margin-bottom: 24px;
+  }
+  .delight-toggle button {
+    border: none; background: transparent; color: var(--cream); font-family: 'Inter', sans-serif;
+    font-weight: 700; font-size: 0.92rem; padding: 10px 20px; border-radius: 999px; cursor: pointer;
+  }
+  .delight-toggle button.active.plain { background: rgba(255,247,222,0.15); }
+  .delight-toggle button.active.delight { background: linear-gradient(90deg, rgba(23,242,255,0.25), rgba(255,47,176,0.25)); }
+  .delight-card {
+    background: #0C0916; border-radius: 14px; padding: 26px; font-size: 1.1rem; min-height: 90px;
+    display: flex; align-items: center;
+  }
+  .delight-card.delight { border-left: 3px solid var(--pink); }
+  .delight-card.plain { border-left: 3px solid rgba(255,247,222,0.3); }
+
+  /* freedom sizer */
+  .sizer-box { background: var(--panel-2); color: var(--cream); border-radius: 20px; padding: 36px; }
+  .sizer-box input[type="range"] {
+    width: 100%; accent-color: var(--pink); margin: 26px 0 16px;
+  }
+  .sizer-labels { display: flex; justify-content: space-between; font-size: 0.85rem; color: rgba(255,247,222,0.6); margin-bottom: 20px; }
+  .sizer-result { padding: 20px; border-radius: 14px; background: rgba(255,222,0,0.08); border-left: 4px solid var(--yellow); font-size: 1.05rem; }
+
+  section:not(.engine-panel):not(footer) .filter-box,
+  section:not(.engine-panel):not(footer) .delight-box,
+  section:not(.engine-panel):not(footer) .sizer-box { color: var(--cream); }
+
+  footer {
+    background: var(--panel); color: var(--cream); padding: 88px 0 50px; text-align: center;
+  }
+  footer h2 { font-size: clamp(2.2rem, 6.5vw, 3.8rem); margin-bottom: 18px; }
+  footer p.tag { max-width: 520px; margin: 0 auto 36px; color: rgba(255,247,222,0.8); font-size: 1.03rem; }
+  .foot-bottom {
+    margin-top: 66px; padding-top: 24px; border-top: 1px solid rgba(255,247,222,0.15);
+    font-size: 0.85rem; color: rgba(255,247,222,0.5);
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">Easy<span>Land</span>X</div>
+  <nav class="top-links">
+    <a href="#hellyeah">Hell Yeah Filter</a>
+    <a href="#engine">The Engine</a>
+    <a href="#delight">Delight</a>
+  </nav>
+  <a class="btn btn-outline" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Your Page.<br>Your Rules.</h1>
+    <div class="hook-line"><span id="hookText"></span><span class="cursor" aria-hidden="true"></span></div>
+    <p class="lede">A landing page is not a template to fill in — it's a small business you get to design on your own terms. EasyLandX helps you build a page that serves your customers, and your life, exactly the way you want it to.</p>
+    <div class="hero-ctas">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+      <a class="btn btn-outline" href="#hellyeah">Try the filter</a>
+    </div>
+  </div>
+</div>
+
+<div class="signal" role="presentation"></div>
+
+<section id="hellyeah">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The "Hell Yeah! Or No" Filter</h2>
+      <p>Every feature on your page deserves total enthusiasm before it earns a spot. Drop in an idea and put it through the filter.</p>
+    </div>
+    <div class="filter-box">
+      <label for="ideaInput">A feature or idea for your page</label>
+      <input id="ideaInput" type="text" placeholder="e.g. a live chat bubble" value="a live chat bubble">
+      <div class="filter-actions">
+        <button class="filter-btn yes" id="yesBtn" type="button">Hell Yeah! ⚡</button>
+        <button class="filter-btn no" id="noBtn" type="button">Not Yet</button>
+      </div>
+      <div class="filter-result" id="filterResult"></div>
+    </div>
+  </div>
+</section>
+
+<div class="engine-panel" id="engine">
+  <div class="wrap on-dark">
+    <div class="section-head">
+      <h2>The Sovereign Business Engine</h2>
+      <p>One page, built with total independence — then delighting, delegating, and growing entirely on your own terms.</p>
+    </div>
+    <div class="hub">
+      <div class="hub-card">
+        <h3>Build For Independence</h3>
+        <p>Start lean, own every decision, and keep the direct line between your offer and the people you serve.</p>
+      </div>
+      <div class="hub-stem" aria-hidden="true"></div>
+      <div class="hub-branches">
+        <div class="branch-card">
+          <h3>Delight</h3>
+          <p>Turn small, everyday moments into ones worth remembering and sharing.</p>
+        </div>
+        <div class="branch-card">
+          <h3>Delegate</h3>
+          <p>Hand off decisions with confidence, so good judgment keeps things moving.</p>
+        </div>
+        <div class="branch-card">
+          <h3>Re-evaluate</h3>
+          <p>Check in often — the page keeps serving the life you actually want.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="delight">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Delight In The Details</h2>
+      <p>The smallest moments — a confirmation line, a thank-you note — are where a page turns a visitor into a fan. See the difference a little personality makes.</p>
+    </div>
+    <div class="delight-box">
+      <div class="delight-toggle" role="group" aria-label="Copy style">
+        <button type="button" class="plain active" id="plainBtn">Plain version</button>
+        <button type="button" class="delight" id="delightBtn">EasyLandX version</button>
+      </div>
+      <div class="delight-card plain" id="delightCard">Order confirmed. You will receive your item soon.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The Freedom Sizer</h2>
+      <p>Growth is only worth it when it keeps things enjoyable. Slide to see how EasyLandX thinks about scale.</p>
+    </div>
+    <div class="sizer-box">
+      <label for="sizeRange" style="font-weight:700;">How big is your page's world today?</label>
+      <input type="range" id="sizeRange" min="0" max="100" value="30">
+      <div class="sizer-labels"><span>Small &amp; joyful</span><span>Wide open</span></div>
+      <div class="sizer-result" id="sizeResult"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2>Design It The<br>Way You Want It</h2>
+    <p class="tag">A page you built on your own terms is a page worth visiting. EasyLandX helps you make it exactly that.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+    <div class="foot-bottom">EasyLandX — landing pages built for independent, customer-first businesses.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // hero typewriter
+  var lines = [
+    "If it's not a Hell Yeah, it's a No.",
+    "Build only what truly excites you.",
+    "Your page should serve your life, not the other way around."
+  ];
+  var el = document.getElementById('hookText');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    el.textContent = lines[0];
+  } else {
+    var li = 0, ci = 0, deleting = false;
+    function tick(){
+      var current = lines[li];
+      if (!deleting) {
+        ci++; el.textContent = current.slice(0, ci);
+        if (ci === current.length) { deleting = true; setTimeout(tick, 1400); return; }
+      } else {
+        ci--; el.textContent = current.slice(0, ci);
+        if (ci === 0) { deleting = false; li = (li + 1) % lines.length; }
+      }
+      setTimeout(tick, deleting ? 26 : 42);
+    }
+    tick();
+  }
+
+  // Hell Yeah filter
+  var ideaInput = document.getElementById('ideaInput');
+  var yesBtn = document.getElementById('yesBtn');
+  var noBtn = document.getElementById('noBtn');
+  var result = document.getElementById('filterResult');
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  
+  yesBtn.addEventListener('click', function(){
+    var idea = ideaInput.value.trim() || 'that idea';
+    result.className = 'filter-result show yes';
+    result.innerHTML = '<strong class="tag">Ship it ⚡</strong>Total enthusiasm is the best sign — give <strong>' + esc(idea) + '</strong> a place on the page and watch it earn its keep.';
+  });
+  
+  noBtn.addEventListener('click', function(){
+    var idea = ideaInput.value.trim() || 'that idea';
+    result.className = 'filter-result show no';
+    result.innerHTML = '<strong class="tag">Save it for later</strong>Anything short of total excitement can wait — keep <strong>' + esc(idea) + '</strong> on the shelf until it earns a genuine Hell Yeah.';
+  });
+
+  // delight toggle
+  var plainBtn = document.getElementById('plainBtn');
+  var delightBtn = document.getElementById('delightBtn');
+  var card = document.getElementById('delightCard');
+  var plainText = 'Order confirmed. You will receive your item soon.';
+  var delightText = "Packed with care and already on its way — someone's about to have a very good day. 🎉";
+  
+  plainBtn.addEventListener('click', function(){
+    plainBtn.classList.add('active'); delightBtn.classList.remove('active');
+    card.className = 'delight-card plain'; card.textContent = plainText;
+  });
+  
+  delightBtn.addEventListener('click', function(){
+    delightBtn.classList.add('active'); plainBtn.classList.remove('active');
+    card.className = 'delight-card delight'; card.textContent = delightText;
+  });
+
+  // freedom sizer
+  var range = document.getElementById('sizeRange');
+  var sizeResult = document.getElementById('sizeResult');
+  function renderSize(){
+    var v = Number(range.value);
+    var msg;
+    if (v < 33) {
+      msg = 'A small, focused page — every visitor gets your full attention, and every detail stays personal.';
+    } else if (v < 66) {
+      msg = 'A page with room to grow — still light enough to keep enjoying the work of running it.';
+    } else {
+      msg = 'A wide-reaching page — worth it exactly as long as the growth keeps things exciting.';
+    }
+    sizeResult.textContent = msg;
+  }
+  range.addEventListener('input', renderSize);
+  renderSize();
+})();
+</script>
+
+</body>
+</html>
