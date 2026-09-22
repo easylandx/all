@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyLandX — Landing Pages Built Like a Craft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crimson-deep:#5c0d1c;
+    --crimson:#a6172f;
+    --crimson-bright:#c41e3a;
+    --amber:#ffb300;
+    --amber-soft:#ffd166;
+    --lime:#c6ff00;
+    --ink:#fff6ea;
+    --ink-dim:#f4d9c9;
+    --card:#7a1327;
+    --card-line:rgba(255,255,255,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% 10%, var(--crimson-bright) 0%, transparent 45%),
+      radial-gradient(circle at 85% 90%, var(--crimson-bright) 0%, transparent 40%),
+      linear-gradient(180deg, var(--crimson-deep), var(--crimson) 40%, var(--crimson-deep));
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  .typewriter{font-family:'Special Elite', monospace;}
+  a{color:inherit;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px;}
+  section{padding:70px 0;}
+
+  /* HERO */
+  .hero{text-align:center;padding-top:90px;}
+  .eyebrow{
+    display:inline-block;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:.78rem;
+    color:var(--lime);
+    border:1px solid var(--lime);
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:22px;
+  }
+  h1{
+    font-size:clamp(2.1rem, 5.2vw, 3.6rem);
+    margin:0 0 18px;
+    line-height:1.12;
+  }
+  h1 .accent{color:var(--amber);}
+  .lede{
+    max-width:640px;
+    margin:0 auto 34px;
+    color:var(--ink-dim);
+    font-size:1.12rem;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--lime);
+    color:#1a1a00;
+    font-weight:700;
+    padding:15px 30px;
+    border-radius:10px;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    font-size:1rem;
+    font-family:'Space Grotesk',sans-serif;
+    box-shadow:0 0 0 rgba(198,255,0,0.0);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 24px rgba(198,255,0,0.45);
+  }
+  .btn.amber{background:var(--amber); color:#2a1400;}
+  .btn.ghost{
+    background:transparent;
+    color:var(--amber-soft);
+    border:1.5px solid var(--amber);
+  }
+  .btn.ghost:hover{box-shadow:0 6px 20px rgba(255,179,0,0.35);}
+
+  /* SECTION HEADERS */
+  .section-head{text-align:center; margin-bottom:44px;}
+  .section-head h2{
+    font-size:clamp(1.5rem,3.4vw,2.2rem);
+    margin:0 0 12px;
+  }
+  .section-head p{color:var(--ink-dim); max-width:600px; margin:0 auto;}
+  .tag{color:var(--lime); font-family:'Special Elite',monospace; letter-spacing:.08em;}
+
+  /* TOOLBOX */
+  .toolbox{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:20px;}
+  .card{
+    background:var(--card);
+    border:1px solid var(--card-line);
+    border-radius:16px;
+    padding:26px 22px;
+  }
+  .card .icon{
+    width:42px;height:42px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.3rem; margin-bottom:16px;
+    background:rgba(255,179,0,0.15); color:var(--amber);
+  }
+  .card h3{margin:0 0 10px; font-size:1.08rem;}
+  .card p{margin:0; color:var(--ink-dim); font-size:.95rem;}
+
+  /* PREMISE GENERATOR */
+  .panel{
+    background:var(--card);
+    border:1px solid var(--card-line);
+    border-radius:20px;
+    padding:34px;
+  }
+  .panel-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px;}
+  @media (max-width:640px){.panel-grid{grid-template-columns:1fr;}}
+  label{display:block; font-size:.8rem; color:var(--lime); margin-bottom:6px; text-transform:uppercase; letter-spacing:.06em;}
+  input[type=text], select{
+    width:100%;
+    padding:12px 14px;
+    border-radius:10px;
+    border:1px solid var(--card-line);
+    background:rgba(255,255,255,0.06);
+    color:var(--ink);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:.98rem;
+  }
+  input[type=text]::placeholder{color:rgba(255,246,234,0.45);}
+  #premiseOut{
+    margin-top:20px;
+    padding:20px;
+    border-radius:14px;
+    background:rgba(198,255,0,0.08);
+    border:1px dashed var(--lime);
+    font-family:'Special Elite',monospace;
+    font-size:1.05rem;
+    min-height:60px;
+    color:var(--ink);
+  }
+
+  /* DOOR CLOSED / OPEN */
+  .doors{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:640px){.doors{grid-template-columns:1fr;}}
+  .door{
+    border-radius:16px; padding:26px; border:1px solid var(--card-line);
+  }
+  .door.closed{background:var(--crimson-deep);}
+  .door.open{background:var(--card); box-shadow:0 0 30px rgba(255,179,0,0.12) inset;}
+  .door h3{margin-top:0; color:var(--amber-soft);}
+
+  /* REVISION SLIDER */
+  .revision-sample{
+    background:rgba(255,255,255,0.06);
+    border-radius:14px;
+    padding:22px;
+    font-size:1.02rem;
+    min-height:110px;
+    border:1px solid var(--card-line);
+  }
+  .slider-row{display:flex; align-items:center; gap:16px; margin:22px 0 8px;}
+  input[type=range]{
+    flex:1;
+    accent-color:var(--lime);
+    height:6px;
+  }
+  .slider-readout{
+    font-family:'Special Elite',monospace;
+    color:var(--lime);
+    min-width:64px;
+    text-align:right;
+  }
+  .wordcount{color:var(--ink-dim); font-size:.85rem; margin-top:10px;}
+
+  /* PERSONA */
+  .persona-btns{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px;}
+  .persona-btn{
+    padding:10px 18px;
+    border-radius:999px;
+    border:1px solid var(--amber);
+    background:transparent;
+    color:var(--amber-soft);
+    cursor:pointer;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:.9rem;
+    transition:all .15s ease;
+  }
+  .persona-btn.active, .persona-btn:hover{
+    background:var(--amber);
+    color:#2a1400;
+  }
+  #personaOut{
+    font-family:'Special Elite',monospace;
+    font-size:1.15rem;
+    padding:22px;
+    border-radius:14px;
+    background:rgba(255,179,0,0.08);
+    border:1px dashed var(--amber);
+  }
+
+  /* PRICING / CTA */
+  .cta{
+    text-align:center;
+    border-radius:24px;
+    padding:56px 30px;
+    background:linear-gradient(135deg, rgba(198,255,0,0.10), rgba(255,179,0,0.10));
+    border:1px solid var(--card-line);
+  }
+  .cta h2{margin-top:0;}
+  .price{
+    font-family:'Special Elite',monospace;
+    font-size:2.4rem;
+    color:var(--lime);
+    margin:14px 0 24px;
+  }
+  .price span{font-size:1rem; color:var(--ink-dim);}
+
+  footer{
+    text-align:center;
+    padding:40px 24px 60px;
+    color:var(--ink-dim);
+    font-size:.85rem;
+  }
+  footer a.brand{color:var(--lime); text-decoration:none; font-family:'Special Elite',monospace;}
+</style>
+</head>
+<body>
+
+<section class="hero wrap">
+  <span class="eyebrow typewriter">Inspired by the craft of master storytellers</span>
+  <h1 class="typewriter">Your landing page, built like a <span class="accent">craft</span>, not a guess.</h1>
+  <p class="lede">EasyLandX turns your Instagram attention into real clients — bookings, messages, sales — with pages sharpened the way a great writer sharpens a story: honest, direct, and built for your reader.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">🚀 Build My Landing Page — EasyLandX</a>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <span class="tag">01 — The Toolbox</span>
+    <h2>Three tools, always within reach</h2>
+    <p>Great pages, like great sentences, come from a well-stocked toolbox — used with care, every single time.</p>
+  </div>
+  <div class="toolbox">
+    <div class="card">
+      <div class="icon">✎</div>
+      <h3>Words That Convert</h3>
+      <p>Your headline is your vocabulary. We choose words your visitor already uses — clear, natural, immediate.</p>
+    </div>
+    <div class="card">
+      <div class="icon">▤</div>
+      <h3>Structure That Guides</h3>
+      <p>Your layout is your grammar. One idea, one action, one clean path from scroll to click.</p>
+    </div>
+    <div class="card">
+      <div class="icon">✦</div>
+      <h3>Voice That Sells</h3>
+      <p>Your visuals and tone are your style. Confident, warm, unmistakably yours.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <span class="tag">02 — Interactive</span>
+    <h2>Find your "What If?"</h2>
+    <p>Every great page starts as a premise, not a plan. Enter your business and your dream outcome — watch the idea take shape.</p>
+  </div>
+  <div class="panel">
+    <div class="panel-grid">
+      <div>
+        <label for="biz">Your business</label>
+        <input type="text" id="biz" placeholder="e.g. ceramic studio, dentist, coach">
+      </div>
+      <div>
+        <label for="goal">Your dream outcome</label>
+        <input type="text" id="goal" placeholder="e.g. full booking calendar">
+      </div>
+    </div>
+    <button class="btn amber" onclick="generatePremise()">✨ Reveal the premise</button>
+    <div id="premiseOut">Your premise will appear here — type above and press the button.</div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <span class="tag">03 — Our Process</span>
+    <h2>Door closed, then door open</h2>
+    <p>Focus first, feedback second — the same rhythm every strong piece of writing follows.</p>
+  </div>
+  <div class="doors">
+    <div class="door closed">
+      <h3 class="typewriter">🚪 Door Closed</h3>
+      <p>We build your page in full focus — one clean, single-file draft shaped entirely around your goal, ready within 48 hours.</p>
+    </div>
+    <div class="door open">
+      <h3 class="typewriter">🚪 Door Open</h3>
+      <p>You review, we refine together. Your voice guides the final polish until the page feels completely yours.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <span class="tag">04 — Interactive</span>
+    <h2>The 10% sharpening rule</h2>
+    <p>Great drafts get tighter, not longer. Slide to see how a sharpened landing page reads.</p>
+  </div>
+  <div class="panel">
+    <div class="revision-sample" id="revisionText"></div>
+    <div class="slider-row">
+      <input type="range" id="trimSlider" min="0" max="40" value="0" oninput="applyTrim()">
+      <div class="slider-readout" id="trimReadout">0% sharper</div>
+    </div>
+    <div class="wordcount" id="wordCount"></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <span class="tag">05 — Interactive</span>
+    <h2>Write for your Ideal Reader</h2>
+    <p>Pick your visitor. Watch the headline shift to speak straight to them.</p>
+  </div>
+  <div class="panel">
+    <div class="persona-btns" id="personaBtns">
+      <button class="persona-btn active" onclick="setPersona(this,'artist')">Artist / Creative</button>
+      <button class="persona-btn" onclick="setPersona(this,'local')">Local Business</button>
+      <button class="persona-btn" onclick="setPersona(this,'coach')">Coach / Consultant</button>
+      <button class="persona-btn" onclick="setPersona(this,'shop')">Online Shop</button>
+    </div>
+    <div id="personaOut">Your Instagram gets attention. Your art gets collectors.</div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="cta">
+    <span class="tag">Ready when you are</span>
+    <h2 class="typewriter">One honest page. Real results.</h2>
+    <div class="price">Simple pricing <span>· delivered in 48 hours</span></div>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">🚀 See Pricing on EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  <p>Built with the craft mindset — clear words, honest structure, a voice worth reading.</p>
+  <a class="brand" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a>
+</footer>
+
+<script>
+  function generatePremise(){
+    const biz = document.getElementById('biz').value.trim() || "your business";
+    const goal = document.getElementById('goal').value.trim() || "a steady stream of clients";
+    const templates = [
+      `What if every visitor who found ${biz} on Instagram landed on a page built entirely to bring you ${goal}?`,
+      `Picture this: someone discovers ${biz}, taps one link, and moves straight toward ${goal} — no confusion, no extra steps.`,
+      `Here's the premise: ${biz} deserves a page as clear as your best work — one made to turn attention into ${goal}.`
+    ];
+    const pick = templates[Math.floor(Math.random()*templates.length)];
+    document.getElementById('premiseOut').textContent = pick;
+  }
+
+  const fullText = "Your landing page welcomes every single visitor who discovers your Instagram profile through a wonderful, engaging, delightful post, and it gently and carefully guides them, step by step, through a warm and friendly journey, toward the one clear and meaningful action you would love for them to take today, right now, immediately.";
+
+  function trimText(text, percent){
+    const words = text.split(' ');
+    const keep = Math.max(6, Math.round(words.length * (1 - percent/100)));
+    return words.slice(0, keep).join(' ') + (keep < words.length ? '…' : '');
+  }
+
+  function applyTrim(){
+    const val = document.getElementById('trimSlider').value;
+    const trimmed = trimText(fullText, val);
+    document.getElementById('revisionText').textContent = trimmed;
+    document.getElementById('trimReadout').textContent = val + '% sharper';
+    const originalCount = fullText.split(' ').length;
+    const newCount = trimmed.replace('…','').split(' ').length;
+    document.getElementById('wordCount').textContent = `${newCount} words — sharpened from ${originalCount}`;
+  }
+
+  const personas = {
+    artist: "Your Instagram gets attention. Your art gets collectors.",
+    local: "Your Instagram gets attention. Your storefront gets visits.",
+    coach: "Your Instagram gets attention. Your calendar gets booked.",
+    shop: "Your Instagram gets attention. Your cart gets full."
+  };
+
+  function setPersona(btn, key){
+    document.querySelectorAll('.persona-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('personaOut').textContent = personas[key];
+  }
+
+  applyTrim();
+</script>
+
+</body>
+</html>
