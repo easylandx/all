@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Rebuild the site that's costing you customers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue-deep:#050B2E;
+    --blue-vivid:#1B2FFF;
+    --blue-mid:#132176;
+    --crimson:#FF2D55;
+    --amber:#FFB627;
+    --text:#F4F6FF;
+    --text-dim:#B9C0EC;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:inherit;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+  html,body{background:var(--blue-deep);color:var(--text)}
+  body{
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    overflow-x:hidden;
+    background:
+      radial-gradient(circle at 15% -10%, var(--blue-vivid) 0%, transparent 45%),
+      radial-gradient(circle at 100% 20%, #2A1B6E 0%, transparent 50%),
+      var(--blue-deep);
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
+  a{color:inherit}
+
+  /* nav */
+  header{padding:22px 24px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:5}
+  .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.15rem}
+  .logo span{color:var(--amber)}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--crimson);color:#fff;
+    padding:12px 22px;border-radius:999px;
+    font-weight:600;font-size:.95rem;text-decoration:none;
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:0 0 0 rgba(255,45,85,.5);
+    transition:box-shadow .25s ease, transform .25s ease;
+  }
+  .btn:hover{box-shadow:0 0 26px rgba(255,45,85,.55);transform:translateY(-1px)}
+  .btn.ghost{background:transparent;border:1px solid rgba(244,246,255,.35)}
+  .btn.ghost:hover{border-color:var(--amber);box-shadow:0 0 20px rgba(255,182,39,.35)}
+
+  /* hero */
+  .hero{padding:56px 24px 40px;text-align:left}
+  .eyebrow{color:var(--amber);font-weight:600;font-size:.95rem;margin-bottom:14px}
+  .hero h1{font-size:clamp(2.1rem,5.2vw,3.4rem);line-height:1.06;max-width:15ch}
+  .hero h1 em{font-style:normal;color:var(--amber)}
+  .hero p{margin-top:20px;max-width:52ch;color:var(--text-dim);font-size:1.08rem}
+  .hero-ctas{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+
+  section{padding:64px 24px;border-top:1px solid rgba(244,246,255,.09)}
+  .kicker{color:var(--crimson);font-weight:600;font-size:.95rem;margin-bottom:10px}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);max-width:22ch}
+  section > .wrap > p.lede{color:var(--text-dim);max-width:56ch;margin-top:14px;font-size:1.02rem}
+
+  /* recovery engine stepper */
+  .engine{margin-top:34px;display:grid;gap:10px}
+  .step{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(244,246,255,.12);
+    border-radius:14px;overflow:hidden;
+  }
+  .step-head{
+    width:100%;text-align:left;background:none;border:0;color:var(--text);
+    padding:18px 20px;display:flex;align-items:center;gap:16px;cursor:pointer;
+    font-family:'Inter',sans-serif;font-size:1rem;font-weight:600;
+  }
+  .step-num{
+    font-family:'Space Grotesk',sans-serif;color:var(--blue-deep);background:var(--amber);
+    width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:.85rem;flex-shrink:0;
+  }
+  .step[data-open="true"] .step-num{background:var(--crimson);color:#fff}
+  .step-head .chev{margin-left:auto;transition:transform .25s ease;color:var(--text-dim)}
+  .step[data-open="true"] .chev{transform:rotate(45deg);color:var(--amber)}
+  .step-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+  .step[data-open="true"] .step-body{max-height:220px}
+  .step-body p{padding:0 20px 20px 66px;color:var(--text-dim);max-width:54ch}
+
+  /* leak calculator */
+  .calc{
+    margin-top:34px;background:rgba(255,255,255,.05);border:1px solid rgba(244,246,255,.12);
+    border-radius:18px;padding:28px;
+  }
+  .calc-row{display:grid;grid-template-columns:1fr auto;gap:8px 18px;align-items:center;margin-bottom:18px}
+  .calc-row label{font-size:.92rem;color:var(--text-dim)}
+  .calc-row output{font-family:'Space Grotesk',sans-serif;color:var(--amber);font-weight:700}
+  input[type=range]{
+    grid-column:1/-1;width:100%;accent-color:var(--crimson);height:4px;
+  }
+  .calc-result{
+    margin-top:6px;padding-top:18px;border-top:1px dashed rgba(244,246,255,.18);
+    display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  }
+  .calc-result .big{font-family:'Space Grotesk',sans-serif;font-size:2.4rem;color:var(--crimson)}
+  .calc-result .small{color:var(--text-dim);font-size:.95rem}
+
+  /* proof strip */
+  .proof{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:10px}
+  .proof div{background:rgba(255,255,255,.04);border:1px solid rgba(244,246,255,.1);border-radius:14px;padding:22px}
+  .proof strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.5rem;color:var(--amber)}
+  .proof span{color:var(--text-dim);font-size:.9rem}
+
+  /* closing cta */
+  .closing{text-align:center;background:linear-gradient(180deg,transparent,rgba(255,45,85,.08));}
+  .closing h2{max-width:none;margin:0 auto}
+  .closing .btn{margin-top:26px;font-size:1.05rem;padding:16px 34px}
+
+  footer{padding:30px 24px 50px;text-align:center;color:var(--text-dim);font-size:.85rem}
+
+  @media (max-width:600px){
+    .proof{grid-template-columns:1fr}
+    .calc-row{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .step-body,.chev,.btn{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Easy<span>Land</span>X</div>
+  <a class="btn ghost" href="https://easylandx.github.io" target="_blank" rel="noopener">See our work</a>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Landing pages for small businesses</div>
+    <h1>Your website hit rock bottom. <em>We rebuild it unshakeable.</em></h1>
+    <p>EasyLandX builds affordable, conversion-focused landing pages for small businesses. A site that turns visitors into customers.</p>
+    <div class="hero-ctas">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">The problem</div>
+    <h2>A slow, confusing, or outdated site is a daily leak — not a one-time cost.</h2>
+    <p class="lede">Every visitor who bounces because the page took too long to load, or couldn't find what to click, is a customer who found your competitor instead. Most small business sites are quietly hemorrhaging leads without anyone noticing.</p>
+    <div class="proof">
+      <div><strong>53%</strong><span>of visitors leave if a page takes over 3 seconds to load</span></div>
+      <div><strong>1</strong><span>clear action is all a good landing page asks for</span></div>
+      <div><strong>0</strong><span>templates — every EasyLandX site is built from scratch</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">The EasyLandX Recovery Engine</div>
+    <h2>The same five-stage process we use to rebuild every site, from stabilize to launch.</h2>
+    <p class="lede">Tap a stage to see what happens inside it.</p>
+
+    <div class="engine" id="engine"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Micro-win momentum</div>
+    <h2>See what a small conversion lift is actually worth.</h2>
+    <p class="lede">Landing pages don't need huge traffic to pay off — a few extra conversions out of every hundred visitors adds up fast. Drag the sliders to estimate your own.</p>
+
+    <div class="calc">
+      <div class="calc-row">
+        <label for="visitors">Monthly visitors</label>
+        <output id="visitorsOut">1,000</output>
+        <input type="range" id="visitors" min="200" max="10000" step="100" value="1000">
+      </div>
+      <div class="calc-row">
+        <label for="lift">Conversion rate improvement</label>
+        <output id="liftOut">+2%</output>
+        <input type="range" id="lift" min="1" max="10" step="0.5" value="2">
+      </div>
+      <div class="calc-result">
+        <span class="big" id="calcResult">+20</span>
+        <span class="small">extra customers per month, from the same traffic you already get</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <div class="kicker">Ready when you are</div>
+    <h2>Let's rebuild a site that works while you run your business.</h2>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx.github.io →</a>
+  </div>
+</section>
+
+<footer>EasyLandX — affordable, conversion-focused landing pages, built by hand.</footer>
+
+<script>
+  const steps = [
+    {
+      title: "Stabilize the core",
+      body: "We audit what's actively costing you leads right now — slow load times, unclear calls to action, broken flows — and fix the bleeding before touching anything else."
+    },
+    {
+      title: "Audit the message",
+      body: "We rewrite the page's story around what your customers actually need to hear, cutting jargon and vague claims that make visitors hesitate."
+    },
+    {
+      title: "Remove the friction points",
+      body: "Every extra click, confusing menu, or slow section is a point where someone leaves. We strip the page down to one clear path to action."
+    },
+    {
+      title: "Build micro-win momentum",
+      body: "We launch in fast, visible iterations — a working page early, then continuous small improvements — instead of one slow all-or-nothing rebuild."
+    },
+    {
+      title: "Lock in the standard",
+      body: "The final site is fast, clear, and built to hold up: hand-coded, mobile-ready, and set up so future updates stay just as clean."
+    }
+  ];
+
+  const engine = document.getElementById('engine');
+  steps.forEach((s, i) => {
+    const el = document.createElement('div');
+    el.className = 'step';
+    el.dataset.open = i === 0 ? 'true' : 'false';
+    el.innerHTML = `
+      <button class="step-head" aria-expanded="${i===0}">
+        <span class="step-num">${i+1}</span>
+        <span>${s.title}</span>
+        <span class="chev">+</span>
+      </button>
+      <div class="step-body"><p>${s.body}</p></div>
+    `;
+    el.querySelector('.step-head').addEventListener('click', () => {
+      const willOpen = el.dataset.open !== 'true';
+      el.dataset.open = willOpen ? 'true' : 'false';
+      el.querySelector('.step-head').setAttribute('aria-expanded', willOpen);
+    });
+    engine.appendChild(el);
+  });
+
+  const visitors = document.getElementById('visitors');
+  const lift = document.getElementById('lift');
+  const visitorsOut = document.getElementById('visitorsOut');
+  const liftOut = document.getElementById('liftOut');
+  const calcResult = document.getElementById('calcResult');
+
+  function updateCalc(){
+    const v = parseInt(visitors.value, 10);
+    const l = parseFloat(lift.value);
+    visitorsOut.textContent = v.toLocaleString('en-US');
+    liftOut.textContent = '+' + l + '%';
+    const extra = Math.round(v * (l/100));
+    calcResult.textContent = '+' + extra.toLocaleString('en-US');
+  }
+  visitors.addEventListener('input', updateCalc);
+  lift.addEventListener('input', updateCalc);
+  updateCalc();
+</script>
+
+</body>
+</html>

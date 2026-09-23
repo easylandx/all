@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — One page. One purpose.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFBFA;
+    --bg-panel: #F1F4F3;
+    --ink: #0B1210;
+    --ink-soft: #4B5651;
+    --cyan: #00D6E8;
+    --cyan-deep: #009FAE;
+    --lime: #C8FF3D;
+    --lime-deep: #93C400;
+    --line: #DCE3E0;
+    --card: #FFFFFF;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0B0F0E;
+      --bg-panel: #121816;
+      --ink: #F2F7F5;
+      --ink-soft: #A9B5B0;
+      --line: #253330;
+      --card: #141B19;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0B0F0E;
+    --bg-panel: #121816;
+    --ink: #F2F7F5;
+    --ink-soft: #A9B5B0;
+    --line: #253330;
+    --card: #141B19;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .display {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  header.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 24px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+  }
+  .brand .x { color: var(--cyan-deep); }
+  .navlink {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.95rem;
+    border-bottom: 1px solid transparent;
+  }
+  .navlink:hover { border-color: var(--ink-soft); }
+
+  section { padding: 56px 0; }
+  .hero { padding-top: 24px; }
+  .hero h1 {
+    font-size: clamp(2.1rem, 5vw, 3rem);
+    line-height: 1.12;
+    max-width: 12ch;
+  }
+  .hero p.sub {
+    margin-top: 18px;
+    max-width: 46ch;
+    color: var(--ink-soft);
+    font-size: 1.08rem;
+  }
+
+  /* --- interactive declutter demo --- */
+  .demo {
+    margin-top: 40px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--card);
+  }
+  .demo-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-panel);
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+  .demo-title { margin-left: 6px; font-size: 0.82rem; color: var(--ink-soft); }
+  .demo-screen {
+    position: relative;
+    padding: 26px 22px 30px;
+    min-height: 230px;
+  }
+  .clutter-el {
+    transition: opacity .35s ease, transform .35s ease, max-height .35s ease;
+  }
+  .clutter-el.gone {
+    opacity: 0;
+    transform: translateY(-4px) scale(.98);
+    max-height: 0;
+    margin: 0;
+    padding: 0 !important;
+    pointer-events: none;
+  }
+  .fake-banner {
+    background: var(--lime);
+    color: #14210a;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 7px 10px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+  .fake-nav {
+    display: flex;
+    gap: 16px;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+  .fake-h {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+  .fake-sub { color: var(--ink-soft); font-size: 0.92rem; max-width: 40ch; }
+  .fake-badges {
+    display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap;
+  }
+  .badge {
+    font-size: 0.72rem;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    padding: 4px 9px;
+    border-radius: 999px;
+  }
+  .fake-cta {
+    display: inline-block;
+    margin-top: 20px;
+    background: var(--cyan);
+    color: #06282b;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 10px 18px;
+    border-radius: 8px;
+  }
+  .fake-popup {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: 0 8px 22px rgba(0,0,0,.10);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 0.75rem;
+    max-width: 150px;
+    color: var(--ink-soft);
+  }
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 22px 22px;
+    border-top: 1px solid var(--line);
+    background: var(--bg-panel);
+  }
+  .slider-row span { font-size: 0.78rem; color: var(--ink-soft); white-space: nowrap; }
+  input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--cyan) 0%, var(--lime) 100%);
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 3px solid var(--card);
+    box-shadow: 0 0 0 1px var(--line);
+    cursor: pointer;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 3px solid var(--card);
+    cursor: pointer;
+  }
+
+  /* --- principles --- */
+  .principles { border-top: 1px solid var(--line); }
+  .principles h2 { font-size: 1.7rem; max-width: 16ch; }
+  .plist {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  .prow {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 16px;
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+  }
+  .prow:last-child { border-bottom: 1px solid var(--line); }
+  .pnum {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--cyan-deep);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .prow h3 { font-size: 1.05rem; margin-bottom: 6px; }
+  .prow p { color: var(--ink-soft); margin: 0; font-size: 0.96rem; max-width: 52ch; }
+
+  /* --- honest pricing --- */
+  .honest {
+    border-top: 1px solid var(--line);
+  }
+  .honest-box {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px;
+    margin-top: 26px;
+  }
+  .honest-box h3 { font-size: 1.15rem; margin-bottom: 10px; }
+  .honest-box p { color: var(--ink-soft); margin: 0 0 8px; }
+  .honest-box p:last-child { margin-bottom: 0; }
+  .lime-mark { color: var(--lime-deep); font-weight: 600; }
+
+  /* --- cta --- */
+  .final { text-align: left; border-top: 1px solid var(--line); }
+  .final h2 { font-size: 1.9rem; max-width: 14ch; }
+  .btn-primary {
+    display: inline-block;
+    margin-top: 22px;
+    background: var(--ink);
+    color: var(--bg);
+    text-decoration: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 15px 26px;
+    border-radius: 10px;
+    box-shadow: 0 0 0 2px var(--lime) inset;
+    transition: transform .15s ease;
+  }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-note { margin-top: 14px; font-size: 0.85rem; color: var(--ink-soft); }
+
+  footer {
+    padding: 30px 0 50px;
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .clutter-el, .btn-primary { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="brand">easyland<span class="x">x</span></div>
+  <a class="navlink" href="https://easylandx.github.io">easylandx.github.io</a>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <h1>One page. One purpose. No clutter.</h1>
+    <p class="sub">easylandx builds landing pages — one at a time, by hand, with nothing on the page that doesn't earn its place. Built to say one thing well.</p>
+
+    <div class="demo">
+      <div class="demo-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="demo-title">yourbusiness.com — drag to declutter</span>
+      </div>
+      <div class="demo-screen" id="demoScreen">
+        <span class="fake-banner clutter-el" data-min="0">🎉 Grand opening! Sign up for our newsletter for 10% off!</span>
+        <div class="fake-nav clutter-el" data-min="0">
+          <span>Home</span><span>Services</span><span>Pricing</span><span>Rewards</span><span>Locations</span><span>Franchise</span><span>Blog</span>
+        </div>
+        <div class="fake-h">Maple &amp; Rye Studio</div>
+        <p class="fake-sub">Straightforward work, done well, and a clear way to reach us — open every day on 4th Street.</p>
+        <div class="fake-badges clutter-el" data-min="0">
+          <span class="badge">★ 4.8 on Yelp</span>
+          <span class="badge">As seen on WKRT News</span>
+          <span class="badge">Free consultations</span>
+          <span class="badge">Insured &amp; bonded</span>
+        </div>
+        <a class="fake-cta">See what we offer</a>
+        <div class="fake-popup clutter-el" data-min="0">👋 Chat with us! We reply in minutes.</div>
+      </div>
+      <div class="slider-row">
+        <span>Cluttered</span>
+        <input type="range" id="declutter" min="0" max="100" value="0" aria-label="Declutter the sample page">
+        <span>Simple</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="principles">
+    <h2>Complexity is the default. Simplicity takes work.</h2>
+    <div class="plist">
+      <div class="prow">
+        <div class="pnum">1</div>
+        <div>
+          <h3>Every page has one owner</h3>
+          <p>No account managers, no committees. The person who designs your page is the person who builds it and answers for it.</p>
+        </div>
+      </div>
+      <div class="prow">
+        <div class="pnum">2</div>
+        <div>
+          <h3>Nothing ships without a reason</h3>
+          <p>A pop-up, a badge, a second navigation menu — each has to justify itself, or it doesn't go on your page. Most don't.</p>
+        </div>
+      </div>
+      <div class="prow">
+        <div class="pnum">3</div>
+        <div>
+          <h3>Talk like a person, not a brochure</h3>
+          <p>Your copy should sound like you greeting someone at the door, not a corporate features list.</p>
+        </div>
+      </div>
+      <div class="prow">
+        <div class="pnum">4</div>
+        <div>
+          <h3>One page, one job</h3>
+          <p>Get someone in the door, get them to call, or get them to order — pick one. A page that tries to do everything does nothing well.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <h2>Give your business a page that says one thing well.</h2>
+    <a class="btn-primary" href="https://easylandx.github.io">Get easylandx →</a>
+    <p class="btn-note">easylandx.github.io</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© easylandx. Built by hand, one page at a time.</div>
+</footer>
+
+<script>
+(function () {
+  var slider = document.getElementById('declutter');
+  var els = Array.prototype.slice.call(document.querySelectorAll('.clutter-el'));
+  function update() {
+    var v = parseInt(slider.value, 10);
+    els.forEach(function (el, i) {
+      // stagger the thresholds so elements disappear one at a time as you drag
+      var threshold = 20 + i * 18;
+      if (v >= threshold) el.classList.add('gone');
+      else el.classList.remove('gone');
+    });
+  }
+  slider.addEventListener('input', update);
+  update();
+})();
+</script>
+
+</body>
+</html>

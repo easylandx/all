@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — The Science of Scaling Your Landing Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange: #FF4A11;
+    --orange-deep: #D63A0A;
+    --violet: #8B2DFF;
+    --violet-deep: #5C0FCB;
+    --yellow: #F9FF21;
+    --ink: #1A0630;
+    --paper: #FFF6EC;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: radial-gradient(circle at 20% 0%, #FF6A2E 0%, var(--orange) 45%, var(--orange-deep) 100%);
+    color: var(--paper);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Syne', sans-serif; font-weight:800; letter-spacing:-0.02em;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 24px;}
+  a{color:inherit;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background: rgba(26,6,48,0.55);
+    backdrop-filter: blur(10px);
+    border-bottom:2px solid var(--yellow);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:14px 24px;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Syne'; font-weight:800; font-size:1.2rem;}
+  .brand-dot{width:14px; height:14px; background:var(--yellow); border-radius:50%; box-shadow:0 0 14px var(--yellow), 0 0 28px var(--yellow);}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background: var(--yellow); color: var(--ink);
+    font-family:'Syne'; font-weight:700; font-size:0.95rem;
+    padding:12px 22px; border-radius:999px; border:none; cursor:pointer;
+    text-decoration:none;
+    box-shadow: 0 0 0 rgba(249,255,33,0.6);
+    transition: transform .18s ease, box-shadow .25s ease;
+  }
+  .btn:hover{ transform:translateY(-2px) scale(1.03); box-shadow:0 6px 30px rgba(249,255,33,0.55);}
+  .btn.violet{ background:var(--violet); color:var(--paper); }
+  .btn.violet:hover{ box-shadow:0 6px 30px rgba(139,45,255,0.65);}
+  .btn.ghost{ background:transparent; color:var(--paper); border:2px solid var(--paper); }
+  .nav-btn{padding:9px 18px; font-size:0.85rem;}
+
+  /* HERO */
+  header.hero{ padding:100px 0 70px; text-align:center; position:relative;}
+  .eyebrow{
+    display:inline-block; font-family:'Syne'; font-weight:700; font-size:0.78rem;
+    letter-spacing:0.14em; text-transform:uppercase; color:var(--ink);
+    background:var(--yellow); padding:7px 16px; border-radius:999px; margin-bottom:26px;
+  }
+  h1.hero-title{ font-size:clamp(2.4rem, 6vw, 4.6rem); line-height:1.02; margin-bottom:22px;}
+  h1.hero-title span{ color:var(--yellow); text-shadow:0 0 18px rgba(249,255,33,0.55);}
+  .hero-sub{ max-width:640px; margin:0 auto 36px; font-size:1.15rem; line-height:1.6; color:#FFE3CF;}
+  .hero-ctas{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+  section{ padding:90px 0; position:relative; }
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  .section-head{ text-align:center; max-width:680px; margin:0 auto 54px; }
+  .section-head .tag{ color:var(--yellow); font-weight:700; letter-spacing:0.1em; text-transform:uppercase; font-size:0.8rem; }
+  .section-head h2{ font-size:clamp(1.8rem,4vw,2.8rem); margin:12px 0 14px; }
+  .section-head p{ color:#FFE3CF; line-height:1.6; }
+
+  /* PANEL */
+  .panel{
+    background: linear-gradient(160deg, rgba(139,45,255,0.9), rgba(92,15,203,0.9));
+    border:2px solid rgba(249,255,33,0.35);
+    border-radius:22px;
+    padding:34px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  }
+
+  /* GROWTH CHART */
+  .chart-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:30px; align-items:center; }
+  @media (max-width:800px){ .chart-grid{grid-template-columns:1fr;} }
+  .chart-box svg{ width:100%; height:auto; display:block; }
+  .legend{ display:flex; gap:22px; margin-top:14px; font-size:0.85rem; flex-wrap:wrap;}
+  .legend span{ display:flex; align-items:center; gap:8px;}
+  .swatch{ width:14px; height:5px; border-radius:3px; display:inline-block;}
+  .stat-row{ display:flex; justify-content:space-between; margin-top:22px; padding-top:18px; border-top:1px solid rgba(255,246,236,0.25);}
+  .stat-row .num{ font-family:'Syne'; font-weight:800; font-size:1.7rem; }
+  .stat-row .num.yellow{ color:var(--yellow); }
+  .slider-row{ margin-top:8px; }
+  .slider-row label{ display:block; font-size:0.85rem; margin-bottom:10px; color:#FFE3CF;}
+  input[type=range]{
+    width:100%; height:6px; border-radius:4px; appearance:none;
+    background: linear-gradient(90deg, var(--yellow), var(--violet));
+    outline:none; cursor:pointer;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    appearance:none; width:22px; height:22px; border-radius:50%;
+    background:var(--yellow); border:3px solid var(--ink); cursor:pointer;
+    box-shadow:0 0 12px rgba(249,255,33,0.8);
+  }
+
+  /* FRAMEWORK */
+  .flow-top{ max-width:560px; margin:0 auto 20px; }
+  .flow-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:20px; }
+  @media (max-width:800px){ .flow-row{ grid-template-columns:1fr; } }
+  .step-card{
+    background: rgba(255,246,236,0.06);
+    border:2px solid rgba(255,246,236,0.18);
+    border-radius:18px; padding:22px; cursor:pointer;
+    transition: border-color .25s ease, background .25s ease, transform .2s ease;
+  }
+  .step-card:hover{ transform:translateY(-4px); border-color:var(--yellow); background:rgba(255,246,236,0.1); }
+  .step-card.open{ border-color:var(--yellow); background:rgba(249,255,33,0.08); }
+  .step-num{ font-family:'Syne'; font-weight:800; color:var(--yellow); font-size:0.85rem; letter-spacing:0.08em;}
+  .step-card h3{ font-size:1.15rem; margin:8px 0 6px; }
+  .step-body{ max-height:0; overflow:hidden; transition:max-height .35s ease; font-size:0.92rem; line-height:1.55; color:#FFE3CF;}
+  .step-card.open .step-body{ max-height:220px; margin-top:10px; }
+  .connector{ width:2px; height:26px; background:var(--yellow); margin:0 auto; opacity:0.7; }
+
+  /* PARETO */
+  .pareto{ display:flex; gap:18px; align-items:flex-end; height:220px; margin:26px 0 10px; }
+  .pareto-col{ flex:1; border-radius:12px 12px 0 0; position:relative; transition:height .6s cubic-bezier(.2,.9,.3,1.2); display:flex; align-items:flex-start; justify-content:center; padding-top:10px; font-family:'Syne'; font-weight:800; }
+  .pareto-col.essential{ background:linear-gradient(180deg, var(--yellow), #d6da00); color:var(--ink); }
+  .pareto-col.noise{ background:linear-gradient(180deg, rgba(255,246,236,0.3), rgba(255,246,236,0.12)); color:var(--paper); }
+  .pareto-caption{ text-align:center; font-size:0.85rem; color:#FFE3CF; margin-top:6px;}
+
+  /* FILTER TOOL */
+  .filter-box textarea{
+    width:100%; min-height:90px; border-radius:14px; border:2px solid rgba(255,246,236,0.3);
+    background:rgba(255,246,236,0.08); color:var(--paper); font-family:'Space Grotesk'; font-size:1rem;
+    padding:16px; resize:vertical;
+  }
+  .filter-box textarea::placeholder{ color:rgba(255,246,236,0.55); }
+  .filter-actions{ display:flex; gap:14px; margin-top:16px; flex-wrap:wrap; }
+  .verdict{
+    margin-top:22px; padding:22px; border-radius:16px; display:none;
+    background: rgba(26,6,48,0.4); border:2px solid var(--yellow);
+    animation: pop .35s ease;
+  }
+  .verdict.show{ display:block; }
+  @keyframes pop{ from{ transform:scale(0.92); opacity:0;} to{ transform:scale(1); opacity:1;} }
+  .verdict .tag2{ font-family:'Syne'; font-weight:800; font-size:1.3rem; display:inline-block; padding:5px 14px; border-radius:8px; margin-bottom:10px;}
+  .verdict .tag2.eliminate{ background:#FF2E63; color:#fff; }
+  .verdict .tag2.delegate{ background:var(--violet); color:#fff; }
+  .verdict .tag2.automate{ background:var(--yellow); color:var(--ink); }
+  .verdict .tag2.scale{ background:#00E0A4; color:var(--ink); }
+  .verdict p{ line-height:1.6; color:#FFE3CF; }
+
+  /* CTA FOOTER */
+  footer{ text-align:center; padding:90px 0 80px; }
+  footer h2{ font-size:clamp(2rem,5vw,3.2rem); margin-bottom:18px; }
+  footer p{ color:#FFE3CF; max-width:520px; margin:0 auto 34px; line-height:1.6;}
+  .foot-note{ margin-top:40px; font-size:0.8rem; color:rgba(255,246,236,0.55); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="brand-dot"></span>easylandx</div>
+    <a class="btn nav-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx →</a>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <span class="eyebrow">Applying The Science of Scaling — Dr. Benjamin Hardy</span>
+  <h1 class="hero-title">Stop tweaking your<br>landing page <span>10%</span>.<br>Start scaling it <span>10X</span>.</h1>
+  <p class="hero-sub">Most businesses treat their landing page like a chore: swap a headline, change a button color, hope for the best. easylandx applies exponential-growth psychology to the page itself — a full identity shift, not a tune-up.</p>
+  <div class="hero-ctas">
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Build my 10x page with easylandx</a>
+    <a class="btn ghost" href="#framework">See the framework ↓</a>
+  </div>
+</header>
+
+<section id="chart">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="tag">Linear vs. Exponential</div>
+      <h2>10% thinking flatlines. 10x thinking compounds.</h2>
+      <p>Drag the slider to see what happens to a landing page's conversions when you optimize incrementally versus when you rebuild around a 10x identity.</p>
+    </div>
+    <div class="panel chart-grid">
+      <div class="chart-box">
+        <svg id="growthSvg" viewBox="0 0 500 260"></svg>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--yellow)"></i> 10x Exponential rebuild</span>
+          <span><i class="swatch" style="background:rgba(255,246,236,0.5)"></i> 10% Incremental tweaks</span>
+        </div>
+      </div>
+      <div>
+        <div class="slider-row">
+          <label>Months since launch: <strong id="monthLabel">12</strong></label>
+          <input type="range" id="monthSlider" min="1" max="24" value="12">
+        </div>
+        <div class="stat-row">
+          <div>
+            <div>10% path conversions</div>
+            <div class="num" id="linearNum">—</div>
+          </div>
+          <div>
+            <div>10x path conversions</div>
+            <div class="num yellow" id="expNum">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="tag">The Framework, Applied to Your Page</div>
+      <h2>easylandx's 5-step 10x rebuild</h2>
+      <p>Tap each step to open it. This is the same structure Hardy uses for scaling a business — mapped directly onto rebuilding a landing page.</p>
+    </div>
+    <div class="flow-top">
+      <div class="step-card" data-step="1">
+        <div class="step-num">STEP 01</div>
+        <h3>Define your 10x future page</h3>
+        <div class="step-body">Before touching a single pixel, describe the page that would convert 10x better — not a nicer version of today's page, but one built from a completely different positioning. easylandx starts every build here.</div>
+      </div>
+    </div>
+    <div class="connector"></div>
+    <div class="step-card" data-step="2">
+      <div class="step-num">STEP 02</div>
+      <h3>Audit & prune the bottom 80%</h3>
+      <div class="step-body">Most pages are 80% filler — generic hero copy, stock icons, sections nobody reads. easylandx strips it down to the 20% of elements that actually drive the click.</div>
+    </div>
+    <div class="connector"></div>
+    <div class="flow-row">
+      <div class="step-card" data-step="3">
+        <div class="step-num">STEP 03</div>
+        <h3>Pivot from "how" to "who"</h3>
+        <div class="step-body">Stop asking "how do I redesign this myself?" Ask "who already knows how to build a page that converts?" That's the whole reason easylandx exists.</div>
+      </div>
+      <div class="step-card" data-step="4">
+        <div class="step-num">STEP 04</div>
+        <h3>Raise your price & quality floor</h3>
+        <div class="step-body">A cheap-looking page attracts cheap-acting customers. easylandx raises the visual and message floor so the page can support premium pricing.</div>
+      </div>
+      <div class="step-card" data-step="5">
+        <div class="step-num">STEP 05</div>
+        <h3>Systematize autonomous growth</h3>
+        <div class="step-body">The page shouldn't need you to babysit it. easylandx builds single-file, self-contained pages that keep converting without manual upkeep.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pareto">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="tag">The Pareto Filter</div>
+      <h2>20% of your page does 80% of the converting</h2>
+      <p>Click the bars to see what usually falls into each bucket on a typical small-business landing page.</p>
+    </div>
+    <div class="panel">
+      <div class="pareto">
+        <div class="pareto-col essential" id="essentialBar" style="height:82%;">20%</div>
+        <div class="pareto-col noise" id="noiseBar" style="height:32%;">80%</div>
+      </div>
+      <div class="pareto-caption" id="paretoCaption">Click a bar — "Essential 20%" or "Noise 80%" — to see what's inside it.</div>
+    </div>
+  </div>
+</section>
+
+<section id="filter">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="tag">Try It</div>
+      <h2>Run your own page through the 10x Filter</h2>
+      <p>Type something you're currently doing on (or to) your landing page. See whether Hardy's framework says keep it, cut it, or hand it off.</p>
+    </div>
+    <div class="panel filter-box">
+      <textarea id="filterInput" placeholder="e.g. 'I keep tweaking the button color myself' or 'I'm writing every section from scratch each month'"></textarea>
+      <div class="filter-actions">
+        <button class="btn" id="runFilter">Apply the 10x Filter</button>
+        <a class="btn violet" href="https://easylandx.github.io" target="_blank" rel="noopener">Let easylandx own it instead</a>
+      </div>
+      <div class="verdict" id="verdictBox">
+        <div class="tag2" id="verdictTag">ELIMINATE</div>
+        <p id="verdictText"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap reveal">
+  <h2>Your next landing page shouldn't be<br>10% better. It should be a different page.</h2>
+  <p>easylandx builds the 10x version — the one you'd build if you weren't doing it yourself.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to easylandx.github.io</a>
+  <div class="foot-note">Inspired by "The Science of Scaling" by Dr. Benjamin Hardy — applied to landing pages by easylandx.</div>
+</footer>
+
+<script>
+  // ---- sound ----
+  let audioCtx;
+  function blip(freq=880, dur=0.07){
+    try{
+      audioCtx = audioCtx || new (window.AudioContext||window.webkitAudioContext)();
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.type = 'square'; o.frequency.value = freq;
+      g.gain.value = 0.05;
+      o.connect(g); g.connect(audioCtx.destination);
+      o.start();
+      g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
+      o.stop(audioCtx.currentTime + dur);
+    }catch(e){}
+  }
+
+  // ---- reveal on scroll ----
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // ---- growth chart ----
+  const svg = document.getElementById('growthSvg');
+  const monthSlider = document.getElementById('monthSlider');
+  const monthLabel = document.getElementById('monthLabel');
+  const linearNum = document.getElementById('linearNum');
+  const expNum = document.getElementById('expNum');
+  const W=500,H=260,PAD=30;
+
+  function val(month, rate){ return 100 * Math.pow(1+rate, month); }
+
+  function drawChart(months){
+    const maxMonths=24;
+    const maxVal = val(maxMonths, 0.22);
+    let linPts=[], expPts=[];
+    for(let m=0;m<=months;m++){
+      const x = PAD + (m/maxMonths)*(W-2*PAD);
+      const yl = H-PAD - (val(m,0.05)/maxVal)*(H-2*PAD);
+      const ye = H-PAD - (val(m,0.22)/maxVal)*(H-2*PAD);
+      linPts.push(x+','+yl);
+      expPts.push(x+','+ye);
+    }
+    svg.innerHTML = `
+      <line x1="${PAD}" y1="${H-PAD}" x2="${W-PAD}" y2="${H-PAD}" stroke="rgba(255,246,236,0.3)" stroke-width="1.5"/>
+      <line x1="${PAD}" y1="${PAD}" x2="${PAD}" y2="${H-PAD}" stroke="rgba(255,246,236,0.3)" stroke-width="1.5"/>
+      <polyline points="${linPts.join(' ')}" fill="none" stroke="rgba(255,246,236,0.55)" stroke-width="3" stroke-linecap="round"/>
+      <polyline points="${expPts.join(' ')}" fill="none" stroke="var(--yellow)" stroke-width="4" stroke-linecap="round" style="filter:drop-shadow(0 0 6px rgba(249,255,33,0.8));"/>
+    `;
+    const lv = Math.round(val(months,0.05));
+    const ev = Math.round(val(months,0.22));
+    linearNum.textContent = lv.toLocaleString();
+    expNum.textContent = ev.toLocaleString();
+    monthLabel.textContent = months;
+  }
+  drawChart(12);
+  monthSlider.addEventListener('input', ()=> drawChart(+monthSlider.value));
+
+  // ---- framework accordion ----
+  document.querySelectorAll('.step-card').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      const wasOpen = card.classList.contains('open');
+      document.querySelectorAll('.step-card').forEach(c=>c.classList.remove('open'));
+      if(!wasOpen){ card.classList.add('open'); blip(660); }
+    });
+  });
+
+  // ---- pareto bars ----
+  const paretoCaption = document.getElementById('paretoCaption');
+  const captions = {
+    essential: "Essential 20%: your headline promise, one clear CTA, and proof (a testimonial or number). This is what actually converts.",
+    noise: "Noise 80%: extra stock photography, five paragraphs of \"about us,\" a features grid nobody scrolls to. Candidates to cut or automate."
+  };
+  document.getElementById('essentialBar').addEventListener('click', ()=>{ paretoCaption.textContent = captions.essential; blip(880); });
+  document.getElementById('noiseBar').addEventListener('click', ()=>{ paretoCaption.textContent = captions.noise; blip(440); });
+
+  // ---- 10x filter tool ----
+  const verdicts = [
+    {tag:'eliminate', label:'ELIMINATE', text:"This is legacy-model behavior — effort spent defending what got you here instead of what gets you to 10x. Cut it and don't look back."},
+    {tag:'delegate', label:'DELEGATE TO A "WHO"', text:"Wrong question. Instead of asking how to do this yourself, find the \"who\" who already owns this outcome — that's exactly what easylandx is built to be."},
+    {tag:'automate', label:'AUTOMATE / SYSTEMATIZE', text:"This should run without you. Build it once into a self-contained system so it keeps converting while you're not watching it."},
+    {tag:'scale', label:'KEEP & SCALE 10X', text:"This is inside your essential 20%. Don't just keep it — raise the floor on it and make it the centerpiece of the page."}
+  ];
+  const runFilter = document.getElementById('runFilter');
+  const verdictBox = document.getElementById('verdictBox');
+  const verdictTag = document.getElementById('verdictTag');
+  const verdictText = document.getElementById('verdictText');
+  runFilter.addEventListener('click', ()=>{
+    const input = document.getElementById('filterInput').value.trim();
+    let pick;
+    const lower = input.toLowerCase();
+    if(/myself|manually|every (week|month|time)|by hand/.test(lower)) pick = verdicts[1];
+    else if(/stock|generic|filler|old|outdated|legacy/.test(lower)) pick = verdicts[0];
+    else if(/automat|system|recurring/.test(lower)) pick = verdicts[2];
+    else if(input.length===0) pick = verdicts[Math.floor(Math.random()*verdicts.length)];
+    else pick = verdicts[Math.floor(Math.random()*verdicts.length)];
+
+    verdictTag.textContent = pick.label;
+    verdictTag.className = 'tag2 ' + pick.tag;
+    verdictText.textContent = pick.text;
+    verdictBox.classList.remove('show');
+    void verdictBox.offsetWidth;
+    verdictBox.classList.add('show');
+    blip(pick.tag==='eliminate'?220: pick.tag==='scale'?990:660, 0.12);
+  });
+</script>
+
+</body>
+</html>

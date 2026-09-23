@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Landing Pages Built on Mind Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violet: #7B0FE0;
+    --violet-deep: #5A0BAD;
+    --cyan: #16E8F0;
+    --lime: #C6FF3D;
+    --ink: #F5F0FF;
+    --ink-dim: rgba(245,240,255,0.72);
+    --card: rgba(255,255,255,0.06);
+    --card-border: rgba(255,255,255,0.14);
+  }
+  html{scroll-padding-top: env(safe-area-inset-top, 0px);}
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(22,232,240,0.18), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(198,255,61,0.12), transparent 45%),
+      linear-gradient(180deg, var(--violet-deep), var(--violet) 60%, var(--violet-deep));
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    min-height:100%;
+  }
+  .wrap{max-width:980px; margin:0 auto; padding: 0 24px;}
+  header{padding: 80px 0 60px;}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color: var(--cyan); letter-spacing:0.02em;}
+  h1{
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height:1.08;
+    margin: 18px 0 20px;
+    max-width: 12ch;
+  }
+  h1 span{color: var(--lime);}
+  .sub{font-size:1.1rem; color: var(--ink-dim); max-width:56ch; line-height:1.6;}
+  .cta-row{margin-top:36px; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-weight:600;
+    text-decoration:none;
+    font-size:1rem;
+    transition: transform .15s ease;
+  }
+  .btn-primary{background: var(--lime); color: var(--violet-deep);}
+  .btn-secondary{background:transparent; color:var(--ink); border:1px solid var(--card-border);}
+  .btn:hover{transform: translateY(-2px);}
+  .btn:focus-visible{outline:2px solid var(--cyan); outline-offset:3px;}
+
+  section{padding: 50px 0;}
+  h2{font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom:12px;}
+  .lede{color: var(--ink-dim); max-width:60ch; line-height:1.6; margin-bottom:36px;}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:16px;}
+  .card{
+    background: var(--card);
+    border:1px solid var(--card-border);
+    border-radius:16px;
+    padding:22px;
+  }
+  .card h3{margin:0 0 8px; font-size:1.05rem; color: var(--cyan);}
+  .card p{margin:0; color: var(--ink-dim); font-size:0.92rem; line-height:1.5;}
+
+  .matcher{
+    background: var(--card);
+    border:1px solid var(--card-border);
+    border-radius:20px;
+    padding: 28px;
+    margin-top: 12px;
+  }
+  .matcher p.hint{color:var(--ink-dim); margin:0 0 18px; font-size:0.95rem;}
+  .states{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:22px;}
+  .state-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    padding:10px 16px;
+    border-radius:999px;
+    border:1px solid var(--card-border);
+    background:transparent;
+    color: var(--ink);
+    cursor:pointer;
+  }
+  .state-btn[aria-pressed="true"]{background: var(--cyan); color: var(--violet-deep); border-color: var(--cyan);}
+  .state-btn:focus-visible{outline:2px solid var(--lime); outline-offset:2px;}
+  #result{
+    border-left: 3px solid var(--lime);
+    padding: 4px 0 4px 18px;
+    min-height: 90px;
+  }
+  #result h4{margin:0 0 8px; font-size:1.1rem;}
+  #result p{margin:0; color: var(--ink-dim); line-height:1.6;}
+
+  footer{padding: 50px 0 70px; text-align:center;}
+  footer .btn-primary{font-size:1.05rem; padding:16px 34px;}
+  footer p{color: var(--ink-dim); margin-top:18px; font-size:0.9rem;}
+
+  @media (max-width:480px){
+    header{padding:60px 0 40px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">EASYLANDX · LANDING PAGE STUDIO</div>
+    <h1>Landing pages built with <span>mind management</span>, not just time management</h1>
+    <p class="sub">Drawing on David Kadavy's <em>Mind Management, Not Time Management</em>, easylandx pairs your creative energy with the right stage of the page-building process — so your landing page comes together with focus instead of friction.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+      <a class="btn btn-secondary" href="#matcher">Try the mental state matcher</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>Every landing page moves through six states</h2>
+    <p class="lede">easylandx maps each part of building your page to the mental state it actually calls for, so your energy goes exactly where it counts.</p>
+    <div class="grid">
+      <div class="card"><h3>Explore</h3><p>Gathering references, competitor pages, and inspiration for your brand's look and voice.</p></div>
+      <div class="card"><h3>Plan</h3><p>Deciding the page's structure: hero, offer, proof, and call to action, in the order that fits your goal.</p></div>
+      <div class="card"><h3>Generate</h3><p>Drafting headlines, copy, and layout freely, with momentum leading the way.</p></div>
+      <div class="card"><h3>Polish</h3><p>Refining typography, spacing, and color once the draft is in place, with a sharp editorial eye.</p></div>
+      <div class="card"><h3>Admin</h3><p>Connecting your domain, adding analytics, and preparing the page for launch.</p></div>
+      <div class="card"><h3>Recharge</h3><p>Stepping back after launch, letting fresh perspective inform the next iteration.</p></div>
+    </div>
+  </section>
+
+  <section id="matcher">
+    <h2>Find your state, find your task</h2>
+    <div class="matcher">
+      <p class="hint">Pick the mental state you're in right now — easylandx will suggest the landing-page task that fits it best.</p>
+      <div class="states" role="group" aria-label="Mental states">
+        <button class="state-btn" data-state="explore" aria-pressed="false">Explore</button>
+        <button class="state-btn" data-state="plan" aria-pressed="false">Plan</button>
+        <button class="state-btn" data-state="generate" aria-pressed="false">Generate</button>
+        <button class="state-btn" data-state="polish" aria-pressed="false">Polish</button>
+        <button class="state-btn" data-state="admin" aria-pressed="false">Admin</button>
+        <button class="state-btn" data-state="recharge" aria-pressed="false">Recharge</button>
+      </div>
+      <div id="result">
+        <h4>Choose a state above</h4>
+        <p>Your suggested easylandx task will appear here.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <h2 style="max-width:20ch; margin:0 auto 18px;">Build your next landing page in the state that suits it</h2>
+    <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Start with easylandx →</a>
+    <p>easylandx.github.io</p>
+  </footer>
+</div>
+
+<script>
+  const suggestions = {
+    explore: {
+      title: "Collect your references",
+      text: "This is a strong moment to browse landing pages you admire, save colors and fonts that feel right, and note the phrases that catch your attention. Curiosity, not commitment, is the goal here."
+    },
+    plan: {
+      title: "Map your page's structure",
+      text: "Sketch the order of your sections: hero promise, key benefits, social proof, and your call to action. A clear map now makes every later step faster."
+    },
+    generate: {
+      title: "Draft freely",
+      text: "Write your headline and copy in one pass, without editing as you go. Let the words flow — easylandx templates make it easy to drop a rough draft straight into a working layout."
+    },
+    polish: {
+      title: "Refine the details",
+      text: "Now's the time to tighten spacing, balance your color palette, and sharpen every line of copy. Your critical eye does its best work here, once the draft already exists."
+    },
+    admin: {
+      title: "Prepare for launch",
+      text: "Connect your domain, add your analytics snippet, and check your links. Quick, satisfying wins that get your page ready to share with the world."
+    },
+    recharge: {
+      title: "Step away, then return",
+      text: "Close the laptop for a while. A short walk or a change of scenery often brings the clearest idea for what your page needs next."
+    }
+  };
+
+  const buttons = document.querySelectorAll('.state-btn');
+  const result = document.getElementById('result');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      const s = suggestions[btn.dataset.state];
+      result.innerHTML = `<h4>${s.title}</h4><p>${s.text}</p>`;
+    });
+  });
+</script>
+
+</body>
+</html>

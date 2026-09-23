@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — landing pages built like mastery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #F5A623;
+    --gold-deep: #D98C12;
+    --cyan: #00D2D6;
+    --orange: #FF4D1C;
+    --ink: #241A05;
+    --cream: #FFF6E3;
+    --line: rgba(36,26,5,0.18);
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --bg: var(--gold);
+    --panel: var(--cream);
+    --text: var(--ink);
+    --text-soft: rgba(36,26,5,0.72);
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    --bg: #221704;
+    --panel: #2E2007;
+    --text: #FFF3D6;
+    --text-soft: rgba(255,243,214,0.72);
+    --line: rgba(255,243,214,0.16);
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #221704;
+      --panel: #2E2007;
+      --text: #FFF3D6;
+      --text-soft: rgba(255,243,214,0.72);
+      --line: rgba(255,243,214,0.16);
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 28px; }
+  a { color: inherit; }
+
+  header {
+    position: sticky; top: 0;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+    z-index: 10;
+  }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .mark { font-family: var(--serif); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; }
+  .mark span { color: var(--orange); }
+  nav a.cta {
+    background: var(--ink); color: var(--cream);
+    padding: 9px 18px; border-radius: 999px; text-decoration: none;
+    font-weight: 600; font-size: 0.9rem; display: inline-block;
+    transition: transform .15s ease;
+  }
+  :root[data-theme="dark"] nav a.cta, @media (prefers-color-scheme: dark) { }
+  nav a.cta:hover { transform: translateY(-1px); }
+
+  section { padding: 84px 0; }
+  h1 {
+    font-family: var(--serif); font-weight: 600;
+    font-size: clamp(2.1rem, 5vw, 3.4rem); line-height: 1.08;
+    letter-spacing: -0.015em; max-width: 13ch; margin: 0 0 22px;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; }
+  @media (max-width: 760px) { .hero-grid { grid-template-columns: 1fr; } }
+  .lede { font-size: 1.15rem; color: var(--text-soft); max-width: 42ch; margin: 0 0 30px; line-height: 1.5; }
+  .btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary, .btn-secondary {
+    padding: 13px 24px; border-radius: 10px; font-weight: 600; font-size: 0.98rem;
+    text-decoration: none; display: inline-block; border: 1.5px solid transparent;
+  }
+  .btn-primary { background: var(--orange); color: #fff; }
+  .btn-secondary { border-color: var(--ink); color: var(--ink); }
+  :root[data-theme="dark"] .btn-secondary { border-color: var(--text); color: var(--text); }
+
+  /* plateau chart */
+  .plateau-card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    padding: 22px 22px 14px;
+  }
+  .plateau-card .label { font-size: 0.8rem; color: var(--text-soft); margin-bottom: 10px; }
+  svg#plateau { width: 100%; height: auto; display: block; }
+  #plateau-line { stroke-dasharray: 620; stroke-dashoffset: 620; animation: draw 2.6s ease forwards .3s; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .dot-pulse { animation: pulse 2.2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: .35; r: 5; } 50% { opacity: 1; r: 7; } }
+
+  h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.5rem, 3vw, 2.1rem); margin: 0 0 12px; letter-spacing: -0.01em; }
+  .section-lede { color: var(--text-soft); max-width: 56ch; margin: 0 0 40px; line-height: 1.55; }
+
+  .fail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 760px) { .fail-grid { grid-template-columns: 1fr; } }
+  .fail-card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+  .fail-card h3 { font-size: 1.05rem; margin: 0 0 8px; font-family: var(--serif); font-weight: 600; }
+  .fail-card p { font-size: 0.93rem; color: var(--text-soft); line-height: 1.5; margin: 0; }
+  .fail-card .tag { display:inline-block; font-size:0.75rem; font-weight:600; color: var(--orange); margin-bottom: 10px; }
+
+  /* pillars */
+  .pillars { display: grid; grid-template-columns: 230px 1fr; gap: 32px; align-items: start; }
+  @media (max-width: 760px) { .pillars { grid-template-columns: 1fr; } }
+  .pillar-list { display: flex; flex-direction: column; gap: 6px; border-left: 2px solid var(--line); padding-left: 0; }
+  .pillar-btn {
+    all: unset; cursor: pointer; padding: 12px 18px; border-radius: 0 10px 10px 0;
+    font-size: 0.98rem; font-weight: 600; color: var(--text-soft);
+    border-left: 3px solid transparent; margin-left: -2px; transition: all .18s ease;
+  }
+  .pillar-btn:hover { color: var(--text); }
+  .pillar-btn[aria-selected="true"] {
+    color: var(--text); border-left-color: var(--cyan);
+    background: color-mix(in srgb, var(--cyan) 12%, transparent);
+  }
+  .pillar-panel {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    padding: 28px 30px; min-height: 190px;
+  }
+  .pillar-panel .n { color: var(--cyan); font-weight: 700; font-size: 0.85rem; margin-bottom: 8px; }
+  .pillar-panel h3 { font-family: var(--serif); font-size: 1.3rem; margin: 0 0 12px; font-weight: 600; }
+  .pillar-panel p { color: var(--text-soft); line-height: 1.6; margin: 0; font-size: 1rem; }
+
+  .plateau-quote {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    padding: 34px; display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center;
+  }
+  @media (max-width: 600px) { .plateau-quote { grid-template-columns: 1fr; } }
+  .ritual-dots { display: flex; gap: 8px; }
+  .ritual-dots span {
+    width: 10px; height: 10px; border-radius: 50%; background: var(--orange);
+    animation: bounce 1.4s ease-in-out infinite;
+  }
+  .ritual-dots span:nth-child(2) { animation-delay: .18s; background: var(--cyan); }
+  .ritual-dots span:nth-child(3) { animation-delay: .36s; }
+  .ritual-dots span:nth-child(4) { animation-delay: .54s; background: var(--cyan); }
+  @keyframes bounce { 0%,100% { transform: translateY(0); opacity: .5; } 50% { transform: translateY(-7px); opacity: 1; } }
+  .plateau-quote p { margin: 0; font-size: 1.05rem; line-height: 1.55; }
+  .plateau-quote .who { color: var(--text-soft); font-size: 0.88rem; margin-top: 10px; }
+
+  footer { padding: 70px 0 calc(70px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); text-align: center; }
+  footer h2 { max-width: 20ch; margin: 0 auto 26px; }
+  footer .wrap { display: flex; flex-direction: column; align-items: center; }
+  .foot-note { color: var(--text-soft); font-size: 0.85rem; margin-top: 26px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #plateau-line { animation: none; stroke-dashoffset: 0; }
+    .dot-pulse, .ritual-dots span { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="mark">easyland<span>x</span></div>
+    <nav><a class="cta" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a></nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Landing pages, built the way mastery is built.</h1>
+      <p class="lede">easylandx builds custom landing pages the slow, deliberate way, so the page still works for you a year from now.</p>
+      <div class="btn-row">
+        <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a>
+        <a class="btn-secondary" href="#pillars">See how we build</a>
+      </div>
+    </div>
+    <div class="plateau-card">
+      <div class="label">Most landing pages after launch</div>
+      <svg id="plateau" viewBox="0 0 320 170" fill="none">
+        <path id="plateau-line" d="M10,150 C 50,150 60,150 90,150 C 130,150 140,90 170,90 C 210,90 220,90 250,90 C 280,90 285,30 310,20"
+          stroke="url(#grad)" stroke-width="4" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="grad" x1="0" y1="0" x2="320" y2="0">
+            <stop offset="0%" stop-color="#00D2D6"/>
+            <stop offset="100%" stop-color="#FF4D1C"/>
+          </linearGradient>
+        </defs>
+        <circle class="dot-pulse" cx="90" cy="150" r="5" fill="#00D2D6"/>
+        <circle class="dot-pulse" cx="250" cy="90" r="5" fill="#FF4D1C" style="animation-delay:.6s"/>
+      </svg>
+      <div class="label">Flat stretches are where the page keeps proving itself — not a plateau to panic over.</div>
+    </div>
+  </div>
+</section>
+
+<section id="wrong">
+  <div class="wrap">
+    <h2>Three ways it usually goes wrong</h2>
+    <p class="section-lede">Before easylandx, most people land in one of these — worth knowing which one you're closest to.</p>
+    <div class="fail-grid">
+      <div class="fail-card">
+        <span class="tag">The template mill</span>
+        <h3>Live fast, forgotten faster</h3>
+        <p>A page goes up in an afternoon, built off the same block anyone could buy. It looks like every other site running the same theme, so it stops working the moment it's noticed.</p>
+      </div>
+      <div class="fail-card">
+        <span class="tag">The DIY builder</span>
+        <h3>Fighting the drag-and-drop</h3>
+        <p>Nights spent forcing a page builder to behave. It breaks on a phone, the layout never quite settles, and it's never really finished — just abandoned mid-edit.</p>
+      </div>
+      <div class="fail-card">
+        <span class="tag">The one-and-done agency</span>
+        <h3>Built once, touched never again</h3>
+        <p>A decent page, shipped and handed off. No one checks back when the offer changes or the business moves on. The relationship ends at invoice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pillars">
+  <div class="wrap">
+    <h2>Five things we do instead</h2>
+    <p class="section-lede">easylandx isn't a template — it's a process, built for people who plan to be around for years, not a season.</p>
+    <div class="pillars">
+      <div class="pillar-list" role="tablist" aria-label="easylandx process">
+        <button class="pillar-btn" role="tab" aria-selected="true" data-i="0">Instruction</button>
+        <button class="pillar-btn" role="tab" aria-selected="false" data-i="1">Practice</button>
+        <button class="pillar-btn" role="tab" aria-selected="false" data-i="2">Fundamentals</button>
+        <button class="pillar-btn" role="tab" aria-selected="false" data-i="3">Intention</button>
+        <button class="pillar-btn" role="tab" aria-selected="false" data-i="4">Edge pushing</button>
+      </div>
+      <div class="pillar-panel" id="pillar-panel">
+        <div class="n">01</div>
+        <h3>We study what you do first</h3>
+        <p>Your offer, your customers, how people actually find and choose you — before a single pixel goes down, so the page is built on how your business actually runs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="plateau-note">
+  <div class="wrap">
+    <h2>We love the plateau</h2>
+    <p class="section-lede">Growth after launch rarely looks like a spike. Most weeks look flat, and that's the page doing its job quietly.</p>
+    <div class="plateau-quote">
+      <div class="ritual-dots"><span></span><span></span><span></span><span></span></div>
+      <div>
+        <p>The visible jumps are rare. What matters is whether we keep showing up — tightening load time, checking the ordering flow, catching what a template would never notice.</p>
+        <div class="who">The easylandx build ritual</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2>Ready for a page built to last?</h2>
+    <a class="btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a>
+    <p class="foot-note">easylandx — landing pages, built the way mastery is built. Not free. Not a template.</p>
+  </div>
+</footer>
+
+<script>
+  const pillars = [
+    { n: '01', title: 'We study what you do first', body: 'Your offer, your customers, how people actually find and choose you — before a single pixel goes down, so the page is built on how your business actually runs.' },
+    { n: '02', title: 'Daily refinement, not a one-off build', body: 'Your page keeps getting worked on after launch: small edits, tested copy, checked links — a standing ritual, not a project that closes out.' },
+    { n: '03', title: 'We follow what actually works', body: 'Fast load times, mobile-first layout, a clear next step. The unglamorous basics, done properly, before anything clever gets added.' },
+    { n: '04', title: 'Every choice serves the visit', body: 'Layout, copy, and imagery are chosen around one question: what does someone need to see to decide to take the next step with you?' },
+    { n: '05', title: 'Bold, once the basics hold', body: 'Once the fundamentals are solid, we take deliberate risks — a distinct visual identity, not a safe template default — while keeping the page working.' },
+  ];
+  const panel = document.getElementById('pillar-panel');
+  document.querySelectorAll('.pillar-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.pillar-btn').forEach(b => b.setAttribute('aria-selected', 'false'));
+      btn.setAttribute('aria-selected', 'true');
+      const p = pillars[+btn.dataset.i];
+      panel.innerHTML = `<div class="n">${p.n}</div><h3>${p.title}</h3><p>${p.body}</p>`;
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Landing pages built from a quiet mind</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFD400;
+    --yellow-deep:#F0C400;
+    --cyan:#00E5FF;
+    --pink:#FF2E7E;
+    --ink:#0B0B14;
+    --white:#FFFDF3;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit}
+  html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--yellow);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:17px;
+    line-height:1.6;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif; font-weight:700; line-height:1.05; margin:0}
+  .wrap{max-width:1080px; margin:0 auto; padding-inline:clamp(20px,5vw,56px)}
+  a{color:inherit}
+
+  /* Nav */
+  nav{position:sticky; top:0; z-index:20; background:var(--yellow); border-bottom:3px solid var(--ink)}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding-block:16px}
+  .logo{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.3rem; letter-spacing:-0.02em}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--cyan); color:var(--ink); text-decoration:none;
+    font-weight:600; padding:12px 22px; border:3px solid var(--ink);
+    border-radius:999px; box-shadow:5px 5px 0 var(--ink);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translate(-2px,-2px); box-shadow:7px 7px 0 var(--ink)}
+  .btn:active{transform:translate(1px,1px); box-shadow:3px 3px 0 var(--ink)}
+  .btn.pink{background:var(--pink); color:var(--white)}
+  .btn.small{padding:9px 16px; font-size:.9rem; box-shadow:4px 4px 0 var(--ink)}
+
+  /* Hero */
+  header.hero{padding-block:clamp(56px,10vw,110px) clamp(48px,8vw,88px); position:relative; overflow:hidden}
+  header.hero .ring{
+    position:absolute; border:3px solid var(--ink); border-radius:50%; opacity:.15;
+  }
+  header.hero .ring.r1{width:420px; height:420px; right:-140px; top:-100px}
+  header.hero .ring.r2{width:220px; height:220px; right:60px; top:40px; border-color:var(--pink); opacity:.5}
+  .kicker{font-weight:600; color:var(--pink); margin-bottom:14px}
+  h1.hero-h{font-size:clamp(2.4rem,6vw,4.4rem); max-width:14ch}
+  h1.hero-h em{font-style:normal; background:var(--cyan); padding:0 .15em; box-decoration-break:clone; -webkit-box-decoration-break:clone}
+  .hero-sub{max-width:52ch; font-size:1.15rem; margin-top:22px}
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap; margin-top:36px}
+
+  section{padding-block:clamp(48px,8vw,90px); border-top:3px solid var(--ink)}
+  section.philosophy{background:var(--white)}
+  section.philosophy h2{font-size:clamp(1.8rem,4vw,2.6rem); max-width:18ch}
+  .lede{max-width:60ch; margin-top:14px; font-size:1.05rem}
+
+  .principles{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:22px; margin-top:44px}
+  .p-card{
+    border:3px solid var(--ink); border-radius:18px; padding:22px 20px;
+    background:var(--yellow); box-shadow:6px 6px 0 var(--ink);
+  }
+  .p-card:nth-child(2){background:var(--cyan)}
+  .p-card:nth-child(3){background:var(--pink); color:var(--white)}
+  .p-card:nth-child(4){background:var(--cyan)}
+  .p-card:nth-child(5){background:var(--yellow)}
+  .p-num{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:.95rem; opacity:.7}
+  .p-card h3{font-size:1.2rem; margin-top:8px}
+  .p-card p{margin:10px 0 0; font-size:.95rem}
+
+  section.tool{background:var(--ink); color:var(--white)}
+  section.tool h2{font-size:clamp(1.8rem,4vw,2.6rem); max-width:18ch; color:var(--yellow)}
+  section.tool .lede{color:#d8d7e6}
+  .board{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:36px}
+  @media (max-width:640px){.board{grid-template-columns:1fr}}
+  .col{border:3px solid var(--cyan); border-radius:16px; padding:16px; min-height:160px}
+  .col.pink-col{border-color:var(--pink)}
+  .col h4{font-family:'Space Grotesk',sans-serif; font-size:1rem; margin:0 0 10px}
+  .pool{display:flex; flex-wrap:wrap; gap:10px; margin-top:24px}
+  .chip{
+    border:2px solid var(--white); border-radius:999px; padding:9px 16px;
+    font-size:.9rem; background:transparent; color:var(--white); cursor:pointer;
+    transition:background .15s ease, transform .1s ease;
+  }
+  .chip:hover:not([disabled]){background:rgba(255,255,255,.12)}
+  .chip[disabled]{cursor:default}
+  .chip.correct{background:var(--cyan); color:var(--ink); border-color:var(--cyan)}
+  .chip.wrong{background:var(--pink); color:var(--white); border-color:var(--pink)}
+  .placed{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; font-size:.9rem}
+  .placed li{padding:8px 10px; border-radius:8px; background:rgba(255,255,255,.08)}
+  .score{margin-top:22px; font-size:1.05rem; min-height:1.5em}
+
+  footer{padding-block:40px; text-align:center; border-top:3px solid var(--ink)}
+  footer .btn{margin-top:8px}
+  footer p{margin:0 0 18px; font-size:.95rem}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; scroll-behavior:auto !important}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="logo">EasyLandX</span>
+    <a class="btn small" href="https://easylandx.github.io/" target="_blank" rel="noopener">Visit EasyLandX ↗</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="ring r1"></div>
+  <div class="ring r2"></div>
+  <div class="wrap">
+    <p class="kicker">Landing pages for small businesses</p>
+    <h1 class="hero-h">A page converts best when it isn't <em>trying</em> to.</h1>
+    <p class="hero-sub">EasyLandX builds affordable, conversion-focused landing pages for small businesses — designed the way top performers train their minds: quiet, clear, and free of the noise that makes visitors hesitate.</p>
+    <div class="hero-ctas">
+      <a class="btn" href="https://easylandx.github.io/" target="_blank" rel="noopener">See EasyLandX sites ↗</a>
+      <a class="btn pink" href="#tool">Try the Controllables tool</a>
+    </div>
+  </div>
+</header>
+
+<section class="philosophy">
+  <div class="wrap">
+    <h2>Five ideas we design every page around</h2>
+    <p class="lede">Mental performance coaches spend years teaching athletes to stop forcing results and start trusting a calm, well-trained process. A landing page works the same way — so this is the framework behind how EasyLandX builds one.</p>
+    <div class="principles">
+      <div class="p-card">
+        <span class="p-num">01</span>
+        <h3>Judge the process, not the day</h3>
+        <p>One slow day of traffic doesn't mean the page failed. We build for the pattern over weeks, not a single number that panics a client on a Tuesday.</p>
+      </div>
+      <div class="p-card">
+        <span class="p-num">02</span>
+        <h3>Give the page a quiet mind</h3>
+        <p>One message, one action, real breathing room. Every extra button or banner is a thought competing with the one you actually need the visitor to have.</p>
+      </div>
+      <div class="p-card">
+        <span class="p-num">03</span>
+        <h3>Write from love, not fear</h3>
+        <p>No fake countdown timers or "only 1 left" pressure. Copy that explains a genuine benefit earns more trust than copy that manufactures urgency.</p>
+      </div>
+      <div class="p-card">
+        <span class="p-num">04</span>
+        <h3>Focus everything on the next click</h3>
+        <p>Layout, color, and copy all point toward a single call to action, so the visitor is never deciding what to look at — only whether to say yes.</p>
+      </div>
+      <div class="p-card">
+        <span class="p-num">05</span>
+        <h3>Treat a bad result as data</h3>
+        <p>A weak headline isn't a failure to fix in shame — it's neutral feedback. We test, read the data calmly, and rewrite. That's the whole loop.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tool" id="tool">
+  <div class="wrap">
+    <h2>Sort what actually shapes a conversion</h2>
+    <p class="lede">Elite performers stop wasting energy on what they can't control and pour it into what they can. Click each item below into the column where it belongs.</p>
+
+    <div class="board">
+      <div class="col">
+        <h4>Controllable</h4>
+        <ul class="placed" id="list-yes"></ul>
+      </div>
+      <div class="col pink-col">
+        <h4>Not controllable</h4>
+        <ul class="placed" id="list-no"></ul>
+      </div>
+    </div>
+
+    <div class="pool" id="pool"></div>
+    <p class="score" id="score"></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Ready for a page that performs because it's calm, not because it's loud?</p>
+    <a class="btn" href="https://easylandx.github.io/" target="_blank" rel="noopener">Go to EasyLandX ↗</a>
+  </div>
+</footer>
+
+<script>
+  const items = [
+    {t:"Headline clarity", ctrl:true},
+    {t:"Page load speed", ctrl:true},
+    {t:"Call-to-action wording", ctrl:true},
+    {t:"Visual hierarchy", ctrl:true},
+    {t:"Trust signals shown", ctrl:true},
+    {t:"Mobile layout", ctrl:true},
+    {t:"Competitor's pricing", ctrl:false},
+    {t:"Overall market conditions", ctrl:false},
+    {t:"A visitor's mood that day", ctrl:false},
+    {t:"Ad platform's algorithm", ctrl:false},
+    {t:"Seasonal demand shifts", ctrl:false},
+  ];
+
+  const pool = document.getElementById('pool');
+  const listYes = document.getElementById('list-yes');
+  const listNo = document.getElementById('list-no');
+  const scoreEl = document.getElementById('score');
+  let correct = 0, answered = 0;
+
+  items.sort(()=>Math.random()-0.5).forEach((item)=>{
+    const btn = document.createElement('button');
+    btn.className = 'chip';
+    btn.type = 'button';
+    btn.textContent = item.t;
+    btn.addEventListener('click', ()=>{
+      if(btn.disabled) return;
+      const guessControllable = confirm(`Is "${item.t}" something YOU can control on a landing page?\n\nOK = controllable, Cancel = not controllable`);
+      const isCorrect = guessControllable === item.ctrl;
+      btn.disabled = true;
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      answered++;
+      if(isCorrect) correct++;
+
+      const li = document.createElement('li');
+      li.textContent = item.t;
+      (item.ctrl ? listYes : listNo).appendChild(li);
+
+      if(answered === items.length){
+        scoreEl.textContent = `You sorted ${correct} of ${items.length} correctly. That's the whole discipline: put your energy into the controllable column — the rest is just weather.`;
+      } else {
+        scoreEl.textContent = `${answered} of ${items.length} sorted.`;
+      }
+    });
+    pool.appendChild(btn);
+  });
+</script>
+
+</body>
+</html>
