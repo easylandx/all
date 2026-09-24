@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — landing pages, built with a beginner's mind</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bamboo: #CFEA43;
+    --bamboo-soft: #E4F17E;
+    --ink: #14230F;
+    --ink-soft: #2A3A1F;
+    --cyan: #16E0D6;
+    --yellow: #FFD93C;
+    --paper: #FBFEEF;
+    --card: rgba(20,35,15,0.06);
+    --card-border: rgba(20,35,15,0.14);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bamboo: #92B22B;
+      --bamboo-soft: #7C9A28;
+      --ink: #0C1408;
+      --paper: #101B0B;
+      --card: rgba(251,254,239,0.06);
+      --card-border: rgba(251,254,239,0.14);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bamboo: #92B22B;
+    --bamboo-soft: #7C9A28;
+    --ink: #0C1408;
+    --paper: #101B0B;
+    --card: rgba(251,254,239,0.06);
+    --card-border: rgba(251,254,239,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bamboo);
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.01em; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px); }
+
+  /* NAV */
+  nav.top { padding: 28px 0 0; position: relative; z-index: 5; }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; }
+  .brand { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 600; }
+  .brand span { color: var(--cyan); }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink); color: var(--paper);
+    padding: 10px 20px; border-radius: 100px; font-size: 0.9rem; font-weight: 500;
+    text-decoration: none; transition: transform 0.25s ease;
+  }
+  .nav-cta:hover { transform: translateY(-2px); }
+
+  /* HERO */
+  header.hero { padding: 8vh 0 10vh; position: relative; }
+  .hero .wrap { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; }
+  .hero h1 { font-size: clamp(2.3rem, 5vw, 3.6rem); line-height: 1.06; }
+  .hero .lede { max-width: 46ch; margin-top: 22px; font-size: 1.08rem; color: var(--ink-soft); }
+  .hero .tag {
+    display: inline-block; font-size: 0.85rem; padding: 6px 14px; border-radius: 100px;
+    background: var(--paper); margin-bottom: 20px; border: 1px solid var(--card-border);
+  }
+
+  /* BREATH ORB */
+  .orb-stage { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .orb-btn {
+    position: relative; width: clamp(180px, 24vw, 240px); height: clamp(180px, 24vw, 240px);
+    border-radius: 50%; border: none; cursor: pointer;
+    background: radial-gradient(circle at 35% 30%, var(--cyan), var(--bamboo-soft) 70%);
+    box-shadow: 0 0 0 1px var(--card-border), 0 20px 60px -20px rgba(22,224,214,0.55);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 6s cubic-bezier(.4,0,.2,1);
+    font-family: 'Fraunces', serif; color: var(--ink); font-size: 1rem;
+  }
+  .orb-btn.breathing { animation: breathe 8s ease-in-out infinite; }
+  .orb-btn .orb-label { background: var(--paper); padding: 8px 16px; border-radius: 100px; font-size: 0.85rem; }
+  @keyframes breathe {
+    0%, 100% { transform: scale(0.82); }
+    50% { transform: scale(1.08); }
+  }
+  .orb-caption { font-size: 0.85rem; color: var(--ink-soft); text-align: center; max-width: 28ch; }
+  @media (prefers-reduced-motion: reduce) {
+    .orb-btn.breathing { animation: none; }
+  }
+
+  /* SECTIONS */
+  section { padding: 9vh 0; position: relative; }
+  .section-head { max-width: 62ch; margin-bottom: 48px; }
+  .section-head h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); }
+  .section-head p { margin-top: 14px; font-size: 1.02rem; color: var(--ink-soft); max-width: 52ch; }
+
+  /* PRACTICE PATH */
+  .path { display: flex; flex-direction: column; gap: 14px; }
+  .path-row1 { display: flex; }
+  .path-branches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+  .node {
+    background: var(--paper); border: 1px solid var(--card-border); border-radius: 18px;
+    padding: 20px 22px; cursor: pointer; text-align: left; width: 100%;
+    font-family: 'Work Sans', sans-serif; transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .node:hover, .node[aria-expanded="true"] { border-color: var(--cyan); box-shadow: 0 10px 30px -14px rgba(20,35,15,0.35); }
+  .node .n-num { font-size: 0.78rem; color: var(--ink-soft); }
+  .node .n-title { font-family: 'Fraunces', serif; font-size: 1.08rem; margin-top: 4px; }
+  .node .n-body {
+    max-height: 0; overflow: hidden; font-size: 0.92rem; color: var(--ink-soft);
+    transition: max-height 0.35s ease, margin-top 0.35s ease; margin-top: 0;
+  }
+  .node[aria-expanded="true"] .n-body { max-height: 200px; margin-top: 10px; }
+  .connector { width: 2px; height: 26px; background: var(--ink); opacity: 0.25; margin: 0 auto; }
+
+  /* NOTHING SPECIAL */
+  .ordinary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .o-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; padding: 26px; }
+  .o-card .dot { width: 12px; height: 12px; border-radius: 50%; margin-bottom: 16px; }
+  .o-card:nth-child(1) .dot { background: var(--cyan); }
+  .o-card:nth-child(2) .dot { background: var(--yellow); }
+  .o-card:nth-child(3) .dot { background: var(--ink); }
+  .o-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .o-card p { font-size: 0.92rem; color: var(--ink-soft); }
+
+  /* CTA */
+  .cta-band {
+    background: var(--ink); color: var(--paper); border-radius: 28px;
+    padding: clamp(32px, 6vw, 64px); text-align: center; margin: 0 auto;
+  }
+  .cta-band h2 { color: var(--paper); font-size: clamp(1.7rem, 4vw, 2.4rem); max-width: 20ch; margin: 0 auto; }
+  .cta-band p { margin-top: 16px; color: rgba(251,254,239,0.72); max-width: 42ch; margin-inline: auto; }
+  .easylandx-btn {
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 30px;
+    background: var(--cyan); color: var(--ink); font-weight: 600; text-decoration: none;
+    padding: 15px 30px; border-radius: 100px; font-size: 1rem;
+    box-shadow: 0 0 0 3px var(--yellow) inset; transition: transform 0.25s ease;
+  }
+  .easylandx-btn:hover { transform: translateY(-3px); }
+
+  footer { padding: 40px 0 60px; text-align: center; font-size: 0.85rem; color: var(--ink-soft); }
+
+  @media (max-width: 760px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .path-branches, .ordinary { grid-template-columns: 1fr; }
+  }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <div class="brand">easyland<span>x</span></div>
+    <a class="nav-cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx ↗</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="tag">Inspired by a beginner's mind</span>
+      <h1>Your landing page, meeting the moment exactly as it is</h1>
+      <p class="lede">easylandx builds an original page for every business — no templates, no borrowed layouts. Each site is composed fresh, the way a fresh page begins with a single clean breath.</p>
+    </div>
+    <div class="orb-stage">
+      <button class="orb-btn" id="orbBtn" aria-pressed="false">
+        <span class="orb-label" id="orbLabel">Take a mindful pause</span>
+      </button>
+      <p class="orb-caption" id="orbCaption">A small breathing moment, borrowed from shikantaza — sit, breathe, and let the page arrive.</p>
+    </div>
+  </div>
+</header>
+
+<section id="path">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How every page comes together</h2>
+      <p>We follow the same practice framework a Zen teacher might offer a student — five steady movements that shape a page around your business's true character. Tap each one to open it.</p>
+    </div>
+    <div class="path">
+      <div class="path-row1">
+        <button class="node" data-i="1" aria-expanded="false">
+          <div class="n-num">Movement one</div>
+          <div class="n-title">Cultivate a beginner's mind</div>
+          <div class="n-body">We arrive at your business with fresh eyes each time — no recycled layout, no assumptions from the last project. Your story sets the shape of the page.</div>
+        </button>
+      </div>
+      <div class="connector"></div>
+      <button class="node" data-i="2" aria-expanded="false">
+        <div class="n-num">Movement two</div>
+        <div class="n-title">Just sit with what's already there</div>
+        <div class="n-body">Before any design begins, we sit with your offerings, your space, your customers — the raw material is already complete, and the page simply reveals it.</div>
+      </button>
+      <div class="connector"></div>
+      <div class="path-branches">
+        <button class="node" data-i="3" aria-expanded="false">
+          <div class="n-num">Movement three</div>
+          <div class="n-title">Let details settle like clouds</div>
+          <div class="n-body">Copy, colours, and photos are tried, watched, and refined — kept if they serve the page, released if they drift past it.</div>
+        </button>
+        <button class="node" data-i="4" aria-expanded="false">
+          <div class="n-num">Movement four</div>
+          <div class="n-title">Treat the everyday as sacred</div>
+          <div class="n-body">Hours, directions, a booking button — these ordinary elements get the same care as the headline, because visitors rely on them most.</div>
+        </button>
+        <button class="node" data-i="5" aria-expanded="false">
+          <div class="n-num">Movement five</div>
+          <div class="n-title">Welcome every bit of feedback</div>
+          <div class="n-body">Notes from your first weeks live become nourishment — folded straight back into the page so it keeps ripening alongside your business.</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ordinary">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Nothing special, done wholeheartedly</h2>
+      <p>Suzuki taught that awakening lives in washing a bowl, not in dramatic visions. We build the same way — full attention given to the small, ordinary pieces of a good page.</p>
+    </div>
+    <div class="ordinary">
+      <div class="o-card">
+        <div class="dot"></div>
+        <h3>One page, one focus</h3>
+        <p>Each section earns its place — clear offerings, real photos, a single clear way to get in touch.</p>
+      </div>
+      <div class="o-card">
+        <div class="dot"></div>
+        <h3>Handwritten, not assembled</h3>
+        <p>Every layout is composed for your business specifically, the way a craftsperson learns exactly what a client needs.</p>
+      </div>
+      <div class="o-card">
+        <div class="dot"></div>
+        <h3>Light and steady</h3>
+        <p>Fast to open, easy to read on any phone, and simple enough for you to update yourself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>See what a page built with presence looks like</h2>
+      <p>Step over to easylandx and explore the practice in its natural home.</p>
+      <a class="easylandx-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">easylandx — an original landing page for every business, composed fresh each time.</div>
+</footer>
+
+<script>
+  const orb = document.getElementById('orbBtn');
+  const label = document.getElementById('orbLabel');
+  const caption = document.getElementById('orbCaption');
+  let breathing = false, cycle = null, phase = 0;
+  const phases = ['Breathe in gently', 'Hold, at ease', 'Breathe out slowly', 'Rest, complete'];
+
+  orb.addEventListener('click', () => {
+    breathing = !breathing;
+    orb.setAttribute('aria-pressed', String(breathing));
+    if (breathing) {
+      orb.classList.add('breathing');
+      caption.textContent = 'Follow the circle — it expands and settles on its own rhythm.';
+      phase = 0;
+      label.textContent = phases[phase];
+      cycle = setInterval(() => {
+        phase = (phase + 1) % phases.length;
+        label.textContent = phases[phase];
+      }, 2000);
+    } else {
+      orb.classList.remove('breathing');
+      clearInterval(cycle);
+      label.textContent = 'Take a mindful pause';
+      caption.textContent = "A small breathing moment, borrowed from shikantaza — sit, breathe, and let the page arrive.";
+    }
+  });
+
+  document.querySelectorAll('.node').forEach(node => {
+    node.addEventListener('click', () => {
+      const isOpen = node.getAttribute('aria-expanded') === 'true';
+      node.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+</script>
+
+</body>
+</html>
