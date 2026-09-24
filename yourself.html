@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Presence for Your Business's Front Door</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lime:#AEE23C;
+    --lime-deep:#8FC72B;
+    --cyan:#00D9E8;
+    --yellow:#FFDE59;
+    --ink:#16241A;
+    --paper:#FBFBEE;
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior:smooth;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--lime);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:600; margin:0 0 .4em; line-height:1.08;}
+  p{margin:0 0 1em;}
+  a{color:inherit;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+  :focus-visible{outline:3px solid var(--ink); outline-offset:3px;}
+
+  /* ---- nav ---- */
+  header.nav{padding:26px 0;}
+  .nav .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .brand{font-family:'Fraunces', serif; font-weight:600; font-size:1.3rem; letter-spacing:-.01em;}
+  .brand span{color:var(--cyan); -webkit-text-stroke: .4px var(--ink);}
+  .btn{
+    display:inline-flex; align-items:center; gap:.5em;
+    background:var(--ink); color:var(--paper);
+    padding:.85em 1.6em; border-radius:100px;
+    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:.95rem;
+    text-decoration:none; border:2px solid var(--ink);
+    transition:transform .18s ease, background .18s ease, color .18s ease;
+  }
+  .btn:hover{background:var(--yellow); color:var(--ink); transform:translateY(-2px);}
+  .btn.ghost{background:transparent; color:var(--ink);}
+  .btn.ghost:hover{background:var(--ink); color:var(--paper);}
+  .btn.small{padding:.6em 1.2em; font-size:.85rem;}
+
+  /* ---- hero ---- */
+  .hero{padding:40px 0 70px;}
+  .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:48px; align-items:center;}
+  .hero h1{font-size:clamp(2.3rem, 4.6vw, 3.4rem); max-width:11ch;}
+  .hero .lede{font-size:1.15rem; max-width:44ch; color:#20341f;}
+  .hero .cta-row{display:flex; gap:14px; margin-top:1.6em; flex-wrap:wrap;}
+
+  /* breathing widget */
+  .breathe-card{
+    background:var(--paper); border-radius:28px; padding:30px;
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+    border:2px solid var(--lime-deep);
+  }
+  .breathe-stage{position:relative; width:170px; height:170px; display:flex; align-items:center; justify-content:center;}
+  .breathe-circle{
+    width:88px; height:88px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--cyan), var(--lime-deep) 75%);
+    box-shadow:0 0 0 14px rgba(0,217,232,.16);
+    transition: width 4s ease-in-out, height 4s ease-in-out, box-shadow 4s ease-in-out;
+  }
+  .breathe-card.inhale .breathe-circle{width:150px; height:150px; box-shadow:0 0 0 20px rgba(255,222,89,.28);}
+  .breathe-word{font-family:'Fraunces', serif; font-size:1.1rem; min-height:1.4em;}
+  @media (prefers-reduced-motion: reduce){
+    .breathe-circle{transition:none;}
+  }
+
+  /* ---- principles ---- */
+  .principles{padding:70px 0;}
+  .principles .kicker{color:#3a5233; font-weight:500;}
+  .tabs{display:flex; gap:10px; flex-wrap:wrap; margin:26px 0 0;}
+  .tab{
+    font-family:'Space Grotesk'; font-size:.92rem; font-weight:500;
+    background:var(--paper); border:2px solid var(--lime-deep); color:var(--ink);
+    border-radius:100px; padding:.6em 1.15em; cursor:pointer;
+  }
+  .tab[aria-selected="true"]{background:var(--ink); border-color:var(--ink); color:var(--yellow);}
+  .panel{
+    margin-top:22px; background:var(--paper); border-radius:24px; padding:34px;
+    border:2px solid var(--lime-deep); min-height:150px;
+  }
+  .panel h3{font-size:1.4rem; color:#1c2f18;}
+  .panel .num{display:inline-block; font-family:'Space Grotesk'; color:var(--cyan); font-weight:600; margin-bottom:.4em;}
+
+  /* ---- invest ---- */
+  .invest{padding:20px 0 80px;}
+  .invest-card{
+    background:var(--ink); color:var(--paper); border-radius:28px; padding:46px;
+    display:grid; grid-template-columns:1.2fr .8fr; gap:30px; align-items:center;
+  }
+  .invest h2{color:var(--yellow); font-size:1.9rem;}
+  .invest p{color:#dfe9d9;}
+  .invest .btn{background:var(--cyan); color:var(--ink); border-color:var(--cyan);}
+  .invest .btn:hover{background:var(--yellow); border-color:var(--yellow);}
+
+  footer{padding:50px 0 60px; text-align:center;}
+  footer p{color:#3a5233; max-width:40ch; margin:0 auto 1.4em;}
+
+  @media (max-width:760px){
+    .hero-grid{grid-template-columns:1fr;}
+    .invest-card{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="brand">easyland<span>x</span></div>
+    <a class="btn ghost small" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Beginner's mind for your digital front door</h1>
+        <p class="lede">EasyLandX composes a landing page fresh from your brand's own story — your colors, your offer, your audience — met without a fixed template, every time.</p>
+        <div class="cta-row">
+          <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Begin with EasyLandX</a>
+          <a class="btn ghost" href="#practice">See the practice</a>
+        </div>
+      </div>
+      <div class="breathe-card" id="breatheCard">
+        <div class="breathe-stage"><div class="breathe-circle" id="breatheCircle"></div></div>
+        <p class="breathe-word" id="breatheWord">Take one breath before we begin</p>
+        <button class="btn small" id="breatheBtn" type="button">Start breathing</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="principles" id="practice">
+    <div class="wrap">
+      <p class="kicker">The practice behind every page</p>
+      <h2>Five ways we meet your site</h2>
+      <div class="tabs" role="tablist" aria-label="Design principles" id="tabs"></div>
+      <div class="panel" id="panel" role="tabpanel"></div>
+    </div>
+  </section>
+
+  <section class="invest">
+    <div class="wrap invest-card">
+      <div>
+        <h2>An investment in presence</h2>
+        <p>Each EasyLandX site is composed by hand for one project at a time — priced once, built fully, and yours to keep. Your page carries intentional focus: made to order, right in front of you.</p>
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Begin with EasyLandX</a>
+      </div>
+      <div>
+        <p style="color:var(--cyan); font-family:'Fraunces',serif; font-size:1.15rem;">"Nothing special — washing your bowl, listening attentively, chopping wood."</p>
+        <p style="color:#b9c7b3; font-size:.9rem;">A page that sounds like your business, because it was made for it.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Give your project a front door that is composed, present, and entirely its own.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx.github.io</a>
+  </div>
+</footer>
+
+<script>
+  // ----- Breathing widget -----
+  const card = document.getElementById('breatheCard');
+  const word = document.getElementById('breatheWord');
+  const btn = document.getElementById('breatheBtn');
+  let running = false, timer = null, phase = 0;
+  const phases = [
+    {label:'Breathe in', cls:true, hold:4200},
+    {label:'Hold, gently', cls:true, hold:1200},
+    {label:'Breathe out', cls:false, hold:4200},
+    {label:'Rest here', cls:false, hold:1200}
+  ];
+  function step(){
+    const p = phases[phase % phases.length];
+    word.textContent = p.label;
+    card.classList.toggle('inhale', p.cls);
+    phase++;
+    timer = setTimeout(step, p.hold);
+  }
+  btn.addEventListener('click', () => {
+    running = !running;
+    if(running){
+      btn.textContent = 'Pause';
+      phase = 0;
+      step();
+    } else {
+      btn.textContent = 'Start breathing';
+      clearTimeout(timer);
+      card.classList.remove('inhale');
+      word.textContent = 'Take one breath before we begin';
+    }
+  });
+
+  // ----- Principle tabs -----
+  const principles = [
+    {n:'01', t:"Beginner's mind", d:"Every project opens fresh. Your brand's colors and voice are met without a fixed template — many possibilities live in a mind that starts open."},
+    {n:'02', t:'Just sitting', d:'Your page carries the offer plainly: services, contact details, key information — present and easy to find, with nothing extra standing in the way.'},
+    {n:'03', t:'Thoughts like clouds', d:'Visitors arrive with many tabs open. Yours holds attention gently, then lets it settle naturally on your invitation to connect.'},
+    {n:'04', t:'Everyday mindfulness', d:'Every small detail — a photo, a button, a line of copy — receives the same care as the whole page.'},
+    {n:'05', t:'Imperfect humanity', d:'Real content, clear contact, genuine appeal. A page that sounds like you, wearing its own character warmly.'}
+  ];
+  const tabsEl = document.getElementById('tabs');
+  const panelEl = document.getElementById('panel');
+  function renderPanel(i){
+    const p = principles[i];
+    panelEl.innerHTML = `<span class="num">${p.n}</span><h3>${p.t}</h3><p>${p.d}</p>`;
+  }
+  principles.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.className = 'tab';
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    b.textContent = p.t;
+    b.addEventListener('click', () => {
+      [...tabsEl.children].forEach(c => c.setAttribute('aria-selected','false'));
+      b.setAttribute('aria-selected','true');
+      renderPanel(i);
+    });
+    tabsEl.appendChild(b);
+  });
+  renderPanel(0);
+</script>
+
+</body>
+</html>
