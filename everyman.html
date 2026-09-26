@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Landing pages built for Everyman</title>
+<style>
+  :root{
+    --uv-900:#150733;
+    --uv-800:#1e0b4a;
+    --uv-700:#2b1268;
+    --uv-600:#3b1c8c;
+    --chartreuse:#d7ff3f;
+    --coral:#ff6a52;
+    --paper:#f3efff;
+    --line: rgba(243,239,255,0.18);
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top,0px);
+    padding-bottom: env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:inherit; margin:0; padding:0;}
+  html{scroll-padding-top: env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+  body{
+    background:var(--uv-900);
+    color:var(--paper);
+    font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 28px;}
+  section{padding:72px 0; border-bottom:1px solid var(--line);}
+  header.top{padding:22px 0; border-bottom:1px solid var(--line);}
+  .topbar{display:flex; justify-content:space-between; align-items:center;}
+  .logo{font-weight:900; font-size:1.15rem; letter-spacing:-0.02em;}
+  .btn{
+    display:inline-block; font-weight:800; text-decoration:none;
+    padding:13px 26px; border-radius:999px; font-size:0.95rem;
+    transition: transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn:focus-visible{outline:3px solid var(--chartreuse); outline-offset:3px;}
+  .btn-chart{background:var(--chartreuse); color:var(--uv-900);}
+  .btn-coral{background:var(--coral); color:var(--uv-900);}
+  .btn-outline{background:transparent; color:var(--paper); border:2px solid var(--paper);}
+  h1{font-size:clamp(2.2rem,7vw,3.4rem); font-weight:900; line-height:1.05; letter-spacing:-0.03em;}
+  h2{font-size:clamp(1.5rem,4.5vw,2.1rem); font-weight:900; letter-spacing:-0.02em; margin-bottom:14px;}
+  p{max-width:62ch; opacity:0.92; font-size:1.05rem;}
+  .lede{font-size:1.2rem; margin-top:18px; max-width:56ch;}
+  .tag{color:var(--chartreuse); font-weight:800;}
+  .tag2{color:var(--coral); font-weight:800;}
+
+  /* toggle demo */
+  .toggle-row{display:flex; align-items:center; gap:14px; margin:28px 0 20px;}
+  .switch{
+    position:relative; width:62px; height:34px; background:var(--uv-600);
+    border-radius:999px; border:2px solid var(--paper); cursor:pointer; flex:none;
+  }
+  .switch .knob{
+    position:absolute; top:2px; left:2px; width:26px; height:26px; border-radius:50%;
+    background:var(--chartreuse); transition:left .2s ease;
+  }
+  .switch[aria-checked="true"] .knob{left:30px; background:var(--coral);}
+  .switch-label{font-weight:800;}
+  .demo{
+    border:2px solid var(--paper); border-radius:18px; padding:26px; background:var(--uv-800);
+  }
+  .demo h3{font-size:1.15rem; font-weight:900; margin-bottom:10px;}
+  .demo ul{padding-left:20px; opacity:0.92;}
+  .demo li{margin-bottom:6px;}
+  .demo.mode-human{border-color:var(--chartreuse);}
+  .demo.mode-cold{border-color:var(--coral);}
+
+  /* framework grid */
+  .steps{display:flex; flex-direction:column; gap:12px; margin-top:20px;}
+  details{
+    background:var(--uv-800); border:1px solid var(--line); border-radius:14px; padding:18px 20px;
+  }
+  summary{
+    font-weight:800; font-size:1.05rem; cursor:pointer; list-style:none;
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary .num{color:var(--chartreuse); font-weight:900; flex:none;}
+  details[open] summary .num{color:var(--coral);}
+  details p{margin-top:10px; font-size:0.98rem;}
+
+  /* small visual: bar mark */
+  .marks{display:flex; gap:6px; margin:22px 0;}
+  .marks span{height:10px; flex:1; border-radius:6px; background:var(--uv-600);}
+  .marks span:nth-child(1){background:var(--coral);}
+  .marks span:nth-child(4){background:var(--chartreuse);}
+
+  footer{padding:64px 0 80px; text-align:center;}
+  footer .btn{font-size:1.1rem; padding:18px 38px;}
+  .fine{margin-top:22px; font-size:0.85rem; opacity:0.6;}
+
+  @media (max-width:520px){
+    section{padding:52px 0;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:10px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap topbar">
+    <span class="logo">EASYLANDX</span>
+    <a class="btn btn-chart" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h1>Landing pages built for <span class="tag">Everyman</span>, not <span class="tag2">Homo&nbsp;Economicus</span>.</h1>
+    <p class="lede">Most web agencies design for an imaginary customer: perfectly rational, purely price-driven, converting on command. EasyLandX builds for the real small-business owner and their real customers — people who decide with trust, story and gut instinct as much as logic.</p>
+    <div style="margin-top:28px;">
+      <a class="btn btn-coral" href="https://easylandx.github.io" target="_blank" rel="noopener">Get your landing page</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The market has a design flaw</h2>
+    <p>A lot of economic theory assumes people are calculating machines — and a lot of web design copies that mistake. Templates stuffed with jargon and spec sheets talk to a customer who doesn't exist. Real visitors are embedded in culture, mood and social proof. Ignore that, and the page fails the person reading it.</p>
+    <div class="toggle-row">
+      <button class="switch" id="modeSwitch" role="switch" aria-checked="false" aria-label="Toggle between cold spec-sheet mode and human-centered mode"><span class="knob"></span></button>
+      <span class="switch-label" id="switchLabel">Showing: the human-centered page</span>
+    </div>
+    <div class="demo mode-human" id="demoPanel">
+      <h3 id="demoTitle">EasyLandX approach</h3>
+      <ul id="demoList">
+        <li>Opens with the owner's own story, not a feature list</li>
+        <li>Real photos and plain language, not stock jargon</li>
+        <li>One clear next step, sized for how people actually decide</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Economics for a page, not a spreadsheet</h2>
+    <p>A site isn't a math problem to optimize into submission — it's a small institution of trust between a business and its customers. Our process treats it that way, replacing one big rational leap with five human-sized steps.</p>
+    <div class="marks"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="steps">
+      <details open>
+        <summary><span>Start from lived experience, not a template</span><span class="num">01</span></summary>
+        <p>We ask what your customers actually worry about and want before we open a design file — not what a generic funnel says they should want.</p>
+      </details>
+      <details>
+        <summary><span>Build the trust structure first</span><span class="num">02</span></summary>
+        <p>Prices, guarantees, contact details and reviews go up front. Markets only work when the rules are visible — so does a page.</p>
+      </details>
+      <details>
+        <summary><span>Design around real behavior</span><span class="num">03</span></summary>
+        <p>Hesitation is usually a rational response to risk, not a flaw to trick past. We answer the hesitation instead of hiding it.</p>
+      </details>
+      <details>
+        <summary><span>Check who actually benefits</span><span class="num">04</span></summary>
+        <p>Every layout choice is tested against one question: does this help the small business compete, or just look impressive in a portfolio?</p>
+      </details>
+      <details>
+        <summary><span>Keep you in the decisions</span><span class="num">05</span></summary>
+        <p>You approve the story before it goes live. It's your business's page, not an algorithm's guess at one.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Small business, leveled field</h2>
+    <p>Left alone, markets concentrate advantage in whoever already has the biggest budget. A slick, expensive site isn't proof of a better business — it's proof of a bigger ad spend. EasyLandX exists to break that link: a bakery, a plumber or a studio gets a page that competes on trust and clarity, not on who could afford an agency retainer.</p>
+  </div>
+</section>
+
+<section style="border-bottom:none;">
+  <div class="wrap">
+    <h2>Your site is a relationship, not a commodity</h2>
+    <p>Turning every part of a business into a financial metric — clicks, conversion rate, lifetime value — can quietly hollow out the thing that made customers trust it in the first place. We build pages that measure up on both: real numbers, and a page you'd be proud to hand a customer in person.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2 style="margin-bottom:6px;">Ready for a page built around real people?</h2>
+    <p style="margin:0 auto 26px;">Affordable, conversion-focused, built by humans — for Everyman.</p>
+    <a class="btn btn-chart" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to EasyLandX →</a>
+    <p class="fine">easylandx.github.io</p>
+  </div>
+</footer>
+
+<script>
+  const sw = document.getElementById('modeSwitch');
+  const label = document.getElementById('switchLabel');
+  const panel = document.getElementById('demoPanel');
+  const title = document.getElementById('demoTitle');
+  const list = document.getElementById('demoList');
+
+  const human = {
+    title: 'EasyLandX approach',
+    items: [
+      "Opens with the owner's own story, not a feature list",
+      "Real photos and plain language, not stock jargon",
+      "One clear next step, sized for how people actually decide"
+    ]
+  };
+  const cold = {
+    title: 'The spec-sheet approach',
+    items: [
+      "Opens with a wall of features and specs",
+      "Stock photography and buzzwords",
+      "Five competing calls to action, all shouting at once"
+    ]
+  };
+
+  sw.addEventListener('click', () => {
+    const isCold = sw.getAttribute('aria-checked') === 'true';
+    const next = !isCold;
+    sw.setAttribute('aria-checked', String(next));
+    const data = next ? cold : human;
+    title.textContent = data.title;
+    list.innerHTML = data.items.map(i => `<li>${i}</li>`).join('');
+    panel.classList.toggle('mode-cold', next);
+    panel.classList.toggle('mode-human', !next);
+    label.textContent = next ? 'Showing: the spec-sheet page' : 'Showing: the human-centered page';
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Ties That Bind — an easylandx page</title>
+<style>
+  :root{
+    --teal-900:#052625;
+    --teal-800:#0a3a37;
+    --teal-700:#0f4d48;
+    --teal-600:#166861;
+    --gold:#d4a52c;
+    --gold-bright:#f0c65a;
+    --cobalt:#2451a8;
+    --cobalt-bright:#3f6fd6;
+    --paper:#eef4f2;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--teal-900);color:var(--paper);
+    font-family:'Iowan Old Style','Palatino Linotype',Georgia,serif;
+    line-height:1.55;
+  }
+  h1,h2,h3,.label{font-family:'Futura','Century Gothic',Arial,sans-serif;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+  a{color:inherit;}
+
+  .topbar{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-bottom:2px solid var(--teal-700);}
+  .brand{font-family:'Futura','Century Gothic',Arial,sans-serif;font-weight:700;letter-spacing:.02em;font-size:1.05rem;}
+  .brand b{color:var(--gold-bright);}
+  .btn{
+    display:inline-block;font-family:'Futura','Century Gothic',Arial,sans-serif;
+    font-weight:700;font-size:.92rem;padding:11px 22px;border-radius:2px;
+    text-decoration:none;border:2px solid var(--gold);color:var(--teal-900);
+    background:var(--gold);transition:background .15s,color .15s;
+  }
+  .btn:hover{background:var(--gold-bright);}
+  .btn.ghost{background:transparent;color:var(--gold-bright);}
+  .btn.ghost:hover{background:var(--gold-bright);color:var(--teal-900);}
+
+  .hero{padding:72px 24px 56px;text-align:left;}
+  .hero h1{font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.05;margin:0 0 18px;max-width:14ch;}
+  .hero h1 em{font-style:normal;color:var(--gold-bright);}
+  .hero p.sub{max-width:56ch;font-size:1.15rem;color:#cfe4e0;margin:0 0 28px;}
+  .hero .credit{font-family:'Futura','Century Gothic',Arial,sans-serif;font-size:.8rem;color:var(--cobalt-bright);letter-spacing:.03em;}
+
+  .shipwrap{margin-top:40px;}
+
+  section{padding:56px 24px;border-top:2px solid var(--teal-700);}
+  h2{font-size:1.7rem;margin:0 0 6px;color:var(--gold-bright);}
+  .kicker{font-family:'Futura','Century Gothic',Arial,sans-serif;font-size:.82rem;color:var(--cobalt-bright);margin:0 0 10px;}
+  .lede{max-width:62ch;color:#cfe4e0;margin:0 0 34px;}
+
+  .msg-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  @media(max-width:640px){.msg-grid{grid-template-columns:1fr;}}
+  .msg{border-left:3px solid var(--cobalt-bright);padding:4px 0 4px 18px;}
+  .msg h3{margin:0 0 6px;font-size:1.05rem;color:var(--paper);}
+  .msg p{margin:0;color:#bcd6d1;font-size:.97rem;}
+
+  .lessons{list-style:none;margin:0;padding:0;}
+  .lessons li{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--teal-700);}
+  .lessons li:last-child{border-bottom:none;}
+  .lessons .n{font-family:'Futura','Century Gothic',Arial,sans-serif;font-weight:700;color:var(--gold);font-size:1.3rem;min-width:2ch;}
+  .lessons h3{margin:0 0 4px;font-size:1.03rem;}
+  .lessons p{margin:0;color:#bcd6d1;font-size:.95rem;}
+
+  /* framework - interactive vertical flow */
+  .flow{max-width:640px;margin:0 auto;}
+  .step{
+    background:var(--teal-800);border:1px solid var(--teal-600);border-radius:2px;
+    padding:16px 18px;margin-bottom:0;cursor:pointer;position:relative;
+  }
+  .step + .step{margin-top:14px;}
+  .step::before{content:"";position:absolute;left:29px;top:-14px;width:2px;height:14px;background:var(--cobalt-bright);}
+  .step:first-child::before{display:none;}
+  .step .row{display:flex;align-items:center;gap:14px;}
+  .step .num{
+    font-family:'Futura','Century Gothic',Arial,sans-serif;font-weight:700;
+    color:var(--teal-900);background:var(--gold);border-radius:50%;
+    width:30px;height:30px;min-width:30px;display:flex;align-items:center;justify-content:center;font-size:.92rem;
+  }
+  .step .title{font-weight:700;font-size:1.02rem;flex:1;}
+  .step .chev{font-family:'Futura','Century Gothic',Arial,sans-serif;color:var(--cobalt-bright);transition:transform .2s;}
+  .step[aria-expanded="true"] .chev{transform:rotate(180deg);}
+  .step .detail{
+    max-height:0;overflow:hidden;transition:max-height .25s ease;color:#bcd6d1;font-size:.94rem;
+  }
+  .step[aria-expanded="true"] .detail{max-height:200px;padding-top:12px;}
+  .step .detail p{margin:0 44px 0 44px;}
+
+  /* choke points map */
+  .map{position:relative;background:var(--teal-800);border:1px solid var(--teal-600);border-radius:4px;padding:20px;}
+  .dot{
+    position:absolute;width:14px;height:14px;border-radius:50%;background:var(--gold);
+    border:2px solid var(--teal-900);cursor:pointer;
+  }
+  .dot:hover, .dot:focus{background:var(--gold-bright);}
+  .tip{
+    position:absolute;background:var(--cobalt);color:var(--paper);font-size:.82rem;
+    padding:8px 12px;border-radius:2px;max-width:200px;display:none;z-index:3;
+    font-family:'Futura','Century Gothic',Arial,sans-serif;
+  }
+  .dot:hover + .tip, .dot:focus + .tip{display:block;}
+
+  footer{padding:48px 24px 64px;text-align:center;}
+  footer .btn{margin-top:10px;}
+  footer .fine{color:#7fa79f;font-size:.82rem;margin-top:26px;}
+
+  :focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">easy<b>land</b>x</div>
+  <a class="btn" href="https://easylandx.github.io/" target="_blank" rel="noopener">Visit easylandx</a>
+</div>
+
+<section class="hero wrap">
+  <p class="kicker">A page made by easylandx</p>
+  <h1>The ties that bind — <em>and could unravel</em></h1>
+  <p class="sub">A landing page built from Ed Conway's <strong>Trade World</strong>: the hidden supply chains behind everyday life, and the strategy playbook for a more fragmented world.</p>
+  <div class="shipwrap">
+    <svg viewBox="0 0 640 140" width="100%" height="auto" role="img" aria-label="Cargo ship carrying containers across a shipping lane">
+      <rect x="0" y="108" width="640" height="2" fill="#166861"/>
+      <path d="M40 108 L70 108 L80 88 L230 88 L238 108 Z" fill="#0f4d48" stroke="#d4a52c" stroke-width="2"/>
+      <rect x="90" y="60" width="130" height="26" fill="#2451a8"/>
+      <rect x="95" y="64" width="18" height="18" fill="#f0c65a"/>
+      <rect x="118" y="64" width="18" height="18" fill="#eef4f2"/>
+      <rect x="141" y="64" width="18" height="18" fill="#f0c65a"/>
+      <rect x="164" y="64" width="18" height="18" fill="#eef4f2"/>
+      <rect x="187" y="64" width="18" height="18" fill="#f0c65a"/>
+      <rect x="60" y="78" width="14" height="30" fill="#eef4f2"/>
+      <circle cx="480" cy="60" r="26" fill="none" stroke="#f0c65a" stroke-width="2"/>
+      <path d="M480 34 L480 86 M454 60 L506 60" stroke="#f0c65a" stroke-width="1"/>
+    </svg>
+  </div>
+</section>
+
+<section class="wrap">
+  <p class="kicker">Core messages</p>
+  <h2>Why the world runs on things you can't see</h2>
+  <p class="lede">Trade isn't background noise to modern life — it's the skeleton holding it up. Conway's book maps how that skeleton was built for speed, not strength.</p>
+  <div class="msg-grid">
+    <div class="msg">
+      <h3>The invisible skeleton</h3>
+      <p>Every device you own passes through dozens of countries before it reaches your hand — raw material, refinement, assembly, shipping — mostly unseen.</p>
+    </div>
+    <div class="msg">
+      <h3>Efficiency vs. resilience</h3>
+      <p>Just-in-time logistics squeezed out every spare buffer. Lean is cheap, until one delay anywhere becomes a shortage everywhere.</p>
+    </div>
+    <div class="msg">
+      <h3>Weaponized interdependence</h3>
+      <p>Ports, pipelines and processing plants aren't neutral anymore. They're leverage — used deliberately in trade disputes and standoffs.</p>
+    </div>
+    <div class="msg">
+      <h3>The great fragmentation</h3>
+      <p>Open global markets are giving way to friend-shoring and resource nationalism. Rebuilding at home is necessary — and slow, and costly.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <p class="kicker">Essential lessons</p>
+  <h2>What the last decade of shocks taught us</h2>
+  <ul class="lessons">
+    <li><span class="n">1</span><div><h3>Choke points are global vulnerabilities</h3><p>The Strait of Malacca, the Suez Canal, the Taiwan Strait — a handful of narrow points carry outsized risk for the whole system. See the map below.</p></div></li>
+    <li><span class="n">2</span><div><h3>Physical trade still rules</h3><p>Software and finance get the headlines, but rare earths, cargo ships and refineries are still what keep the lights on.</p></div></li>
+    <li><span class="n">3</span><div><h3>De-globalizing has a price</h3><p>Onshoring builds resilience, but it also means higher costs, slower innovation, and new competition over the same raw materials.</p></div></li>
+  </ul>
+</section>
+
+<section class="wrap">
+  <p class="kicker">Choke points</p>
+  <h2>Three corridors the whole system leans on</h2>
+  <p class="lede">Hover or tap a marker.</p>
+  <div class="map">
+    <svg viewBox="0 0 640 220" width="100%" height="auto" role="img" aria-label="Simplified world map with three trade choke points marked">
+      <path d="M20 120 Q160 60 320 110 T620 130" fill="none" stroke="#166861" stroke-width="3"/>
+      <path d="M20 160 Q200 190 400 150 T620 170" fill="none" stroke="#166861" stroke-width="3"/>
+    </svg>
+    <div class="dot" style="left:23%;top:44%" tabindex="0"></div>
+    <div class="tip" style="left:26%;top:38%">Suez Canal — roughly 12% of world trade passes through this single passage.</div>
+    <div class="dot" style="left:58%;top:52%" tabindex="0"></div>
+    <div class="tip" style="left:60%;top:46%">Strait of Malacca — the shortest sea route between the Indian and Pacific oceans.</div>
+    <div class="dot" style="left:78%;top:60%" tabindex="0"></div>
+    <div class="tip" style="left:66%;top:66%">Taiwan Strait — sits beside the world's most advanced semiconductor foundries.</div>
+  </div>
+</section>
+
+<section class="wrap">
+  <p class="kicker">Framework</p>
+  <h2>Conway's resilience playbook, step by step</h2>
+  <p class="lede">Tap a step to open it.</p>
+  <div class="flow">
+    <div class="step" tabindex="0" role="button" aria-expanded="false">
+      <div class="row"><span class="num">1</span><span class="title">Map the physical bottlenecks</span><span class="chev">▾</span></div>
+      <div class="detail"><p>Audit supply chains down to raw material sources — not just Tier-1 suppliers, but where the lithium, cobalt and copper actually come from.</p></div>
+    </div>
+    <div class="step" tabindex="0" role="button" aria-expanded="false">
+      <div class="row"><span class="num">2</span><span class="title">Shift to "just-in-case"</span><span class="chev">▾</span></div>
+      <div class="detail"><p>Build strategic reserves and diversify freight routes, so one blocked lane doesn't stall the whole operation.</p></div>
+    </div>
+    <div class="step" tabindex="0" role="button" aria-expanded="false">
+      <div class="row"><span class="num">3</span><span class="title">Deploy friend-shoring</span><span class="chev">▾</span></div>
+      <div class="detail"><p>Diversify source markets across geopolitically aligned, stable partners rather than one region.</p></div>
+    </div>
+    <div class="step" tabindex="0" role="button" aria-expanded="false">
+      <div class="row"><span class="num">4</span><span class="title">Invest in material refining</span><span class="chev">▾</span></div>
+      <div class="detail"><p>Onshore critical processing and manufacturing steps, closing the gap between raw material and finished part.</p></div>
+    </div>
+    <div class="step" tabindex="0" role="button" aria-expanded="false">
+      <div class="row"><span class="num">5</span><span class="title">Design for recyclability</span><span class="chev">▾</span></div>
+      <div class="detail"><p>Circular models — battery recycling, e-waste recovery — turn domestic waste into a strategic reserve of its own.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <p class="kicker">Made by easylandx</p>
+  <h2 style="max-width:26ch;margin:0 auto 18px;">A page like this, built around your subject, in a day.</h2>
+  <a class="btn" href="https://easylandx.github.io/" target="_blank" rel="noopener">Visit easylandx</a>
+  <p class="fine">Content adapted from Ed Conway's <em>Trade World</em>.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.step').forEach(function(step){
+    function toggle(){
+      var open = step.getAttribute('aria-expanded') === 'true';
+      step.setAttribute('aria-expanded', open ? 'false' : 'true');
+    }
+    step.addEventListener('click', toggle);
+    step.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+</script>
+</body>
+</html>

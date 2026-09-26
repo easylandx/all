@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Done beats perfect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --ink:#121212; --panel:#efefec; --line:#121212;
+  --magenta:#e6007a; --yellow:#ffd400; --green:#00a651;
+  --font-head:'Space Grotesk', Arial, sans-serif;
+  --font-body:'Inter', -apple-system, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#121212; --ink:#f4f4f2; --panel:#1c1c1a; --line:#f4f4f2; }
+}
+:root[data-theme="dark"]{ --bg:#121212; --ink:#f4f4f2; --panel:#1c1c1a; --line:#f4f4f2; }
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body);
+  line-height:1.5; -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%;}
+.wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+.stripe{height:10px; display:flex;}
+.stripe span{flex:1;}
+.stripe .m{background:var(--magenta);} .stripe .y{background:var(--yellow);} .stripe .g{background:var(--green);}
+
+/* nav */
+header{padding-top:env(safe-area-inset-top,0px); border-bottom:3px solid var(--line);}
+nav.wrap{display:flex; align-items:center; justify-content:space-between; padding-top:18px; padding-bottom:18px;}
+.logo{font-family:var(--font-head); font-weight:700; font-size:1.25rem; letter-spacing:-0.02em;}
+.btn{
+  font-family:var(--font-head); font-weight:700; text-decoration:none; color:var(--bg);
+  background:var(--ink); padding:12px 22px; border:3px solid var(--ink); display:inline-block;
+  transition:transform .15s ease;
+}
+.btn:hover{transform:translate(-3px,-3px); box-shadow:4px 4px 0 var(--magenta);}
+.btn.outline{background:transparent; color:var(--ink);}
+.btn.outline:hover{box-shadow:4px 4px 0 var(--green);}
+
+/* hero */
+.hero{padding:72px 0 56px; border-bottom:3px solid var(--line);}
+.hero .wrap{display:grid; grid-template-columns:1fr; gap:28px;}
+h1{
+  font-family:var(--font-head); font-weight:700; font-size:clamp(2.4rem,7vw,4.6rem);
+  line-height:0.98; letter-spacing:-0.02em; margin:0 0 20px;
+}
+.hero p.lead{font-size:1.15rem; max-width:46ch; margin:0 0 28px;}
+.hero-cta{display:flex; gap:14px; flex-wrap:wrap;}
+
+/* problem */
+section{padding:64px 0; border-bottom:3px solid var(--line);}
+h2{font-family:var(--font-head); font-weight:700; font-size:clamp(1.7rem,4vw,2.4rem); letter-spacing:-0.01em; margin:0 0 18px; max-width:22ch;}
+.problem .grid{display:grid; grid-template-columns:1fr; gap:24px; margin-top:32px;}
+@media(min-width:760px){.problem .grid{grid-template-columns:1fr 1fr;}}
+.card{border:3px solid var(--line); padding:24px; background:var(--panel);}
+.card h3{font-family:var(--font-head); margin:0 0 8px; font-size:1.05rem;}
+.card p{margin:0; font-size:.96rem;}
+.tag{display:inline-block; font-family:var(--font-head); font-weight:700; font-size:.75rem; padding:4px 10px; margin-bottom:12px; color:#fff;}
+.tag.m{background:var(--magenta);} .tag.g{background:var(--green);} .tag.y{background:var(--yellow); color:var(--ink);}
+
+/* shifts interactive */
+.shifts .intro{max-width:56ch; margin-bottom:32px;}
+.shift-layout{display:grid; grid-template-columns:1fr; gap:0; border:3px solid var(--line);}
+@media(min-width:820px){.shift-layout{grid-template-columns:260px 1fr;}}
+.shift-nav{display:flex; flex-direction:row; overflow-x:auto; border-bottom:3px solid var(--line);}
+@media(min-width:820px){.shift-nav{flex-direction:column; overflow-x:visible; border-bottom:none; border-right:3px solid var(--line);}}
+.shift-nav button{
+  font-family:var(--font-head); font-weight:700; text-align:left; background:var(--bg); color:var(--ink);
+  border:none; border-bottom:2px solid var(--line); padding:16px 18px; cursor:pointer; font-size:.92rem;
+  flex:0 0 auto; min-width:180px; display:flex; gap:10px; align-items:center;
+}
+@media(min-width:820px){.shift-nav button{min-width:0; border-bottom:2px solid var(--line);} .shift-nav button:last-child{border-bottom:none;}}
+.shift-nav button .n{font-family:var(--font-head); font-size:.8rem; width:22px; height:22px; display:flex; align-items:center; justify-content:center; border:2px solid var(--ink); flex:0 0 auto;}
+.shift-nav button[aria-selected="true"]{background:var(--ink); color:var(--bg);}
+.shift-nav button[aria-selected="true"] .n{border-color:var(--bg);}
+.shift-panels{padding:28px 24px; min-height:220px;}
+.shift-panel{display:none;}
+.shift-panel.active{display:block;}
+.shift-panel h3{font-family:var(--font-head); font-size:1.3rem; margin:0 0 10px;}
+.shift-panel .biz{border-left:4px solid var(--green); padding-left:14px; margin-top:16px; font-size:.94rem;}
+.dots{display:flex; gap:6px; margin-top:20px;}
+.dots span{width:9px; height:9px; border-radius:50%; background:var(--panel); border:2px solid var(--ink);}
+.dots span.on{background:var(--magenta); border-color:var(--magenta);}
+
+/* draft tool */
+.draft .tool{border:3px solid var(--line); background:var(--panel); padding:28px 24px; margin-top:28px;}
+.draft .tool label{display:block; font-family:var(--font-head); font-weight:700; margin-bottom:10px; font-size:.95rem;}
+.draft select{
+  font-family:var(--font-body); font-size:1rem; padding:12px 14px; width:100%; border:3px solid var(--ink);
+  background:var(--bg); color:var(--ink); margin-bottom:18px;
+}
+.reframe-box{border:3px dashed var(--ink); padding:20px; background:var(--bg); min-height:90px;}
+.reframe-box .label{font-family:var(--font-head); font-size:.72rem; margin-bottom:6px;}
+.reframe-box .before{color:var(--magenta);}
+.reframe-box .after{color:var(--green); margin-top:10px; display:none;}
+.reframe-box .after.show{display:block;}
+
+/* cta */
+.cta{padding:80px 0; text-align:center;}
+.cta h2{max-width:none; margin:0 auto 14px;}
+.cta p{max-width:50ch; margin:0 auto 30px; font-size:1.05rem;}
+
+footer{padding:28px 0 calc(28px + env(safe-area-inset-bottom,0px)); font-size:.85rem;}
+footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+@media (prefers-reduced-motion: reduce){ .btn{transition:none;} }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">EasyLandX</div>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Get your page</a>
+  </nav>
+  <div class="stripe"><span class="m"></span><span class="y"></span><span class="g"></span></div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Done beats<br>perfect.</h1>
+    <p class="lead">EasyLandX builds affordable, conversion-focused landing pages for small businesses — fast. Because the version of your website that's actually live earns more than the flawless one still stuck in your head.</p>
+    <div class="hero-cta">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch my page</a>
+      <a class="btn outline" href="#shifts">See how we think</a>
+    </div>
+  </div>
+</section>
+
+<section class="problem">
+  <div class="wrap">
+    <span class="tag m">The trap</span>
+    <h2>Perfectionism isn't a business standard. It's a hiding place.</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>It's not about excellence</h3>
+        <p>Waiting for the "right" logo, the "right" copy, the "right" moment to launch isn't ambition — it's a defense against being judged. The belief underneath: if it's flawless, no one can criticize it.</p>
+      </div>
+      <div class="card">
+        <h3>One typo isn't a verdict</h3>
+        <p>A clunky headline on your site doesn't mean your business is bad — it means a page hasn't been edited yet. Treating every rough edge as proof you're not ready is what keeps pages unpublished for months.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shifts" id="shifts">
+  <div class="wrap">
+    <span class="tag g">The framework</span>
+    <h2>Seven shifts, applied to your launch</h2>
+    <p class="intro">This is our founding blueprint, adapted from the psychology of perfectionism to the very specific problem of small-business owners who never ship their site.</p>
+
+    <div class="shift-layout">
+      <div class="shift-nav" role="tablist" aria-label="Seven shifts" id="shiftNav"></div>
+      <div class="shift-panels" id="shiftPanels"></div>
+    </div>
+  </div>
+</section>
+
+<section class="draft">
+  <div class="wrap">
+    <span class="tag y">The tool</span>
+    <h2>Rewrite the rule that's stalling your launch</h2>
+    <p class="intro" style="max-width:56ch;">Pick the "should" that sounds most like your inner voice right now. Watch it turn into something you can actually act on.</p>
+    <div class="tool">
+      <label for="shouldSelect">My website should…</label>
+      <select id="shouldSelect">
+        <option value="0">be perfect before anyone sees it</option>
+        <option value="1">have every page finished before launch</option>
+        <option value="2">look as good as the big brands</option>
+        <option value="3">never have typos or broken links</option>
+        <option value="4">be built by me alone, exactly my way</option>
+      </select>
+      <div class="reframe-box">
+        <div class="label">THE SHOULD</div>
+        <div class="before" id="beforeText">be perfect before anyone sees it.</div>
+        <div class="after" id="afterText">
+          <div class="label">THE VALUE</div>
+          <div id="afterInner">I value momentum. A live page earning real feedback beats a perfect draft earning none.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <span class="tag m">Your move</span>
+    <h2>Ship the first draft. We'll help it earn its keep.</h2>
+    <p>EasyLandX designs and builds your landing page — you don't need a finished brand, perfect copy, or a clear idea of every page. Bring what you have; we'll turn it into something live.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Start with EasyLandX</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>EasyLandX — affordable, conversion-focused landing pages.</span>
+    <span>easylandx.github.io</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var shifts = [
+    {t:"Criticism to kindness", h:"Self-compassion, not self-condemnation", d:"Research shows self-criticism paralyzes motivation and lowers work quality over time. Self-kindness builds resilience and faster recovery from setbacks.", biz:"On your site: we don't tear apart your first draft, and neither should you. We note what to fix, not what it says about you."},
+    {t:"Disconnection to presence", h:"Come back to what's actually in front of you", d:"Perfectionism pulls you into future worst-cases and past mistakes. Presence means working with what's real, right now.", biz:"On your site: we start from your real business today — not the imagined version you'll have once everything's ideal."},
+    {t:"Rules to flexibility", h:"Swap \u201cshoulds\u201d for values", d:"Rigid rules like \u201cit must be flawless\u201d trigger anxiety. Values like clarity or momentum flex with reality and still guide good decisions.", biz:"On your site: \u201cit must be perfect\u201d becomes \u201cit should clearly say what I offer.\u201d That's buildable today."},
+    {t:"Mistakes: holding on to letting go", h:"Normalize errors as data, not verdicts", d:"Use neutral, circumstantial language for what went wrong instead of identity judgments. A mistake is information you act on.", biz:"On your site: a weak headline is a test result, not a failure. We swap it and measure again."},
+    {t:"Procrastination to productivity", h:"Lower the stakes, lower the friction", d:"Procrastination is emotional avoidance, not laziness. The \u201cBad First Draft\u201d rule: give yourself permission to do it badly for 10 minutes.", biz:"On your site: we build a rough version fast on purpose. A live bad draft beats a polished idea that never ships."},
+    {t:"Comparison to contentment", h:"Drop the ranking, keep the gratitude", d:"Measuring yourself against everyone else's highlight reel keeps you frozen. Contentment comes from your own progress.", biz:"On your site: you're not competing with a Fortune 500 homepage on day one. You're competing with not having a page at all."},
+    {t:"Control to authenticity", h:"Trade impressive for genuine", d:"Trying to look flawless keeps people at a distance. Visible, honest imperfection is what invites real connection.", biz:"On your site: a real photo and plain-spoken copy convert better than a stock-perfect page that feels like no one's home."}
+  ];
+
+  var nav = document.getElementById('shiftNav');
+  var panels = document.getElementById('shiftPanels');
+
+  shifts.forEach(function(s, i){
+    var b = document.createElement('button');
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-selected', i===0 ? 'true':'false');
+    b.innerHTML = '<span class="n">'+(i+1)+'</span><span>'+s.t+'</span>';
+    b.addEventListener('click', function(){ show(i); });
+    nav.appendChild(b);
+
+    var p = document.createElement('div');
+    p.className = 'shift-panel' + (i===0 ? ' active':'');
+    p.innerHTML = '<h3>'+s.h+'</h3><p>'+s.d+'</p><div class="biz">'+s.biz+'</div>';
+    panels.appendChild(p);
+  });
+
+  var dots = document.createElement('div');
+  dots.className = 'dots';
+  shifts.forEach(function(_, i){
+    var d = document.createElement('span');
+    if(i===0) d.className = 'on';
+    dots.appendChild(d);
+  });
+  panels.appendChild(dots);
+
+  function show(i){
+    nav.querySelectorAll('button').forEach(function(btn, idx){ btn.setAttribute('aria-selected', idx===i ? 'true':'false'); });
+    panels.querySelectorAll('.shift-panel').forEach(function(p, idx){ p.classList.toggle('active', idx===i); });
+    dots.querySelectorAll('span').forEach(function(dot, idx){ dot.classList.toggle('on', idx===i); });
+  }
+
+  // reframe tool
+  var reframes = [
+    { before:"be perfect before anyone sees it.", after:"I value momentum. A live page earning real feedback beats a perfect draft earning none." },
+    { before:"have every page finished before launch.", after:"I value progress. One clear page live today outperforms five planned pages that stay offline." },
+    { before:"look as good as the big brands.", after:"I value trust. A clear, honest page for my actual customers beats mimicking a company I'm not." },
+    { before:"never have typos or broken links.", after:"I value speed of fixing over avoiding mistakes. I'll catch it, fix it, and move on." },
+    { before:"be built by me alone, exactly my way.", after:"I value getting it done. Bringing in help doesn't make the result less mine." }
+  ];
+  var sel = document.getElementById('shouldSelect');
+  var beforeEl = document.getElementById('beforeText');
+  var afterEl = document.getElementById('afterText');
+  var afterInner = document.getElementById('afterInner');
+
+  sel.addEventListener('change', function(){
+    var r = reframes[parseInt(sel.value,10)];
+    beforeEl.textContent = r.before;
+    afterEl.classList.remove('show');
+    afterInner.textContent = r.after;
+    setTimeout(function(){ afterEl.classList.add('show'); }, 120);
+  });
+  document.querySelector('.reframe-box').addEventListener('click', function(){
+    afterEl.classList.toggle('show');
+  });
+})();
+</script>
+
+</body>
+</html>

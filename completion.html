@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Ship the page. Kill the chasm.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange-1:#E85D04;
+    --orange-2:#C94E03;
+    --orange-3:#FF7A1A;
+    --chartreuse:#C6F73A;
+    --cobalt:#1D3FA0;
+    --ink:#161000;
+    --paper:#FFF3E4;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:1rem;}
+  body{
+    margin:0;
+    background:var(--orange-1);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Archivo Black','IBM Plex Sans',sans-serif;
+    text-transform:none;
+    letter-spacing:-0.01em;
+    line-height:1.02;
+    margin:0;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  a{color:inherit;}
+  .top-cta{
+    position:sticky;top:0;z-index:20;
+    background:var(--orange-1);
+    border-bottom:3px solid var(--ink);
+  }
+  .top-cta .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;}
+  .brand{font-family:'Archivo Black';font-size:1.1rem;}
+  .btn{
+    display:inline-block;
+    font-family:'Archivo Black';
+    font-size:0.95rem;
+    padding:12px 22px;
+    background:var(--cobalt);
+    color:var(--paper);
+    border:3px solid var(--ink);
+    text-decoration:none;
+    box-shadow:5px 5px 0 var(--ink);
+    transition:transform .15s ease, box-shadow .15s ease;
+    cursor:pointer;
+  }
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink);}
+  .btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink);}
+  .btn.chartreuse{background:var(--chartreuse);color:var(--ink);}
+  .btn.small{padding:9px 16px;font-size:0.8rem;box-shadow:4px 4px 0 var(--ink);}
+
+  section{padding:72px 0;border-bottom:3px solid var(--ink);}
+  section:last-of-type{border-bottom:none;}
+
+  .hero{padding-top:56px;}
+  .hero .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start;}
+  .hero h1{font-size:clamp(2.4rem,6vw,4.2rem);}
+  .hero p.lede{font-size:1.15rem;max-width:46ch;margin-top:18px;}
+  .hero-actions{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;}
+
+  /* Interactive Definition of Done meter */
+  .dod{
+    background:var(--paper);
+    border:3px solid var(--ink);
+    box-shadow:8px 8px 0 var(--ink);
+    padding:24px;
+  }
+  .dod-label{font-family:'Archivo Black';font-size:0.85rem;letter-spacing:0.02em;}
+  .dod-stage{font-family:'Archivo Black';font-size:1.4rem;margin:6px 0 16px;color:var(--cobalt);}
+  .meter{height:22px;border:3px solid var(--ink);background:#fff;overflow:hidden;margin-bottom:18px;}
+  .meter-fill{height:100%;width:0%;background:var(--chartreuse);transition:width .35s ease;}
+  .dod-list{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:8px;}
+  .dod-list li{display:flex;align-items:center;gap:10px;font-size:0.95rem;cursor:pointer;user-select:none;}
+  .dod-list input{width:20px;height:20px;accent-color:var(--cobalt);cursor:pointer;}
+  .dod-list li.done{text-decoration:line-through;opacity:0.6;}
+  .shipped{
+    display:none;
+    background:var(--ink);color:var(--chartreuse);
+    font-family:'Archivo Black';
+    padding:14px;text-align:center;font-size:1rem;
+    border:3px solid var(--ink);margin-top:6px;
+  }
+  .shipped.show{display:block;}
+
+  /* Completion Engine pipeline */
+  .engine h2{font-size:clamp(1.8rem,4vw,2.6rem);}
+  .engine .kicker{font-family:'Archivo Black';font-size:0.85rem;color:var(--cobalt);margin-bottom:8px;}
+  .steps{margin-top:36px;display:grid;gap:0;}
+  .step{
+    display:grid;grid-template-columns:70px 1fr;gap:20px;
+    padding:22px 0;border-top:3px solid var(--ink);
+  }
+  .steps .step:last-child{border-bottom:3px solid var(--ink);}
+  .step-num{font-family:'Archivo Black';font-size:2.2rem;color:var(--orange-1);
+    -webkit-text-stroke:2px var(--ink);}
+  .step h3{font-size:1.25rem;margin-bottom:6px;}
+  .step p{margin:0;max-width:60ch;}
+  .tag{
+    display:inline-block;background:var(--cobalt);color:var(--paper);
+    font-family:'Archivo Black';font-size:0.7rem;padding:3px 8px;margin-bottom:8px;
+  }
+
+  /* WIP ceiling illustration */
+  .wip .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+  .wip h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:14px;}
+  .board{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .col{border:3px solid var(--ink);background:var(--paper);padding:14px;min-height:220px;transition:background-color .2s ease;}
+  .col.drag-over{background:#FFE2C7;}
+  .col h4{font-family:'Archivo Black';font-size:0.85rem;margin:0 0 10px;}
+  .col.active h4{color:var(--cobalt);}
+  .col.vault h4{color:var(--orange-2);}
+  .card{
+    background:#fff;border:2px solid var(--ink);padding:10px;margin-bottom:10px;
+    font-size:0.85rem;cursor:grab;user-select:none;transition:transform .15s ease, opacity .15s ease;
+  }
+  .card:active{cursor:grabbing;}
+  .card.dragging{opacity:0.4;transform:scale(0.98);}
+  .col.active .card{border-color:var(--cobalt);opacity:1;}
+  .col.vault .card{opacity:0.7;}
+  .cap-note{font-family:'Archivo Black';font-size:0.75rem;color:var(--orange-2);margin-top:8px;}
+
+  footer{padding:56px 0 72px;text-align:center;}
+  footer .btn{font-size:1.1rem;padding:16px 30px;}
+  .credit{margin-top:26px;font-size:0.85rem;opacity:0.75;}
+
+  @media (max-width:820px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .wip .wrap{grid-template-columns:1fr;}
+    .step{grid-template-columns:50px 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="top-cta">
+  <div class="wrap">
+    <span class="brand">easylandx</span>
+    <a class="btn small chartreuse" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx →</a>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Most landing pages never ship. Yours will.</h1>
+      <p class="lede">Every page starts easy and exciting. Then it hits the mid-project chasm — the tweak-forever phase where "almost done" quietly becomes never done. easylandx skips the chasm and hands you a finished page.</p>
+      <div class="hero-actions">
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Ship your page with easylandx</a>
+        <a class="btn chartreuse" href="#engine">See the engine</a>
+      </div>
+    </div>
+
+    <div class="dod">
+      <div class="dod-label">DEFINITION OF DONE — try it</div>
+      <div class="dod-stage" id="stageLabel">Idea</div>
+      <div class="meter"><div class="meter-fill" id="meterFill"></div></div>
+      <ul class="dod-list" id="dodList">
+        <li data-w="20"><input type="checkbox"> Headline says what it does</li>
+        <li data-w="20"><input type="checkbox"> One clear call to action</li>
+        <li data-w="20"><input type="checkbox"> Works on a phone screen</li>
+        <li data-w="20"><input type="checkbox"> Loads in under two seconds</li>
+        <li data-w="20"><input type="checkbox"> Someone outside your head can use it</li>
+      </ul>
+      <div class="shipped" id="shippedBox">SHIPPED. That's the whole trick — made by easylandx.</div>
+    </div>
+  </div>
+</section>
+
+<section class="engine" id="engine">
+  <div class="wrap">
+    <div class="kicker">THE COMPLETION ENGINE, APPLIED TO YOUR PAGE</div>
+    <h2>Five steps. One finished page.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div><span class="tag">DoD Contract</span>
+          <h3>Decide what "finished" means before you start</h3>
+          <p>easylandx locks the finish line up front — a real page with a headline, a call to action, and a way to reach you. Once that's true, it's done. Iteration stops being a trap.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div><span class="tag">WIP Ceiling</span>
+          <h3>Cap what's in motion at once</h3>
+          <p>One page, in progress, at a time. Every other idea waits in the vault until this one is live — so attention never gets split thin enough to stall.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div><span class="tag">Chasm Protocol</span>
+          <h3>Shrink the task when friction hits</h3>
+          <p>The point where most builders stall — picking fonts, rewriting the third headline — is the point easylandx removes. There's less room to get stuck rebuilding what already works.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div><span class="tag">Minimum Viable Ship</span>
+          <h3>Cut everything that isn't the finish line</h3>
+          <p>A page that ships beats a page that's still being perfected. easylandx strips the build down to what a visitor actually needs to act.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div><span class="tag">Portable Units</span>
+          <h3>Built to finish anywhere</h3>
+          <p>No studio, no dedicated block of quiet hours required. Start it in a browser tab between meetings; it's still standing when you come back.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wip">
+  <div class="wrap">
+    <div>
+      <h2>The Idea Vault keeps the queue honest</h2>
+      <p>Every founder collects far more ideas than hours. The rule that actually works: cap active work at what you can finish, and let everything else wait its turn.</p>
+      <p class="cap-note">ACTIVE CEILING: 2 · EVERYTHING ELSE WAITS BELOW</p>
+    </div>
+    <div class="board">
+      <div class="col active" id="activeCol">
+        <h4>ACTIVE (max 2)</h4>
+        <div class="card" draggable="true">Landing page — this launch</div>
+        <div class="card" draggable="true">One clear call to action</div>
+      </div>
+      <div class="col vault" id="vaultCol">
+        <h4>IDEA VAULT</h4>
+        <div class="card" draggable="true">Rebrand the logo</div>
+        <div class="card" draggable="true">Add a blog</div>
+        <div class="card" draggable="true">Third color scheme</div>
+        <div class="card" draggable="true">Custom animation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2 style="font-size:clamp(1.6rem,4vw,2.2rem);">Stop starting. Start shipping.</h2>
+    <div style="margin-top:22px;">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Ship your page with easylandx →</a>
+    </div>
+    <div class="credit">made by easylandx</div>
+  </div>
+</footer>
+
+<script>
+  /* Definition of Done Meter Script */
+  const list = document.getElementById('dodList');
+  const fill = document.getElementById('meterFill');
+  const stage = document.getElementById('stageLabel');
+  const shipped = document.getElementById('shippedBox');
+  const items = list.querySelectorAll('li');
+
+  function update(){
+    let total = 0;
+    items.forEach(li => {
+      const box = li.querySelector('input');
+      const w = Number(li.dataset.w);
+      li.classList.toggle('done', box.checked);
+      if(box.checked) total += w;
+    });
+    fill.style.width = total + '%';
+    if(total === 0) stage.textContent = 'Idea';
+    else if(total < 100) stage.textContent = 'In the chasm';
+    else stage.textContent = 'Shipped';
+    shipped.classList.toggle('show', total === 100);
+  }
+
+  items.forEach(li => {
+    const box = li.querySelector('input');
+    li.addEventListener('click', (e) => {
+      if (e.target !== box) {
+        box.checked = !box.checked;
+      }
+      update();
+    });
+  });
+
+  /* Drag and Drop Script for Idea Vault Board */
+  let draggedCard = null;
+  const cards = document.querySelectorAll('.board .card');
+  const cols = document.querySelectorAll('.board .col');
+
+  cards.forEach(card => {
+    card.addEventListener('dragstart', () => {
+      draggedCard = card;
+      setTimeout(() => card.classList.add('dragging'), 0);
+    });
+
+    card.addEventListener('dragend', () => {
+      draggedCard = null;
+      card.classList.remove('dragging');
+    });
+  });
+
+  cols.forEach(col => {
+    col.addEventListener('dragover', e => {
+      e.preventDefault();
+    });
+
+    col.addEventListener('dragenter', e => {
+      e.preventDefault();
+      col.classList.add('drag-over');
+    });
+
+    col.addEventListener('dragleave', () => {
+      col.classList.remove('drag-over');
+    });
+
+    col.addEventListener('drop', e => {
+      e.preventDefault();
+      col.classList.remove('drag-over');
+
+      if (!draggedCard) return;
+
+      // Enforce the max 2 limit for the ACTIVE column
+      if (col.classList.contains('active')) {
+        const activeCards = col.querySelectorAll('.card').length;
+        // If moving from Vault to Active and Active already has 2 items
+        if (draggedCard.parentElement !== col && activeCards >= 2) {
+          alert('ACTIVE ceiling reached (max 2 items)! Move or complete an active task first.');
+          return;
+        }
+      }
+
+      col.appendChild(draggedCard);
+    });
+  });
+</script>
+
+</body>
+</html>

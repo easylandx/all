@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Pages Built for Real Trust</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --magenta: #B5006B;
+    --magenta-deep: #7A0048;
+    --magenta-deeper: #52012F;
+    --gold: #E8B94A;
+    --teal: #1E8A82;
+    --ivory: #FBEFE4;
+    --ink: #240013;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html{ scroll-padding-top: env(safe-area-inset-top, 0px); }
+  *,*::before,*::after{ box-sizing: inherit; }
+  @media (prefers-reduced-motion: reduce){ *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; } }
+
+  body{
+    margin:0;
+    background: var(--magenta);
+    color: var(--ivory);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .wrap{ max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:700; line-height:1.15; margin:0 0 .5em; }
+
+  a{ color: inherit; }
+
+  /* ---------- Nav ---------- */
+  nav.top{
+    position: sticky; top: 0;
+    padding-top: calc(16px + env(safe-area-inset-top, 0px));
+    padding-bottom: 16px;
+    background: var(--magenta);
+    border-bottom: 2px solid var(--magenta-deep);
+    z-index: 10;
+  }
+  nav.top .wrap{ display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .brand{ font-family:'Fraunces', serif; font-weight:900; font-size: 1.3rem; letter-spacing: -0.01em; }
+  .brand .x{ color: var(--gold); }
+
+  .btn{
+    display:inline-block;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size: 0.95rem;
+    padding: 12px 24px;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:focus-visible{ outline: 3px solid var(--gold); outline-offset: 2px; }
+  .btn-gold{ background: var(--gold); color: var(--ink); }
+  .btn-gold:hover{ transform: translateY(-2px); box-shadow: 0 6px 0 var(--magenta-deeper); }
+  .btn-teal{ background: var(--teal); color: var(--ivory); }
+  .btn-teal:hover{ transform: translateY(-2px); box-shadow: 0 6px 0 var(--magenta-deeper); }
+  .btn-outline{ background: transparent; border-color: var(--ivory); color: var(--ivory); }
+  .btn-outline:hover{ background: var(--ivory); color: var(--magenta-deep); }
+  .btn-small{ padding: 8px 18px; font-size: 0.85rem; }
+
+  /* ---------- Hero ---------- */
+  header.hero{ padding: 64px 0 48px; }
+  header.hero h1{ font-size: clamp(2.1rem, 5.5vw, 3.4rem); }
+  header.hero .lede{ font-size: 1.15rem; max-width: 58ch; color: #F6D9E7; margin-bottom: 28px; }
+  .hero-actions{ display:flex; gap:14px; flex-wrap: wrap; }
+
+  .blob{ width: 100%; max-width: 420px; height: auto; display:block; margin: 32px auto 0; }
+
+  section{ padding: 56px 0; border-top: 2px solid var(--magenta-deep); }
+
+  .kicker{ color: var(--gold); font-weight:600; font-size: 0.95rem; margin-bottom: 6px; }
+
+  p.body-text{ max-width: 62ch; color: #F6D9E7; }
+
+  /* ---------- Framework ---------- */
+  .steps{ list-style:none; margin: 28px 0 0; padding:0; counter-reset: step; }
+  .step{
+    counter-increment: step;
+    border: 2px solid var(--magenta-deep);
+    border-radius: 14px;
+    margin-bottom: 14px;
+    background: var(--magenta-deeper);
+    overflow: hidden;
+  }
+  .step-head{
+    display:flex; align-items:center; gap:16px;
+    width:100%; text-align:left;
+    background:none; border:none; color: inherit;
+    font-family:'Fraunces', serif; font-size: 1.05rem; font-weight:700;
+    padding: 18px 20px; cursor:pointer;
+  }
+  .step-head::before{
+    content: counter(step);
+    flex: 0 0 auto;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--teal); color: var(--ivory);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Inter', sans-serif; font-weight:600; font-size: 0.95rem;
+  }
+  .step-head .chev{ margin-left:auto; transition: transform 0.2s ease; flex:0 0 auto; }
+  .step[data-open="true"] .chev{ transform: rotate(180deg); }
+  .step-body{
+    max-height: 0; overflow:hidden; transition: max-height 0.25s ease;
+    padding: 0 20px 0 70px;
+  }
+  .step[data-open="true"] .step-body{ max-height: 220px; padding-bottom: 20px; }
+  .step-body p{ margin:0; color:#F6D9E7; font-size: 0.98rem; }
+
+  /* ---------- Reset widget ---------- */
+  .reset-card{
+    border: 2px solid var(--teal);
+    border-radius: 20px;
+    background: var(--magenta-deeper);
+    padding: 32px 24px;
+    text-align:center;
+  }
+  .breath-wrap{ display:flex; justify-content:center; margin: 20px 0; }
+  #breathSvg circle#pulse{
+    transform-origin: 100px 100px;
+    transition: r 3.5s ease-in-out;
+  }
+  #resetLabel{ font-weight:600; color: var(--gold); min-height: 1.4em; display:block; margin-bottom: 4px; }
+  #resetCount{ font-family:'Fraunces', serif; font-size: 2.2rem; }
+
+  /* ---------- Footer ---------- */
+  footer{ padding: 56px 0 calc(56px + env(safe-area-inset-bottom, 0px)); text-align:center; }
+  footer h2{ font-size: clamp(1.6rem, 4vw, 2.2rem); }
+  footer .foot-links{ margin-top: 28px; font-size: 0.9rem; color: #E9A9C8; }
+  footer .foot-links a{ text-decoration: underline; }
+
+  ::selection{ background: var(--gold); color: var(--ink); }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <div class="brand">Easy<span class="x">Land</span>X</div>
+    <a class="btn btn-gold btn-small" href="https://easylandx.github.io/" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Landing pages for small businesses</p>
+    <h1>Most of the web is built to hold your attention.<br>We build pages that earn your customer's trust.</h1>
+    <p class="lede">Chatbots and feeds are optimized to feel effortless and always agreeable. A business page has a different job: it has to be honest enough, and clear enough, that a real person decides to call, book, or buy. That's the only kind of page EasyLandX makes.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="https://easylandx.github.io/" target="_blank" rel="noopener">Get your page built</a>
+      <a class="btn btn-outline" href="#framework">See how we think about it</a>
+    </div>
+
+    <svg class="blob" viewBox="0 0 400 200" role="img" aria-label="Illustration of a hand-shaped speech bubble meeting a screen-shaped speech bubble">
+      <rect x="10" y="30" width="160" height="110" rx="18" fill="var(--magenta-deeper)" stroke="var(--gold)" stroke-width="3"/>
+      <path d="M40 140 L30 165 L65 140 Z" fill="var(--magenta-deeper)" stroke="var(--gold)" stroke-width="3"/>
+      <circle cx="55" cy="70" r="10" fill="var(--gold)"/>
+      <circle cx="90" cy="70" r="10" fill="var(--gold)"/>
+      <circle cx="125" cy="70" r="10" fill="var(--gold)"/>
+      <path d="M50 100 Q90 118 130 100" stroke="var(--gold)" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+      <rect x="230" y="30" width="160" height="110" rx="18" fill="var(--magenta-deeper)" stroke="var(--teal)" stroke-width="3"/>
+      <path d="M360 140 L370 165 L335 140 Z" fill="var(--magenta-deeper)" stroke="var(--teal)" stroke-width="3"/>
+      <path d="M265 60 L280 90 L305 45 L325 90 L345 60" stroke="var(--teal)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <line x1="170" y1="85" x2="230" y2="85" stroke="var(--ivory)" stroke-width="3" stroke-dasharray="6 6"/>
+    </svg>
+  </div>
+</header>
+
+<section id="warning">
+  <div class="wrap">
+    <p class="kicker">Why this matters</p>
+    <h2>The comfort trap</h2>
+    <p class="body-text">Researchers who study how people relate to AI companions have flagged the same pattern again and again: systems that never push back, never get tired, and never ask for anything in return feel comfortable in the moment — but they teach us to expect relationships without friction. A website can fall into the same trap. Auto-playing videos, countdown timers that reset when you refresh, chat pop-ups that won't leave you alone — all of it is designed to keep you scrolling, not to help you decide. It works for engagement. It's terrible for trust.</p>
+    <p class="body-text">A small business doesn't need a visitor who scrolls forever. It needs one who reads, understands, and picks up the phone. That's a different design problem, and it's the one we solve.</p>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="wrap">
+    <p class="kicker">Our approach</p>
+    <h2>Five habits of a page people actually trust</h2>
+    <p class="body-text">Click each one — this is roughly the order we work through on every project.</p>
+    <ul class="steps" id="stepsList">
+      <li class="step" data-open="true">
+        <button class="step-head" aria-expanded="true">Audit what the page is actually saying<span class="chev">▾</span></button>
+        <div class="step-body"><p>Before we design anything, we read your current site the way a skeptical customer would. Every claim, every button, every piece of friction gets questioned: does this help someone decide, or does it just fill space?</p></div>
+      </li>
+      <li class="step" data-open="false">
+        <button class="step-head" aria-expanded="false">Give visitors one clear place to land<span class="chev">▾</span></button>
+        <div class="step-body"><p>No sidebar of ten competing offers, no five different fonts fighting for attention. One page, one purpose, one obvious next step — the way a good conversation has one topic at a time.</p></div>
+      </li>
+      <li class="step" data-open="false">
+        <button class="step-head" aria-expanded="false">Let real customers speak, unscripted<span class="chev">▾</span></button>
+        <div class="step-body"><p>Polished stock-photo testimonials read as fake because they usually are. We use your actual customers' words, even when they're a little rough — real friction reads as real trust.</p></div>
+      </li>
+      <li class="step" data-open="false">
+        <button class="step-head" aria-expanded="false">Build in honest friction, not fake urgency<span class="chev">▾</span></button>
+        <div class="step-body"><p>A form that asks a real question, a price that's actually visible, a "call us" button that goes to a person — small moments of effort that prove there's something genuine on the other end.</p></div>
+      </li>
+      <li class="step" data-open="false">
+        <button class="step-head" aria-expanded="false">Leave room for someone to think<span class="chev">▾</span></button>
+        <div class="step-body"><p>No exit-intent popups guilting people into staying. A page that respects a visitor's pace earns a better decision than one that panics them into a click.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="reset">
+  <div class="wrap">
+    <p class="kicker">Try it</p>
+    <h2>A 60-second reset, not a countdown to buy</h2>
+    <p class="body-text">Most landing pages use a timer to rush you. Here's one that does the opposite — a small demonstration of the last habit above. Press start, breathe with the circle, and notice how different "wait" feels when nobody's trying to sell you something.</p>
+
+    <div class="reset-card">
+      <div class="breath-wrap">
+        <svg id="breathSvg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="Breathing circle animation">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="var(--magenta-deep)" stroke-width="2"/>
+          <circle id="pulse" cx="100" cy="100" r="40" fill="var(--teal)" opacity="0.85"/>
+          <circle cx="100" cy="100" r="90" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="4 8"/>
+        </svg>
+      </div>
+      <span id="resetLabel">Press start when you're ready</span>
+      <div id="resetCount">60</div>
+      <div style="margin-top:18px;">
+        <button class="btn btn-teal" id="resetBtn">Start the reset</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2>Ready for a page that respects the person reading it?</h2>
+    <p class="body-text" style="margin-left:auto;margin-right:auto;">EasyLandX builds affordable, conversion-focused landing pages for small businesses — no dark patterns, no synthetic urgency, just a page that helps real customers say yes.</p>
+    <div style="margin-top:24px;">
+      <a class="btn btn-gold" href="https://easylandx.github.io/" target="_blank" rel="noopener">Go to EasyLandX</a>
+    </div>
+    <p class="foot-links">Landing page copy inspired by ideas from research on AI, attention, and human connection.</p>
+  </div>
+</footer>
+
+<script>
+  // Accordion
+  document.querySelectorAll('.step-head').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var step = btn.closest('.step');
+      var isOpen = step.getAttribute('data-open') === 'true';
+      document.querySelectorAll('.step').forEach(function(s){
+        s.setAttribute('data-open','false');
+        s.querySelector('.step-head').setAttribute('aria-expanded','false');
+      });
+      if(!isOpen){
+        step.setAttribute('data-open','true');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+
+  // Breathing reset timer
+  (function(){
+    var btn = document.getElementById('resetBtn');
+    var label = document.getElementById('resetLabel');
+    var count = document.getElementById('resetCount');
+    var pulse = document.getElementById('pulse');
+    var timer = null, seconds = 60, phase = 'in';
+
+    function setPhase(p){
+      phase = p;
+      if(p === 'in'){ pulse.setAttribute('r','75'); label.textContent = 'Breathe in...'; }
+      else { pulse.setAttribute('r','40'); label.textContent = 'Breathe out...'; }
+    }
+
+    btn.addEventListener('click', function(){
+      if(timer){ clearInterval(timer); }
+      seconds = 60;
+      count.textContent = seconds;
+      setPhase('in');
+      btn.textContent = 'Resetting...';
+      btn.disabled = true;
+      var breathToggle = setInterval(function(){
+        setPhase(phase === 'in' ? 'out' : 'in');
+      }, 3500);
+      timer = setInterval(function(){
+        seconds--;
+        count.textContent = seconds;
+        if(seconds <= 0){
+          clearInterval(timer);
+          clearInterval(breathToggle);
+          label.textContent = 'Good. Now go decide, unhurried.';
+          pulse.setAttribute('r','60');
+          btn.textContent = 'Start the reset';
+          btn.disabled = false;
+        }
+      }, 1000);
+    });
+  })();
+</script>
+
+</body>
+</html>

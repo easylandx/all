@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Every Page Is a Feast You Host</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=IBM+Plex+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --plum-deep:#2a0f24;
+    --plum-mid:#3d1a37;
+    --plum-panel:#54224a;
+    --plum-line:#7a3b6b;
+    --ink:#f6ecf2;
+    --ink-soft:#d9c2d1;
+    --amber:#f0a63a;
+    --lime:#b7e23a;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{
+    margin:0;
+    background:var(--plum-deep);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', Arial, sans-serif;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+    line-height:1.55;
+  }
+  h1,h2,h3{font-family:'Fraunces', Georgia, serif; margin:0 0 .4em; font-weight:900; letter-spacing:-.01em;}
+  p{margin:0 0 1em; max-width:62ch;}
+  a{color:inherit;}
+  .wrap{max-width:960px; margin:0 auto; padding:0 1.5rem;}
+
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    background:var(--plum-deep);
+    border-bottom:4px solid var(--amber);
+    padding:1rem 1.5rem calc(1rem + env(safe-area-inset-top,0px));
+    padding-top:calc(1rem + env(safe-area-inset-top,0px));
+    display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;
+  }
+  .brand{font-family:'Fraunces',serif; font-weight:900; font-size:1.3rem;}
+  .btn{
+    display:inline-block; text-decoration:none;
+    background:var(--amber); color:var(--plum-deep);
+    font-weight:700; padding:.7em 1.4em;
+    border:3px solid var(--plum-deep);
+    box-shadow:5px 5px 0 var(--lime);
+    font-size:1rem;
+  }
+  .btn:hover{transform:translate(-2px,-2px); box-shadow:7px 7px 0 var(--lime);}
+  .btn-outline{
+    background:transparent; color:var(--lime); border:3px solid var(--lime); box-shadow:5px 5px 0 var(--amber);
+  }
+
+  header.hero{padding:4.5rem 0 3.5rem; text-align:left;}
+  header.hero h1{font-size:clamp(2.3rem,6vw,3.6rem); max-width:14ch;}
+  header.hero .lede{font-size:1.2rem; color:var(--ink-soft); max-width:48ch;}
+  .hero-cta{margin-top:1.6rem;}
+
+  section{padding:3.5rem 0; border-top:1px solid var(--plum-line);}
+  .eyebrow-free{color:var(--lime); font-weight:700; font-size:1rem;}
+
+  /* engine diagram */
+  .engine{display:grid; gap:1rem; margin-top:2rem;}
+  .stage{
+    background:var(--plum-mid); border:3px solid var(--plum-line);
+    padding:1.1rem 1.3rem; cursor:pointer;
+  }
+  .stage[open]{border-color:var(--amber);}
+  .stage summary{list-style:none; display:flex; align-items:center; gap:.9rem; font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem;}
+  .stage summary::-webkit-details-marker{display:none;}
+  .stage summary .num{
+    flex:0 0 auto; width:2.2rem; height:2.2rem; display:flex; align-items:center; justify-content:center;
+    background:var(--lime); color:var(--plum-deep); font-weight:900; font-family:'IBM Plex Sans',sans-serif;
+  }
+  .stage summary::after{content:'+'; margin-left:auto; font-size:1.4rem; color:var(--amber);}
+  .stage[open] summary::after{content:'–';}
+  .stage p{margin-top:.8rem; color:var(--ink-soft);}
+
+  /* ingredient audit */
+  .chips{display:flex; flex-wrap:wrap; gap:.7rem; margin:1.6rem 0;}
+  .chip{
+    background:var(--plum-panel); border:3px solid var(--plum-line); color:var(--ink);
+    padding:.55em 1.1em; font-weight:700; cursor:pointer; font-size:1rem;
+  }
+  .chip.active{border-color:var(--lime); background:var(--plum-deep); color:var(--lime);}
+  .reveal{
+    background:var(--plum-mid); border-left:6px solid var(--amber);
+    padding:1.2rem 1.4rem; min-height:5.5rem; display:flex; align-items:center;
+  }
+  .reveal p{margin:0; color:var(--ink);}
+
+  ul.signals{list-style:none; padding:0; display:grid; gap:.9rem; margin:1.6rem 0 0;}
+  ul.signals li{
+    padding-left:2.4rem; position:relative;
+  }
+  ul.signals li::before{
+    content:''; position:absolute; left:0; top:.2em; width:1.5rem; height:1.5rem;
+    background:var(--lime);
+    clip-path:polygon(0 50%,40%100%,100%0);
+  }
+
+  .art{display:flex; justify-content:center; margin:2rem 0;}
+  .art svg{width:100%; max-width:420px; height:auto;}
+
+  footer{padding:3.5rem 0 4rem; text-align:center; border-top:4px solid var(--amber);}
+  footer .btn{font-size:1.15rem;}
+  .credit{margin-top:2rem; color:var(--ink-soft); font-size:.9rem;}
+
+  @media (max-width:600px){
+    .topbar{padding-left:1rem; padding-right:1rem;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="brand">easylandx</span>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow-free">A landing page, read the way a meal is read</p>
+    <h1>Every landing page is a feast you host.</h1>
+    <p class="lede">Long before a visitor reads a single word, they read the table you set: the colors, the pacing, the shape of the invitation. easylandx builds that table with the same care an anthropologist gives a dinner plate — every choice deliberate, every detail speaking.</p>
+    <div class="hero-cta"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Set your table with easylandx</a></div>
+  </header>
+
+  <section>
+    <h2>A page is never just a form</h2>
+    <p>A shared meal looks natural, yet nothing about it is left to chance — the order of courses, the placement of a fork, the ritual of raising a glass all carry history and meaning. A landing page works the same way. The order of your sections, the weight of your headline, the space around your button: each element is a choice that shapes how a visitor feels welcomed, and each one can be made with intention rather than habit.</p>
+    <div class="art">
+      <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="80" r="70" fill="none" stroke="#b7e23a" stroke-width="4"/>
+        <line x1="60" y1="80" x2="10" y2="80" stroke="#f0a63a" stroke-width="6" stroke-linecap="round"/>
+        <line x1="60" y1="55" x2="60" y2="105" stroke="#f0a63a" stroke-width="6" stroke-linecap="round"/>
+        <path d="M340 55 v50 M330 55 v20 a10 10 0 0 0 20 0 v-20" stroke="#f0a63a" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <circle cx="200" cy="80" r="34" fill="#54224a" stroke="#f6ecf2" stroke-width="2"/>
+      </svg>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow-free">The framework</p>
+    <h2>The easylandx craft engine</h2>
+    <p>Five stages carry a page from a blank layout to a table a visitor wants to join. Open each one to see how it plays out.</p>
+    <div class="engine">
+      <details class="stage" open>
+        <summary><span class="num">1</span>Trace the origins</summary>
+        <p>Every strong page starts with a genealogy: the people, the place, and the purpose behind the offer. easylandx begins here, surfacing the real story so the page grows from something rooted rather than borrowed.</p>
+      </details>
+      <details class="stage">
+        <summary><span class="num">2</span>Read the signals</summary>
+        <p>Color, spacing, and rhythm are the table manners of a page — quiet signals that tell a visitor how to feel before they read a word. easylandx audits these signals so calm confidence comes through in every section.</p>
+      </details>
+      <details class="stage">
+        <summary><span class="num">3</span>Set the ritual</summary>
+        <p>A visitor's path from arrival to action is designed like a table setting: each element placed where a hand expects to find it, guiding attention course by course toward the moment of "yes."</p>
+      </details>
+      <details class="stage">
+        <summary><span class="num">4</span>Keep the hands visible</summary>
+        <p>Where mass production hides the maker behind a uniform wrapper, easylandx keeps the craftsmanship visible — original layouts built for the brand in front of it, so a visitor senses a person behind the page.</p>
+      </details>
+      <details class="stage">
+        <summary><span class="num">5</span>Gather the table</summary>
+        <p>The final stage turns a visit into a shared moment: the click that says "I'm in." A page built this way earns that click rather than asking for it.</p>
+      </details>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow-free">Try it</p>
+    <h2>The ingredient audit</h2>
+    <p>Every ingredient on a plate carries a history — corn was once worshipped, salt once paid wages, olive oil once crossed empires. The elements of a landing page carry similar weight. Tap one to trace its lineage.</p>
+    <div class="chips" id="chips">
+      <button class="chip active" data-key="headline">Headline</button>
+      <button class="chip" data-key="palette">Color palette</button>
+      <button class="chip" data-key="cta">Call to action</button>
+      <button class="chip" data-key="imagery">Imagery</button>
+      <button class="chip" data-key="testimonial">Testimonial</button>
+    </div>
+    <div class="reveal" id="reveal">
+      <p>Like corn once grown and revered as a foundation of life across Mesoamerica, your headline is the seed every visitor's decision grows from — plant it with care and the rest of the page follows naturally.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow-free">Table manners, translated</p>
+    <h2>The signals that build trust</h2>
+    <p>Manners at a table exist to turn potential tension into shared comfort — hands visible, pace unhurried, portions clear. easylandx carries the same signals into a page:</p>
+    <ul class="signals">
+      <li>Navigation a visitor can read at a glance, so the way forward always feels obvious.</li>
+      <li>Pricing and terms stated plainly, the way a host names what's on the menu.</li>
+      <li>Pacing that respects a visitor's time, one clear course at a time.</li>
+      <li>A tone that stays warm and specific, the way a good host remembers a name.</li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="eyebrow-free">Identity</p>
+    <h2>Your page draws your circle</h2>
+    <p>What a household chooses to serve, and what it sets aside, marks who belongs at the table. A brand's choices work the same way: the words it keeps, the craft it invests in, the promises it stands behind all draw the circle of people who feel at home with it. easylandx helps that circle take shape clearly, page by page.</p>
+    <div class="art">
+      <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
+        <path d="M60 120 C60 60 340 60 340 120" fill="none" stroke="#f0a63a" stroke-width="4"/>
+        <circle cx="90" cy="115" r="8" fill="#b7e23a"/>
+        <circle cx="160" cy="80" r="8" fill="#b7e23a"/>
+        <circle cx="240" cy="80" r="8" fill="#b7e23a"/>
+        <circle cx="310" cy="115" r="8" fill="#b7e23a"/>
+        <circle cx="200" cy="65" r="10" fill="#f6ecf2"/>
+      </svg>
+    </div>
+  </section>
+
+  <footer>
+    <h2>Ready to set your table?</h2>
+    <p style="margin-left:auto;margin-right:auto;text-align:center;">easylandx builds landing pages the way a great meal is built — original, deliberate, and worth gathering around.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+    <p class="credit">made by easylandx</p>
+  </footer>
+
+</div>
+
+<script>
+  const facts = {
+    headline: "Like corn once grown and revered as a foundation of life across Mesoamerica, your headline is the seed every visitor's decision grows from — plant it with care and the rest of the page follows naturally.",
+    palette: "Salt once sealed covenants and paid wages across empires. Your color palette works the same way, sealing a promise of trust in a visitor's mind before a single word is read.",
+    cta: "Butter once marked the line between one way of living and another in the ancient world. Your call-to-action marks a similar line — the moment browsing becomes belonging.",
+    imagery: "Olive oil traveled trade routes that connected whole civilizations. Your imagery travels the same way, carrying your story across every screen and every glance it reaches.",
+    testimonial: "Rice feeds more of the world than any other grain. A testimonial feeds more belief in a brand than any claim the brand could make about itself."
+  };
+  const chips = document.querySelectorAll('.chip');
+  const reveal = document.getElementById('reveal').querySelector('p');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      reveal.textContent = facts[chip.dataset.key];
+    });
+  });
+</script>
+
+</body>
+</html>

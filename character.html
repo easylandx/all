@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Pages built for how people actually decide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111111; --paper:#FAF9F5; --line:#111111; --mid:#6b6b66;
+    --crimson:#C81D3B; --lime:#B7D400; --ultraviolet:#5B12D6;
+    --radius:0px;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --ink:#F2F1EC; --paper:#141414; --line:#F2F1EC; --mid:#a9a9a2; }
+  }
+  :root[data-theme="dark"]{ --ink:#F2F1EC; --paper:#141414; --line:#F2F1EC; --mid:#a9a9a2; }
+
+  h1,h2,h3,.disp{ font-family:"Space Grotesk",sans-serif; font-weight:700; line-height:1.02; letter-spacing:-0.01em; margin:0; }
+  p{ line-height:1.55; margin:0; }
+  a{ color:inherit; }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+  section{ padding:88px 0; border-bottom:2px solid var(--line); }
+  @media (max-width:640px){ section{ padding:56px 0; } }
+
+  /* header */
+  header{ position:sticky; top:env(safe-area-inset-top,0px); background:var(--paper); z-index:10; border-bottom:2px solid var(--line);}
+  .hbar{ display:flex; align-items:center; justify-content:space-between; padding:18px 24px; max-width:1080px; margin:0 auto; }
+  .logo{ font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:1.15rem; }
+  .btn{ display:inline-block; font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:.95rem;
+        background:var(--crimson); color:#fff; padding:12px 22px; border:2px solid var(--ink); text-decoration:none; }
+  .btn:hover{ background:var(--ink); color:var(--paper); }
+  .btn.alt{ background:var(--ultraviolet); }
+  .btn.alt:hover{ background:var(--ink); }
+
+  /* hero */
+  .hero{ padding-top:64px; }
+  .hero .kicker{ color:var(--crimson); font-weight:600; margin-bottom:14px; }
+  .hero h1{ font-size:clamp(2.2rem,6vw,4.2rem); max-width:14ch; }
+  .hero p.lead{ max-width:52ch; margin-top:22px; font-size:1.15rem; color:var(--mid); }
+  .hero .ctas{ margin-top:32px; display:flex; gap:14px; flex-wrap:wrap; }
+  .hero-art{ margin-top:56px; }
+
+  /* two engines */
+  .engines{ display:grid; grid-template-columns:1fr 1fr; gap:0; border:2px solid var(--line); }
+  .engine{ padding:32px; }
+  .engine + .engine{ border-left:2px solid var(--line); }
+  @media (max-width:640px){ .engines{ grid-template-columns:1fr; } .engine + .engine{ border-left:none; border-top:2px solid var(--line);} }
+  .engine .tag{ font-weight:700; font-family:"Space Grotesk",sans-serif; }
+  .engine.emotion .tag{ color:var(--crimson); }
+  .engine.reason .tag{ color:var(--ultraviolet); }
+  .engine p{ margin-top:10px; color:var(--mid); }
+  .vs{ text-align:center; font-family:"Space Grotesk",sans-serif; color:var(--mid); margin:18px 0 6px; font-size:.9rem; }
+
+  h2.h{ font-size:clamp(1.6rem,4vw,2.4rem); max-width:20ch; }
+  .sub{ color:var(--mid); max-width:60ch; margin-top:14px; }
+  .label{ font-weight:600; color:var(--mid); margin-bottom:10px; }
+
+  /* engine diagram */
+  .diagram{ margin-top:44px; display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+  @media (max-width:900px){ .diagram{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:520px){ .diagram{ grid-template-columns:1fr; } }
+  .node{ border:2px solid var(--line); padding:18px; cursor:pointer; background:transparent; text-align:left; font-family:inherit; color:inherit; }
+  .node .n{ font-family:"Space Grotesk",sans-serif; font-weight:700; }
+  .node[data-c="crimson"]{ border-color:var(--crimson); }
+  .node[data-c="lime"]{ border-color:var(--lime); }
+  .node[data-c="uv"]{ border-color:var(--ultraviolet); }
+  .node.open{ background:var(--ink); color:var(--paper); }
+  .node .detail{ display:none; margin-top:10px; font-size:.92rem; color:var(--mid); }
+  .node.open .detail{ display:block; color:#d8d8d2; }
+
+  /* friction demo */
+  .demo{ border:2px solid var(--line); padding:32px; margin-top:36px; }
+  .demo-row{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  input[type=range]{ flex:1; min-width:180px; accent-color:var(--ultraviolet); }
+  .bignum{ font-family:"Space Grotesk",sans-serif; font-size:3rem; color:var(--ultraviolet); }
+  .bar-track{ height:16px; border:2px solid var(--line); margin-top:20px; }
+  .bar-fill{ height:100%; background:var(--lime); width:60%; transition:width .25s ease; }
+
+  /* checklist */
+  .check-list{ margin-top:28px; display:grid; gap:10px; }
+  .check-item{ display:flex; gap:12px; align-items:flex-start; border:2px solid var(--line); padding:14px 16px; }
+  .check-item input{ margin-top:4px; width:18px; height:18px; accent-color:var(--crimson); flex-shrink:0; }
+  .score{ margin-top:20px; font-family:"Space Grotesk",sans-serif; font-size:1.3rem; }
+
+  .cta-band{ text-align:center; padding:96px 24px; border-bottom:none; }
+  .cta-band h2{ font-size:clamp(1.8rem,5vw,3rem); max-width:18ch; margin:0 auto; }
+  .cta-band .ctas{ margin-top:30px; display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+
+  footer{ padding:28px 24px; text-align:center; color:var(--mid); font-size:.85rem; }
+  footer a{ text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hbar">
+    <div class="logo">EASYLANDX</div>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Get a page →</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">A note on how visitors actually decide</div>
+    <h1>Nobody reads your landing page with one mind.</h1>
+    <p class="lead">Every visitor runs on two engines at once — a fast, emotional one and a slower, reasoning one. Psychologists David DeSteno and Piercarlo Valdesolo spent their book <em>Out of Character</em> mapping that tug-of-war. We build pages around it.</p>
+    <div class="ctas">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">See EasyLandX</a>
+    </div>
+
+    <svg class="hero-art" viewBox="0 0 700 140" width="100%" height="140" role="img" aria-label="Two overlapping shapes representing emotion and reason">
+      <circle cx="230" cy="70" r="60" fill="none" stroke="#C81D3B" stroke-width="3"/>
+      <circle cx="330" cy="70" r="60" fill="none" stroke="#5B12D6" stroke-width="3"/>
+      <text x="150" y="76" font-family="Space Grotesk" font-weight="700" font-size="16" fill="#C81D3B">EMOTION</text>
+      <text x="470" y="76" font-family="Space Grotesk" font-weight="700" font-size="16" fill="#5B12D6">REASON</text>
+    </svg>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="label">The dual-engine mind</div>
+    <h2 class="h">Speak to both, or you'll lose half the room.</h2>
+    <p class="sub">The book's core claim: moral and practical choices come from a constant trade-off between short-term impulse and long-term calculation. A landing page faces the same split-second split.</p>
+    <div class="engines" style="margin-top:32px;">
+      <div class="engine emotion">
+        <div class="tag">The emotional engine</div>
+        <p>Fast, automatic, first to arrive. It reacts to your hero image, your headline, your color, your tone — before a single feature is read.</p>
+      </div>
+      <div class="engine reason">
+        <div class="tag">The reasoning engine</div>
+        <p>Slower, deliberate, arrives seconds later. It checks price, proof, and whether the claim actually holds up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="label">Adapted framework</div>
+    <h2 class="h">The Conversion Dynamic Engine</h2>
+    <p class="sub">DeSteno &amp; Valdesolo's five-step model for managing character under pressure, rebuilt for the five decisions that shape whether a page converts. Tap each step.</p>
+    <div class="diagram" id="diagram">
+      <button class="node" data-c="crimson">
+        <div class="n">1. Recognize the trigger</div>
+        <div class="detail">Fatigue, distraction, and time pressure change what a visitor will tolerate. Design for the tired, half-attentive version of them, not the ideal reader.</div>
+      </button>
+      <button class="node" data-c="lime">
+        <div class="n">2. Audit assumed trust</div>
+        <div class="detail">A strong logo or one good review can quietly license sloppiness elsewhere — this is moral licensing. Check every section as if the page had no reputation to lean on.</div>
+      </button>
+      <button class="node" data-c="uv">
+        <div class="n">3. Lead with prosocial proof</div>
+        <div class="detail">Gratitude and genuine pride beat pure logic at building trust. Real testimonials and specific outcomes do more than another bullet list of features.</div>
+      </button>
+      <button class="node" data-c="crimson">
+        <div class="n">4. Remove friction</div>
+        <div class="detail">Short-term impulse acts on whatever is easiest right now. Every extra field or click gives the reasoning engine time to talk the emotional one out of it.</div>
+      </button>
+      <button class="node" data-c="lime">
+        <div class="n">5. Reframe the reader in</div>
+        <div class="detail">People judge outsiders harshly and insiders kindly. Copy that names the visitor's exact situation moves them from outsider to "someone like me."</div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="label">Try step 4 yourself</div>
+    <h2 class="h">Fewer fields, more finishers.</h2>
+    <p class="sub">A rough model of how form length affects who actually completes it — the same friction the book warns pushes short-term impulse to just walk away.</p>
+    <div class="demo">
+      <div class="demo-row">
+        <span style="font-weight:600;">Form fields:</span>
+        <input type="range" id="fields" min="1" max="10" value="5">
+        <span class="bignum" id="fieldsOut">5</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" id="fillBar"></div></div>
+      <p class="sub" id="fillLabel" style="margin-top:12px;">Estimated completion: 60%</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="label">The moral-licensing check</div>
+    <h2 class="h">Is your current page coasting on past wins?</h2>
+    <p class="sub">Tick anything true right now. This mirrors the book's "balance sheet" — checking whether one good thing (a nice logo, an old testimonial) is quietly excusing weak spots elsewhere.</p>
+    <div class="check-list" id="checklist">
+      <label class="check-item"><input type="checkbox"> The homepage still shows a testimonial from over a year ago.</label>
+      <label class="check-item"><input type="checkbox"> The call to action is a different word on almost every page.</label>
+      <label class="check-item"><input type="checkbox"> Someone has to scroll past three sections before finding the price.</label>
+      <label class="check-item"><input type="checkbox"> The sign-up form asks for more than name, email, and one detail.</label>
+      <label class="check-item"><input type="checkbox"> Nothing on the page names who it's actually for.</label>
+    </div>
+    <div class="score" id="scoreOut">0 of 5 — looking sharp.</div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="wrap">
+    <h2>Let's build a page that plays to both engines.</h2>
+    <p class="sub" style="margin:16px auto 0;">EasyLandX designs affordable, conversion-focused landing pages for small businesses — built by hand, not out of a template.</p>
+    <div class="ctas">
+      <a class="btn alt" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Framework adapted from <em>Out of Character</em> by David DeSteno &amp; Piercarlo Valdesolo, applied to landing-page design by EasyLandX.
+</footer>
+
+<script>
+  // diagram accordion
+  document.querySelectorAll('.node').forEach(function(n){
+    n.addEventListener('click', function(){
+      var wasOpen = n.classList.contains('open');
+      document.querySelectorAll('.node').forEach(function(o){ o.classList.remove('open'); });
+      if(!wasOpen) n.classList.add('open');
+    });
+  });
+
+  // friction slider
+  try{
+    var slider = document.getElementById('fields');
+    var out = document.getElementById('fieldsOut');
+    var fill = document.getElementById('fillBar');
+    var label = document.getElementById('fillLabel');
+    function update(){
+      var v = parseInt(slider.value,10);
+      out.textContent = v;
+      var pct = Math.max(8, 100 - (v-1)*9);
+      fill.style.width = pct + '%';
+      label.textContent = 'Estimated completion: ' + pct + '%';
+    }
+    slider.addEventListener('input', update);
+    update();
+  }catch(e){}
+
+  // checklist score
+  try{
+    var boxes = document.querySelectorAll('#checklist input[type=checkbox]');
+    var scoreOut = document.getElementById('scoreOut');
+    function scoreMsg(n){
+      if(n===0) return n+' of 5 — looking sharp.';
+      if(n<=2) return n+' of 5 — a couple of spots worth a second look.';
+      return n+' of 5 — past wins may be covering for real friction.';
+    }
+    boxes.forEach(function(b){
+      b.addEventListener('change', function(){
+        var n = 0;
+        boxes.forEach(function(x){ if(x.checked) n++; });
+        scoreOut.textContent = scoreMsg(n);
+      });
+    });
+  }catch(e){}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Train the mind you already have</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --amber:#F2A300;
+    --amber-deep:#C97A00;
+    --amber-dark:#8A5300;
+    --ink:#241503;
+    --magenta:#E4007C;
+    --teal:#00857A;
+    --cream:#FFE9BE;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{
+    margin:0;
+    background:var(--amber);
+    color:var(--ink);
+    font-family:'Work Sans',sans-serif;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+    line-height:1.5;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;font-weight:700;margin:0;}
+  a{color:inherit;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+  section{padding:64px 0;}
+
+  /* HERO */
+  .hero{padding-top:56px;text-align:left;}
+  .hero h1{font-size:clamp(2.1rem,7vw,3.4rem);line-height:1.05;letter-spacing:-0.01em;}
+  .hero h1 span{color:var(--magenta);}
+  .hero p{max-width:46ch;font-size:1.1rem;margin-top:18px;color:var(--ink);}
+  .hero-art{margin:32px 0;}
+
+  .btn{
+    display:inline-block;
+    padding:14px 26px;
+    border-radius:999px;
+    font-weight:600;
+    text-decoration:none;
+    border:3px solid var(--ink);
+    background:var(--teal);
+    color:#fff;
+    transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn.alt{background:var(--magenta);}
+  .btn.outline{background:transparent;color:var(--ink);}
+
+  .card{
+    background:var(--cream);
+    border:3px solid var(--ink);
+    border-radius:22px;
+    padding:28px;
+  }
+
+  /* ANTS */
+  .ants h2{font-size:clamp(1.6rem,5vw,2.2rem);}
+  .ant-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:22px;}
+  @media(min-width:600px){.ant-grid{grid-template-columns:1fr 1fr;}}
+  .ant-item{
+    background:var(--amber-deep);
+    border:3px solid var(--ink);
+    border-radius:16px;
+    padding:16px 18px;
+    font-weight:500;
+  }
+  .ant-item b{display:block;color:var(--magenta);font-family:'Space Grotesk',sans-serif;}
+
+  /* ENGINE STEPPER */
+  .engine .card{position:relative;}
+  .step-dots{display:flex;gap:8px;margin-bottom:20px;}
+  .dot{
+    width:34px;height:34px;border-radius:50%;
+    border:3px solid var(--ink);
+    background:var(--amber);
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;flex:0 0 auto;
+  }
+  .dot.active{background:var(--teal);color:#fff;}
+  .step-title{color:var(--magenta);font-size:1.3rem;margin-bottom:8px;}
+  .step-body{min-height:64px;}
+  .step-nav{display:flex;gap:10px;margin-top:20px;}
+  .step-nav button{
+    border:3px solid var(--ink);background:var(--ink);color:var(--amber);
+    border-radius:999px;padding:10px 18px;font-weight:600;font-family:'Work Sans',sans-serif;cursor:pointer;
+  }
+
+  /* JOURNAL */
+  .journal label{display:block;font-weight:600;margin:14px 0 6px;}
+  .journal input, .journal select{
+    width:100%;padding:12px;border-radius:10px;border:3px solid var(--ink);
+    font-family:'Work Sans',sans-serif;font-size:1rem;background:#fff;
+  }
+  .journal-out{
+    margin-top:18px;padding:16px;border-radius:14px;
+    background:var(--amber);border:3px dashed var(--ink);
+    display:none;
+  }
+  .journal-out.show{display:block;}
+
+  /* GRATITUDE */
+  .gratitude .card{text-align:center;}
+  #gratitude-line{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;min-height:70px;display:flex;align-items:center;justify-content:center;color:var(--teal);}
+
+  /* SO WHAT */
+  #sowhat-chain{display:flex;flex-direction:column;gap:10px;margin-top:18px;}
+  .sowhat-line{
+    background:#fff;border:3px solid var(--ink);border-radius:14px;
+    padding:12px 16px;font-weight:500;
+  }
+  .sowhat-line b{color:var(--magenta);}
+
+  footer{padding:48px 0 72px;text-align:center;}
+  footer .credit{margin-top:26px;font-size:.95rem;color:var(--ink);opacity:.85;}
+  footer .credit a{font-weight:600;color:var(--magenta);text-decoration:underline;}
+
+  .section-label{
+    color:var(--teal);font-weight:600;font-family:'Space Grotesk',sans-serif;
+    font-size:1rem;margin-bottom:6px;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <section class="hero">
+    <svg class="hero-art" width="140" height="90" viewBox="0 0 140 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="70" cy="45" r="34" stroke="var(--ink)" stroke-width="4" fill="none"/>
+      <path d="M40 45c8-14 20-22 30-22" stroke="var(--magenta)" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M100 45c-6 16-18 24-30 24" stroke="var(--teal)" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <circle cx="70" cy="45" r="6" fill="var(--ink)"/>
+    </svg>
+    <h1>Your mind runs on habits.<br>Some of them you can <span>rewrite</span>.</h1>
+    <p>A short, hands-on tool built around the cognitive-rewiring method from <em>Mastering the Art of Positive Thinking</em> — catch the automatic thought, question it, and land somewhere steadier.</p>
+    <p style="margin-top:26px;">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">See what easylandx builds</a>
+    </p>
+  </section>
+
+  <section class="ants">
+    <div class="section-label">Where the trouble starts</div>
+    <h2>The ANTs running the show</h2>
+    <p>Automatic Negative Thoughts show up uninvited and dress themselves up as facts. Four repeat offenders:</p>
+    <div class="ant-grid">
+      <div class="ant-item"><b>Catastrophizing</b>Jumping straight to the worst possible outcome.</div>
+      <div class="ant-item"><b>Fortune telling</b>Predicting failure before anything has happened.</div>
+      <div class="ant-item"><b>All-or-nothing</b>One setback reads as total failure.</div>
+      <div class="ant-item"><b>Emotional reasoning</b>Treating a feeling as proof of a fact.</div>
+    </div>
+  </section>
+
+  <section class="engine">
+    <div class="section-label">The tool</div>
+    <h2>Walk the rewiring engine</h2>
+    <div class="card" style="margin-top:20px;">
+      <div class="step-dots" id="dots"></div>
+      <div class="step-title" id="step-title"></div>
+      <div class="step-body" id="step-body"></div>
+      <div class="step-nav">
+        <button id="prev">Back</button>
+        <button id="next">Next step</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="journal">
+    <div class="section-label">Put it to work</div>
+    <h2>Three-column thought check</h2>
+    <div class="card" style="margin-top:20px;">
+      <label for="thought">The thought, exactly as it showed up</label>
+      <input id="thought" type="text" placeholder="e.g. I'm going to fail this presentation">
+      <label for="distortion">Which one is it?</label>
+      <select id="distortion">
+        <option>Catastrophizing</option>
+        <option>Fortune telling</option>
+        <option>All-or-nothing thinking</option>
+        <option>Emotional reasoning</option>
+      </select>
+      <p style="margin-top:18px;"><button class="btn alt" style="border:none;cursor:pointer;font-family:'Work Sans',sans-serif;" id="check-btn">Check it</button></p>
+      <div class="journal-out" id="journal-out"></div>
+    </div>
+  </section>
+
+  <section class="gratitude">
+    <div class="section-label">The daily anchor</div>
+    <h2>One granular thing, right now</h2>
+    <div class="card" style="margin-top:20px;">
+      <div id="gratitude-line">Tap for a prompt.</div>
+      <button class="btn outline" style="border-width:3px;cursor:pointer;font-family:'Work Sans',sans-serif;" id="gratitude-btn">Give me a prompt</button>
+    </div>
+  </section>
+
+  <section class="sowhat">
+    <div class="section-label">For the spiral</div>
+    <h2>The "so what?" protocol</h2>
+    <p>Keep asking. Each answer strips out one layer of the fear.</p>
+    <div id="sowhat-chain"></div>
+    <p style="margin-top:16px;"><button class="btn" style="border:none;cursor:pointer;font-family:'Work Sans',sans-serif;" id="sowhat-btn">So, what then?</button></p>
+  </section>
+
+  <footer>
+    <h2 style="font-size:1.6rem;">Built to be used, not scrolled past.</h2>
+    <p style="max-width:40ch;margin:14px auto;">easylandx pages are made from scratch around what you're actually explaining — not dropped into a template.</p>
+    <a class="btn alt" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+    <p class="credit">Made by <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a></p>
+  </footer>
+
+</div>
+
+<script>
+  // Rewiring engine stepper
+  const steps = [
+    {t:"Catch it", b:"Name the automatic thought the moment it fires, and label which distortion it's using. You can't edit what you haven't noticed."},
+    {t:"Pause", b:"One slow breath, or a small physical reset — stand up, unclench your jaw. Just enough space to stop reacting on autopilot."},
+    {t:"Challenge the evidence", b:"Ask: is this 100% true? What's the actual proof, versus what my mood is telling me?"},
+    {t:"Reframe with realism", b:"Swap the disaster version for the working version: not \u201cthis is a disaster,\u201d but \u201cthis is a challenge I can work through.\u201d"},
+    {t:"Anchor with gratitude", b:"Name one present tool, win, or resource you actually have. It pulls attention back to solid ground."}
+  ];
+  let idx = 0;
+  const dotsEl = document.getElementById('dots');
+  steps.forEach((s,i)=>{
+    const d = document.createElement('div');
+    d.className = 'dot'+(i===0?' active':'');
+    d.textContent = i+1;
+    d.onclick = ()=>{idx=i; render();};
+    dotsEl.appendChild(d);
+  });
+  function render(){
+    document.getElementById('step-title').textContent = steps[idx].t;
+    document.getElementById('step-body').textContent = steps[idx].b;
+    [...dotsEl.children].forEach((d,i)=>d.classList.toggle('active', i===idx));
+  }
+  document.getElementById('next').onclick = ()=>{idx=(idx+1)%steps.length; render();};
+  document.getElementById('prev').onclick = ()=>{idx=(idx-1+steps.length)%steps.length; render();};
+  render();
+
+  // Three-column check
+  const reframes = {
+    "Catastrophizing":"What's the most likely outcome, not the worst one? You've handled likely outcomes before.",
+    "Fortune telling":"You don't have evidence yet — only a guess dressed up as a prediction.",
+    "All-or-nothing thinking":"One rough patch isn't the whole result. Where did it actually go fine?",
+    "Emotional reasoning":"Feeling unready isn't the same as being unready. What does the preparation actually show?"
+  };
+  document.getElementById('check-btn').onclick = ()=>{
+    const thought = document.getElementById('thought').value.trim() || "the thought you're carrying";
+    const dist = document.getElementById('distortion').value;
+    const out = document.getElementById('journal-out');
+    out.innerHTML = "<b>Triggering thought:</b> "+thought+"<br><b>Distortion:</b> "+dist+"<br><b>Reframe:</b> "+reframes[dist];
+    out.classList.add('show');
+  };
+
+  // Gratitude prompts
+  const prompts = [
+    "The exact smell of your coffee this morning.",
+    "A message someone sent you that you didn't have to answer, but wanted to.",
+    "One task, however small, that's already finished today.",
+    "A sound outside your window right now.",
+    "The last time someone waited for you without complaint."
+  ];
+  document.getElementById('gratitude-btn').onclick = ()=>{
+    document.getElementById('gratitude-line').textContent = prompts[Math.floor(Math.random()*prompts.length)];
+  };
+
+  // So what chain
+  const chain = [
+    "So what if it doesn't go well?",
+    "You'd feel embarrassed for a while.",
+    "So what happens after that?",
+    "You'd say what went wrong and move on — like last time.",
+    "So what's actually the risk here?",
+    "Not much. You'd handle it. You always do."
+  ];
+  let ci = 0;
+  document.getElementById('sowhat-btn').onclick = ()=>{
+    if(ci>=chain.length){return;}
+    const el = document.createElement('div');
+    el.className='sowhat-line';
+    el.innerHTML = (ci%2===0? "<b>Q:</b> ":"<b>A:</b> ")+chain[ci];
+    document.getElementById('sowhat-chain').appendChild(el);
+    ci++;
+    if(ci>=chain.length){ document.getElementById('sowhat-btn').style.display='none'; }
+  };
+</script>
+</body>
+</html>

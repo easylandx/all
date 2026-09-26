@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Stop building perfect. Start building remarkable.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#150B22; --paper:#FBF9F6; --purple:#5B1FCB; --purple-deep:#31106E;
+    --crimson:#D81E43; --yellow:#FFC300; --grey:#C9C3D1; --grey-line:#DAD4E2;
+    --font-head:'Space Grotesk', 'Segoe UI', sans-serif;
+    --font-body:'Inter', 'Segoe UI', sans-serif;
+    --side: clamp(20px, 6vw, 72px);
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:inherit; margin:0; padding:0;}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --paper:#150B22; --ink:#FBF9F6; --grey-line:#3A2C52; }
+  }
+  :root[data-theme="dark"]{ --paper:#150B22; --ink:#FBF9F6; --grey-line:#3A2C52; }
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{background:var(--paper); color:var(--ink); font-family:var(--font-body); line-height:1.5; overflow-x:hidden;}
+  img,svg{max-width:100%;}
+  .wrap{max-width:1180px; margin:0 auto; padding-left:var(--side); padding-right:var(--side);}
+  a{color:inherit;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px; font-family:var(--font-head); font-weight:700;
+    font-size:1rem; padding:16px 30px; border:3px solid var(--ink); background:var(--yellow); color:var(--ink);
+    text-decoration:none; cursor:pointer; transition:transform .15s ease, background .15s ease;
+  }
+  .btn:hover{ transform:translate(-3px,-3px); background:var(--crimson); color:#fff; border-color:var(--ink);}
+  .btn:active{ transform:translate(0,0); }
+  .btn.ghost{ background:transparent; color:var(--ink); }
+  .btn.ghost:hover{ background:var(--ink); color:var(--paper); }
+
+  header{ padding:20px var(--side); display:flex; justify-content:space-between; align-items:center; border-bottom:3px solid var(--ink);}
+  .logo{ font-family:var(--font-head); font-weight:700; font-size:1.3rem; letter-spacing:-0.02em; }
+  .logo span{ color:var(--crimson); }
+
+  section{ padding:88px 0; border-bottom:3px solid var(--ink); }
+  section:last-of-type{ border-bottom:none; }
+
+  h1{ font-family:var(--font-head); font-weight:700; font-size:clamp(2.4rem, 6vw, 4.6rem); line-height:1.02; letter-spacing:-0.02em; max-width:14ch;}
+  h2{ font-family:var(--font-head); font-weight:700; font-size:clamp(1.7rem, 3.4vw, 2.6rem); line-height:1.08; letter-spacing:-0.01em; max-width:16ch; }
+  p.lead{ font-size:1.15rem; max-width:52ch; color:var(--ink); opacity:.85; margin-top:18px;}
+  .kicker{ font-family:var(--font-head); font-weight:700; color:var(--crimson); font-size:.95rem; margin-bottom:14px;}
+
+  .hero{ display:grid; grid-template-columns:1.15fr .85fr; gap:48px; align-items:center; padding-top:64px;}
+  .hero-actions{ margin-top:34px; display:flex; gap:16px; flex-wrap:wrap; }
+  .hero-art{ position:relative; }
+
+  .grid-two{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
+  .safe-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+  .safe-cell{ aspect-ratio:1; background:var(--grey); border:3px solid var(--ink); }
+  .safe-cell.stand-out{ background:var(--purple); position:relative; }
+  .safe-cell.stand-out::after{ content:"★"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--yellow); font-size:1.4rem;}
+
+  .demo-card{ border:3px solid var(--ink); padding:28px; background:#fff; transition:background .35s ease, color .35s ease, border-color .35s ease;}
+  .demo-card h3{ font-family:var(--font-head); font-size:1.5rem; margin-bottom:10px;}
+  .demo-card .demo-btn{ display:inline-block; margin-top:20px; padding:12px 22px; font-family:var(--font-head); font-weight:700; border:3px solid var(--ink); transition:all .35s ease;}
+  .slider-wrap{ margin-top:34px; }
+  input[type=range]{ width:100%; height:6px; -webkit-appearance:none; background:var(--ink); outline:none; }
+  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; width:26px; height:26px; background:var(--yellow); border:3px solid var(--ink); cursor:pointer; }
+  input[type=range]::-moz-range-thumb{ width:20px; height:20px; background:var(--yellow); border:3px solid var(--ink); cursor:pointer; }
+  .slider-labels{ display:flex; justify-content:space-between; font-family:var(--font-head); font-weight:700; font-size:.9rem; margin-top:10px;}
+  .buzz-readout{ font-family:var(--font-head); font-weight:700; font-size:1.6rem; margin-top:22px; color:var(--purple); }
+
+  .sneezer-field{ position:relative; aspect-ratio:16/10; border:3px solid var(--ink); background:var(--paper); }
+  .dot{ position:absolute; width:14px; height:14px; border-radius:50%; background:var(--grey); transform:translate(-50%,-50%); transition:background .2s ease, transform .2s ease, box-shadow .2s ease; }
+  .dot.sneezer{ background:var(--crimson); cursor:pointer; }
+  .dot.sneezer:hover, .dot.sneezer:focus-visible{ background:var(--yellow); transform:translate(-50%,-50%) scale(1.7); box-shadow:0 0 0 3px var(--ink); }
+  .sneezer-caption{ margin-top:16px; font-size:.95rem; opacity:.75; }
+
+  .steps{ display:grid; grid-template-columns:repeat(5,1fr); gap:0; border:3px solid var(--ink); margin-top:44px;}
+  .step{ padding:26px 20px; border-right:3px solid var(--ink); }
+  .step:last-child{ border-right:none; }
+  .step .n{ font-family:var(--font-head); font-weight:700; color:var(--purple); font-size:1.1rem; }
+  .step h4{ font-family:var(--font-head); font-size:1.05rem; margin-top:10px; line-height:1.2; }
+  .step p{ font-size:.88rem; margin-top:8px; opacity:.8; }
+
+  .cta-final{ text-align:center; padding:100px 0; }
+  .cta-final h2{ margin:0 auto; max-width:18ch; }
+  .cta-final .btn{ margin-top:32px; font-size:1.1rem; padding:20px 40px; }
+
+  footer{ padding:30px var(--side); font-size:.85rem; opacity:.7; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  @media (max-width:820px){
+    .hero{ grid-template-columns:1fr; }
+    .grid-two{ grid-template-columns:1fr; }
+    .steps{ grid-template-columns:1fr 1fr; }
+    .step{ border-right:3px solid var(--ink); border-bottom:3px solid var(--ink);}
+    .step:nth-child(2n){ border-right:none; }
+  }
+  @media (max-width:520px){
+    .steps{ grid-template-columns:1fr; }
+    .step{ border-right:none !important; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Easy<span>Land</span>X</div>
+  <a class="btn ghost" href="https://easylandx.github.io" target="_blank" rel="noopener">See our sites</a>
+</header>
+
+<section class="hero-section">
+  <div class="wrap hero">
+    <div>
+      <div class="kicker">A manifesto, not a template</div>
+      <h1>Perfect landing pages get ignored. Remarkable ones get clicked.</h1>
+      <p class="lead">Most small-business websites are built to avoid mistakes. That's the mistake. EasyLandX builds affordable, conversion-focused pages designed to be noticed — not just correct.</p>
+      <div class="hero-actions">
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Get your page — EasyLandX</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
+        <rect x="30" y="30" width="360" height="360" fill="none" stroke="#150B22" stroke-width="3"/>
+        <circle cx="210" cy="210" r="130" fill="#5B1FCB"/>
+        <path d="M210 80 L300 330 L120 330 Z" fill="#FFC300" opacity="0.95"/>
+        <circle cx="210" cy="210" r="40" fill="#D81E43"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap grid-two">
+    <div>
+      <div class="kicker">Lesson one</div>
+      <h2>Playing it safe is the riskiest move you can make</h2>
+      <p class="lead">When every site looks the same, blending in isn't safety — it's invisibility. One bold, well-placed idea beats five cautious ones every time.</p>
+    </div>
+    <div>
+      <div class="safe-grid" aria-hidden="true">
+        <div class="safe-cell"></div><div class="safe-cell"></div><div class="safe-cell"></div><div class="safe-cell"></div><div class="safe-cell"></div>
+        <div class="safe-cell"></div><div class="safe-cell stand-out"></div><div class="safe-cell"></div><div class="safe-cell"></div><div class="safe-cell"></div>
+        <div class="safe-cell"></div><div class="safe-cell"></div><div class="safe-cell"></div><div class="safe-cell"></div><div class="safe-cell"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Try it yourself</div>
+    <h2>Drag the slider. Watch a page go from forgettable to remarkable.</h2>
+    <p class="lead">This is the same business, the same offer, the same budget. Only the design decisions changed.</p>
+    <div class="grid-two" style="margin-top:40px; align-items:start;">
+      <div class="demo-card" id="demoCard">
+        <h3 id="demoTitle">Quality Plumbing Services</h3>
+        <p id="demoBody">We provide plumbing services for your home or business. Contact us for a quote today.</p>
+        <span class="demo-btn" id="demoBtn">Contact Us</span>
+      </div>
+      <div class="slider-wrap">
+        <input type="range" id="buzzSlider" min="0" max="100" value="0" aria-label="Perfect to remarkable slider">
+        <div class="slider-labels">
+          <span>Perfect &amp; safe</span>
+          <span>Remarkable</span>
+        </div>
+        <div class="buzz-readout" id="buzzReadout">Status: Invisible</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Lesson two</div>
+    <h2>We don't design for everyone. We design for your sneezers.</h2>
+    <p class="lead">Every audience has a small group who talk the loudest and spread the word fastest. Hover the field below — the crimson dots are the 12% who will actually tell their friends about you.</p>
+    <div class="sneezer-field" id="sneezerField"></div>
+    <p class="sneezer-caption">A page built to thrill that 12% earns more word of mouth than one built to offend no one.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">How we build</div>
+    <h2>Five steps, no committee, no watered-down middle ground</h2>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h4>Find your edge</h4><p>We look for the one thing about your business worth talking about.</p></div>
+      <div class="step"><div class="n">02</div><h4>Cut the ordinary</h4><p>We remove every section that could belong to any competitor's site.</p></div>
+      <div class="step"><div class="n">03</div><h4>Design for sneezers</h4><p>We build the page to thrill your best-fit customers first.</p></div>
+      <div class="step"><div class="n">04</div><h4>Ship fast, test loud</h4><p>Your page goes live quickly, then improves from real traffic.</p></div>
+      <div class="step"><div class="n">05</div><h4>Sharpen what converts</h4><p>We keep what earns clicks and cut what doesn't — fast.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <div class="kicker">Ready when you are</div>
+    <h2>Stop being correct. Start being remarkable.</h2>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Build my page with EasyLandX</a>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>EasyLandX — affordable, conversion-focused sites for small businesses.</span>
+  <span>easylandx.github.io</span>
+</footer>
+
+<script>
+  // Perfect -> Remarkable slider
+  const slider = document.getElementById('buzzSlider');
+  const card = document.getElementById('demoCard');
+  const title = document.getElementById('demoTitle');
+  const body = document.getElementById('demoBody');
+  const dbtn = document.getElementById('demoBtn');
+  const readout = document.getElementById('buzzReadout');
+
+  const stages = [
+    { max: 20, status: 'Invisible', title: 'Quality Plumbing Services', body: 'We provide plumbing services for your home or business. Contact us for a quote today.', btn: 'Contact Us', bg:'#ffffff', ink:'#150B22', border:'#150B22' },
+    { max: 45, status: 'Ordinary', title: 'Reliable Plumbing, Fast', body: 'Same-day plumbing repairs across town, done right the first time.', btn: 'Get a Quote', bg:'#ffffff', ink:'#150B22', border:'#150B22' },
+    { max: 70, status: 'Noticed', title: 'The Plumber Who Shows Up in 60 Minutes', body: 'One flat rate. One guarantee: we\'re there in an hour, or the visit is free.', btn: 'Book the 60-Minute Fix', bg:'#F4EDFF', ink:'#150B22', border:'#5B1FCB' },
+    { max: 100, status: 'Remarkable', title: 'Burst Pipe? We Beat the Water to Your Door.', body: 'The only plumber in town with a live 60-minute guarantee — tracked on a public map, refunded if we\'re late.', btn: 'Track My Plumber Now', bg:'#150B22', ink:'#ffffff', border:'#FFC300' }
+  ];
+
+  function applyStage(v){
+    const s = stages.find(st => v <= st.max) || stages[stages.length-1];
+    title.textContent = s.title;
+    body.textContent = s.body;
+    dbtn.textContent = s.btn;
+    card.style.background = s.bg;
+    card.style.color = s.ink;
+    card.style.borderColor = s.border;
+    dbtn.style.background = v > 70 ? '#D81E43' : (v > 45 ? '#FFC300' : 'transparent');
+    dbtn.style.color = v > 70 ? '#fff' : s.ink;
+    dbtn.style.borderColor = s.border;
+    readout.textContent = 'Status: ' + s.status;
+    readout.style.color = v > 70 ? '#D81E43' : '#5B1FCB';
+  }
+  slider.addEventListener('input', e => applyStage(Number(e.target.value)));
+  applyStage(0);
+
+  // Sneezer field
+  const field = document.getElementById('sneezerField');
+  const total = 60;
+  for (let i = 0; i < total; i++){
+    const dot = document.createElement('div');
+    const isSneezer = i % 8 === 0;
+    dot.className = 'dot' + (isSneezer ? ' sneezer' : '');
+    dot.style.left = (Math.random()*94 + 3) + '%';
+    dot.style.top = (Math.random()*84 + 8) + '%';
+    if(isSneezer){
+      dot.tabIndex = 0;
+      dot.title = 'Sneezer: spreads the word';
+    }
+    field.appendChild(dot);
+  }
+</script>
+
+</body>
+</html>

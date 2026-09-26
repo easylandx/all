@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Landing Pages That Speak For You</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --emerald-deep:#06301F;
+    --emerald:#0B4D34;
+    --mint:#1FCF9A;
+    --mint-soft:#8FF0CE;
+    --cyan:#2FE6FF;
+    --violet:#B24BFF;
+    --ink:#EAFFF6;
+    --ink-dim:#BFE9D8;
+    --card:rgba(255,255,255,0.06);
+    --card-border:rgba(255,255,255,0.14);
+    --radius:22px;
+    --serif-line:1.15;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+  *{box-sizing:inherit;}
+  body{
+    margin:0;
+    min-height:100%;
+    background:
+      radial-gradient(1100px 600px at 85% -10%, rgba(178,75,255,0.28), transparent 60%),
+      radial-gradient(900px 500px at -10% 20%, rgba(47,230,255,0.18), transparent 55%),
+      linear-gradient(180deg, var(--emerald-deep), var(--emerald) 40%, #073826 100%);
+    color:var(--ink);
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Sora',system-ui,sans-serif; margin:0; line-height:1.08; letter-spacing:-0.01em;}
+  a{color:inherit;}
+  img{max-width:100%;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  /* nav */
+  nav{
+    position:sticky; top:0; z-index:20;
+    padding-top:calc(env(safe-area-inset-top,0px) + 18px);
+    padding-bottom:18px;
+    backdrop-filter:blur(10px);
+    background:linear-gradient(180deg, rgba(6,48,31,0.9), rgba(6,48,31,0.55));
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Sora'; font-weight:700; font-size:1.15rem;}
+  .brand-mark{
+    width:34px; height:34px; border-radius:10px;
+    background:linear-gradient(135deg, var(--cyan), var(--violet));
+    display:grid; place-items:center; font-size:1.05rem; color:#062015; font-weight:800;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 22px; border-radius:999px;
+    font-weight:600; font-size:0.95rem;
+    text-decoration:none; border:1px solid transparent;
+    cursor:pointer; transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:focus-visible{outline:3px solid var(--cyan); outline-offset:3px;}
+  .btn-primary{
+    background:linear-gradient(120deg, var(--cyan), var(--violet));
+    color:#04150F;
+    box-shadow:0 10px 28px -8px rgba(47,230,255,0.45);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 16px 34px -8px rgba(178,75,255,0.5);}
+  .btn-ghost{background:rgba(255,255,255,0.06); color:var(--ink); border-color:var(--card-border);}
+  .btn-ghost:hover{background:rgba(255,255,255,0.12);}
+  .btn-small{padding:9px 16px; font-size:0.85rem;}
+
+  /* hero */
+  header.hero{padding:96px 0 84px; position:relative;}
+  .eyebrow-tag{
+    display:inline-block; font-size:0.9rem; color:var(--mint-soft);
+    background:rgba(31,207,154,0.12); border:1px solid rgba(31,207,154,0.35);
+    padding:7px 16px; border-radius:999px; margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(2.3rem, 5vw, 3.6rem); max-width:14ch;}
+  .hero h1 .glow{
+    background:linear-gradient(120deg, var(--cyan), var(--mint-soft) 55%, var(--violet));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lede{margin-top:22px; font-size:1.15rem; color:var(--ink-dim); max-width:52ch;}
+  .hero .actions{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+
+  /* section shell */
+  section{padding:74px 0;}
+  .section-head{max-width:60ch; margin-bottom:44px;}
+  .section-head h2{font-size:clamp(1.7rem, 3vw, 2.3rem);}
+  .section-head p{color:var(--ink-dim); margin-top:14px; font-size:1.05rem;}
+
+  .grid-2{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;}
+  @media (max-width:820px){ .grid-2{grid-template-columns:1fr;} }
+
+  .card{
+    background:var(--card); border:1px solid var(--card-border);
+    border-radius:var(--radius); padding:28px;
+  }
+  .orb-visual{
+    position:relative; height:280px; border-radius:28px; overflow:hidden;
+    background:radial-gradient(circle at 30% 30%, rgba(47,230,255,0.35), transparent 60%),
+               radial-gradient(circle at 75% 70%, rgba(178,75,255,0.4), transparent 55%),
+               rgba(255,255,255,0.04);
+    border:1px solid var(--card-border);
+    display:grid; place-items:center;
+  }
+  .orb-visual span{font-size:0.95rem; color:var(--ink-dim); text-align:center; max-width:20ch; z-index:2;}
+
+  /* method timeline */
+  .method{display:flex; gap:20px; overflow-x:auto; padding-bottom:8px; scrollbar-width:thin;}
+  .method::-webkit-scrollbar{height:6px;}
+  .method::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2); border-radius:99px;}
+  .method-step{
+    flex:0 0 240px; background:var(--card); border:1px solid var(--card-border);
+    border-radius:18px; padding:24px; position:relative;
+  }
+  .method-step .num{
+    font-family:'Sora'; font-weight:700; font-size:0.85rem;
+    color:#04150F; background:linear-gradient(120deg, var(--mint-soft), var(--cyan));
+    width:30px; height:30px; border-radius:9px; display:grid; place-items:center; margin-bottom:16px;
+  }
+  .method-step h3{font-size:1.05rem; margin-bottom:10px;}
+  .method-step p{font-size:0.92rem; color:var(--ink-dim); margin:0;}
+
+  /* quiz */
+  .quiz-card{
+    background:linear-gradient(160deg, rgba(178,75,255,0.14), rgba(47,230,255,0.08));
+    border:1px solid var(--card-border); border-radius:28px; padding:40px;
+  }
+  .quiz-card h2{font-size:1.6rem; margin-bottom:8px;}
+  .quiz-card > p{color:var(--ink-dim); margin-bottom:28px;}
+  .q-block{margin-bottom:26px;}
+  .q-block p.q-text{font-weight:600; margin-bottom:14px;}
+  .q-options{display:flex; gap:10px; flex-wrap:wrap;}
+  .q-opt{
+    background:rgba(255,255,255,0.07); border:1px solid var(--card-border);
+    padding:10px 18px; border-radius:999px; font-size:0.92rem; cursor:pointer;
+    transition:background .15s ease, border-color .15s ease;
+  }
+  .q-opt:hover{background:rgba(255,255,255,0.14);}
+  .q-opt.selected{border-color:var(--cyan); background:rgba(47,230,255,0.18);}
+  #quiz-result{
+    margin-top:8px; padding:24px; border-radius:18px;
+    background:rgba(6,32,21,0.55); border:1px solid var(--card-border);
+    display:none;
+  }
+  #quiz-result.show{display:block; animation:reveal .5s ease;}
+  #quiz-result h3{font-size:1.2rem; margin-bottom:10px; color:var(--mint-soft);}
+  @keyframes reveal{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+
+  /* cta */
+  .cta-band{
+    text-align:center; padding:72px 0; margin:0 24px; border-radius:32px;
+    background:linear-gradient(135deg, rgba(31,207,154,0.18), rgba(178,75,255,0.2));
+    border:1px solid var(--card-border);
+  }
+  .cta-band h2{font-size:clamp(1.7rem,4vw,2.4rem); max-width:24ch; margin:0 auto 18px;}
+  .cta-band p{color:var(--ink-dim); max-width:46ch; margin:0 auto 30px;}
+
+  footer{padding:40px 0 calc(40px + env(safe-area-inset-bottom,0px)); text-align:center; color:var(--ink-dim); font-size:0.9rem;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .btn-primary:hover{transform:none;}
+    #quiz-result.show{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="brand-mark">EX</span> EasyLandX</div>
+    <a class="btn btn-primary btn-small" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow-tag">Landing pages for small businesses</span>
+    <h1>Your website does <span class="glow">the confident introducing</span> for you</h1>
+    <p class="lede">EasyLandX builds calm, focused landing pages that welcome every visitor, tell your story clearly, and keep the conversation going — all while you focus on the work you love.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Explore EasyLandX →</a>
+      <a class="btn btn-ghost" href="#quiz">Find your page's superpower</a>
+    </div>
+  </div>
+</header>
+
+<section id="visibility">
+  <div class="wrap grid-2">
+    <div>
+      <div class="section-head">
+        <h2>Great work deserves to be seen</h2>
+        <p>Skill and care go into every product, yet visibility is what turns quiet quality into real growth. A landing page gives your business a steady, always-on presence — building recognition and trust while you keep doing what you do best.</p>
+      </div>
+      <div class="card">
+        <p style="margin:0; color:var(--ink-dim);">Think of your page as the friendly first conversation that happens automatically, thousands of times over — clear, warm, and consistent every single visit.</p>
+      </div>
+    </div>
+    <div class="orb-visual">
+      <span>One page. Endless quiet introductions.</span>
+    </div>
+  </div>
+</section>
+
+<section id="connector">
+  <div class="wrap grid-2">
+    <div class="orb-visual" style="order:2;">
+      <span>Curiosity, listening, and follow-through — built into the page.</span>
+    </div>
+    <div style="order:1;">
+      <div class="section-head">
+        <h2>Built like a natural connector</h2>
+        <p>The strongest relationships grow from curiosity and genuine listening, not the loudest pitch in the room. EasyLandX pages are designed the same way: focused messaging, gentle prompts that invite the right questions, and automatic follow-up that keeps every new connection warm.</p>
+      </div>
+      <div class="card">
+        <p style="margin:0; color:var(--ink-dim);">Deep focus, empathy, and thoughtful reflection shape every layout — the same strengths that make one-on-one conversations memorable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The EasyLandX method</h2>
+      <p>A steady, five-part approach that turns a single page into a dependable growth engine.</p>
+    </div>
+    <div class="method">
+      <div class="method-step"><div class="num">1</div><h3>Set one clear goal</h3><p>Every page centers on a single, specific action — so visitors always know exactly what to do next.</p></div>
+      <div class="method-step"><div class="num">2</div><h3>Prepare the story</h3><p>Messaging and design are thoughtfully planned in advance, so your page always shows its best side.</p></div>
+      <div class="method-step"><div class="num">3</div><h3>Listen closely</h3><p>Built-in insight quietly shows what visitors care about most, so your message keeps sharpening.</p></div>
+      <div class="method-step"><div class="num">4</div><h3>Tell it concisely</h3><p>A tight, structured narrative of your wins and offerings, ready to make an impression any time.</p></div>
+      <div class="method-step"><div class="num">5</div><h3>Follow up warmly</h3><p>Automated forms and links keep new relationships moving within hours of that first visit.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="wrap">
+    <div class="quiz-card">
+      <h2>Find your landing page's superpower</h2>
+      <p>Three quick questions — one clear, personalized takeaway.</p>
+
+      <div class="q-block" data-q="1">
+        <p class="q-text">1. When you meet a potential customer, you naturally lead with:</p>
+        <div class="q-options">
+          <button class="q-opt" data-val="listener">Curious questions</button>
+          <button class="q-opt" data-val="storyteller">A short story about your work</button>
+          <button class="q-opt" data-val="strategist">A clear plan for next steps</button>
+        </div>
+      </div>
+
+      <div class="q-block" data-q="2">
+        <p class="q-text">2. Your favorite part of running the business is:</p>
+        <div class="q-options">
+          <button class="q-opt" data-val="listener">Understanding what people really need</button>
+          <button class="q-opt" data-val="storyteller">Sharing what makes your work special</button>
+          <button class="q-opt" data-val="strategist">Planning the steps that lead to growth</button>
+        </div>
+      </div>
+
+      <div class="q-block" data-q="3">
+        <p class="q-text">3. After a great conversation, you love to:</p>
+        <div class="q-options">
+          <button class="q-opt" data-val="listener">Reflect on what you learned</button>
+          <button class="q-opt" data-val="storyteller">Turn it into a memorable example</button>
+          <button class="q-opt" data-val="strategist">Send a thoughtful, timely follow-up</button>
+        </div>
+      </div>
+
+      <div id="quiz-result">
+        <h3 id="result-title"></h3>
+        <p id="result-text" style="margin:0; color:var(--ink-dim);"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="cta-band">
+    <h2>Give your business a page that introduces you well</h2>
+    <p>EasyLandX turns a single page into a calm, confident presence — working on your behalf, one visitor at a time.</p>
+    <a class="btn btn-primary" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">EasyLandX — affordable, conversion-focused landing pages for small businesses.</div>
+</footer>
+
+<script>
+(function(){
+  var answers = {};
+  var blocks = document.querySelectorAll('.q-block');
+  var resultBox = document.getElementById('quiz-result');
+  var resultTitle = document.getElementById('result-title');
+  var resultText = document.getElementById('result-text');
+
+  var PROFILES = {
+    listener: {
+      title: "The Listener",
+      text: "Your page's superpower is attentiveness. EasyLandX can add a short, friendly prompt that invites visitors to share what they're looking for — turning quiet curiosity into a page that genuinely responds to each person who lands on it."
+    },
+    storyteller: {
+      title: "The Storyteller",
+      text: "Your page's superpower is a memorable narrative. EasyLandX can highlight a concise story of your best work right up front, giving every visitor an authentic, impactful reason to keep exploring."
+    },
+    strategist: {
+      title: "The Strategist",
+      text: "Your page's superpower is a clear path forward. EasyLandX can sharpen your call to action and automate the follow-up sequence, so every visit moves smoothly toward a next step."
+    }
+  };
+
+  blocks.forEach(function(block){
+    var opts = block.querySelectorAll('.q-opt');
+    opts.forEach(function(opt){
+      opt.addEventListener('click', function(){
+        opts.forEach(function(o){ o.classList.remove('selected'); });
+        opt.classList.add('selected');
+        answers[block.getAttribute('data-q')] = opt.getAttribute('data-val');
+        maybeShowResult();
+      });
+    });
+  });
+
+  function maybeShowResult(){
+    if(Object.keys(answers).length < 3) return;
+    var tally = {};
+    Object.values(answers).forEach(function(v){ tally[v] = (tally[v]||0)+1; });
+    var winner = Object.keys(tally).sort(function(a,b){ return tally[b]-tally[a]; })[0];
+    var profile = PROFILES[winner];
+    resultTitle.textContent = profile.title;
+    resultText.textContent = profile.text;
+    resultBox.classList.add('show');
+    resultBox.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+})();
+</script>
+
+</body>
+</html>
