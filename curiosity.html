@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — The Importance of Being Interested</title>
+<style>
+:root{
+  --fuchsia:#D6007F;
+  --fuchsia-deep:#9E0060;
+  --lime:#D4FF3D;
+  --uv:#6E1BFF;
+  --ink:#0A0010;
+  --paper:#FFF5FB;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+body{
+  margin:0;background:var(--fuchsia);color:var(--paper);
+  font-family:-apple-system,'Segoe UI',system-ui,sans-serif;
+  overflow-x:hidden;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px;}
+.bar{position:sticky;top:0;padding:env(safe-area-inset-top,0px) 0 0;background:var(--fuchsia);z-index:20;border-bottom:4px solid var(--ink);}
+.bar .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:14px;padding-bottom:14px;}
+.brand{font-weight:900;font-size:1.3rem;letter-spacing:-0.5px;}
+.btn{
+  display:inline-block;background:var(--lime);color:var(--ink);font-weight:900;
+  padding:12px 22px;border-radius:999px;text-decoration:none;border:3px solid var(--ink);
+  transition:transform .15s, box-shadow .15s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:5px 5px 0 var(--uv);}
+.btn-uv{background:var(--uv);color:var(--paper);}
+header.hero{padding:70px 0 50px;text-align:center;border-bottom:6px solid var(--ink);}
+h1{font-size:clamp(2.2rem,6vw,4rem);font-weight:900;line-height:1.03;margin:0 0 14px;letter-spacing:-1px;}
+h1 span{color:var(--lime);}
+.sub{font-size:1.15rem;max-width:620px;margin:0 auto 30px;font-weight:600;opacity:.95;}
+section{padding:56px 0;border-bottom:6px solid var(--ink);}
+h2{font-size:clamp(1.6rem,4vw,2.3rem);font-weight:900;margin:0 0 30px;text-align:center;}
+h2 em{color:var(--lime);font-style:normal;}
+.grid{display:grid;gap:20px;}
+.g4{grid-template-columns:repeat(auto-fit,minmax(210px,1fr));}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}
+.card{background:var(--ink);border:3px solid var(--lime);border-radius:18px;padding:22px;}
+.card h3{margin:0 0 8px;color:var(--lime);font-size:1.05rem;}
+.card p{margin:0;font-size:.95rem;line-height:1.5;opacity:.92;}
+.card.uv{border-color:var(--uv);}
+.card.uv h3{color:var(--uv);}
+svg{display:block;margin:0 auto 10px;}
+
+/* Blueprint */
+.steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));}
+.step{
+  background:var(--ink);border:3px solid var(--paper);border-radius:16px;padding:18px;cursor:pointer;
+  transition:border-color .15s;
+}
+.step.active{border-color:var(--lime);}
+.step .num{font-size:1.6rem;font-weight:900;color:var(--uv);}
+.step h4{margin:6px 0;font-size:.95rem;}
+.step p{max-height:0;overflow:hidden;font-size:.85rem;opacity:.9;margin:0;transition:max-height .25s ease;}
+.step.active p{max-height:140px;margin-top:8px;}
+
+/* Toolkit tabs */
+.tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:22px;}
+.tab{background:transparent;border:3px solid var(--paper);color:var(--paper);font-weight:800;padding:10px 18px;border-radius:999px;cursor:pointer;font-size:.9rem;}
+.tab.on{background:var(--lime);color:var(--ink);border-color:var(--lime);}
+.panel{display:none;background:var(--ink);border:3px solid var(--uv);border-radius:20px;padding:28px;text-align:center;}
+.panel.on{display:block;}
+.panel button{margin-top:16px;}
+.output{margin-top:18px;font-size:1.05rem;font-weight:700;min-height:60px;color:var(--lime);}
+.slidewrap{max-width:420px;margin:0 auto;}
+input[type=range]{width:100%;accent-color:var(--lime);}
+.scaleLabel{font-weight:900;font-size:1.1rem;margin-top:10px;}
+
+footer{padding:50px 0;text-align:center;}
+footer p{opacity:.8;font-size:.85rem;margin-top:18px;}
+</style>
+</head>
+<body>
+
+<div class="bar"><div class="wrap">
+  <div class="brand">easylandx</div>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Get your page</a>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <h1>The Importance of Being <span>Interested</span></h1>
+  <p class="sub">Robin Ince's case for lifelong curiosity — turned into a page built by <strong>easylandx</strong>, so any idea can look this alive.</p>
+  <a class="btn btn-uv" href="https://easylandx.github.io" target="_blank" rel="noopener">Build a page like this →</a>
+</div></header>
+
+<section><div class="wrap">
+  <h2>Core <em>Messages</em></h2>
+  <div class="grid g4">
+    <div class="card">
+      <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="18" fill="none" stroke="#D4FF3D" stroke-width="4"/><circle cx="23" cy="23" r="4" fill="#D4FF3D"/></svg>
+      <h3>Curiosity is an ethic</h3>
+      <p>Being interested in the world is a responsibility, not a hobby — it dissolves tribalism and trades fear for wonder.</p>
+    </div>
+    <div class="card uv">
+      <svg width="46" height="46" viewBox="0 0 46 46"><path d="M8 30 Q23 6 38 30" fill="none" stroke="#6E1BFF" stroke-width="4"/></svg>
+      <h3>Science is a dialogue</h3>
+      <p>Not a finished rulebook — a living conversation of better questions, tested assumptions, and cheerful correction.</p>
+    </div>
+    <div class="card">
+      <svg width="46" height="46" viewBox="0 0 46 46"><polygon points="23,4 42,40 4,40" fill="none" stroke="#D4FF3D" stroke-width="4"/></svg>
+      <h3>Wonder beats dread</h3>
+      <p>Cosmic insignificance isn't bleak — it's the privilege of being a conscious observer who gets to notice things.</p>
+    </div>
+    <div class="card uv">
+      <svg width="46" height="46" viewBox="0 0 46 46"><rect x="6" y="6" width="34" height="34" rx="8" fill="none" stroke="#6E1BFF" stroke-width="4"/></svg>
+      <h3>Everyone qualifies</h3>
+      <p>A scientific mindset is open-mindedness plus skepticism — anyone can build it, no white coat required.</p>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Essential <em>Lessons</em></h2>
+  <div class="grid g3">
+    <div class="card"><h3>Embrace "I don't know"</h3><p>Admitting ignorance isn't failure — it's the doorway. Certainty stops inquiry; comfortable uncertainty opens it.</p></div>
+    <div class="card uv"><h3>Reconnect art & science</h3><p>The humanities/science divide is artificial. Science expands imagination; art gives facts their emotional weight.</p></div>
+    <div class="card"><h3>Furlong your awe</h3><p>No collider required — moss on a wall or a splashing raindrop restores daily joy just as well.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>The Active Curiosity <em>Blueprint</em></h2>
+  <p class="sub" style="margin-bottom:26px;">Tap each step to open it.</p>
+  <div class="steps" id="steps">
+    <div class="step" data-t="Treat every assumption as a hypothesis to be tested, not a fact to defend."><span class="num">1</span><h4>Resist certainty</h4><p></p></div>
+    <div class="step" data-t="Find cosmic-scale wonder in everyday physical details — a raindrop, a memory, a signal."><span class="num">2</span><h4>Micro-observe</h4><p></p></div>
+    <div class="step" data-t="Read across art, history, biology and physics — the best insights live at the borders."><span class="num">3</span><h4>Cross-pollinate</h4><p></p></div>
+    <div class="step" data-t="Treat a corrected mistake as an intellectual upgrade, not an embarrassment."><span class="num">4</span><h4>Celebrate being wrong</h4><p></p></div>
+    <div class="step" data-t="Ask experts the foundational, 'obvious' questions freely — humility is a fast lane, not a weakness."><span class="num">5</span><h4>Engage with humility</h4><p></p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Try the <em>Curiosity Toolkit</em></h2>
+  <div class="tabs">
+    <button class="tab on" data-p="audit">Ignorance Audit</button>
+    <button class="tab" data-p="scale">Cognitive Scale</button>
+    <button class="tab" data-p="skeptic">Playful Skepticism</button>
+  </div>
+
+  <div class="panel on" id="audit">
+    <p>Pick something you use daily and never question.</p>
+    <button class="btn" id="auditBtn">Reveal a thing to question</button>
+    <div class="output" id="auditOut"></div>
+  </div>
+
+  <div class="panel" id="scale">
+    <div class="slidewrap">
+      <p>Zoom your problem out — drag the slider.</p>
+      <input type="range" min="1" max="5" value="1" id="scaleRange">
+      <div class="scaleLabel" id="scaleOut">A stressful email</div>
+    </div>
+  </div>
+
+  <div class="panel" id="skeptic">
+    <p>Next time a headline grabs you, ask this:</p>
+    <button class="btn" id="skepBtn">Give me a probing question</button>
+    <div class="output" id="skepOut"></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <h2 style="margin-bottom:16px;">Curious what <em>your</em> page could look like?</h2>
+  <a class="btn btn-uv" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx.github.io</a>
+  <p>Page made by easylandx.</p>
+</div></footer>
+
+<script>
+document.querySelectorAll('.step').forEach(s=>{
+  const p=s.querySelector('p'); p.textContent=s.dataset.t;
+  s.addEventListener('click',()=>s.classList.toggle('active'));
+});
+
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('on'));
+    t.classList.add('on');
+    document.getElementById(t.dataset.p).classList.add('on');
+  });
+});
+
+const audits=[
+  "How does Wi-Fi actually get a signal across your room?",
+  "How does bird migration navigation actually work?",
+  "How does caffeine change your neurochemistry?",
+  "How does your fridge actually keep things cold?",
+  "How does your phone's touchscreen sense your finger?"
+];
+document.getElementById('auditBtn').addEventListener('click',()=>{
+  document.getElementById('auditOut').textContent = audits[Math.floor(Math.random()*audits.length)];
+});
+
+const scales=["A stressful email","A tense meeting","A bad news day","Geological rock layers","A cluster of galaxies"];
+const range=document.getElementById('scaleRange');
+range.addEventListener('input',()=>{
+  document.getElementById('scaleOut').textContent = scales[range.value-1];
+});
+
+const qs=[
+  "What is the evidence for that?",
+  "What alternative explanation would fit just as well?",
+  "Who benefits if I believe this without checking?",
+  "What would change my mind here?",
+  "Is this the whole story, or just the loud part?"
+];
+document.getElementById('skepBtn').addEventListener('click',()=>{
+  document.getElementById('skepOut').textContent = qs[Math.floor(Math.random()*qs.length)];
+});
+</script>
+</body>
+</html>
