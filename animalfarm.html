@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — The Individuality Manifesto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --vermilion-1:#E2431E;
+    --vermilion-2:#C4340F;
+    --vermilion-3:#EF6A45;
+    --lime:#C8F73D;
+    --cobalt:#1E4CE0;
+    --cream:#FBEEDD;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:inherit;margin:0;padding:0}
+  html{scroll-padding-top:env(safe-area-inset-top,0px)}
+  html,body{background:var(--vermilion-1);}
+  body{
+    font-family:'Archivo',sans-serif;
+    color:var(--cream);
+    overflow-x:hidden;
+  }
+  h1,h2,.display{font-family:'Anton',sans-serif;text-transform:none;line-height:0.95;letter-spacing:0.2px;}
+  a{color:inherit}
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px}
+  section{padding:96px 0}
+
+  /* HERO */
+  .hero{padding:72px 0 40px}
+  .hero h1{font-size:clamp(2.6rem,7vw,4.6rem);color:var(--cream)}
+  .hero h1 em{font-style:normal;color:var(--lime)}
+  .hero p{max-width:52ch;font-size:1.15rem;margin-top:22px;color:var(--vermilion-3);color:#FCD9C6}
+  .flock{margin:44px auto 0;display:block;max-width:100%;height:auto}
+  .bird{transform-origin:center}
+
+  .cta-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:36px;align-items:center}
+  .btn{
+    display:inline-block;padding:16px 30px;font-weight:700;border-radius:999px;
+    text-decoration:none;font-size:1rem;border:3px solid transparent;transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
+  .btn-lime{background:var(--lime);color:var(--vermilion-2)}
+  .btn-outline{border-color:var(--cream);color:var(--cream)}
+
+  /* MANIFESTO */
+  .manifesto{background:var(--vermilion-2)}
+  .manifesto h2{font-size:clamp(1.9rem,4.5vw,2.6rem);color:var(--lime);margin-bottom:48px}
+  .point{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:26px 0;border-top:2px solid rgba(251,238,221,0.18)}
+  .point:last-child{border-bottom:2px solid rgba(251,238,221,0.18)}
+  .numeral{font-family:'Anton',sans-serif;font-size:1.8rem;color:var(--cobalt);-webkit-text-stroke:1px var(--cream)}
+  .point h3{font-size:1.25rem;margin-bottom:8px;color:var(--cream)}
+  .point p{color:#F6D6C2;font-size:0.98rem;max-width:60ch}
+
+  /* AUDIT WIDGET */
+  .audit{background:var(--vermilion-1)}
+  .audit h2{color:var(--cream);font-size:clamp(1.9rem,4.5vw,2.6rem)}
+  .audit-lead{color:#FCD9C6;max-width:56ch;margin-top:14px}
+  .audit-grid{display:grid;grid-template-columns:1.3fr 0.9fr;gap:40px;margin-top:40px;align-items:start}
+  @media (max-width:720px){.audit-grid{grid-template-columns:1fr}}
+  .check-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .check-item{
+    background:var(--vermilion-3);border-radius:14px;padding:16px 18px;cursor:pointer;
+    display:flex;gap:14px;align-items:flex-start;border:2px solid transparent;
+  }
+  .check-item.on{border-color:var(--lime);background:#B8320F}
+  .box{width:24px;height:24px;flex:0 0 24px;border-radius:6px;border:2.5px solid var(--cream);margin-top:2px;position:relative}
+  .check-item.on .box{background:var(--lime);border-color:var(--lime)}
+  .check-item.on .box::after{content:"";position:absolute;left:5px;top:1px;width:7px;height:12px;border:solid var(--vermilion-2);border-width:0 3px 3px 0;transform:rotate(40deg)}
+  .check-item span.label{font-weight:700;display:block}
+  .check-item span.detail{font-size:0.9rem;color:#FCE3D2;display:block;margin-top:4px}
+
+  .gauge-wrap{position:sticky;top:24px;text-align:center}
+  .gauge-num{font-family:'Anton',sans-serif;font-size:3.2rem;color:var(--lime)}
+  .gauge-word{color:var(--cream);font-weight:700;margin-top:4px}
+
+  /* TOGGLE */
+  .compare{background:var(--vermilion-2)}
+  .compare h2{color:var(--lime);font-size:clamp(1.9rem,4.5vw,2.6rem)}
+  .toggle-row{display:flex;gap:10px;margin-top:28px}
+  .tab{flex:1;padding:14px 10px;border-radius:12px 12px 0 0;border:2px solid var(--cream);background:transparent;color:var(--cream);font-weight:700;font-size:0.95rem;cursor:pointer;font-family:inherit}
+  .tab.active{background:var(--cream);color:var(--vermilion-2)}
+  .panel{border:2px solid var(--cream);border-top:none;border-radius:0 0 16px 16px;padding:28px;display:none}
+  .panel.show{display:block}
+  .panel ul{padding-left:20px;line-height:1.8}
+  .panel h3{font-family:'Anton',sans-serif;font-size:1.5rem;margin-bottom:14px;color:var(--lime)}
+
+  /* FOOTER CTA */
+  .final{text-align:center}
+  .final h2{font-size:clamp(2.2rem,6vw,3.4rem);color:var(--cream)}
+  .final p{color:#FCD9C6;margin:18px auto 34px;max-width:48ch}
+  footer{padding:36px 0;text-align:center;color:#F3B79A;font-size:0.85rem}
+
+  @media (prefers-reduced-motion:no-preference){
+    .bird{animation:drift 6s ease-in-out infinite}
+    .bird:nth-child(2){animation-delay:.6s}
+    .bird:nth-child(3){animation-delay:1.2s}
+    .bird:nth-child(4){animation-delay:1.8s}
+    .bird:nth-child(5){animation-delay:2.4s}
+    @keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Every business keeps<br><em>its own voice.</em></h1>
+    <p>easylandx builds one-of-a-kind landing pages — never copies from a shared mold. This is the thinking behind that choice.</p>
+
+    <svg class="flock" viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Five uniquely patterned birds flying together, each a different color and pattern">
+      <g class="bird">
+        <path d="M60 140 L110 110 L160 140 L110 128 Z" fill="var(--lime)"/>
+        <circle cx="110" cy="126" r="6" fill="var(--cream)"/>
+      </g>
+      <g class="bird">
+        <path d="M220 100 L275 65 L330 100 L275 86 Z" fill="var(--cobalt)"/>
+        <circle cx="275" cy="82" r="6" fill="var(--cream)"/>
+        <path d="M262 84 h26" stroke="var(--lime)" stroke-width="4"/>
+      </g>
+      <g class="bird">
+        <path d="M400 150 L460 108 L520 150 L460 134 Z" fill="var(--cream)"/>
+        <circle cx="460" cy="130" r="6" fill="var(--vermilion-2)"/>
+        <path d="M444 132 h32" stroke="var(--cobalt)" stroke-width="4"/>
+      </g>
+      <g class="bird">
+        <path d="M580 95 L635 60 L690 95 L635 80 Z" fill="var(--lime)"/>
+        <circle cx="635" cy="76" r="6" fill="var(--vermilion-2)"/>
+        <path d="M619 78 l32 -4" stroke="var(--cream)" stroke-width="4"/>
+      </g>
+      <g class="bird">
+        <path d="M740 140 L800 105 L860 140 L800 126 Z" fill="var(--cobalt)"/>
+        <circle cx="800" cy="122" r="6" fill="var(--lime)"/>
+      </g>
+    </svg>
+
+    <div class="cta-row">
+      <a class="btn btn-lime" href="https://easylandx.github.io/" target="_blank" rel="noopener">Visit easylandx</a>
+      <a class="btn btn-outline" href="#audit">Take the Individuality Audit</a>
+    </div>
+  </div>
+</header>
+
+<section class="manifesto">
+  <div class="wrap">
+    <h2>Six principles behind every page we build</h2>
+
+    <div class="point">
+      <div class="numeral">I</div>
+      <div><h3>Your own shape, always</h3><p>Every layout, color, and line of copy is drawn from your business specifically. Two clients never receive the same page, because two businesses are never the same story.</p></div>
+    </div>
+    <div class="point">
+      <div class="numeral">II</div>
+      <div><h3>Words that mean what they say</h3><p>Clear, honest language earns more trust than clever slogans. Every headline states exactly what a visitor gets and what to do next.</p></div>
+    </div>
+    <div class="point">
+      <div class="numeral">III</div>
+      <div><h3>Care that continues</h3><p>A page keeps working when it keeps growing. We revisit copy, speed, and design as your business moves forward, rather than treating launch day as the finish line.</p></div>
+    </div>
+    <div class="point">
+      <div class="numeral">IV</div>
+      <div><h3>Choices made with open eyes</h3><p>Templates ask you to follow the crowd. We start by asking what makes you different, then build toward that answer — a choice, not a default.</p></div>
+    </div>
+    <div class="point">
+      <div class="numeral">V</div>
+      <div><h3>An open process, start to finish</h3><p>You see the page take shape at every step — the same layout, code, and images that go live, with nothing swapped in behind the scenes.</p></div>
+    </div>
+    <div class="point">
+      <div class="numeral">VI</div>
+      <div><h3>Craft within reach</h3><p>A hand-built identity is priced for a small business budget, so a solo studio can carry the same polish as a large brand.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="audit" id="audit">
+  <div class="wrap">
+    <h2>The Individuality Audit</h2>
+    <p class="audit-lead">Check the qualities that matter most for your business. Watch how fully a custom-built page can carry them.</p>
+
+    <div class="audit-grid">
+      <ul class="check-list" id="checkList">
+        <li class="check-item" data-detail="Every section is drawn to fit your brand's own colors, tone, and story."><div class="box"></div><div><span class="label">A distinct look, built for one business</span><span class="detail">Every section is drawn to fit your brand's own colors, tone, and story.</span></div></li>
+        <li class="check-item" data-detail="Copy is written in plain language that states the offer and the next step clearly."><div class="box"></div><div><span class="label">Copy that speaks plainly</span><span class="detail">Written in plain language that states the offer and the next step clearly.</span></div></li>
+        <li class="check-item" data-detail="Buttons connect straight to WhatsApp, Instagram, or wherever your clients already reach you."><div class="box"></div><div><span class="label">A direct line to you</span><span class="detail">Buttons connect straight to WhatsApp, Instagram, or wherever your clients already reach you.</span></div></li>
+        <li class="check-item" data-detail="The page loads fast and reads clearly on any phone, from the first tap."><div class="box"></div><div><span class="label">Smooth on every phone</span><span class="detail">The page loads fast and reads clearly on any phone, from the first tap.</span></div></li>
+        <li class="check-item" data-detail="Updates and refinements continue after launch, as your business grows."><div class="box"></div><div><span class="label">Ongoing refinement</span><span class="detail">Updates and refinements continue after launch, as your business grows.</span></div></li>
+      </ul>
+
+      <div class="gauge-wrap">
+        <svg width="160" height="160" viewBox="0 0 160 160">
+          <circle cx="80" cy="80" r="68" fill="none" stroke="var(--vermilion-3)" stroke-width="16"/>
+          <circle id="gaugeArc" cx="80" cy="80" r="68" fill="none" stroke="var(--lime)" stroke-width="16" stroke-linecap="round" stroke-dasharray="427" stroke-dashoffset="427" transform="rotate(-90 80 80)"/>
+        </svg>
+        <div class="gauge-num" id="gaugeNum">0%</div>
+        <div class="gauge-word" id="gaugeWord">Ready when you are</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="compare">
+  <div class="wrap">
+    <h2>Two ways to arrive online</h2>
+    <div class="toggle-row">
+      <button class="tab active" data-panel="template">Template Builder</button>
+      <button class="tab" data-panel="custom">easylandx Custom Page</button>
+    </div>
+    <div class="panel show" id="panel-template">
+      <h3>Template Builder</h3>
+      <ul>
+        <li>A shared design used across many businesses</li>
+        <li>Fast to set up from a ready-made layout</li>
+        <li>Copy filled in around a fixed structure</li>
+        <li>Similar look to other sites on the same platform</li>
+      </ul>
+    </div>
+    <div class="panel" id="panel-custom">
+      <h3>easylandx Custom Page</h3>
+      <ul>
+        <li>A one-of-a-kind design built around your brand</li>
+        <li>Built from a blank page, shaped entirely by your story</li>
+        <li>Copy written specifically for your offer and audience</li>
+        <li>A look that belongs to you alone</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Bring your own voice online.</h2>
+    <p>Let's build the page that sounds and looks like you — one story, told once, told well.</p>
+    <a class="btn btn-lime" href="https://easylandx.github.io/" target="_blank" rel="noopener">Visit easylandx</a>
+  </div>
+</section>
+
+<footer>easylandx — individually crafted landing pages, 2026</footer>
+
+<script>
+  const items = document.querySelectorAll('.check-item');
+  const arc = document.getElementById('gaugeArc');
+  const num = document.getElementById('gaugeNum');
+  const word = document.getElementById('gaugeWord');
+  const CIRC = 427;
+  const words = ["Ready when you are","Taking shape","Clearly yours","Distinctly you","Fully individual"];
+
+  function update(){
+    const on = document.querySelectorAll('.check-item.on').length;
+    const pct = on / items.length;
+    arc.style.strokeDashoffset = CIRC - CIRC * pct;
+    num.textContent = Math.round(pct*100) + "%";
+    word.textContent = words[on];
+  }
+  items.forEach(it => it.addEventListener('click', () => { it.classList.toggle('on'); update(); }));
+
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
+      tab.classList.add('active');
+      document.getElementById('panel-'+tab.dataset.panel).classList.add('show');
+    });
+  });
+</script>
+</body>
+</html>
