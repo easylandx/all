@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Built on Drive</title>
+<style>
+:root{
+  --orange:#FF6A00;
+  --orange-deep:#E85D00;
+  --cyan:#00D9E0;
+  --charcoal:#1E2320;
+  --cream:#FFF3E6;
+  --line: rgba(30,35,32,0.25);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --orange:#E85D00; --orange-deep:#C74E00; }
+}
+:root[data-theme="dark"]{ --orange:#E85D00; --orange-deep:#C74E00; }
+
+*{box-sizing:border-box;}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+body{
+  margin:0; background:var(--orange); color:var(--charcoal);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  overflow-x:hidden;
+}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+h1,h2,h3{font-weight:900; letter-spacing:-0.02em; line-height:1.05;}
+h1{font-size:clamp(2.4rem,7vw,4.2rem);}
+h2{font-size:clamp(1.6rem,4vw,2.4rem); margin-bottom:.3em;}
+p{font-size:1.05rem; line-height:1.55;}
+.eyebrow{font-weight:800; text-transform:uppercase; letter-spacing:.14em; font-size:.78rem; color:var(--charcoal); opacity:.75;}
+
+.nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;}
+.brand{font-weight:900;font-size:1.1rem;}
+
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--charcoal); color:var(--cyan);
+  border:3px solid var(--charcoal); padding:13px 26px;
+  font-weight:800; text-decoration:none; border-radius:999px;
+  font-size:.95rem; cursor:pointer; transition:transform .15s ease;
+}
+.btn:hover{transform:translateY(-2px);}
+.btn.outline{background:transparent; color:var(--charcoal);}
+
+section{padding:64px 0; border-top:3px solid var(--charcoal);}
+.hero{border-top:none; padding-top:20px;}
+.card{
+  background:var(--cream); border:3px solid var(--charcoal); border-radius:22px;
+  padding:26px; box-shadow:8px 8px 0 var(--charcoal);
+}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+.grid4{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+@media(max-width:640px){.grid2,.grid4{grid-template-columns:1fr;}}
+
+.tag{
+  display:inline-block; background:var(--cyan); color:var(--charcoal);
+  padding:4px 12px; border-radius:999px; font-weight:800; font-size:.75rem;
+  border:2px solid var(--charcoal);
+}
+
+/* Motivation 2.0 vs 3.0 */
+.vs{display:flex; align-items:center; gap:16px; margin:18px 0;}
+.vs .card{flex:1;}
+.vs .x{font-weight:900; font-size:1.6rem;}
+.old{opacity:.55; text-decoration:line-through; text-decoration-color:var(--charcoal);}
+
+/* Flip cards - 4Ts */
+.flip{ perspective:1000px; height:150px; cursor:pointer;}
+.flip-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d;}
+.flip.on .flip-inner{transform:rotateY(180deg);}
+.flip-face{
+  position:absolute;inset:0;backface-visibility:hidden;
+  border:3px solid var(--charcoal); border-radius:16px; padding:16px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.flip-front{background:var(--charcoal); color:var(--cyan);}
+.flip-back{background:var(--cream); transform:rotateY(180deg); font-size:.9rem;}
+.flip-front b{font-size:1.15rem;}
+
+/* Goldilocks slider */
+.gauge-wrap{position:relative; margin:26px 0;}
+.gauge-track{
+  height:26px; border-radius:14px; border:3px solid var(--charcoal);
+  background:linear-gradient(90deg, #FFD9B3 0%, #FFD9B3 22%, var(--cyan) 22%, var(--cyan) 78%, #FFD9B3 78%, #FFD9B3 100%);
+  position:relative;
+}
+input[type=range]{
+  -webkit-appearance:none; width:100%; height:26px; background:transparent; position:relative; z-index:2; margin:-26px 0 0 0; cursor:grab;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none; width:26px;height:34px; border-radius:8px;
+  background:var(--charcoal); border:3px solid var(--cyan); margin-top:-4px; cursor:grab;
+}
+input[type=range]::-moz-range-thumb{width:26px;height:34px;border-radius:8px;background:var(--charcoal);border:3px solid var(--cyan);cursor:grab;}
+.gauge-labels{display:flex;justify-content:space-between;font-size:.75rem;font-weight:800;margin-top:8px;text-transform:uppercase;letter-spacing:.06em;}
+#flowResult{margin-top:14px;font-weight:900;font-size:1.2rem;min-height:1.6em;}
+
+/* Now-That toggle */
+.switch-row{display:flex;align-items:center;gap:16px;margin:18px 0;flex-wrap:wrap;}
+.switch{
+  width:74px;height:40px;border-radius:999px;border:3px solid var(--charcoal);
+  background:var(--charcoal); position:relative; cursor:pointer; flex-shrink:0;
+}
+.switch .knob{
+  position:absolute; top:3px; left:3px; width:28px;height:28px;border-radius:50%;
+  background:var(--cyan); transition:left .25s ease;
+}
+.switch.on .knob{left:39px;}
+#rewardCard{transition:opacity .2s ease;}
+
+/* Pronoun meter */
+.meter-track{height:22px;border:3px solid var(--charcoal);border-radius:999px;background:var(--cream);overflow:hidden;margin:14px 0;}
+.meter-fill{height:100%;background:var(--cyan);width:50%;transition:width .3s ease;}
+.pill-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
+.pill{
+  border:3px solid var(--charcoal); background:transparent; padding:9px 18px; border-radius:999px;
+  font-weight:800; cursor:pointer; font-size:.85rem;
+}
+.pill.active{background:var(--charcoal); color:var(--cyan);}
+
+/* Personal sentence */
+textarea{
+  width:100%; border:3px solid var(--charcoal); border-radius:14px; padding:14px;
+  font-size:1rem; font-family:inherit; font-weight:700; resize:vertical; min-height:70px;
+  background:var(--cream); color:var(--charcoal);
+}
+#sentenceEcho{
+  margin-top:14px; font-weight:900; font-size:1.3rem; border-left:6px solid var(--cyan);
+  padding:10px 16px; min-height:1.4em;
+}
+
+footer{padding:50px 0 70px; text-align:center;}
+svg{display:block;}
+.icon{width:46px;height:46px;}
+
+.baseline{
+  background:var(--charcoal); color:var(--cyan); border-radius:22px; padding:26px;
+  border:3px solid var(--charcoal); box-shadow:8px 8px 0 rgba(0,0,0,.25);
+}
+</style>
+</head>
+<body>
+
+<div class="wrap nav">
+  <div class="brand">easylandx</div>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Get your page →</a>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Landing pages, built on real behavioral science</span>
+    <h1>Autonomy.<br>Mastery.<br>Purpose.</h1>
+    <p>Daniel Pink spent his career proving that carrots and sticks don't build great work — <b>self-direction, growth, and meaning</b> do. easylandx builds your landing page the same way: with intent, not templates, and a design that lets your work speak for itself.</p>
+    <div style="margin-top:22px;">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Build my page with easylandx</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="tag">The Mismatch</span>
+    <h2>Motivation 2.0 is out of date.</h2>
+    <p>Carrot-and-stick thinking works for simple, mechanical tasks. For anything creative or complex — like building a page that actually converts — it narrows focus and kills the good ideas.</p>
+    <div class="vs">
+      <div class="card old"><b>Motivation 2.0</b><br>If you launch this, then you get a bonus.</div>
+      <div class="x">→</div>
+      <div class="card"><b>Motivation 3.0</b><br>You own the outcome — and it shows in the result.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="tag">Autonomy — The 4 Ts</span>
+    <h2>You stay in the driver's seat.</h2>
+    <p>Real autonomy means control over four things. Tap a card to see how easylandx hands each one to you.</p>
+    <div class="grid4" id="tCards">
+      <div class="flip" data-i="0"><div class="flip-inner">
+        <div class="flip-face flip-front"><b>Task</b><br>What gets built</div>
+        <div class="flip-face flip-back">You choose the sections, the story, and the offer. Nothing pre-decided for you.</div>
+      </div></div>
+      <div class="flip" data-i="1"><div class="flip-inner">
+        <div class="flip-face flip-front"><b>Time</b><br>When it ships</div>
+        <div class="flip-face flip-back">Launch on your timeline — one page today, a full site next month.</div>
+      </div></div>
+      <div class="flip" data-i="2"><div class="flip-inner">
+        <div class="flip-face flip-front"><b>Technique</b><br>How it's made</div>
+        <div class="flip-face flip-back">Custom-built, not assembled from a template — every page fits your idea, not a mold.</div>
+      </div></div>
+      <div class="flip" data-i="3"><div class="flip-inner">
+        <div class="flip-face flip-front"><b>Team</b><br>Who's involved</div>
+        <div class="flip-face flip-back">Work directly with easylandx, or bring in your own collaborators — your call.</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="tag">Mastery — Find the Flow Zone</span>
+    <h2>The Goldilocks Calibrator</h2>
+    <p>Flow lives at the edge of your ability — not too easy, not too hard. Drag the slider and find where a page project sits for you right now.</p>
+    <div class="card">
+      <div class="gauge-wrap">
+        <div class="gauge-track"></div>
+        <input type="range" id="flowSlider" min="0" max="100" value="50">
+      </div>
+      <div class="gauge-labels"><span>Boredom</span><span>Flow</span><span>Anxiety</span>
+      </div>
+      <div id="flowResult">Right in the flow zone — the page practically builds itself.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="tag">The If-Then Trap</span>
+    <h2>Flip the reward.</h2>
+    <p>"If you finish, then you get X" turns work into a chore. "Now that you finished, here's something unexpected" keeps the joy in it. Flip the switch.</p>
+    <div class="switch-row">
+      <div class="switch" id="rewardSwitch"><div class="knob"></div></div>
+      <div class="card" id="rewardCard" style="flex:1;min-width:220px;">
+        <b>If–Then:</b> "If you launch this week, then we'll add a discount."
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="tag">Purpose — The Pronoun Test</span>
+    <h2>Say "we," not "they."</h2>
+    <p>Pink's pronoun test measures how connected people feel to the mission. Tap the word that sounds like your team talking about your project.</p>
+    <div class="card">
+      <div class="pill-row">
+        <button class="pill active" id="pillWe">We / Our</button>
+        <button class="pill" id="pillThey">They / Them</button>
+      </div>
+      <div class="meter-track"><div class="meter-fill" id="purposeMeter" style="width:88%;"></div></div>
+      <div id="purposeText" style="font-weight:800;">High purpose connection — the page will read like it too.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="tag">Your Personal Sentence</span>
+    <h2>One line. Your whole "why."</h2>
+    <p>Pink asks everyone to boil their purpose down to a single sentence. Write yours — it's the line easylandx will build your page around.</p>
+    <textarea id="sentenceInput" placeholder="e.g. He built things people actually wanted to use."></textarea>
+    <div id="sentenceEcho">Your sentence appears here as you type.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap baseline">
+    <span class="tag" style="background:var(--cyan);">Baseline First</span>
+    <h2 style="color:var(--cream);">Fair footing, then flight.</h2>
+    <p style="color:var(--cream);opacity:.9;">Intrinsic motivation can't bloom on a shaky foundation. easylandx starts with a page that simply works — fast, clean, functional — so autonomy, mastery, and purpose have something solid to stand on.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2>Build the page. Own the drive.</h2>
+    <p>Made by easylandx.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx →</a>
+  </div>
+</footer>
+
+<script>
+// Flip cards
+document.querySelectorAll('.flip').forEach(f=>{
+  f.addEventListener('click',()=>f.classList.toggle('on'));
+});
+
+// Goldilocks slider
+const slider = document.getElementById('flowSlider');
+const flowResult = document.getElementById('flowResult');
+function updateFlow(){
+  const v = +slider.value;
+  if(v < 22){ flowResult.textContent = "Too easy — boredom sets in. Time for a bigger page.";}
+  else if(v > 78){ flowResult.textContent = "Too hard — that's anxiety, not ambition. Let's scope it down.";}
+  else { flowResult.textContent = "Right in the flow zone — the page practically builds itself.";}
+}
+slider.addEventListener('input', updateFlow);
+updateFlow();
+
+// If-Then / Now-That switch
+const rSwitch = document.getElementById('rewardSwitch');
+const rCard = document.getElementById('rewardCard');
+let now = false;
+rSwitch.addEventListener('click', ()=>{
+  now = !now;
+  rSwitch.classList.toggle('on', now);
+  rCard.style.opacity = 0;
+  setTimeout(()=>{
+    rCard.innerHTML = now
+      ? "<b>Now-That:</b> \"Now that you launched, here's a surprise upgrade — on us.\""
+      : "<b>If–Then:</b> \"If you launch this week, then we'll add a discount.\"";
+    rCard.style.opacity = 1;
+  },150);
+});
+
+// Pronoun test
+const pillWe = document.getElementById('pillWe');
+const pillThey = document.getElementById('pillThey');
+const meter = document.getElementById('purposeMeter');
+const pText = document.getElementById('purposeText');
+pillWe.addEventListener('click', ()=>{
+  pillWe.classList.add('active'); pillThey.classList.remove('active');
+  meter.style.width = '88%';
+  pText.textContent = "High purpose connection — the page will read like it too.";
+});
+pillThey.addEventListener('click', ()=>{
+  pillThey.classList.add('active'); pillWe.classList.remove('active');
+  meter.style.width = '28%';
+  pText.textContent = "Low connection — worth reconnecting the team to why the page matters.";
+});
+
+// Personal sentence
+const input = document.getElementById('sentenceInput');
+const echo = document.getElementById('sentenceEcho');
+input.addEventListener('input', ()=>{
+  echo.textContent = input.value.trim() ? '"' + input.value.trim() + '"' : "Your sentence appears here as you type.";
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Balance Engine — by easylandx</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violet-deep:#2B0F5C;
+    --violet-mid:#4B1E96;
+    --violet-soft:#6B36C4;
+    --mint:#5FE8B4;
+    --obsidian:#0B0812;
+    --paper:#F4EEFF;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:border-box}
+  html{scroll-padding-top:env(safe-area-inset-top,0px)}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:var(--violet-deep);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.01em}
+  a{color:inherit}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
+  section{padding:72px 0}
+
+  /* ---- top bar ---- */
+  header.bar{
+    position:sticky;top:0;top:env(safe-area-inset-top,0px);z-index:20;
+    background:rgba(43,15,92,.88);backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(95,232,180,.18);
+  }
+  header.bar .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+  .brandmark{font-family:'Space Grotesk';font-weight:700;font-size:15px}
+  .brandmark span{color:var(--mint)}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--mint);color:var(--obsidian);
+    font-weight:600;font-size:14px;
+    padding:10px 18px;border-radius:3px;
+    text-decoration:none;border:2px solid var(--mint);
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn:hover{background:var(--violet-deep);color:var(--mint);transform:translateY(-1px)}
+  .btn.ghost{background:transparent;color:var(--mint)}
+  .btn.ghost:hover{background:var(--mint);color:var(--obsidian)}
+
+  /* ---- hero ---- */
+  .hero{padding:96px 0 48px;text-align:left}
+  .kicker{color:var(--mint);font-weight:600;font-size:15px;margin:0 0 18px}
+  .hero h1{font-size:clamp(38px,6vw,64px);font-weight:700;margin:0 0 22px;max-width:14ch}
+  .hero p.lead{font-size:19px;max-width:56ch;color:rgba(244,238,255,.82);margin:0 0 32px}
+  .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+
+  /* ---- seesaw section ---- */
+  .balance-card{
+    background:var(--violet-mid);
+    border:1px solid rgba(95,232,180,.25);
+    border-radius:6px;
+    padding:40px clamp(20px,4vw,48px);
+  }
+  .balance-card h2{font-size:28px;margin:0 0 8px}
+  .balance-card .sub{color:rgba(244,238,255,.72);font-size:15px;margin:0 0 36px;max-width:52ch}
+  .seesaw-stage{width:100%;max-width:520px;margin:0 auto 28px}
+  #seesawSvg{width:100%;height:auto;display:block}
+  .fulcrum{fill:var(--obsidian)}
+  .beam{transform-origin:260px 150px;transition:transform .25s ease}
+  .label-pill{font-family:'Space Grotesk';font-size:13px;font-weight:700;fill:var(--obsidian)}
+  .slider-row{max-width:520px;margin:0 auto}
+  input[type=range]{
+    -webkit-appearance:none;appearance:none;width:100%;height:6px;
+    border-radius:3px;background:linear-gradient(90deg,var(--mint),var(--paper),var(--mint));
+    outline:none;margin:6px 0 14px;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;width:24px;height:24px;border-radius:50%;
+    background:var(--obsidian);border:3px solid var(--mint);cursor:pointer;
+  }
+  input[type=range]::-moz-range-thumb{
+    width:24px;height:24px;border-radius:50%;background:var(--obsidian);
+    border:3px solid var(--mint);cursor:pointer;
+  }
+  .slider-caps{display:flex;justify-content:space-between;font-size:13px;color:rgba(244,238,255,.65);margin-bottom:22px}
+  #balanceMsg{
+    background:var(--obsidian);border-radius:4px;padding:18px 22px;
+    font-size:15.5px;min-height:64px;display:flex;align-items:center;
+    border-left:4px solid var(--mint);
+  }
+
+  /* ---- framework sequence ---- */
+  .seq-title{font-size:30px;margin:0 0 10px}
+  .seq-sub{color:rgba(244,238,255,.72);font-size:15px;max-width:56ch;margin:0 0 40px}
+  .seq{display:flex;flex-direction:column;gap:0}
+  .seq-row{display:flex;align-items:stretch;gap:18px}
+  .seq-letter{
+    flex:0 0 64px;height:64px;border-radius:50%;
+    background:var(--mint);color:var(--obsidian);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Grotesk';font-weight:700;font-size:26px;
+  }
+  .seq-body{
+    flex:1;background:var(--violet-mid);border:1px solid rgba(95,232,180,.2);
+    border-radius:6px;padding:16px 20px;margin-bottom:18px;
+  }
+  .seq-body h3{margin:0 0 4px;font-size:17px}
+  .seq-body p{margin:0;font-size:14.5px;color:rgba(244,238,255,.78)}
+  .seq-connector{width:64px;display:flex;justify-content:center}
+  .seq-connector span{width:2px;background:rgba(95,232,180,.4);flex:1}
+  .branch-wrap{display:flex;gap:16px;margin-left:82px;flex-wrap:wrap}
+  .branch-wrap .seq-body{flex:1 1 200px;margin-bottom:0}
+
+  /* ---- self-binding builder ---- */
+  .builder-card{
+    background:var(--obsidian);border-radius:6px;
+    padding:36px clamp(20px,4vw,44px);
+    border:1px solid rgba(95,232,180,.25);
+  }
+  .builder-card h2{font-size:26px;margin:0 0 8px}
+  .builder-card .sub{color:rgba(244,238,255,.68);font-size:15px;margin:0 0 28px;max-width:54ch}
+  .builder-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px}
+  @media(max-width:560px){.builder-grid{grid-template-columns:1fr}}
+  .field label{display:block;font-size:13px;color:var(--mint);font-weight:600;margin-bottom:6px}
+  select{
+    width:100%;padding:12px 14px;border-radius:4px;border:1px solid rgba(95,232,180,.35);
+    background:var(--violet-mid);color:var(--paper);font-family:'Inter';font-size:15px;
+  }
+  #buildBtn{cursor:pointer;font-family:'Inter';font-size:14px}
+  #planOutput{
+    margin-top:22px;background:var(--violet-mid);border-radius:4px;
+    padding:20px 22px;font-size:15.5px;border-left:4px solid var(--mint);
+    min-height:30px;
+  }
+
+  /* ---- hormetic grid ---- */
+  .hg-title{font-size:28px;margin:0 0 10px}
+  .hg-sub{color:rgba(244,238,255,.72);font-size:15px;max-width:56ch;margin:0 0 34px}
+  .hgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:680px){.hgrid{grid-template-columns:1fr}}
+  .hcard{background:var(--violet-mid);border:1px solid rgba(95,232,180,.2);border-radius:6px;padding:22px}
+  .hcard svg{width:44px;height:44px;margin-bottom:14px}
+  .hcard h3{font-size:16px;margin:0 0 6px}
+  .hcard p{font-size:14px;color:rgba(244,238,255,.75);margin:0}
+
+  /* ---- footer ---- */
+  footer{
+    background:var(--obsidian);padding:56px 0 40px;text-align:center;
+    border-top:1px solid rgba(95,232,180,.2);
+  }
+  footer h2{font-size:26px;margin:0 0 14px}
+  footer p{color:rgba(244,238,255,.7);font-size:15px;margin:0 0 26px}
+  .credit{margin-top:30px;font-size:13px;color:rgba(244,238,255,.5)}
+  .credit a{color:var(--mint);text-decoration:none}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <div class="brandmark">landing pages by <span>easylandx</span></div>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">Built on Dr. Anna Lembke's Dopamine Nation</p>
+    <h1>Every reward has a seesaw underneath it.</h1>
+    <p class="lead">Pleasure and calm sit on the same scale in the brain. Tip it toward effort first, and it settles into a steady, natural lift that lasts well beyond the moment. This page walks through the balance, the reset framework, and a builder for your own plan — the same kind of page easylandx creates for any story worth telling well.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Start with easylandx →</a>
+      <a class="btn ghost" href="#builder">Build your plan</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="balance-card">
+      <h2>Find your balance</h2>
+      <p class="sub">Slide toward a quick spike or toward effort first, and watch how the seesaw — and the outcome — shifts.</p>
+
+      <div class="seesaw-stage">
+        <svg id="seesawSvg" viewBox="0 0 520 260">
+          <rect x="240" y="150" width="40" height="90" class="fulcrum" rx="4"/>
+          <polygon points="220,240 300,240 260,150" class="fulcrum"/>
+          <g class="beam" id="beam">
+            <rect x="40" y="140" width="440" height="16" rx="8" fill="#5FE8B4"/>
+            <circle cx="80" cy="148" r="34" fill="#F4EEFF"/>
+            <text x="80" y="153" text-anchor="middle" class="label-pill">SPIKE</text>
+            <circle cx="440" cy="148" r="34" fill="#F4EEFF"/>
+            <text x="440" y="153" text-anchor="middle" class="label-pill">EFFORT</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="slider-row">
+        <input type="range" id="balanceSlider" min="0" max="100" value="50">
+        <div class="slider-caps"><span>Quick spike</span><span>Effort first</span></div>
+        <div id="balanceMsg">Right at the midpoint — a steady mix of quick lifts and earned ones.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="seq-title">The reset sequence</h2>
+    <p class="seq-sub">A simple order for meeting any habit with curiosity instead of judgment — track it, understand it, notice its ripple, then give the brain room to recalibrate.</p>
+
+    <div class="seq">
+      <div class="seq-row">
+        <div class="seq-letter">D</div>
+        <div class="seq-body"><h3>Data</h3><p>Log what, how much, and when the habit shows up — plain observation, nothing more.</p></div>
+      </div>
+      <div class="seq-row"><div class="seq-connector"><span></span></div><div></div></div>
+      <div class="seq-row">
+        <div class="seq-letter">O</div>
+        <div class="seq-body"><h3>Objectives</h3><p>Name the emotional need the habit is quietly meeting — comfort, connection, escape, ease.</p></div>
+      </div>
+      <div class="seq-row"><div class="seq-connector"><span></span></div><div></div></div>
+      <div class="seq-row">
+        <div class="seq-letter">P</div>
+        <div class="seq-body"><h3>Patterns</h3><p>Notice how energy, focus, and closeness with others move alongside the habit over time.</p></div>
+      </div>
+      <div class="seq-row"><div class="seq-connector"><span></span></div><div></div></div>
+      <div class="seq-row">
+        <div class="seq-letter">A</div>
+        <div class="seq-body"><h3>Abstinence — the 30-day reset</h3><p>Set the habit aside for four full weeks, giving the reward pathways room to recalibrate.</p></div>
+      </div>
+      <div class="branch-wrap">
+        <div class="seq-body"><h3>M — Mindfulness</h3><p>Sit with the quiet moments, fully present.</p></div>
+        <div class="seq-body"><h3>I — Insight</h3><p>Notice mood and clarity settling into place.</p></div>
+        <div class="seq-body"><h3>N — Next steps</h3><p>Choose a lasting rhythm — a steady boundary or an easy moderation.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="builder">
+  <div class="wrap">
+    <div class="builder-card">
+      <h2>Build your own binding</h2>
+      <p class="sub">Willpower works best with a little structure behind it. Pick a habit and a shape for the boundary, and get a plan in one sentence.</p>
+
+      <div class="builder-grid">
+        <div class="field">
+          <label for="trigger">Habit to give room to breathe</label>
+          <select id="trigger">
+            <option>evening scrolling</option>
+            <option>snack grazing</option>
+            <option>online shopping</option>
+            <option>video game sessions</option>
+            <option>streaming binges</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="binding">Shape of the boundary</label>
+          <select id="binding">
+            <option value="physical">Physical — move it out of reach</option>
+            <option value="temporal">Temporal — give it a time window</option>
+            <option value="categorical">Categorical — set a clear rule</option>
+          </select>
+        </div>
+      </div>
+      <button id="buildBtn" class="btn">Generate my plan</button>
+      <div id="planOutput">Choose a habit and a boundary, then generate a plan.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="hg-title">Earn the lift</h2>
+    <p class="hg-sub">Effort-first activities tip the seesaw toward steady, lasting energy — no spike required.</p>
+    <div class="hgrid">
+      <div class="hcard">
+        <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="#5FE8B4" stroke-width="3"/><path d="M24 10v28M10 24h28" stroke="#5FE8B4" stroke-width="3"/></svg>
+        <h3>Cold exposure</h3>
+        <p>A brisk finish to a shower or a cool morning walk — brief, bracing, and steady afterward.</p>
+      </div>
+      <div class="hcard">
+        <svg viewBox="0 0 48 48" fill="none"><rect x="10" y="18" width="28" height="12" rx="6" stroke="#5FE8B4" stroke-width="3"/><circle cx="16" cy="24" r="3" fill="#5FE8B4"/><circle cx="32" cy="24" r="3" fill="#5FE8B4"/></svg>
+        <h3>Resistance training</h3>
+        <p>Heavy, focused sets that ask something of the body and return clarity afterward.</p>
+      </div>
+      <div class="hcard">
+        <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="10" width="32" height="24" rx="3" stroke="#5FE8B4" stroke-width="3"/><path d="M14 34v4M34 34v4" stroke="#5FE8B4" stroke-width="3"/></svg>
+        <h3>Deep, undistracted work</h3>
+        <p>One task, one window, phone in another room — the kind of focus that pays off slowly and well.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2>Ready for a page built this well?</h2>
+    <p>easylandx builds landing pages exactly like this one — grounded in your subject, interactive where it matters, and made to be shared.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx →</a>
+    <p class="credit">Made by <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a></p>
+  </div>
+</footer>
+
+<script>
+  const beam = document.getElementById('beam');
+  const slider = document.getElementById('balanceSlider');
+  const msg = document.getElementById('balanceMsg');
+  const messages = [
+    "Full tilt toward the spike — bright and immediate, worth savoring in small doses.",
+    "Leaning toward the spike — quick, easy, and best paired with something earned nearby.",
+    "Right at the midpoint — a steady mix of quick lifts and earned ones.",
+    "Leaning toward effort — the payoff builds slowly and holds.",
+    "Full tilt toward effort — a steady, lasting lift with no dip to follow."
+  ];
+  function update(){
+    const v = Number(slider.value);
+    const angle = ((v/100)*30)-15; // -15 to 15 degrees
+    beam.style.transform = `rotate(${angle}deg)`;
+    const idx = Math.min(4, Math.floor(v/25));
+    msg.textContent = messages[idx];
+  }
+  slider.addEventListener('input', update);
+  update();
+
+  const triggerLabels = {
+    "evening scrolling":"evening scrolling","snack grazing":"snack grazing",
+    "online shopping":"online shopping","video game sessions":"video game sessions",
+    "streaming binges":"streaming binges"
+  };
+  const bindingCopy = {
+    physical: h => `Keep the phone or the trigger for ${h} in another room during the hours you want clear — distance does the work willpower alone can't.`,
+    temporal: h => `Give ${h} a window — say, weekends only, or after 8pm — so the rest of the day stays wide open.`,
+    categorical: h => `Set one clean rule around ${h} — a category it never crosses into — so each moment is a simple yes or a simple pass.`
+  };
+  document.getElementById('buildBtn').addEventListener('click', () => {
+    const h = document.getElementById('trigger').value;
+    const b = document.getElementById('binding').value;
+    document.getElementById('planOutput').textContent = bindingCopy[b](h);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Build the Brand That Outlasts the Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --magenta:#FF0055;
+    --magenta-deep:#D6003F;
+    --yellow:#FFE600;
+    --midnight:#090A0F;
+    --white:#FFF3F7;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+  html,body{margin:0;padding:0;background:var(--magenta);color:var(--midnight);}
+  body{
+    font-family:"Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  .display{font-family:"Archivo Black", "Space Grotesk", sans-serif; text-transform:none;}
+  a{color:inherit;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 24px;}
+  .stripe{background:repeating-linear-gradient(115deg, var(--midnight), var(--midnight) 10px, var(--yellow) 10px, var(--yellow) 20px); height:10px; width:100%;}
+
+  /* NAV */
+  nav{position:sticky; top:0; z-index:20; background:var(--magenta); border-bottom:4px solid var(--midnight); padding-top:env(safe-area-inset-top,0px);}
+  .nav-inner{max-width:1040px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between;}
+  .brand-mark{font-family:"Archivo Black"; font-size:1.1rem; letter-spacing:0.01em;}
+  .brand-mark span{color:var(--yellow); -webkit-text-stroke:1.5px var(--midnight);}
+  .ez-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--yellow); color:var(--midnight); border:3px solid var(--midnight);
+    font-family:"Space Grotesk"; font-weight:700; font-size:0.9rem;
+    padding:10px 18px; text-decoration:none; box-shadow:5px 5px 0 var(--midnight);
+    transition:transform .15s ease, box-shadow .15s ease;
+    cursor:pointer;
+  }
+  .ez-btn:hover{transform:translate(-2px,-2px); box-shadow:7px 7px 0 var(--midnight);}
+  .ez-btn:active{transform:translate(2px,2px); box-shadow:2px 2px 0 var(--midnight);}
+  .ez-btn.small{padding:8px 14px; font-size:0.8rem; box-shadow:3px 3px 0 var(--midnight);}
+
+  /* HERO */
+  header.hero{padding:88px 0 70px; position:relative;}
+  .kicker{font-weight:700; font-size:0.95rem; color:var(--midnight); background:var(--yellow); display:inline-block; padding:4px 10px; border:2px solid var(--midnight); margin-bottom:22px;}
+  h1.display{font-size:clamp(2.4rem, 6vw, 4.4rem); line-height:1.02; margin:0 0 24px; color:var(--midnight); max-width:11ch;}
+  h1.display em{font-style:normal; color:var(--white); -webkit-text-stroke:2px var(--midnight); text-shadow:4px 4px 0 var(--midnight);}
+  .hero-sub{font-size:1.15rem; max-width:52ch; margin:0 0 34px; color:var(--midnight); font-weight:500;}
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+
+  /* SECTION rhythm */
+  section{padding:64px 0;}
+  .section-head{display:flex; align-items:baseline; gap:14px; margin-bottom:36px; border-bottom:4px solid var(--midnight); padding-bottom:16px;}
+  .section-head .tag{font-family:"Archivo Black"; font-size:0.85rem; background:var(--midnight); color:var(--yellow); padding:5px 10px;}
+  .section-head h2{font-family:"Archivo Black"; font-size:clamp(1.5rem,3.4vw,2.1rem); margin:0; max-width:20ch;}
+  .lede{max-width:60ch; font-size:1.02rem; margin:0 0 34px; font-weight:500;}
+
+  /* LESSON GRID */
+  .grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:20px;}
+  .card{background:var(--midnight); color:var(--white); border:3px solid var(--midnight); padding:26px; position:relative;}
+  .card .num{font-family:"Archivo Black"; color:var(--yellow); font-size:0.85rem; display:block; margin-bottom:10px;}
+  .card h3{font-family:"Archivo Black"; font-size:1.2rem; margin:0 0 10px; color:var(--white);}
+  .card p{margin:0; font-size:0.95rem; color:#E9DEE3; font-weight:500;}
+  .card svg{position:absolute; top:22px; right:22px; width:34px; height:34px;}
+
+  /* CONTENT ENGINE DIAGRAM */
+  .engine{background:var(--white); border:4px solid var(--midnight); padding:32px 20px; box-shadow:8px 8px 0 var(--midnight);}
+  .engine-flow{display:flex; flex-direction:column; align-items:center; gap:0;}
+  .node{background:var(--yellow); border:3px solid var(--midnight); padding:14px 20px; font-weight:700; text-align:center; font-size:0.92rem; max-width:340px;}
+  .node.pillar{background:var(--midnight); color:var(--yellow);}
+  .arrow-down{width:3px; height:26px; background:var(--midnight); position:relative;}
+  .arrow-down::after{content:""; position:absolute; bottom:-2px; left:-6px; border-left:8px solid transparent; border-right:8px solid transparent; border-top:10px solid var(--midnight);}
+  .splinter-row{display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin-top:0;}
+  .splinter-col{display:flex; flex-direction:column; align-items:center; gap:0;}
+  .splinter-node{font-size:0.82rem; padding:10px 14px; max-width:190px;}
+
+  /* JAB TRAINER (interactive) */
+  .trainer{background:var(--midnight); border:4px solid var(--midnight); box-shadow:8px 8px 0 var(--yellow); padding:36px 28px; text-align:center;}
+  .trainer h3{font-family:"Archivo Black"; color:var(--white); font-size:1.6rem; margin:0 0 8px;}
+  .trainer p.instr{color:#D9CBD1; margin:0 0 28px; font-weight:500;}
+  .meter{width:100%; max-width:420px; margin:0 auto 28px; height:26px; background:#2A1620; border:3px solid var(--yellow); position:relative; overflow:hidden;}
+  .meter-fill{height:100%; width:0%; background:var(--yellow); transition:width .35s cubic-bezier(.2,.9,.3,1.2);}
+  .jab-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:18px;}
+  .jab-btn{
+    background:transparent; color:var(--yellow); border:3px solid var(--yellow);
+    font-family:"Space Grotesk"; font-weight:700; padding:12px 20px; cursor:pointer; font-size:0.95rem;
+  }
+  .jab-btn:disabled{opacity:0.35; cursor:default;}
+  .jab-btn:not(:disabled):hover{background:var(--yellow); color:var(--midnight);}
+  .hook-btn{
+    background:var(--magenta); color:var(--white); border:3px solid var(--yellow);
+    font-family:"Archivo Black"; padding:16px 30px; font-size:1.05rem; cursor:pointer;
+    opacity:0.35; pointer-events:none; transition:opacity .3s ease, transform .15s ease;
+  }
+  .hook-btn.ready{opacity:1; pointer-events:auto; animation:pulse 1.4s ease-in-out infinite;}
+  .hook-btn:active.ready{transform:scale(0.96);}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,230,0,.45);} 50%{box-shadow:0 0 0 14px rgba(255,230,0,0);}}
+  #hookResult{margin-top:20px; min-height:26px; color:var(--yellow); font-weight:700;}
+  @media (prefers-reduced-motion: reduce){ .hook-btn.ready{animation:none;} .meter-fill{transition:none;} }
+
+  /* 1.80 STRATEGY */
+  .strategy-wrap{display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center;}
+  .cents-board{display:grid; grid-template-columns:repeat(10, 1fr); gap:5px;}
+  .cent{aspect-ratio:1; background:var(--midnight); border:2px solid var(--midnight); transition:background .25s ease;}
+  .cent.lit{background:var(--yellow);}
+  .strategy-total{font-family:"Archivo Black"; font-size:2.2rem; margin:18px 0 4px;}
+  .strategy-copy p{font-weight:500;}
+  .add-cent-btn{margin-top:10px;}
+
+  /* MOAT vs RENTED */
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:0; border:4px solid var(--midnight);}
+  .split > div{padding:28px 24px;}
+  .split .rented{background:var(--white);}
+  .split .owned{background:var(--midnight); color:var(--white);}
+  .split h4{font-family:"Archivo Black"; margin:0 0 10px; font-size:1.1rem;}
+  .split ul{margin:0; padding-left:18px; font-weight:500; font-size:0.95rem;}
+  .split ul li{margin-bottom:6px;}
+
+  footer{background:var(--midnight); color:var(--white); padding:60px 0 46px; margin-top:20px;}
+  footer .wrap{text-align:center;}
+  footer h2{font-family:"Archivo Black"; color:var(--yellow); font-size:clamp(1.6rem,4vw,2.4rem); margin:0 0 16px;}
+  footer p{max-width:48ch; margin:0 auto 30px; color:#D9CBD1; font-weight:500;}
+  .foot-note{margin-top:34px; font-size:0.8rem; color:#8A7A82;}
+
+  @media (max-width:720px){
+    .grid{grid-template-columns:1fr;}
+    .strategy-wrap{grid-template-columns:1fr;}
+    .split{grid-template-columns:1fr;}
+    .cents-board{grid-template-columns:repeat(10, 1fr);}
+  }
+
+  :focus-visible{outline:3px solid var(--midnight); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand-mark">easyland<span>x</span></div>
+    <a class="ez-btn small" href="https://easylandx.github.io" target="_blank" rel="noopener">Get your page →</a>
+  </div>
+</nav>
+<div class="stripe"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Built for creators &amp; entrepreneurs</span>
+    <h1 class="display">The platform changes. <em>Your name doesn't.</em></h1>
+    <p class="hero-sub">Every algorithm, app, and trend is borrowed time. easylandx gives your personal brand a home you actually own — a landing page built around the one thing no update can take from you: your name.</p>
+    <div class="hero-ctas">
+      <a class="ez-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Claim your page on easylandx →</a>
+    </div>
+  </div>
+</header>
+
+<section id="lessons">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Why it works</span>
+      <h2>The brand is the moat</h2>
+    </div>
+    <p class="lede">Products, platforms, and trends turn over constantly. A trusted personal brand is the one asset that survives every one of those changes — and it needs a permanent address.</p>
+    <div class="grid">
+      <div class="card">
+        <span class="num">Moat</span>
+        <h3>Portable leverage</h3>
+        <p>Your brand travels with you through every pivot, product, and platform shift. easylandx is where that leverage lives online, independent of any single app.</p>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6l7-3z" stroke="#FFE600" stroke-width="2"/></svg>
+      </div>
+      <div class="card">
+        <span class="num">Trust</span>
+        <h3>Raw beats polished</h3>
+        <p>Audiences trust real work over a perfect performance. Your easylandx page shows the actual body of work — no gloss required to earn attention.</p>
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#FFE600" stroke-width="2"/><path d="M9 12l2 2 4-4" stroke="#FFE600" stroke-width="2"/></svg>
+      </div>
+      <div class="card">
+        <span class="num">Output</span>
+        <h3>Document, don't create</h3>
+        <p>The daily work is the content. easylandx turns what you're already documenting into a single page that shows the journey, not a staged highlight reel.</p>
+        <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="1" stroke="#FFE600" stroke-width="2"/><path d="M8 9h8M8 13h5" stroke="#FFE600" stroke-width="2"/></svg>
+      </div>
+      <div class="card">
+        <span class="num">Pace</span>
+        <h3>Patient goals, fast hands</h3>
+        <p>Long-term thinking with daily intensity. Ship the page now, keep refining it as the work compounds — patience on the timeline, speed on the execution.</p>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13 3L4 14h6l-1 7 9-11h-6l1-7z" stroke="#FFE600" stroke-width="2"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="engine">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">The system</span>
+      <h2>One page, splintered everywhere</h2>
+    </div>
+    <p class="lede">One piece of core work fans out into every channel. Your easylandx page is the hub all of it points back to.</p>
+    <div class="engine">
+      <div class="engine-flow">
+        <div class="node pillar">Core work — the keynote, the build, the deep dive</div>
+        <div class="arrow-down"></div>
+        <div class="node">Splintered into clips, quotes, and takeaways</div>
+        <div class="arrow-down"></div>
+        <div class="splinter-row">
+          <div class="splinter-col">
+            <div class="node splinter-node">Native posts per platform</div>
+          </div>
+          <div class="splinter-col">
+            <div class="node splinter-node">A thoughtful comment on 90 posts a day</div>
+          </div>
+          <div class="splinter-col">
+            <div class="node splinter-node">Traffic routed to one owned page</div>
+          </div>
+        </div>
+        <div class="arrow-down"></div>
+        <div class="node pillar">easylandx — the page that keeps the attention</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="jab">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Earn it first</span>
+      <h2>Jab, jab, jab — then the right hook</h2>
+    </div>
+    <p class="lede">Give value three times before you ever ask for anything. Throw your jabs below, then land the hook.</p>
+    <div class="trainer">
+      <h3>Give value before you ask</h3>
+      <p class="instr">Click each jab to give value. The ask only unlocks once you've earned it.</p>
+      <div class="meter"><div class="meter-fill" id="meterFill"></div></div>
+      <div class="jab-row">
+        <button class="jab-btn" data-jab="1" onclick="throwJab(this)">Jab — share something useful</button>
+        <button class="jab-btn" data-jab="2" onclick="throwJab(this)">Jab — answer a real question</button>
+        <button class="jab-btn" data-jab="3" onclick="throwJab(this)">Jab — show the actual work</button>
+      </div>
+      <button class="hook-btn" id="hookBtn" onclick="throwHook()">Right hook — send them to your page</button>
+      <div id="hookResult"></div>
+    </div>
+  </div>
+</section>
+
+<section id="strategy">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Daily habit</span>
+      <h2>The $1.80 a day strategy</h2>
+    </div>
+    <div class="strategy-wrap">
+      <div>
+        <div class="cents-board" id="centsBoard"></div>
+        <button class="ez-btn small add-cent-btn" id="addCentBtn" onclick="addCent()">Leave 2 cents (+1)</button>
+      </div>
+      <div class="strategy-copy">
+        <div class="strategy-total"><span id="totalDisplay">$0.00</span> of $1.80</div>
+        <p>Find the liveliest conversations in your niche. Leave one genuinely useful comment on each — ninety of them a day, two cents of real value at a time. It adds up to discovery no algorithm can throttle, and every comment can point back to your easylandx page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ownership">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Protect the work</span>
+      <h2>Rented attention vs. an owned address</h2>
+    </div>
+    <div class="split">
+      <div class="rented">
+        <h4>What a feed gives you</h4>
+        <ul>
+          <li>Reach that a single algorithm update can erase overnight</li>
+          <li>A profile you don't control the rules of</li>
+          <li>Followers you can't take with you if you leave</li>
+        </ul>
+      </div>
+      <div class="owned">
+        <h4>What easylandx gives you</h4>
+        <ul>
+          <li>One page that's yours regardless of any platform's mood</li>
+          <li>A place every "jab" and every comment can point to</li>
+          <li>The permanent home for a brand built on real work</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2>Stop renting the space you build your name in.</h2>
+    <p>easylandx builds the page your brand lives on — built by hand, built around you, built to last past the next platform shift.</p>
+    <a class="ez-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx →</a>
+    <div class="foot-note">easylandx · made by easylandx</div>
+  </div>
+</footer>
+
+<script>
+  let jabsThrown = 0;
+  const total = 3;
+  function throwJab(btn){
+    if(btn.disabled) return;
+    btn.disabled = true;
+    jabsThrown++;
+    document.getElementById('meterFill').style.width = (jabsThrown/total*100) + '%';
+    if(jabsThrown >= total){
+      document.getElementById('hookBtn').classList.add('ready');
+    }
+  }
+  function throwHook(){
+    if(jabsThrown < total) return;
+    document.getElementById('hookResult').textContent = "Earned. Sending them to your page →";
+    setTimeout(function(){
+      window.open('https://easylandx.github.io', '_blank', 'noopener');
+    }, 550);
+  }
+
+  // $1.80 strategy board
+  const board = document.getElementById('centsBoard');
+  const cellsTotal = 90;
+  let cellsLit = 0;
+  for(let i=0;i<cellsTotal;i++){
+    const d = document.createElement('div');
+    d.className = 'cent';
+    board.appendChild(d);
+  }
+  function addCent(){
+    const cells = board.children;
+    if(cellsLit >= cellsTotal){ return; }
+    cells[cellsLit].classList.add('lit');
+    cellsLit++;
+    const totalCents = cellsLit * 2;
+    document.getElementById('totalDisplay').textContent = '$' + (totalCents/100).toFixed(2);
+    if(cellsLit >= cellsTotal){
+      document.getElementById('addCentBtn').textContent = 'Full — $1.80 given today';
+      document.getElementById('addCentBtn').disabled = true;
+    }
+  }
+</script>
+
+</body>
+</html>

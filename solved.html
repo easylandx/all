@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Landing Pages, Solved</title>
+<style>
+:root{
+  --yellow:#F4C61A;
+  --yellow-deep:#E0B300;
+  --ink:#1A1508;
+  --emerald:#0E7C5C;
+  --emerald-deep:#0A5C44;
+  --indigo:#332FA6;
+  --indigo-deep:#241E7E;
+  --paper:#FFF7D9;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+html,body{height:100%;margin:0}
+body{
+  background:var(--yellow);
+  color:var(--ink);
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  line-height:1.5;
+  overflow-x:hidden;
+}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-weight:800;letter-spacing:-0.02em;margin:0 0 .4em}
+p{margin:0 0 1em;max-width:62ch}
+section{padding:72px 0;border-bottom:4px solid var(--ink)}
+section:last-of-type{border-bottom:none}
+
+/* Header */
+header{padding:28px 0 20px}
+.brand{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.logo{font-size:1.3rem;font-weight:800}
+.logo span{color:var(--indigo)}
+.cta{
+  display:inline-block;background:var(--indigo);color:var(--paper);
+  font-weight:800;text-decoration:none;padding:13px 26px;border-radius:999px;
+  border:3px solid var(--ink);transition:transform .15s ease;white-space:nowrap;
+}
+.cta:hover{transform:translateY(-2px)}
+.cta.alt{background:var(--emerald)}
+
+/* Hero */
+.hero h1{font-size:clamp(2.4rem,6vw,4.1rem);line-height:1.02}
+.hero .lede{font-size:1.2rem;font-weight:500;max-width:52ch}
+.hero-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px}
+
+/* Engine diagram */
+.engine-svg{width:100%;height:auto;display:block;margin-top:24px}
+.stage-label{font-size:13px;font-weight:700}
+.stage-desc{font-size:10.5px;font-weight:500}
+
+/* Matrix (interactive) */
+.matrix-box{
+  background:var(--paper);border:3px solid var(--ink);border-radius:20px;
+  padding:28px;margin-top:24px;
+}
+.criterion{margin-bottom:20px}
+.criterion-head{display:flex;justify-content:space-between;font-weight:700;font-size:.95rem;margin-bottom:6px}
+input[type=range]{
+  width:100%;accent-color:var(--indigo);height:6px;
+}
+.scores{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.score-card{
+  border-radius:16px;padding:18px;border:3px solid var(--ink);text-align:center;
+}
+.score-card.diy{background:#FFE8A3}
+.score-card.elx{background:var(--emerald);color:var(--paper)}
+.score-num{font-size:2.4rem;font-weight:800;display:block}
+.score-label{font-weight:700;font-size:.9rem}
+.matrix-note{font-size:.85rem;margin-top:14px;opacity:.85}
+
+/* Issue tree */
+.tree-svg{width:100%;height:auto;margin-top:20px}
+
+/* Accordion (5 whys) */
+.why-item{
+  border:3px solid var(--ink);border-radius:14px;margin-bottom:12px;
+  background:var(--paper);overflow:hidden;
+}
+.why-q{
+  width:100%;text-align:left;background:none;border:none;cursor:pointer;
+  padding:16px 20px;font-weight:700;font-size:1rem;color:var(--ink);
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  font-family:inherit;
+}
+.why-q .mark{font-size:1.3rem;color:var(--indigo);flex:0 0 auto;transition:transform .2s ease}
+.why-item.open .mark{transform:rotate(45deg)}
+.why-a{max-height:0;overflow:hidden;transition:max-height .25s ease}
+.why-a p{padding:0 20px 18px;margin:0;font-size:.95rem}
+.why-item.open .why-a{max-height:220px}
+
+/* Pre-mortem checklist */
+.checklist{display:grid;gap:12px;margin-top:20px}
+.check-row{
+  display:flex;align-items:center;gap:14px;background:var(--paper);
+  border:3px solid var(--ink);border-radius:14px;padding:14px 18px;cursor:pointer;
+  user-select:none;
+}
+.check-box{
+  width:26px;height:26px;flex:0 0 auto;border:3px solid var(--ink);border-radius:7px;
+  background:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;
+  color:var(--emerald);font-size:1rem;
+}
+.check-row.done{background:var(--emerald);color:var(--paper)}
+.check-row.done .check-box{background:var(--emerald);border-color:var(--paper)}
+.premortem-status{font-weight:700;margin-top:16px}
+
+/* Feedback loop */
+.loop-svg{width:100%;max-width:520px;display:block;margin:20px auto 0}
+
+footer{padding:56px 0 80px;text-align:center}
+footer .cta{margin-top:8px}
+footer small{display:block;margin-top:28px;font-weight:600;opacity:.75}
+
+@media (max-width:640px){
+  .scores{grid-template-columns:1fr}
+  section{padding:52px 0}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="brand">
+    <div class="logo">Easy<span>Land</span>X</div>
+    <a class="cta" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <h1>Landing pages,<br>solved — not guessed.</h1>
+  <p class="lede">Most landing pages fail because someone jumped straight to a design before framing the real problem. EasyLandX runs every page through a structured process first, so the page you launch is built on evidence, not a hunch.</p>
+  <div class="hero-row">
+    <a class="cta alt" href="https://easylandx.github.io" target="_blank" rel="noopener">Start with EasyLandX</a>
+  </div>
+</section>
+
+<section class="wrap" id="engine">
+  <h2>The problem-solving engine, applied to your page</h2>
+  <p>Every EasyLandX build moves through the same five stages a sharp consultant would use to solve a business problem — because a landing page that doesn't convert is a business problem.</p>
+  <svg class="engine-svg" viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg">
+    <rect x="150" y="10" width="600" height="70" rx="16" fill="var(--indigo)" stroke="var(--ink)" stroke-width="3"/>
+    <text x="450" y="38" text-anchor="middle" fill="var(--paper)" class="stage-label">1. DEFINE THE GOAL</text>
+    <text x="450" y="58" text-anchor="middle" fill="var(--paper)" class="stage-desc">What action should this page drive? Current state vs. desired state, mapped.</text>
+    <line x1="450" y1="80" x2="450" y2="120" stroke="var(--ink)" stroke-width="3"/>
+    <polygon points="450,128 442,112 458,112" fill="var(--ink)"/>
+    <rect x="150" y="130" width="600" height="70" rx="16" fill="var(--emerald)" stroke="var(--ink)" stroke-width="3"/>
+    <text x="450" y="158" text-anchor="middle" fill="var(--paper)" class="stage-label">2. DIAGNOSE THE ROOT CAUSE</text>
+    <text x="450" y="178" text-anchor="middle" fill="var(--paper)" class="stage-desc">Why visitors actually leave — traced past the surface symptom.</text>
+    <line x1="450" y1="200" x2="450" y2="230" stroke="var(--ink)" stroke-width="3"/>
+    <line x1="150" y1="230" x2="750" y2="230" stroke="var(--ink)" stroke-width="3"/>
+    <line x1="150" y1="230" x2="150" y2="260" stroke="var(--ink)" stroke-width="3"/>
+    <line x1="450" y1="230" x2="450" y2="260" stroke="var(--ink)" stroke-width="3"/>
+    <line x1="750" y1="230" x2="750" y2="260" stroke="var(--ink)" stroke-width="3"/>
+    <g>
+      <rect x="40" y="260" width="220" height="130" rx="14" fill="var(--paper)" stroke="var(--ink)" stroke-width="3"/>
+      <text x="150" y="288" text-anchor="middle" class="stage-label">3. GENERATE</text>
+      <text x="150" y="308" text-anchor="middle" class="stage-desc" font-weight="700">Layout &amp; copy options</text>
+      <text x="150" y="330" text-anchor="middle" class="stage-desc">Wide, divergent drafts —</text>
+      <text x="150" y="346" text-anchor="middle" class="stage-desc">judged later, not mid-flow.</text>
+    </g>
+    <g>
+      <rect x="340" y="260" width="220" height="130" rx="14" fill="var(--paper)" stroke="var(--ink)" stroke-width="3"/>
+      <text x="450" y="288" text-anchor="middle" class="stage-label">4. EVALUATE</text>
+      <text x="450" y="308" text-anchor="middle" class="stage-desc" font-weight="700">Weighted scoring</text>
+      <text x="450" y="330" text-anchor="middle" class="stage-desc">Each option scored on your</text>
+      <text x="450" y="346" text-anchor="middle" class="stage-desc">real priorities, not taste alone.</text>
+    </g>
+    <g>
+      <rect x="640" y="260" width="220" height="130" rx="14" fill="var(--paper)" stroke="var(--ink)" stroke-width="3"/>
+      <text x="750" y="288" text-anchor="middle" class="stage-label">5. EXECUTE</text>
+      <text x="750" y="308" text-anchor="middle" class="stage-desc" font-weight="700">Build &amp; monitor</text>
+      <text x="750" y="330" text-anchor="middle" class="stage-desc">Page ships, then its numbers</text>
+      <text x="750" y="346" text-anchor="middle" class="stage-desc">are tracked against the goal.</text>
+    </g>
+    <line x1="150" y1="390" x2="150" y2="410" stroke="var(--ink)" stroke-width="3"/>
+    <line x1="450" y1="390" x2="450" y2="410" stroke="var(--ink)" stroke-width="3"/>
+    <line x1="750" y1="390" x2="750" y2="410" stroke="var(--ink)" stroke-width="3"/>
+    <line x1="150" y1="410" x2="750" y2="410" stroke="var(--ink)" stroke-width="3"/>
+    <line x1="450" y1="410" x2="450" y2="430" stroke="var(--ink)" stroke-width="3"/>
+    <text x="450" y="452" text-anchor="middle" font-weight="700" font-size="13" fill="var(--indigo-deep)">loops back into stage 1 as data comes in</text>
+  </svg>
+</section>
+
+<section class="wrap" id="matrix">
+  <h2>Weigh it yourself</h2>
+  <p>Sternad's answer to gut-feel decisions is a weighted matrix: name what matters, weight it, score honestly. Drag the sliders to match your own priorities and watch how a handbuilt page compares with an EasyLandX build.</p>
+  <div class="matrix-box">
+    <div class="criterion">
+      <div class="criterion-head"><span>Speed to launch</span><span id="v-speed">50</span></div>
+      <input type="range" min="0" max="100" value="50" id="s-speed">
+    </div>
+    <div class="criterion">
+      <div class="criterion-head"><span>Design quality</span><span id="v-design">50</span></div>
+      <input type="range" min="0" max="100" value="50" id="s-design">
+    </div>
+    <div class="criterion">
+      <div class="criterion-head"><span>Built to convert</span><span id="v-conv">50</span></div>
+      <input type="range" min="0" max="100" value="50" id="s-conv">
+    </div>
+    <div class="criterion">
+      <div class="criterion-head"><span>Ongoing support</span><span id="v-supp">50</span></div>
+      <input type="range" min="0" max="100" value="50" id="s-supp">
+    </div>
+    <div class="scores">
+      <div class="score-card diy">
+        <span class="score-num" id="score-diy">–</span>
+        <span class="score-label">Handbuilt from scratch</span>
+      </div>
+      <div class="score-card elx">
+        <span class="score-num" id="score-elx">–</span>
+        <span class="score-label">Built by EasyLandX</span>
+      </div>
+    </div>
+    <p class="matrix-note">Fixed per-option ratings (0–10) feeding the weighted score — speed 5 / design 6 / conversion 5 / support 3 for a handbuilt page, versus 8 / 9 / 9 / 9 for an EasyLandX build.</p>
+  </div>
+</section>
+
+<section class="wrap" id="root">
+  <h2>Symptoms lie. Root causes don't.</h2>
+  <p>Low conversion is a symptom, not a diagnosis. EasyLandX traces it back before touching a single pixel.</p>
+  <svg class="tree-svg" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+    <rect x="330" y="10" width="240" height="60" rx="14" fill="var(--indigo)" stroke="var(--ink)" stroke-width="3"/>
+    <text x="450" y="45" text-anchor="middle" fill="var(--paper)" font-weight="700" font-size="14">Visitors leave without acting</text>
+    <line x1="450" y1="70" x2="450" y2="95" stroke="var(--ink)" stroke-width="3"/>
+    <line x1="150" y1="95" x2="750" y2="95" stroke="var(--ink)" stroke-width="3"/>
+    <line x1="150" y1="95" x2="150" y2="115" stroke="var(--ink)" stroke-width="3"/>
+    <line x1="450" y1="95" x2="450" y2="115" stroke="var(--ink)" stroke-width="3"/>
+    <line x1="750" y1="95" x2="750" y2="115" stroke="var(--ink)" stroke-width="3"/>
+    <rect x="30" y="115" width="240" height="80" rx="12" fill="var(--paper)" stroke="var(--ink)" stroke-width="3"/>
+    <text x="150" y="145" text-anchor="middle" font-weight="700" font-size="12.5">Message isn't clear</text>
+    <text x="150" y="165" text-anchor="middle" font-size="11">Headline buries the offer</text>
+    <text x="150" y="180" text-anchor="middle" font-size="11">in three lines of setup</text>
+    <rect x="330" y="115" width="240" height="80" rx="12" fill="var(--paper)" stroke="var(--ink)" stroke-width="3"/>
+    <text x="450" y="145" text-anchor="middle" font-weight="700" font-size="12.5">Trust isn't earned</text>
+    <text x="450" y="165" text-anchor="middle" font-size="11">No proof, no path, no</text>
+    <text x="450" y="180" text-anchor="middle" font-size="11">answer to "why you?"</text>
+    <rect x="630" y="115" width="240" height="80" rx="12" fill="var(--paper)" stroke="var(--ink)" stroke-width="3"/>
+    <text x="750" y="145" text-anchor="middle" font-weight="700" font-size="12.5">Action isn't obvious</text>
+    <text x="750" y="165" text-anchor="middle" font-size="11">The one thing to click is</text>
+    <text x="750" y="180" text-anchor="middle" font-size="11">buried under five others</text>
+    <line x1="150" y1="195" x2="150" y2="215" stroke="var(--emerald)" stroke-width="3"/>
+    <line x1="450" y1="195" x2="450" y2="215" stroke="var(--emerald)" stroke-width="3"/>
+    <line x1="750" y1="195" x2="750" y2="215" stroke="var(--emerald)" stroke-width="3"/>
+    <rect x="20" y="215" width="260" height="60" rx="12" fill="var(--emerald)" stroke="var(--ink)" stroke-width="3"/>
+    <text x="150" y="242" text-anchor="middle" fill="var(--paper)" font-weight="700" font-size="12">Copy framed around one</text>
+    <text x="150" y="258" text-anchor="middle" fill="var(--paper)" font-size="11">outcome, tested for clarity</text>
+    <rect x="320" y="215" width="260" height="60" rx="12" fill="var(--emerald)" stroke="var(--ink)" stroke-width="3"/>
+    <text x="450" y="242" text-anchor="middle" fill="var(--paper)" font-weight="700" font-size="12">Proof placed where the</text>
+    <text x="450" y="258" text-anchor="middle" fill="var(--paper)" font-size="11">doubt actually shows up</text>
+    <rect x="620" y="215" width="260" height="60" rx="12" fill="var(--emerald)" stroke="var(--ink)" stroke-width="3"/>
+    <text x="750" y="242" text-anchor="middle" fill="var(--paper)" font-weight="700" font-size="12">One page, one button,</text>
+    <text x="750" y="258" text-anchor="middle" fill="var(--paper)" font-size="11">nothing competing with it</text>
+  </svg>
+</section>
+
+<section class="wrap" id="whys">
+  <h2>Five whys, answered honestly</h2>
+  <p>Tap through the chain EasyLandX asks before writing a line of copy.</p>
+  <div id="why-list">
+    <div class="why-item open">
+      <button class="why-q"><span>Why isn't the page converting?</span><span class="mark">+</span></button>
+      <div class="why-a"><p>Visitors arrive, skim, and leave without acting.</p></div>
+    </div>
+    <div class="why-item">
+      <button class="why-q"><span>Why do they leave without acting?</span><span class="mark">+</span></button>
+      <div class="why-a"><p>They can't tell, in three seconds, what they're being asked to do.</p></div>
+    </div>
+    <div class="why-item">
+      <button class="why-q"><span>Why can't they tell in three seconds?</span><span class="mark">+</span></button>
+      <div class="why-a"><p>The headline explains the company before it states the offer.</p></div>
+    </div>
+    <div class="why-item">
+      <button class="why-q"><span>Why does the headline lead with the company?</span><span class="mark">+</span></button>
+      <div class="why-a"><p>The page was built from a template built for a different goal, then relabeled.</p></div>
+    </div>
+    <div class="why-item">
+      <button class="why-q"><span>Why was it built that way?</span><span class="mark">+</span></button>
+      <div class="why-a"><p>Root cause: the page was designed before the goal was defined. EasyLandX starts at stage one for exactly this reason.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="premortem">
+  <h2>Pre-mortem, run in advance</h2>
+  <p>Imagine this page has failed twelve months from now. These are the safeguards EasyLandX checks off before launch, so that failure never gets a chance to happen.</p>
+  <div class="checklist" id="checklist">
+    <div class="check-row"><span class="check-box">✓</span><span>Goal defined before any design work began</span></div>
+    <div class="check-row"><span class="check-box">✓</span><span>Message tested for a three-second read</span></div>
+    <div class="check-row"><span class="check-box">✓</span><span>One primary action — everything else supports it</span></div>
+    <div class="check-row"><span class="check-box">✓</span><span>Proof placed exactly where doubt appears</span></div>
+    <div class="check-row"><span class="check-box">✓</span><span>Performance tracked against the original goal, not vanity metrics</span></div>
+  </div>
+  <p class="premortem-status" id="premortem-status"></p>
+</section>
+
+<section class="wrap" id="loop">
+  <h2>The loop keeps running</h2>
+  <p>A page isn't judged once. EasyLandX treats launch as a small, testable increment: watch the real numbers, feed them back into stage one, and adjust.</p>
+  <svg class="loop-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="200" cy="200" r="150" fill="none" stroke="var(--ink)" stroke-width="3" stroke-dasharray="10 8"/>
+    <g font-weight="700" font-size="14">
+      <circle cx="200" cy="50" r="46" fill="var(--indigo)" stroke="var(--ink)" stroke-width="3"/>
+      <text x="200" y="46" text-anchor="middle" fill="var(--paper)">Launch</text>
+      <text x="200" y="62" text-anchor="middle" fill="var(--paper)" font-size="10.5">small &amp; testable</text>
+      <circle cx="337" cy="200" r="46" fill="var(--emerald)" stroke="var(--ink)" stroke-width="3"/>
+      <text x="337" y="196" text-anchor="middle" fill="var(--paper)">Measure</text>
+      <text x="337" y="212" text-anchor="middle" fill="var(--paper)" font-size="10.5">real visitor data</text>
+      <circle cx="200" cy="350" r="46" fill="var(--yellow-deep)" stroke="var(--ink)" stroke-width="3"/>
+      <text x="200" y="346" text-anchor="middle" fill="var(--ink)">Adjust</text>
+      <text x="200" y="362" text-anchor="middle" fill="var(--ink)" font-size="10.5">against the goal</text>
+      <circle cx="63" cy="200" r="46" fill="var(--indigo)" stroke="var(--ink)" stroke-width="3"/>
+      <text x="63" y="196" text-anchor="middle" fill="var(--paper)">Reframe</text>
+      <text x="63" y="212" text-anchor="middle" fill="var(--paper)" font-size="10.5">if the goal shifted</text>
+    </g>
+    <polygon points="255,88 275,100 258,112" fill="var(--ink)"/>
+    <polygon points="275,300 258,312 258,290" fill="var(--ink)"/>
+    <polygon points="120,312 100,300 118,288" fill="var(--ink)"/>
+    <polygon points="100,100 118,88 118,110" fill="var(--ink)"/>
+  </svg>
+</section>
+
+<footer class="wrap">
+  <h2>Ready to run your page through the process?</h2>
+  <p style="margin:0 auto">Structured beats guessed — every time.</p>
+  <a class="cta alt" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to EasyLandX</a>
+  <small>Made by EasyLandX</small>
+</footer>
+
+<script>
+(function(){
+  var ids = ['speed','design','conv','supp'];
+  var diyRatings = {speed:5, design:6, conv:5, supp:3};
+  var elxRatings  = {speed:8, design:9, conv:9, supp:9};
+  var weights = {speed:50, design:50, conv:50, supp:50};
+
+  function recalc(){
+    var totalW = ids.reduce(function(s,k){return s+weights[k];},0) || 1;
+    var diy = ids.reduce(function(s,k){return s+weights[k]*diyRatings[k];},0) / totalW;
+    var elx = ids.reduce(function(s,k){return s+weights[k]*elxRatings[k];},0) / totalW;
+    document.getElementById('score-diy').textContent = diy.toFixed(1);
+    document.getElementById('score-elx').textContent = elx.toFixed(1);
+  }
+
+  ids.forEach(function(k){
+    var slider = document.getElementById('s-'+k);
+    var label = document.getElementById('v-'+k);
+    slider.addEventListener('input', function(){
+      weights[k] = parseInt(slider.value,10);
+      label.textContent = slider.value;
+      recalc();
+    });
+  });
+  recalc();
+
+  document.querySelectorAll('.why-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.parentElement;
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.why-item').forEach(function(i){i.classList.remove('open');});
+      if(!wasOpen){ item.classList.add('open'); }
+    });
+  });
+
+  var rows = document.querySelectorAll('.check-row');
+  var status = document.getElementById('premortem-status');
+  function updateStatus(){
+    var done = document.querySelectorAll('.check-row.done').length;
+    if(done === rows.length){
+      status.textContent = 'All ' + rows.length + ' safeguards confirmed — this page is cleared for launch.';
+    } else {
+      status.textContent = done + ' of ' + rows.length + ' safeguards confirmed.';
+    }
+  }
+  rows.forEach(function(row){
+    row.classList.add('done');
+    row.addEventListener('click', function(){
+      row.classList.toggle('done');
+      updateStatus();
+    });
+  });
+  updateStatus();
+})();
+</script>
+</body>
+</html>

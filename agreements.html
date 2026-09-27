@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasylandX — The Four Agreements</title>
+<style>
+:root{
+  --ochre:#C2792E; --ochre-dark:#9E5F20; --ochre-deep:#7A4718;
+  --cyan:#13AEBB; --terra:#C1440E;
+  --cream:#F3E6D2; --ink:#2A1B0E;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;}
+html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+body{margin:0;background:var(--ochre);color:var(--cream);font-family:Georgia,'Times New Roman',serif;line-height:1.5;overflow-x:hidden;}
+h1,h2,h3{font-family:Georgia,serif;letter-spacing:.5px;margin:0 0 .4em;}
+section{padding:60px 6vw;max-width:1000px;margin:0 auto;}
+.eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:.75rem;color:var(--cyan);font-weight:bold;}
+.wrap{overflow-x:auto;}
+
+/* header */
+header{position:sticky;top:0;z-index:10;background:var(--ochre-deep);padding:14px 5vw;padding-top:calc(14px + env(safe-area-inset-top,0px));display:flex;justify-content:space-between;align-items:center;border-bottom:4px solid var(--terra);}
+.brand{font-weight:bold;font-size:1.2rem;color:var(--cream);}
+.brand span{color:var(--cyan);}
+.btn{display:inline-block;background:var(--cyan);color:var(--ink);font-weight:bold;padding:10px 22px;border-radius:2px;text-decoration:none;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--terra);transition:transform .15s;font-size:.9rem;white-space:nowrap;}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--terra);}
+.btn.small{padding:8px 16px;font-size:.8rem;}
+
+/* hero */
+.hero{text-align:center;padding-top:80px;}
+.hero h1{font-size:clamp(2.2rem,6vw,3.6rem);color:var(--cream);}
+.hero .accent{color:var(--terra);}
+.hero p{max-width:640px;margin:18px auto 30px;font-size:1.1rem;color:#f6e9d8;}
+
+/* illustration: toltec sun */
+.sun-wrap{display:flex;justify-content:center;margin:20px 0 40px;}
+svg{max-width:100%;height:auto;}
+
+/* domestication intro */
+.intro-card{background:var(--ochre-dark);border-left:6px solid var(--cyan);padding:26px 28px;border-radius:4px;}
+.intro-card p{margin:0 0 12px;color:#f6e9d8;}
+.intro-card p:last-child{margin:0;}
+
+/* agreement flip cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:30px;}
+.card{perspective:1200px;height:260px;cursor:pointer;}
+.card-inner{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d;}
+.card.flipped .card-inner{transform:rotateY(180deg);}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:6px;padding:22px;display:flex;flex-direction:column;justify-content:center;border:3px solid var(--ink);}
+.front{background:var(--cream);color:var(--ink);box-shadow:5px 5px 0 var(--terra);}
+.front .num{font-size:2.2rem;font-weight:bold;color:var(--terra);}
+.front h3{color:var(--ink);font-size:1.15rem;}
+.front .tap{margin-top:auto;font-size:.75rem;color:var(--ochre-dark);text-transform:uppercase;letter-spacing:1px;}
+.back{background:var(--terra);color:var(--cream);transform:rotateY(180deg);box-shadow:5px 5px 0 var(--ink);}
+.back p{font-size:.92rem;margin:0;}
+
+/* framework diagram */
+.steps{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:30px;}
+.step{background:var(--cream);color:var(--ink);border:3px solid var(--ink);border-radius:6px;padding:16px 18px;width:180px;text-align:center;box-shadow:4px 4px 0 var(--cyan);}
+.step .n{display:inline-block;background:var(--terra);color:var(--cream);border-radius:50%;width:28px;height:28px;line-height:28px;font-weight:bold;margin-bottom:8px;}
+.arrow{align-self:center;color:var(--cyan);font-size:1.6rem;font-weight:bold;}
+
+/* self-talk audit tool */
+.tool{background:var(--ochre-dark);border:3px solid var(--ink);border-radius:6px;padding:28px;margin-top:30px;}
+.tool textarea{width:100%;min-height:80px;border-radius:4px;border:2px solid var(--ink);padding:12px;font-family:inherit;font-size:1rem;resize:vertical;background:var(--cream);color:var(--ink);}
+.tool button{margin-top:14px;}
+.result{margin-top:18px;background:var(--cream);color:var(--ink);border-left:6px solid var(--cyan);padding:16px 18px;border-radius:4px;display:none;}
+.result.show{display:block;}
+.result b{color:var(--terra);}
+
+/* footer */
+footer{text-align:center;padding:50px 6vw 70px;}
+footer p{color:#f0dcc0;font-size:.85rem;margin-top:10px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">easyland<span>X</span></div>
+  <a class="btn small" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasylandX →</a>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">A landing page built by easylandx</div>
+  <h1>The Four <span class="accent">Agreements</span></h1>
+  <p>Ancient Toltec wisdom, distilled into a code of conduct — and a reminder of how easylandx approaches every page it builds: with impeccable words, zero assumptions, and full effort, every time.</p>
+  <div class="sun-wrap">
+    <svg viewBox="0 0 260 260" width="220">
+      <circle cx="130" cy="130" r="46" fill="#C1440E" stroke="#2A1B0E" stroke-width="4"/>
+      <g stroke="#13AEBB" stroke-width="6" stroke-linecap="round">
+        <line x1="130" y1="10" x2="130" y2="42"/>
+        <line x1="130" y1="218" x2="130" y2="250"/>
+        <line x1="10" y1="130" x2="42" y2="130"/>
+        <line x1="218" y1="130" x2="250" y2="130"/>
+        <line x1="46" y1="46" x2="68" y2="68"/>
+        <line x1="192" y1="192" x2="214" y2="214"/>
+        <line x1="46" y1="214" x2="68" y2="192"/>
+        <line x1="192" y1="68" x2="214" y2="46"/>
+      </g>
+      <circle cx="130" cy="130" r="46" fill="none" stroke="#F3E6D2" stroke-width="2" stroke-dasharray="4 5"/>
+    </svg>
+  </div>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Made by EasylandX — See the craft</a>
+</section>
+
+<section>
+  <div class="eyebrow">The Dream of the Planet</div>
+  <h2>Why we're domesticated</h2>
+  <div class="intro-card">
+    <p>From childhood, rewards and punishments teach us who to be — building an Ideal Self alongside an inner Judge and Victim that never stop grading us against impossible standards.</p>
+    <p>Everything we perceive is a shared dream. Much of our suffering comes from agreements we never chose — built on fear and assumption. Personal freedom begins the moment we notice the dream and start re-writing the terms.</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Four Foundational Agreements</div>
+  <h2>Tap a card to reveal why it matters</h2>
+  <div class="grid" id="cards">
+    <div class="card" data-i="0"><div class="card-inner">
+      <div class="face front"><div class="num">I</div><h3>Be Impeccable With Your Word</h3><div class="tap">Tap to flip</div></div>
+      <div class="face back"><p>Your word is pure creative force. Gossip and self-criticism spread emotional poison — speaking with integrity releases truth and love instead.</p></div>
+    </div></div>
+    <div class="card" data-i="1"><div class="card-inner">
+      <div class="face front"><div class="num">II</div><h3>Don't Take Anything Personally</h3><div class="tap">Tap to flip</div></div>
+      <div class="face back"><p>What others say and do is a projection of their own dream, not a verdict on you. Immunity to opinion ends needless suffering.</p></div>
+    </div></div>
+    <div class="card" data-i="2"><div class="card-inner">
+      <div class="face front"><div class="num">III</div><h3>Don't Make Assumptions</h3><div class="tap">Tap to flip</div></div>
+      <div class="face back"><p>Most drama starts with a guess about what someone else thinks or intends. Ask the question — clarity replaces the story you invented.</p></div>
+    </div></div>
+    <div class="card" data-i="3"><div class="card-inner">
+      <div class="face front"><div class="num">IV</div><h3>Always Do Your Best</h3><div class="tap">Tap to flip</div></div>
+      <div class="face back"><p>Your best shifts hour to hour, well or unwell. Meet today's version of yourself, and self-judgment has nothing left to hold onto.</p></div>
+    </div></div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">The Toltec Path</div>
+  <h2>From awareness to intentional love</h2>
+  <div class="wrap">
+  <div class="steps">
+    <div class="step"><span class="n">1</span><br>Become Aware<br>of the Dream</div>
+    <div class="arrow">→</div>
+    <div class="step"><span class="n">2</span><br>Audit Your<br>Inner Agreements</div>
+    <div class="arrow">→</div>
+    <div class="step"><span class="n">3</span><br>Practice the<br>4 Agreements</div>
+    <div class="arrow">→</div>
+    <div class="step"><span class="n">4</span><br>Forgive Past<br>& Others</div>
+    <div class="arrow">→</div>
+    <div class="step"><span class="n">5</span><br>Re-write With<br>Intentional Love</div>
+  </div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Interactive · Self-Talk Audit</div>
+  <h2>Catch the Judge. Reframe the word.</h2>
+  <div class="tool">
+    <label for="thought" style="display:block;margin-bottom:8px;color:#f6e9d8;">Write a thought your inner Judge said to you today:</label>
+    <textarea id="thought" placeholder="e.g. I always mess things up..."></textarea>
+    <button class="btn" onclick="reframe()">Reframe with Impeccability</button>
+    <div class="result" id="result"></div>
+  </div>
+</section>
+
+<footer>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Made by EasylandX — Visit the site</a>
+  <p>Landing pages built with impeccable words, zero assumptions, and full effort — easylandx.github.io</p>
+</footer>
+
+<script>
+document.querySelectorAll('.card').forEach(c=>{
+  c.addEventListener('click',()=>c.classList.toggle('flipped'));
+});
+
+function reframe(){
+  const input = document.getElementById('thought').value.trim();
+  const box = document.getElementById('result');
+  if(!input){
+    box.innerHTML = "<b>Try this:</b> Write down what your inner Judge just said — even one line helps you see the agreement it's enforcing.";
+  } else {
+    const compassionate = "This is my inner Judge speaking, not the truth. Today's best is enough — I did what today's energy allowed.";
+    box.innerHTML = `<b>Your Judge said:</b> "${input.replace(/</g,'&lt;')}"<br><br><b>Impeccable reframe:</b> ${compassionate}`;
+  }
+  box.classList.add('show');
+}
+</script>
+</body>
+</html>
