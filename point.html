@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EasyLandX — Engineer the Tipping Point of Your Landing Page</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--r1:#c4001d;--r2:#a80019;--r3:#8a0014;--r4:#5e000d;--g:#3dff86;--y:#ffe135;--w:#fff4ee}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--r1);color:var(--w);line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:'Archivo Black',Impact,sans-serif;text-transform:uppercase;line-height:1.02}
+h1{font-size:clamp(2.6rem,8vw,6rem)}
+h2{font-size:clamp(1.9rem,5vw,3.4rem);margin-bottom:14px}
+h3{font-size:1.2rem;margin-bottom:8px}
+section{padding:80px 20px}
+.w{max-width:1000px;margin:auto}
+.a{background:var(--r1)}.b{background:var(--r2)}.c{background:var(--r3)}.d{background:var(--r4)}
+.tag{display:inline-block;background:var(--y);color:var(--r4);font-weight:800;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;margin-bottom:16px}
+.g{color:var(--g)}.y{color:var(--y)}
+p.lead{font-size:1.15rem;max-width:660px;margin-bottom:26px}
+nav{position:sticky;top:0;z-index:9;background:var(--r4);display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-bottom:4px solid var(--y)}
+nav b{font-family:'Archivo Black',sans-serif;font-size:1.3rem}
+.btn{display:inline-block;background:var(--g);color:#05200f;font-family:'Archivo Black',sans-serif;text-transform:uppercase;text-decoration:none;border:0;padding:14px 26px;font-size:1rem;cursor:pointer;box-shadow:5px 5px 0 var(--y);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--y)}
+.btn.s{padding:9px 16px;font-size:.85rem;box-shadow:3px 3px 0 var(--y)}
+.btn.o{background:transparent;color:var(--w);border:3px solid var(--y);box-shadow:none}
+.btn.o.on{background:var(--y);color:var(--r4)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.box{background:var(--r4);border:3px solid var(--y);padding:22px}
+svg{display:block;width:100%;height:auto}
+/* hero */
+.hero{padding-top:50px}
+.hero svg{margin-top:34px;border:3px solid var(--y);background:var(--r4)}
+/* meter */
+.meter{height:26px;background:var(--r4);border:3px solid var(--w);margin:12px 0}
+.meter i{display:block;height:100%;width:0;background:var(--g);transition:width .5s}
+.read{font-weight:800;font-size:1.1rem;min-height:56px}
+/* third */
+#grid{display:grid;grid-template-columns:repeat(20,1fr);gap:4px;margin:20px 0}
+#grid i{aspect-ratio:1;background:var(--r4);border-radius:50%;transition:background .2s,transform .2s}
+#grid i.on{background:var(--y)}
+#grid.tip i.on{background:var(--g);transform:scale(1.1)}
+input[type=range]{width:100%;accent-color:var(--g);height:30px}
+/* monoculture */
+.farm{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:10px 0 22px}
+.farm i{aspect-ratio:1.4;display:grid;place-items:center;font-style:normal;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;border:2px solid var(--w);transition:all .4s}
+.farm i.claim{background:var(--y);color:var(--r4)}
+.farm i.proof{background:var(--g);color:#05200f}
+.farm i.demo{background:var(--w);color:var(--r3)}
+.farm i.guar{background:var(--r1);color:var(--w)}
+.farm i.dead{background:#2a0006;color:#7a3a42;border-color:#7a3a42;transform:scale(.9) rotate(-3deg)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+/* audit */
+.chk{display:flex;gap:12px;align-items:flex-start;padding:14px;margin-bottom:10px;border:3px solid var(--w);cursor:pointer;background:var(--r3)}
+.chk input{width:24px;height:24px;accent-color:var(--g);flex:none;margin-top:3px}
+.chk.on{border-color:var(--g)}
+.chk b{display:block}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+footer{background:var(--r4);padding:60px 20px;text-align:center}
+@media(max-width:700px){.two,.cols{grid-template-columns:1fr}section{padding:56px 16px}}
+</style>
+</head>
+<body>
+
+<nav><b>Easy<span class="g">Land</span><span class="y">X</span></b><a class="btn s" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a></nav>
+
+<!-- HERO -->
+<section class="a hero"><div class="w">
+<span class="tag">Inspired by Revenge of the Tipping Point</span>
+<h1>Your page is an <span class="y">overstory.</span><br>Make it <span class="g">tip.</span></h1>
+<p class="lead" style="margin-top:22px">Malcolm Gladwell's lesson: behavior isn't random. It's engineered by the story above it, the proportions inside it, the few nodes that spread it, and the diversity that protects it. EasyLandX landing pages are built on all four.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Get your EasyLandX page →</a>
+<svg viewBox="0 0 800 300" role="img" aria-label="Forest canopy blocking sunlight above small green sprouts">
+<defs><linearGradient id="sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe135" stop-opacity=".9"/><stop offset="1" stop-color="#ffe135" stop-opacity="0"/></linearGradient></defs>
+<circle cx="690" cy="40" r="26" fill="#ffe135"/>
+<g fill="#ffe135" opacity=".5"><polygon points="690,66 560,300 640,300"/><polygon points="690,66 700,300 770,300"/></g>
+<g fill="#3a0008"><circle cx="90" cy="60" r="70"/><circle cx="200" cy="40" r="80"/><circle cx="330" cy="62" r="74"/><circle cx="450" cy="38" r="78"/><circle cx="560" cy="60" r="62"/></g>
+<g fill="#7a0014"><circle cx="150" cy="70" r="46"/><circle cx="400" cy="72" r="44"/></g>
+<g stroke="#2a0006" stroke-width="12"><line x1="110" y1="100" x2="110" y2="300"/><line x1="260" y1="110" x2="260" y2="300"/><line x1="420" y1="105" x2="420" y2="300"/><line x1="520" y1="110" x2="520" y2="300"/></g>
+<rect y="285" width="800" height="15" fill="#2a0006"/>
+<g fill="none" stroke="#3dff86" stroke-width="5" stroke-linecap="round"><path d="M180 285 q-4-26 0-40 m0 14 q-16-10-20-22 m20 22 q14-8 18-20"/><path d="M340 285 q4-30 0-50 m0 18 q-14-8-18-20 m18 20 q14-10 16-22"/><path d="M630 285 q-3-60 4-100 m-4 50 q-24-14-30-34 m30 34 q20-14 26-36"/></g>
+<text x="400" y="190" text-anchor="middle" font-family="Archivo Black,Impact,sans-serif" font-size="26" fill="#fff4ee">WHAT GROWS BELOW IS DECIDED ABOVE</text>
+</svg>
+</div></section>
+
+<!-- 1 OVERSTORY -->
+<section class="b"><div class="w">
+<span class="tag">Lesson 1 · Overstories</span>
+<h2>The headline is the <span class="g">canopy.</span></h2>
+<p class="lead">In forestry, the overstory is the tall canopy that decides how much sun reaches the floor. On a landing page, your top message decides what every visitor does below it. Don't police individual clicks. Rewrite the overstory. Pick one and watch the floor.</p>
+<div class="row" id="ovBtns">
+<button class="btn o on" data-v="0">"Welcome to our site"</button>
+<button class="btn o" data-v="1">"We do everything!"</button>
+<button class="btn o" data-v="2">"Your page, live in 48 hours"</button>
+</div>
+<svg id="ov" viewBox="0 0 800 220" style="background:var(--r4);border:3px solid var(--y)">
+<rect width="800" height="220" fill="#5e000d"/>
+<g id="rays" fill="#ffe135" opacity=".1"><polygon points="100,0 40,220 200,220"/><polygon points="400,0 330,220 480,220"/><polygon points="700,0 620,220 780,220"/></g>
+<ellipse id="can" cx="400" cy="10" rx="440" ry="62" fill="#2a0006"/>
+<g id="plants" stroke="#3dff86" stroke-width="9" stroke-linecap="round"></g>
+<rect y="206" width="800" height="14" fill="#2a0006"/>
+</svg>
+<div class="meter"><i id="ovM"></i></div>
+<div class="read" id="ovT"></div>
+</div></section>
+
+<!-- 2 MAGIC THIRD -->
+<section class="a"><div class="w">
+<span class="tag">Lesson 2 · The Magic Third</span>
+<h2>Give one message <span class="y">30%+</span> of the page.</h2>
+<p class="lead">Gladwell shows that a minority between roughly 25% and 33% flips a group's dynamics. A message that's 10% of your page is noise. At critical mass it changes the culture of the whole page. Drag to give your single offer more room.</p>
+<div class="box">
+<label for="sl"><b>Share of page devoted to your ONE offer: <span id="slV" class="g">12%</span></b></label>
+<input type="range" id="sl" min="0" max="100" value="12">
+<div id="grid"></div>
+<div class="read" id="slT"></div>
+</div>
+</div></section>
+
+<!-- 3 SUPERSPREADERS -->
+<section class="c"><div class="w">
+<span class="tag">Lesson 3 · Superspreaders</span>
+<h2>Three elements <span class="g">carry the epidemic.</span></h2>
+<p class="lead">A tiny fraction of actors drives most of any contagion. On a landing page they're the headline, the main button and the proof. Click a small node, then click a hub. Notice where the reach comes from.</p>
+<svg id="net" viewBox="0 0 800 340" style="background:var(--r4);border:3px solid var(--y);cursor:pointer"></svg>
+<div class="row" style="align-items:center"><button class="btn o" id="netR">Reset</button><b>Reach: <span class="g" id="netN">0</span> of 39 visitors</b></div>
+</div></section>
+
+<!-- 4 MONOCULTURE -->
+<section class="b"><div class="w">
+<span class="tag">Lesson 4 · Monocultures Are Fragile</span>
+<h2>One kind of section. <span class="y">One blight.</span></h2>
+<p class="lead">Environments with no diversity collapse when a single contagion hits. A page made only of claims dies to one objection: "Prove it." Mix claims, proof, demos and guarantees, then send the blight.</p>
+<div class="two">
+<div><h3>Monoculture page</h3><div class="farm" id="f1"></div></div>
+<div><h3>Diverse page</h3><div class="farm" id="f2"></div></div>
+</div>
+<div class="row" style="align-items:center"><button class="btn" id="blight">Send objection: "Prove it."</button><button class="btn o" id="bR">Reset</button></div>
+<div class="read" id="bT"></div>
+</div></section>
+
+<!-- 5 ETHICS -->
+<section class="d"><div class="w">
+<span class="tag">Lesson 5 · The Ethics of Social Engineering</span>
+<h2>Engineer. <span class="g">Never exploit.</span></h2>
+<p class="lead">The same mechanisms that spread good ideas can manipulate people. EasyLandX uses them only for the visitor's benefit.</p>
+<div class="cols">
+<div class="box" style="border-color:var(--g)"><h3 class="g">We engineer</h3><p>A clear promise. Honest proof. A next step that actually helps the person who takes it.</p></div>
+<div class="box"><h3 class="y">We refuse</h3><p>Fake scarcity, invented testimonials, pressure tricks. They win one click and lose the audience.</p></div>
+</div>
+</div></section>
+
+<!-- AUDIT -->
+<section class="a"><div class="w">
+<span class="tag">Your Tipping Score</span>
+<h2>Audit your current page.</h2>
+<p class="lead">Tick what is true today. Be honest.</p>
+<label class="chk"><input type="checkbox"><span><b>Overstory:</b> my top headline states one clear promise a stranger gets in 5 seconds.</span></label>
+<label class="chk"><input type="checkbox"><span><b>Critical mass:</b> one offer takes at least 30% of the page.</span></label>
+<label class="chk"><input type="checkbox"><span><b>Superspreaders:</b> my headline, main button and proof are each polished and obvious.</span></label>
+<label class="chk"><input type="checkbox"><span><b>Diversity:</b> I mix proof, demo, story and guarantee, not just claims.</span></label>
+<div class="meter"><i id="auM"></i></div>
+<div class="read" id="auT">Score: 0 / 4</div>
+</div></section>
+
+<footer>
+<h2>Stop hoping. <span class="y">Engineer the tip.</span></h2>
+<p class="lead" style="margin:0 auto 26px">Overstory, critical mass, superspreaders and diversity, built into a landing page for your business.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener" style="font-size:1.3rem">EasyLandX →</a>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+/* 1 overstory */
+const P=$('#plants'),X=[80,200,320,440,560,680];
+X.forEach(x=>{const l=document.createElementNS('http://www.w3.org/2000/svg','line');l.setAttribute('x1',x);l.setAttribute('x2',x);l.setAttribute('y1',206);l.setAttribute('y2',200);l.style.transition='all .6s';P.appendChild(l)});
+const OV=[
+{h:[8,14,6,10,5,12],c:62,r:.08,m:12,t:'A vague canopy. Almost nothing reaches the floor, so visitors wander and leave.'},
+{h:[40,12,55,10,45,18],c:62,r:.14,m:30,t:'A cluttered canopy. Light gets through in patches, so some visitors act and most are confused.'},
+{h:[120,130,140,125,135,128],c:22,r:.45,m:88,t:'A clear overstory. Light reaches every sprout and the whole floor grows toward one action.'}];
+function setOv(i){const o=OV[i];P.childNodes.forEach((l,k)=>l.setAttribute('y2',206-o.h[k]));$('#can').setAttribute('ry',o.c);$('#rays').setAttribute('opacity',o.r);$('#ovM').style.width=o.m+'%';$('#ovT').textContent=o.t;$$('#ovBtns .btn').forEach((b,k)=>b.classList.toggle('on',k==i))}
+$$('#ovBtns .btn').forEach(b=>b.onclick=()=>setOv(+b.dataset.v));setOv(0);
+/* 2 magic third */
+const G=$('#grid');for(let i=0;i<200;i++)G.appendChild(document.createElement('i'));
+function third(){const v=+$('#sl').value,n=Math.round(v*2),cs=G.children;for(let i=0;i<200;i++)cs[i].classList.toggle('on',i<n);G.classList.toggle('tip',v>=30);$('#slV').textContent=v+'%';
+$('#slT').textContent=v<25?'Drowned out. Your offer is a rumor on its own page.':v<30?'Approaching the threshold. Dynamics are starting to shift.':v<=60?'Tipped. Your offer now sets the culture of the whole page.':'Past the tip. Strong, but leave room for proof to support it.'}
+$('#sl').oninput=third;third();
+/* 3 superspreaders */
+const N=$('#net'),NS='http://www.w3.org/2000/svg',hubs=[{x:170,y:170,n:'Headline'},{x:400,y:170,n:'Button'},{x:630,y:170,n:'Proof'}],nodes=[];
+function el(t,a,p=N){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e}
+hubs.forEach((h,hi)=>{for(let j=0;j<12;j++){const ang=j/12*6.283+hi,r=70+(j%3)*22,x=h.x+Math.cos(ang)*r,y=h.y+Math.sin(ang)*r*.95;
+el('line',{x1:h.x,y1:h.y,x2:x,y2:y,stroke:'#ffe135','stroke-opacity':.25,'stroke-width':2});
+const c=el('circle',{cx:x,cy:y,r:7,fill:'#8a0014',stroke:'#fff4ee','stroke-width':2});c.hub=hi;nodes.push({c,hub:hi});c.onclick=()=>light([c])}});
+const hubEls=hubs.map((h,i)=>{const c=el('circle',{cx:h.x,cy:h.y,r:24,fill:'#ffe135',stroke:'#fff4ee','stroke-width':3});el('text',{x:h.x,y:h.y+46+80*0,'text-anchor':'middle','font-family':'Archivo Black,sans-serif','font-size':14,fill:'#fff4ee',style:'display:none'});
+const t=el('text',{x:h.x,y:h.y+5,'text-anchor':'middle','font-family':'Archivo Black,sans-serif','font-size':11,fill:'#5e000d','pointer-events':'none'});t.textContent=h.n.toUpperCase().slice(0,8);
+c.onclick=()=>light([c,...nodes.filter(n=>n.hub==i).map(n=>n.c)]);return c});
+const lit=new Set();
+function light(a){a.forEach((c,i)=>setTimeout(()=>{c.setAttribute('fill','#3dff86');lit.add(c);$('#netN').textContent=lit.size},i*60))}
+$('#netR').onclick=()=>{lit.clear();$('#netN').textContent=0;nodes.forEach(n=>n.c.setAttribute('fill','#8a0014'));hubEls.forEach(c=>c.setAttribute('fill','#ffe135'))};
+/* 4 monoculture */
+const T=['claim','proof','demo','guar'],L={claim:'Claim',proof:'Proof',demo:'Demo',guar:'Promise'};
+function farm(id,fn){const f=$(id);for(let i=0;i<12;i++){const t=fn(i),e=document.createElement('i');e.className=t;e.dataset.t=t;e.textContent=L[t];f.appendChild(e)}}
+farm('#f1',()=> 'claim');farm('#f2',i=>T[i%4]);
+$('#blight').onclick=()=>{let d1=0,d2=0;$$('.farm i').forEach((e,i)=>{if(e.dataset.t=='claim'){setTimeout(()=>e.classList.add('dead'),(i%12)*70);e.parentNode.id=='f1'?d1++:d2++}});
+$('#bT').textContent=`Monoculture: ${12-d1} of 12 sections survive. Diverse page: ${12-d2} of 12 survive, and proof, demos and promises still carry the visitor.`};
+$('#bR').onclick=()=>{$$('.farm i').forEach(e=>e.classList.remove('dead'));$('#bT').textContent=''};
+/* audit */
+$$('.chk input').forEach(c=>c.onchange=()=>{const n=$$('.chk input:checked').length;$$('.chk').forEach(l=>l.classList.toggle('on',l.firstElementChild.checked));$('#auM').style.width=n*25+'%';
+$('#auT').textContent=`Score: ${n} / 4. `+['Your page is under the canopy. Time to rewrite the overstory.','A start. Pick the missing lesson and fix it first.','Halfway to the tip.','Almost there. One lesson left.','Tipped. Keep it honest.'][n]});
+</script>
+</body>
+</html>
