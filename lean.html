@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyLandX — Landing Pages Built the Lean Way</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#00bcd4;--bg2:#00a5ba;--bg3:#008ea1;--ink:#032f38;--or:#c9805a;--gr:#59666b;--paper:#e0fbff}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Inter,Arial,sans-serif;font-size:17px;line-height:1.55}
+h1,h2,h3{font-family:'Archivo Black',Impact,sans-serif;line-height:1.05;text-transform:uppercase}
+h1{font-size:clamp(2.4rem,7vw,5rem)}h2{font-size:clamp(1.8rem,4.5vw,3rem);margin-bottom:14px}h3{font-size:1.25rem;margin-bottom:8px}
+.w{max-width:1040px;margin:0 auto;padding:64px 22px}
+section:nth-of-type(even){background:var(--bg2)}
+.btn{display:inline-block;background:var(--or);color:var(--ink);font-family:'Archivo Black',Impact,sans-serif;text-transform:uppercase;text-decoration:none;padding:16px 30px;border:4px solid var(--ink);box-shadow:6px 6px 0 var(--gr);cursor:pointer;font-size:1rem;transition:transform .12s}
+.btn:hover{transform:translate(-3px,-3px)}
+.btn.g{background:var(--gr);color:var(--paper)}
+.tag{display:inline-block;background:var(--gr);color:var(--paper);font-weight:800;padding:4px 12px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;background:var(--ink)}
+nav b{font-family:'Archivo Black',Impact,sans-serif;color:var(--bg);font-size:1.2rem}nav b i{color:var(--or);font-style:normal}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+.hero p{margin:18px 0 26px;font-size:1.15rem;max-width:520px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:26px}
+.card{background:var(--paper);border:4px solid var(--ink);padding:22px;box-shadow:6px 6px 0 var(--or)}
+.card svg{width:64px;height:64px;margin-bottom:10px}
+.lab{background:var(--paper);border:4px solid var(--ink);padding:24px;box-shadow:8px 8px 0 var(--gr);margin-top:24px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:14px 0}
+.opt{border:3px solid var(--ink);background:#fff;padding:14px;cursor:pointer;font:inherit;text-align:left;font-weight:600}
+.opt.on{background:var(--or)}
+.step{font-family:'Archivo Black',Impact,sans-serif;color:var(--gr);margin-top:18px;text-transform:uppercase}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.stat{background:var(--ink);color:var(--paper);padding:12px;text-align:center}
+.stat b{display:block;font-family:'Archivo Black',Impact,sans-serif;font-size:1.7rem;color:var(--or)}
+.stat.v b{color:var(--gr)}
+.bar{height:20px;background:#fff;border:3px solid var(--ink);margin:8px 0}
+.bar div{height:100%;background:var(--or);width:0;transition:width .4s}
+#verdict{margin-top:14px;font-weight:800;min-height:3em}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.tabs button{font-family:'Archivo Black',Impact,sans-serif;text-transform:uppercase;border:4px solid var(--ink);background:var(--paper);padding:10px 18px;cursor:pointer}
+.tabs button.on{background:var(--ink);color:var(--or)}
+.eng{display:none;grid-template-columns:200px 1fr;gap:24px;align-items:center;background:var(--paper);border:4px solid var(--ink);padding:22px}
+.eng.on{display:grid}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.cmp .card:first-child{box-shadow:6px 6px 0 var(--gr)}
+ul{padding-left:20px}li{margin:6px 0}
+footer{background:var(--ink);color:var(--paper);text-align:center;padding:54px 22px}
+footer h2{color:var(--bg)}footer p{margin-bottom:22px}
+@media(max-width:760px){.hero,.eng,.cmp{grid-template-columns:1fr}.stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><b>Easy<i>Land</i>X</b><a class="btn" style="padding:8px 16px;font-size:.8rem;box-shadow:3px 3px 0 var(--gr)" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></nav>
+
+<section><div class="w hero">
+<div>
+<span class="tag">Landing pages · Lean Startup method</span>
+<h1>Your landing page is an <span style="color:var(--paper);background:var(--ink);padding:0 8px">experiment.</span></h1>
+<p>Stop guessing what customers want. EasyLandX turns your offer into a fast, focused landing page — your MVP — so real visitors tell you what works. Build. Measure. Learn.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Get my landing page → EasyLandX</a>
+</div>
+<svg viewBox="0 0 400 380" role="img" aria-label="Build Measure Learn loop illustration">
+<circle cx="200" cy="190" r="150" fill="none" stroke="#032f38" stroke-width="10" stroke-dasharray="26 14"/>
+<g stroke="#032f38" stroke-width="6">
+<rect x="150" y="10" width="100" height="70" fill="#c9805a"/><rect x="262" y="250" width="110" height="70" fill="#59666b"/><rect x="28" y="250" width="110" height="70" fill="#e0fbff"/></g>
+<g font-family="Archivo Black,Impact,sans-serif" text-anchor="middle" font-size="20" fill="#032f38">
+<text x="200" y="53">BUILD</text><text x="317" y="293" fill="#e0fbff">MEASURE</text><text x="83" y="293">LEARN</text></g>
+<g fill="#032f38"><polygon points="300,95 340,100 318,135"/><polygon points="215,335 175,318 215,300"/><polygon points="62,205 100,200 80,165"/></g>
+<rect x="150" y="140" width="100" height="100" fill="#e0fbff" stroke="#032f38" stroke-width="6"/>
+<rect x="162" y="154" width="76" height="14" fill="#c9805a"/><rect x="162" y="178" width="50" height="8" fill="#59666b"/><rect x="162" y="194" width="60" height="8" fill="#59666b"/><rect x="162" y="212" width="40" height="16" fill="#032f38"/>
+</svg>
+</div></section>
+
+<section><div class="w">
+<span class="tag">The core message</span>
+<h2>A startup is a human institution built to find a product under extreme uncertainty</h2>
+<p>Budgets, five-year forecasts and strict milestones assume you already know your market. You don't. Your landing page is where uncertainty meets real people — so treat it as a learning machine, not a brochure.</p>
+<div class="grid">
+<div class="card"><svg viewBox="0 0 64 64"><rect x="8" y="8" width="48" height="48" fill="#c9805a" stroke="#032f38" stroke-width="4"/><path d="M18 34l10 10 20-24" fill="none" stroke="#032f38" stroke-width="6"/></svg><h3>Validated learning</h3><p>Progress isn't code written or pages shipped. It's proof of what customers actually do.</p></div>
+<div class="card"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="#59666b" stroke="#032f38" stroke-width="4"/><path d="M32 12v40M12 32h40" stroke="#e0fbff" stroke-width="4"/></svg><h3>Eliminate waste</h3><p>Don't polish a page nobody wants. Launch small, learn first, then invest.</p></div>
+<div class="card"><svg viewBox="0 0 64 64"><path d="M8 52L28 12l10 20 18-14" fill="none" stroke="#032f38" stroke-width="6"/><circle cx="56" cy="18" r="6" fill="#c9805a" stroke="#032f38" stroke-width="3"/></svg><h3>Pivot or persevere</h3><p>The speed of your feedback loop decides whether you win. Learn fast, then change direction or double down.</p></div>
+</div></div></section>
+
+<section><div class="w">
+<span class="tag">Framework 1 + 2 · Interactive</span>
+<h2>The Landing Page Lab: run your own MVP</h2>
+<p>An MVP is the version that collects the most validated learning for the least effort. Your landing page is that test. Try the full loop below — the market's reaction is hidden until you measure.</p>
+<div class="lab">
+<div class="step">1 · Build — pick your hypothesis</div>
+<div class="opts" id="opts"></div>
+<div class="step">2 · Measure — send real traffic</div>
+<button class="btn g" id="send" style="padding:12px 22px">Send 50 visitors</button>
+<div class="stats">
+<div class="stat v"><b id="pv">0</b>Pageviews (vanity)</div>
+<div class="stat"><b id="lead">0</b>Enquiries</div>
+<div class="stat"><b id="cr">0%</b>Conversion (actionable)</div>
+</div>
+<div class="bar"><div id="fill"></div></div>
+<div class="step">3 · Learn — decide with evidence</div>
+<button class="btn" id="piv" style="padding:12px 22px">Pivot</button>
+<button class="btn" id="per" style="padding:12px 22px;margin-left:8px">Persevere</button>
+<div id="verdict">Choose a hypothesis, then send at least 150 visitors before you decide.</div>
+</div></div></section>
+
+<section><div class="w">
+<span class="tag">Framework 3 · Innovation accounting</span>
+<h2>Measure what moves the business</h2>
+<div class="cmp">
+<div class="card"><h3>Vanity metrics</h3><ul><li>Total pageviews</li><li>Social followers</li><li>Registered users</li></ul><p>They look great and tell you nothing about cause and effect.</p></div>
+<div class="card"><h3>Actionable metrics</h3><ul><li>Visitor → enquiry conversion</li><li>Cohort retention</li><li>Bookings per 100 visitors</li></ul><p>Every EasyLandX page points at one clear action, so the number that matters is always visible.</p></div>
+</div></div></section>
+
+<section><div class="w">
+<span class="tag">Framework 4 · Engines of growth</span>
+<h2>Which engine drives your page?</h2>
+<div class="tabs" id="tabs"></div>
+<div id="engs"></div>
+</div></section>
+
+<section><div class="w">
+<span class="tag">How EasyLandX applies it</span>
+<h2>One loop, three steps</h2>
+<div class="grid">
+<div class="card"><h3>Build</h3><p>You share your offer. We turn it into a focused landing page — a clean MVP built to test one promise.</p></div>
+<div class="card"><h3>Measure</h3><p>Send your Instagram, ads or WhatsApp traffic to it and watch real actions, not applause.</p></div>
+<div class="card"><h3>Learn</h3><p>Adjust the headline, the offer or the audience based on behavior. Pivot or persevere — quickly.</p></div>
+</div></div></section>
+
+<footer>
+<h2>Learn faster than your competition</h2>
+<p>Turn your next idea into a landing page that tells you the truth.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</footer>
+
+<script>
+const H=[
+ {t:'"Beautiful website for your business"',r:.03,n:'Generic and about you, not the customer.'},
+ {t:'"Get clients from your Instagram in 48h"',r:.11,n:'Specific outcome tied to a real pain.'},
+ {t:'"We are passionate about design"',r:.02,n:'A statement, not an offer.'}
+];
+let sel=null,pv=0,ld=0;
+const $=id=>document.getElementById(id);
+H.forEach((h,i)=>{const b=document.createElement('button');b.className='opt';b.textContent=h.t;b.onclick=()=>{sel=i;pv=ld=0;[...$('opts').children].forEach((c,j)=>c.classList.toggle('on',j===i));upd();$('verdict').textContent='MVP built. Now send traffic and measure.'};$('opts').appendChild(b)});
+function upd(){$('pv').textContent=pv;$('lead').textContent=ld;const c=pv?ld/pv*100:0;$('cr').textContent=c.toFixed(1)+'%';$('fill').style.width=Math.min(100,c*6)+'%'}
+$('send').onclick=()=>{if(sel===null){$('verdict').textContent='Build first: pick a hypothesis.';return}
+ for(let i=0;i<50;i++){pv++;if(Math.random()<H[sel].r)ld++}upd()};
+function decide(p){if(sel===null||pv<150){$('verdict').textContent='Not enough evidence yet. Send at least 150 visitors.';return}
+ const good=ld/pv>=.07;
+ $('verdict').textContent=(p?(good?'Right call. ':'Too early to give up? '):(good?'Careful: this is working. ':'Right call. '))+
+ (good?'Conversion is healthy — persevere and optimize.':'Conversion is weak — pivot the message.')+' '+H[sel].n}
+$('piv').onclick=()=>decide(0);$('per').onclick=()=>decide(1);
+const E=[
+ {n:'Sticky',d:'High retention, low churn. Your page earns repeat bookings and returning clients. Keep the promise consistent after the click.',s:'<circle cx="60" cy="60" r="40" fill="#59666b" stroke="#032f38" stroke-width="6"/><path d="M60 30a30 30 0 1 1-28 20" fill="none" stroke="#c9805a" stroke-width="10"/><polygon points="22 38 42 38 32 58" fill="#c9805a"/>'},
+ {n:'Viral',d:'Growth as a side effect of use. Make the page so shareable that clients forward it, tag it and refer friends.',s:'<circle cx="60" cy="30" r="14" fill="#c9805a" stroke="#032f38" stroke-width="5"/><circle cx="25" cy="90" r="14" fill="#59666b" stroke="#032f38" stroke-width="5"/><circle cx="95" cy="90" r="14" fill="#59666b" stroke="#032f38" stroke-width="5"/><path d="M60 44L30 78M60 44l30 34M40 90h40" stroke="#032f38" stroke-width="5"/>'},
+ {n:'Paid',d:'Reinvest revenue into ads. It only works when Customer Acquisition Cost stays below Lifetime Value, so test the page before you buy traffic.',s:'<rect x="15" y="70" width="25" height="35" fill="#59666b" stroke="#032f38" stroke-width="5"/><rect x="48" y="45" width="25" height="60" fill="#c9805a" stroke="#032f38" stroke-width="5"/><rect x="81" y="15" width="25" height="90" fill="#59666b" stroke="#032f38" stroke-width="5"/>'}
+];
+E.forEach((e,i)=>{const b=document.createElement('button');b.textContent=e.n;b.onclick=()=>show(i);$('tabs').appendChild(b);
+ const d=document.createElement('div');d.className='eng';d.innerHTML='<svg viewBox="0 0 120 120" width="180">'+e.s+'</svg><div><h3>'+e.n+' engine</h3><p>'+e.d+'</p></div>';$('engs').appendChild(d)});
+function show(i){[...$('tabs').children].forEach((b,j)=>b.classList.toggle('on',i===j));[...$('engs').children].forEach((d,j)=>d.classList.toggle('on',i===j))}
+show(0);
+</script>
+</body>
+</html>
