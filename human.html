@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyLandX | Co-Intelligence Landing Pages</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a1b34;--bg2:#0e2444;--bg3:#132d55;--teal:#19e0c8;--coral:#ff6f61;--ink:#eaf2ff;--mute:#9db4d6}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.6}
+h1,h2,h3{font-family:'Space Grotesk',Inter,sans-serif;line-height:1.1}
+h1{font-size:clamp(2.4rem,7vw,5rem);font-weight:700}
+h2{font-size:clamp(1.8rem,4.5vw,3rem);margin-bottom:.6rem}
+section{padding:80px 6vw;max-width:1100px;margin:auto}
+.alt{background:var(--bg2);max-width:none}.alt>div{max-width:1100px;margin:auto;padding:0 6vw}
+.t{color:var(--teal)}.c{color:var(--coral)}
+.tag{font-family:'Space Grotesk';color:var(--teal);letter-spacing:.15em;text-transform:uppercase;font-size:.8rem;font-weight:700}
+p.lead{color:var(--mute);max-width:640px;font-size:1.1rem;margin:.6rem 0 1.6rem}
+.btn{display:inline-block;background:var(--coral);color:var(--bg);font-family:'Space Grotesk';font-weight:700;padding:16px 30px;border-radius:50px;text-decoration:none;border:0;cursor:pointer;font-size:1rem;transition:.2s}
+.btn:hover{background:var(--teal);transform:translateY(-3px)}
+.btn.ghost{background:none;border:2px solid var(--teal);color:var(--teal)}
+.btn.ghost:hover{background:var(--teal);color:var(--bg)}
+nav{position:sticky;top:0;z-index:9;background:var(--bg);display:flex;justify-content:space-between;align-items:center;padding:14px 6vw;border-bottom:1px solid var(--bg3)}
+nav b{font-family:'Space Grotesk';font-size:1.3rem}
+nav .btn{padding:10px 20px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;min-height:80vh}
+@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.card{background:var(--bg3);border-radius:18px;padding:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.chip{background:var(--bg);border:2px solid var(--bg3);color:var(--ink);padding:10px 16px;border-radius:40px;cursor:pointer;font:600 .9rem Inter;transition:.2s}
+.chip:hover{border-color:var(--teal)}
+.chip.on{background:var(--teal);color:var(--bg);border-color:var(--teal)}
+.chip.coral.on{background:var(--coral);border-color:var(--coral)}
+#frontier{width:100%;height:auto}
+#frontier circle{cursor:pointer;transition:.2s}
+#frontier circle:hover{r:13}
+.panel{margin-top:16px;min-height:90px;border-left:5px solid var(--teal);padding:6px 18px;background:var(--bg3);border-radius:0 14px 14px 0}
+.rules{counter-reset:r}
+.rule{cursor:pointer;position:relative;padding-left:70px}
+.rule:before{counter-increment:r;content:counter(r);position:absolute;left:18px;top:18px;width:38px;height:38px;border-radius:50%;background:var(--coral);color:var(--bg);display:grid;place-items:center;font:700 1.1rem 'Space Grotesk'}
+.rule .more{display:none;color:var(--mute);margin-top:8px}
+.rule.open .more{display:block}.rule.open:before{background:var(--teal)}
+select,input[type=text]{width:100%;background:var(--bg);color:var(--ink);border:2px solid var(--bg3);border-radius:12px;padding:12px;font:inherit}
+label{font-size:.8rem;color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:.08em;display:block;margin:12px 0 6px}
+pre{white-space:pre-wrap;background:var(--bg);border:2px dashed var(--teal);border-radius:14px;padding:18px;font:500 .95rem/1.6 Inter;margin-top:14px}
+.steps{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.step{padding:14px 18px;border-radius:12px;font-weight:600;display:flex;gap:12px;align-items:center;transition:.3s}
+.step.h{background:var(--bg3);border-left:6px solid var(--teal)}
+.step.a{background:var(--bg3);border-left:6px solid var(--coral)}
+.step.m{background:linear-gradient(90deg,var(--teal),var(--coral));color:var(--bg)}
+input[type=range]{width:100%;accent-color:var(--coral)}
+.idea{background:var(--bg3);padding:14px;border-radius:12px;cursor:pointer;border:2px solid transparent;font-weight:600;transition:.2s}
+.idea:hover{border-color:var(--teal)}.idea.pin{border-color:var(--coral);background:var(--bg)}
+footer{text-align:center;padding:80px 6vw;background:var(--bg2)}
+.float{animation:fl 5s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-14px)}}
+.spin{transform-origin:200px 200px;animation:sp 40s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<nav><b>Easy<span class="t">Land</span><span class="c">X</span></b><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></nav>
+
+<section class="hero">
+<div>
+<p class="tag">Landing pages x Co-Intelligence</p>
+<h1>Your landing page, built by a <span class="t">human</span> and an <span class="c">alien mind</span>.</h1>
+<p class="lead">Ethan Mollick calls generative AI an alien intelligence you work with, not a tool you operate. EasyLandX applies that mindset to one job: pages that turn visitors into clients.</p>
+<div class="row"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a><a class="btn ghost" href="#frontier-sec">Explore the ideas</a></div>
+</div>
+<svg viewBox="0 0 400 400" class="float" aria-label="Human and AI illustration">
+<circle cx="200" cy="200" r="170" fill="#0e2444"/>
+<g class="spin" fill="none" stroke="#19e0c8" stroke-width="2" stroke-dasharray="4 10"><circle cx="200" cy="200" r="150"/></g>
+<g class="spin" style="animation-direction:reverse" fill="none" stroke="#ff6f61" stroke-width="2" stroke-dasharray="2 14"><circle cx="200" cy="200" r="120"/></g>
+<circle cx="120" cy="230" r="34" fill="#ff6f61"/><rect x="88" y="268" width="64" height="70" rx="30" fill="#ff6f61"/>
+<circle cx="280" cy="170" r="42" fill="#19e0c8"/><circle cx="268" cy="164" r="7" fill="#0a1b34"/><circle cx="294" cy="164" r="7" fill="#0a1b34"/><circle cx="280" cy="108" r="8" fill="#19e0c8"/><line x1="280" y1="128" x2="280" y2="112" stroke="#19e0c8" stroke-width="4"/>
+<rect x="250" y="218" width="60" height="70" rx="26" fill="#19e0c8"/>
+<path d="M150 250 Q200 190 252 240" stroke="#eaf2ff" stroke-width="4" fill="none" stroke-dasharray="8 8"/>
+<rect x="165" y="290" width="70" height="46" rx="8" fill="#eaf2ff"/><rect x="173" y="298" width="54" height="8" rx="3" fill="#ff6f61"/><rect x="173" y="312" width="38" height="6" rx="3" fill="#0a1b34"/><rect x="173" y="322" width="26" height="6" rx="3" fill="#19e0c8"/>
+</svg>
+</section>
+
+<div class="alt" id="frontier-sec"><div><section style="padding-left:0;padding-right:0">
+<p class="tag">Core message 1</p><h2>The jagged frontier of landing pages</h2>
+<p class="lead">AI is brilliant at some page tasks and clumsy at others, and the edge is uneven. Tap a point to see where to lean on AI and where you must step in.</p>
+<svg id="frontier" viewBox="0 0 700 280"></svg>
+<div class="panel" id="fpanel"><h3 class="t">Tap a point on the frontier</h3><p style="color:var(--mute)">Points above the dashed line are AI territory. Points below need a human firmly in charge.</p></div>
+</section></div></div>
+
+<section>
+<p class="tag">The four rules</p><h2>Four rules, applied to every page</h2>
+<p class="lead">Tap a rule to see how it shapes the way EasyLandX pages get made.</p>
+<div class="grid rules">
+<div class="card rule"><h3>Always invite AI to the table</h3><div class="more">Test it on headlines, layouts, objections, FAQs and microcopy. You learn the frontier only by trying, so every page section gets an AI first draft to react to.</div></div>
+<div class="card rule"><h3>Be the human in the loop</h3><div class="more">AI can confidently invent a testimonial or a statistic. A human checks every claim, price, promise and contact detail before a visitor sees it.</div></div>
+<div class="card rule"><h3>Tell it who it is</h3><div class="more">Give the AI a persona, context and goal. "Act as a direct-response copywriter for a plumber in a small coastal town" beats "write a landing page" every time.</div></div>
+<div class="card rule"><h3>This is the worst AI you will ever use</h3><div class="more">Tools improve fast. A page process built on adaptable habits, not fixed tricks, keeps getting better as the models do.</div></div>
+</div>
+</section>
+
+<div class="alt"><div><section style="padding-left:0;padding-right:0">
+<p class="tag">Rule 3 in action</p><h2>Build a persona prompt</h2>
+<p class="lead">Tell the AI who it is, what it knows and what you need. Pick the pieces and watch a strong landing page brief assemble.</p>
+<div class="grid">
+<div><label>Persona</label><select id="p1"><option>an experienced direct-response copywriter</option><option>a conversion-focused UX designer</option><option>a skeptical first-time customer</option><option>a brand strategist for small businesses</option></select></div>
+<div><label>Context</label><select id="p2"><option>a local business with a loyal Instagram following</option><option>a freelance artist selling commissions</option><option>a consultant booking discovery calls</option><option>a restaurant taking reservations</option></select></div>
+<div><label>Goal</label><select id="p3"><option>write a headline and subheadline that earn the next scroll</option><option>list the five objections visitors have before booking</option><option>critique this page like a visitor deciding in 8 seconds</option><option>draft a clear call to action and trust section</option></select></div>
+</div>
+<pre id="out"></pre>
+<div class="row" style="margin-top:14px"><button class="btn ghost" id="copy">Copy prompt</button></div>
+</section></div></div>
+
+<section>
+<p class="tag">Centaurs vs cyborgs</p><h2>Two ways to build a page</h2>
+<p class="lead">Divide the work cleanly, or weave it together line by line. Switch modes to see each workflow.</p>
+<div class="row"><button class="chip on" data-m="c">Centaur mode</button><button class="chip coral" data-m="y">Cyborg mode</button></div>
+<div class="steps" id="steps"></div>
+</section>
+
+<div class="alt"><div><section style="padding-left:0;padding-right:0">
+<p class="tag">Overcoming creative friction</p><h2>Skip the blank page, keep the taste</h2>
+<p class="lead">AI generates dozens of options in seconds. Your job shifts to curation. Generate headline ideas, then tap to pin the ones worth refining.</p>
+<div class="row"><button class="btn" id="gen">Generate ideas</button><span id="pins" style="align-self:center;color:var(--mute)">0 pinned</span></div>
+<div class="grid" id="ideas" style="margin-top:20px"></div>
+</section></div></div>
+
+<section>
+<p class="tag">Rule 4 + AI as tutor</p><h2>Assume this is the worst AI you will ever use</h2>
+<p class="lead">Drag through time and watch what a landing page workflow can do as the tools improve.</p>
+<input type="range" min="0" max="3" value="0" id="time">
+<svg viewBox="0 0 700 150" style="width:100%;margin-top:14px"><g id="bars"></g></svg>
+<div class="panel" id="tpanel"></div>
+</section>
+
+<footer>
+<svg width="120" viewBox="0 0 120 80" style="margin-bottom:10px"><path d="M10 60 L40 30 L65 50 L110 12" fill="none" stroke="#19e0c8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="110" cy="12" r="8" fill="#ff6f61"/></svg>
+<h2>Human judgment. Alien speed.<br><span class="t">One landing page that works.</span></h2>
+<p class="lead" style="margin:10px auto 24px">Put the co-intelligence mindset to work for your business.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+/* Frontier */
+const pts=[
+["Headline options",1,"Strong","AI produces dozens of angles instantly. You pick the one that sounds like your brand."],
+["Section layout",1,"Strong","AI structures hero, proof, offer and call to action in minutes. Review the order against your goal."],
+["Objection handling",1,"Strong","AI lists doubts a buyer might have and drafts replies. Add real answers from your own customers."],
+["Exact local facts",0,"Weak","Opening hours, prices, addresses and licences must come from you. AI may sound sure and be wrong."],
+["Real testimonials",0,"Weak","AI can fabricate plausible praise. Only publish words real customers actually gave you."],
+["Brand taste",1,"Medium","AI can imitate a style, but deciding what feels right for your audience is a human call."],
+["Math and counts",0,"Weak","Simple counting and totals can trip it up. Verify every number on the page."],
+["Tone variations",1,"Strong","Warm, bold or formal versions appear on request. You choose the voice that fits."]];
+const svg=$('#frontier');let h='<line x1="20" y1="140" x2="680" y2="140" stroke="#ff6f61" stroke-width="2" stroke-dasharray="8 8"/><text x="24" y="132" fill="#ff6f61" font-size="12">Human must lead</text><text x="24" y="162" fill="#19e0c8" font-size="12">AI territory above, human check below</text>';
+const xs=pts.map((_,i)=>50+i*86),ys=[50,60,80,215,230,120,220,45];
+let path='M'+xs.map((x,i)=>x+','+ys[i]).join(' L');
+h+='<path d="'+path+'" fill="none" stroke="#19e0c8" stroke-width="4" stroke-linejoin="round"/>';
+pts.forEach((p,i)=>h+=`<circle data-i="${i}" cx="${xs[i]}" cy="${ys[i]}" r="9" fill="${ys[i]<140?'#19e0c8':'#ff6f61'}" stroke="#0a1b34" stroke-width="3"/>`);
+svg.innerHTML=h;
+svg.addEventListener('click',e=>{const i=e.target.dataset.i;if(i==null)return;const p=pts[i];
+$('#fpanel').innerHTML=`<h3 class="${p[1]?'t':'c'}">${p[0]} (${p[2]})</h3><p style="color:var(--mute)">${p[3]}</p>`;
+$('#fpanel').style.borderColor=p[1]?'var(--teal)':'var(--coral)'});
+/* Rules */
+document.querySelectorAll('.rule').forEach(r=>r.onclick=()=>r.classList.toggle('open'));
+/* Prompt */
+function build(){$('#out').textContent=`Act as ${$('#p1').value}. I am working with ${$('#p2').value}. Your task: ${$('#p3').value}.\n\nBe specific, avoid clichés, and flag anything you are unsure about so I can verify it myself.`}
+['#p1','#p2','#p3'].forEach(s=>$(s).onchange=build);build();
+$('#copy').onclick=function(){navigator.clipboard&&navigator.clipboard.writeText($('#out').textContent).catch(()=>{});this.textContent='Copied!';setTimeout(()=>this.textContent='Copy prompt',1500)};
+/* Centaur / cyborg */
+const flows={c:[["h","Human","Sets strategy: audience, offer and one clear goal"],["a","AI","Drafts the full page copy from that outline"],["h","Human","Edits, fact-checks and removes anything off-brand"],["m","Result","Clear handoffs, fast and controlled"]],
+y:[["m","Together","Co-write the headline line by line"],["a","AI","Suggests a sharper subheadline mid-sentence"],["h","Human","Rewrites it in your own voice, then asks again"],["m","Result","Constant iteration, richer and more personal"]]};
+function show(m){$('#steps').innerHTML=flows[m].map(s=>`<div class="step ${s[0]}"><b style="min-width:80px">${s[1]}</b>${s[2]}</div>`).join('');
+document.querySelectorAll('[data-m]').forEach(b=>b.classList.toggle('on',b.dataset.m===m))}
+document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>show(b.dataset.m));show('c');
+/* Ideas */
+const A=["Turn visitors into","clients","Your page should","work while you sleep","Stop explaining.","Start booking.","Say it once.","Say it clearly.","From scroll to","sold"];
+const ideas=["Your best work deserves a page that sells it","Turn followers into bookings this week","One page. One goal. Zero confusion.","Show up the way your craft deserves","Less scrolling, more saying yes","Your story, ready to convert","Be found, be trusted, be booked","The page that answers before they ask","Make the next step obvious","Built fast, shaped by you","Where curious visitors become clients","Say what you do in eight seconds","Your quiet, hardworking salesperson","Proof first, pitch second","A front door that never closes","Plain words that earn real trust"];
+let pin=new Set();
+function gen(){const s=[...ideas].sort(()=>Math.random()-.5).slice(0,8);
+$('#ideas').innerHTML=s.map(t=>`<div class="idea${pin.has(t)?' pin':''}">${t}</div>`).join('');
+document.querySelectorAll('.idea').forEach(e=>e.onclick=()=>{const t=e.textContent;pin.has(t)?pin.delete(t):pin.add(t);e.classList.toggle('pin');$('#pins').textContent=pin.size+' pinned'})}
+$('#gen').onclick=gen;gen();
+/* Time */
+const eras=[["Today","Fast first drafts of copy and layout. A human still checks each claim.",30],["Next year","Better at images, structure and testing variants. Humans focus on direction.",58],["Soon","Multiple page versions built and compared in minutes. Judgment becomes the scarce skill.",85],["Later","Co-intelligence is the baseline. Those who learned the habits early move first.",120]];
+function era(){const v=+$('#time').value;$('#bars').innerHTML=eras.map((e,i)=>`<rect x="${40+i*165}" y="${140-e[2]}" width="120" height="${e[2]}" rx="10" fill="${i<=v?(i==v?'#ff6f61':'#19e0c8'):'#132d55'}"/><text x="${100+i*165}" y="${134-e[2]}" fill="#eaf2ff" font-size="13" text-anchor="middle">${e[0]}</text>`).join('');
+$('#tpanel').innerHTML=`<h3 class="c">${eras[v][0]}</h3><p style="color:var(--mute)">${eras[v][1]}</p>`}
+$('#time').oninput=era;era();
+</script>
+</body>
+</html>
