@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyLandX | Landing pages built on content foundations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--a1:#FFB400;--a2:#FFC21F;--a3:#F2A500;--a4:#E39800;--teak:#0A5566;--teak2:#0E7385;--ink:#052D36;--paper:#FFD66B}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--a1);color:var(--ink);font:400 1.06rem/1.6 'Instrument Sans',system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',Impact,sans-serif;line-height:1.02;letter-spacing:-.02em}
+h1{font-size:clamp(2.6rem,7vw,5.6rem);font-weight:800}
+h2{font-size:clamp(1.9rem,4.4vw,3.2rem);font-weight:800;margin-bottom:.6em}
+h3{font-size:1.25rem;font-weight:800}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--teak);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:clamp(24px,6vw,56px);padding-right:clamp(24px,6vw,56px)}
+section{padding:76px 0}
+.alt{background:var(--a2)}.deep{background:var(--a3)}
+header{position:sticky;top:0;z-index:5;background:var(--a1);border-bottom:3px solid var(--teak)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:62px}
+.logo{font-family:'Bricolage Grotesque';font-weight:800;font-size:1.4rem;text-decoration:none}
+.logo b{color:var(--teak)}
+.btn{display:inline-block;background:var(--teak);color:var(--paper);font:800 1.05rem 'Bricolage Grotesque',sans-serif;padding:14px 26px;border:3px solid var(--ink);border-radius:999px;text-decoration:none;cursor:pointer;box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
+.btn.sm{padding:8px 18px;font-size:.95rem;box-shadow:3px 3px 0 var(--ink)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding-top:60px;padding-bottom:70px}
+.hero p{font-size:1.2rem;max-width:34ch;margin:22px 0 28px}
+.hero h1 span{color:var(--teak)}
+.lead{max-width:60ch;margin-bottom:34px;font-size:1.12rem}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--paper);border:3px solid var(--ink);border-radius:18px;padding:24px}
+.card .ic{width:54px;height:54px;margin-bottom:12px}
+.card p{margin-top:8px}
+.lab{display:grid;grid-template-columns:1fr 1.1fr;gap:26px;align-items:start}
+.tg{display:flex;flex-direction:column;gap:10px}
+.tg button{display:flex;align-items:center;gap:14px;text-align:left;background:var(--paper);border:3px solid var(--ink);border-radius:14px;padding:12px 16px;font:inherit;color:var(--ink);cursor:pointer}
+.tg button .sw{flex:none;width:44px;height:24px;border-radius:99px;border:3px solid var(--ink);background:var(--a1);position:relative}
+.tg button .sw::after{content:"";position:absolute;top:1px;left:1px;width:14px;height:14px;border-radius:50%;background:var(--ink);transition:transform .2s}
+.tg button[aria-pressed=true]{background:var(--teak);color:var(--paper)}
+.tg button[aria-pressed=true] .sw{background:var(--paper);border-color:var(--paper)}
+.tg button[aria-pressed=true] .sw::after{transform:translateX(20px);background:var(--teak)}
+.tg small{display:block;font-size:.84rem;opacity:.85}
+.tg strong{font-family:'Bricolage Grotesque';font-size:1.08rem}
+.out{background:var(--paper);border:3px solid var(--ink);border-radius:18px;padding:22px;position:sticky;top:78px}
+.out .line{padding:10px 12px;border-radius:10px;margin-bottom:8px;border:2px dashed var(--a4);color:#6b4a00;font-style:italic;transition:all .25s}
+.out .line.ok{border:2px solid var(--teak);background:#fff3c9;color:var(--ink);font-style:normal}
+.out .h{font:800 1.45rem/1.1 'Bricolage Grotesque'}
+.out .stamp{font-weight:600;font-size:.92rem}
+.meter{height:20px;border:3px solid var(--ink);border-radius:99px;background:var(--a1);overflow:hidden;margin:6px 0 4px}
+.meter i{display:block;height:100%;width:0;background:var(--teak);transition:width .35s}
+.mt{display:flex;justify-content:space-between;font-weight:600;font-size:.9rem}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.tabs button,.chips button{font:800 1rem 'Bricolage Grotesque';background:var(--paper);color:var(--ink);border:3px solid var(--ink);border-radius:999px;padding:9px 20px;cursor:pointer}
+.tabs button[aria-selected=true],.chips button[aria-pressed=true]{background:var(--teak);color:var(--paper)}
+.panel{background:var(--paper);border:3px solid var(--ink);border-radius:18px;padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.panel ul{padding-left:1.1rem}.panel li{margin:.5rem 0}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.voice{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.voice div{border:3px solid var(--ink);border-radius:16px;padding:18px;background:var(--paper)}
+.voice .no{border-style:dashed}.voice .pr{background:var(--teak);color:var(--paper)}
+.voice b{display:block;font-family:'Bricolage Grotesque';margin-bottom:6px;font-size:1.1rem}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.split .card ul{list-style:none;padding:0;margin-top:10px}
+.split li{padding:7px 0;border-bottom:2px solid var(--a3)}
+.split .hum{background:var(--teak);color:var(--paper)}
+.split .hum li{border-color:var(--teak2)}
+.cta{text-align:center;background:var(--teak);color:var(--paper)}
+.cta h2{max-width:18ch;margin:0 auto .5em}
+.cta .btn{background:var(--a1);color:var(--ink);box-shadow:5px 5px 0 var(--paper);border-color:var(--paper)}
+.cta p{max-width:46ch;margin:0 auto 28px}
+footer{padding:26px 0;text-align:center;font-weight:600;background:var(--a4)}
+svg{max-width:100%;height:auto;display:block}
+@media(max-width:820px){.hero,.lab,.panel,.split{grid-template-columns:1fr}.three,.voice{grid-template-columns:1fr}.out{position:static}section{padding:54px 0}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+@keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.f{animation:drift 4s ease-in-out infinite}.f2{animation-delay:-1.3s}.f3{animation-delay:-2.6s}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="#top">Easy<b>LandX</b></a><a class="btn sm" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></div></header>
+
+<main id="top">
+<div class="wrap hero">
+ <div>
+  <h1>Your landing page is only as sharp as its <span>foundations.</span></h1>
+  <p>AI scales whatever you give it. EasyLandX builds landing pages from a clear voice, a real audience and a tight brief, so speed never costs you sounding like yourself.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+ </div>
+ <svg viewBox="0 0 440 400" role="img" aria-label="Scattered messy documents on the left funnel into one clean landing page with a button on the right">
+  <g class="f"><rect x="14" y="40" width="96" height="124" rx="8" transform="rotate(-12 62 102)" fill="#FFD66B" stroke="#052D36" stroke-width="4"/><path d="M34 80h56M34 98h40M34 116h52" stroke="#052D36" stroke-width="4" stroke-linecap="round"/></g>
+  <g class="f f2"><rect x="30" y="190" width="100" height="110" rx="8" transform="rotate(9 80 245)" fill="#FFD66B" stroke="#052D36" stroke-width="4"/><circle cx="80" cy="235" r="20" fill="none" stroke="#052D36" stroke-width="4"/><path d="M52 275h56" stroke="#052D36" stroke-width="4" stroke-linecap="round"/></g>
+  <g class="f f3"><rect x="120" y="140" width="84" height="104" rx="8" transform="rotate(-4 162 192)" fill="#FFD66B" stroke="#052D36" stroke-width="4"/><path d="M136 170l22 22 30-34" fill="none" stroke="#052D36" stroke-width="4" stroke-linecap="round"/><text x="140" y="228" font-family="Bricolage Grotesque" font-weight="800" font-size="22" fill="#052D36">?!</text></g>
+  <path d="M215 200h60" stroke="#0A5566" stroke-width="10" stroke-linecap="round"/><path d="M262 178l30 22-30 22" fill="none" stroke="#0A5566" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="300" y="60" width="126" height="280" rx="14" fill="#0A5566" stroke="#052D36" stroke-width="5"/>
+  <rect x="314" y="76" width="98" height="12" rx="6" fill="#FFD66B"/>
+  <rect x="314" y="106" width="98" height="30" rx="6" fill="#FFC21F"/><path d="M322 121h60" stroke="#052D36" stroke-width="5" stroke-linecap="round"/>
+  <path d="M314 160h98M314 176h80M314 192h90" stroke="#FFD66B" stroke-width="5" stroke-linecap="round"/>
+  <rect x="314" y="226" width="98" height="34" rx="17" fill="#FFB400" stroke="#052D36" stroke-width="4"/>
+  <path d="M314 292h98M314 308h60" stroke="#0E7385" stroke-width="5" stroke-linecap="round"/>
+ </svg>
+</div>
+
+<section class="alt"><div class="wrap">
+ <h2>Three messages we build every page on.</h2>
+ <p class="lead">Erika Heald's <em>Content Foundations</em> argues that content governance is an operating system, not red tape. We apply that to every landing page we ship.</p>
+ <div class="three">
+  <div class="card"><svg class="ic" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="23" fill="#0A5566" stroke="#052D36" stroke-width="3"/><path d="M15 33l8-8 6 6 10-12" fill="none" stroke="#FFD66B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>AI is a multiplier, not a strategy</h3><p>It cannot fix vague positioning or an unclear audience. Feed it chaos and you get generic slop, faster.</p></div>
+  <div class="card"><svg class="ic" viewBox="0 0 54 54" aria-hidden="true"><rect x="5" y="9" width="44" height="36" rx="6" fill="#0A5566" stroke="#052D36" stroke-width="3"/><path d="M14 22h26M14 31h18" stroke="#FFD66B" stroke-width="4" stroke-linecap="round"/></svg><h3>Governance enables, it does not gatekeep</h3><p>Clear rules remove ambiguity and rework, and give creators and AI tools the exact context they need.</p></div>
+  <div class="card"><svg class="ic" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="23" fill="#FFB400" stroke="#052D36" stroke-width="3"/><path d="M12 16l12 11-12 11M30 38h14" fill="none" stroke="#0A5566" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>End random acts of content</h3><p>One-off requests break strategy. Standard intake, repeatable briefs and structured workflows keep pages consistent.</p></div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <h2>Try it: stack the foundations, watch the draft change.</h2>
+ <p class="lead">Here is a landing page draft written by AI. Switch on each foundation and see what the same tool produces when it has real context.</p>
+ <div class="lab">
+  <div class="tg" id="tg">
+   <button aria-pressed="false" data-k="0"><span class="sw"></span><span><strong>Actionable brand voice</strong><small>Do's, don'ts and example sentences</small></span></button>
+   <button aria-pressed="false" data-k="1"><span class="sw"></span><span><strong>Job-to-be-done persona</strong><small>Who is landing here and what must they do</small></span></button>
+   <button aria-pressed="false" data-k="2"><span class="sw"></span><span><strong>Context-rich brief</strong><small>Offer, proof, one goal, one action</small></span></button>
+   <button aria-pressed="false" data-k="3"><span class="sw"></span><span><strong>Minimum viable style guide</strong><small>Button labels, formatting, terms</small></span></button>
+   <button aria-pressed="false" data-k="4"><span class="sw"></span><span><strong>Defined review roles</strong><small>Fact check, editorial, final approval</small></span></button>
+  </div>
+  <div class="out" aria-live="polite">
+   <div class="line h" id="l0"></div><div class="line" id="l1"></div><div class="line" id="l2"></div><div class="line" id="l3"></div><div class="line stamp" id="l4"></div>
+   <div class="meter"><i id="mt"></i></div>
+   <div class="mt"><span>Draft quality</span><span id="pct">0%</span></div>
+  </div>
+ </div>
+</div></section>
+
+<section class="deep"><div class="wrap">
+ <h2>Three pillars, one landing page workflow.</h2>
+ <div class="tabs" role="tablist" id="tabs">
+  <button role="tab" aria-selected="true" data-t="0">Documentation</button>
+  <button role="tab" aria-selected="false" data-t="1">Workflows</button>
+  <button role="tab" aria-selected="false" data-t="2">AI and growth</button>
+ </div>
+ <div class="panel" id="panel">
+  <div><h3 id="pt"></h3><ul id="pl"></ul></div>
+  <div id="pv"></div>
+ </div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+ <h2>Voice that works is specific.</h2>
+ <p class="lead">Words like "authentic" and "innovative" fail in practice. Pick one and see how we turn it into rules a writer or an AI tool can actually follow.</p>
+ <div class="chips" id="chips">
+  <button aria-pressed="true" data-v="0">Authentic</button><button aria-pressed="false" data-v="1">Innovative</button><button aria-pressed="false" data-v="2">Friendly</button><button aria-pressed="false" data-v="3">Expert</button>
+ </div>
+ <div class="voice">
+  <div class="no"><b>Don't</b><span id="vd"></span></div>
+  <div><b>Do</b><span id="vo"></span></div>
+  <div class="pr"><b>Prompt for the AI</b><span id="vp"></span></div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <h2>Review without bottlenecks.</h2>
+ <p class="lead">Three separate checks, three clear owners. Nobody waits on a vague "can you take a look".</p>
+ <svg viewBox="0 0 900 190" role="img" aria-label="Draft moves through subject matter check, brand editorial review and final approval, then publishes">
+  <g stroke="#052D36" stroke-width="4"><rect x="10" y="40" width="150" height="110" rx="16" fill="#FFD66B"/><rect x="250" y="40" width="190" height="110" rx="16" fill="#FFD66B"/><rect x="520" y="40" width="170" height="110" rx="16" fill="#FFD66B"/><rect x="760" y="40" width="130" height="110" rx="16" fill="#0A5566"/></g>
+  <g font-family="Bricolage Grotesque" font-weight="800" font-size="19" fill="#052D36" text-anchor="middle"><text x="85" y="90">Brief +</text><text x="85" y="116">AI draft</text><text x="345" y="90">Facts</text><text x="345" y="116">checked by SME</text><text x="605" y="90">Voice</text><text x="605" y="116">checked by editor</text><text x="825" y="90" fill="#FFD66B">Owner</text><text x="825" y="116" fill="#FFD66B">approves</text></g>
+  <g stroke="#0A5566" stroke-width="7" stroke-linecap="round" fill="none"><path d="M168 95h74M448 95h64M698 95h54"/></g>
+  <g fill="#0A5566"><path d="M244 82l14 13-14 13z"/><path d="M514 82l14 13-14 13z"/><path d="M754 82l14 13-14 13z"/></g>
+ </svg>
+</div></section>
+
+<section class="deep"><div class="wrap">
+ <h2>Humans keep the judgment. AI does the lifting.</h2>
+ <div class="split">
+  <div class="card"><h3>AI handles</h3><ul><li>Ideation and headline options</li><li>Outlines and section structure</li><li>Research synthesis</li><li>First drafts from your brief</li></ul></div>
+  <div class="card hum"><h3>Humans keep</h3><ul><li>Positioning and the big promise</li><li>Nuance and empathy</li><li>Truth of every claim</li><li>Final polish and sign-off</li></ul></div>
+ </div>
+ <p class="lead" style="margin-top:28px">Then the system keeps learning. Voice guides, personas and briefs are living assets, updated from page performance, team feedback and market changes.</p>
+</div></section>
+
+<section class="cta"><div class="wrap">
+ <h2>Scale your pages without losing your voice.</h2>
+ <p>Give us your voice, your audience and your offer. We turn them into a landing page that sounds like you.</p>
+ <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</div></section>
+</main>
+<footer>EasyLandX landing pages. Ideas inspired by Erika Heald, <em>Content Foundations</em>.</footer>
+
+<script>
+const S=[
+ ["Innovative landing pages for modern businesses.","Your landing page should sound like you, not like everyone."],
+ ["We leverage cutting-edge solutions to unlock your potential.","For the cafe owner who needs bookings by Friday, not a brand overhaul."],
+ ["Our authentic approach delivers results.","One page, one offer, one button. Built from your brief, live in 48 hours."],
+ ["Learn More","Button: Start my page"],
+ ["UNREVIEWED: sounds fine, nobody checked it.","APPROVED: SME checked facts, editor checked voice, owner signed off."]
+];
+const on=[0,0,0,0,0];
+function draw(){
+ let n=0;
+ on.forEach((v,i)=>{n+=v;const el=document.getElementById('l'+i);el.textContent=S[i][v];el.classList.toggle('ok',!!v)});
+ const p=Math.round(20+n*16);const pc=n?p:8;
+ document.getElementById('mt').style.width=pc+'%';document.getElementById('pct').textContent=pc+'%';
+}
+document.querySelectorAll('#tg button').forEach(b=>b.onclick=()=>{const k=+b.dataset.k;on[k]=on[k]?0:1;b.setAttribute('aria-pressed',!!on[k]);draw()});
+draw();
+
+const P=[
+ {t:"Living documentation",l:["Actionable brand voice with do's, don'ts and examples","Lean style guide teams actually open","Job-to-be-done personas, not demographic PDFs","Taxonomy so every asset is findable and reusable"],
+  v:'<svg viewBox="0 0 240 200" role="img" aria-label="Stack of documents"><rect x="40" y="30" width="150" height="150" rx="12" fill="#FFB400" stroke="#052D36" stroke-width="4"/><rect x="30" y="20" width="150" height="150" rx="12" fill="#FFC21F" stroke="#052D36" stroke-width="4"/><rect x="20" y="10" width="150" height="150" rx="12" fill="#0A5566" stroke="#052D36" stroke-width="4"/><path d="M42 44h96M42 70h70M42 96h86M42 122h50" stroke="#FFD66B" stroke-width="6" stroke-linecap="round"/></svg>'},
+ {t:"Streamlined production",l:["Intake form before any drafting begins","Standard brief for every landing page","Explicit roles and decision rights in review","Clear handoffs for freelancers, agencies and SMEs"],
+  v:'<svg viewBox="0 0 240 200" role="img" aria-label="Three connected steps"><g stroke="#052D36" stroke-width="4"><circle cx="45" cy="100" r="30" fill="#FFC21F"/><circle cx="120" cy="100" r="30" fill="#FFB400"/><circle cx="195" cy="100" r="30" fill="#0A5566"/></g><path d="M77 100h10M152 100h10" stroke="#052D36" stroke-width="6" stroke-linecap="round"/><path d="M180 100l10 9 18-20" fill="none" stroke="#FFD66B" stroke-width="5" stroke-linecap="round"/></svg>'},
+ {t:"AI integration and scaling",l:["Feed AI your voice, personas and briefs as context","Human in the loop for positioning and polish","Prompt quality comes from foundations, not tricks","Update the system with performance data"],
+  v:'<svg viewBox="0 0 240 200" role="img" aria-label="Loop arrow around a spark"><path d="M60 100a60 60 0 0 1 110-34M180 100a60 60 0 0 1-110 34" fill="none" stroke="#0A5566" stroke-width="10" stroke-linecap="round"/><path d="M178 38l-8 28 28-4zM62 162l8-28-28 4z" fill="#0A5566"/><path d="M120 70l9 24 24 9-24 9-9 24-9-24-24-9 24-9z" fill="#FFB400" stroke="#052D36" stroke-width="4" stroke-linejoin="round"/></svg>'}
+];
+function tab(i){document.querySelectorAll('#tabs button').forEach((b,j)=>b.setAttribute('aria-selected',i==j));
+ document.getElementById('pt').textContent=P[i].t;
+ document.getElementById('pl').innerHTML=P[i].l.map(x=>'<li>'+x+'</li>').join('');
+ document.getElementById('pv').innerHTML=P[i].v}
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>tab(+b.dataset.t));tab(0);
+
+const V=[
+ ["\"We are an authentic, passionate team.\"","Say what we actually do, with a real detail: \"We rebuilt Maria's booking page in two days.\"","Write plainly, name a concrete detail in every paragraph, and never use the words authentic or passionate."],
+ ["\"Innovative solutions for the digital age.\"","Show the new thing working: \"Pick your time, tap once, you're booked.\"","Describe what the visitor can now do. Ban buzzwords. Use short sentences with a verb in the first three words."],
+ ["\"We're so excited to help you!\"","Use \"you\" and contractions, and answer the question they came with.","Warm and direct, like a neighbor who knows the trade. Use contractions. No exclamation marks except in confirmations."],
+ ["\"Industry-leading expertise you can trust.\"","Prove it: one number, one result, one named client.","Lead with the proof, then the claim. Cite only facts supplied in the brief. Flag anything unverified for the SME."]
+];
+function voice(i){document.querySelectorAll('#chips button').forEach((b,j)=>b.setAttribute('aria-pressed',i==j));
+ document.getElementById('vd').textContent=V[i][0];document.getElementById('vo').textContent=V[i][1];document.getElementById('vp').textContent=V[i][2]}
+document.querySelectorAll('#chips button').forEach(b=>b.onclick=()=>voice(+b.dataset.v));voice(0);
+</script>
+</body>
+</html>
