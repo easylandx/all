@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyLandX | Your Next Five Moves, Played on a Landing Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--red:#e10600;--gold:#f5b800;--ink:#f4f1ea;--dim:#a9a49a;--line:#2a2a2a;--pad:clamp(22px,6vw,80px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Anton','Impact',sans-serif;font-weight:400;line-height:1.02;letter-spacing:.01em}
+section{padding:clamp(64px,10vw,120px) var(--pad)}
+.wrap{max-width:1100px;margin:0 auto}
+nav{position:sticky;top:0;z-index:20;background:#000;border-bottom:2px solid var(--red);padding:14px var(--pad);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{font-family:'Anton',sans-serif;font-size:24px;color:var(--gold)}
+.logo b{color:var(--red);font-weight:400}
+.btn{display:inline-block;background:var(--red);color:#fff;font-weight:800;text-decoration:none;padding:15px 30px;border:2px solid var(--red);cursor:pointer;font-family:inherit;font-size:16px;transition:background .2s,color .2s,border-color .2s}
+.btn:hover,.btn:focus-visible{background:var(--gold);color:#000;border-color:var(--gold);outline:none}
+.btn.ghost{background:transparent;color:var(--gold);border-color:var(--gold)}
+.btn.ghost:hover{background:var(--gold);color:#000}
+.btn.sm{padding:10px 20px;font-size:14px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;min-height:82vh}
+.hero h1{font-size:clamp(46px,8.5vw,112px);text-transform:uppercase}
+.hero h1 span{color:var(--red)}
+.hero p{max-width:520px;margin:26px 0 34px;color:var(--dim);font-size:19px}
+.hero svg{width:100%;height:auto;max-height:560px}
+.knight{animation:float 5s ease-in-out infinite;transform-origin:center}
+@keyframes float{50%{transform:translateY(-10px)}}
+h2{font-size:clamp(36px,5.5vw,68px);text-transform:uppercase;margin-bottom:18px}
+h2 em{font-style:normal;color:var(--gold)}
+.lead{color:var(--dim);max-width:640px;margin-bottom:44px}
+.rule{height:4px;width:90px;background:var(--red);margin-bottom:28px}
+/* moves */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+.tab{background:#000;color:var(--ink);border:2px solid var(--line);padding:12px 18px;font-family:'Anton',sans-serif;font-size:19px;letter-spacing:.03em;cursor:pointer;transition:all .2s}
+.tab:hover{border-color:var(--gold)}
+.tab[aria-selected=true]{background:var(--red);border-color:var(--red);color:#fff}
+.panel{display:grid;grid-template-columns:1fr 1fr;gap:36px;border:2px solid var(--line);padding:clamp(22px,4vw,48px)}
+.panel h3{font-size:clamp(30px,4vw,48px);color:var(--gold);margin-bottom:14px}
+.panel .book{color:var(--dim);margin-bottom:22px}
+.tag{display:inline-block;background:var(--gold);color:#000;font-weight:800;font-size:13px;padding:3px 10px;margin-bottom:10px}
+.panel ul{list-style:none}
+.panel li{padding:10px 0 10px 26px;border-top:1px solid var(--line);position:relative}
+.panel li::before{content:"";position:absolute;left:0;top:19px;width:10px;height:10px;background:var(--red);transform:rotate(45deg)}
+.art{display:flex;align-items:center;justify-content:center}
+.art svg{width:100%;max-width:360px;height:auto}
+.track{display:flex;margin-top:26px;gap:6px}
+.track i{flex:1;height:8px;background:var(--line);transition:background .3s}
+.track i.on{background:var(--red)}
+.track i.cur{background:var(--gold)}
+/* board */
+.boardwrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.board{display:grid;grid-template-columns:repeat(8,1fr);border:3px solid var(--gold);aspect-ratio:1;max-width:460px;width:100%}
+.sq{border:0;aspect-ratio:1;font-size:clamp(14px,3vw,26px);color:#000;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif}
+.sq.l{background:#1a1a1a}.sq.d{background:#050505}
+.sq:hover{outline:2px solid var(--gold);outline-offset:-2px}
+.sq.path{background:var(--red);color:#fff}
+.sq.goal{background:var(--gold);color:#000}
+.stat{font-family:'Anton',sans-serif;font-size:clamp(54px,9vw,96px);color:var(--red);line-height:1}
+/* tools */
+.tool{border:2px solid var(--line);padding:clamp(22px,4vw,44px);margin-top:10px}
+.risks{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:24px 0}
+.risk{text-align:left;background:#000;border:2px solid var(--line);color:var(--ink);padding:16px 18px;font-family:inherit;font-size:16px;cursor:pointer;transition:all .2s}
+.risk small{display:block;color:var(--dim);margin-top:4px;font-size:14px}
+.risk:hover{border-color:var(--red)}
+.risk.on{border-color:var(--gold);background:#16120a}
+.risk.on small{color:var(--gold)}
+.meter{height:14px;background:var(--line);margin:8px 0 12px}
+.meter div{height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--gold));transition:width .4s}
+.verdict{font-weight:800;color:var(--gold);min-height:28px}
+.mx{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.mx div{border:2px solid var(--line);padding:16px}
+.mx h4{font-family:'Anton',sans-serif;font-weight:400;font-size:20px;color:var(--red);margin-bottom:6px}
+.mx p{font-size:15px;color:var(--dim)}
+select{background:#000;color:var(--ink);border:2px solid var(--gold);padding:12px 14px;font-family:inherit;font-size:16px;width:100%;max-width:560px}
+.vel{width:100%;max-width:560px;accent-color:var(--red);margin:14px 0 6px}
+/* cta */
+.final{text-align:center;border-top:4px solid var(--red)}
+.final h2{font-size:clamp(40px,7vw,92px)}
+.final p{margin:0 auto 34px;color:var(--dim);max-width:560px}
+footer{padding:30px var(--pad);border-top:1px solid var(--line);color:var(--dim);font-size:14px;text-align:center}
+@media(max-width:820px){.hero,.panel,.boardwrap{grid-template-columns:1fr}.hero{min-height:auto}.risks,.mx{grid-template-columns:1fr}.hero svg{max-height:340px}}
+@media(prefers-reduced-motion:reduce){.knight{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">Easy<b>Land</b>X</div>
+  <a class="btn sm" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</nav>
+
+<section>
+  <div class="wrap hero">
+    <div>
+      <h1>Think five moves <span>ahead.</span> Land the sixth.</h1>
+      <p>Top performers do not react faster. They plan further. A landing page is the first move your visitor ever sees, so make it a move you planned.</p>
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+      <a class="btn ghost" href="#moves" style="margin-left:10px">Play the five moves</a>
+    </div>
+    <svg viewBox="0 0 400 480" role="img" aria-label="Chess knight illustration over a checkered base">
+      <defs><pattern id="ck" width="50" height="50" patternUnits="userSpaceOnUse"><rect width="25" height="25" fill="#1a1a1a"/><rect x="25" y="25" width="25" height="25" fill="#1a1a1a"/></pattern></defs>
+      <rect x="20" y="330" width="360" height="130" fill="url(#ck)" stroke="#f5b800" stroke-width="3"/>
+      <circle cx="200" cy="190" r="150" fill="none" stroke="#e10600" stroke-width="3" stroke-dasharray="4 14"/>
+      <g class="knight">
+        <path d="M120 330 C120 290 150 270 150 240 C150 215 120 215 100 185 C90 165 105 140 130 125 L135 85 L160 105 C185 80 245 85 275 125 C300 165 285 230 265 260 C255 280 265 300 270 330 Z" fill="#e10600" stroke="#f5b800" stroke-width="5" stroke-linejoin="round"/>
+        <circle cx="180" cy="135" r="9" fill="#000"/>
+        <path d="M130 125 L110 150 L140 150" fill="#f5b800"/>
+        <path d="M205 100 C235 120 250 160 245 200 M190 105 C215 125 225 160 220 190" stroke="#000" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <rect x="100" y="326" width="190" height="26" fill="#f5b800"/>
+      </g>
+      <g fill="#f5b800"><path d="M60 80 l8 -20 l8 20 l-8 -6z"/><path d="M330 60 l6 -16 l6 16 l-6 -5z"/><path d="M345 240 l7 -18 l7 18 l-7 -5z"/></g>
+    </svg>
+  </div>
+</section>
+
+<section style="background:#000;border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2>Checkers players <em>react.</em><br>Chess players <em>plan.</em></h2>
+    <p class="lead">Most landing pages are checkers: a pretty hero, a few buttons, and hope. Patrick Bet-David's framework says winners move differently. They master themselves, sharpen their reasoning, build the right team, scale with systems, and then make bold power moves. EasyLandX turns each of those five moves into a page decision you can make in minutes, not months.</p>
+  </div>
+</section>
+
+<section id="moves" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2>The five moves, <em>on your page</em></h2>
+    <p class="lead">Pick a move. See the lesson, then see exactly what it means for your landing page.</p>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="panel" id="panel" role="tabpanel" aria-live="polite"></div>
+    <div class="track" id="track"></div>
+  </div>
+</section>
+
+<section style="border-top:1px solid var(--line)">
+  <div class="wrap boardwrap">
+    <div>
+      <div class="rule"></div>
+      <h2>Chart your <em>path</em></h2>
+      <p class="lead" style="margin-bottom:24px">Know which move you are executing and what the next one requires. Click any square to plot a five move path from the knight to the goal square. Your first move is the page. The rest follow it.</p>
+      <div class="stat" id="steps">0 / 5</div>
+      <p id="pathmsg" style="color:var(--gold);font-weight:800;min-height:56px">Click a square to make move one.</p>
+      <button class="btn ghost sm" id="reset">Reset the board</button>
+    </div>
+    <div class="board" id="board" aria-label="Interactive chess board"></div>
+  </div>
+</section>
+
+<section style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2>Run a <em>pre-mortem</em> on your landing page</h2>
+    <p class="lead">Imagine the page launched and failed completely. Now work backward. Tap every failure you want to defend against before launch and watch your readiness rise.</p>
+    <div class="tool">
+      <div class="risks" id="risks"></div>
+      <div style="display:flex;justify-content:space-between;font-weight:800"><span>Launch readiness</span><span id="pct">0%</span></div>
+      <div class="meter"><div id="bar"></div></div>
+      <div class="verdict" id="verdict">Tap a risk to build a defense.</div>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2>Decide with a <em>matrix</em></h2>
+    <p class="lead">Separate facts from feelings. Choose a decision you are weighing and see the three questions that keep anger, pride, and fear out of the room.</p>
+    <div class="tool">
+      <label for="dec" style="font-weight:800;display:block;margin-bottom:10px">What are you deciding?</label>
+      <select id="dec"></select>
+      <div class="mx" id="mx"></div>
+      <h3 style="font-size:30px;color:var(--gold);margin-top:34px">Personal velocity</h3>
+      <p style="color:var(--dim)">Speed without strategy burns out. Strategy without speed goes irrelevant. Where are you right now?</p>
+      <input class="vel" type="range" id="vel" min="0" max="100" value="50" aria-label="Speed versus strategy">
+      <div style="display:flex;justify-content:space-between;color:var(--dim);font-size:14px"><span>All speed</span><span>All strategy</span></div>
+      <p class="verdict" id="velmsg" style="margin-top:12px"></p>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <svg viewBox="0 0 120 120" width="110" height="110" role="img" aria-label="Crown" style="margin-bottom:18px"><path d="M15 90 L8 38 L38 62 L60 22 L82 62 L112 38 L105 90 Z" fill="#f5b800" stroke="#e10600" stroke-width="5" stroke-linejoin="round"/><rect x="15" y="94" width="90" height="14" fill="#e10600"/></svg>
+    <h2>Make the <em>power move.</em></h2>
+    <p>Stop playing checkers with your first impression. Build a landing page that was planned five moves deep, with the story, the system, and the sale all working together.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+  </div>
+</section>
+
+<footer>EasyLandX Landing Pages. Inspired by the framework in Your Next Five Moves by Patrick Bet-David.</footer>
+
+<script>
+const moves=[
+{n:"Move 1",t:"Master Yourself",tag:"Self-awareness and vision",
+ book:"Know what you truly want, audit your time, and own your outcomes.",
+ pts:["Define your X-factor. Write the one outcome your page exists to produce: bookings, calls, or sales.","Audit your time. Outsource the page build and keep your hours for high-value work.","Take extreme ownership. If visitors leave, the page failed them, not the other way around."],
+ page:"Your landing page begins with clarity. One goal, one audience, one action.",
+ svg:'<svg viewBox="0 0 300 300"><circle cx="150" cy="150" r="120" fill="none" stroke="#2a2a2a" stroke-width="3"/><circle cx="150" cy="150" r="85" fill="none" stroke="#f5b800" stroke-width="3"/><circle cx="150" cy="150" r="48" fill="none" stroke="#e10600" stroke-width="4"/><circle cx="150" cy="150" r="12" fill="#e10600"/><path d="M150 10V80M150 220v70M10 150h70M220 150h70" stroke="#f5b800" stroke-width="4"/></svg>'},
+{n:"Move 2",t:"Master the Ability to Reason",tag:"Decisions without emotion",
+ book:"Solve for X, separate facts from feelings, and weigh risk against reward.",
+ pts:["Solve for X. Find the root cause of low conversions instead of redesigning in panic.","Never decide permanently from a temporary emotion like pride or fear.","Use the matrix: best case, worst case (can you survive it?), and most likely."],
+ page:"Every headline, image, and button earns its place with a reason, not a mood.",
+ svg:'<svg viewBox="0 0 300 300"><rect x="30" y="30" width="110" height="110" fill="none" stroke="#f5b800" stroke-width="4"/><rect x="160" y="30" width="110" height="110" fill="#e10600"/><rect x="30" y="160" width="110" height="110" fill="#e10600"/><rect x="160" y="160" width="110" height="110" fill="none" stroke="#f5b800" stroke-width="4"/><text x="150" y="162" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="46" fill="#f5b800">X</text></svg>'},
+{n:"Move 3",t:"Build the Right Team",tag:"Culture and people",
+ book:"People stay for money, recognition, clear expectations, and growth.",
+ pts:["Treat top people like partners so that when the business wins, they win.","Set clear standards. Clarity builds trust faster than perks.","Your page is part of the team: it should work while you sleep."],
+ page:"Your landing page is your best salesperson. It never skips a shift and never forgets the pitch.",
+ svg:'<svg viewBox="0 0 300 300"><g fill="#e10600" stroke="#f5b800" stroke-width="4"><circle cx="150" cy="80" r="26"/><path d="M104 170 a46 46 0 0 1 92 0 v18 h-92z"/></g><g fill="#000" stroke="#f5b800" stroke-width="4"><circle cx="70" cy="140" r="20"/><path d="M34 210 a36 36 0 0 1 72 0 v14 h-72z"/><circle cx="230" cy="140" r="20"/><path d="M194 210 a36 36 0 0 1 72 0 v14 h-72z"/></g><path d="M20 262h260" stroke="#f5b800" stroke-width="4"/></svg>'},
+{n:"Move 4",t:"Master Strategy for Scaling",tag:"Systems and growth",
+ book:"Build systems that work without your constant effort, protect cash, and tell a story that sells.",
+ pts:["Go exponential. Use SOPs and technology so growth does not depend on your hours.","Protect cash. A fast, affordable page build keeps your reserves for real opportunities.","Master the narrative. Sales is the lifeblood, and the story is how it flows."],
+ page:"One strong page template, tested and repeated, beats a new design every season.",
+ svg:'<svg viewBox="0 0 300 300"><path d="M25 265H280M25 265V25" stroke="#2a2a2a" stroke-width="4" fill="none"/><path d="M30 255 L280 200" stroke="#f5b800" stroke-width="4" stroke-dasharray="8 8"/><path d="M30 255 C100 250 170 220 200 150 S260 40 280 25" stroke="#e10600" stroke-width="7" fill="none"/><circle cx="280" cy="25" r="10" fill="#e10600"/></svg>'},
+{n:"Move 5",t:"Make Power Moves",tag:"Beat the competition",
+ book:"Control the narrative, negotiate from leverage, and play chess, not checkers.",
+ pts:["Control the narrative. Frame your brand before someone else does.","Know what the other side wants most, and always keep a walk-away option.","Anticipate how rivals respond two or three steps before you move."],
+ page:"A bold offer, proof, and a clear next step: the move your competitors did not see coming.",
+ svg:'<svg viewBox="0 0 300 300"><path d="M40 230 L70 90 L115 150 L150 60 L185 150 L230 90 L260 230Z" fill="#f5b800" stroke="#e10600" stroke-width="6" stroke-linejoin="round"/><rect x="40" y="238" width="220" height="28" fill="#e10600"/></svg>'}
+];
+let cur=0;
+const tabs=document.getElementById('tabs'),panel=document.getElementById('panel'),track=document.getElementById('track');
+moves.forEach((m,i)=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.textContent=m.n;b.onclick=()=>show(i);tabs.appendChild(b);track.appendChild(document.createElement('i'))});
+function show(i){cur=i;[...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',j===i));[...track.children].forEach((t,j)=>t.className=j<i?'on':j===i?'cur':'');
+const m=moves[i];panel.innerHTML='<div><span class="tag">'+m.tag+'</span><h3>'+m.t+'</h3><p class="book">'+m.book+'</p><ul>'+m.pts.map(p=>'<li>'+p+'</li>').join('')+'</ul><p style="margin-top:22px;color:var(--gold);font-weight:800">On your landing page: '+m.page+'</p></div><div class="art">'+m.svg+'</div>'}
+show(0);
+
+/* board */
+const board=document.getElementById('board'),goal=[0,7];let path=[],knight=[7,0];
+const files='abcdefgh';
+function draw(){board.innerHTML='';for(let r=0;r<8;r++)for(let c=0;c<8;c++){const s=document.createElement('button');s.className='sq '+((r+c)%2?'d':'l');const idx=path.findIndex(p=>p[0]===r&&p[1]===c);
+if(idx>-1){s.classList.add('path');s.textContent=idx+1}
+if(r===goal[0]&&c===goal[1]){s.classList.add('goal');s.textContent='\u265B'}
+if(r===knight[0]&&c===knight[1]&&idx<0){s.textContent='\u265E';s.style.color='#f5b800'}
+s.setAttribute('aria-label',files[c]+(8-r));s.onclick=()=>move(r,c);board.appendChild(s)}
+document.getElementById('steps').textContent=path.length+' / 5'}
+const msgs=["Move one made. Master yourself first.","Move two. Reason it through.","Move three. Bring the right people.","Move four. Systems before scale.","Five moves planned. Now make the power move."];
+function move(r,c){if(path.length>=5)return;path.push([r,c]);document.getElementById('pathmsg').textContent=msgs[path.length-1];draw()}
+document.getElementById('reset').onclick=()=>{path=[];document.getElementById('pathmsg').textContent='Click a square to make move one.';draw()};
+draw();
+
+/* pre-mortem */
+const risks=[["Nobody understands the offer","Fix: one clear headline in five seconds"],["Visitors do not trust us","Fix: real proof, names, and results"],["The page is slow on phones","Fix: lean single-file build"],["No obvious next step","Fix: one bold action button"],["It looks like everyone else","Fix: a distinct, planned design"],["We cannot update it fast","Fix: simple structure, quick edits"]];
+const rg=document.getElementById('risks');let on=new Set();
+risks.forEach((r,i)=>{const b=document.createElement('button');b.className='risk';b.innerHTML='What if: '+r[0]+'<small>'+r[1]+'</small>';b.onclick=()=>{on.has(i)?on.delete(i):on.add(i);b.classList.toggle('on');upd()};rg.appendChild(b)});
+function upd(){const p=Math.round(on.size/risks.length*100);document.getElementById('pct').textContent=p+'%';document.getElementById('bar').style.width=p+'%';
+document.getElementById('verdict').textContent=p===0?'Tap a risk to build a defense.':p<50?'Exposed. Keep working backward from failure.':p<100?'Strong position. A few gaps remain.':'Fully defended. Ready to launch.'}
+
+/* matrix */
+const decs={"Redesign my page after a bad week":["A sharper page lifts conversions.","I burn time and money fixing a symptom.","Small gains. Check the data first."],"Hire someone to build my landing page":["I reclaim hours and launch fast.","I lose a small fee and learn what I need.","A solid page live this week."],"Copy a competitor's layout":["I look credible fast.","I blend in and lose any edge.","I get parity, not an advantage."]};
+const dec=document.getElementById('dec'),mx=document.getElementById('mx');
+Object.keys(decs).forEach(k=>{const o=document.createElement('option');o.textContent=k;dec.appendChild(o)});
+function mxdraw(){const d=decs[dec.value];mx.innerHTML=['Best case','Worst case: can I survive it?','Most likely'].map((h,i)=>'<div><h4>'+h+'</h4><p>'+d[i]+'</p></div>').join('')}
+dec.onchange=mxdraw;mxdraw();
+const vel=document.getElementById('vel'),vm=document.getElementById('velmsg');
+function v(){const x=+vel.value;vm.textContent=x<30?'Fast but unplanned. Burnout risk. Add a five move plan.':x>70?'Well planned but slow. Irrelevance risk. Ship the page.':'Balanced. Keep your velocity.'}
+vel.oninput=v;v();
+</script>
+</body>
+</html>
