@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyLandX | Landing Pages That Lead</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#7a0c1f;--bg2:#5e0918;--bg3:#940f27;--ink:#fff4f4;--gold:#f6c445;--blue:#4aa3ff;--line:#c4253f}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.6}
+h1,h2,h3{font-family:'Archivo Black',Impact,sans-serif;line-height:1.05;text-transform:uppercase}
+section,header,footer{padding:72px clamp(22px,7vw,96px)}
+.wrap{max-width:1080px;margin:0 auto}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px clamp(22px,7vw,96px);background:var(--bg2);position:sticky;top:0;z-index:9}
+.logo{font-family:'Archivo Black';font-size:1.3rem}.logo b{color:var(--gold)}
+.btn{display:inline-block;background:var(--gold);color:#4a0610;font-weight:800;padding:14px 26px;border-radius:999px;text-decoration:none;border:3px solid var(--gold);transition:.2s;cursor:pointer;font-size:1rem}
+.btn:hover{background:transparent;color:var(--gold);transform:translateY(-2px)}
+.btn.blue{background:var(--blue);border-color:var(--blue);color:#021a33}.btn.blue:hover{background:transparent;color:var(--blue)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;background:var(--bg)}
+.hero h1{font-size:clamp(2.3rem,6vw,4.4rem)}.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{margin:20px 0 28px;font-size:1.15rem;max-width:520px}
+.tag{display:inline-block;color:var(--blue);font-weight:800;letter-spacing:.15em;font-size:.8rem;margin-bottom:12px;text-transform:uppercase}
+h2{font-size:clamp(1.8rem,4vw,3rem);margin-bottom:14px}h2 span{color:var(--gold)}
+.alt{background:var(--bg2)}.alt2{background:var(--bg3)}
+.lead{max-width:680px;margin-bottom:34px;opacity:.92}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.tab{background:transparent;color:var(--ink);border:2px solid var(--line);padding:10px 18px;border-radius:999px;font-weight:800;cursor:pointer;font-size:.9rem}
+.tab.on{background:var(--blue);border-color:var(--blue);color:#021a33}
+.panel{display:grid;grid-template-columns:140px 1fr;gap:28px;background:var(--bg2);border:3px solid var(--gold);border-radius:20px;padding:30px;align-items:center}
+.alt .panel{background:var(--bg)}
+.panel h3{color:var(--gold);font-size:1.5rem;margin-bottom:10px}
+.panel .lesson{color:var(--blue);font-weight:800;margin-bottom:8px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{background:var(--bg);border-left:6px solid var(--gold);border-radius:14px;padding:22px}
+.card:nth-child(even){border-left-color:var(--blue)}
+.card h3{font-size:1.1rem;margin-bottom:8px}
+.build{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+.toggles{display:flex;flex-direction:column;gap:10px}
+.tg{display:flex;gap:12px;align-items:center;background:var(--bg3);border:2px solid var(--line);border-radius:14px;padding:12px 16px;cursor:pointer;text-align:left;color:var(--ink);font:inherit;font-weight:600}
+.tg i{width:26px;height:26px;border-radius:50%;border:3px solid var(--blue);flex:none;display:grid;place-items:center;font-style:normal;font-weight:800;color:#021a33}
+.tg.on{border-color:var(--gold)}.tg.on i{background:var(--gold);border-color:var(--gold)}
+.mock{background:#fff4f4;color:#3a0610;border-radius:16px;overflow:hidden;border:4px solid var(--gold);min-height:340px}
+.mbar{background:#3a0610;padding:8px 12px;display:flex;gap:6px}.mbar b{width:10px;height:10px;border-radius:50%;background:var(--gold)}.mbar b:nth-child(2){background:var(--blue)}
+.mb{padding:14px 18px;border-bottom:2px dashed #e8b4bb;font-size:.92rem}
+.mb.ph{opacity:.35;font-style:italic}
+.mb strong{color:#940f27;display:block;font-size:1.05rem}
+.mb .mcta{display:inline-block;margin-top:6px;background:#4aa3ff;color:#021a33;font-weight:800;padding:6px 14px;border-radius:99px}
+.meter{height:20px;background:var(--bg2);border-radius:99px;border:2px solid var(--gold);overflow:hidden;margin:20px 0 8px}
+.meter div{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--gold));transition:width .5s}
+.verdict{font-weight:800;color:var(--gold);min-height:3em}
+.flip{perspective:900}
+.fi{position:relative;min-height:170px;cursor:pointer;transform-style:preserve-3d;transition:transform .6s}
+.fi.f{transform:rotateY(180deg)}
+.fs{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;padding:22px;display:flex;flex-direction:column;justify-content:center}
+.fr{background:var(--bg);border:3px solid var(--blue)}
+.bk{background:var(--gold);color:#4a0610;transform:rotateY(180deg);font-weight:600}
+.fs h3{font-size:1rem;margin-bottom:6px}
+.cta{text-align:center;background:var(--bg2)}
+.cta svg{max-width:280px;margin-bottom:10px}
+footer{background:#430610;text-align:center;font-size:.9rem}
+@media(max-width:800px){.hero,.build,.panel{grid-template-columns:1fr}.panel svg{margin:auto}}
+</style>
+</head>
+<body>
+<nav><div class="logo">Easy<b>LandX</b></div><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></nav>
+
+<header class="hero">
+<div>
+<div class="tag">Landing pages built on human relations</div>
+<h1>A landing page is a <em>leader</em>. Make it lead.</h1>
+<p>Every visitor is a person with a need. EasyLandX builds landing pages that listen first, appreciate honestly, speak clearly and invite action, the way great leaders do.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+<a class="btn blue" href="#build" style="margin-left:8px">Try the builder</a>
+</div>
+<svg viewBox="0 0 400 360" role="img" aria-label="Leader on a podium before a browser window">
+<rect x="20" y="30" width="360" height="250" rx="16" fill="#5e0918" stroke="#f6c445" stroke-width="5"/>
+<rect x="20" y="30" width="360" height="34" rx="16" fill="#f6c445"/>
+<circle cx="44" cy="47" r="6" fill="#5e0918"/><circle cx="64" cy="47" r="6" fill="#4aa3ff"/>
+<rect x="46" y="86" width="150" height="14" rx="7" fill="#fff4f4"/><rect x="46" y="110" width="110" height="10" rx="5" fill="#c4253f"/>
+<rect x="46" y="136" width="90" height="28" rx="14" fill="#4aa3ff"/>
+<rect x="230" y="84" width="124" height="80" rx="10" fill="#940f27"/>
+<circle cx="292" cy="108" r="14" fill="#f6c445"/><path d="M262 152q30-34 60 0z" fill="#4aa3ff"/>
+<rect x="46" y="186" width="308" height="8" rx="4" fill="#c4253f"/><rect x="46" y="204" width="240" height="8" rx="4" fill="#c4253f"/>
+<rect x="46" y="232" width="70" height="26" rx="8" fill="#940f27" stroke="#f6c445" stroke-width="2"/><rect x="130" y="232" width="70" height="26" rx="8" fill="#940f27" stroke="#4aa3ff" stroke-width="2"/><rect x="214" y="232" width="70" height="26" rx="8" fill="#940f27" stroke="#f6c445" stroke-width="2"/>
+<rect x="120" y="300" width="160" height="50" rx="6" fill="#f6c445"/><rect x="150" y="270" width="100" height="30" fill="#4aa3ff"/>
+<circle cx="200" cy="236" r="20" fill="#fff4f4"/><rect x="180" y="256" width="40" height="20" rx="8" fill="#fff4f4"/>
+<path d="M262 252l34-30M296 222l-14 2m14-2l-2 14" stroke="#f6c445" stroke-width="5" stroke-linecap="round" fill="none"/>
+<path d="M300 40l8 18 18 2-14 12 5 18-17-10-17 10 5-18-14-12 18-2z" fill="#f6c445" transform="translate(40 -10) scale(.8)"/>
+</svg>
+</header>
+
+<section class="alt"><div class="wrap">
+<div class="tag">The foundation</div>
+<h2>Five leadership pillars, <span>five landing page rules</span></h2>
+<p class="lead">Dale Carnegie's <i>The Leader in You</i> teaches that authority comes from trust, not title. Pick a pillar to see how it shapes a page that wins visitors.</p>
+<div class="tabs" id="tabs"></div>
+<div class="panel" id="panel"></div>
+</div></section>
+
+<section><div class="wrap">
+<div class="tag">Core lessons in action</div>
+<h2>Tap a card to see <span>the page move</span></h2>
+<p class="lead">Each leadership habit has a direct landing page counterpart. Flip the cards.</p>
+<div class="cards" id="flips"></div>
+</div></section>
+
+<section class="alt2" id="build"><div class="wrap">
+<div class="tag">Interactive</div>
+<h2>Build a page that <span>leads</span></h2>
+<p class="lead">Switch on leadership habits and watch your landing page take shape. Aim for a full Leader Score.</p>
+<div class="build">
+<div class="toggles" id="toggles"></div>
+<div>
+<div class="mock"><div class="mbar"><b></b><b></b><b></b></div><div id="mock"></div></div>
+<div class="meter"><div id="fill"></div></div>
+<div class="verdict" id="verdict"></div>
+</div></div>
+</div></section>
+
+<section><div class="wrap">
+<div class="tag">Takeaways</div>
+<h2>Four rules <span>we build by</span></h2>
+<div class="cards">
+<div class="card"><h3>Praise publicly, correct privately</h3><p>Show real client wins up front. Handle objections gently in the FAQ, never by scolding the reader.</p></div>
+<div class="card"><h3>Ask, do not order</h3><p>Questions like "What would your first booking look like?" pull people in. Commands push them away.</p></div>
+<div class="card"><h3>Control your reaction</h3><p>Calm, steady design anchors anxious visitors. No clutter, no panic timers.</p></div>
+<div class="card"><h3>Invest in people</h3><p>Your page exists to grow your visitor's confidence, not to inflate your ego.</p></div>
+</div></div></section>
+
+<section class="cta">
+<svg viewBox="0 0 280 160" aria-hidden="true"><path d="M20 140h240" stroke="#f6c445" stroke-width="6" stroke-linecap="round"/><rect x="40" y="100" width="50" height="40" fill="#4aa3ff"/><rect x="100" y="70" width="50" height="70" fill="#f6c445"/><rect x="160" y="40" width="50" height="100" fill="#4aa3ff"/><path d="M220 50v-40" stroke="#fff4f4" stroke-width="4"/><path d="M220 10h36l-10 12 10 12h-36z" fill="#f6c445"/></svg>
+<h2>Ready to <span>lead</span> with your page?</h2>
+<p class="lead" style="margin:0 auto 26px">Let EasyLandX turn your message into a landing page people trust.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</section>
+
+<footer>Inspired by <i>The Leader in You</i> by Dale Carnegie, Stuart R. Levine and Michael A. Crom. &copy; EasyLandX</footer>
+
+<script>
+const P=[
+["Human Relations","Ear","Authority comes from trust, not title.","Listen first. Open with the visitor's problem in their own words. Replace 'We are the best' with a headline that proves you understand what drives them and what they need to succeed.","M30 70q0-45 30-45t30 40q0 25-18 38-10 8-6 20","M48 52q8-14 20-6"],
+["Motivation","Heart","People live up to the expectations set for them.","Express confidence in your visitor. Use specific, honest praise through testimonials and show small wins so they feel capable and ready to act.","M60 100C10 65 25 25 60 50 95 25 110 65 60 100z",""],
+["Communication","Megaphone","Know your core point before you speak.","One page, one promise. Use concrete examples, a vivid story and sincere enthusiasm. Frame the goal around mutual benefit.","M25 55h25l45-25v70l-45-25H25z","M100 45q15 10 0 20"],
+["Problem Solving","Compass","Separate facts from emotion.","Name the problem calmly, show the facts, offer alternatives and one clear next step. Answer fears in an honest FAQ to de-escalate doubts early.","M60 20a40 40 0 1 0 .1 0z","M60 30l12 30-12 30-12-30z"],
+["Vision","Flag","Lead by personal example.","Paint the destination. Connect every section to the bigger mission, and make your own page model the clarity, integrity and consistency you promise.","M35 20v85","M35 24h55l-12 18 12 18H35z"]];
+const tabs=document.getElementById('tabs'),panel=document.getElementById('panel');
+function show(i){[...tabs.children].forEach((t,j)=>t.classList.toggle('on',i==j));const p=P[i];
+panel.innerHTML=`<svg viewBox="0 0 120 120" width="140"><circle cx="60" cy="60" r="56" fill="#940f27" stroke="#4aa3ff" stroke-width="4"/><path d="${p[4]}" fill="${i==1||i==2||i==4?'#f6c445':'none'}" stroke="#f6c445" stroke-width="6" stroke-linecap="round"/><path d="${p[5]}" fill="${i==3?'#4aa3ff':'none'}" stroke="#4aa3ff" stroke-width="5" stroke-linecap="round"/></svg><div><h3>${p[0]}</h3><div class="lesson">${p[2]}</div><p>${p[3]}</p></div>`}
+P.forEach((p,i)=>{const b=document.createElement('button');b.className='tab';b.textContent=p[0];b.onclick=()=>show(i);tabs.appendChild(b)});show(0);
+
+const F=[["Express appreciation","Show testimonials that name a specific result, promptly and honestly."],["Active listening","Mirror the exact phrases your audience uses in your headline."],["Empathize to influence","Ask what drives them, then write the page from their point of view."],["High expectations","Tell visitors you are confident they can succeed with this offer."],["Tailor the message","Lead with their needs and concerns, not your agenda."],["Open dialogue","Offer a safe, easy way to ask questions before they commit."]];
+document.getElementById('flips').innerHTML=F.map(f=>`<div class="flip"><div class="fi" onclick="this.classList.toggle('f')"><div class="fs fr"><h3>${f[0]}</h3><small>Tap to flip</small></div><div class="fs bk">${f[1]}</div></div></div>`).join('');
+
+const B=[["Empathy headline","<strong>Tired of pages that talk about themselves?</strong>We hear you. Here is what you need."],["Specific praise testimonials","<strong>\"Bookings doubled in 3 weeks.\"</strong>Real client, real result."],["Question-led call to action","<strong>Ready to see your first booking?</strong><span class='mcta'>Let's talk it through</span>"],["One clear core point","<strong>One page. One promise.</strong>A simple path from curiosity to client."],["Lead by example proof","<strong>This page practices what it preaches.</strong>Clear, calm and consistent."],["Inspiring vision","<strong>Picture your business in six months.</strong>Full calendar, confident team."]];
+const on=new Set(),tg=document.getElementById('toggles');
+const V=["Add a habit to begin leading.","A good start. Keep listening.","Trust is building.","Your page is finding its voice.","Strong leadership showing.","Almost a full leader.","Leader in You unlocked! Time to launch with EasyLandX."];
+function draw(){document.getElementById('mock').innerHTML=B.map((b,i)=>on.has(i)?`<div class="mb">${b[1]}</div>`:`<div class="mb ph">${b[0]} (off)</div>`).join('');
+document.getElementById('fill').style.width=on.size/B.length*100+'%';document.getElementById('verdict').textContent=`Leader Score ${Math.round(on.size/B.length*100)}%. ${V[on.size]}`;
+[...tg.children].forEach((t,i)=>{t.classList.toggle('on',on.has(i));t.firstChild.textContent=on.has(i)?'✓':''})}
+B.forEach((b,i)=>{const t=document.createElement('button');t.className='tg';t.innerHTML=`<i></i>${b[0]}`;t.onclick=()=>{on.has(i)?on.delete(i):on.add(i);draw()};tg.appendChild(t)});draw();
+</script>
+</body>
+</html>
