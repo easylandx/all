@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyLandX | Landing pages that grow like a forest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--g:#1E3F20;--g2:#173218;--e:#A0522D;--s:#D8E2DC;--pad:clamp(22px,6vw,80px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--g);color:var(--s);font:19px/1.65 'Newsreader',Georgia,serif}
+h1,h2,h3,.btn,button{font-family:'Bricolage Grotesque',system-ui,sans-serif}
+section{padding:clamp(56px,9vw,110px) var(--pad)}
+.wrap{max-width:1080px;margin:0 auto}
+h1{font-size:clamp(40px,7.5vw,92px);line-height:1;font-weight:800;letter-spacing:-.03em;max-width:13ch}
+h2{font-size:clamp(30px,4.6vw,54px);line-height:1.08;font-weight:800;letter-spacing:-.02em;max-width:20ch;margin-bottom:22px}
+h3{font-size:22px;line-height:1.2;margin-bottom:8px;color:var(--s)}
+p{max-width:62ch}
+.lead{font-size:clamp(20px,2.4vw,25px);margin:26px 0 34px}
+.btn{display:inline-block;background:var(--e);color:var(--s);text-decoration:none;font-weight:800;font-size:20px;padding:16px 34px;border-radius:999px;border:3px solid var(--e);transition:background .2s,color .2s}
+.btn:hover,.btn:focus-visible{background:var(--s);color:var(--g);border-color:var(--s);outline:none}
+.btn.ghost{background:transparent;border-color:var(--s);margin-left:10px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px var(--pad);position:sticky;top:0;background:var(--g2);z-index:5;border-bottom:3px solid var(--e)}
+nav b{font:800 22px 'Bricolage Grotesque',sans-serif}nav .btn{font-size:16px;padding:9px 22px}
+.hero{padding-bottom:0}
+.hero svg{display:block;width:100%;height:auto;margin-top:40px}
+.soil{background:#6b3a1f;height:12px}
+.band{background:var(--s);color:var(--g)}
+.band h2,.band h3{color:var(--g)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;margin-top:34px}
+.card{border:3px solid var(--s);padding:26px;border-radius:6px 28px 6px 28px}
+.band .card{border-color:var(--g)}
+.card.fill{background:var(--e);border-color:var(--e);color:var(--s)}
+.card.fill h3{color:var(--s)}
+.lab{font-weight:800;font-size:14px;color:var(--e);display:block;margin-bottom:6px}
+.band .lab{color:var(--e)}
+.two{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+@media(max-width:800px){.two{grid-template-columns:1fr}.btn.ghost{margin:12px 0 0}}
+#lab{background:var(--g2)}
+#forest{width:100%;height:auto;background:#1b381d;border:3px solid var(--s);border-radius:8px;touch-action:manipulation}
+.tree{cursor:pointer}.tree:focus-visible{outline:3px solid var(--e)}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.ctl button{font-weight:800;font-size:16px;background:transparent;color:var(--s);border:3px solid var(--s);padding:10px 20px;border-radius:999px;cursor:pointer}
+.ctl button:hover,.ctl button:focus-visible{background:var(--s);color:var(--g);outline:none}
+.meter{height:22px;background:var(--g);border:3px solid var(--s);border-radius:99px;overflow:hidden;margin:10px 0 14px}
+.meter i{display:block;height:100%;width:0;background:var(--e);transition:width .4s}
+#msg{min-height:120px;font-size:21px}
+#msg b{font-family:'Bricolage Grotesque',sans-serif;color:#fff}
+.quote{font:800 clamp(26px,4vw,46px)/1.15 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em;max-width:22ch}
+.mono{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:340px;margin-top:20px}
+.mono span{height:46px;border-radius:50% 50% 8px 8px;background:var(--e)}
+.mono.div span:nth-child(3n+1){background:var(--g)}.mono.div span:nth-child(3n+2){background:var(--e)}.mono.div span:nth-child(3n){background:#6b8f6e}
+footer{text-align:center;padding:70px var(--pad);background:var(--g2);border-top:3px solid var(--e)}
+footer h2{margin:0 auto 24px}
+small{display:block;margin-top:30px;opacity:.75;font-size:15px}
+</style>
+</head>
+<body>
+<nav><b>EasyLandX</b><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></nav>
+
+<section class="hero">
+<div class="wrap">
+<h1>When your page breathes, your business thrives.</h1>
+<p class="lead">A landing page is not a pile of separate parts competing for attention. It is a living network. Build the roots first, keep what already works, and your visitors turn into clients.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+<a class="btn ghost" href="#lab">Try the forest</a>
+</div>
+<svg viewBox="0 0 1080 300" role="img" aria-label="Pine trees above ground, with a web of roots and fungal threads below">
+<g fill="#D8E2DC">
+<path d="M90 190l40-110 40 110z"/><path d="M100 150l30-80 30 80z" fill="#1E3F20" opacity=".35"/>
+<path d="M300 190l60-170 60 170z"/><path d="M500 190l45-130 45 130z"/>
+<path d="M720 190l65-180 65 180z"/><path d="M930 190l40-110 40 110z"/>
+</g>
+<g fill="#A0522D"><rect x="124" y="190" width="12" height="20"/><rect x="354" y="190" width="12" height="20"/><rect x="540" y="190" width="10" height="20"/><rect x="779" y="190" width="12" height="20"/><rect x="964" y="190" width="12" height="20"/></g>
+<rect y="208" width="1080" height="92" fill="#6b3a1f"/>
+<g stroke="#D8E2DC" stroke-width="2" fill="none" opacity=".85">
+<path d="M130 210C150 240 220 250 250 262S330 258 360 210"/>
+<path d="M360 210C400 250 470 262 545 210"/>
+<path d="M545 210C600 258 690 250 785 210"/>
+<path d="M785 210C830 250 900 262 970 210"/>
+<path d="M130 210C110 250 60 270 20 290M360 210C350 255 330 280 300 296M545 210C560 260 590 285 640 296M785 210C800 260 850 285 900 296M970 210C990 255 1030 280 1070 292"/>
+</g>
+<g fill="#A0522D"><circle cx="250" cy="262" r="6"/><circle cx="455" cy="248" r="6"/><circle cx="668" cy="244" r="6"/><circle cx="878" cy="252" r="6"/></g>
+</svg>
+<div class="soil"></div>
+</section>
+
+<section class="band">
+<div class="wrap">
+<h2>Four ideas from the forest that fix your landing page</h2>
+<p>Dr. Suzanne Simard's research shows forests heal because their hidden networks stay intact. The same is true for pages that turn visitors into clients.</p>
+<div class="grid">
+<div class="card"><span class="lab">The forest</span><h3>It can heal itself</h3><p>Trees cooperate through connected networks. Your page does too: headline, offer, proof, and button work as one organism, not four separate blocks.</p></div>
+<div class="card"><span class="lab">The roots</span><h3>The damage starts underground</h3><p>Weak pages fail in the unseen layer first: a fuzzy promise, a confused audience, a vague next step. A new color never fixes a broken root.</p></div>
+<div class="card"><span class="lab">The wisdom</span><h3>Blend science with local knowledge</h3><p>Data shows what visitors do. Your own knowledge of your clients explains why. Great pages use both.</p></div>
+<div class="card fill"><span class="lab" style="color:var(--s)">The exchange</span><h3>When it thrives, we thrive</h3><p>A page that serves visitors well feeds your business, and a business that grows can serve more people.</p></div>
+</div>
+</div>
+</section>
+
+<section id="lab">
+<div class="wrap">
+<h2>Retention density: how much of your page to keep</h2>
+<p>Each tree is a part of your landing page. Tap a tree to clear it, or choose a pattern. Watch the underground network and the young seedling respond.</p>
+<div class="ctl">
+<button data-p="all">Keep everything</button>
+<button data-p="mid">Partial retention</button>
+<button data-p="none">Clear-cut</button>
+<button data-p="reset">Reset</button>
+</div>
+<div class="two">
+<svg id="forest" viewBox="0 0 700 360" role="group" aria-label="Interactive forest. Each tree is a landing page section."></svg>
+<div>
+<div class="lab">Page recovery</div>
+<div class="meter" aria-hidden="true"><i id="bar"></i></div>
+<div id="msg" aria-live="polite"></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="band">
+<div class="wrap">
+<h2>Four lessons, applied to the page you ship</h2>
+<div class="grid">
+<div class="card"><span class="lab">Keep 30% to 60%</span><h3>Retention beats the rebuild</h3><p>Do not scrap your whole page. Keep the headline, testimonials, or story that already work, then improve around them so the fungal network of trust survives.</p></div>
+<div class="card"><span class="lab">Under stress</span><h3>Mother pages feed young ones</h3><p>Your strongest page shares its proof, tone, and offer with each new campaign page. Reuse what is proven, and new pages start strong.</p></div>
+<div class="card"><span class="lab">Diversity</span><h3>Avoid the monoculture</h3><p>One traffic source, one offer, one button type is fragile. Mix entry points: social, search, referrals, and messaging, all landing on pages built for each.</p></div>
+<div class="card"><span class="lab">Legacy</span><h3>Pass the torch</h3><p>Write copy and pages so your story outlives a single campaign. The brand you grow today becomes the shade your next client rests under.</p></div>
+</div>
+<div class="two" style="margin-top:50px">
+<div><h3>Mono versus mixed</h3><p>Same space, same effort. The mixed canopy holds up when a pest, a storm, or a platform change arrives.</p></div>
+<div><div class="mono" aria-label="A plantation of one type"><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="mono div" aria-label="A diverse mixed forest"><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>Four moves to grow a healthier page</h2>
+<div class="grid">
+<div class="card"><span class="lab">Partial retention</span><h3>Edit, do not clear-cut</h3><p>Audit the page and protect the elements that earn clicks. Replace only what hurts.</p></div>
+<div class="card"><span class="lab">Protect the soil</span><h3>Go light on the machinery</h3><p>Heavy templates, sliders, and pop-ups compact the ground. Fast, simple, mobile-first pages let visitors move freely.</p></div>
+<div class="card"><span class="lab">Co-management</span><h3>Invite the knowledge keepers</h3><p>Ask your clients and community what they actually need. Their language becomes your headline.</p></div>
+<div class="card"><span class="lab">Diverse replanting</span><h3>Plant many species</h3><p>Test several offers, stories, and calls to action. Keep a mix so a single change never topples everything.</p></div>
+</div>
+</div>
+</section>
+
+<section class="band">
+<div class="wrap two">
+<p class="quote">When the forest breathes out, we breathe in.</p>
+<svg viewBox="0 0 320 300" role="img" aria-label="A mother tree sharing nutrients with seedlings through root threads">
+<rect y="180" width="320" height="120" fill="#6b3a1f"/>
+<path d="M160 20l-70 120h140z" fill="#1E3F20"/><path d="M160 60l-90 140h180z" fill="#1E3F20"/><rect x="152" y="190" width="16" height="0" fill="#A0522D"/>
+<rect x="152" y="150" width="16" height="35" fill="#A0522D"/>
+<g stroke="#D8E2DC" stroke-width="3" fill="none"><path d="M160 190C130 220 90 230 60 245"/><path d="M160 190C190 220 230 230 262 245"/><path d="M160 190C160 230 150 250 140 280"/></g>
+<g fill="#D8E2DC"><path d="M60 245l-8-26 8 8 8-8z"/><path d="M262 245l-8-26 8 8 8-8z"/><path d="M140 280l-8-26 8 8 8-8z"/></g>
+<g fill="#A0522D"><circle cx="105" cy="228" r="5"/><circle cx="215" cy="228" r="5"/><circle cx="152" cy="250" r="5"/></g>
+</svg>
+</div>
+</section>
+
+<footer>
+<h2>Plant a page that lasts.</h2>
+<p style="margin:0 auto 28px">Strong roots, a clear message, and a simple next step. Let EasyLandX build the landing page that grows your business.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+<small>Inspired by the ideas of Dr. Suzanne Simard in When the Forest Breathes (2026).</small>
+</footer>
+
+<script>
+const labels=['Headline','Offer','Proof','Story','Guide','Plan','Button'];
+const xs=[60,160,260,360,460,560,650],hs=[150,190,130,200,140,175,120];
+const kept=labels.map(()=>true);
+const svg=document.getElementById('forest'),NS='http://www.w3.org/2000/svg';
+function el(n,a,p){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e}
+const msgs=[
+[0,'<b>Clear-cut.</b> Every connection is gone. The page starts from zero with no proof, no story, and no trust. Recovery is slow and costly.'],
+[30,'<b>Too sparse.</b> A few trees survive, but the network is broken. Keep more of what already works before you rebuild.'],
+[45,'<b>The sweet spot.</b> Roughly half the canopy is retained. Threads still connect your best parts, and a new seedling is already growing.'],
+[75,'<b>Strong and diverse.</b> The network is rich. Add a few new elements to test, but protect the roots.'],
+[100,'<b>Fully connected.</b> Everything is shared. Now test one change at a time so the forest keeps breathing.']];
+function draw(){
+svg.innerHTML='';
+el('rect',{x:0,y:210,width:700,height:150,fill:'#6b3a1f'});
+const k=kept.filter(Boolean).length,pct=Math.round(k/7*100);
+for(let i=0;i<7;i++){
+if(kept[i]){
+let j=i+1;while(j<7&&!kept[j])j++;
+if(j<7)el('path',{d:`M${xs[i]} 215C${(xs[i]+xs[j])/2} ${250+(i%2)*30} ${(xs[i]+xs[j])/2} ${250+(i%2)*30} ${xs[j]} 215`,stroke:'#D8E2DC','stroke-width':2.5,fill:'none'});
+if(j<7)el('circle',{cx:(xs[i]+xs[j])/2,cy:240+(i%2)*14,r:5,fill:'#A0522D'});
+}}
+for(let i=0;i<7;i++){
+const g=el('g',{class:'tree',tabindex:0,role:'button','aria-pressed':String(!kept[i]),'aria-label':labels[i]+(kept[i]?', kept. Press to clear':', cleared. Press to restore')});
+const x=xs[i],h=hs[i];
+if(kept[i]){el('path',{d:`M${x} ${210-h}L${x-34} 205H${x+34}Z`,fill:'#D8E2DC'},g);el('rect',{x:x-5,y:205,width:10,height:14,fill:'#A0522D'},g)}
+else{el('rect',{x:x-9,y:196,width:18,height:12,fill:'#A0522D'},g);el('ellipse',{cx:x,cy:196,rx:9,ry:3,fill:'#D8E2DC'},g)}
+const t=el('text',{x:x,y:340,'text-anchor':'middle',fill:'#D8E2DC','font-size':14,'font-family':'sans-serif','font-weight':'700',opacity:kept[i]?1:.45},g);t.textContent=labels[i];
+g.addEventListener('click',()=>{kept[i]=!kept[i];draw()});
+g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();kept[i]=!kept[i];draw();svg.querySelectorAll('.tree')[i].focus()}});
+}
+const sz=k===0?0:6+k*3;
+if(sz){el('path',{d:`M350 ${300-sz*2}L${350-sz} 300H${350+sz}Z`,fill:'#A0522D'});}
+const bar=document.getElementById('bar');bar.style.width=pct+'%';
+let m=msgs[0][1];msgs.forEach(a=>{if(pct>=a[0])m=a[1]});
+document.getElementById('msg').innerHTML=m+'<br><br>'+k+' of 7 sections retained ('+pct+'%).';
+}
+document.querySelectorAll('.ctl button').forEach(b=>b.addEventListener('click',()=>{
+const p=b.dataset.p;
+for(let i=0;i<7;i++)kept[i]=p==='none'?false:p==='mid'?[0,2,4,6].includes(i):true;
+draw()}));
+draw();
+</script>
+</body>
+</html>
