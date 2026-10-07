@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyLandX | Landing pages that go where your competition does not</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--i0:#1A1250;--i1:#241A72;--i2:#2D2090;--i3:#3A2CAA;--i4:#4A3BC4;--red:#FF4D5E;--gold:#FFC83D;--ink:#F3F0FF;--soft:#C9C2F5;--pad:clamp(22px,6vw,90px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--i2);color:var(--ink);font-family:Figtree,system-ui,sans-serif;font-size:18px;line-height:1.6}
+h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,sans-serif;line-height:1.05;letter-spacing:-.02em}
+h1{font-size:clamp(40px,7vw,92px);font-weight:800}
+h2{font-size:clamp(32px,4.6vw,58px);font-weight:800;margin-bottom:18px}
+h3{font-size:24px;font-weight:700;margin-bottom:8px}
+p{max-width:62ch;color:var(--soft)}
+section{padding:clamp(56px,9vw,110px) var(--pad)}
+.wrap{max-width:1180px;margin:0 auto}
+.a{background:var(--i2)}.b{background:var(--i1)}.c{background:var(--i0)}
+.btn{display:inline-block;background:var(--gold);color:var(--i0);font:800 18px 'Bricolage Grotesque',sans-serif;padding:16px 30px;border-radius:999px;text-decoration:none;border:3px solid var(--gold);transition:transform .15s,background .15s}
+.btn:hover,.btn:focus-visible{background:var(--red);border-color:var(--red);color:#fff;transform:translateY(-3px);outline:none}
+.btn.ghost{background:transparent;color:var(--gold)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px var(--pad);background:var(--i0);position:sticky;top:0;z-index:5}
+.logo{font:800 24px 'Bricolage Grotesque';color:var(--ink);text-decoration:none}.logo b{color:var(--red)}
+nav .btn{padding:9px 20px;font-size:15px}
+.hero{background:var(--i1);display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero p{font-size:21px;margin:24px 0 32px}
+.hero em{font-style:normal;color:var(--gold)}
+.hero svg{width:100%;height:auto}
+.flow{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 2.8s .3s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){.flow{animation:none;stroke-dashoffset:0}html{scroll-behavior:auto}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;margin-top:36px}
+.card{background:var(--i3);border-radius:22px;padding:28px;border-bottom:6px solid var(--gold)}
+.card.r{border-bottom-color:var(--red)}
+.card svg{width:64px;height:64px;margin-bottom:14px}
+.card p{font-size:16.5px}
+.tag{display:inline-block;background:var(--i0);color:var(--gold);font-weight:700;font-size:14px;padding:4px 12px;border-radius:99px;margin-bottom:12px}
+/* map */
+.map{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;margin-top:34px}
+.bubbles{display:flex;flex-wrap:wrap;gap:12px;align-content:flex-start}
+.bub{font:700 16px Figtree;color:var(--ink);background:var(--i3);border:3px solid var(--i4);border-radius:999px;padding:12px 18px;cursor:pointer;transition:.15s}
+.bub.hot{border-color:var(--red)}.bub.open{border-color:var(--gold)}
+.bub:hover{transform:scale(1.05)}
+.bub.on.hot{background:var(--red);color:#fff}.bub.on.open{background:var(--gold);color:var(--i0)}
+.bub:focus-visible{outline:3px solid #fff}
+.panel{background:var(--i0);border-radius:22px;padding:26px}
+.bar{height:22px;background:var(--i2);border-radius:99px;overflow:hidden;margin:6px 0 18px}
+.bar i{display:block;height:100%;width:0;transition:width .5s}
+.bar .n{background:var(--red)}.bar .t{background:var(--gold)}
+.lab{display:flex;justify-content:space-between;font-weight:700;font-size:15px}
+#idea{min-height:78px;color:var(--ink);font-size:17px}
+#verdict{font:800 22px 'Bricolage Grotesque';color:var(--gold);margin-top:6px}
+/* builder */
+.build{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;margin-top:34px;align-items:stretch}
+label{display:block;font-weight:700;margin:0 0 6px;font-size:15px;color:var(--gold)}
+select{width:100%;font:500 17px Figtree;padding:13px;border-radius:14px;background:var(--i3);color:var(--ink);border:3px solid var(--i4);margin-bottom:18px}
+select:focus-visible{outline:3px solid var(--gold)}
+.out{background:var(--gold);color:var(--i0);border-radius:22px;padding:30px;display:flex;flex-direction:column;justify-content:center}
+.out h3{font-size:clamp(26px,3.4vw,40px);color:var(--i0)}
+.out small{font-weight:700;margin-top:14px;color:var(--i1)}
+.out s{color:var(--red);text-decoration-thickness:4px}
+.mirror{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.mirror svg{width:100%;height:auto}
+.steps{counter-reset:s;margin-top:30px}
+.step{display:grid;grid-template-columns:64px 1fr;gap:18px;padding:22px 0;border-top:3px solid var(--i3)}
+.step:before{counter-increment:s;content:counter(s);font:800 36px 'Bricolage Grotesque';background:var(--red);color:#fff;width:56px;height:56px;border-radius:50%;display:grid;place-items:center}
+.step p{font-size:17px}
+.cta{text-align:center}.cta p{margin:0 auto 32px}
+footer{padding:28px var(--pad);background:var(--i0);color:var(--soft);font-size:15px;text-align:center}
+@media(max-width:860px){.hero,.map,.build,.mirror{grid-template-columns:1fr}body{font-size:17px}}
+</style>
+</head>
+<body>
+<nav><a class="logo" href="#top">Easy<b>Land</b>X</a><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></nav>
+
+<section class="hero" id="top"><div>
+<h1>Stop fighting for the crowded click.</h1>
+<p>The Ki of Marketing says the winning move is not a louder ad. It is going where your competition does not expect you and where your customers want you most. <em>A focused EasyLandX landing page is the place you send them.</em></p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+<a class="btn ghost" href="#map" style="margin-left:10px">Try the Ki map</a></div>
+<svg viewBox="0 0 420 420" role="img" aria-label="A red force heading straight at a business is redirected by a gold curve toward waiting customers">
+<circle cx="210" cy="210" r="196" fill="#241A72" stroke="#4A3BC4" stroke-width="3"/>
+<g fill="#FF4D5E"><rect x="22" y="196" width="90" height="28" rx="14"/><polygon points="108,176 150,210 108,244"/></g>
+<text x="22" y="170" fill="#FF4D5E" font-family="Figtree" font-weight="700" font-size="17">Competitor noise</text>
+<circle cx="210" cy="210" r="34" fill="#4A3BC4" stroke="#F3F0FF" stroke-width="4"/>
+<text x="210" y="216" text-anchor="middle" fill="#F3F0FF" font-family="Figtree" font-weight="700" font-size="15">You</text>
+<path class="flow" d="M150 210 C185 120 260 120 292 200 S350 300 372 330" fill="none" stroke="#FFC83D" stroke-width="10" stroke-linecap="round"/>
+<g fill="#FFC83D"><circle cx="340" cy="310" r="13"/><circle cx="372" cy="334" r="13"/><circle cx="332" cy="346" r="13"/></g>
+<text x="232" y="392" fill="#FFC83D" font-family="Figtree" font-weight="700" font-size="17">Customers already looking</text>
+<circle cx="210" cy="80" r="22" fill="none" stroke="#FFC83D" stroke-width="4" stroke-dasharray="6 6"/>
+<text x="210" y="50" text-anchor="middle" fill="#C9C2F5" font-family="Figtree" font-size="14">Ki: flow, not force</text>
+</svg></section>
+
+<section class="b"><div class="wrap">
+<h2>Four messages that change how you market</h2>
+<p>The book borrows Ki, the martial arts idea of flow and leverage. Yield, redirect, position. Then build one page that makes the redirect pay off.</p>
+<div class="grid">
+<div class="card"><svg viewBox="0 0 64 64"><rect x="30" y="6" width="6" height="40" fill="#FFC83D"/><rect x="10" y="44" width="46" height="8" rx="4" fill="#FF4D5E"/><circle cx="33" cy="12" r="8" fill="#FFC83D"/></svg><h3>Leverage over brute force</h3><p>Find the point where little effort and budget bring higher-value clients. One sharp landing page beats a big budget sent to a generic homepage.</p></div>
+<div class="card r"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="none" stroke="#FFC83D" stroke-width="5"/><circle cx="32" cy="32" r="14" fill="none" stroke="#FF4D5E" stroke-width="5"/><circle cx="32" cy="32" r="4" fill="#F3F0FF"/></svg><h3>Harmonize with intent</h3><p>Meet people where they already search, struggle, or want connection. Your page should answer the exact moment that brought them there.</p></div>
+<div class="card"><svg viewBox="0 0 64 64"><rect x="4" y="30" width="26" height="26" rx="6" fill="#4A3BC4"/><rect x="34" y="8" width="26" height="48" rx="6" fill="#FFC83D"/><circle cx="17" cy="20" r="7" fill="#FF4D5E"/></svg><h3>Out-position, do not out-spend</h3><p>The profitable space is uncontested ground: channels, partners, and angles your competitors ignore while chasing the same tactics.</p></div>
+<div class="card r"><svg viewBox="0 0 64 64"><circle cx="32" cy="20" r="12" fill="#FF4D5E"/><path d="M8 58c0-16 10-24 24-24s24 8 24 24z" fill="#FFC83D"/></svg><h3>Human first, even with AI</h3><p>Tools change. Trust, relationships, and an authentic presence still close the sale. A landing page should sound like a person you would hire.</p></div>
+</div></div></section>
+
+<section class="a" id="map"><div class="wrap">
+<h2>Map your uncontested ground</h2>
+<p>Practical strategy one: identify touchpoints where your market gathers and competitors are absent. Pick up to three channels. Watch the energy meter and see which landing page each one deserves.</p>
+<div class="map">
+<div class="bubbles" id="bubbles" role="group" aria-label="Marketing touchpoints"></div>
+<div class="panel">
+<div class="lab"><span>Competition noise</span><span id="nv">0</span></div><div class="bar"><i class="n" id="nb"></i></div>
+<div class="lab"><span>Trust built</span><span id="tv">0</span></div><div class="bar"><i class="t" id="tb"></i></div>
+<div id="verdict">Pick a touchpoint</div>
+<p id="idea">Red outlines are crowded fields. Gold outlines are open ground.</p>
+</div></div>
+</div></section>
+
+<section class="c"><div class="wrap mirror">
+<svg viewBox="0 0 440 340" role="img" aria-label="Two identical shapes on either side of a cracked mirror">
+<rect x="205" y="10" width="30" height="320" rx="6" fill="#4A3BC4"/>
+<path d="M220 10 L205 90 L238 150 L206 230 L222 330" fill="none" stroke="#FF4D5E" stroke-width="5"/>
+<g fill="#FFC83D"><circle cx="105" cy="120" r="40"/><rect x="55" y="170" width="100" height="120" rx="30"/></g>
+<g fill="#FF4D5E" opacity=".85"><circle cx="335" cy="120" r="40"/><rect x="285" y="170" width="100" height="120" rx="30"/></g>
+<text x="105" y="320" text-anchor="middle" fill="#F3F0FF" font-family="Figtree" font-weight="700" font-size="16">You</text>
+<text x="335" y="320" text-anchor="middle" fill="#F3F0FF" font-family="Figtree" font-weight="700" font-size="16">The leader</text></svg>
+<div><span class="tag">Key lesson</span><h2>Escape the mirror trap</h2>
+<p>Copy the industry leader and you play their game on their terms, with shrinking returns. The same goes for templates that look like every other business page.</p><p style="margin-top:14px">EasyLandX pages are built around your one specific offer and your one specific buyer, so nobody can mistake you for the leader.</p></div></div></section>
+
+<section class="b"><div class="wrap">
+<h2>Narrow it until price stops mattering</h2>
+<p>Practical strategy three: micro-niche dominance. Build the headline for one customer and one problem. Compare it with the generic version.</p>
+<div class="build"><div>
+<label for="who">Who is it for?</label>
+<select id="who"><option>wedding photographers</option><option>mobile dog groomers</option><option>independent plumbers</option><option>mixed media artists</option></select>
+<label for="prob">What problem do you solve?</label>
+<select id="prob"><option>lose bookings to slow replies</option><option>get clicks but no calls</option><option>look like everyone else online</option><option>cannot explain what they charge for</option></select>
+</div>
+<div class="out"><h3 id="head"></h3><small id="gen"></small></div></div>
+</div></section>
+
+<section class="a"><div class="wrap">
+<h2>Four more moves, one landing page each</h2>
+<div class="steps">
+<div class="step"><div><h3>Relationship capital beats cold reach</h3><p>Cultivate deep local networks and direct trust. Give each relationship a page that remembers the conversation: who you met, what you promised, what happens next.</p></div></div>
+<div class="step"><div><h3>Strategic alliances and co-marketing</h3><p>Partner with non-competing businesses serving the same buyer. A co-branded page transfers trust instantly and creates warm introductions with no ad cost.</p></div></div>
+<div class="step"><div><h3>Early awareness positioning</h3><p>Reach people before they know they are shopping and shape their criteria first. A guide page for the early question becomes the checklist they use later.</p></div></div>
+<div class="step"><div><h3>Value-first engagement and energy conservation</h3><p>Teach before you sell, and drop efforts that bring friction or low-quality leads. Direct your energy only where trust builds fast.</p></div></div>
+</div></div></section>
+
+<section class="c cta"><div class="wrap">
+<svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="#FFC83D" stroke-width="6"/><path d="M20 70 C40 30 80 30 100 60" fill="none" stroke="#FF4D5E" stroke-width="10" stroke-linecap="round"/><circle cx="100" cy="60" r="9" fill="#FFC83D"/></svg>
+<h2 style="margin-top:14px">Go where they are not looking. Land where they are.</h2>
+<p>Build the page that turns uncontested ground into trusted clients.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</div></section>
+<footer>Inspired by the ideas in The Ki of Marketing by Martin Brossman and Dr. Justin Rose. EasyLandX landing pages.</footer>
+
+<script>
+const T=[
+["Paid search ads",95,25,"A bidding war. Your page competes with everyone's page for the same click."],
+["Crowded keywords",90,30,"Leaders own these results. Matching them step for step is the mirror trap."],
+["Social media ads",80,35,"Loud and rented. Attention is high, trust is low."],
+["Cold email blasts",70,20,"Interruption. Low-quality leads drain your energy."],
+["Niche local events",10,80,"Event page: a QR code that welcomes the exact people you met that week."],
+["Partner referrals",5,92,"Co-branded welcome page for your partner's customers. Trust transfers on arrival."],
+["Micro-communities",15,76,"A page written for one problem and one group. You become the obvious choice."],
+["Early-stage guides",20,86,"A value-first guide page that shapes buying criteria before rivals know they are shopping."]];
+const sel=new Set(),B=document.getElementById('bubbles');
+T.forEach((t,i)=>{const b=document.createElement('button');b.className='bub '+(t[1]>50?'hot':'open');b.textContent=t[0];b.setAttribute('aria-pressed','false');
+b.onclick=()=>{if(sel.has(i)){sel.delete(i)}else{if(sel.size>=3){sel.delete([...sel][0])}sel.add(i)}
+[...B.children].forEach((x,j)=>{x.classList.toggle('on',sel.has(j));x.setAttribute('aria-pressed',sel.has(j))});
+upd(sel.has(i)?i:null)};B.appendChild(b)});
+function upd(last){const a=[...sel];const n=a.length?Math.round(a.reduce((s,i)=>s+T[i][1],0)/a.length):0;const t=a.length?Math.round(a.reduce((s,i)=>s+T[i][2],0)/a.length):0;
+nb.style.width=n+'%';tb.style.width=t+'%';nv.textContent=n;tv.textContent=t;
+verdict.textContent=!a.length?'Pick a touchpoint':t-n>40?'Strong Ki: high leverage':t-n>0?'Getting there: shift more energy':'Brute force: you are in the crowd';
+if(last!==null)idea.textContent=T[last][3]}
+const H={"lose bookings to slow replies":"Answer in seconds, book while they still care","get clicks but no calls":"Turn every click into a call","look like everyone else online":"Be the only one they remember","cannot explain what they charge for":"Make your value obvious before the quote"};
+function gen(){const w=who.value,p=prob.value;head.textContent="The page for "+w+" who "+p+": "+H[p]+".";
+gen_.innerHTML="Generic version: <s>We offer quality services for everyone.</s>"}
+const gen_=document.getElementById('gen');who.onchange=prob.onchange=gen;gen();
+</script>
+</body>
+</html>
