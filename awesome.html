@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>easylandx — The Conversion Launch Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo-900:#1a1547;
+    --indigo-800:#241f63;
+    --indigo-700:#332b82;
+    --orange:#ff6a3d;
+    --orange-deep:#e0501f;
+    --canvas:#f5f0e3;
+    --canvas-dim:#e9e2cf;
+    --ink:#1c1740;
+    --lav:#d9d5f5;
+    --lav-dim:#a29ce0;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--indigo-900);
+    color:var(--lav);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    color:#fff;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.72rem;
+    color:var(--orange);
+  }
+  a{color:inherit;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(26,21,71,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(217,213,245,0.1);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;max-width:1120px;margin:0 auto;
+  }
+  .logo{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:1.25rem;color:#fff;display:flex;align-items:center;gap:8px;
+  }
+  .logo .dot{color:var(--orange);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--orange);color:#1a1547;
+    font-family:'Space Grotesk',sans-serif;font-weight:600;
+    font-size:0.95rem;
+    padding:12px 22px;border-radius:100px;
+    text-decoration:none;
+    border:1px solid var(--orange);
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn:hover{background:var(--orange-deep);border-color:var(--orange-deep);transform:translateY(-1px);}
+  .btn.ghost{
+    background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.25);
+  }
+  .btn.ghost:hover{border-color:#fff;transform:none;background:rgba(255,255,255,0.06);}
+  .btn.small{padding:9px 16px;font-size:0.85rem;}
+
+  /* HERO */
+  .hero{
+    padding:96px 0 60px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;top:-200px;right:-160px;width:560px;height:560px;
+    background:radial-gradient(circle, rgba(255,106,61,0.22), transparent 70%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;
+  }
+  .hero h1{font-size:3.1rem;line-height:1.06;margin-top:16px;}
+  .hero h1 em{font-style:normal;color:var(--orange);}
+  .hero p.lede{
+    font-size:1.15rem;line-height:1.6;color:var(--lav);
+    margin-top:20px;max-width:520px;
+  }
+  .hero-cta{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+
+  /* SIGNATURE: reframe card */
+  .reframe{
+    background:var(--canvas);
+    border-radius:20px;
+    padding:30px;
+    color:var(--ink);
+    box-shadow:0 30px 60px rgba(0,0,0,0.35);
+    transform:rotate(1.2deg);
+  }
+  .reframe .row{
+    display:flex;align-items:center;gap:12px;
+    padding:14px 16px;border-radius:10px;margin-bottom:12px;
+  }
+  .reframe .row.wrong{
+    background:rgba(28,23,64,0.05);
+    text-decoration:line-through;
+    color:#71698f;
+  }
+  .reframe .row.right{
+    background:rgba(255,106,61,0.12);
+    border:1px solid rgba(224,80,31,0.35);
+    color:var(--ink);
+    font-weight:600;
+    text-decoration:none;
+  }
+  .reframe .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:0.68rem;
+    padding:3px 8px;border-radius:100px;background:var(--ink);color:var(--canvas);
+    flex-shrink:0;
+  }
+  .reframe .row.right .tag{background:var(--orange-deep);color:#fff;}
+  .reframe .caption{
+    font-family:'IBM Plex Mono',monospace;font-size:0.75rem;color:#6b6389;
+    margin-top:10px;
+  }
+
+  /* SECTION GENERIC */
+  section{padding:88px 0;}
+  .section-head{max-width:640px;margin-bottom:48px;}
+  .section-head h2{font-size:2.1rem;line-height:1.15;margin-top:14px;}
+  .section-head p{color:var(--lav-dim);margin-top:14px;font-size:1.02rem;line-height:1.6;}
+
+  /* COMPETITIVE ALTERNATIVES */
+  .alt-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:18px;
+  }
+  .alt-card{
+    background:var(--indigo-800);
+    border:1px solid rgba(217,213,245,0.14);
+    border-radius:var(--radius);
+    padding:22px;
+  }
+  .alt-card .num{
+    font-family:'IBM Plex Mono',monospace;color:var(--orange);font-size:0.8rem;
+  }
+  .alt-card h3{font-size:1.05rem;margin-top:10px;color:#fff;font-weight:600;}
+  .alt-card p{font-size:0.92rem;color:var(--lav-dim);line-height:1.55;margin-top:8px;}
+
+  /* 5 INGREDIENTS SEQUENCE */
+  .ingredient{
+    display:grid;grid-template-columns:64px 1fr;gap:24px;
+    padding:32px 0;
+    border-top:1px solid rgba(217,213,245,0.12);
+  }
+  .ingredient:last-child{border-bottom:1px solid rgba(217,213,245,0.12);}
+  .ingredient .step-num{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:1.6rem;color:var(--orange);
+  }
+  .ingredient-body h3{font-size:1.25rem;color:#fff;}
+  .ingredient-body .kicker{
+    font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
+    color:var(--lav-dim);text-transform:uppercase;letter-spacing:0.1em;
+  }
+  .ingredient-body p{color:var(--lav);line-height:1.65;margin-top:10px;max-width:680px;font-size:0.99rem;}
+  .pill-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+  .pill{
+    font-family:'IBM Plex Mono',monospace;font-size:0.72rem;
+    background:rgba(255,106,61,0.14);color:var(--orange);
+    padding:5px 11px;border-radius:100px;border:1px solid rgba(255,106,61,0.3);
+  }
+
+  /* CANVAS PANEL (value / target market) */
+  .canvas-panel{
+    background:var(--canvas);
+    border-radius:22px;
+    padding:56px;
+    color:var(--ink);
+  }
+  .canvas-panel .eyebrow{color:var(--orange-deep);}
+  .canvas-panel h2{color:var(--ink);font-size:2rem;margin-top:12px;}
+  .value-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:36px;
+  }
+  .value-item{border-left:3px solid var(--orange);padding-left:18px;}
+  .value-item .from{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;color:#8079a3;}
+  .value-item .to{font-size:1.05rem;font-weight:600;color:var(--ink);margin-top:6px;}
+
+  /* TARGET MARKET */
+  .persona-row{
+    display:flex;gap:16px;margin-top:36px;flex-wrap:wrap;
+  }
+  .persona{
+    background:#fff;border-radius:12px;padding:18px 20px;flex:1;min-width:220px;
+    border:1px solid var(--canvas-dim);
+  }
+  .persona .role{font-weight:600;font-family:'Space Grotesk',sans-serif;color:var(--ink);}
+  .persona .desc{font-size:0.88rem;color:#5f5883;margin-top:6px;line-height:1.5;}
+
+  /* MARKET CATEGORY */
+  .category-block{
+    text-align:center;
+    padding:100px 0;
+    position:relative;
+  }
+  .category-block .old-cat{
+    font-family:'IBM Plex Mono',monospace;color:var(--lav-dim);
+    text-decoration:line-through;font-size:1rem;
+  }
+  .category-block h2{
+    font-size:3rem;margin-top:18px;
+    background:linear-gradient(90deg,#fff, var(--orange));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .category-block p{max-width:560px;margin:22px auto 0;color:var(--lav-dim);line-height:1.6;}
+
+  /* FOOTER CTA */
+  .final-cta{
+    background:linear-gradient(135deg, var(--orange), var(--orange-deep));
+    border-radius:24px;
+    padding:64px 48px;
+    text-align:center;
+    color:#1a1547;
+    margin:0 28px 60px;
+  }
+  .final-cta h2{color:#1a1547;font-size:2.2rem;}
+  .final-cta p{color:#3a2a1f;margin-top:12px;font-size:1.05rem;}
+  .final-cta .btn{background:#1a1547;color:#fff;border-color:#1a1547;margin-top:26px;}
+  .final-cta .btn:hover{background:#0f0c33;border-color:#0f0c33;}
+
+  footer{
+    padding:32px 28px;text-align:center;
+    color:var(--lav-dim);font-size:0.85rem;
+    border-top:1px solid rgba(217,213,245,0.1);
+  }
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:2.3rem;}
+    .alt-grid{grid-template-columns:1fr;}
+    .value-grid{grid-template-columns:1fr;}
+    .canvas-panel{padding:32px;}
+    .ingredient{grid-template-columns:1fr;}
+    .category-block h2{font-size:2.1rem;}
+  }
+
+  :focus-visible{outline:2px solid var(--orange);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">easylandx<span class="dot">.</span></div>
+    <div style="display:flex;gap:10px;">
+      <a class="btn ghost small" href="#framework">How it's positioned</a>
+      <a class="btn small" href="https://easylandx.com" target="_blank" rel="noopener">Try easylandx →</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Landing pages, positioned correctly</span>
+        <h1>Stop building <em>websites.</em><br>Start shipping <em>launches.</em></h1>
+        <p class="lede">easylandx is the fastest way for marketing teams to turn a campaign brief into a live, fast, conversion-ready page — without waiting on a developer or wrestling a generic site builder into shape.</p>
+        <div class="hero-cta">
+          <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Launch your first page free</a>
+          <a class="btn ghost" href="#alternatives">See what you're replacing</a>
+        </div>
+      </div>
+
+      <!-- Signature element: the default-frame reframe -->
+      <div class="reframe">
+        <div class="row wrong">
+          <span class="tag">Default frame</span>
+          <span>Just another drag-and-drop website builder</span>
+        </div>
+        <div class="row right">
+          <span class="tag">Correct frame</span>
+          <span>The Conversion Launch Platform for campaigns</span>
+        </div>
+        <div class="caption">// if you don't set the frame, your buyer sets it for you</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPETITIVE ALTERNATIVES -->
+  <section id="alternatives">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">01 · Competitive alternatives</span>
+        <h2>What you're actually up against isn't another startup.</h2>
+        <p>Before you compare tools, be honest about what teams really do today. easylandx isn't fighting other builders — it's replacing these habits.</p>
+      </div>
+      <div class="alt-grid">
+        <div class="alt-card">
+          <span class="num">ALT — 01</span>
+          <h3>A developer on retainer</h3>
+          <p>Every campaign page becomes a ticket in a sprint queue. Marketing waits days for a change that should take minutes.</p>
+        </div>
+        <div class="alt-card">
+          <span class="num">ALT — 02</span>
+          <h3>A generic site builder, repurposed</h3>
+          <p>Tools built for brochure sites get stretched to run paid campaigns — slow load times quietly tax every ad dollar spent.</p>
+        </div>
+        <div class="alt-card">
+          <span class="num">ALT — 03</span>
+          <h3>Figma-to-Webflow duct tape</h3>
+          <p>A design gets handed off, rebuilt by hand, and drifts from the original the moment someone needs a fast edit.</p>
+        </div>
+        <div class="alt-card">
+          <span class="num">ALT — 04</span>
+          <h3>Doing nothing</h3>
+          <p>The campaign ships to a generic homepage instead — or doesn't ship on time at all.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNIQUE ATTRIBUTES -> VALUE (as a real sequence) -->
+  <section id="framework">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">The positioning sequence</span>
+        <h2>How easylandx earns the frame it asks for.</h2>
+        <p>Each ingredient below only makes sense once the one before it is true — this is the order positioning has to be built in, not a feature list.</p>
+      </div>
+
+      <div class="ingredient">
+        <div class="step-num">02</div>
+        <div class="ingredient-body">
+          <div class="kicker">Unique attributes</div>
+          <h3>What easylandx has that the alternatives don't</h3>
+          <p>A block library tuned for conversion, not decoration. Pages ship with performance budgets built in, native A/B testing, and one click to a live domain — no handoff, no deploy pipeline.</p>
+          <div class="pill-row">
+            <span class="pill">Conversion-tested blocks</span>
+            <span class="pill">Sub-second load times</span>
+            <span class="pill">Built-in A/B testing</span>
+            <span class="pill">One-click publish</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ingredient">
+        <div class="step-num">03</div>
+        <div class="ingredient-body">
+          <div class="kicker">Value</div>
+          <h3>What those attributes are actually worth</h3>
+          <p>Marketing ships the day a campaign is approved, not two sprints later. Every page loads fast enough to protect your ad spend instead of leaking it. And every launch comes with a measurable lift, not a guess.</p>
+        </div>
+      </div>
+
+      <div class="ingredient">
+        <div class="step-num">04</div>
+        <div class="ingredient-body">
+          <div class="kicker">Target market</div>
+          <h3>Who this value matters most to</h3>
+          <p>Growth marketers, founders, and lean marketing teams who are measured on time-to-launch and conversion rate — not people who need a full CMS, a blog, or a company wiki.</p>
+        </div>
+      </div>
+
+      <div class="ingredient">
+        <div class="step-num">05</div>
+        <div class="ingredient-body">
+          <div class="kicker">Market category</div>
+          <h3>The frame that makes all of this obvious</h3>
+          <p>Call it a "website builder" and you'll be judged on templates and themes. Call it what it is — a Conversion Launch Platform — and the value is self-evident from the first sentence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE TRANSLATION PANEL -->
+  <section>
+    <div class="wrap">
+      <div class="canvas-panel">
+        <span class="eyebrow">From feature to outcome</span>
+        <h2>Attributes don't close deals. Value does.</h2>
+        <div class="value-grid">
+          <div class="value-item">
+            <div class="from">FEATURE → Conversion-tested block library</div>
+            <div class="to">Launch a page that's built to convert on day one, not after three iterations.</div>
+          </div>
+          <div class="value-item">
+            <div class="from">FEATURE → Sub-second load times</div>
+            <div class="to">Stop losing paid traffic to a spinner before the page even renders.</div>
+          </div>
+          <div class="value-item">
+            <div class="from">FEATURE → Built-in A/B testing</div>
+            <div class="to">Know what's working within days, without wiring up a separate tool.</div>
+          </div>
+          <div class="value-item">
+            <div class="from">FEATURE → One-click publish</div>
+            <div class="to">Marketing owns the page end to end — no engineering ticket required.</div>
+          </div>
+        </div>
+
+        <div class="persona-row">
+          <div class="persona">
+            <div class="role">Growth marketer</div>
+            <div class="desc">Runs 3–5 campaigns a month and is measured on time-to-launch.</div>
+          </div>
+          <div class="persona">
+            <div class="role">Founder</div>
+            <div class="desc">Needs a credible launch page today, not after a dev cycle opens up.</div>
+          </div>
+          <div class="persona">
+            <div class="role">Lean marketing team</div>
+            <div class="desc">Has no in-house engineering support and can't wait on one.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET CATEGORY STATEMENT -->
+  <section class="category-block">
+    <div class="wrap">
+      <span class="old-cat">not a "website builder"</span>
+      <h2>The Conversion Launch Platform.</h2>
+      <p>Choosing the right category does most of the work before your first sentence of copy. This is the frame easylandx asks to be judged by — because it's the one it actually earns.</p>
+      <div style="margin-top:32px;">
+        <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Try easylandx free</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <div class="final-cta">
+    <h2>Position your next launch correctly.</h2>
+    <p>Build the page. Set the frame. Ship it today.</p>
+    <a class="btn" href="https://easylandx.com" target="_blank" rel="noopener">Get started with easylandx →</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 easylandx — The Conversion Launch Platform.</div>
+</footer>
+
+</body>
+</html>

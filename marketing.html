@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Own the Mind, Not Just the Market</title>
+<style>
+:root{
+  --crimson-1:#5c0016; --crimson-2:#7a001f; --crimson-3:#960a2b; --crimson-4:#b0122f;
+  --gold:#d4af37; --gold-light:#f0d896; --onyx:#111013; --cream:#f6ead9;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --crimson-1:#5c0016; } }
+:root[data-theme="dark"]{ --crimson-1:#5c0016; }
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px);}
+body{
+  background:linear-gradient(180deg,var(--crimson-1),var(--crimson-2) 40%,var(--crimson-1));
+  color:var(--cream); font-family:'Georgia',serif; line-height:1.55; overflow-x:hidden;
+}
+h1,h2,h3{font-family:'Georgia',serif; letter-spacing:.5px;}
+.wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+header{position:sticky; top:0; top:env(safe-area-inset-top,0px); z-index:10;
+  background:rgba(92,0,22,.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--gold);
+  padding:14px 0;}
+header .wrap{display:flex; justify-content:space-between; align-items:center;}
+.logo{font-weight:bold; font-size:1.3rem; color:var(--gold-light);}
+.logo span{color:var(--cream); font-weight:normal; font-size:.85rem; display:block; letter-spacing:2px;}
+.btn{display:inline-block; background:var(--gold); color:var(--onyx); font-weight:bold;
+  padding:12px 26px; border-radius:2px; text-decoration:none; border:1px solid var(--onyx);
+  transition:transform .15s ease, background .15s ease; cursor:pointer; font-family:inherit;}
+.btn:hover{background:var(--gold-light); transform:translateY(-2px);}
+.btn-outline{background:transparent; color:var(--gold-light); border:1px solid var(--gold);}
+.btn-outline:hover{background:var(--gold); color:var(--onyx);}
+section{padding:70px 0; border-bottom:1px solid rgba(212,175,55,.25);}
+.hero{padding-top:90px; text-align:center;}
+.hero h1{font-size:clamp(2rem,5vw,3rem); color:var(--gold-light); margin-bottom:18px;}
+.hero p{font-size:1.15rem; max-width:640px; margin:0 auto 30px; color:var(--cream);}
+.eyebrow{color:var(--gold); text-transform:uppercase; letter-spacing:3px; font-size:.8rem; margin-bottom:10px;}
+.icon{width:52px; height:52px; margin-bottom:14px;}
+.icon path,.icon circle,.icon line,.icon polyline{stroke:var(--gold); fill:none; stroke-width:1.6;}
+.law-card{background:rgba(17,16,19,.35); border:1px solid var(--gold); border-radius:4px; padding:26px 28px; margin-bottom:18px;}
+.law-card summary{cursor:pointer; font-size:1.15rem; font-weight:bold; color:var(--gold-light); list-style:none; display:flex; align-items:center; gap:14px;}
+.law-card summary::-webkit-details-marker{display:none;}
+.law-card summary::after{content:'+'; margin-left:auto; font-size:1.4rem; color:var(--gold);}
+.law-card[open] summary::after{content:'–';}
+.law-card p{margin-top:14px; color:var(--cream); font-size:.98rem;}
+.tag{display:inline-block; font-size:.7rem; letter-spacing:1px; text-transform:uppercase; color:var(--onyx);
+  background:var(--gold); padding:3px 9px; border-radius:2px; margin-right:8px;}
+/* Focus test */
+.focus-box{text-align:center;}
+.focus-box input{background:var(--onyx); border:1px solid var(--gold); color:var(--gold-light);
+  padding:14px 18px; font-size:1.1rem; width:100%; max-width:340px; border-radius:2px; font-family:inherit;}
+#focusResult{margin-top:28px; min-height:90px;}
+.word-burn{display:inline-block; font-size:2.2rem; font-weight:bold; color:var(--onyx); background:var(--gold);
+  padding:14px 30px; border-radius:3px; animation:burn .5s ease; letter-spacing:1px;}
+@keyframes burn{from{transform:scale(.7); opacity:0;} to{transform:scale(1); opacity:1;}}
+.hint{font-size:.85rem; color:var(--gold-light); margin-top:10px; max-width:480px; margin-left:auto; margin-right:auto;}
+/* slider compare */
+.compare{position:relative; border:1px solid var(--gold); border-radius:4px; overflow:hidden; margin-top:24px;}
+.compare-row{display:flex; justify-content:space-between; padding:22px 24px; font-size:.95rem;}
+.compare-left{color:#d99; }
+.compare-right{color:var(--gold-light);}
+input[type=range]{width:100%; accent-color:var(--gold); margin:0 24px 22px; width:calc(100% - 48px);}
+.compare-labels{display:flex; justify-content:space-between; padding:0 24px 18px; font-size:.75rem; text-transform:uppercase; letter-spacing:1px; color:var(--gold);}
+footer{text-align:center; padding:60px 0 90px; padding-bottom:calc(60px + env(safe-area-inset-bottom,0px));}
+footer p{color:rgba(246,234,217,.6); font-size:.85rem; margin-top:18px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">easylandx<span>CUSTOM CONVERSION PAGES</span></div>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">The 22 Immutable Laws, applied to landing pages</div>
+    <h1>Marketing isn't a fight over pixels.<br>It's a fight for a place in the mind.</h1>
+    <p>Al Ries &amp; Jack Trout proved that the market is won in perception, not on the feature list. In 2026, your landing page is the first — and often only — chance to plant that perception. easylandx builds that page individually for every client, not from a template.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">See easylandx →</a>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Interactive</div>
+    <h2 style="color:var(--gold-light); margin-bottom:8px;">The Single-Word Focus Test</h2>
+    <p style="margin-bottom:24px;">The Law of Focus says a brand must own one word in the prospect's mind. Type the word you want visitors to associate with your business the instant your page loads.</p>
+    <div class="focus-box">
+      <input id="focusInput" type="text" maxlength="18" placeholder="e.g. Fast, Trusted, Local...">
+      <div style="margin-top:16px;"><button class="btn" onclick="burnWord()">Burn it into the mind</button></div>
+      <div id="focusResult"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The Framework, translated for the web</div>
+    <h2 style="color:var(--gold-light); margin-bottom:26px;">Six laws, six decisions every landing page makes</h2>
+
+    <details class="law-card" open>
+      <summary><svg class="icon" style="width:30px;height:30px;margin:0;" viewBox="0 0 24 24"><path d="M4 18l4-9 4 5 4-11 4 15"/></svg>Leadership &amp; the Mind</summary>
+      <p><span class="tag">Law 1 &amp; 2</span>Being first in a visitor's mind beats being "better." A template that looks like every other site never gets there first — it gets there identical. easylandx designs each page to make the first three seconds unmistakably yours.</p>
+    </details>
+
+    <details class="law-card">
+      <summary><svg class="icon" style="width:30px;height:30px;margin:0;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.7" fill="var(--gold)"/></svg>Focus</summary>
+      <p><span class="tag">Law 5</span>A page that tries to say everything says nothing. Every easylandx page is built to own one promise, one action, one word — not a menu of features competing for attention.</p>
+    </details>
+
+    <details class="law-card">
+      <summary><svg class="icon" style="width:30px;height:30px;margin:0;" viewBox="0 0 24 24"><path d="M4 20h16M6 20V10M12 20V4M18 20V13"/></svg>Category creation</summary>
+      <p><span class="tag">Law 4</span>Instead of competing on the same ladder as generic site builders, easylandx builds a new one: pages designed like a bespoke storefront, not assembled like furniture. Different ladder, easy to lead.</p>
+    </details>
+
+    <details class="law-card">
+      <summary><svg class="icon" style="width:30px;height:30px;margin:0;" viewBox="0 0 24 24"><path d="M14 3l4 4-9 9H5v-4z"/></svg>Resisting line extension</summary>
+      <p><span class="tag">Law 12</span>Template platforms stretch one design across thousands of businesses, diluting every one of them. easylandx refuses that shortcut — one page, crafted for one business, every time.</p>
+    </details>
+
+    <details class="law-card">
+      <summary><svg class="icon" style="width:30px;height:30px;margin:0;" viewBox="0 0 24 24"><path d="M4 5h16v10H8l-4 4z"/></svg>Candor</summary>
+      <p><span class="tag">Law 18</span>A custom page takes more thought than clicking a template. That's the honest trade-off — and it's exactly why the result converts instead of blending in.</p>
+    </details>
+
+    <details class="law-card">
+      <summary><svg class="icon" style="width:30px;height:30px;margin:0;" viewBox="0 0 24 24"><path d="M3 15c4-8 8 6 12-2 2-4 4-4 6-2"/></svg>Riding the trend</summary>
+      <p><span class="tag">Law 19</span>Flashy design fads fade; conversion-focused clarity compounds. easylandx builds for the long, quiet trend — pages that keep earning trust well past 2026.</p>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Interactive</div>
+    <h2 style="color:var(--gold-light); margin-bottom:8px;">Template dilution vs. custom focus</h2>
+    <p>Drag the slider — this is the Law of Line Extension in miniature.</p>
+    <div class="compare">
+      <div class="compare-row">
+        <span class="compare-left" id="cLeft">Generic template — same layout as 40,000 other sites</span>
+        <span class="compare-right" id="cRight" style="opacity:.25">One page, built only for your business</span>
+      </div>
+      <input type="range" min="0" max="100" value="15" oninput="updateCompare(this.value)">
+      <div class="compare-labels"><span>Diluted</span><span>Focused</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2 style="color:var(--gold-light); margin-bottom:14px;">Own your word in 2026.</h2>
+    <p style="color:var(--cream); margin-bottom:26px;">easylandx builds one page, crafted for one business — yours.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx →</a>
+    <p>© 2026 easylandx. Positioning principles adapted from Ries &amp; Trout's marketing laws.</p>
+  </div>
+</footer>
+
+<script>
+function burnWord(){
+  var v = document.getElementById('focusInput').value.trim();
+  var box = document.getElementById('focusResult');
+  if(!v){ box.innerHTML = '<p class="hint">Type a word first — a page with no single word to own is a page the mind skips.</p>'; return; }
+  box.innerHTML = '<div class="word-burn">'+v.toUpperCase()+'</div><p class="hint">If a visitor remembers only one thing about your business, this should be it. That\'s the word your landing page needs to be built around.</p>';
+}
+function updateCompare(val){
+  document.getElementById('cLeft').style.opacity = (1 - val/130).toFixed(2);
+  document.getElementById('cRight').style.opacity = (0.2 + val/110).toFixed(2);
+}
+</script>
+</body>
+</html>
