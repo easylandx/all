@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX | Landing Pages That Are Your Best Friend</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#E3A817;--gold2:#EDB83A;--gold3:#C98F0B;--ink:#2B2008;--green:#1F5A3A;--terra:#C2553A;--cream:#FFF3CC;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--gold);color:var(--ink);font-family:Nunito,system-ui,sans-serif;font-weight:500;font-size:18px;line-height:1.6}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:900;line-height:1.08;margin:0 0 .5em}
+h1{font-size:clamp(2.4rem,7vw,4.8rem)}h2{font-size:clamp(1.9rem,4.6vw,3.2rem)}h3{font-size:1.35rem}
+section,header.top,footer{padding:clamp(48px,8vw,96px) clamp(20px,6vw,72px)}
+.wrap{max-width:1080px;margin:0 auto}
+.alt{background:var(--gold2)}.deep{background:var(--gold3)}
+.eyebrow{font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;color:var(--green)}
+.btn{display:inline-block;background:var(--green);color:var(--cream);font-weight:800;font-size:1.1rem;padding:16px 30px;border-radius:999px;text-decoration:none;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s;cursor:pointer;font-family:inherit}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.btn.terra{background:var(--terra)}
+.btn.sm{padding:10px 20px;font-size:.95rem;box-shadow:3px 3px 0 var(--ink)}
+nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.logo{font-family:Fraunces,serif;font-weight:900;font-size:1.6rem}.logo b{color:var(--terra)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero p{font-size:1.25rem;max-width:34em}
+.hero svg{width:100%;height:auto;max-width:100%}
+.grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--cream);border:3px solid var(--ink);border-radius:22px;padding:24px;box-shadow:6px 6px 0 var(--ink)}
+.card svg{width:64px;height:64px;margin-bottom:8px}
+.card.g{background:var(--green);color:var(--cream)}.card.t{background:var(--terra);color:var(--cream)}
+.lessons{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.flip{perspective:900px;height:250px;cursor:pointer;background:none;border:0;padding:0;font:inherit;color:inherit;text-align:left}
+.flip i{position:absolute;inset:0;transition:transform .6s;transform-style:preserve-3d;display:block}
+.flip.on i{transform:rotateY(180deg)}
+.flip span{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:3px solid var(--ink);border-radius:22px;padding:22px;box-shadow:5px 5px 0 var(--ink);display:flex;flex-direction:column;justify-content:center;font-style:normal;overflow:auto}
+.flip .f{background:var(--cream)}.flip .b{background:var(--green);color:var(--cream);transform:rotateY(180deg)}
+.flip .f strong{font-family:Fraunces,serif;font-size:1.3rem;line-height:1.15}.flip small{font-weight:800;color:var(--terra);margin-top:10px}
+.lab{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+.toggles{display:grid;gap:12px}
+.tg{display:flex;gap:14px;align-items:center;background:var(--cream);border:3px solid var(--ink);border-radius:18px;padding:14px 18px;cursor:pointer;font:inherit;color:inherit;text-align:left;width:100%;transition:background .2s}
+.tg .dot{flex:none;width:34px;height:34px;border-radius:50%;border:3px solid var(--ink);background:var(--gold2);display:grid;place-items:center;font-weight:800;color:var(--cream)}
+.tg.on{background:var(--green);color:var(--cream)}.tg.on .dot{background:var(--terra)}
+.tg b{display:block;font-size:1.05rem}.tg em{font-style:normal;font-size:.92rem;opacity:.9}
+.mock{background:var(--cream);border:3px solid var(--ink);border-radius:22px;padding:14px;box-shadow:6px 6px 0 var(--ink);position:sticky;top:20px}
+.mock svg{width:100%;height:auto;display:block}
+.mock g.l{opacity:.12;transition:opacity .5s,transform .5s}.mock g.l.on{opacity:1}
+.meter{height:20px;border:3px solid var(--ink);border-radius:99px;background:var(--gold2);overflow:hidden;margin:14px 0 6px}
+.meter div{height:100%;width:0;background:linear-gradient(90deg,var(--terra),var(--green));transition:width .6s}
+#msg{font-weight:800;color:var(--green);min-height:3em;margin:0}
+.savor{text-align:center}
+.ring{position:relative;width:min(280px,70vw);aspect-ratio:1;margin:26px auto}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring .c{position:absolute;inset:0;display:grid;place-items:center;font-family:Fraunces,serif;font-weight:900;font-size:1.5rem;padding:18% ;text-align:center;line-height:1.15}
+.glow{animation:glow 2.4s ease-in-out infinite}
+@keyframes glow{50%{transform:scale(1.06)}}
+details{background:var(--cream);border:3px solid var(--ink);border-radius:18px;padding:16px 22px;margin-bottom:14px}
+summary{font-family:Fraunces,serif;font-weight:900;font-size:1.2rem;cursor:pointer}
+details p{margin:.7em 0 0}
+.sun{transform-origin:center;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.float{animation:fl 5s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-10px)}}
+footer{text-align:center;background:var(--ink);color:var(--cream)}
+footer h2{color:var(--gold)}
+@media(max-width:820px){.hero,.lab{grid-template-columns:1fr}.mock{position:static}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+<div class="wrap">
+<nav>
+<div class="logo">Easy<b>LandX</b></div>
+<a class="btn sm" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</nav>
+<div class="hero">
+<div>
+<div class="eyebrow">Landing pages with a friendly heart</div>
+<h1>Be your own best friend. Let your landing page be one too.</h1>
+<p>Happiness is an internal choice, and so is a confident online presence. EasyLandX creates landing pages that speak to your visitors the way a good friend speaks: warm, clear, and encouraging.</p>
+<p><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a> &nbsp; <a class="btn terra" href="#lab">Build a friendly page</a></p>
+</div>
+<svg viewBox="0 0 460 420" role="img" aria-label="Two friends celebrating beside a glowing landing page">
+<g class="sun" style="transform-origin:230px 200px">
+<circle cx="230" cy="200" r="190" fill="#EDB83A"/>
+<g stroke="#C98F0B" stroke-width="10" stroke-linecap="round">
+<path d="M230 -5v30M230 375v30M25 200h30M405 200h30M85 55l22 22M353 323l22 22M85 345l22-22M353 77l22-22"/></g>
+</g>
+<rect x="120" y="70" width="220" height="250" rx="18" fill="#FFF3CC" stroke="#2B2008" stroke-width="6"/>
+<rect x="120" y="70" width="220" height="36" rx="18" fill="#1F5A3A"/>
+<circle cx="145" cy="88" r="6" fill="#C2553A"/><circle cx="165" cy="88" r="6" fill="#EDB83A"/><circle cx="185" cy="88" r="6" fill="#FFF3CC"/>
+<rect x="145" y="130" width="170" height="16" rx="8" fill="#2B2008"/>
+<rect x="145" y="156" width="120" height="12" rx="6" fill="#C98F0B"/>
+<rect x="145" y="190" width="170" height="60" rx="12" fill="#EDB83A" stroke="#2B2008" stroke-width="4"/>
+<path d="M230 205l9 18 20 3-14 14 3 20-18-9-18 9 3-20-14-14 20-3z" fill="#C2553A" transform="translate(0,-6) scale(.9) translate(25,10)"/>
+<rect x="165" y="270" width="130" height="34" rx="17" fill="#1F5A3A" stroke="#2B2008" stroke-width="4"/>
+<g class="float">
+<circle cx="70" cy="300" r="34" fill="#C2553A" stroke="#2B2008" stroke-width="6"/>
+<path d="M56 308q14 16 28 0" fill="none" stroke="#2B2008" stroke-width="5" stroke-linecap="round"/>
+<circle cx="58" cy="292" r="4" fill="#2B2008"/><circle cx="82" cy="292" r="4" fill="#2B2008"/>
+<path d="M70 334v60M70 350l-36-26M70 350l44-40" stroke="#2B2008" stroke-width="9" stroke-linecap="round" fill="none"/>
+</g>
+<g class="float" style="animation-delay:-2.5s">
+<circle cx="390" cy="300" r="34" fill="#1F5A3A" stroke="#2B2008" stroke-width="6"/>
+<path d="M376 308q14 16 28 0" fill="none" stroke="#FFF3CC" stroke-width="5" stroke-linecap="round"/>
+<circle cx="378" cy="292" r="4" fill="#FFF3CC"/><circle cx="402" cy="292" r="4" fill="#FFF3CC"/>
+<path d="M390 334v60M390 350l36-26M390 350l-44-40" stroke="#2B2008" stroke-width="9" stroke-linecap="round" fill="none"/>
+</g>
+<path d="M114 310l10-14 10 14M326 310l10-14 10 14" stroke="#2B2008" stroke-width="0" fill="none"/>
+<g fill="#C2553A"><circle cx="230" cy="36" r="8"/><circle cx="60" cy="150" r="7"/><circle cx="410" cy="120" r="9"/></g>
+</svg>
+</div>
+</div>
+</header>
+
+<section class="alt">
+<div class="wrap">
+<div class="eyebrow">Four big ideas</div>
+<h2>A landing page that shines from the inside out</h2>
+<div class="grid">
+<div class="card">
+<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="14" fill="#C2553A" stroke="#2B2008" stroke-width="3"/><path d="M32 4v10M32 50v10M4 32h10M50 32h10M12 12l7 7M45 45l7 7M12 52l7-7M45 19l7-7" stroke="#1F5A3A" stroke-width="4" stroke-linecap="round"/></svg>
+<h3>Happiness is an internal choice</h3>
+<p>Your page reflects the attitude you choose. Pick warmth, pick clarity, pick confidence, and visitors feel it right away.</p>
+</div>
+<div class="card g">
+<svg viewBox="0 0 64 64"><path d="M32 8l6 16h17L41 34l5 17-14-10-14 10 5-17L9 24h17z" fill="#E3A817" stroke="#2B2008" stroke-width="3" stroke-linejoin="round"/></svg>
+<h3>Radical self-responsibility</h3>
+<p>You hold the pen. Your page gives you full ownership of your story, your offer, and your next step.</p>
+</div>
+<div class="card t">
+<svg viewBox="0 0 64 64"><path d="M32 54C8 36 6 18 18 12c7-3 12 1 14 6 2-5 7-9 14-6 12 6 10 24-14 42z" fill="#FFF3CC" stroke="#2B2008" stroke-width="3"/></svg>
+<h3>Self-compassion first</h3>
+<p>Kind words build bridges. Every headline, button, and paragraph speaks with the generosity of a trusted friend.</p>
+</div>
+<div class="card">
+<svg viewBox="0 0 64 64"><circle cx="22" cy="26" r="10" fill="#1F5A3A" stroke="#2B2008" stroke-width="3"/><circle cx="42" cy="26" r="10" fill="#C2553A" stroke="#2B2008" stroke-width="3"/><path d="M8 54q14-20 24 0 10-20 24 0" fill="none" stroke="#2B2008" stroke-width="4" stroke-linecap="round"/></svg>
+<h3>Self-love lifts every relationship</h3>
+<p>A page that feels secure invites visitors in with ease. Confident owners attract welcoming, lasting connections.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<div class="eyebrow">Key lessons</div>
+<h2>Tap a card to see the landing page twist</h2>
+<div class="lessons" id="lessons">
+<button class="flip" aria-label="Lesson 1"><i>
+<span class="f"><strong>1. Choose a sunny view of emotions</strong><small>Tap to flip</small></span>
+<span class="b">Feelings grow where you give them attention. Your page can nurture enthusiasm on purpose: bright first lines, lively visuals, and a hopeful invitation.</span></i></button>
+<button class="flip" aria-label="Lesson 2"><i>
+<span class="f"><strong>2. Grow into confident self-direction</strong><small>Tap to flip</small></span>
+<span class="b">Adults lead with their own voice. Your page speaks plainly about what you love to offer and welcomes the people who love it too.</span></i></button>
+<button class="flip" aria-label="Lesson 3"><i>
+<span class="f"><strong>3. Inner praise lasts longer</strong><small>Tap to flip</small></span>
+<span class="b">Appreciation from within builds lasting esteem. Celebrate your craft on the page, and let your own pride set the tone.</span></i></button>
+<button class="flip" aria-label="Lesson 4"><i>
+<span class="f"><strong>4. Releasing old grievances frees your energy</strong><small>Tap to flip</small></span>
+<span class="b">A fresh page is a fresh start. Pour reclaimed energy into your present offer and your future clients.</span></i></button>
+</div>
+</div>
+</section>
+
+<section class="deep" id="lab">
+<div class="wrap">
+<div class="eyebrow">Interactive lab</div>
+<h2>Build a best-friend landing page</h2>
+<p>Tap each practice and watch the page come alive. Reach 100% for a fully friendly page.</p>
+<div class="lab">
+<div class="toggles" id="toggles">
+<button class="tg" data-i="0"><span class="dot">✓</span><span><b>Internal Dialogue</b><em>A supportive headline that encourages every visitor</em></span></button>
+<button class="tg" data-i="1"><span class="dot">✓</span><span><b>Savor Your Wins</b><em>A proud strip of results, reviews, and milestones</em></span></button>
+<button class="tg" data-i="2"><span class="dot">✓</span><span><b>Reparent with Steady Structure</b><em>Calm sections, clear spacing, a reliable rhythm</em></span></button>
+<button class="tg" data-i="3"><span class="dot">✓</span><span><b>Catch the Pattern</b><em>A single clear action chosen from what works</em></span></button>
+<div class="meter"><div id="bar"></div></div>
+<p id="msg">Tap a practice to begin.</p>
+</div>
+<div class="mock">
+<svg viewBox="0 0 400 440" role="img" aria-label="Landing page preview that builds as practices are chosen">
+<rect x="4" y="4" width="392" height="432" rx="14" fill="#FFF3CC" stroke="#2B2008" stroke-width="4"/>
+<rect x="4" y="4" width="392" height="34" rx="14" fill="#1F5A3A"/>
+<circle cx="24" cy="21" r="5" fill="#C2553A"/><circle cx="42" cy="21" r="5" fill="#E3A817"/>
+<g class="l" data-g="0"><circle cx="330" cy="90" r="30" fill="#E3A817"/><rect x="30" y="64" width="250" height="18" rx="9" fill="#2B2008"/><rect x="30" y="92" width="190" height="18" rx="9" fill="#2B2008"/><rect x="30" y="122" width="150" height="10" rx="5" fill="#C2553A"/></g>
+<g class="l" data-g="1"><rect x="30" y="156" width="100" height="70" rx="12" fill="#E3A817" stroke="#2B2008" stroke-width="3"/><rect x="150" y="156" width="100" height="70" rx="12" fill="#C2553A" stroke="#2B2008" stroke-width="3"/><rect x="270" y="156" width="100" height="70" rx="12" fill="#1F5A3A" stroke="#2B2008" stroke-width="3"/><path d="M80 176l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z" fill="#FFF3CC" transform="translate(-2,-4)"/><path d="M200 176l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z" fill="#FFF3CC" transform="translate(-2,-4)"/><path d="M320 176l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z" fill="#FFF3CC" transform="translate(-2,-4)"/></g>
+<g class="l" data-g="2"><rect x="30" y="248" width="340" height="12" rx="6" fill="#C98F0B"/><rect x="30" y="270" width="340" height="12" rx="6" fill="#C98F0B"/><rect x="30" y="292" width="240" height="12" rx="6" fill="#C98F0B"/><path d="M30 322h340" stroke="#2B2008" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/></g>
+<g class="l" data-g="3"><rect x="100" y="344" width="200" height="50" rx="25" fill="#1F5A3A" stroke="#2B2008" stroke-width="4"/><rect x="140" y="364" width="120" height="10" rx="5" fill="#FFF3CC"/><path d="M270 404l14 14-6 2 6 10-4 2-6-10-6 6z" fill="#C2553A" stroke="#2B2008" stroke-width="2"/></g>
+</svg>
+</div>
+</div>
+</div>
+</section>
+
+<section class="alt savor">
+<div class="wrap">
+<div class="eyebrow">Savor the win</div>
+<h2>Linger on the good feeling</h2>
+<p>You launched something wonderful. Press and enjoy five seconds of pure pride before the next task.</p>
+<div class="ring">
+<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="#C98F0B" stroke-width="10"/><circle id="arc" cx="60" cy="60" r="52" fill="none" stroke="#C2553A" stroke-width="10" stroke-linecap="round" stroke-dasharray="327" stroke-dashoffset="327"/></svg>
+<div class="c" id="ringtxt">Ready when you are</div>
+</div>
+<button class="btn" id="savorBtn">Savor this win</button>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<div class="eyebrow">Practical strategies</div>
+<h2>Four friendly habits for your page</h2>
+<div class="grid">
+<div class="card g"><h3>Internal dialogue</h3><p>Write copy as an encouraging friend would. Swap hesitation for invitation: "Your story deserves a beautiful home."</p></div>
+<div class="card"><h3>Savor and dwell</h3><p>Give results a spotlight. Reviews, milestones, and happy clients sit proudly near the top.</p></div>
+<div class="card t"><h3>Reparent the inner child</h3><p>Steady layouts, patient pacing, and clear boundaries between sections create calm for every visitor.</p></div>
+<div class="card"><h3>Catch the pattern</h3><p>Review what works, adjust your own actions, and keep refining. Every update moves you closer to your goal.</p></div>
+</div>
+</div>
+</section>
+
+<section class="deep">
+<div class="wrap">
+<div class="eyebrow">Conversation style</div>
+<h2>Ask your page anything</h2>
+<details><summary>Is a friendly landing page a luxury?</summary><p>It is a smart investment. Self-care and business care go hand in hand, and a caring page gives your best work a welcoming stage.</p></details>
+<details><summary>How fast can I be live?</summary><p>EasyLandX is built for momentum. Share your vision and enjoy a polished page quickly, ready to welcome visitors.</p></details>
+<details><summary>What if I love my offer but feel shy about promoting it?</summary><p>Wonderful starting point. Appreciation for your work is the seed of great copy. Let the page speak with the same warmth you give your favorite clients.</p></details>
+<details><summary>Who is it for?</summary><p>Creators, small businesses, coaches, artists, and anyone ready to give their audience a clear and joyful first step.</p></details>
+</div>
+</section>
+
+<footer>
+<h2>Your best friend in landing pages</h2>
+<p>Give yourself the gift of a page you are proud of.</p>
+<p><a class="btn terra" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></p>
+</footer>
+
+<script>
+(function(){
+document.querySelectorAll('.flip').forEach(function(c){c.addEventListener('click',function(){c.classList.toggle('on')})});
+var msgs=['Tap a practice to begin.','Lovely start! Your page speaks with warmth.','Two practices shining. Pride is on display!','Three in place. Calm and steady feels great.','Fully friendly! Your page is ready to welcome the world.'];
+var tg=document.querySelectorAll('.tg'),bar=document.getElementById('bar'),msg=document.getElementById('msg');
+function upd(){var n=0;tg.forEach(function(t){var on=t.classList.contains('on');if(on)n++;
+var g=document.querySelector('g[data-g="'+t.dataset.i+'"]');g.classList.toggle('on',on)});
+bar.style.width=(n*25)+'%';msg.textContent=msgs[n]+(n?' ('+n*25+'% friendly)':'')}
+tg.forEach(function(t){t.addEventListener('click',function(){t.classList.toggle('on');upd()})});
+var arc=document.getElementById('arc'),txt=document.getElementById('ringtxt'),btn=document.getElementById('savorBtn'),run=false;
+var words=['Breathe in the pride','You did this','Feel it fully','Shine a little longer','Wonderful work'];
+function chime(){try{var a=new(window.AudioContext||window.webkitAudioContext)();[523,659,784].forEach(function(f,i){var o=a.createOscillator(),g=a.createGain();o.frequency.value=f;o.type='sine';o.connect(g);g.connect(a.destination);var t=a.currentTime+i*.18;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.15,t+.04);g.gain.exponentialRampToValueAtTime(.0001,t+.9);o.start(t);o.stop(t+1)})}catch(e){}}
+btn.addEventListener('click',function(){if(run)return;run=true;btn.textContent='Savoring...';var s=Date.now();txt.classList.add('glow');
+var iv=setInterval(function(){var p=Math.min((Date.now()-s)/5000,1);arc.style.strokeDashoffset=327*(1-p);txt.textContent=words[Math.min(Math.floor(p*5),4)];
+if(p>=1){clearInterval(iv);txt.textContent='Win savored! Onward with joy.';txt.classList.remove('glow');chime();btn.textContent='Savor another win';run=false;setTimeout(function(){arc.style.strokeDashoffset=327},1800)}},60)});
+})();
+</script>
+</body>
+</html>
