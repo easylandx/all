@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyLandX | How to Win with Landing Pages</title>
+<meta name="description" content="Landing pages that win: expected value, game theory, information gain and working backward, applied to your page by EasyLandX.">
+<style>
+:root{
+  --red:#e10600;
+  --red-d:#b30500;
+  --red-dd:#8a0400;
+  --red-l:#ff2a1f;
+  --yellow:#ffd60a;
+  --green:#22e06b;
+  --cream:#fff6e5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--red);color:var(--cream);font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;line-height:1.6;font-size:17px;overflow-x:hidden}
+h1,h2,h3{font-family:Impact,"Arial Black",system-ui,sans-serif;font-weight:900;letter-spacing:.5px;line-height:1.05;text-transform:uppercase}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+section{padding:84px 0;position:relative}
+.alt{background:var(--red-d)}
+.deep{background:var(--red-dd)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:var(--red-dd);border-bottom:4px solid var(--yellow)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{font-family:Impact,"Arial Black",sans-serif;font-size:26px;text-decoration:none;color:var(--cream);letter-spacing:1px}
+.logo b{color:var(--yellow)}
+.links{display:flex;gap:22px;align-items:center}
+.links a.l{text-decoration:none;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:1px;opacity:.9}
+.links a.l:hover{color:var(--yellow)}
+@media(max-width:820px){.links a.l{display:none}}
+
+.btn{display:inline-block;background:var(--green);color:#06210f;font-family:Impact,"Arial Black",sans-serif;text-transform:uppercase;letter-spacing:1px;padding:14px 28px;border-radius:999px;text-decoration:none;font-size:18px;border:3px solid #06210f;box-shadow:5px 5px 0 #06210f;transition:transform .15s,box-shadow .15s;cursor:pointer}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 #06210f}
+.btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 #06210f}
+.btn.y{background:var(--yellow)}
+.btn.sm{padding:9px 20px;font-size:15px;box-shadow:3px 3px 0 #06210f}
+.btn.ghost{background:transparent;color:var(--cream);border-color:var(--cream);box-shadow:5px 5px 0 var(--red-dd)}
+
+/* hero */
+.hero{padding:70px 0 90px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+.tag{display:inline-block;background:var(--yellow);color:var(--red-dd);font-weight:900;text-transform:uppercase;letter-spacing:2px;font-size:13px;padding:6px 14px;border-radius:6px;margin-bottom:18px;transform:rotate(-2deg)}
+.hero h1{font-size:clamp(44px,7.4vw,92px)}
+.hero h1 span{color:var(--yellow)}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero p.lead{font-size:20px;margin:22px 0 30px;max-width:540px}
+.cta-row{display:flex;gap:16px;flex-wrap:wrap}
+.hero-art{width:100%;height:auto;filter:drop-shadow(10px 12px 0 rgba(0,0,0,.25))}
+.float{animation:float 5s ease-in-out infinite}
+.float.b{animation-delay:-1.6s}
+.float.c{animation-delay:-3.2s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* marquee */
+.marquee{background:var(--yellow);color:var(--red-dd);border-block:4px solid var(--red-dd);overflow:hidden;white-space:nowrap}
+.marquee div{display:inline-block;padding:12px 0;font-family:Impact,"Arial Black",sans-serif;text-transform:uppercase;letter-spacing:2px;font-size:20px;animation:slide 28s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* headings */
+.kicker{color:var(--yellow);font-weight:900;text-transform:uppercase;letter-spacing:3px;font-size:13px;margin-bottom:10px}
+h2{font-size:clamp(34px,5vw,58px);margin-bottom:16px}
+h2 span{color:var(--yellow)}
+.sub{max-width:720px;font-size:19px;margin-bottom:46px;opacity:.95}
+
+/* cards */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:900px){.grid3{grid-template-columns:1fr}}
+.card{background:var(--red-d);border:4px solid var(--cream);border-radius:20px;padding:28px;box-shadow:8px 8px 0 var(--red-dd);position:relative}
+.alt .card{background:var(--red)}
+.card h3{font-size:25px;margin:14px 0 10px;color:var(--yellow)}
+.card .num{position:absolute;top:-22px;right:18px;background:var(--green);color:#06210f;font-family:Impact,sans-serif;font-size:28px;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:3px solid #06210f}
+.card svg{width:100%;max-width:170px;height:auto;display:block}
+
+/* lessons */
+.lesson{display:grid;grid-template-columns:200px 1fr;gap:34px;align-items:center;padding:40px 0;border-top:4px dashed rgba(255,246,229,.4)}
+.lesson:first-of-type{border-top:none}
+.lesson:nth-child(even){direction:rtl}
+.lesson:nth-child(even)>*{direction:ltr}
+@media(max-width:760px){.lesson,.lesson:nth-child(even){grid-template-columns:1fr;direction:ltr}}
+.lesson svg{width:100%;height:auto}
+.lesson h3{font-size:34px;margin-bottom:8px}
+.lesson h3 small{display:block;color:var(--green);font-size:14px;letter-spacing:3px;font-family:"Trebuchet MS",sans-serif;margin-bottom:6px}
+.lesson .book{font-style:italic;opacity:.92;margin-bottom:12px}
+.apply{background:var(--red-dd);border-left:8px solid var(--green);padding:14px 18px;border-radius:0 14px 14px 0;margin-top:12px}
+.alt .apply{background:var(--red-dd)}
+.apply b{color:var(--yellow);text-transform:uppercase;letter-spacing:1px;font-size:13px;display:block}
+
+/* tools */
+.tool{background:var(--red-dd);border:5px solid var(--yellow);border-radius:26px;padding:34px;box-shadow:10px 10px 0 rgba(0,0,0,.28);margin-bottom:44px}
+.tool h3{font-size:34px;color:var(--yellow);margin-bottom:6px}
+.tool p.how{margin-bottom:22px;opacity:.95}
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+@media(max-width:860px){.tool-grid{grid-template-columns:1fr}.tool{padding:22px}}
+.field{margin-bottom:18px}
+.field label{display:flex;justify-content:space-between;font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:1px;margin-bottom:6px}
+.field label output{color:var(--yellow);font-size:16px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:14px;border-radius:99px;background:var(--red);border:3px solid var(--cream);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:var(--green);border:4px solid #06210f;cursor:pointer}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--green);border:4px solid #06210f;cursor:pointer}
+.out{background:var(--red);border:4px solid var(--cream);border-radius:18px;padding:22px}
+.big{font-family:Impact,"Arial Black",sans-serif;font-size:clamp(38px,6vw,64px);line-height:1;color:var(--green)}
+.big.neg{color:var(--yellow)}
+.mini{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:2px dashed rgba(255,246,229,.35);font-size:15px}
+.mini b{color:var(--yellow)}
+.verdict{margin-top:16px;font-weight:800;padding:12px 16px;border-radius:12px;background:var(--green);color:#06210f}
+.verdict.warm{background:var(--yellow);color:var(--red-dd)}
+.bars{display:flex;align-items:flex-end;gap:14px;height:150px;margin-top:18px;padding:0 6px;border-bottom:4px solid var(--cream)}
+.bars div{flex:1;border-radius:10px 10px 0 0;transition:height .35s;min-height:6px;position:relative}
+.bars div span{position:absolute;top:-24px;left:0;right:0;text-align:center;font-size:12px;font-weight:800}
+.bars .a{background:var(--yellow)}
+.bars .b{background:var(--green)}
+.bars .c{background:var(--cream)}
+.bar-labels{display:flex;gap:14px;font-size:12px;text-transform:uppercase;font-weight:800;text-align:center;letter-spacing:1px;margin-top:6px}
+.bar-labels span{flex:1}
+
+/* nim */
+.piles{display:flex;flex-direction:column;gap:14px;margin:6px 0 18px}
+.pile{display:flex;gap:8px;align-items:center;min-height:50px}
+.pile .name{width:58px;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+.stone{width:44px;height:44px;border-radius:50%;border:4px solid #06210f;background:var(--yellow);cursor:pointer;transition:transform .12s,background .12s;font-family:Impact,sans-serif;color:#06210f;font-size:17px}
+.stone:hover{transform:scale(1.14);background:var(--green)}
+.stone.hov{background:var(--green);transform:scale(1.1)}
+.stone.cpu{background:var(--cream);animation:pop .4s}
+@keyframes pop{0%{transform:scale(1.6)}100%{transform:scale(1)}}
+.msg{min-height:56px;font-weight:800;font-size:18px;background:var(--red);border:3px solid var(--cream);padding:12px 16px;border-radius:14px;margin-bottom:14px}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.xor{font-family:"Courier New",monospace;background:var(--red);border:3px dashed var(--yellow);padding:12px 16px;border-radius:12px;margin-top:14px;font-size:15px}
+.score{display:flex;gap:24px;margin-top:14px;font-weight:900;text-transform:uppercase;letter-spacing:1px;font-size:13px}
+.score b{font-family:Impact,sans-serif;font-size:26px;color:var(--green);margin-left:6px}
+
+/* playbook table */
+.table{display:grid;gap:16px}
+.pb{display:grid;grid-template-columns:230px 1fr 1fr;gap:0;border:4px solid var(--cream);border-radius:18px;overflow:hidden;background:var(--red-d)}
+.pb>div{padding:18px 20px}
+.pb .g{background:var(--yellow);color:var(--red-dd);font-family:Impact,sans-serif;text-transform:uppercase;font-size:22px;display:flex;align-items:center;gap:10px}
+.pb .g svg{width:34px;height:34px;flex:none}
+.pb .m{border-right:3px solid var(--red-dd)}
+.pb .m small,.pb .p small{display:block;font-weight:900;text-transform:uppercase;letter-spacing:2px;font-size:11px;color:var(--yellow);margin-bottom:4px}
+.pb .p{background:var(--red-dd)}
+.pb .p small{color:var(--green)}
+@media(max-width:860px){.pb{grid-template-columns:1fr}.pb .m{border-right:none}}
+
+/* checklist */
+.check{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:760px){.check{grid-template-columns:1fr}}
+.ck{display:flex;gap:14px;align-items:flex-start;background:var(--red);border:4px solid var(--cream);border-radius:16px;padding:16px 18px;cursor:pointer;user-select:none;transition:background .2s}
+.ck .box{flex:none;width:34px;height:34px;border:4px solid var(--cream);border-radius:9px;display:grid;place-items:center;font-weight:900;font-size:22px;color:transparent;background:var(--red-dd)}
+.ck.on{background:var(--red-dd);border-color:var(--green)}
+.ck.on .box{background:var(--green);color:#06210f;border-color:#06210f}
+.progress{height:22px;border-radius:99px;border:4px solid var(--cream);background:var(--red-dd);overflow:hidden;margin:26px 0 8px}
+.progress i{display:block;height:100%;width:0;background:var(--green);transition:width .4s}
+.pt{font-weight:900;text-transform:uppercase;letter-spacing:1px}
+
+/* final */
+.final{text-align:center;overflow:hidden}
+.final h2{font-size:clamp(40px,7vw,86px)}
+.final p{max-width:640px;margin:0 auto 32px;font-size:20px}
+.final .btn{font-size:26px;padding:20px 44px}
+footer{background:var(--red-dd);border-top:4px solid var(--yellow);padding:26px 0;text-align:center;font-size:14px}
+footer b{color:var(--yellow)}
+.dots{position:absolute;inset:0;pointer-events:none;opacity:.5}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">EASY<b>LAND</b>X</a>
+    <div class="links">
+      <a class="l" href="#messages">Messages</a>
+      <a class="l" href="#lessons">Lessons</a>
+      <a class="l" href="#lab">Game Lab</a>
+      <a class="l" href="#playbook">Playbook</a>
+      <a class="btn sm" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="tag">Landing pages · Played to win</span>
+      <h1>Every landing page is a <span>game.</span> Play it with <em>math.</em></h1>
+      <p class="lead">Arthur Benjamin's <i>How to Win</i> shows how structured thinking beats gut feeling in games and puzzles. EasyLandX brings the same edge to your landing page: measured odds, smart first moves, and a clear path to the winning position.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to EasyLandX →</a>
+        <a class="btn y" href="#lab">Play the Game Lab</a>
+      </div>
+    </div>
+
+    <svg class="hero-art" viewBox="0 0 520 470" role="img" aria-label="Illustration of a landing page browser window surrounded by dice and playing cards">
+      <!-- browser -->
+      <g>
+        <rect x="40" y="70" width="390" height="300" rx="22" fill="#fff6e5" stroke="#8a0400" stroke-width="6"/>
+        <path d="M40 92a22 22 0 0 1 22-22h346a22 22 0 0 1 22 22v28H40z" fill="#8a0400"/>
+        <circle cx="68" cy="95" r="8" fill="#ffd60a"/><circle cx="94" cy="95" r="8" fill="#22e06b"/><circle cx="120" cy="95" r="8" fill="#e10600"/>
+        <rect x="150" y="85" width="240" height="20" rx="10" fill="#b30500"/>
+        <rect x="72" y="146" width="200" height="22" rx="6" fill="#e10600"/>
+        <rect x="72" y="178" width="160" height="22" rx="6" fill="#e10600"/>
+        <rect x="72" y="214" width="250" height="10" rx="5" fill="#ffb3ad"/>
+        <rect x="72" y="234" width="220" height="10" rx="5" fill="#ffb3ad"/>
+        <rect x="72" y="270" width="132" height="42" rx="21" fill="#22e06b" stroke="#06210f" stroke-width="4"/>
+        <text x="138" y="297" text-anchor="middle" font-family="Impact,sans-serif" font-size="19" fill="#06210f">PLAY</text>
+        <rect x="300" y="140" width="100" height="100" rx="14" fill="#ffd60a" stroke="#8a0400" stroke-width="4"/>
+        <polyline points="314,222 340,190 362,204 388,160" fill="none" stroke="#e10600" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="388" cy="160" r="8" fill="#22e06b" stroke="#06210f" stroke-width="3"/>
+        <rect x="300" y="256" width="100" height="56" rx="12" fill="#22e06b" stroke="#06210f" stroke-width="4"/>
+        <text x="350" y="282" text-anchor="middle" font-family="Impact,sans-serif" font-size="15" fill="#06210f">+EV</text>
+        <text x="350" y="302" text-anchor="middle" font-family="Impact,sans-serif" font-size="15" fill="#06210f">WIN</text>
+      </g>
+      <!-- die 1 -->
+      <g class="float" style="transform-origin:420px 90px">
+        <g transform="translate(395 28) rotate(14)">
+          <rect width="84" height="84" rx="16" fill="#ffd60a" stroke="#8a0400" stroke-width="6"/>
+          <circle cx="22" cy="22" r="7" fill="#8a0400"/><circle cx="62" cy="22" r="7" fill="#8a0400"/>
+          <circle cx="42" cy="42" r="7" fill="#8a0400"/>
+          <circle cx="22" cy="62" r="7" fill="#8a0400"/><circle cx="62" cy="62" r="7" fill="#8a0400"/>
+        </g>
+      </g>
+      <!-- die 2 -->
+      <g class="float b">
+        <g transform="translate(14 330) rotate(-12)">
+          <rect width="78" height="78" rx="15" fill="#22e06b" stroke="#06210f" stroke-width="6"/>
+          <circle cx="22" cy="22" r="7" fill="#06210f"/><circle cx="56" cy="22" r="7" fill="#06210f"/>
+          <circle cx="22" cy="56" r="7" fill="#06210f"/><circle cx="56" cy="56" r="7" fill="#06210f"/>
+        </g>
+      </g>
+      <!-- cards -->
+      <g class="float c">
+        <g transform="translate(350 300) rotate(12)">
+          <rect width="96" height="132" rx="12" fill="#fff6e5" stroke="#8a0400" stroke-width="5"/>
+          <text x="14" y="34" font-family="Impact,sans-serif" font-size="28" fill="#e10600">A</text>
+          <path d="M48 52c-18-14-34 6-18 26l18 18 18-18c16-20 0-40-18-26z" fill="#e10600" transform="translate(0 4)"/>
+        </g>
+        <g transform="translate(300 316) rotate(-6)">
+          <rect width="96" height="132" rx="12" fill="#fff6e5" stroke="#8a0400" stroke-width="5"/>
+          <text x="14" y="34" font-family="Impact,sans-serif" font-size="28" fill="#06210f">K</text>
+          <path d="M48 50l22 28-22 28-22-28z" fill="#06210f"/>
+        </g>
+      </g>
+      <!-- stones -->
+      <g>
+        <circle cx="130" cy="418" r="19" fill="#ffd60a" stroke="#06210f" stroke-width="5"/>
+        <circle cx="176" cy="418" r="19" fill="#ffd60a" stroke="#06210f" stroke-width="5"/>
+        <circle cx="222" cy="418" r="19" fill="#ffd60a" stroke="#06210f" stroke-width="5"/>
+        <circle cx="153" cy="376" r="19" fill="#ffd60a" stroke="#06210f" stroke-width="5" opacity="0"/>
+      </g>
+      <!-- sparkles -->
+      <g fill="#ffd60a">
+        <path d="M30 40l6 16 16 6-16 6-6 16-6-16-16-6 16-6z"/>
+        <path d="M492 230l4 11 11 4-11 4-4 11-4-11-11-4 11-4z"/>
+      </g>
+    </svg>
+  </div>
+</header>
+
+<div class="marquee"><div>
+  Expected Value ★ Un-exploitable Play ★ Information Gain ★ Work Backward ★ Kelly Criterion ★ Pot Odds ★ Basic Strategy ★ Symmetry ★ Expected Value ★ Un-exploitable Play ★ Information Gain ★ Work Backward ★ Kelly Criterion ★ Pot Odds ★ Basic Strategy ★ Symmetry ★ Expected Value ★ Un-exploitable Play ★ Information Gain ★ Work Backward ★ Kelly Criterion ★ Pot Odds ★ Basic Strategy ★ Symmetry ★ Expected Value ★ Un-exploitable Play ★ Information Gain ★ Work Backward ★ Kelly Criterion ★ Pot Odds ★ Basic Strategy ★ Symmetry ★
+</div></div>
+
+<!-- MAIN MESSAGES -->
+<section id="messages">
+  <div class="wrap">
+    <div class="kicker">The big ideas of the book</div>
+    <h2>Three messages that <span>change your page</span></h2>
+    <p class="sub">Arthur Benjamin, mathematician and showman, proves that analytical thinking gives a decisive edge. Here is how each core message becomes a landing page advantage.</p>
+    <div class="grid3">
+      <div class="card">
+        <div class="num">1</div>
+        <svg viewBox="0 0 170 110" aria-hidden="true">
+          <rect x="6" y="6" width="158" height="98" rx="14" fill="#8a0400" stroke="#fff6e5" stroke-width="4"/>
+          <rect x="24" y="58" width="22" height="34" fill="#ffd60a"/><rect x="56" y="42" width="22" height="50" fill="#ffd60a"/>
+          <rect x="88" y="30" width="22" height="62" fill="#22e06b"/><rect x="120" y="18" width="22" height="74" fill="#22e06b"/>
+          <g transform="translate(112 62) rotate(14)"><rect width="32" height="32" rx="7" fill="#fff6e5" stroke="#06210f" stroke-width="3"/><circle cx="16" cy="16" r="4" fill="#e10600"/></g>
+        </svg>
+        <h3>Luck can be managed &amp; quantified</h3>
+        <p>Games of chance are not pure mystery. By weighing probabilities and expected values you shift the odds your way over time. A landing page works the same way: visitors, conversion rate and value per customer tell you exactly where your edge lives.</p>
+      </div>
+      <div class="card">
+        <div class="num">2</div>
+        <svg viewBox="0 0 170 110" aria-hidden="true">
+          <rect x="6" y="6" width="158" height="98" rx="14" fill="#8a0400" stroke="#fff6e5" stroke-width="4"/>
+          <g transform="translate(22 22)">
+            <rect width="24" height="24" fill="#ffd60a"/><rect x="28" width="24" height="24" fill="#fff6e5"/><rect x="56" width="24" height="24" fill="#22e06b"/>
+            <rect y="28" width="24" height="24" fill="#fff6e5"/><rect x="28" y="28" width="24" height="24" fill="#22e06b"/><rect x="56" y="28" width="24" height="24" fill="#ffd60a"/>
+            <rect y="56" width="24" height="24" fill="#22e06b"/><rect x="28" y="56" width="24" height="24" fill="#ffd60a"/><rect x="56" y="56" width="24" height="24" fill="#fff6e5"/>
+          </g>
+          <path d="M120 30l20 24-20 24" fill="none" stroke="#ffd60a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>Systematic thinking beats intuition</h3>
+        <p>Sudoku, Wordle and the Rubik's Cube open up when you use algorithms, symmetry and information theory. Your page gets the same treatment: a repeatable structure for headline, proof, offer and call to action that you refine step by step.</p>
+      </div>
+      <div class="card">
+        <div class="num">3</div>
+        <svg viewBox="0 0 170 110" aria-hidden="true">
+          <rect x="6" y="6" width="158" height="98" rx="14" fill="#8a0400" stroke="#fff6e5" stroke-width="4"/>
+          <rect x="30" y="52" width="40" height="40" fill="#ffd60a"/><rect x="62" y="30" width="40" height="62" fill="#22e06b"/><rect x="100" y="42" width="34" height="50" fill="#fff6e5"/>
+          <path d="M26 92h120" stroke="#fff6e5" stroke-width="4"/>
+          <path d="M120 24l14 -10 0 8 14 0 0 4 -14 0 0 8z" fill="#ffd60a"/>
+        </svg>
+        <h3>Math is a real-life decision tool</h3>
+        <p>Risk management, optimal wagering and un-exploitable play reach well beyond the table. They guide business choices: how much to invest in a campaign, which offer to test and how to design a page that wins across many kinds of visitors.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LESSONS -->
+<section id="lessons" class="alt">
+  <div class="wrap">
+    <div class="kicker">Core lessons &amp; frameworks</div>
+    <h2>Four frameworks. <span>One winning page.</span></h2>
+    <p class="sub">Each lesson from the book, followed by the exact way EasyLandX applies it to landing pages.</p>
+
+    <!-- 1 -->
+    <div class="lesson">
+      <svg viewBox="0 0 200 200" role="img" aria-label="Scales balancing expected value">
+        <circle cx="100" cy="100" r="94" fill="#8a0400" stroke="#fff6e5" stroke-width="5"/>
+        <rect x="94" y="46" width="12" height="108" fill="#fff6e5"/>
+        <rect x="60" y="150" width="80" height="12" rx="6" fill="#ffd60a"/>
+        <path d="M44 70h112" stroke="#ffd60a" stroke-width="8" stroke-linecap="round"/>
+        <path d="M44 70l-20 46h40z" fill="#22e06b" stroke="#06210f" stroke-width="3"/>
+        <path d="M156 70l-20 46h40z" fill="#ffd60a" stroke="#06210f" stroke-width="3"/>
+        <text x="44" y="108" text-anchor="middle" font-family="Impact" font-size="20" fill="#06210f">+EV</text>
+      </svg>
+      <div>
+        <h3><small>Lesson 1</small>Probability &amp; Expected Value</h3>
+        <p class="book"><b>Book:</b> Judge every move by its long-term average outcome. A decision earns its place when the mathematical expectation is positive, not when one lucky result appears.</p>
+        <div class="apply"><b>On your landing page</b>
+          Treat each visitor as one roll of the dice. EV per visitor = conversion rate × value per customer. Track the average, celebrate each lift in it, and invest where the number grows. Use the <a href="#lab" style="color:var(--yellow);font-weight:800">EV Calculator</a> below to see your own edge.</div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="lesson">
+      <svg viewBox="0 0 200 200" role="img" aria-label="Triangle of three strategies mixed together">
+        <circle cx="100" cy="100" r="94" fill="#8a0400" stroke="#fff6e5" stroke-width="5"/>
+        <path d="M100 36L158 134H42z" fill="none" stroke="#fff6e5" stroke-width="5" stroke-linejoin="round"/>
+        <circle cx="100" cy="36" r="22" fill="#ffd60a" stroke="#06210f" stroke-width="4"/><text x="100" y="44" text-anchor="middle" font-family="Impact" font-size="22" fill="#06210f">A</text>
+        <circle cx="158" cy="134" r="22" fill="#22e06b" stroke="#06210f" stroke-width="4"/><text x="158" y="142" text-anchor="middle" font-family="Impact" font-size="22" fill="#06210f">B</text>
+        <circle cx="42" cy="134" r="22" fill="#fff6e5" stroke="#06210f" stroke-width="4"/><text x="42" y="142" text-anchor="middle" font-family="Impact" font-size="22" fill="#06210f">C</text>
+        <circle cx="100" cy="102" r="10" fill="#e10600" stroke="#fff6e5" stroke-width="3"><animate attributeName="cx" values="100;120;82;100" dur="4s" repeatCount="indefinite"/><animate attributeName="cy" values="102;112;114;102" dur="4s" repeatCount="indefinite"/></circle>
+      </svg>
+      <div>
+        <h3><small>Lesson 2</small>Game Theory &amp; Un-exploitable Play</h3>
+        <p class="book"><b>Book:</b> Against active opponents, mix your strategy so no pattern can be exploited. Nash equilibria and Rock-Paper-Scissors show that unpredictability is a strength.</p>
+        <div class="apply"><b>On your landing page</b>
+          Your market is a living contest: competitors adapt, audiences vary. Keep several headline and offer variants in rotation, test them side by side, and let the data guide the mix. A page that speaks to different visitor types is a page rivals cannot copy with a single move.</div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="lesson">
+      <svg viewBox="0 0 200 200" role="img" aria-label="Wordle style tiles spelling CRANE">
+        <circle cx="100" cy="100" r="94" fill="#8a0400" stroke="#fff6e5" stroke-width="5"/>
+        <g font-family="Impact" font-size="30" text-anchor="middle" fill="#06210f" stroke="#06210f" stroke-width="3">
+          <rect x="22" y="72" width="30" height="40" rx="5" fill="#fff6e5"/><text x="37" y="102" stroke="none">C</text>
+          <rect x="55" y="72" width="30" height="40" rx="5" fill="#ffd60a"/><text x="70" y="102" stroke="none">R</text>
+          <rect x="88" y="72" width="30" height="40" rx="5" fill="#22e06b"/><text x="103" y="102" stroke="none">A</text>
+          <rect x="121" y="72" width="30" height="40" rx="5" fill="#fff6e5"/><text x="136" y="102" stroke="none">N</text>
+          <rect x="154" y="72" width="30" height="40" rx="5" fill="#ffd60a"/><text x="169" y="102" stroke="none">E</text>
+        </g>
+        <path d="M40 140h120" stroke="#ffd60a" stroke-width="6" stroke-linecap="round" stroke-dasharray="2 12"/>
+        <text x="100" y="168" text-anchor="middle" font-family="Impact" font-size="17" fill="#fff6e5">MAX INFORMATION</text>
+      </svg>
+      <div>
+        <h3><small>Lesson 3</small>Information Reduction &amp; Elimination</h3>
+        <p class="book"><b>Book:</b> The best opening move is the one that teaches you the most. Guesses like CRANE or SLATE shrink the Wordle word list fast by revealing common letters.</p>
+        <div class="apply"><b>On your landing page</b>
+          Make your first version a learning move. Launch a page with one clear promise, one primary button and a short form, then read what visitors do. Each click, scroll and reply removes possibilities, so your second version starts far ahead of a guess.</div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="lesson">
+      <svg viewBox="0 0 200 200" role="img" aria-label="Path leading backward from a flag at the goal">
+        <circle cx="100" cy="100" r="94" fill="#8a0400" stroke="#fff6e5" stroke-width="5"/>
+        <path d="M40 150c30-6 30-50 60-52s40-30 60-50" fill="none" stroke="#ffd60a" stroke-width="7" stroke-dasharray="4 12" stroke-linecap="round"/>
+        <rect x="156" y="30" width="6" height="52" fill="#fff6e5"/>
+        <path d="M162 32l30 12-30 14z" fill="#22e06b" stroke="#06210f" stroke-width="3"/>
+        <circle cx="40" cy="150" r="12" fill="#ffd60a" stroke="#06210f" stroke-width="4"/>
+        <circle cx="100" cy="98" r="9" fill="#fff6e5" stroke="#06210f" stroke-width="4"/>
+        <path d="M130 78l-14 8 4-12M76 118l-14 8 4-12" stroke="#fff6e5" stroke-width="3" fill="none"/>
+        <text x="100" y="180" text-anchor="middle" font-family="Impact" font-size="17" fill="#fff6e5">START AT THE GOAL</text>
+      </svg>
+      <div>
+        <h3><small>Lesson 4</small>Working Backward &amp; Invariants</h3>
+        <p class="book"><b>Book:</b> Begin with the endgame. In Nim and other combinatorial games, positions are either winning for the player to move (N-positions) or strong for the player who just moved (P-positions). Guide the game toward the second kind.</p>
+        <div class="apply"><b>On your landing page</b>
+          Define the final position first: a booked call, a purchase, a sign-up. Then place each section as a step that leads to it, and keep every step in a position of strength: clear message, visible proof, one easy next move. Try it in the <a href="#nim" style="color:var(--yellow);font-weight:800">Nim game</a> below.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAB -->
+<section id="lab">
+  <div class="wrap">
+    <div class="kicker">Interactive Game Lab</div>
+    <h2>Play with the <span>numbers</span></h2>
+    <p class="sub">Three hands-on tools inspired by the book. Move the sliders, make a move, and feel the frameworks at work.</p>
+
+    <!-- EV -->
+    <div class="tool" id="ev">
+      <h3>🎲 Landing Page EV Calculator</h3>
+      <p class="how">Expected value in action: set your numbers and watch the long-term average of your page appear. Then raise the "headline test lift" to see what one smart experiment is worth.</p>
+      <div class="tool-grid">
+        <div>
+          <div class="field"><label>Monthly visitors <output id="o-vis">2,000</output></label><input type="range" id="vis" min="200" max="20000" step="100" value="2000"></div>
+          <div class="field"><label>Conversion rate <output id="o-cr">3.0%</output></label><input type="range" id="cr" min="0.5" max="15" step="0.1" value="3"></div>
+          <div class="field"><label>Value per customer (€) <output id="o-val">120</output></label><input type="range" id="val" min="10" max="1000" step="5" value="120"></div>
+          <div class="field"><label>Monthly cost: page + ads (€) <output id="o-cost">400</output></label><input type="range" id="cost" min="0" max="5000" step="50" value="400"></div>
+          <div class="field"><label>Headline test lift <output id="o-lift">+20%</output></label><input type="range" id="lift" min="0" max="100" step="5" value="20"></div>
+        </div>
+        <div class="out">
+          <div class="mini"><span>EV per visitor</span><b id="ev-vis">€0</b></div>
+          <div class="mini"><span>Customers per month</span><b id="ev-cust">0</b></div>
+          <div class="mini"><span>Monthly revenue</span><b id="ev-rev">€0</b></div>
+          <div style="margin-top:16px;font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:1px">Monthly expected profit</div>
+          <div class="big" id="ev-profit">€0</div>
+          <div class="verdict" id="ev-verdict"></div>
+          <div class="bars" id="bars">
+            <div class="a" id="bar1"><span></span></div>
+            <div class="b" id="bar2"><span></span></div>
+            <div class="c" id="bar3"><span></span></div>
+          </div>
+          <div class="bar-labels"><span>Revenue</span><span>With test</span><span>Cost</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kelly -->
+    <div class="tool" id="kelly">
+      <h3>💰 Kelly Budget Planner</h3>
+      <p class="how">The Kelly Criterion sizes each investment to your edge, protecting your bankroll while compounding growth. Enter your confidence in a campaign and see the share of budget the formula suggests.</p>
+      <div class="tool-grid">
+        <div>
+          <div class="field"><label>Chance the campaign succeeds (p) <output id="o-p">55%</output></label><input type="range" id="kp" min="10" max="90" step="1" value="55"></div>
+          <div class="field"><label>Payoff per € invested if it succeeds (b) <output id="o-b">1.5×</output></label><input type="range" id="kb" min="0.5" max="5" step="0.1" value="1.5"></div>
+          <div class="field"><label>Marketing bankroll (€) <output id="o-bank">5,000</output></label><input type="range" id="kbank" min="500" max="50000" step="500" value="5000"></div>
+          <p style="font-family:'Courier New',monospace;background:var(--red);border:3px dashed var(--yellow);padding:12px;border-radius:12px">f* = p − (1 − p) / b</p>
+        </div>
+        <div class="out">
+          <div style="font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:1px">Full Kelly share</div>
+          <div class="big" id="k-full">0%</div>
+          <div class="mini"><span>Smooth-ride choice (half Kelly)</span><b id="k-half">0%</b></div>
+          <div class="mini"><span>Suggested spend this round</span><b id="k-eur">€0</b></div>
+          <div class="mini"><span>Edge per € invested</span><b id="k-edge">0</b></div>
+          <div class="verdict" id="k-verdict"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nim -->
+    <div class="tool" id="nim">
+      <h3>🪙 Nim: Work Backward &amp; Win</h3>
+      <p class="how">Take any number of stones from one row by clicking a stone (it and every stone to its right are taken). Whoever takes the last stone wins. The secret: keep the XOR of the row sizes at zero after your move. That is a P-position, the winning spot for the player who just moved.</p>
+      <div class="tool-grid">
+        <div>
+          <div class="piles" id="piles"></div>
+          <div class="msg" id="msg"></div>
+          <div class="row">
+            <button class="btn sm y" id="hint">Show me the winning move</button>
+            <button class="btn sm" id="newg">New game</button>
+          </div>
+          <div class="score"><span>You<b id="sc-you">0</b></span><span>Computer<b id="sc-cpu">0</b></span></div>
+        </div>
+        <div class="out">
+          <div style="font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:1px;margin-bottom:8px">Position analysis</div>
+          <div class="xor" id="xor"></div>
+          <p style="margin-top:16px">Landing page link: just as Nim rewards planning from the final stone, your page rewards planning from the final click. Decide the goal, then shape every section to hold a strong position on the way there.</p>
+          <div class="verdict warm" id="nim-note">Binary values of each row, added without carrying, reveal the balance.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAYBOOK -->
+<section id="playbook" class="alt">
+  <div class="wrap">
+    <div class="kicker">Key strategies for specific games</div>
+    <h2>The <span>playbook</span>: from the table to your page</h2>
+    <p class="sub">Every game in the book teaches a move you can reuse. Here is the translation into landing page strategy.</p>
+    <div class="table">
+
+      <div class="pb">
+        <div class="g"><svg viewBox="0 0 34 34"><rect x="5" y="3" width="24" height="28" rx="4" fill="#8a0400"/><path d="M17 10c-6-5-11 2-6 8l6 6 6-6c5-6 0-13-6-8z" fill="#ffd60a"/></svg>Blackjack</div>
+        <div class="m"><small>The book</small>Follow basic strategy to shrink the house edge to its minimum, and track high versus low cards to bet boldly when the deck favors you.</div>
+        <div class="p"><small>Your landing page</small>Start from proven patterns: clear hero, social proof, single call to action. Watch your running numbers, and invest more when traffic quality favors you.</div>
+      </div>
+
+      <div class="pb">
+        <div class="g"><svg viewBox="0 0 34 34"><circle cx="17" cy="17" r="14" fill="#8a0400"/><text x="17" y="23" text-anchor="middle" font-family="Impact" font-size="18" fill="#ffd60a">€</text></svg>Wagering</div>
+        <div class="m"><small>The book</small>Use the Kelly Criterion and Gambler's Ruin formula for exact bet sizes that protect the bankroll and grow it steadily.</div>
+        <div class="p"><small>Your landing page</small>Size each ad budget to your measured edge. Scale up gradually as results confirm the numbers, and keep a reserve for the next experiment.</div>
+      </div>
+
+      <div class="pb">
+        <div class="g"><svg viewBox="0 0 34 34"><rect x="2" y="9" width="9" height="16" rx="2" fill="#8a0400"/><rect x="12.5" y="9" width="9" height="16" rx="2" fill="#8a0400"/><rect x="23" y="9" width="9" height="16" rx="2" fill="#8a0400"/></svg>Wordle</div>
+        <div class="m"><small>The book</small>Open with high-entropy guesses full of common vowels and consonants to narrow the list quickly.</div>
+        <div class="p"><small>Your landing page</small>Open with the most informative test: headline and main offer. Each answer from visitors trims the list of options for the next version.</div>
+      </div>
+
+      <div class="pb">
+        <div class="g"><svg viewBox="0 0 34 34"><circle cx="17" cy="17" r="14" fill="#8a0400"/><circle cx="17" cy="17" r="6" fill="#ffd60a"/></svg>Poker</div>
+        <div class="m"><small>The book</small>Compare pot odds with the chance of improving your hand, and mix your strategy so your strength stays hidden.</div>
+        <div class="p"><small>Your landing page</small>Compare cost per visitor with the value they bring. Proceed when the odds favor you, and vary your messages across audiences.</div>
+      </div>
+
+      <div class="pb">
+        <div class="g"><svg viewBox="0 0 34 34"><rect x="3" y="3" width="28" height="28" rx="5" fill="#8a0400"/><circle cx="11" cy="11" r="3" fill="#ffd60a"/><circle cx="23" cy="23" r="3" fill="#ffd60a"/><circle cx="23" cy="11" r="3" fill="#22e06b"/><circle cx="11" cy="23" r="3" fill="#22e06b"/></svg>Backgammon</div>
+        <div class="m"><small>The book</small>Blend tactical probability, such as hit chances per roll, with strategic doubling-cube choices based on win probabilities.</div>
+        <div class="p"><small>Your landing page</small>Pair daily tactics (button color, form length) with strategic bets (new offer, new audience). Double down when the data shows momentum.</div>
+      </div>
+
+      <div class="pb">
+        <div class="g"><svg viewBox="0 0 34 34"><path d="M17 3l12 7v14l-12 7-12-7V10z" fill="#8a0400"/><path d="M17 3v28M5 10l24 14M29 10L5 24" stroke="#ffd60a" stroke-width="1.6"/></svg>Nim · Sudoku · Cube</div>
+        <div class="m"><small>The book</small>Use symmetry, solve sub-problems step by step with algorithms, and reduce the search space through logical deduction.</div>
+        <div class="p"><small>Your landing page</small>Build in balanced, repeatable sections. Improve one element at a time, lock in each win, and let logic guide the next change.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section class="deep" id="plan">
+  <div class="wrap">
+    <div class="kicker">Your game plan</div>
+    <h2>Build your <span>winning page</span> checklist</h2>
+    <p class="sub">Tap each move as you complete it. Every tick brings your landing page closer to the winning position.</p>
+    <div class="check" id="check">
+      <div class="ck"><div class="box">✓</div><div><b>Name the endgame.</b> One goal for the page: call, purchase or sign-up. (Work backward)</div></div>
+      <div class="ck"><div class="box">✓</div><div><b>Compute your EV per visitor.</b> Conversion × value, tracked monthly. (Expected value)</div></div>
+      <div class="ck"><div class="box">✓</div><div><b>Open with the most informative test.</b> Headline and offer first. (Information gain)</div></div>
+      <div class="ck"><div class="box">✓</div><div><b>Start from basic strategy.</b> Hero, proof, benefits, one button. (Blackjack)</div></div>
+      <div class="ck"><div class="box">✓</div><div><b>Size spend with Kelly.</b> Match budget to measured edge. (Wagering)</div></div>
+      <div class="ck"><div class="box">✓</div><div><b>Keep a mix of variants.</b> Rotate messages across audiences. (Un-exploitable play)</div></div>
+      <div class="ck"><div class="box">✓</div><div><b>Compare cost with pot odds.</b> Cost per visitor vs. value per visitor. (Poker)</div></div>
+      <div class="ck"><div class="box">✓</div><div><b>Improve one element at a time.</b> Lock in each gain. (Systematic algorithms)</div></div>
+    </div>
+    <div class="progress"><i id="pbar"></i></div>
+    <div class="pt" id="ptext">0 of 8 moves played</div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final" id="cta">
+  <svg class="dots" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="#ffd60a"><circle cx="90" cy="80" r="12"/><circle cx="1100" cy="420" r="16"/><circle cx="980" cy="70" r="8"/></g>
+    <g fill="#22e06b"><circle cx="190" cy="420" r="14"/><circle cx="1090" cy="120" r="10"/><circle cx="600" cy="30" r="7"/></g>
+    <g transform="translate(40 250) rotate(-14)"><rect width="64" height="64" rx="12" fill="#ffd60a" stroke="#8a0400" stroke-width="5"/><circle cx="32" cy="32" r="6" fill="#8a0400"/></g>
+    <g transform="translate(1090 260) rotate(16)"><rect width="64" height="64" rx="12" fill="#22e06b" stroke="#06210f" stroke-width="5"/><circle cx="18" cy="18" r="6" fill="#06210f"/><circle cx="46" cy="46" r="6" fill="#06210f"/></g>
+  </svg>
+  <div class="wrap" style="position:relative">
+    <div class="kicker">Ready to play</div>
+    <h2>Your next landing page is a <span>winning move</span></h2>
+    <p>EasyLandX turns these frameworks into a landing page built to convert: clear message, smart structure and a path your visitors enjoy. Take your seat at the table.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>EasyLandX</b> · Landing pages that win · Inspired by <i>How to Win: A Mathematical Approach to Games and Puzzles</i> by Arthur Benjamin
+  </div>
+</footer>
+
+<script>
+/* ---------- helpers ---------- */
+const $ = id => document.getElementById(id);
+const eur = n => '€' + Math.round(n).toLocaleString('en-US');
+
+/* ---------- EV calculator ---------- */
+function evUpdate(){
+  const vis = +$('vis').value, cr = +$('cr').value/100, val = +$('val').value, cost = +$('cost').value, lift = +$('lift').value/100;
+  $('o-vis').textContent = vis.toLocaleString('en-US');
+  $('o-cr').textContent = (cr*100).toFixed(1)+'%';
+  $('o-val').textContent = val;
+  $('o-cost').textContent = cost.toLocaleString('en-US');
+  $('o-lift').textContent = '+'+Math.round(lift*100)+'%';
+  const evv = cr*val, cust = vis*cr, rev = vis*cr*val, profit = rev-cost;
+  const revT = vis*cr*(1+lift)*val;
+  $('ev-vis').textContent = '€'+evv.toFixed(2);
+  $('ev-cust').textContent = cust.toFixed(1);
+  $('ev-rev').textContent = eur(rev);
+  const p = $('ev-profit'); p.textContent = (profit<0?'−':'')+eur(Math.abs(profit)); p.classList.toggle('neg', profit<0);
+  const v = $('ev-verdict');
+  if(profit>0){ v.className='verdict'; v.textContent='Positive EV: this page is a winning bet. The headline test could add '+eur(revT-rev)+' every month.'; }
+  else { v.className='verdict warm'; v.textContent='Close to the winning zone. Raise conversion or value per customer by '+Math.ceil((cost/(vis*cr*val)-1)*100 || 0)+'% to reach positive EV, and a headline test is the fastest route.'; }
+  const max = Math.max(rev,revT,cost,1);
+  [['bar1',rev],['bar2',revT],['bar3',cost]].forEach(([id,x])=>{
+    const el=$(id); el.style.height=Math.max(6,(x/max)*130)+'px'; el.firstElementChild.textContent=eur(x);
+  });
+}
+['vis','cr','val','cost','lift'].forEach(i=>$(i).addEventListener('input',evUpdate));
+evUpdate();
+
+/* ---------- Kelly ---------- */
+function kUpdate(){
+  const p=+$('kp').value/100, b=+$('kb').value, bank=+$('kbank').value;
+  $('o-p').textContent=Math.round(p*100)+'%';
+  $('o-b').textContent=b.toFixed(1)+'×';
+  $('o-bank').textContent=bank.toLocaleString('en-US');
+  const edge = p*b-(1-p);
+  const f = p-(1-p)/b;
+  const full = Math.max(0,f);
+  $('k-full').textContent=(full*100).toFixed(1)+'%';
+  $('k-half').textContent=(full*50).toFixed(1)+'%';
+  $('k-eur').textContent=eur(bank*full/2);
+  $('k-edge').textContent=(edge>=0?'+':'−')+'€'+Math.abs(edge).toFixed(2);
+  const v=$('k-verdict');
+  if(f>0){v.className='verdict';v.textContent='Positive edge. Invest the suggested share, then re-measure and size up as your data confirms the odds.';}
+  else{v.className='verdict warm';v.textContent='The edge is not there yet. Sharpen the offer or audience, test small, and return when p × b rises above the cost.';}
+}
+['kp','kb','kbank'].forEach(i=>$(i).addEventListener('input',kUpdate));
+kUpdate();
+
+/* ---------- Nim ---------- */
+let piles=[], playerTurn=true, over=false, youWins=0, cpuWins=0;
+const bin = n => n.toString(2).padStart(4,'0');
+function xorAll(a){return a.reduce((x,y)=>x^y,0)}
+function newGame(){
+  // random start with non-zero xor so the player has a winning first move
+  do{ piles=[1+Math.floor(Math.random()*5),2+Math.floor(Math.random()*5),3+Math.floor(Math.random()*5)]; }while(xorAll(piles)===0);
+  playerTurn=true; over=false;
+  setMsg('Your move. This is an N-position: a winning move exists. Can you find it?');
+  render();
+}
+function setMsg(t){$('msg').textContent=t}
+function render(){
+  const box=$('piles'); box.innerHTML='';
+  piles.forEach((n,i)=>{
+    const row=document.createElement('div'); row.className='pile';
+    const nm=document.createElement('div'); nm.className='name'; nm.textContent='Row '+(i+1); row.appendChild(nm);
+    for(let k=0;k<n;k++){
+      const s=document.createElement('button'); s.className='stone'; s.textContent=k+1;
+      s.setAttribute('aria-label','Take stones from row '+(i+1)+' starting at '+(k+1));
+      s.onmouseenter=()=>{[...row.querySelectorAll('.stone')].forEach((x,j)=>x.classList.toggle('hov',j>=k))};
+      s.onmouseleave=()=>{row.querySelectorAll('.stone').forEach(x=>x.classList.remove('hov'))};
+      s.onclick=()=>playerMove(i,n-k);
+      row.appendChild(s);
+    }
+    box.appendChild(row);
+  });
+  const x=xorAll(piles);
+  $('xor').innerHTML = piles.map((n,i)=>'Row '+(i+1)+': '+bin(n)+'  ('+n+')').join('<br>')+'<br>────────────<br>XOR : '+bin(x)+'  ('+x+')';
+  $('nim-note').textContent = x===0
+    ? 'XOR = 0 → P-position. The player who just moved holds the strong spot.'
+    : 'XOR ≠ 0 → N-position. The player to move can reach XOR = 0 and take control.';
+}
+function winningMove(){
+  const x=xorAll(piles);
+  if(x===0){ let i=piles.indexOf(Math.max(...piles)); return {i, take:1, perfect:false}; }
+  for(let i=0;i<piles.length;i++){ const t=piles[i]^x; if(t<piles[i]) return {i, take:piles[i]-t, perfect:true}; }
+}
+function finish(youWon){
+  over=true;
+  if(youWon){youWins++;$('sc-you').textContent=youWins;setMsg('🏆 You took the last stone. Victory by planning backward!');}
+  else{cpuWins++;$('sc-cpu').textContent=cpuWins;setMsg('The computer took the last stone this time. Try again and aim for XOR = 0 after each of your moves.');}
+  render();
+}
+function playerMove(i,take){
+  if(over||!playerTurn) return;
+  piles[i]-=take; render();
+  if(piles.every(p=>p===0)) return finish(true);
+  playerTurn=false;
+  const x=xorAll(piles);
+  setMsg(x===0?'You reached XOR = 0, a P-position. The computer is thinking…':'Computer is thinking…');
+  setTimeout(cpuMove,750);
+}
+function cpuMove(){
+  const m=winningMove();
+  let take=m.take;
+  if(!m.perfect){ // no strong move: take a small amount to extend the game
+    const i=m.i; take=1+Math.floor(Math.random()*Math.min(2,piles[i]));
+  }
+  piles[m.i]-=take; render();
+  const rows=$('piles').children[m.i].querySelectorAll('.stone'); if(rows.length) rows[rows.length-1].classList.add('cpu');
+  if(piles.every(p=>p===0)) return finish(false);
+  playerTurn=true;
+  setMsg('Computer took '+take+' from Row '+(m.i+1)+'. Your move.'+(xorAll(piles)===0?' Position is balanced, so play it out and wait for an opening.':' A winning move is available.'));
+}
+$('hint').onclick=()=>{
+  if(over||!playerTurn) return;
+  const m=winningMove();
+  setMsg(m.perfect?'Take '+m.take+' from Row '+(m.i+1)+' to bring the XOR to zero.':'The position is already balanced. Take a single stone and keep the game going.');
+};
+$('newg').onclick=newGame;
+newGame();
+
+/* ---------- checklist ---------- */
+const cks=[...document.querySelectorAll('.ck')];
+cks.forEach(c=>c.addEventListener('click',()=>{
+  c.classList.toggle('on');
+  const n=cks.filter(x=>x.classList.contains('on')).length;
+  $('pbar').style.width=(n/cks.length*100)+'%';
+  $('ptext').textContent = n===cks.length ? '🏆 All 8 moves played: you are ready to win. Head to EasyLandX!' : n+' of '+cks.length+' moves played';
+}));
+</script>
+</body>
+</html>
