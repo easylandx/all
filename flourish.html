@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyLandX · Landing Pages That Flourish</title>
+<meta name="description" content="EasyLandX landing pages, grown with the principles of the Rights of Nature movement: standing, foundations, guardianship and a widening circle of voices.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g:#1B4D3E;
+  --g-deep:#123629;
+  --g-deeper:#0d2a21;
+  --g-mid:#256349;
+  --g-soft:#3a7d62;
+  --g-pale:#5c9c82;
+  --ochre:#C27A3E;
+  --ochre-lt:#d99a63;
+  --blue:#2C4A5E;
+  --blue-lt:#3d6580;
+  --cream:#F4ECDD;
+  --ink:#0d2a21;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Figtree',system-ui,sans-serif;
+  background:var(--g);
+  color:var(--cream);
+  line-height:1.65;
+  font-size:17px;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.08;letter-spacing:-.02em}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section{padding:96px 0;position:relative}
+.alt{background:var(--g-deep)}
+.eyebrow{
+  display:inline-block;font-weight:700;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ochre-lt);margin-bottom:14px;
+}
+h2{font-size:clamp(2rem,4.6vw,3.4rem);font-weight:800;margin-bottom:18px}
+.lead{font-size:1.15rem;max-width:720px;color:#e7dfcd}
+.center{text-align:center}
+.center .lead{margin-left:auto;margin-right:auto}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--ochre);color:var(--ink);
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem;
+  padding:15px 28px;border-radius:999px;text-decoration:none;border:3px solid var(--ochre);
+  transition:transform .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+  cursor:pointer;
+}
+.btn:hover{transform:translateY(-3px);background:var(--cream);border-color:var(--cream);box-shadow:0 10px 0 -2px rgba(0,0,0,.25)}
+.btn.ghost{background:transparent;color:var(--cream);border-color:var(--cream)}
+.btn.ghost:hover{background:var(--cream);color:var(--ink)}
+.btn svg{width:18px;height:18px}
+
+/* Nav */
+nav{
+  position:sticky;top:0;z-index:50;background:var(--g-deeper);
+  border-bottom:3px solid var(--ochre);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.35rem;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo i{display:inline-block;width:28px;height:28px;border-radius:50% 50% 50% 8px;background:var(--ochre);transform:rotate(-45deg)}
+.links{display:flex;gap:22px;align-items:center}
+.links a.l{text-decoration:none;font-weight:600;font-size:.95rem;opacity:.9}
+.links a.l:hover{color:var(--ochre-lt)}
+.nav-btn{padding:10px 20px;font-size:.95rem}
+@media(max-width:860px){.links a.l{display:none}}
+
+/* Hero */
+.hero{padding:70px 0 0;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6.6vw,5rem);font-weight:800;margin-bottom:22px}
+.hero h1 span{color:var(--ochre)}
+.hero p.lead{margin-bottom:30px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.hero-art{width:100%;height:auto;display:block}
+.hero-base{height:90px;background:var(--g-deep);margin-top:-2px}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.sway{transform-origin:50% 100%;transform-box:fill-box;animation:sway 6s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.4deg)}}
+.flow{animation:flow 5s linear infinite}
+@keyframes flow{from{stroke-dashoffset:0}to{stroke-dashoffset:-60}}
+.glow{animation:glow 4s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+@keyframes glow{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+/* Pills strip */
+.strip{background:var(--ochre);color:var(--ink);padding:16px 0;overflow:hidden;border-top:3px solid var(--g-deeper);border-bottom:3px solid var(--g-deeper)}
+.strip-in{display:flex;gap:44px;white-space:nowrap;animation:marq 28s linear infinite;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.15rem;width:max-content}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Cards */
+.grid{display:grid;gap:22px;margin-top:46px}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:1000px){.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.g4,.g2{grid-template-columns:1fr}}
+.card{
+  background:var(--blue);border-radius:22px;padding:30px 26px 32px;border-top:6px solid var(--ochre);
+  transition:transform .25s ease, box-shadow .25s ease;position:relative;
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 0 -8px rgba(0,0,0,.28)}
+.card .ico{width:74px;height:74px;margin-bottom:18px}
+.card h3{font-size:1.45rem;font-weight:800;margin-bottom:10px}
+.card p{color:#e4dccb;font-size:1rem}
+.card .tag{
+  display:inline-block;margin-top:16px;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--g-deeper);color:var(--ochre-lt);padding:6px 12px;border-radius:999px;
+}
+.card.on-green{background:var(--g-mid)}
+.num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:3.6rem;color:var(--ochre);line-height:1;margin-bottom:6px}
+
+/* Reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease, transform .8s ease}
+.rv.in{opacity:1;transform:none}
+
+/* Charter builder */
+.builder{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;margin-top:46px;align-items:start}
+@media(max-width:940px){.builder{grid-template-columns:1fr}}
+.toggles{display:grid;gap:12px}
+.tg{
+  display:flex;gap:16px;align-items:center;text-align:left;width:100%;
+  background:var(--g-mid);color:var(--cream);border:3px solid transparent;border-radius:18px;padding:16px 18px;
+  font-family:inherit;font-size:1rem;cursor:pointer;transition:all .22s ease;
+}
+.tg:hover{border-color:var(--ochre-lt)}
+.tg .sw{
+  flex:none;width:54px;height:30px;border-radius:999px;background:var(--g-deeper);position:relative;transition:background .25s;
+}
+.tg .sw::after{
+  content:"";position:absolute;top:4px;left:4px;width:22px;height:22px;border-radius:50%;background:var(--cream);transition:transform .25s, background .25s;
+}
+.tg b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:1.12rem;font-weight:800}
+.tg small{display:block;color:#d8d0bd;font-size:.92rem;line-height:1.4}
+.tg[aria-pressed="true"]{background:var(--blue);border-color:var(--ochre)}
+.tg[aria-pressed="true"] .sw{background:var(--ochre)}
+.tg[aria-pressed="true"] .sw::after{transform:translateX(24px);background:var(--ink)}
+.group-label{font-weight:700;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre-lt);margin:12px 0 2px}
+.stage{
+  position:sticky;top:90px;background:var(--blue);border-radius:28px;padding:22px;border:3px solid var(--ochre);
+}
+.stage svg.tree{width:100%;height:auto;display:block;border-radius:18px;background:var(--g-deeper)}
+.part{opacity:.1;transition:opacity .7s ease, transform .8s cubic-bezier(.2,1.4,.4,1);transform-box:fill-box}
+.part.on{opacity:1}
+#t-roots{transform-origin:50% 0%;transform:scaleY(.4)}
+#t-roots.on{transform:scaleY(1)}
+#t-trunk{transform-origin:50% 100%;transform:scaleY(.4)}
+#t-trunk.on{transform:scaleY(1)}
+#t-branches{transform-origin:50% 100%;transform:scale(.5)}
+#t-branches.on{transform:scale(1)}
+#t-leaves{transform-origin:50% 60%;transform:scale(.4)}
+#t-leaves.on{transform:scale(1)}
+#t-guardian{transform-origin:50% 50%;transform:scale(.5)}
+#t-guardian.on{transform:scale(1)}
+#t-plan.on .rip{animation:flow 3s linear infinite}
+#t-community{transform-origin:50% 100%;transform:scaleY(.3)}
+#t-community.on{transform:scaleY(1)}
+.meter{display:flex;gap:20px;align-items:center;margin-top:18px}
+.ring{width:108px;height:108px;flex:none;position:relative}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring .pct{position:absolute;inset:0;display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.55rem}
+.meter h4{font-size:1.2rem;font-weight:800;margin-bottom:4px}
+.meter p{font-size:.98rem;color:#e4dccb;line-height:1.5}
+
+/* Circle widens */
+.circle-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center;margin-top:46px}
+@media(max-width:900px){.circle-wrap{grid-template-columns:1fr}}
+.circle-wrap svg{width:100%;max-width:440px;height:auto;margin:0 auto;display:block}
+.rg{transition:all .6s ease;transform-origin:center}
+.panel{background:var(--g);border-radius:24px;padding:30px;border:3px solid var(--blue)}
+.panel .step{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;color:var(--ochre);font-size:1rem;letter-spacing:.14em;text-transform:uppercase}
+.panel h3{font-size:1.9rem;font-weight:800;margin:8px 0 10px}
+.panel p{color:#e4dccb;min-height:78px}
+input[type=range]{width:100%;margin:22px 0 8px;accent-color:var(--ochre);height:34px;cursor:pointer}
+.dots{display:flex;justify-content:space-between;gap:6px}
+.dots button{
+  flex:1;font-family:inherit;font-weight:700;font-size:.82rem;background:var(--g-deeper);color:var(--cream);
+  border:2px solid transparent;border-radius:10px;padding:8px 2px;cursor:pointer;transition:all .2s;
+}
+.dots button.act{background:var(--ochre);color:var(--ink)}
+.dots button:hover{border-color:var(--ochre-lt)}
+
+/* Strategies */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px}
+.tab{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.02rem;
+  background:var(--g-mid);color:var(--cream);border:3px solid transparent;border-radius:999px;padding:12px 22px;cursor:pointer;transition:all .2s;
+}
+.tab:hover{border-color:var(--ochre-lt)}
+.tab.act{background:var(--ochre);color:var(--ink);border-color:var(--ochre)}
+.spanel{
+  margin-top:22px;background:var(--blue);border-radius:28px;padding:36px;display:grid;grid-template-columns:150px 1fr 1fr;gap:34px;align-items:start;
+  border-left:8px solid var(--ochre);
+}
+@media(max-width:900px){.spanel{grid-template-columns:1fr}}
+.spanel .sico{width:130px;height:130px}
+.spanel h3{font-size:1.7rem;font-weight:800;margin-bottom:8px}
+.spanel .lab{font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre-lt);margin-bottom:6px}
+.spanel p{color:#e8e0cf}
+.spanel ul{list-style:none;margin-top:10px}
+.spanel li{padding:8px 0 8px 32px;position:relative;color:#f0e8d6;border-bottom:1px solid rgba(244,236,221,.14)}
+.spanel li::before{content:"";position:absolute;left:0;top:14px;width:18px;height:18px;border-radius:50% 50% 50% 4px;background:var(--ochre);transform:rotate(-45deg)}
+.fade{animation:fadeIn .5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* Quote */
+.quote{
+  background:var(--ochre);color:var(--ink);border-radius:32px;padding:56px 44px;text-align:center;
+}
+.quote h2{margin:0 auto;max-width:860px;font-size:clamp(1.8rem,4vw,3rem)}
+.quote p{max-width:640px;margin:16px auto 0;font-weight:500}
+
+/* Final */
+.final{text-align:center;background:var(--g-deeper);overflow:hidden}
+.final h2{font-size:clamp(2.2rem,5.5vw,4.2rem)}
+.final .lead{margin:0 auto 34px}
+.final .cta-row{justify-content:center}
+.final-art{width:100%;max-width:760px;margin:50px auto 0;display:block}
+footer{background:var(--g-deeper);border-top:3px solid var(--ochre);padding:34px 0;text-align:center;font-size:.92rem;color:#cfc7b4}
+footer a{color:var(--ochre-lt);font-weight:700}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="logo" href="#top"><i></i>EasyLandX</a>
+    <div class="links">
+      <a class="l" href="#messages">Messages</a>
+      <a class="l" href="#charter">Charter Builder</a>
+      <a class="l" href="#circle">Widening Circle</a>
+      <a class="l" href="#lessons">Lessons</a>
+      <a class="l" href="#strategies">Strategies</a>
+      <a class="btn nav-btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Landing pages · grown with living-systems thinking</span>
+      <h1>Give your business a voice that <span>flourishes.</span></h1>
+      <p class="lead">Environmental lawyer David R. Boyd describes a legal revolution: rivers, forests and ecosystems receive the right to exist, thrive, regenerate and be restored. EasyLandX brings the same spirit to small businesses. Every venture deserves a landing page with standing, strong foundations and devoted guardians.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn ghost" href="#charter">Grow your page's charter</a>
+      </div>
+    </div>
+
+    <!-- Hero artwork -->
+    <svg class="hero-art" viewBox="0 0 520 470" role="img" aria-label="Illustration of a sunrise over hills, a flowing river and a flourishing tree">
+      <circle cx="400" cy="120" r="150" fill="#256349" opacity=".55"/>
+      <circle cx="400" cy="120" r="96" fill="#2C4A5E"/>
+      <circle class="glow" cx="400" cy="120" r="52" fill="#C27A3E"/>
+      <g stroke="#C27A3E" stroke-width="7" stroke-linecap="round">
+        <line x1="400" y1="30" x2="400" y2="10"/><line x1="470" y1="50" x2="484" y2="36"/><line x1="320" y1="50" x2="306" y2="36"/>
+        <line x1="494" y1="120" x2="514" y2="120"/><line x1="306" y1="120" x2="286" y2="120"/>
+      </g>
+      <path d="M0 300 L110 190 L190 270 L290 150 L420 290 L520 230 L520 470 L0 470Z" fill="#2C4A5E"/>
+      <path d="M0 340 C90 270 170 300 250 330 C340 360 430 300 520 320 L520 470 L0 470Z" fill="#256349"/>
+      <path d="M0 390 C110 350 200 400 300 385 C400 370 460 395 520 380 L520 470 L0 470Z" fill="#123629"/>
+      <!-- river -->
+      <path d="M262 330 C250 360 300 380 270 410 C245 436 300 450 285 470" fill="none" stroke="#3d6580" stroke-width="26" stroke-linecap="round"/>
+      <path class="flow" d="M262 332 C252 360 298 380 272 410 C248 436 298 450 285 468" fill="none" stroke="#F4ECDD" stroke-width="3" stroke-dasharray="14 16" stroke-linecap="round" opacity=".7"/>
+      <!-- tree -->
+      <g class="sway">
+        <path d="M105 395 C108 340 100 300 108 250 L128 250 C134 300 128 340 132 395Z" fill="#C27A3E"/>
+        <path d="M118 290 C90 280 70 262 58 232" stroke="#C27A3E" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M120 270 C150 258 172 246 186 218" stroke="#C27A3E" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <circle cx="62" cy="222" r="42" fill="#3a7d62"/>
+        <circle cx="188" cy="206" r="46" fill="#3a7d62"/>
+        <circle cx="120" cy="190" r="58" fill="#5c9c82"/>
+        <circle cx="90" cy="236" r="30" fill="#256349"/>
+        <circle cx="152" cy="236" r="28" fill="#256349"/>
+        <circle cx="100" cy="170" r="9" fill="#C27A3E"/><circle cx="142" cy="200" r="9" fill="#C27A3E"/><circle cx="62" cy="214" r="8" fill="#C27A3E"/><circle cx="190" cy="196" r="8" fill="#C27A3E"/>
+      </g>
+      <!-- flowers -->
+      <g>
+        <circle cx="330" cy="404" r="7" fill="#C27A3E"/><circle cx="360" cy="414" r="6" fill="#F4ECDD"/><circle cx="395" cy="402" r="8" fill="#C27A3E"/><circle cx="430" cy="416" r="6" fill="#F4ECDD"/><circle cx="465" cy="406" r="7" fill="#C27A3E"/>
+        <circle cx="40" cy="418" r="6" fill="#F4ECDD"/><circle cx="68" cy="428" r="7" fill="#C27A3E"/><circle cx="170" cy="424" r="6" fill="#F4ECDD"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-base"></div>
+</header>
+
+<div class="strip" aria-hidden="true">
+  <div class="strip-in">
+    <span>Standing ✦ Foundations ✦ Guardians ✦ Community ✦ Regeneration ✦ Renewal ✦</span>
+    <span>Standing ✦ Foundations ✦ Guardians ✦ Community ✦ Regeneration ✦ Renewal ✦</span>
+    <span>Standing ✦ Foundations ✦ Guardians ✦ Community ✦ Regeneration ✦ Renewal ✦</span>
+    <span>Standing ✦ Foundations ✦ Guardians ✦ Community ✦ Regeneration ✦ Renewal ✦</span>
+  </div>
+</div>
+
+<!-- MAIN MESSAGES -->
+<section class="alt" id="messages">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">Four main messages</span>
+      <h2>The big ideas, translated for landing pages</h2>
+      <p class="lead">The Rights of Nature movement lifts nature from the status of property to the status of a living presence. The same lift transforms how a small business shows up online.</p>
+    </div>
+
+    <div class="grid g4">
+      <article class="card rv">
+        <svg class="ico" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#1B4D3E"/><path d="M12 56 C26 38 38 62 52 44 S68 40 70 36" fill="none" stroke="#C27A3E" stroke-width="6" stroke-linecap="round"/><path d="M40 52 V24 M40 34 C30 32 26 26 26 20 C34 20 40 26 40 34Z M40 30 C50 28 54 22 54 16 C46 16 40 22 40 30Z" fill="#5c9c82" stroke="#5c9c82" stroke-width="2" stroke-linejoin="round"/></svg>
+        <h3>From managing to flourishing</h3>
+        <p>Traditional rules treat nature as property to be managed. Rights of Nature invites ecosystems to thrive. A landing page that treats a business as a living presence gives it room to flourish, far beyond a simple directory listing.</p>
+        <span class="tag">Lift your page above a listing</span>
+      </article>
+
+      <article class="card rv">
+        <svg class="ico" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#1B4D3E"/><circle cx="40" cy="40" r="10" fill="#C27A3E"/><circle cx="40" cy="40" r="20" fill="none" stroke="#F4ECDD" stroke-width="3" stroke-dasharray="4 6"/><circle cx="40" cy="40" r="30" fill="none" stroke="#5c9c82" stroke-width="3"/><circle cx="40" cy="10" r="4" fill="#F4ECDD"/><circle cx="66" cy="55" r="4" fill="#F4ECDD"/><circle cx="14" cy="55" r="4" fill="#F4ECDD"/></svg>
+        <h3>From owner-centred to ecosystem-centred</h3>
+        <p>Ecocentrism sees intrinsic value in the whole web of life. A page built in that spirit places the visitor, the business and the neighbourhood at the centre together, and each of them benefits.</p>
+        <span class="tag">Serve the whole ecosystem</span>
+      </article>
+
+      <article class="card rv">
+        <svg class="ico" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#1B4D3E"/><path d="M40 66 V30" stroke="#C27A3E" stroke-width="6" stroke-linecap="round"/><path d="M40 52 C28 52 20 44 18 34 M40 44 C52 44 60 36 62 26 M40 36 C34 30 34 24 38 16" fill="none" stroke="#F4ECDD" stroke-width="4" stroke-linecap="round"/><circle cx="18" cy="32" r="5" fill="#5c9c82"/><circle cx="62" cy="24" r="5" fill="#5c9c82"/><circle cx="38" cy="14" r="5" fill="#5c9c82"/></svg>
+        <h3>Rooted in ancient wisdom</h3>
+        <p>These frameworks translate long-held Indigenous philosophies, where people are interwoven parts of nature, into modern legal language. A landing page can weave people, place and purpose together in the same way.</p>
+        <span class="tag">Weave connection into every section</span>
+      </article>
+
+      <article class="card rv">
+        <svg class="ico" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#1B4D3E"/><circle cx="40" cy="40" r="9" fill="#C27A3E"/><circle cx="40" cy="40" r="17" fill="none" stroke="#F4ECDD" stroke-width="3"/><circle cx="40" cy="40" r="25" fill="none" stroke="#5c9c82" stroke-width="3"/><circle cx="40" cy="40" r="33" fill="none" stroke="#C27A3E" stroke-width="3" stroke-dasharray="3 5"/></svg>
+        <h3>The circle of rights keeps widening</h3>
+        <p>Legal voice grew from person to person, then to corporations, municipalities and ships, and now to rivers and forests. The next natural step: every small business holds a voice of its own online.</p>
+        <span class="tag">Welcome every business</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CHARTER BUILDER -->
+<section id="charter">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">Interactive · The Charter Builder</span>
+      <h2>Grow your page's own charter of rights</h2>
+      <p class="lead">Ecuador's constitution recognises nature's right to exist, persist, regenerate and be restored. Switch on each right below, add the guardianship that makes it real, and watch a living tree flourish.</p>
+    </div>
+
+    <div class="builder">
+      <div class="toggles rv" id="toggles">
+        <div class="group-label">The four rights of a thriving page</div>
+        <button class="tg" aria-pressed="false" data-part="t-roots"><span class="sw"></span><span><b>Right to exist</b><small>Be found: a clear, live page with an address of its own.</small></span></button>
+        <button class="tg" aria-pressed="false" data-part="t-trunk"><span class="sw"></span><span><b>Right to persist</b><small>Stay present: steady messaging and dependable hosting, season after season.</small></span></button>
+        <button class="tg" aria-pressed="false" data-part="t-branches"><span class="sw"></span><span><b>Right to regenerate</b><small>Keep growing: fresh content, new offers and new sections as the business evolves.</small></span></button>
+        <button class="tg" aria-pressed="false" data-part="t-leaves"><span class="sw"></span><span><b>Right to be restored</b><small>Renew: updated photos, reviews and wording bring a page back to full colour.</small></span></button>
+        <div class="group-label">Guardianship that brings the rights to life</div>
+        <button class="tg" aria-pressed="false" data-part="t-guardian"><span class="sw"></span><span><b>A named guardian</b><small>Like the Whanganui River's guardians, the owner and EasyLandX speak for the page.</small></span></button>
+        <button class="tg" aria-pressed="false" data-part="t-plan"><span class="sw"></span><span><b>A funded care plan</b><small>Planned time and budget keep the page flowing and vibrant.</small></span></button>
+        <button class="tg" aria-pressed="false" data-part="t-community"><span class="sw"></span><span><b>Community involvement</b><small>Customers add testimonials, shares and questions that enrich the page.</small></span></button>
+      </div>
+
+      <div class="stage rv">
+        <svg class="tree" viewBox="0 0 420 380" role="img" aria-label="A tree that grows as rights are switched on">
+          <rect width="420" height="380" fill="#123629"/>
+          <ellipse cx="210" cy="302" rx="196" ry="18" fill="#1B4D3E"/>
+          <!-- plan: river -->
+          <g class="part" id="t-plan">
+            <path d="M0 352 C70 336 130 366 210 350 S350 338 420 354 L420 380 L0 380Z" fill="#2C4A5E"/>
+            <path class="rip" d="M20 360 C80 348 130 372 210 358 S340 348 400 362" fill="none" stroke="#F4ECDD" stroke-width="3" stroke-dasharray="12 14" stroke-linecap="round" opacity=".75"/>
+          </g>
+          <!-- roots -->
+          <g class="part" id="t-roots" fill="none" stroke="#C27A3E" stroke-width="7" stroke-linecap="round">
+            <path d="M210 302 C196 322 168 326 140 338"/>
+            <path d="M210 302 C212 322 206 332 200 346"/>
+            <path d="M210 302 C228 320 256 326 284 336"/>
+            <path d="M168 326 C158 334 150 334 142 344" stroke-width="4"/>
+            <path d="M256 326 C264 334 272 336 282 346" stroke-width="4"/>
+          </g>
+          <!-- trunk -->
+          <g class="part" id="t-trunk">
+            <path d="M196 302 C200 252 196 214 204 172 L222 172 C226 214 220 252 226 302Z" fill="#C27A3E"/>
+          </g>
+          <!-- branches -->
+          <g class="part" id="t-branches" fill="none" stroke="#C27A3E" stroke-linecap="round">
+            <path d="M212 206 C182 192 152 180 128 142" stroke-width="9"/>
+            <path d="M214 192 C246 178 276 168 298 132" stroke-width="9"/>
+            <path d="M213 174 C210 146 214 120 212 92" stroke-width="9"/>
+          </g>
+          <!-- leaves -->
+          <g class="part" id="t-leaves">
+            <circle cx="126" cy="132" r="40" fill="#3a7d62"/>
+            <circle cx="298" cy="122" r="42" fill="#3a7d62"/>
+            <circle cx="212" cy="84" r="50" fill="#5c9c82"/>
+            <circle cx="168" cy="150" r="32" fill="#256349"/>
+            <circle cx="256" cy="144" r="34" fill="#256349"/>
+            <circle cx="200" cy="64" r="9" fill="#C27A3E"/><circle cx="236" cy="96" r="9" fill="#C27A3E"/><circle cx="118" cy="118" r="8" fill="#C27A3E"/><circle cx="304" cy="110" r="8" fill="#C27A3E"/><circle cx="168" cy="160" r="8" fill="#C27A3E"/><circle cx="262" cy="156" r="8" fill="#C27A3E"/>
+          </g>
+          <!-- guardian: sun -->
+          <g class="part" id="t-guardian">
+            <circle cx="350" cy="52" r="26" fill="#C27A3E"/>
+            <g stroke="#C27A3E" stroke-width="5" stroke-linecap="round"><line x1="350" y1="12" x2="350" y2="2"/><line x1="350" y1="92" x2="350" y2="102"/><line x1="310" y1="52" x2="300" y2="52"/><line x1="390" y1="52" x2="400" y2="52"/><line x1="322" y1="24" x2="315" y2="17"/><line x1="378" y1="80" x2="385" y2="87"/><line x1="378" y1="24" x2="385" y2="17"/><line x1="322" y1="80" x2="315" y2="87"/></g>
+          </g>
+          <!-- community: flowers -->
+          <g class="part" id="t-community">
+            <g stroke="#5c9c82" stroke-width="3" stroke-linecap="round"><line x1="52" y1="302" x2="52" y2="280"/><line x1="92" y1="302" x2="92" y2="272"/><line x1="326" y1="302" x2="326" y2="276"/><line x1="368" y1="302" x2="368" y2="284"/><line x1="30" y1="302" x2="30" y2="288"/></g>
+            <circle cx="52" cy="276" r="8" fill="#C27A3E"/><circle cx="92" cy="268" r="9" fill="#F4ECDD"/><circle cx="326" cy="272" r="9" fill="#C27A3E"/><circle cx="368" cy="280" r="8" fill="#F4ECDD"/><circle cx="30" cy="284" r="7" fill="#F4ECDD"/>
+          </g>
+          <!-- seed -->
+          <circle id="seed" cx="210" cy="296" r="7" fill="#C27A3E"/>
+        </svg>
+
+        <div class="meter">
+          <div class="ring">
+            <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#123629" stroke-width="10"/><circle id="arc" cx="50" cy="50" r="44" fill="none" stroke="#C27A3E" stroke-width="10" stroke-linecap="round" stroke-dasharray="276.46" stroke-dashoffset="276.46" style="transition:stroke-dashoffset .7s ease"/></svg>
+            <div class="pct" id="pct">0%</div>
+          </div>
+          <div>
+            <h4>Page vitality</h4>
+            <p id="vmsg">A seed rests in rich soil, ready for its first right.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WIDENING CIRCLE -->
+<section class="alt" id="circle">
+  <div class="wrap">
+    <div class="rv center">
+      <span class="eyebrow">Interactive · The widening circle</span>
+      <h2>Every era welcomes new voices</h2>
+      <p class="lead">Legal recognition has grown outward again and again. Slide through the story and arrive at the newest ring: a voice for every small business.</p>
+    </div>
+
+    <div class="circle-wrap">
+      <svg viewBox="0 0 360 360" role="img" aria-label="Concentric rings that fill in as legal voice widens">
+        <g id="rings"></g>
+        <circle cx="180" cy="180" r="14" fill="#F4ECDD"/>
+        <circle cx="180" cy="180" r="6" fill="#1B4D3E"/>
+      </svg>
+
+      <div class="panel rv">
+        <div class="step" id="cstep">Step 1 of 6</div>
+        <h3 id="ctitle"></h3>
+        <p id="ctext"></p>
+        <input type="range" id="crange" min="1" max="6" value="1" aria-label="Widen the circle">
+        <div class="dots" id="cdots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY LESSONS -->
+<section id="lessons">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">Four key lessons</span>
+      <h2>Lessons from the movement, applied to your page</h2>
+      <p class="lead">Each lesson from Boyd's work maps to a practical choice in landing-page craft.</p>
+    </div>
+
+    <div class="grid g2">
+      <article class="card on-green rv">
+        <div class="num">01</div>
+        <h3>Standing opens the gateway</h3>
+        <p>In law, standing decides who may speak in court. Once ecosystems gain standing, guardians represent them directly. For a small business, a landing page is that standing: a place where the offer is seen, heard and represented in the market.</p>
+        <span class="tag">Action · Give your business a clear home online</span>
+      </article>
+      <article class="card on-green rv">
+        <div class="num">02</div>
+        <h3>Constitutional foundations carry the most strength</h3>
+        <p>A right written into a nation's highest law guides every lower rule. A brand constitution works the same way: one clear promise, a few core values and a defined audience guide every headline, button and caption on the page.</p>
+        <span class="tag">Action · Write the promise first</span>
+      </article>
+      <article class="card on-green rv">
+        <div class="num">03</div>
+        <h3>Bold courage sparks systemic change</h3>
+        <p>Pioneering judges read existing guarantees, such as the right to a healthy environment, in fresh and generous ways. Brave page choices work the same way: a confident headline, a vivid hero image and one inviting call to action.</p>
+        <span class="tag">Action · Choose confident, memorable design</span>
+      </article>
+      <article class="card on-green rv">
+        <div class="num">04</div>
+        <h3>Implementation turns promise into practice</h3>
+        <p>Laws shine when guardians, enforcement, funding and community involvement join them. Pages shine when launch is paired with a named caretaker, a refresh calendar, a modest budget and a welcome for customer voices.</p>
+        <span class="tag">Action · Pair every launch with a care plan</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGIES -->
+<section class="alt" id="strategies">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">Interactive · Four core strategies</span>
+      <h2>Real-world case studies, reimagined as page frameworks</h2>
+      <p class="lead">Choose a strategy to explore the case study and discover the EasyLandX framework it inspires.</p>
+    </div>
+
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="spanel" id="spanel"></div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section>
+  <div class="wrap">
+    <div class="quote rv">
+      <h2>Rights become real when guardians, funding and community join the story.</h2>
+      <p>That is the heart of the Rights of Nature movement, and the heart of every EasyLandX page: a strong launch, followed by devoted care.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <span class="eyebrow">Begin your growing season</span>
+    <h2>Plant your landing page with EasyLandX</h2>
+    <p class="lead">Conversion-focused landing pages and websites for small businesses, crafted with care at a wonderfully affordable price. Your business receives a voice, a foundation and a guardian.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn ghost" href="#charter">Revisit the Charter Builder</a>
+    </div>
+
+    <svg class="final-art" viewBox="0 0 760 220" aria-hidden="true">
+      <path d="M0 180 C120 120 220 170 340 140 C460 110 600 170 760 120 L760 220 L0 220Z" fill="#256349"/>
+      <path d="M0 200 C140 170 260 210 380 190 C500 170 640 205 760 180 L760 220 L0 220Z" fill="#1B4D3E"/>
+      <path d="M0 214 C150 196 270 216 400 208 C520 200 650 214 760 204" fill="none" stroke="#2C4A5E" stroke-width="16" stroke-linecap="round"/>
+      <g>
+        <path d="M120 190 V120" stroke="#C27A3E" stroke-width="8" stroke-linecap="round"/><circle cx="120" cy="108" r="28" fill="#5c9c82"/><circle cx="98" cy="126" r="16" fill="#3a7d62"/><circle cx="142" cy="126" r="16" fill="#3a7d62"/>
+        <path d="M380 180 V84" stroke="#C27A3E" stroke-width="10" stroke-linecap="round"/><circle cx="380" cy="66" r="40" fill="#5c9c82"/><circle cx="348" cy="94" r="22" fill="#3a7d62"/><circle cx="412" cy="94" r="22" fill="#3a7d62"/><circle cx="372" cy="54" r="7" fill="#C27A3E"/><circle cx="398" cy="78" r="7" fill="#C27A3E"/>
+        <path d="M640 180 V128" stroke="#C27A3E" stroke-width="7" stroke-linecap="round"/><circle cx="640" cy="118" r="22" fill="#5c9c82"/><circle cx="624" cy="132" r="12" fill="#3a7d62"/><circle cx="656" cy="132" r="12" fill="#3a7d62"/>
+      </g>
+      <circle cx="560" cy="48" r="24" fill="#C27A3E"/>
+    </svg>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Inspired by the ideas in <em>The Rights of Nature: A Legal Revolution That Could Save the World</em> (2017) by David R. Boyd · Crafted for <a href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+  </div>
+</footer>
+
+<script>
+/* ---------- Scroll reveal ---------- */
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(en){
+    en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});
+  },{threshold:.12});
+  els.forEach(function(e){io.observe(e)});
+})();
+
+/* ---------- Charter builder ---------- */
+(function(){
+  var btns=document.querySelectorAll('#toggles .tg');
+  var arc=document.getElementById('arc');
+  var pct=document.getElementById('pct');
+  var msg=document.getElementById('vmsg');
+  var seed=document.getElementById('seed');
+  var C=276.46;
+  var msgs=[
+    'A seed rests in rich soil, ready for its first right.',
+    'The first right takes hold. Your page has begun to grow.',
+    'Two rights are in place and the foundations feel steady.',
+    'Three rights are active. Strength rises with every addition.',
+    'All four rights shine. The tree stands tall and full.',
+    'A guardian now speaks for the page. Confidence grows.',
+    'A care plan keeps the whole system flowing beautifully.',
+    'Community joins in. Your page is a thriving ecosystem!'
+  ];
+  function update(){
+    var n=0;
+    btns.forEach(function(b){
+      var on=b.getAttribute('aria-pressed')==='true';
+      var part=document.getElementById(b.dataset.part);
+      if(part){part.classList.toggle('on',on);}
+      if(on)n++;
+    });
+    var p=Math.round(n/btns.length*100);
+    arc.style.strokeDashoffset=C-(C*p/100);
+    pct.textContent=p+'%';
+    msg.textContent=msgs[n];
+    seed.style.opacity=document.getElementById('t-trunk').classList.contains('on')?0:1;
+  }
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true');
+      update();
+    });
+  });
+  update();
+})();
+
+/* ---------- Widening circle ---------- */
+(function(){
+  var steps=[
+    {t:'Women gain legal voice',d:'The circle opens to half of humanity, a landmark expansion that shows how legal recognition can grow to welcome more voices.',c:'#2C4A5E'},
+    {t:'Racial minorities gain legal voice',d:'Rights reach communities of every background, and the circle becomes broader, richer and more representative.',c:'#2f6a5a'},
+    {t:'Children gain legal protection',d:'Young people receive recognition and care in law, a reminder that guardianship and voice can work hand in hand.',c:'#3a7d62'},
+    {t:'Corporations, municipalities and ships gain identity',d:'Legal personhood already extends to non-human entities, which shows how flexible and creative the concept can be.',c:'#5c9c82'},
+    {t:'Rivers, forests and ecosystems gain standing',d:'Ecuador, New Zealand and Colombia welcome nature as a rights-holder, represented by devoted guardians.',c:'#d99a63'},
+    {t:'Every small business gains a voice of its own online',d:'The newest ring: a dedicated landing page gives each venture standing in the marketplace. EasyLandX is here to plant it.',c:'#C27A3E'}
+  ];
+  var g=document.getElementById('rings');
+  var radii=[40,70,100,128,154,178];
+  var circles=[];
+  for(var i=steps.length-1;i>=0;i--){
+    var c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',180);c.setAttribute('cy',180);c.setAttribute('r',radii[i]);
+    c.setAttribute('class','rg');
+    g.appendChild(c);circles[i]=c;
+  }
+  var range=document.getElementById('crange');
+  var dots=document.getElementById('cdots');
+  var dotBtns=[];
+  steps.forEach(function(s,i){
+    var b=document.createElement('button');
+    b.textContent=(i+1);b.setAttribute('aria-label','Step '+(i+1));
+    b.addEventListener('click',function(){range.value=i+1;render();});
+    dots.appendChild(b);dotBtns.push(b);
+  });
+  function render(){
+    var v=parseInt(range.value,10);
+    circles.forEach(function(c,i){
+      var on=(i+1)<=v;
+      c.setAttribute('fill',on?steps[i].c:'transparent');
+      c.setAttribute('stroke',(i+1)===v?'#F4ECDD':(on?'#123629':'rgba(244,236,221,.28)'));
+      c.setAttribute('stroke-width',(i+1)===v?5:(on?2:2));
+      c.setAttribute('stroke-dasharray',on?'0':'5 7');
+    });
+    dotBtns.forEach(function(b,i){b.classList.toggle('act',(i+1)===v);});
+    document.getElementById('cstep').textContent='Step '+v+' of '+steps.length;
+    document.getElementById('ctitle').textContent=steps[v-1].t;
+    document.getElementById('ctext').textContent=steps[v-1].d;
+  }
+  range.addEventListener('input',render);
+  render();
+})();
+
+/* ---------- Strategies ---------- */
+(function(){
+  var data=[
+    {
+      tab:'1 · Constitutional Reform',
+      title:'The Brand Constitution',
+      case:'In 2008 Ecuador became the first country to write the Rights of Nature (Pachamama) into its constitution, confirming nature\u2019s right to exist, persist and maintain its vital cycles.',
+      page:'Place the highest-level promise of the business at the top of the page. Every lower element, from headlines to buttons, carries that promise forward.',
+      steps:['Write one clear promise in a single sentence','Choose three core values and let them guide each section','Name the audience the page welcomes'],
+      icon:'<svg class="sico" viewBox="0 0 130 130" aria-hidden="true"><circle cx="65" cy="65" r="62" fill="#1B4D3E"/><rect x="34" y="30" width="62" height="74" rx="8" fill="#F4ECDD"/><rect x="42" y="42" width="46" height="6" rx="3" fill="#C27A3E"/><rect x="42" y="56" width="46" height="5" rx="2.5" fill="#2C4A5E"/><rect x="42" y="67" width="46" height="5" rx="2.5" fill="#2C4A5E"/><rect x="42" y="78" width="30" height="5" rx="2.5" fill="#2C4A5E"/><circle cx="82" cy="92" r="9" fill="#C27A3E"/></svg>'
+    },
+    {
+      tab:'2 · Local Ordinances',
+      title:'Local-First, Community-Rooted Pages',
+      case:'Tamaqua Borough in Pennsylvania passed a local ordinance in 2006 that inspired dozens of communities, and Bolivia enacted its Law of Mother Earth in 2010.',
+      page:'Build the page around the neighbourhood the business serves. A page that shines locally becomes a pattern that nearby businesses are happy to follow.',
+      steps:['Feature the town, the streets and the people','Invite neighbours to share the page with neighbours','Showcase a local success story as the model'],
+      icon:'<svg class="sico" viewBox="0 0 130 130" aria-hidden="true"><circle cx="65" cy="65" r="62" fill="#1B4D3E"/><path d="M22 96 H108" stroke="#5c9c82" stroke-width="4" stroke-linecap="round"/><path d="M26 96 V68 L42 54 L58 68 V96Z" fill="#C27A3E"/><path d="M62 96 V50 L80 34 L98 50 V96Z" fill="#F4ECDD"/><rect x="74" y="72" width="12" height="24" fill="#2C4A5E"/><rect x="34" y="78" width="9" height="18" fill="#1B4D3E"/><circle cx="88" cy="26" r="9" fill="#C27A3E"/></svg>'
+    },
+    {
+      tab:'3 · Legal Personhood',
+      title:'A Page with Character and Guardians',
+      case:'New Zealand\u2019s Te Awa Tupua Act (2017) granted the Whanganui River legal personhood, with guardians from the Whanganui Iwi and the Crown speaking for the river.',
+      page:'Give the business a distinct personality on the page and appoint guardians. The owner shares the story, and EasyLandX tends the craft and the care.',
+      steps:['Shape a voice, colours and tone that feel alive','Name the owner as the page\u2019s storyteller','Welcome EasyLandX as co-guardian for upkeep'],
+      icon:'<svg class="sico" viewBox="0 0 130 130" aria-hidden="true"><circle cx="65" cy="65" r="62" fill="#1B4D3E"/><path d="M0 84 C30 66 50 100 78 82 S112 70 130 76 V130 H0Z" fill="#2C4A5E"/><path d="M0 100 C30 84 52 114 80 98 S112 90 130 94" fill="none" stroke="#F4ECDD" stroke-width="3" stroke-dasharray="8 8" stroke-linecap="round"/><circle cx="46" cy="40" r="10" fill="#C27A3E"/><path d="M30 72 C30 54 62 54 62 72Z" fill="#C27A3E"/><circle cx="86" cy="40" r="10" fill="#F4ECDD"/><path d="M70 72 C70 54 102 54 102 72Z" fill="#F4ECDD"/></svg>'
+    },
+    {
+      tab:'4 · Strategic Litigation',
+      title:'Evidence-Led Pages with Shared Custody',
+      case:'In 2016 Colombia\u2019s Constitutional Court recognised the Atrato River as a subject of rights, ordering its restoration and appointing joint community and government custodians.',
+      page:'Let evidence carry the story. Real results, genuine testimonials and visible improvements build trust, and the community shares in tending the page.',
+      steps:['Display measurable results and customer stories','Show before-and-after progress with pride','Share custody: customers contribute reviews and ideas'],
+      icon:'<svg class="sico" viewBox="0 0 130 130" aria-hidden="true"><circle cx="65" cy="65" r="62" fill="#1B4D3E"/><path d="M65 26 V100" stroke="#F4ECDD" stroke-width="5" stroke-linecap="round"/><path d="M30 44 H100" stroke="#C27A3E" stroke-width="5" stroke-linecap="round"/><path d="M30 44 L18 72 H42Z" fill="#F4ECDD"/><path d="M100 44 L88 72 H112Z" fill="#F4ECDD"/><path d="M16 72 H44 M86 72 H114" stroke="#C27A3E" stroke-width="5" stroke-linecap="round"/><rect x="48" y="100" width="34" height="8" rx="4" fill="#C27A3E"/></svg>'
+    }
+  ];
+  var tabs=document.getElementById('tabs');
+  var panel=document.getElementById('spanel');
+  function show(i){
+    var d=data[i];
+    Array.prototype.forEach.call(tabs.children,function(b,j){b.classList.toggle('act',i===j);b.setAttribute('aria-selected',i===j);});
+    var lis=d.steps.map(function(s){return '<li>'+s+'</li>';}).join('');
+    panel.innerHTML=
+      '<div class="fade">'+d.icon+'</div>'+
+      '<div class="fade"><div class="lab">The case study</div><h3>'+d.tab.split(' · ')[1]+'</h3><p>'+d.case+'</p></div>'+
+      '<div class="fade"><div class="lab">The EasyLandX framework</div><h3>'+d.title+'</h3><p>'+d.page+'</p><ul>'+lis+'</ul></div>';
+  }
+  data.forEach(function(d,i){
+    var b=document.createElement('button');
+    b.className='tab';b.setAttribute('role','tab');b.textContent=d.tab;
+    b.addEventListener('click',function(){show(i);});
+    tabs.appendChild(b);
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>
