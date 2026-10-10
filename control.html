@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx Landing Pages: Self Under Control</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#4C1D95;--deep:#3B1578;--deeper:#2E1065;--mid:#5B21B6;--lilac:#DDD6FE;--amber:#FBBF24;--amber2:#F59E0B;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:#fff;font-family:'Bricolage Grotesque',system-ui,sans-serif;line-height:1.6;font-size:18px}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+section{padding:72px 0}
+.alt{background:var(--deep)}
+.deep{background:var(--deeper)}
+h1,h2,h3{line-height:1.1;margin:0 0 .5em;font-weight:800;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,6vw,4.4rem)}
+h2{font-size:clamp(1.8rem,4vw,2.8rem)}
+h3{font-size:1.25rem}
+p{margin:0 0 1em;max-width:62ch;color:var(--lilac)}
+.amber{color:var(--amber)}
+.btn{display:inline-block;background:var(--amber);color:var(--deeper);font:800 1.05rem 'Bricolage Grotesque',sans-serif;padding:14px 28px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;transition:transform .15s,background .15s}
+.btn:hover{background:#fff;transform:translateY(-2px)}
+.btn:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--amber);border:2px solid var(--amber)}
+.btn.ghost:hover{background:var(--amber);color:var(--deeper)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--deeper);border-bottom:2px solid var(--amber)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px}
+.logo{font-weight:800;font-size:1.3rem;text-decoration:none}
+.logo b{color:var(--amber)}
+nav .btn{padding:9px 20px;font-size:.95rem}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero p{font-size:1.15rem}
+.row{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:28px}
+.card{background:var(--mid);border-radius:22px;padding:24px;border:2px solid transparent}
+.alt .card,.deep .card{background:var(--bg)}
+.card svg{width:64px;height:64px;margin-bottom:10px}
+.card p{margin:0;font-size:.98rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.tool{background:var(--deeper);border:3px solid var(--amber);border-radius:28px;padding:30px}
+.alt .tool{background:var(--bg)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.steps button{width:100%;text-align:left;display:flex;gap:14px;align-items:center;background:var(--mid);color:#fff;border:2px solid transparent;border-radius:16px;padding:14px 16px;font:600 1rem 'Bricolage Grotesque',sans-serif;cursor:pointer;transition:background .2s,border-color .2s}
+.steps button:hover{border-color:var(--amber)}
+.steps .dot{flex:none;width:28px;height:28px;border-radius:50%;border:3px solid var(--amber);display:grid;place-items:center;color:var(--deeper);font-size:.9rem;transition:background .2s}
+.steps button[aria-pressed=true]{background:var(--amber);color:var(--deeper)}
+.steps button[aria-pressed=true] .dot{background:var(--deeper);color:var(--amber);border-color:var(--deeper)}
+.ringbox{display:grid;place-items:center;text-align:center}
+.ring{width:210px;height:210px}
+.ring circle{fill:none;stroke-width:16}
+#arc{stroke:var(--amber);stroke-linecap:round;transition:stroke-dashoffset .5s ease;transform:rotate(-90deg);transform-origin:center}
+.pct{font-size:2.6rem;font-weight:800;fill:#fff}
+#msg{min-height:3.2em;color:var(--amber);font-weight:600;margin-top:14px;max-width:30ch}
+.flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:26px}
+.flip{display:block;appearance:none;-webkit-appearance:none;width:100%;perspective:900px;-webkit-perspective:900px;height:250px;background:none;border:0;padding:0;cursor:pointer;color:#fff;font-family:inherit;text-align:left;touch-action:manipulation}
+.inner{display:block;position:relative;width:100%;height:100%;transition:transform .6s;-webkit-transition:-webkit-transform .6s;transform-style:preserve-3d;-webkit-transform-style:preserve-3d}
+.flip[aria-pressed=true] .inner{transform:rotateY(180deg);-webkit-transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;padding:24px;display:flex;flex-direction:column;justify-content:center}
+.front{background:var(--mid)}
+.back{background:var(--amber);color:var(--deeper);transform:rotateY(180deg);-webkit-transform:rotateY(180deg)}
+.back p{color:var(--deeper);margin:0 0 .6em;font-size:.98rem;font-weight:600}
+.face h3{margin-bottom:.3em}
+.hint{font-size:.85rem;color:var(--amber)}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.chip{background:var(--mid);color:#fff;border:2px solid var(--amber);border-radius:999px;padding:9px 20px;font:600 1rem 'Bricolage Grotesque',sans-serif;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--amber);color:var(--deeper)}
+.rule{background:var(--amber);color:var(--deeper);border-radius:18px;padding:20px 22px;font-weight:800;font-size:1.25rem;line-height:1.3;min-height:6.6em}
+.rule small{display:block;font-weight:600;font-size:.9rem;margin-top:8px}
+.timer{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+#clock{font-size:2.4rem;font-weight:800;color:var(--amber);min-width:3.4ch}
+.bar{height:12px;background:var(--mid);border-radius:99px;overflow:hidden;flex:1;min-width:140px}
+#fill{height:100%;width:0;background:var(--amber);transition:width 1s linear}
+.quote{font-size:clamp(1.5rem,3.4vw,2.3rem);font-weight:800;max-width:24ch;line-height:1.2}
+footer{background:var(--deeper);border-top:2px solid var(--amber);padding:34px 0 40px;text-align:center}
+footer p{margin:.4em auto}
+@media(max-width:780px){.hero,.two{grid-template-columns:1fr}section{padding:54px 0}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@keyframes glow{0%,100%{opacity:.55}50%{opacity:1}}
+.sun{animation:glow 3.5s ease-in-out infinite}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="#top">easy<b>landx</b></a><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a></div></nav>
+
+<header id="top"><section><div class="wrap hero">
+<div>
+<h1>Landing pages that bring your goals into focus.</h1>
+<p>Choosing what matters most is a gift to your future self. easylandx turns that clarity into a landing page that welcomes visitors, guides their attention, and invites them to take the next step.</p>
+<div class="row"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Start with easylandx</a><a class="btn ghost" href="#build">Try the micro-step builder</a></div>
+</div>
+<svg viewBox="0 0 420 360" role="img" aria-label="Illustration of a landing page with an amber sun rising above steps">
+<rect x="20" y="30" width="380" height="300" rx="24" fill="#2E1065"/>
+<rect x="20" y="30" width="380" height="42" rx="24" fill="#5B21B6"/>
+<circle cx="50" cy="51" r="7" fill="#FBBF24"/><circle cx="74" cy="51" r="7" fill="#DDD6FE"/><circle cx="98" cy="51" r="7" fill="#7C3AED"/>
+<circle class="sun" cx="300" cy="150" r="58" fill="#FBBF24" opacity=".25"/>
+<circle cx="300" cy="150" r="38" fill="#FBBF24"/>
+<g stroke="#FBBF24" stroke-width="6" stroke-linecap="round"><path d="M300 78v-14M300 236v14M228 150h-14M372 150h14M249 99l-10-10M351 201l10 10M351 99l10-10M249 201l-10 10"/></g>
+<rect x="48" y="104" width="130" height="16" rx="8" fill="#DDD6FE"/>
+<rect x="48" y="132" width="100" height="10" rx="5" fill="#7C3AED"/>
+<rect x="48" y="152" width="115" height="10" rx="5" fill="#7C3AED"/>
+<rect x="48" y="184" width="96" height="30" rx="15" fill="#FBBF24"/>
+<path d="M44 310h60v-28h60v-28h60v-28h60v-28h60" fill="none" stroke="#DDD6FE" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" opacity=".0"/>
+<rect x="44" y="282" width="62" height="34" rx="8" fill="#6D28D9"/><rect x="112" y="260" width="62" height="56" rx="8" fill="#7C3AED"/><rect x="180" y="238" width="62" height="78" rx="8" fill="#8B5CF6"/><rect x="248" y="216" width="62" height="100" rx="8" fill="#A78BFA"/><rect x="316" y="194" width="62" height="122" rx="8" fill="#FBBF24"/>
+</svg>
+</div></section></header>
+
+<section class="alt" id="ideas"><div class="wrap">
+<h2>Four ideas that shape every easylandx page</h2>
+<p>Self Under Control by Abhilash CS presents discipline as self-respect, mental clarity, and emotional intelligence. Each lesson becomes a design choice for your landing page.</p>
+<div class="grid">
+<div class="card"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 56S8 42 8 24a12 12 0 0 1 24-4 12 12 0 0 1 24 4c0 18-24 32-24 32z" fill="#FBBF24"/></svg><h3>Discipline is self-respect</h3><p>Your page reflects your long-term values. Every section earns its place by serving the vision you care about.</p></div>
+<div class="card"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="none" stroke="#FBBF24" stroke-width="6"/><path d="M20 34c4-14 20-14 24 0M24 40c3 6 13 6 16 0" fill="none" stroke="#FBBF24" stroke-width="5" stroke-linecap="round"/></svg><h3>Work with your brain</h3><p>Brains love energy savings and quick wins. Clean layouts and one clear action feel effortless to every visitor.</p></div>
+<div class="card"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 32h14l6-16 8 32 6-16h14" fill="none" stroke="#FBBF24" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Feelings are allies</h3><p>Excitement, restlessness, and hesitation are helpful messengers that point toward what matters and what to try next.</p></div>
+<div class="card"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="8" fill="#FBBF24"/><circle cx="32" cy="32" r="18" fill="none" stroke="#FBBF24" stroke-width="5"/><circle cx="32" cy="32" r="28" fill="none" stroke="#FBBF24" stroke-width="3" opacity=".6"/></svg><h3>Attention is precious</h3><p>A calm, focused page gives visitors a welcome pause and restores the pleasure of deep, meaningful attention.</p></div>
+</div></div></section>
+
+<section id="build"><div class="wrap two">
+<div>
+<h2>Micro-steps make launching joyful</h2>
+<p>Small steps open the door wide. Tap each micro-step below as you picture it done, and watch your launch ring glow.</p>
+<ul class="steps" id="steps">
+<li><button aria-pressed="false"><span class="dot"></span>Write one sentence about who you welcome</button></li>
+<li><button aria-pressed="false"><span class="dot"></span>Choose one headline you love</button></li>
+<li><button aria-pressed="false"><span class="dot"></span>Pick one amber action button</button></li>
+<li><button aria-pressed="false"><span class="dot"></span>Add three benefits for your visitors</button></li>
+<li><button aria-pressed="false"><span class="dot"></span>Publish with easylandx</button></li>
+</ul>
+</div>
+<div class="tool ringbox">
+<svg class="ring" viewBox="0 0 220 220" role="img" aria-label="Launch progress ring">
+<circle cx="110" cy="110" r="90" stroke="#5B21B6"/>
+<circle id="arc" cx="110" cy="110" r="90" stroke-dasharray="565.5" stroke-dashoffset="565.5"/>
+<text id="pct" class="pct" x="110" y="124" text-anchor="middle">0%</text>
+</svg>
+<div id="msg" aria-live="polite">Tap a micro-step to begin your glow.</div>
+<a id="launch" class="btn" style="display:none;margin-top:14px" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch with easylandx</a>
+</div>
+</div></section>
+
+<section class="deep" id="allies"><div class="wrap">
+<h2>Turn every feeling into a green light</h2>
+<p>Tap a card to flip it and discover the signal inside, along with how easylandx supports you.</p>
+<div class="flips">
+<button type="button" class="flip" aria-pressed="false"><span class="inner">
+<span class="face front"><svg width="56" height="56" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 8l6 18h18l-14 11 5 19-15-11-15 11 5-19L8 26h18z" fill="#FBBF24"/></svg><h3>Butterflies</h3><span class="hint">Tap to flip</span></span>
+<span class="face back"><h3>A sign of importance</h3><p>Butterflies point to something meaningful and full of growth. Your page deserves that energy.</p><p>easylandx guides you step by step, so excitement becomes action.</p></span></span></button>
+<button type="button" class="flip" aria-pressed="false"><span class="inner">
+<span class="face front"><svg width="56" height="56" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="22" fill="none" stroke="#FBBF24" stroke-width="6"/><path d="M32 18v14l9 6" fill="none" stroke="#FBBF24" stroke-width="6" stroke-linecap="round"/></svg><h3>Restlessness</h3><span class="hint">Tap to flip</span></span>
+<span class="face back"><h3>An invitation to train focus</h3><p>Restlessness shows where your attention is ready to grow stronger, one calm minute at a time.</p><p>easylandx pages keep visitors centered on a single, inviting message.</p></span></span></button>
+<button type="button" class="flip" aria-pressed="false"><span class="inner">
+<span class="face front"><svg width="56" height="56" viewBox="0 0 64 64" aria-hidden="true"><path d="M10 54V10h8v44zM26 54V22h8v32zM42 54V34h8v20z" fill="#FBBF24"/></svg><h3>Hesitation</h3><span class="hint">Tap to flip</span></span>
+<span class="face back"><h3>The doorway to a valuable task</h3><p>Hesitation marks the threshold of something worthwhile. A tiny first step opens it gently.</p><p>With easylandx, your first step takes just minutes.</p></span></span></button>
+</div></div></section>
+
+<section class="alt" id="rules"><div class="wrap two">
+<div>
+<h2>Guardrails make discipline automatic</h2>
+<p>Rule-based habits free you from mood-based choices. Pick a moment in your launch day and receive a guardrail you can adopt right away.</p>
+<div class="chips" id="chips">
+<button class="chip" aria-pressed="false" data-r="0">Starting</button>
+<button class="chip" aria-pressed="false" data-r="1">Focusing</button>
+<button class="chip" aria-pressed="false" data-r="2">Finishing</button>
+</div>
+<div class="rule" id="rule" aria-live="polite">Choose a moment to receive your personal guardrail.</div>
+</div>
+<div>
+<div class="tool">
+<h3>Delight in a 15-minute pause</h3>
+<p>Practicing delayed gratification builds mental stamina. Begin a short pause before checking your phone, and enjoy the strength growing.</p>
+<div class="timer"><div id="clock">15:00</div><div class="bar"><div id="fill"></div></div></div>
+<div class="row"><button class="btn" id="go">Begin pause</button><button class="btn ghost" id="rst">Reset</button></div>
+<p id="tmsg" style="margin-top:14px;color:var(--amber);font-weight:600" aria-live="polite"></p>
+</div></div>
+</div></section>
+
+<section id="rehearse"><div class="wrap two">
+<div>
+<h2>Picture it, then enjoy it</h2>
+<p>Mental rehearsal builds familiarity, so action feels natural. Visualize your visitors arriving, smiling at your headline, and tapping your amber button. Then bring that scene to life with easylandx.</p>
+<p>Each page also supports a dopamine reset for your audience: one purpose, generous space, and a clear invitation.</p>
+</div>
+<svg viewBox="0 0 400 300" role="img" aria-label="Illustration of a thought bubble showing a happy visitor and an amber button">
+<circle cx="70" cy="250" r="12" fill="#A78BFA"/><circle cx="104" cy="218" r="18" fill="#A78BFA"/>
+<ellipse cx="240" cy="116" rx="150" ry="96" fill="#2E1065" stroke="#FBBF24" stroke-width="5"/>
+<circle cx="170" cy="100" r="26" fill="#DDD6FE"/><circle cx="162" cy="94" r="3.5" fill="#2E1065"/><circle cx="178" cy="94" r="3.5" fill="#2E1065"/><path d="M160 108q10 10 20 0" fill="none" stroke="#2E1065" stroke-width="3.5" stroke-linecap="round"/>
+<rect x="150" y="130" width="40" height="46" rx="14" fill="#7C3AED"/>
+<rect x="224" y="78" width="110" height="12" rx="6" fill="#DDD6FE"/><rect x="224" y="100" width="84" height="8" rx="4" fill="#7C3AED"/>
+<rect x="224" y="130" width="90" height="32" rx="16" fill="#FBBF24"/>
+<path d="M300 150l10-6-4 12z" fill="#2E1065"/>
+<path d="M350 52l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#FBBF24"/>
+</svg>
+</div></section>
+
+<section class="deep"><div class="wrap">
+<p class="quote">Today's small, joyful choices shape the future you admire.</p>
+<div class="row"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Create your page with easylandx</a></div>
+</div></section>
+
+<footer><div class="wrap">
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a>
+<p>Landing pages, crafted to welcome your audience.</p>
+<p>Made by easylandx. Inspired by the themes of Self Under Control by Abhilash CS.</p>
+</div></footer>
+
+<script>
+(function(){
+var btns=[].slice.call(document.querySelectorAll('#steps button')),arc=document.getElementById('arc'),pct=document.getElementById('pct'),msg=document.getElementById('msg'),launch=document.getElementById('launch');
+var C=565.5,words=['Tap a micro-step to begin your glow.','Wonderful start. One small step opens the door.','Momentum is building beautifully.','Halfway there, and it feels easy.','Almost glowing. Your page is taking shape.','Fully lit! Your page is ready to welcome visitors.'];
+function upd(){var n=btns.filter(function(b){return b.getAttribute('aria-pressed')==='true'}).length;
+arc.style.strokeDashoffset=C-C*n/5;pct.textContent=Math.round(n*20)+'%';msg.textContent=words[n];launch.style.display=n===5?'inline-block':'none';
+btns.forEach(function(b){b.querySelector('.dot').textContent=b.getAttribute('aria-pressed')==='true'?'✓':''})}
+btns.forEach(function(b){b.addEventListener('click',function(){b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true');upd()})});
+[].slice.call(document.querySelectorAll('.flip')).forEach(function(f){f.addEventListener('click',function(){f.setAttribute('aria-pressed',f.getAttribute('aria-pressed')==='true'?'false':'true')})});
+var rules=[['I open my page builder at 9:00 AM and complete one micro-step first.','Starting rule: a small first move makes the whole day lighter.'],['I check messages after my focus block, with my phone resting in another room.','Focus rule: protected time lets creativity flow.'],['I publish when my headline, benefits, and amber button are in place.','Finishing rule: a clear checklist turns effort into celebration.']];
+var rule=document.getElementById('rule'),chips=[].slice.call(document.querySelectorAll('.chip'));
+chips.forEach(function(c){c.addEventListener('click',function(){chips.forEach(function(x){x.setAttribute('aria-pressed','false')});c.setAttribute('aria-pressed','true');var r=rules[+c.dataset.r];rule.innerHTML=r[0]+'<small>'+r[1]+'</small>'})});
+var T=900,left=T,iv=null,clock=document.getElementById('clock'),fill=document.getElementById('fill'),tm=document.getElementById('tmsg'),go=document.getElementById('go');
+function draw(){var m=Math.floor(left/60),s=left%60;clock.textContent=m+':'+(s<10?'0':'')+s;fill.style.width=((T-left)/T*100)+'%'}
+function stop(){clearInterval(iv);iv=null;go.textContent='Begin pause'}
+go.addEventListener('click',function(){if(iv){stop();tm.textContent='Paused. Resume whenever you feel ready.';return}
+if(left===0)left=T;tm.textContent='Enjoy the calm. Your focus is growing stronger.';go.textContent='Pause';
+iv=setInterval(function(){left--;draw();if(left<=0){stop();tm.textContent='Beautifully done! You earned that reward.'}},1000)});
+document.getElementById('rst').addEventListener('click',function(){stop();left=T;draw();tm.textContent='Fresh start, ready when you are.'});
+upd();draw();
+})();
+</script>
+</body>
+</html>
