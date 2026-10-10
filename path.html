@@ -1,0 +1,701 @@
+<title>EasyLandX Path Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Manrope:wght@400..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: bold poster sections alternating #FF5733 and #E2F516, chunky ink outlines, hard offset shadows, one lime sticker moment per section. */
+:root {
+  --brand: #FF5733;
+  --brand-hi: #FF7B5C;
+  --brand-soft: #FFB8A5;
+  --brand-pale: #FFE4DC;
+  --lime: #E2F516;
+  --ink: #2B0D05;
+  --ink-soft: #5A2316;
+  --font-display: 'Bricolage Grotesque', 'Arial Black', Impact, sans-serif;
+  --font-body: 'Manrope', 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --gutter: clamp(16px, 4vw, 48px);
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--brand);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.05; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 4px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 7px var(--lime); }
+
+.wrap { max-width: 1160px; margin-inline: auto; padding-inline: var(--gutter); }
+.sec { padding-block: clamp(56px, 9vw, 104px); }
+.sec-orange { background: var(--brand); }
+.sec-lime { background: var(--lime); border-block: 3px solid var(--ink); }
+.eyebrow { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; }
+.sec-head { display: grid; gap: 1rem; max-width: 760px; margin-bottom: clamp(28px, 5vw, 52px); }
+.sec-head h2 { font-size: clamp(2rem, 5vw, 3.6rem); font-weight: 800; }
+.sec-head p { font-size: 1.1rem; max-width: 60ch; }
+.mark { background: var(--lime); padding: 0 0.18em; border-radius: 0.2em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.sec-lime .mark { background: var(--brand); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
+  padding: 0.85rem 1.5rem; border: 3px solid var(--ink); border-radius: 999px;
+  box-shadow: 4px 4px 0 var(--ink); text-decoration: none; color: var(--ink);
+  cursor: pointer; transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+.btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.btn-lime { background: var(--lime); }
+.btn-ghost { background: transparent; }
+.btn-brand { background: var(--brand); }
+.btn-big { font-size: 1.25rem; padding: 1.05rem 2rem; }
+.btn svg { width: 1.1em; height: 1.1em; }
+
+/* Nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--brand); border-bottom: 3px solid var(--ink); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.7rem; }
+.logo { display: inline-flex; align-items: center; gap: 0.55rem; font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; text-decoration: none; }
+.logo i { width: 1.5rem; height: 1.5rem; background: var(--lime); border: 3px solid var(--ink); border-radius: 0.45rem; display: inline-block; transform: rotate(-8deg); }
+.nav-links { display: flex; gap: 1.4rem; font-weight: 700; font-size: 0.95rem; }
+.nav-links a { text-decoration: none; }
+.nav-links a:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 4px; }
+.nav .btn { padding: 0.5rem 1.1rem; font-size: 0.95rem; box-shadow: 3px 3px 0 var(--ink); }
+@media (max-width: 820px) { .nav-links { display: none; } }
+
+/* Hero */
+.hero { padding-block: clamp(40px, 7vw, 88px); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+.hero h1 { font-size: clamp(2.7rem, 7.4vw, 5.6rem); font-weight: 800; margin-block: 1rem 1.4rem; letter-spacing: -0.025em; }
+.hero p.lede { font-size: 1.2rem; max-width: 52ch; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+.hero-art svg { width: 100%; height: auto; display: block; overflow: visible; }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } .hero-art { max-width: 480px; } }
+.float { animation: float 5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.float.d2 { animation-duration: 6.5s; animation-delay: -2s; }
+.float.d3 { animation-duration: 4s; animation-delay: -1s; }
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-9px) rotate(2deg); } }
+
+/* Marquee */
+.marquee { background: var(--lime); border-block: 3px solid var(--ink); overflow: hidden; padding-block: 0.9rem; }
+.marquee-track { display: flex; width: max-content; animation: scroll 38s linear infinite; }
+.marquee-group { display: flex; gap: 2.4rem; padding-right: 2.4rem; flex-shrink: 0; }
+.marquee-group span { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; display: inline-flex; align-items: center; gap: 2.4rem; white-space: nowrap; }
+.marquee-group span::after { content: ''; width: 0.9rem; height: 0.9rem; background: var(--brand); border: 3px solid var(--ink); border-radius: 50%; display: inline-block; }
+@keyframes scroll { to { transform: translateX(-50%); } }
+
+/* Cards */
+.grid { display: grid; gap: 1.6rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+.card { background: var(--brand-pale); border: 3px solid var(--ink); border-radius: 22px; box-shadow: 6px 6px 0 var(--ink); padding: 1.5rem; display: grid; gap: 0.9rem; align-content: start; min-width: 0; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.card:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--ink); }
+.card h3 { font-size: 1.55rem; font-weight: 800; }
+.card .ico { width: 64px; height: 64px; }
+.tag { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: var(--ink-soft); }
+.apply { background: var(--lime); border: 3px solid var(--ink); border-radius: 14px; padding: 0.8rem 1rem; font-weight: 600; font-size: 0.97rem; }
+.apply .tag { display: block; color: var(--ink); margin-bottom: 0.2rem; }
+.card.tint-lime { background: var(--lime); }
+.card.tint-lime .apply { background: var(--brand-pale); }
+
+/* Tabs */
+.tabs { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-bottom: 1.6rem; }
+.tab { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; padding: 0.65rem 1.2rem; border: 3px solid var(--ink); border-radius: 999px; background: var(--brand-pale); color: var(--ink); cursor: pointer; box-shadow: 3px 3px 0 var(--ink); }
+.tab[aria-selected="true"] { background: var(--brand); transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+.panel { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(20px, 4vw, 48px); background: var(--brand-pale); border: 3px solid var(--ink); border-radius: 26px; box-shadow: 8px 8px 0 var(--ink); padding: clamp(1.2rem, 3vw, 2.2rem); align-items: center; }
+.panel-art { background: var(--brand); border: 3px solid var(--ink); border-radius: 20px; aspect-ratio: 1 / 1; max-width: 100%; display: grid; place-items: center; }
+.panel-art svg { width: 62%; height: 62%; }
+.panel h3 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 800; margin-bottom: 0.8rem; }
+.panel ul { list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: 0.6rem; }
+.panel li { display: flex; gap: 0.7rem; align-items: flex-start; font-weight: 600; }
+.panel li::before { content: ''; flex: none; margin-top: 0.42rem; width: 0.9rem; height: 0.9rem; background: var(--lime); border: 3px solid var(--ink); border-radius: 50%; }
+@media (max-width: 760px) { .panel { grid-template-columns: minmax(0, 1fr); } .panel-art { max-width: 220px; } }
+
+/* Growth slider */
+.grow { margin-top: clamp(36px, 6vw, 64px); background: var(--lime); border: 3px solid var(--ink); border-radius: 26px; box-shadow: 8px 8px 0 var(--ink); padding: clamp(1.2rem, 3vw, 2.2rem); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(20px, 4vw, 44px); align-items: center; }
+.grow h3 { font-size: clamp(1.6rem, 3.2vw, 2.3rem); font-weight: 800; margin-bottom: 0.7rem; }
+.range-wrap { margin-top: 1.4rem; }
+input[type="range"] { width: 100%; accent-color: var(--brand); height: 2rem; cursor: pointer; }
+.range-labels { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.78rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; gap: 0.4rem; }
+.range-labels span.on { background: var(--ink); color: var(--lime); padding: 0 0.4rem; border-radius: 4px; }
+.grow-caption { margin-top: 1rem; font-weight: 700; min-height: 3.2em; }
+.mini { background: var(--brand-pale); border: 3px solid var(--ink); border-radius: 18px; overflow: hidden; min-width: 0; }
+.mini-bar, .pv-bar { display: flex; gap: 6px; align-items: center; padding: 0.55rem 0.8rem; background: var(--brand-soft); border-bottom: 3px solid var(--ink); }
+.mini-bar i, .pv-bar i { width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--ink); background: var(--lime); display: inline-block; }
+.mini-body { padding: 1.2rem; display: grid; gap: 0.9rem; min-height: 290px; align-content: start; position: relative; }
+.bar { height: 1.15rem; border-radius: 999px; background: var(--ink); }
+.bar.b1 { width: 78%; height: 1.5rem; } .bar.b2 { width: 54%; height: 1.5rem; }
+.bar.soft { background: var(--brand-soft); height: 0.7rem; }
+.mini-btn { width: 8.5rem; height: 2.4rem; border: 3px solid var(--ink); border-radius: 999px; background: var(--lime); display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; }
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.7rem; }
+.tile { aspect-ratio: 4 / 3; border: 3px solid var(--ink); border-radius: 12px; position: relative; overflow: hidden; background: var(--brand-pale); }
+.tile.t1 { border-style: dashed; }
+.tile.t2 { background: var(--brand-soft); }
+.tile.t3 { background: var(--brand); }
+.tile.t3::after { content: ''; position: absolute; width: 36%; aspect-ratio: 1; border-radius: 50%; background: var(--lime); border: 3px solid var(--ink); top: 14%; right: 14%; }
+.tile.t2::after { content: ''; position: absolute; left: 12%; bottom: 14%; width: 46%; height: 34%; background: var(--ink); clip-path: polygon(0 100%, 40% 0, 70% 60%, 100% 100%); opacity: 0.85; }
+.badge { position: absolute; right: 1rem; top: 1rem; background: var(--lime); border: 3px solid var(--ink); border-radius: 999px; padding: 0.2rem 0.9rem; font-family: var(--font-display); font-weight: 800; transform: rotate(6deg); }
+@media (max-width: 860px) { .grow { grid-template-columns: minmax(0, 1fr); } }
+
+/* Studio */
+.studio { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(20px, 3vw, 36px); align-items: start; }
+@media (max-width: 900px) { .studio { grid-template-columns: minmax(0, 1fr); } }
+.controls { background: var(--brand-pale); border: 3px solid var(--ink); border-radius: 24px; box-shadow: 7px 7px 0 var(--ink); padding: 1.5rem; display: grid; gap: 1.4rem; min-width: 0; }
+.field { display: grid; gap: 0.55rem; border: 0; padding: 0; margin: 0; min-width: 0; }
+.field legend, .field > label.lbl { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; padding: 0; }
+.text-in { font: inherit; font-weight: 700; font-size: 1.1rem; padding: 0.7rem 1rem; border: 3px solid var(--ink); border-radius: 14px; background: #fff7f4; color: var(--ink); width: 100%; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.chip span { display: inline-block; padding: 0.4rem 0.95rem; border: 3px solid var(--ink); border-radius: 999px; font-weight: 700; font-size: 0.93rem; background: #fff7f4; }
+.chip input:checked + span { background: var(--lime); box-shadow: 3px 3px 0 var(--ink); }
+.chip input:focus-visible + span { outline: 4px solid var(--ink); outline-offset: 2px; }
+.switches { display: grid; gap: 0.6rem; }
+.switch { display: flex; align-items: center; gap: 0.8rem; font-weight: 700; cursor: pointer; padding: 0.5rem 0.7rem; border: 3px solid var(--ink); border-radius: 14px; background: #fff7f4; }
+.switch input { width: 1.3rem; height: 1.3rem; accent-color: var(--brand); flex: none; margin: 0; }
+.switch small { display: block; font-weight: 500; color: var(--ink-soft); font-size: 0.82rem; line-height: 1.3; }
+.stage { display: grid; gap: 1.2rem; min-width: 0; }
+.pv { --r: 24px; background: var(--brand-pale); border: 3px solid var(--ink); border-radius: 22px; box-shadow: 8px 8px 0 var(--ink); overflow: hidden; }
+.pv-url { margin-left: 0.6rem; font-family: var(--font-mono); font-size: 0.75rem; background: var(--brand-pale); border: 2px solid var(--ink); border-radius: 999px; padding: 0.05rem 0.8rem; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pv-banner { background: var(--lime); border-bottom: 3px solid var(--ink); padding: 0.55rem 1rem; font-weight: 800; font-size: 0.92rem; text-align: center; }
+.pv-hero { padding: clamp(1.4rem, 4vw, 2.6rem); display: grid; gap: 1rem; }
+.pv-hero.pattern { background-image: radial-gradient(var(--brand-soft) 3px, transparent 3.5px); background-size: 20px 20px; }
+.pv-hero h3 { font-size: clamp(1.7rem, 4.4vw, 2.9rem); font-weight: 800; }
+.pv-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.pv-btn { display: inline-block; font-family: var(--font-display); font-weight: 700; padding: 0.55rem 1.2rem; border: 3px solid var(--ink); border-radius: var(--r); background: var(--lime); }
+.pv-btn.ghost { background: var(--brand-pale); }
+.pv-section { border-top: 3px solid var(--ink); padding: clamp(1.1rem, 3vw, 1.8rem) clamp(1.4rem, 4vw, 2.6rem); display: grid; gap: 0.8rem; }
+.pv-section h4 { font-size: 1.3rem; font-weight: 800; }
+.pv .tile { border-radius: min(var(--r), 18px); }
+.tile-caps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.7rem; font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.pitch-box { background: var(--lime); border: 3px solid var(--ink); border-radius: min(var(--r), 18px); padding: 0.9rem 1.1rem; font-weight: 600; }
+.plan { background: var(--lime); border: 3px solid var(--ink); border-radius: 22px; box-shadow: 6px 6px 0 var(--ink); padding: 1.3rem 1.5rem; display: grid; gap: 1rem; }
+.sec-lime .plan { background: var(--brand-pale); }
+.meter-top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; }
+.meter-top output { font-size: 1.8rem; font-variant-numeric: tabular-nums; }
+.meter { height: 1.4rem; border: 3px solid var(--ink); border-radius: 999px; background: #fff7f4; overflow: hidden; }
+.meter i { display: block; height: 100%; width: 0; background: var(--brand); border-right: 3px solid var(--ink); transition: width 0.4s ease; }
+.plan ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; font-weight: 600; }
+.plan li { display: flex; gap: 0.7rem; align-items: flex-start; }
+.plan li::before { content: ''; flex: none; margin-top: 0.4rem; width: 0.85rem; height: 0.85rem; background: var(--lime); border: 3px solid var(--ink); border-radius: 50%; }
+.sec-lime .plan li::before { background: var(--brand); }
+.note { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; }
+
+/* Path */
+.road { width: 100%; height: auto; display: block; margin-bottom: 1.4rem; overflow: visible; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); counter-reset: s; }
+.steps li { background: var(--brand-pale); border: 3px solid var(--ink); border-radius: 20px; box-shadow: 5px 5px 0 var(--ink); padding: 1.3rem; display: grid; gap: 0.5rem; counter-increment: s; position: relative; }
+.steps li::before { content: counter(s); position: absolute; top: -1.2rem; left: 1rem; width: 2.4rem; height: 2.4rem; display: grid; place-items: center; background: var(--lime); border: 3px solid var(--ink); border-radius: 50%; font-family: var(--font-display); font-weight: 800; }
+.steps h3 { font-size: 1.4rem; font-weight: 800; margin-top: 0.8rem; }
+
+/* CTA */
+.cta { text-align: center; position: relative; overflow: hidden; }
+.cta .wrap { display: grid; gap: 1.6rem; justify-items: center; position: relative; z-index: 1; }
+.cta h2 { font-size: clamp(2.4rem, 7vw, 5rem); font-weight: 800; max-width: 16ch; }
+.cta p { font-size: 1.15rem; max-width: 52ch; }
+.cta-deco { position: absolute; width: clamp(60px, 11vw, 140px); height: auto; }
+.cta-deco.l { left: 3%; top: 12%; } .cta-deco.r { right: 3%; bottom: 10%; }
+@media (max-width: 700px) { .cta-deco { opacity: 0.5; } }
+
+footer { padding-block: 2rem; border-top: 3px solid var(--ink); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 0.6rem 2rem; justify-content: space-between; font-weight: 600; font-size: 0.95rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .float { animation: none; }
+  .marquee-track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; }
+  .marquee-group[aria-hidden="true"] { display: none; }
+  .marquee-group { flex-wrap: wrap; justify-content: center; padding-right: 0; }
+  .btn, .card, .meter i { transition: none; }
+}
+</style>
+
+<!-- Icon library -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-signpost" viewBox="0 0 64 64"><g stroke="#2B0D05" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="29" y="6" width="6" height="54" fill="#FFB8A5"/><path d="M10 12h32l8 8-8 8H10z" fill="#E2F516"/><path d="M54 34H22l-8 8 8 8h32z" fill="#FFE4DC"/></g></symbol>
+    <symbol id="i-flag" viewBox="0 0 64 64"><g stroke="#2B0D05" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M16 6v54" fill="none"/><path d="M16 10h36l-9 11 9 11H16z" fill="#E2F516"/><path d="M8 60h20" fill="none"/></g></symbol>
+    <symbol id="i-layers" viewBox="0 0 64 64"><g stroke="#2B0D05" stroke-width="3" stroke-linejoin="round"><rect x="6" y="40" width="52" height="16" rx="4" fill="#FFB8A5"/><rect x="13" y="26" width="38" height="14" rx="4" fill="#FFE4DC"/><rect x="20" y="10" width="24" height="16" rx="4" fill="#E2F516"/></g></symbol>
+    <symbol id="i-loop" viewBox="0 0 64 64"><g stroke="#2B0D05" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M50 26a20 20 0 1 0 3 12" fill="none"/><path d="M56 8v20H36z" fill="#E2F516"/></g></symbol>
+    <symbol id="i-megaphone" viewBox="0 0 64 64"><g stroke="#2B0D05" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M8 26h14l24-13v38L22 38H8z" fill="#E2F516"/><path d="M16 38l4 15h9l-4-15" fill="#FFB8A5"/><path d="M53 24q7 8 0 16" fill="none"/></g></symbol>
+    <symbol id="i-audience" viewBox="0 0 64 64"><g stroke="#2B0D05" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><circle cx="32" cy="20" r="9" fill="#E2F516"/><path d="M14 58c0-12 8-19 18-19s18 7 18 19z" fill="#E2F516"/><circle cx="11" cy="30" r="6" fill="#FFE4DC"/><circle cx="53" cy="30" r="6" fill="#FFE4DC"/><path d="M2 54c0-8 4-13 10-14M62 54c0-8-4-13-10-14" fill="none"/></g></symbol>
+    <symbol id="i-range" viewBox="0 0 64 64"><g stroke="#2B0D05" stroke-width="3" stroke-linejoin="round"><circle cx="32" cy="32" r="25" fill="#FFE4DC"/><circle cx="32" cy="32" r="16" fill="#FFB8A5"/><circle cx="32" cy="32" r="7" fill="#E2F516"/></g></symbol>
+    <symbol id="i-collab" viewBox="0 0 64 64"><g stroke="#2B0D05" stroke-width="3" stroke-linejoin="round"><circle cx="23" cy="32" r="18" fill="#E2F516"/><circle cx="41" cy="32" r="18" fill="#FFB8A5"/><path d="M32 17.3a18 18 0 0 1 0 29.4a18 18 0 0 1 0-29.4z" fill="#FF5733"/></g></symbol>
+    <symbol id="i-van" viewBox="0 0 64 64"><g stroke="#2B0D05" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="18" width="42" height="29" rx="5" fill="#E2F516"/><path d="M45 26h9l8 10v11H45z" fill="#FFE4DC"/><rect x="9" y="24" width="18" height="11" rx="2" fill="#FFE4DC"/><circle cx="16" cy="49" r="7" fill="#2B0D05"/><circle cx="52" cy="49" r="7" fill="#2B0D05"/><path d="M33 26h6" fill="none"/></g></symbol>
+    <symbol id="i-rocket" viewBox="0 0 64 64"><g stroke="#2B0D05" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M32 4c11 8 13 22 9 36H23C19 26 21 12 32 4z" fill="#FFE4DC"/><circle cx="32" cy="23" r="5" fill="#E2F516"/><path d="M23 33L12 46l13-3zM41 33l11 13-13-3z" fill="#E2F516"/><path d="M27 45h10l-5 15z" fill="#FF5733"/></g></symbol>
+    <symbol id="i-repeat" viewBox="0 0 64 64"><g stroke="#2B0D05" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M10 30a22 22 0 0 1 38-14" fill="none"/><path d="M50 6v18H32z" fill="#E2F516"/><path d="M54 34a22 22 0 0 1-38 14" fill="none"/><path d="M14 58V40h18z" fill="#E2F516"/></g></symbol>
+    <symbol id="i-mail" viewBox="0 0 64 64"><g stroke="#2B0D05" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="4" y="16" width="52" height="38" rx="5" fill="#FFE4DC"/><path d="M4 20l26 19 26-19" fill="none"/><circle cx="52" cy="14" r="10" fill="#E2F516"/><path d="M47 14l4 4 7-8" fill="none"/></g></symbol>
+    <symbol id="i-spark" viewBox="-16 -16 32 32"><path d="M0 -14L4 -4L14 0L4 4L0 14L-4 4L-14 0L-4 -4Z" fill="#E2F516" stroke="#2B0D05" stroke-width="2.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 5l7 7-7 7" fill="none" stroke="#2B0D05" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="top">
+  <div class="wrap">
+    <a class="logo" href="#top"><i></i>EasyLandX</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#ideas">Big ideas</a>
+      <a href="#lessons">Lessons</a>
+      <a href="#strategies">Strategies</a>
+      <a href="#studio">Studio</a>
+    </nav>
+    <a class="btn btn-lime" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyLandX <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero sec-orange">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Landing pages that create opportunities</p>
+      <h1>Make your path. <span class="mark">Launch your page.</span></h1>
+      <p class="lede">EasyLandX designs custom, conversion-focused landing pages for small businesses and creative founders. Borrow the playbook of makers who build their own opportunities, and turn it into a page that welcomes your audience every day.</p>
+      <div class="hero-actions">
+        <a class="btn btn-lime btn-big" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyLandX <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost btn-big" href="#studio">Try the Path Studio</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 520 450" role="img" aria-label="Illustration of a landing page with a headline, a button and a picture, surrounded by a pencil, stars and a paper plane">
+        <circle cx="390" cy="120" r="108" fill="#E2F516" stroke="#2B0D05" stroke-width="4"/>
+        <g class="float d2">
+          <path d="M404 40l60-18-22 58-14-20z" fill="#FFE4DC" stroke="#2B0D05" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M428 60l14 20" stroke="#2B0D05" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        <g class="float">
+          <rect x="30" y="78" width="372" height="280" rx="20" fill="#FFE4DC"/>
+          <path d="M30 98a20 20 0 0 1 20-20h332a20 20 0 0 1 20 20v28H30z" fill="#FFB8A5"/>
+          <rect x="30" y="78" width="372" height="280" rx="20" fill="none" stroke="#2B0D05" stroke-width="4"/>
+          <path d="M30 126h372" stroke="#2B0D05" stroke-width="4"/>
+          <circle cx="58" cy="102" r="8" fill="#E2F516" stroke="#2B0D05" stroke-width="3"/>
+          <circle cx="82" cy="102" r="8" fill="#FF5733" stroke="#2B0D05" stroke-width="3"/>
+          <circle cx="106" cy="102" r="8" fill="#FFE4DC" stroke="#2B0D05" stroke-width="3"/>
+          <rect x="56" y="152" width="214" height="26" rx="13" fill="#2B0D05"/>
+          <rect x="56" y="188" width="156" height="26" rx="13" fill="#2B0D05"/>
+          <rect x="56" y="230" width="226" height="10" rx="5" fill="#FFB8A5"/>
+          <rect x="56" y="250" width="186" height="10" rx="5" fill="#FFB8A5"/>
+          <rect x="56" y="282" width="132" height="44" rx="22" fill="#E2F516" stroke="#2B0D05" stroke-width="4"/>
+          <text x="122" y="311" text-anchor="middle" font-family="Bricolage Grotesque, Arial Black, sans-serif" font-weight="800" font-size="19" fill="#2B0D05">Launch</text>
+          <rect x="296" y="150" width="84" height="176" rx="14" fill="#FF5733" stroke="#2B0D05" stroke-width="4"/>
+          <circle cx="338" cy="190" r="16" fill="#E2F516" stroke="#2B0D05" stroke-width="3"/>
+          <path d="M302 318L326 252L344 288L358 266L374 318Z" fill="#2B0D05"/>
+        </g>
+        <g class="float d3">
+          <g transform="translate(300 400) rotate(-18)">
+            <rect x="0" y="-15" width="150" height="30" fill="#E2F516" stroke="#2B0D05" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M150 -15L190 0L150 15Z" fill="#FFE4DC" stroke="#2B0D05" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M176 -5.5L190 0L176 5.5Z" fill="#2B0D05"/>
+            <rect x="-24" y="-15" width="24" height="30" rx="6" fill="#FFB8A5" stroke="#2B0D05" stroke-width="4"/>
+            <path d="M24 -15v30M44 -15v30" stroke="#2B0D05" stroke-width="3"/>
+          </g>
+        </g>
+        <use href="#i-spark" x="420" y="262" width="52" height="52" class="float"/>
+        <use href="#i-spark" x="6" y="40" width="40" height="40" class="float d2"/>
+        <use href="#i-spark" x="470" y="360" width="34" height="34" class="float d3"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-label="Key ideas">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span>Create your own opportunities</span><span>Share your process</span><span>Release early, release often</span><span>Repeat, improve, repeat</span><span>Go to your audience</span><span>Shape your signature style</span>
+    </div>
+    <div class="marquee-group" aria-hidden="true">
+      <span>Create your own opportunities</span><span>Share your process</span><span>Release early, release often</span><span>Repeat, improve, repeat</span><span>Go to your audience</span><span>Shape your signature style</span>
+    </div>
+  </div>
+</div>
+
+<!-- BIG IDEAS -->
+<section class="sec sec-orange" id="ideas">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Four big ideas</p>
+      <h2>Build the career you imagine, one <span class="mark">page</span> at a time.</h2>
+      <p>These ideas come from Gem Barton's guide for creative graduates, Make a Job. Each one finds a natural home on a landing page.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <svg class="ico" aria-hidden="true"><use href="#i-signpost"/></svg>
+        <h3>Life-making</h3>
+        <p><span class="tag">From the book</span>Success grows when you design your own career path and shape opportunities that fit you perfectly.</p>
+        <p class="apply"><span class="tag">On your page</span>Your landing page becomes your front door, shaped around the path you choose.</p>
+      </article>
+      <article class="card">
+        <svg class="ico" aria-hidden="true"><use href="#i-flag"/></svg>
+        <h3>Own your direction</h3>
+        <p><span class="tag">From the book</span>Every project, passion and bold step is a move toward independence.</p>
+        <p class="apply"><span class="tag">On your page</span>Each launch, update and campaign is a step that you lead.</p>
+      </article>
+      <article class="card">
+        <svg class="ico" aria-hidden="true"><use href="#i-layers"/></svg>
+        <h3>Process over outcome</h3>
+        <p><span class="tag">From the book</span>Sharing your evolving creative journey builds trust and stands out beautifully next to a generic portfolio.</p>
+        <p class="apply"><span class="tag">On your page</span>Show sketches, drafts and milestones so visitors feel part of your story.</p>
+      </article>
+      <article class="card">
+        <svg class="ico" aria-hidden="true"><use href="#i-loop"/></svg>
+        <h3>Adapt and grow</h3>
+        <p><span class="tag">From the book</span>Resilience and trial-and-error are the tools that forge a creative career.</p>
+        <p class="apply"><span class="tag">On your page</span>Every version teaches you something. Test, learn and refine with confidence.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- LESSONS -->
+<section class="sec sec-lime" id="lessons">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Core lessons</p>
+      <h2>Four lessons that make your page <span class="mark">unmissable</span>.</h2>
+      <p>Pick a lesson to see how it becomes a practical landing page move.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Core lessons">
+      <button class="tab" role="tab" id="tab-1" aria-controls="p-1" aria-selected="true">Bold self-promotion</button>
+      <button class="tab" role="tab" id="tab-2" aria-controls="p-2" aria-selected="false" tabindex="-1">Go to your audience</button>
+      <button class="tab" role="tab" id="tab-3" aria-controls="p-3" aria-selected="false" tabindex="-1">Focus and range</button>
+      <button class="tab" role="tab" id="tab-4" aria-controls="p-4" aria-selected="false" tabindex="-1">Team up or lead solo</button>
+    </div>
+    <div class="panel" role="tabpanel" id="p-1" aria-labelledby="tab-1">
+      <div class="panel-art"><svg aria-hidden="true"><use href="#i-megaphone"/></svg></div>
+      <div>
+        <p class="tag">Lesson one</p>
+        <h3>Put yourself out there with joy.</h3>
+        <p>Bold personal branding and distinctive self-marketing make you unmissable. Your landing page is the perfect stage for it.</p>
+        <ul>
+          <li>A hero headline that says who you are in one memorable line</li>
+          <li>Colors and shapes only you would choose</li>
+          <li>One clear button that invites the next step</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel" role="tabpanel" id="p-2" aria-labelledby="tab-2" hidden>
+      <div class="panel-art"><svg aria-hidden="true"><use href="#i-audience"/></svg></div>
+      <div>
+        <p class="tag">Lesson two</p>
+        <h3>Bring your ideas to where people gather.</h3>
+        <p>Take your work into public spaces, online and in person, and let your audience find you in their favorite places.</p>
+        <ul>
+          <li>Share your page link in the communities your audience loves</li>
+          <li>Add a QR code to prints, stickers and pop-ups</li>
+          <li>Greet visitors with a welcome that matches where they arrived from</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel" role="tabpanel" id="p-3" aria-labelledby="tab-3" hidden>
+      <div class="panel-art"><svg aria-hidden="true"><use href="#i-range"/></svg></div>
+      <div>
+        <p class="tag">Lesson three</p>
+        <h3>Pair a sharp niche with a flexible range.</h3>
+        <p>A distinct focus or signature style draws people in, and an adaptable set of skills spreads your opportunities wide.</p>
+        <ul>
+          <li>A focused headline for your niche</li>
+          <li>A services row that shows your range</li>
+          <li>Room to add new offers as you grow</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel" role="tabpanel" id="p-4" aria-labelledby="tab-4" hidden>
+      <div class="panel-art"><svg aria-hidden="true"><use href="#i-collab"/></svg></div>
+      <div>
+        <p class="tag">Lesson four</p>
+        <h3>Choose the best way to create each project.</h3>
+        <p>Partner up to pool resources and ideas, or lead solo to keep full creative control. Your page can celebrate both.</p>
+        <ul>
+          <li>A "Let's create together" button for future partners</li>
+          <li>A solo showcase for the projects you lead</li>
+          <li>A credits section that celebrates everyone involved</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGIES -->
+<section class="sec sec-orange" id="strategies">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Key strategies</p>
+      <h2>Four moves to <span class="mark">grow momentum</span>.</h2>
+      <p>Each strategy turns into a feature you can add to your EasyLandX page this week.</p>
+    </div>
+    <div class="grid grid-2">
+      <article class="card tint-lime">
+        <svg class="ico" aria-hidden="true"><use href="#i-van"/></svg>
+        <h3>Guerrilla and mobile tactics</h3>
+        <p><span class="tag">From the book</span>Grab attention with pop-up exhibitions, roving offices and handcrafted pieces sent straight to partners you admire.</p>
+        <p class="apply"><span class="tag">On your page</span>Create a pop-up page for each event and place a QR code on every handmade piece.</p>
+      </article>
+      <article class="card">
+        <svg class="ico" aria-hidden="true"><use href="#i-rocket"/></svg>
+        <h3>Release early, release often</h3>
+        <p><span class="tag">From the book</span>Share in-progress work to build momentum, gather feedback and show your work ethic in real time.</p>
+        <p class="apply"><span class="tag">On your page</span>Launch a simple page this week and add something new every week.</p>
+      </article>
+      <article class="card">
+        <svg class="ico" aria-hidden="true"><use href="#i-repeat"/></svg>
+        <h3>Repeat, improve, repeat</h3>
+        <p><span class="tag">From the book</span>A recognizable visual language becomes a marketing engine for every future project.</p>
+        <p class="apply"><span class="tag">On your page</span>Reuse your colors, shapes and voice everywhere so people recognize you instantly.</p>
+      </article>
+      <article class="card tint-lime">
+        <svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>
+        <h3>Pitch directly</h3>
+        <p><span class="tag">From the book</span>Offer fresh solutions to clients for opportunities they may have yet to notice, ahead of formal job postings.</p>
+        <p class="apply"><span class="tag">On your page</span>Build a dedicated landing page for a client you admire and send it as your proposal.</p>
+      </article>
+    </div>
+
+    <div class="grow" id="grow">
+      <div>
+        <p class="tag">Interactive</p>
+        <h3>Watch a page grow</h3>
+        <p>Slide through four releases and see how a simple sketch becomes a launched page. Every version is ready to share.</p>
+        <div class="range-wrap">
+          <label for="stage" class="tag">Release version</label>
+          <input type="range" id="stage" min="1" max="4" step="1" value="1">
+          <div class="range-labels" id="stageLabels"><span>Sketch</span><span>Share</span><span>Refine</span><span>Launch</span></div>
+        </div>
+        <p class="grow-caption" id="growCaption" aria-live="polite"></p>
+      </div>
+      <div class="mini" aria-label="Example page growing through four versions">
+        <div class="mini-bar"><i></i><i></i><i></i></div>
+        <div class="mini-body">
+          <div class="bar b1"></div>
+          <div class="bar b2"></div>
+          <div data-min="2" style="display:grid;gap:0.9rem">
+            <div class="bar soft" style="width:88%"></div>
+            <div class="bar soft" style="width:64%"></div>
+            <div class="mini-btn">Say hello</div>
+          </div>
+          <div class="tiles" data-min="3"><div class="tile t1"></div><div class="tile t2"></div><div class="tile t3"></div></div>
+          <div class="badge" data-min="4">Live!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDIO -->
+<section class="sec sec-lime" id="studio">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Interactive Path Studio</p>
+      <h2>Shape a landing page with the playbook.</h2>
+      <p>Choose your craft, set your style and switch on the strategies. Your example page and launch plan update instantly.</p>
+    </div>
+    <div class="studio">
+      <form class="controls" onsubmit="return false" aria-label="Page controls">
+        <div class="field">
+          <label class="lbl" for="studioName">Your studio name</label>
+          <input class="text-in" id="studioName" type="text" value="Studio Aurora" maxlength="28" autocomplete="off">
+        </div>
+        <fieldset class="field">
+          <legend>Your craft</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="craft" value="architecture"><span>Architecture</span></label>
+            <label class="chip"><input type="radio" name="craft" value="illustration" checked><span>Illustration</span></label>
+            <label class="chip"><input type="radio" name="craft" value="fashion"><span>Fashion</span></label>
+            <label class="chip"><input type="radio" name="craft" value="photography"><span>Photography</span></label>
+            <label class="chip"><input type="radio" name="craft" value="product"><span>Product design</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="field">
+          <legend>Signature shape</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="shape" value="round" checked><span>Round</span></label>
+            <label class="chip"><input type="radio" name="shape" value="sharp"><span>Sharp</span></label>
+            <label class="chip"><input type="radio" name="shape" value="leaf"><span>Leaf</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="field">
+          <legend>Switch on strategies</legend>
+          <div class="switches">
+            <label class="switch"><input type="checkbox" id="optBanner"><span>Pop-up banner<small>Guerrilla and mobile tactics</small></span></label>
+            <label class="switch"><input type="checkbox" id="optGallery" checked><span>Work-in-progress gallery<small>Release early, release often</small></span></label>
+            <label class="switch"><input type="checkbox" id="optPattern" checked><span>Signature pattern<small>Repeat, improve, repeat</small></span></label>
+            <label class="switch"><input type="checkbox" id="optPitch" checked><span>Direct pitch section<small>Pitch directly</small></span></label>
+            <label class="switch"><input type="checkbox" id="optCollab" checked><span>Collaboration button<small>Team up or lead solo</small></span></label>
+          </div>
+        </fieldset>
+      </form>
+
+      <div class="stage">
+        <div class="pv" id="pv" aria-label="Example landing page preview">
+          <div class="pv-bar"><i></i><i></i><i></i><span class="pv-url" id="pvUrl">studio-aurora.easylandx</span></div>
+          <div class="pv-banner" id="pvBanner" hidden>Pop-up studio open this Saturday. Come say hello!</div>
+          <div class="pv-hero pattern" id="pvHero">
+            <p class="eyebrow" id="pvCraft"></p>
+            <h3 id="pvHead"></h3>
+            <div class="pv-actions"><span class="pv-btn">See my work</span><span class="pv-btn ghost" id="pvCollab">Let's create together</span></div>
+          </div>
+          <div class="pv-section" id="pvGallery">
+            <h4>Work in progress</h4>
+            <div class="tiles"><div class="tile t1"></div><div class="tile t2"></div><div class="tile t3"></div></div>
+            <div class="tile-caps"><span>Sketch</span><span>Draft</span><span>Final</span></div>
+          </div>
+          <div class="pv-section" id="pvPitch">
+            <h4>An idea made for you</h4>
+            <div class="pitch-box">A fresh landing page concept for your next launch. Take a look and let's shape it together.</div>
+          </div>
+        </div>
+        <div class="plan">
+          <div class="meter-top"><span>Momentum</span><output id="momentum" for="studioName">0%</output></div>
+          <div class="meter" role="presentation"><i id="meterFill"></i></div>
+          <ul id="plan"></ul>
+          <p class="note">Example preview. Your real EasyLandX page is custom designed for you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PATH -->
+<section class="sec sec-orange" id="path">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Your road ahead</p>
+      <h2>From idea to launch in four friendly steps.</h2>
+    </div>
+    <svg class="road" viewBox="0 0 1000 150" aria-hidden="true">
+      <path d="M0 110C140 20 250 20 330 85S520 150 640 80S830 10 930 70" fill="none" stroke="#2B0D05" stroke-width="22" stroke-linecap="round"/>
+      <path d="M0 110C140 20 250 20 330 85S520 150 640 80S830 10 930 70" fill="none" stroke="#E2F516" stroke-width="5" stroke-linecap="round" stroke-dasharray="16 14"/>
+      <g stroke="#2B0D05" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M940 70V8" fill="none"/><path d="M940 10h40l-9 12 9 12h-40z" fill="#E2F516"/></g>
+      <use href="#i-spark" x="150" y="-4" width="34" height="34"/>
+      <use href="#i-spark" x="560" y="96" width="28" height="28"/>
+    </svg>
+    <ol class="steps">
+      <li><h3>Dream it</h3><p>Describe the path you want to create and the audience you want to welcome.</p></li>
+      <li><h3>Share it</h3><p>Publish a first version quickly and invite your community to take a look.</p></li>
+      <li><h3>Refine it</h3><p>Add your latest work, listen to feedback and polish your signature style.</p></li>
+      <li><h3>Launch it</h3><p>Open the doors with a custom EasyLandX page built to turn visitors into opportunities.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec sec-lime cta" id="start">
+  <svg class="cta-deco l" viewBox="-16 -16 32 32" aria-hidden="true"><use href="#i-spark"/></svg>
+  <svg class="cta-deco r" viewBox="-16 -16 32 32" aria-hidden="true"><use href="#i-spark"/></svg>
+  <div class="wrap">
+    <p class="eyebrow">Ready when you are</p>
+    <h2>Your path starts with <span class="mark">one page</span>.</h2>
+    <p>Bring your story, your style and your goals. EasyLandX shapes them into an affordable, custom landing page that opens new doors.</p>
+    <a class="btn btn-brand btn-big" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyLandX <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+</section>
+</main>
+
+<footer class="sec-orange">
+  <div class="wrap">
+    <span>&copy; 2026 EasyLandX. All rights reserved.</span>
+    <span>Ideas inspired by Gem Barton's guide for creative graduates.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* Tabs */
+  var tabs = $$('[role="tab"]');
+  function selectTab(t) {
+    tabs.forEach(function (x) {
+      var on = x === t;
+      x.setAttribute('aria-selected', on ? 'true' : 'false');
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { selectTab(t); });
+    t.addEventListener('keydown', function (e) {
+      var n = null;
+      if (e.key === 'ArrowRight') n = tabs[(i + 1) % tabs.length];
+      if (e.key === 'ArrowLeft') n = tabs[(i - 1 + tabs.length) % tabs.length];
+      if (n) { n.focus(); selectTab(n); e.preventDefault(); }
+    });
+  });
+
+  /* Growth slider */
+  var stage = $('#stage');
+  var captions = [
+    'Sketch: a headline and a big idea. Share it today.',
+    'Share: add a clear button and invite your first visitors.',
+    'Refine: add a work-in-progress gallery and welcome feedback.',
+    'Launch: your signature style shines on a page that is ready to grow.'
+  ];
+  function renderGrow() {
+    var s = parseInt(stage.value, 10);
+    $$('[data-min]', $('#grow')).forEach(function (el) { el.hidden = parseInt(el.getAttribute('data-min'), 10) > s; });
+    $$('#stageLabels span').forEach(function (el, i) { el.className = (i + 1 === s) ? 'on' : ''; });
+    $('#growCaption').textContent = captions[s - 1];
+  }
+  stage.addEventListener('input', renderGrow);
+  renderGrow();
+
+  /* Studio */
+  var crafts = {
+    architecture: { label: 'Architecture', phrase: 'spaces people love to enter' },
+    illustration: { label: 'Illustration', phrase: 'stories you can see' },
+    fashion: { label: 'Fashion', phrase: 'pieces that move with you' },
+    photography: { label: 'Photography', phrase: 'moments worth keeping' },
+    product: { label: 'Product design', phrase: 'objects that feel just right' }
+  };
+  var shapes = { round: '24px', sharp: '0px', leaf: '30px 0 30px 0' };
+  var nameEl = $('#studioName');
+  var opts = { banner: $('#optBanner'), gallery: $('#optGallery'), pattern: $('#optPattern'), pitch: $('#optPitch'), collab: $('#optCollab') };
+
+  function slug(s) {
+    var t = s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    return t || 'your-studio';
+  }
+  function checked(name) { var el = $('input[name="' + name + '"]:checked'); return el ? el.value : null; }
+
+  function renderStudio() {
+    var name = nameEl.value.trim() || 'Your Studio';
+    var craft = crafts[checked('craft')] || crafts.illustration;
+    var shape = shapes[checked('shape')] || shapes.round;
+
+    $('#pv').style.setProperty('--r', shape);
+    $('#pvUrl').textContent = slug(name) + '.easylandx';
+    $('#pvCraft').textContent = craft.label;
+    $('#pvHead').textContent = name + ' creates ' + craft.phrase + '.';
+    $('#pvBanner').hidden = !opts.banner.checked;
+    $('#pvHero').classList.toggle('pattern', opts.pattern.checked);
+    $('#pvCollab').hidden = !opts.collab.checked;
+    $('#pvGallery').hidden = !opts.gallery.checked;
+    $('#pvPitch').hidden = !opts.pitch.checked;
+
+    var plan = ['Share your page link where your audience gathers'];
+    if (opts.banner.checked) plan.push('Announce your next pop-up and add a QR code to your handmade pieces');
+    if (opts.gallery.checked) plan.push('Post a new sketch or draft every week');
+    if (opts.pattern.checked) plan.push('Carry your signature pattern across every page and print');
+    if (opts.pitch.checked) plan.push('Create a custom page for a client you admire and send it as a proposal');
+    if (opts.collab.checked) plan.push('Invite a creative partner to join your next project');
+    var ul = $('#plan');
+    ul.textContent = '';
+    plan.forEach(function (p) { var li = document.createElement('li'); li.textContent = p; ul.appendChild(li); });
+
+    var on = Object.keys(opts).filter(function (k) { return opts[k].checked; }).length;
+    var score = 20 + on * 16;
+    $('#momentum').textContent = score + '%';
+    $('#meterFill').style.width = score + '%';
+  }
+  nameEl.addEventListener('input', renderStudio);
+  $$('.controls input').forEach(function (el) { el.addEventListener('change', renderStudio); });
+  renderStudio();
+})();
+</script>
