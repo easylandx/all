@@ -45,9 +45,12 @@ input[type=range]{width:100%;accent-color:var(--bg)}
 .asset[aria-expanded=true] .more{max-height:220px}
 .asset svg{width:64px;height:64px;display:block;margin-bottom:8px}
 /* loop */
-.steps{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
-.steps button{flex:1 1 140px;border:3px solid var(--navy);background:transparent;color:var(--navy);padding:12px;border-radius:14px;font-weight:800;cursor:pointer}
+.steps{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;min-width:0}
+.steps button{flex:1 1 140px;min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere;word-break:normal;line-height:1.35;border:3px solid var(--navy);background:transparent;color:var(--navy);padding:12px;border-radius:14px;font-weight:800;cursor:pointer}
 .steps button[aria-selected=true]{background:var(--navy);color:var(--cream)}
+.loop-detail{display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:center;min-width:0}
+.loop-detail>div{min-width:0}
+.loop-detail h3,.loop-detail p{overflow-wrap:anywhere}
 /* mindset */
 .flip{background:var(--navy);color:var(--cream);border:0;border-radius:20px;padding:22px;font:inherit;text-align:left;cursor:pointer;min-height:130px;width:100%;transition:background .3s,color .3s}
 .flip b{font:900 1.15rem "Trebuchet MS",sans-serif;display:block;margin-bottom:6px}
@@ -64,7 +67,17 @@ input[type=range]{width:100%;accent-color:var(--bg)}
 footer{text-align:center;background:var(--navy);color:var(--cream);font-family:"Trebuchet MS",sans-serif}
 footer .btn{background:var(--cream);color:var(--navy);border-color:var(--cream)}
 footer .btn:hover{background:var(--bg);color:var(--navy);border-color:var(--bg)}
-@media(max-width:760px){.hero,.eq{grid-template-columns:1fr}section,header,footer{padding:52px 20px}}
+@media(max-width:760px){
+.hero,.eq{grid-template-columns:1fr}
+section,header,footer{padding:52px 20px}
+#practice .card{padding:18px}
+#practice .steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#practice .steps button{width:100%;min-width:0;padding:11px 8px;font-size:.92rem;line-height:1.3}
+.loop-detail{grid-template-columns:minmax(0,1fr);gap:14px}
+.loop-detail svg{width:100%;max-width:120px;margin:0 auto;display:block}
+.loop-detail h3{font-size:1.15rem;line-height:1.25}
+}
+@media(max-width:380px){#practice .steps{grid-template-columns:minmax(0,1fr)}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 .sun{animation:spin 40s linear infinite;transform-origin:250px 90px}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -149,7 +162,7 @@ footer .btn:hover{background:var(--bg);color:var(--navy);border-color:var(--bg)}
 <div class="steps" role="tablist" id="steps">
 <button role="tab" aria-selected="true">Stretch goal</button><button role="tab" aria-selected="false">Full focus</button><button role="tab" aria-selected="false">Instant feedback</button><button role="tab" aria-selected="false">Refine and repeat</button>
 </div>
-<div style="display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:center">
+<div class="loop-detail">
 <svg viewBox="0 0 120 120" role="img" aria-label="Loop progress"><circle cx="60" cy="60" r="46" fill="none" stroke="#FFEBB0" stroke-width="14"/><circle id="ring" cx="60" cy="60" r="46" fill="none" stroke="#FFC61A" stroke-width="14" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="217" transform="rotate(-90 60 60)" style="transition:stroke-dashoffset .5s"/><text id="ringn" x="60" y="70" text-anchor="middle" font-size="30" font-weight="900" fill="#1B2A4A" font-family="Trebuchet MS,sans-serif">1</text></svg>
 <div><h3 id="st">Set a clear stretch goal</h3><p id="sd" style="margin:0">Aim at a specific target, such as lifting your page's sign-up rate to its next level.</p></div>
 </div>
