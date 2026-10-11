@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx | Landing Pages Crafted Like a Grandmaster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g0:#0d7a3c; --g1:#12883f; --g2:#179a49; --g3:#1fae56; --g4:#34c26b;
+  --gold:#f5c542; --gold2:#ffe08a; --ink:#fffbe8; --deep:#0a5f2e;
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Outfit',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--g1);color:var(--ink);font:400 1.08rem/1.65 var(--sans)}
+h1,h2,h3{font-family:var(--serif);font-weight:800;line-height:1.08;margin:0 0 .5em;letter-spacing:-.01em}
+h1{font-size:clamp(2.5rem,7vw,5rem)}
+h2{font-size:clamp(1.9rem,4.6vw,3.1rem);color:var(--gold)}
+h3{font-size:1.35rem;color:var(--gold2)}
+p{margin:0 0 1em;max-width:62ch}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 1.4rem}
+section{padding:5rem 0}
+.s1{background:var(--g1)} .s2{background:var(--g2)} .s3{background:var(--g0)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.btn{display:inline-block;background:var(--gold);color:var(--deep);font:600 1.1rem var(--sans);padding:.95rem 2rem;border-radius:999px;text-decoration:none;border:0;cursor:pointer;transition:transform .2s,background .2s;box-shadow:0 6px 0 #b98d12}
+.btn:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 #b98d12}
+.ghost{background:transparent;color:var(--gold);box-shadow:inset 0 0 0 2px var(--gold)}
+.ghost:hover{background:rgba(245,197,66,.16)}
+nav{position:sticky;top:0;z-index:5;background:var(--g0);border-bottom:2px solid var(--gold);padding-top:env(safe-area-inset-top,0px)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:.7rem;padding-bottom:.7rem}
+.logo{font:800 1.5rem var(--serif);color:var(--gold);text-decoration:none}
+nav .btn{padding:.55rem 1.3rem;font-size:.98rem;box-shadow:none}
+
+/* hero */
+.hero{padding:4rem 0 5rem}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.lead{font-size:1.25rem;color:var(--gold2)}
+.cta-row{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.6rem}
+.boardbox{background:var(--g0);border:3px solid var(--gold);border-radius:22px;padding:1rem;box-shadow:0 14px 0 rgba(0,0,0,.12)}
+.boardbox svg{width:100%;height:auto;display:block;border-radius:10px}
+.cap{font-size:.95rem;color:var(--gold2);text-align:center;margin:.7rem 0 0;max-width:none}
+.sq{cursor:default}.cand{cursor:pointer}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr}}
+
+/* messages */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem;margin-top:2.2rem}
+.card{background:var(--g3);border:2px solid var(--gold);border-radius:20px;padding:1.6rem}
+.card svg{width:64px;height:64px;margin-bottom:.6rem}
+.s3 .card{background:var(--g1)}
+
+/* explorer */
+.explorer{display:grid;grid-template-columns:.9fr 1.1fr;gap:1.6rem;margin-top:2.2rem}
+.cands{display:grid;gap:.7rem;align-content:start}
+.cbtn{display:flex;align-items:center;gap:.9rem;text-align:left;background:var(--g1);color:var(--ink);border:2px solid var(--g4);border-radius:16px;padding:.85rem 1.1rem;font:500 1.05rem var(--sans);cursor:pointer;transition:border-color .2s,background .2s}
+.cbtn:hover{border-color:var(--gold)}
+.cbtn[aria-pressed="true"]{background:var(--gold);color:var(--deep);border-color:var(--gold)}
+.cbtn .mk{font:800 1.4rem var(--serif);width:2rem;text-align:center;color:var(--gold)}
+.cbtn[aria-pressed="true"] .mk{color:var(--deep)}
+.cbtn.done .mk::after{content:"✓";font-size:.8rem;display:block;line-height:1}
+.tree{background:var(--g1);border:2px solid var(--gold);border-radius:22px;padding:1.6rem;min-height:340px}
+.branch{position:relative;margin:0 0 .9rem 1.4rem;padding:.2rem 0 .2rem 1.4rem;border-left:3px solid var(--gold)}
+.branch::before{content:"";position:absolute;left:-3px;top:1rem;width:1.1rem;height:3px;background:var(--gold)}
+.branch b{color:var(--gold2);font-family:var(--serif)}
+.branch.b2{margin-left:3rem}.branch.b3{margin-left:4.6rem}
+.verdict{background:var(--gold);color:var(--deep);border-radius:14px;padding:.8rem 1.1rem;font-weight:600;margin-top:1rem}
+.meter{height:16px;background:var(--g0);border-radius:99px;overflow:hidden;border:2px solid var(--gold);margin:1.4rem 0 .5rem}
+.meter i{display:block;height:100%;width:0;background:var(--gold);transition:width .5s}
+.done-msg{font-weight:600;color:var(--gold2);min-height:2.4rem}
+@media(max-width:820px){.explorer{grid-template-columns:1fr}}
+
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:.6rem;margin:2rem 0 1.2rem}
+.tab{background:transparent;color:var(--ink);border:2px solid var(--gold);border-radius:999px;padding:.6rem 1.3rem;font:500 1rem var(--sans);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--gold);color:var(--deep)}
+.panel{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;background:var(--g3);border:2px solid var(--gold);border-radius:22px;padding:2rem}
+.panel[hidden]{display:none}
+.panel ul{padding-left:1.2rem;margin:0}.panel li{margin-bottom:.5rem}
+.panel svg{width:100%;height:auto;max-height:260px}
+@media(max-width:820px){.panel{grid-template-columns:1fr}}
+
+/* check */
+.checks{display:grid;gap:.8rem;margin-top:1.8rem;max-width:640px}
+.chk{display:flex;gap:1rem;align-items:center;background:var(--g2);border:2px solid var(--g4);border-radius:16px;padding:1rem 1.2rem;cursor:pointer}
+.chk input{width:1.5rem;height:1.5rem;accent-color:var(--gold)}
+.chk:has(input:checked){border-color:var(--gold);background:var(--g3)}
+.king{display:flex;align-items:center;gap:1.2rem;margin-top:1.6rem}
+.king span{font:800 4rem/1 var(--serif);color:var(--g4);transition:color .4s,transform .4s}
+.king.on span{color:var(--gold);transform:scale(1.15) rotate(-6deg)}
+.checkwrap{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+@media(max-width:820px){.checkwrap{grid-template-columns:1fr}}
+
+/* timeline */
+.steps{list-style:none;padding:0;margin:2.4rem 0 0;display:grid;gap:1rem;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:3.6rem 1fr;gap:1.1rem;align-items:center;background:var(--g1);border:2px solid var(--g4);border-radius:18px;padding:1rem 1.3rem}
+.steps li::before{content:counter(s);font:800 1.6rem var(--serif);background:var(--gold);color:var(--deep);width:3.2rem;height:3.2rem;border-radius:50%;display:grid;place-items:center}
+.steps b{color:var(--gold2);font-family:var(--serif);font-size:1.2rem}
+.final{text-align:center;padding:6rem 0}
+.final h2{font-size:clamp(2.2rem,6vw,4rem)}
+.final p{margin-left:auto;margin-right:auto}
+footer{background:var(--deep);text-align:center;padding:1.8rem 1rem;color:var(--gold2);font-size:.95rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="#top">easylandx</a><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a></div></nav>
+
+<header class="hero s1" id="top">
+<div class="wrap">
+  <div>
+    <h1>Landing pages built with <em>grandmaster</em> thinking.</h1>
+    <p class="lead">easylandx crafts every landing page by hand for small businesses in 2026, using the calm, structured method that champions trust: survey the board, list every candidate move, and choose the strongest line.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to easylandx</a>
+      <a class="btn ghost" href="#explore">Try the interactive board</a>
+    </div>
+  </div>
+  <div class="boardbox">
+    <svg id="board" viewBox="0 0 480 480" role="img" aria-label="Chessboard with a golden knight. Select the knight to reveal its candidate moves."></svg>
+    <p class="cap" id="cap">Tap the golden knight to reveal its candidate moves.</p>
+  </div>
+</div>
+</header>
+
+<section class="s2" id="messages">
+<div class="wrap">
+  <h2>Three big ideas from Kotov's Think Like a Grandmaster</h2>
+  <p>Alexander Kotov's 1971 classic maps how masters think. easylandx brings the same ideas to every page we craft, so each visitor lands on a clear, confident, well-calculated experience.</p>
+  <div class="grid3">
+    <div class="card">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="#f5c542" stroke-width="3"/><path d="M32 12v40M12 32h40" stroke="#f5c542" stroke-width="3"/><circle cx="32" cy="32" r="8" fill="#f5c542"/></svg>
+      <h3>Rigorous calculation</h3>
+      <p>Grandmasters search a clear tree of possibilities. We do the same for your page: every headline, image, and button is checked against what your visitors want to see.</p>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="8" width="48" height="48" rx="6" fill="none" stroke="#f5c542" stroke-width="3"/><path d="M16 44l10-12 8 8 14-20" fill="none" stroke="#f5c542" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>Method over magic</h3>
+      <p>Intuition grows from structure. Our individually crafted pages rest on proven layout, copy, and conversion habits, then take on your brand's own personality.</p>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6c14 0 24 10 24 24 0 10-6 16-12 20v8H20v-8C14 46 8 40 8 30 8 16 18 6 32 6z" fill="none" stroke="#f5c542" stroke-width="3"/><path d="M24 30c4 6 12 6 16 0" fill="none" stroke="#f5c542" stroke-width="3" stroke-linecap="round"/></svg>
+      <h3>A calm, clear mind</h3>
+      <p>Steady emotions bring great decisions. A planned process keeps every launch relaxed, on schedule, and full of confidence for you and your customers.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="s1" id="explore">
+<div class="wrap">
+  <h2>Interactive: explore every candidate move</h2>
+  <p>Kotov teaches masters to list all candidate moves first, then examine each one in turn. Choose each candidate below for your landing page and watch its branch of the analysis tree grow.</p>
+  <div class="explorer">
+    <div class="cands" id="cands" role="group" aria-label="Candidate moves"></div>
+    <div class="tree" id="tree" aria-live="polite"><h3>Your analysis tree</h3><p>Select a candidate move to open its branch.</p></div>
+  </div>
+  <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="meter"><i id="bar"></i></div>
+  <div class="done-msg" id="done">Candidates explored: 0 of 6</div>
+</div>
+</section>
+
+<section class="s3" id="lessons">
+<div class="wrap">
+  <h2>Kotov's lessons, applied to your page</h2>
+  <p>Four strategies from the book shape how easylandx plans, builds, and polishes each landing page.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div id="panels"></div>
+</div>
+</section>
+
+<section class="s2" id="check">
+<div class="wrap">
+  <h2>The grandmaster's final check</h2>
+  <p>Before every move, Kotov suggests one quick look at the opponent's most forcing reply. Before every launch, easylandx looks at the visitor's first three moments. Tick each one to light up the king.</p>
+  <div class="checkwrap">
+    <div class="checks" id="checks">
+      <label class="chk"><input type="checkbox"> The headline shows the promise within three seconds.</label>
+      <label class="chk"><input type="checkbox"> The main button is easy to spot and easy to tap on a phone.</label>
+      <label class="chk"><input type="checkbox"> The page opens fast and feels smooth on every screen.</label>
+    </div>
+    <div>
+      <div class="king" id="king"><span aria-hidden="true">&#9818;&#xFE0E;</span><strong id="kmsg">Tick the three checks to launch with confidence.</strong></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="s1" id="process">
+<div class="wrap">
+  <h2>The easylandx method, move by move</h2>
+  <p>A clear sequence keeps every project organized, friendly, and on time.</p>
+  <ol class="steps">
+    <li><div><b>Survey the board.</b> We learn your business, your audience, and your goals.</div></li>
+    <li><div><b>List the candidates.</b> We gather every strong headline, layout, and offer idea.</div></li>
+    <li><div><b>Build the tree.</b> We compare each option once, record the result, and keep the best.</div></li>
+    <li><div><b>Choose the plan.</b> A page that fits your brand's character, handcrafted just for you.</div></li>
+    <li><div><b>Launch with confidence.</b> A final check, then your page goes live in 2026 and starts welcoming customers.</div></li>
+  </ol>
+</div>
+</section>
+
+<section class="s3 final">
+<div class="wrap">
+  <h2>Your next great move is a landing page.</h2>
+  <p>Affordable, custom, conversion-focused pages for small businesses, each one crafted individually by easylandx.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Start with easylandx</a>
+</div>
+</section>
+<footer>&copy; 2026 easylandx &middot; Landing pages crafted with grandmaster thinking</footer>
+
+<script>
+/* ---------- Hero board ---------- */
+(function(){
+  var svg=document.getElementById('board'),cap=document.getElementById('cap'),NS='http://www.w3.org/2000/svg';
+  var kx=2,ky=5,sel=false,C=60,moves=0;
+  var D=[[1,2],[2,1],[2,-1],[1,-2],[-1,-2],[-2,-1],[-2,1],[-1,2]];
+  function el(n,a,t){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(t)e.textContent=t;return e}
+  function draw(){
+    svg.textContent='';
+    for(var y=0;y<8;y++)for(var x=0;x<8;x++){
+      svg.appendChild(el('rect',{x:x*C,y:y*C,width:C,height:C,fill:(x+y)%2?'#0d7a3c':'#34c26b'}));
+    }
+    var scatter=[[0,0,'\u265C'],[7,0,'\u265C'],[4,0,'\u265A'],[3,7,'\u265B'],[6,6,'\u265F'],[1,2,'\u265F'],[5,3,'\u265F']];
+    scatter.forEach(function(p){svg.appendChild(el('text',{x:p[0]*C+30,y:p[1]*C+46,'text-anchor':'middle','font-size':40,fill:'#fffbe8','fill-opacity':.55,'font-family':'serif'},p[2]+'\uFE0E'))});
+    if(sel)D.forEach(function(d){
+      var nx=kx+d[0],ny=ky+d[1];if(nx<0||ny<0||nx>7||ny>7)return;
+      var g=el('g',{class:'cand',tabindex:0,role:'button','aria-label':'Move knight to square '+(nx+1)+','+(ny+1)});
+      g.appendChild(el('circle',{cx:nx*C+30,cy:ny*C+30,r:13,fill:'#f5c542'}));
+      g.appendChild(el('circle',{cx:nx*C+30,cy:ny*C+30,r:22,fill:'none',stroke:'#f5c542','stroke-width':3,'stroke-dasharray':'4 5'}));
+      var go=function(){kx=nx;ky=ny;moves++;sel=true;cap.textContent=moves+(moves===1?' move':' moves')+' played. Every candidate is a new opportunity.';draw()};
+      g.addEventListener('click',go);g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}});
+      svg.appendChild(g);
+    });
+    var k=el('g',{class:'cand',tabindex:0,role:'button','aria-label':'Golden knight. Select to show candidate moves.'});
+    k.appendChild(el('circle',{cx:kx*C+30,cy:ky*C+30,r:27,fill:sel?'#ffe08a':'#f5c542'}));
+    k.appendChild(el('text',{x:kx*C+30,y:ky*C+46,'text-anchor':'middle','font-size':42,fill:'#0a5f2e','font-family':'serif'},'\u265E\uFE0E'));
+    var tog=function(){sel=!sel;cap.textContent=sel?'Eight candidate moves are glowing. Choose one!':'Tap the golden knight to reveal its candidate moves.';draw()};
+    k.addEventListener('click',tog);k.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}});
+    svg.appendChild(k);
+  }
+  draw();
+})();
+
+/* ---------- Candidate explorer ---------- */
+(function(){
+  var data=[
+    {m:'Headline',v:'What does this page offer me?',a:'A short, vivid promise written in your customers\u2019 own words.',r:'Visitors feel understood within seconds.'},
+    {m:'Hero visual',v:'Does this look like my kind of place?',a:'An image or illustration crafted around your brand\u2019s character.',r:'The first impression feels welcoming and memorable.'},
+    {m:'Offer',v:'What is the best reason to act today?',a:'One clear, generous offer placed where eyes land naturally.',r:'Interest turns into momentum.'},
+    {m:'Social proof',v:'Do others enjoy working with you?',a:'Friendly reviews, results, and real faces from happy customers.',r:'Trust grows with every scroll.'},
+    {m:'Main button',v:'What is my easiest next step?',a:'A bright, action-led button repeated at the right moments.',r:'Taking action feels simple and rewarding.'},
+    {m:'Contact path',v:'How do I reach you quickly?',a:'A short form plus one-tap messaging and calling options.',r:'Conversations begin with ease.'}
+  ];
+  var box=document.getElementById('cands'),tree=document.getElementById('tree'),bar=document.getElementById('bar'),done=document.getElementById('done'),meter=document.getElementById('meter');
+  var seen={};
+  data.forEach(function(d,i){
+    var b=document.createElement('button');b.className='cbtn';b.setAttribute('aria-pressed','false');
+    b.innerHTML='<span class="mk">'+'abcdef'[i]+'</span><span>'+d.m+'</span>';
+    b.onclick=function(){
+      box.querySelectorAll('.cbtn').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');b.classList.add('done');seen[i]=1;
+      tree.innerHTML='<h3>Candidate: '+d.m+'</h3>'+
+        '<div class="branch"><b>Visitor asks</b><br>'+d.v+'</div>'+
+        '<div class="branch b2"><b>easylandx answers</b><br>'+d.a+'</div>'+
+        '<div class="branch b3"><b>Result</b><br>'+d.r+'</div>'+
+        '<div class="verdict">Locked in. This branch is recorded, so the analysis moves forward with clarity.</div>';
+      var n=Object.keys(seen).length;bar.style.width=(n/6*100)+'%';meter.setAttribute('aria-valuenow',n);
+      done.textContent=n<6?'Candidates explored: '+n+' of 6':'All 6 candidates explored. Your complete page plan is ready, and it shines. Bring it to life with easylandx!';
+    };
+    box.appendChild(b);
+  });
+})();
+
+/* ---------- Lessons tabs ---------- */
+(function(){
+  var L=[
+    {t:'Candidate moves',h:'List every option, then calculate with focus.',
+     li:['We scan the whole page idea first: headlines, visuals, offers, and layouts.','Each candidate gets a fair, systematic look.','The strongest options rise to the top naturally.'],
+     s:'<svg viewBox="0 0 240 200"><g fill="#0a5f2e" stroke="#f5c542" stroke-width="3"><circle cx="120" cy="40" r="22"/><circle cx="50" cy="140" r="22"/><circle cx="120" cy="150" r="22"/><circle cx="190" cy="140" r="22"/></g><g stroke="#f5c542" stroke-width="3"><path d="M110 60L58 120M120 62v66M130 60l52 62"/></g><text x="120" y="48" text-anchor="middle" fill="#f5c542" font-size="18" font-family="serif">All</text></svg>'},
+    {t:'Tree of analysis',h:'Explore each branch once, remember it, move ahead.',
+     li:['Every idea is examined in a structured tree.','Findings are recorded, so each decision builds on the last.','Visitor replies are mapped, so the page answers questions before they arise.'],
+     s:'<svg viewBox="0 0 240 200"><g stroke="#f5c542" stroke-width="3" fill="none"><path d="M120 30v30M120 60L60 100M120 60l60 40M60 100l-30 40M60 100l30 40M180 100l-30 40M180 100l30 40"/></g><g fill="#f5c542"><circle cx="120" cy="30" r="12"/><circle cx="60" cy="100" r="10"/><circle cx="180" cy="100" r="10"/><circle cx="30" cy="145" r="8"/><circle cx="90" cy="145" r="8"/><circle cx="150" cy="145" r="8"/><circle cx="210" cy="145" r="8"/></g></svg>'},
+    {t:'Position and plan',h:'Let the character of the position guide the strategy.',
+     li:['Statics: your brand, structure, content, and clear page foundations.','Dynamics: motion, momentum, visitor energy, and open paths to action.','The plan flows from your real strengths, not a generic template.'],
+     s:'<svg viewBox="0 0 240 200"><rect x="20" y="30" width="90" height="140" rx="12" fill="#0a5f2e" stroke="#f5c542" stroke-width="3"/><rect x="130" y="30" width="90" height="140" rx="12" fill="#f5c542"/><text x="65" y="105" text-anchor="middle" fill="#f5c542" font-size="18" font-family="serif">Statics</text><text x="175" y="105" text-anchor="middle" fill="#0a5f2e" font-size="18" font-family="serif">Dynamics</text></svg>'},
+    {t:'Time and calm',h:'Great pages come from well-organized time.',
+     li:['Time goes to the moves that matter most.','A steady process keeps projects smooth and joyful.','One simple final check confirms the page is launch-ready.'],
+     s:'<svg viewBox="0 0 240 200"><circle cx="120" cy="100" r="70" fill="#0a5f2e" stroke="#f5c542" stroke-width="5"/><path d="M120 100V55M120 100l35 20" stroke="#f5c542" stroke-width="6" stroke-linecap="round"/><circle cx="120" cy="100" r="7" fill="#f5c542"/><rect x="100" y="14" width="40" height="14" rx="5" fill="#f5c542"/></svg>'}
+  ];
+  var tabs=document.getElementById('tabs'),panels=document.getElementById('panels');
+  L.forEach(function(x,i){
+    var b=document.createElement('button');b.className='tab';b.setAttribute('role','tab');b.textContent=x.t;b.setAttribute('aria-selected',i===0);
+    var p=document.createElement('div');p.className='panel';p.setAttribute('role','tabpanel');p.hidden=i!==0;
+    p.innerHTML='<div><h3>'+x.h+'</h3><ul>'+x.li.map(function(l){return'<li>'+l+'</li>'}).join('')+'</ul></div>'+x.s;
+    b.onclick=function(){tabs.querySelectorAll('.tab').forEach(function(t,j){t.setAttribute('aria-selected',j===i);panels.children[j].hidden=j!==i})};
+    tabs.appendChild(b);panels.appendChild(p);
+  });
+})();
+
+/* ---------- Final check ---------- */
+(function(){
+  var boxes=document.querySelectorAll('#checks input'),king=document.getElementById('king'),msg=document.getElementById('kmsg');
+  function upd(){var n=0;boxes.forEach(function(b){if(b.checked)n++});
+    king.classList.toggle('on',n===3);
+    msg.textContent=n===3?'Checkmate-ready! Your page is set to launch with confidence.':(n?n+' of 3 checks complete. Keep going!':'Tick the three checks to launch with confidence.');}
+  boxes.forEach(function(b){b.addEventListener('change',upd)});
+})();
+</script>
+</body>
+</html>
