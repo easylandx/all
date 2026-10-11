@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Landing Pages Built with Grit</title>
+<style>
+:root{--bg:#FFC61A;--navy:#1B2A4A;--cream:#FFF1E4;--t1:#FFD24D;--t2:#FFDC7A;--t3:#FFEBB0;--t4:#F2B705;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--navy);font:18px/1.6 Georgia,"Iowan Old Style",serif}
+h1,h2,h3,.sans,button,.btn{font-family:"Trebuchet MS","Gill Sans",Verdana,sans-serif}
+h1{font-size:clamp(2.6rem,7vw,5rem);line-height:1.02;margin:0 0 .4em;font-weight:900;letter-spacing:-.02em;color:var(--navy)}
+h2{font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.1;margin:0 0 .4em;font-weight:900;color:var(--navy)}
+h3{margin:0 0 .3em;font-size:1.25rem;color:var(--navy)}
+p{margin:0 0 1em;max-width:62ch}
+section,header,footer{padding:72px max(20px,6vw)}
+.wrap{max-width:1040px;margin:0 auto}
+.btn{display:inline-block;background:var(--navy);color:var(--cream);border:3px solid var(--navy);padding:14px 26px;border-radius:999px;font-weight:800;font-size:1rem;text-decoration:none;cursor:pointer;transition:transform .15s,background .15s,color .15s}
+.btn:hover{background:var(--cream);color:var(--navy);transform:translateY(-2px)}
+.btn.alt{background:transparent;color:var(--navy)}
+.btn.alt:hover{background:var(--navy);color:var(--cream)}
+:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
+nav{display:flex;justify-content:space-between;align-items:center;max-width:1040px;margin:0 auto 48px}
+.logo{font:900 1.5rem "Trebuchet MS",sans-serif;color:var(--navy);text-decoration:none}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
+.hero p{font-size:1.2rem}
+.band{background:var(--t4)}
+.card{background:var(--cream);color:var(--navy);border-radius:22px;padding:26px}
+.card p{max-width:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+/* equation */
+.eq{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+label{display:block;font:800 1rem "Trebuchet MS",sans-serif;margin:14px 0 4px}
+input[type=range]{width:100%;accent-color:var(--bg)}
+.formula{font:800 1.15rem "Trebuchet MS",sans-serif;background:var(--navy);color:var(--cream);padding:12px 16px;border-radius:14px;margin:10px 0}
+.bar{height:26px;background:var(--t3);border-radius:13px;overflow:hidden;margin:6px 0 14px}
+.bar i{display:block;height:100%;background:var(--navy);border-radius:13px;transition:width .4s}
+/* assets */
+.asset{cursor:pointer;border:3px solid transparent;text-align:left;font:inherit;width:100%;transition:transform .2s,border-color .2s}
+.asset:hover{transform:translateY(-4px)}
+.asset[aria-expanded=true]{border-color:var(--navy);background:var(--t3)}
+.asset .more{max-height:0;overflow:hidden;transition:max-height .4s}
+.asset[aria-expanded=true] .more{max-height:220px}
+.asset svg{width:64px;height:64px;display:block;margin-bottom:8px}
+/* loop */
+.steps{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.steps button{flex:1 1 140px;border:3px solid var(--navy);background:transparent;color:var(--navy);padding:12px;border-radius:14px;font-weight:800;cursor:pointer}
+.steps button[aria-selected=true]{background:var(--navy);color:var(--cream)}
+/* mindset */
+.flip{background:var(--navy);color:var(--cream);border:0;border-radius:20px;padding:22px;font:inherit;text-align:left;cursor:pointer;min-height:130px;width:100%;transition:background .3s,color .3s}
+.flip b{font:900 1.15rem "Trebuchet MS",sans-serif;display:block;margin-bottom:6px}
+.flip.on{background:var(--cream);color:var(--navy)}
+/* hard thing */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 18px}
+.chip{border:3px solid var(--navy);background:transparent;color:var(--navy);padding:9px 16px;border-radius:999px;font-weight:800;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--navy);color:var(--cream)}
+.dots{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin:14px 0}
+.dots i{aspect-ratio:1;border-radius:50%;background:var(--t3);transition:background .3s,transform .3s}
+.dots i.on{background:var(--navy);transform:scale(1.1)}
+.msg{font:800 1.05rem "Trebuchet MS",sans-serif;min-height:1.6em}
+.cta{text-align:center}.cta p{margin-inline:auto}
+footer{text-align:center;background:var(--navy);color:var(--cream);font-family:"Trebuchet MS",sans-serif}
+footer .btn{background:var(--cream);color:var(--navy);border-color:var(--cream)}
+footer .btn:hover{background:var(--bg);color:var(--navy);border-color:var(--bg)}
+@media(max-width:760px){.hero,.eq{grid-template-columns:1fr}section,header,footer{padding:52px 20px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.sun{animation:spin 40s linear infinite;transform-origin:250px 90px}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<a class="logo" href="#top">easylandx</a>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+</nav>
+<div class="wrap hero" id="top">
+<div>
+<h1>Landing pages built with grit.</h1>
+<p>Passion plus perseverance, crafted into every page. At easylandx, each landing page is individually designed for your business, so your story shines and your visitors take action.</p>
+<a class="btn alt" href="#equation">Explore the method</a>
+</div>
+<svg viewBox="0 0 500 420" role="img" aria-label="Illustration of a climber ascending steps toward a flag on a summit">
+<circle cx="250" cy="90" r="52" fill="#FFEBB0"/>
+<g class="sun" stroke="#FFEBB0" stroke-width="6" stroke-linecap="round"><path d="M250 18v-14M250 176v14M178 90h-14M336 90h14M199 39l-10-10M311 151l10 10M301 39l10-10M189 151l10-10"/></g>
+<path d="M0 420V300l90-80 70 50 90-130 120 150 70-60 60 70v120z" fill="#F2B705"/>
+<path d="M0 420V340l110-70 90 60 120-120 180 150v60z" fill="#1B2A4A"/>
+<path d="M60 380h70v-40h70v-40h70v-40h70v-40h60" fill="none" stroke="#FFF1E4" stroke-width="7" stroke-linejoin="round" stroke-dasharray="2 14" stroke-linecap="round"/>
+<rect x="60" y="340" width="70" height="40" fill="#FFD24D"/><rect x="130" y="300" width="70" height="40" fill="#FFDC7A"/><rect x="200" y="260" width="70" height="40" fill="#FFEBB0"/><rect x="270" y="220" width="70" height="40" fill="#FFF1E4"/>
+<path d="M395 180v-70" stroke="#FFF1E4" stroke-width="6" stroke-linecap="round"/><path d="M395 110l50 18-50 18z" fill="#FFC61A" stroke="#FFF1E4" stroke-width="4" stroke-linejoin="round"/>
+<g transform="translate(222 205)"><circle cx="8" cy="8" r="9" fill="#FFF1E4"/><rect x="0" y="18" width="16" height="30" rx="7" fill="#FFF1E4"/></g>
+</svg>
+</div>
+</header>
+
+<section class="band" id="equation">
+<div class="wrap">
+<h2>The Achievement Equation</h2>
+<p>Effort counts twice. First it turns talent into skill, then it turns skill into achievement. Slide the dials and watch your landing page potential grow.</p>
+<div class="eq">
+<div class="card">
+<label for="tal">Talent: your unique business idea <span id="tv">6</span>/10</label>
+<input id="tal" type="range" min="1" max="10" value="6">
+<label for="eff">Effort: care and craft invested <span id="ev">6</span>/10</label>
+<input id="eff" type="range" min="1" max="10" value="6">
+<div class="formula">Talent × Effort = Skill</div>
+<div class="bar"><i id="b1"></i></div>
+<div class="formula">Skill × Effort = Achievement</div>
+<div class="bar"><i id="b2"></i></div>
+<p class="msg" id="eqmsg"></p>
+</div>
+<div class="card">
+<svg viewBox="0 0 300 300" role="img" aria-label="A sprout whose size grows with effort" style="width:100%;max-height:320px">
+<ellipse cx="150" cy="268" rx="110" ry="18" fill="#FFEBB0"/>
+<g id="plant" style="transform-origin:150px 268px;transition:transform .5s">
+<path d="M150 268V120" stroke="#1B2A4A" stroke-width="8" stroke-linecap="round"/>
+<path d="M150 200c-60 0-80-40-80-70 50 0 80 20 80 70z" fill="#FFC61A"/>
+<path d="M150 170c60 0 80-40 80-70-50 0-80 20-80 70z" fill="#FFD24D"/>
+<path d="M150 125c-34-4-48-30-44-56 30 6 46 26 44 56z" fill="#FFDC7A"/>
+<circle cx="150" cy="104" r="18" fill="#1B2A4A"/><circle cx="150" cy="104" r="8" fill="#FFF1E4"/>
+</g></svg>
+<p class="sans" style="text-align:center;font-weight:800;margin:0">Bigger effort, bigger bloom.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="assets">
+<div class="wrap">
+<h2>Four assets that grow every landing page</h2>
+<p>Grit grows from within through Interest, Practice, Purpose, and Hope. Tap a card to see how easylandx brings each one to your page.</p>
+<div class="grid">
+<button class="card asset" aria-expanded="false"><svg viewBox="0 0 64 64"><circle cx="28" cy="28" r="18" fill="none" stroke="#1B2A4A" stroke-width="6"/><path d="M42 42l14 14" stroke="#FFC61A" stroke-width="8" stroke-linecap="round"/></svg><h3>Interest</h3><p>Love what you do and stay curious.</p><div class="more"><p>We explore your business, your customers, and your story, then shape a page that reflects what makes you special.</p></div></button>
+<button class="card asset" aria-expanded="false"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="none" stroke="#1B2A4A" stroke-width="6"/><circle cx="32" cy="32" r="14" fill="none" stroke="#FFC61A" stroke-width="6"/><circle cx="32" cy="32" r="4" fill="#1B2A4A"/></svg><h3>Practice</h3><p>Deliberate craft, always improving.</p><div class="more"><p>Every page is individually crafted, tested, refined, and polished until it converts visitors into customers.</p></div></button>
+<button class="card asset" aria-expanded="false"><svg viewBox="0 0 64 64"><path d="M32 56S6 40 6 22a13 13 0 0126-4 13 13 0 0126 4c0 18-26 34-26 34z" fill="#FFC61A"/><path d="M32 46S18 36 18 26" fill="none" stroke="#FFF1E4" stroke-width="4" stroke-linecap="round"/></svg><h3>Purpose</h3><p>Contribute to something bigger.</p><div class="more"><p>Small businesses power communities. Affordable, beautiful pages help them reach more people and thrive.</p></div></button>
+<button class="card asset" aria-expanded="false"><svg viewBox="0 0 64 64"><path d="M4 50l14-20 12 12 14-26 16 34z" fill="#1B2A4A"/><circle cx="50" cy="12" r="8" fill="#FFC61A"/></svg><h3>Hope</h3><p>Effort shapes the future.</p><div class="more"><p>Every launch is a fresh start. With a growth mindset, each update opens new opportunities for your business.</p></div></button>
+</div>
+</div>
+</section>
+
+<section class="band" id="practice">
+<div class="wrap">
+<h2>The deliberate practice loop</h2>
+<p>Pick a step to see how easylandx applies the practice cycle to your landing page.</p>
+<div class="card">
+<div class="steps" role="tablist" id="steps">
+<button role="tab" aria-selected="true">Stretch goal</button><button role="tab" aria-selected="false">Full focus</button><button role="tab" aria-selected="false">Instant feedback</button><button role="tab" aria-selected="false">Refine and repeat</button>
+</div>
+<div style="display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:center">
+<svg viewBox="0 0 120 120" role="img" aria-label="Loop progress"><circle cx="60" cy="60" r="46" fill="none" stroke="#FFEBB0" stroke-width="14"/><circle id="ring" cx="60" cy="60" r="46" fill="none" stroke="#FFC61A" stroke-width="14" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="217" transform="rotate(-90 60 60)" style="transition:stroke-dashoffset .5s"/><text id="ringn" x="60" y="70" text-anchor="middle" font-size="30" font-weight="900" fill="#1B2A4A" font-family="Trebuchet MS,sans-serif">1</text></svg>
+<div><h3 id="st">Set a clear stretch goal</h3><p id="sd" style="margin:0">Aim at a specific target, such as lifting your page's sign-up rate to its next level.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="mindset">
+<div class="wrap">
+<h2>Growth mindset booster</h2>
+<p>Tap a card to flip the self-talk into growth language. Hope begins with believing effort shapes the outcome.</p>
+<div class="grid">
+<button class="flip" data-a="I'm starting from a blank page." data-b="A blank page is a launchpad. Every great site began here."><b>Starting fresh</b><span>I'm starting from a blank page.</span></button>
+<button class="flip" data-a="My first version feels rough." data-b="First drafts show effort at work. Each edit lifts the page higher."><b>First draft</b><span>My first version feels rough.</span></button>
+<button class="flip" data-a="I'm new to web design." data-b="I'm learning this yet. Practice and a skilled partner make it shine."><b>New to design</b><span>I'm new to web design.</span></button>
+</div>
+</div>
+</section>
+
+<section class="band" id="hard">
+<div class="wrap">
+<h2>Your Hard Thing, one day at a time</h2>
+<p>The Hard Thing Rule: choose a challenge you care about, commit to a full season, and enjoy the growth. Pick yours, then log each day of practice.</p>
+<div class="card">
+<h3>1. Choose your hard thing</h3>
+<div class="chips" id="chips">
+<button class="chip" aria-pressed="false">Launch my landing page</button><button class="chip" aria-pressed="false">Sharpen my headline</button><button class="chip" aria-pressed="false">Collect customer stories</button><button class="chip" aria-pressed="false">Grow my sign-ups</button>
+</div>
+<h3>2. Practice for a 30 day season</h3>
+<div class="dots" id="dots"></div>
+<button class="btn" id="log">Log today's practice</button>
+<button class="btn alt" id="reset" style="margin-left:8px">Start a new season</button>
+<p class="msg" id="hmsg" style="margin-top:14px">Pick your hard thing to begin.</p>
+</div>
+</div>
+</section>
+
+<section class="cta">
+<div class="wrap">
+<svg viewBox="0 0 400 140" style="width:min(420px,100%)" role="img" aria-label="Team of climbers sharing one summit">
+<path d="M0 140L90 50l60 60 70-90 90 100 40-40 50 60z" fill="#1B2A4A"/>
+<g fill="#FFF1E4"><circle cx="150" cy="78" r="8"/><rect x="143" y="87" width="14" height="25" rx="6"/><circle cx="220" cy="38" r="8"/><rect x="213" y="47" width="14" height="25" rx="6"/><circle cx="290" cy="62" r="8"/><rect x="283" y="71" width="14" height="25" rx="6"/></g>
+</svg>
+<h2>Join a culture of grit</h2>
+<p>Culture shapes who we become. easylandx surrounds your business with passion, perseverance, and craft, so your landing page keeps growing alongside you.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+</div>
+</section>
+
+<footer>
+<p style="margin:0 auto 14px">Inspired by <i>Grit: The Power of Passion and Perseverance</i> by Angela Duckworth.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a>
+<p style="margin:18px auto 0;font-size:.9rem">© 2026 easylandx. Landing pages crafted with passion.</p>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+// equation
+function eq(){const t=+$('#tal').value,e=+$('#eff').value,s=t*e,a=s*e;
+$('#tv').textContent=t;$('#ev').textContent=e;
+$('#b1').style.width=s+'%';$('#b2').style.width=a/10+'%';
+$('#plant').style.transform='scale('+(.5+e*.08)+')';
+$('#eqmsg').textContent='Skill '+s+' → Achievement '+a+'. '+(e>=8?'Outstanding effort multiplies everything.':e>=5?'Steady effort is building real momentum.':'Add a little more effort and watch achievement climb.');}
+$('#tal').oninput=$('#eff').oninput=eq;eq();
+// assets
+$$('.asset').forEach(b=>b.onclick=()=>b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')!=='true'));
+// loop
+const L=[['Set a clear stretch goal','Aim at a specific target, such as lifting your page\'s sign-up rate to its next level.'],['Practice with full focus','We give your page our complete attention, from headline to button color, one detail at a time.'],['Welcome immediate feedback','Quick previews and honest visitor insights show exactly what delights your audience.'],['Reflect, refine, repeat','Each round sharpens the page. Small upgrades compound into standout results.']];
+$$('#steps button').forEach((b,i)=>b.onclick=()=>{$$('#steps button').forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');
+$('#st').textContent=L[i][0];$('#sd').textContent=L[i][1];$('#ringn').textContent=i+1;$('#ring').style.strokeDashoffset=289-72.25*(i+1);});
+// mindset
+$$('.flip').forEach(f=>{f.onclick=()=>{const on=f.classList.toggle('on');f.querySelector('span').textContent=on?f.dataset.b:f.dataset.a;};});
+// hard thing
+const dots=$('#dots');for(let i=0;i<30;i++)dots.appendChild(document.createElement('i'));
+let day=0,pick='';
+function hm(){const d=$$('#dots i');d.forEach((x,i)=>x.classList.toggle('on',i<day));
+$('#hmsg').textContent=!pick?'Pick your hard thing to begin.':day>=30?'Season complete! You grew stronger and finished what you started: "'+pick+'".':'Day '+day+' of 30 for "'+pick+'". Every day of practice builds grit.';}
+$$('#chips .chip').forEach(c=>c.onclick=()=>{$$('#chips .chip').forEach(x=>x.setAttribute('aria-pressed','false'));c.setAttribute('aria-pressed','true');pick=c.textContent;hm();});
+$('#log').onclick=()=>{if(!pick){$('#hmsg').textContent='Choose your hard thing first, then log your practice.';return}if(day<30)day++;hm();};
+$('#reset').onclick=()=>{day=0;hm();};
+</script>
+</body>
+</html>
