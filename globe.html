@@ -28,14 +28,14 @@ function setP(){P=(innerHeight/2)/Math.tan(fov*Math.PI/360);stage.style.perspect
 addEventListener('resize',setP);setP();
 var yaw=0,pitch=0,vx=0,vy=0,drag=false,lx=0,ly=0;
 function k(){return fov*Math.PI/180/innerHeight}
-stage.addEventListener('pointerdown',function(e){drag=true;lx=e.clientX;ly=e.clientY;vx=vy=0;try{stage.setPointerCapture(e.pointerId)}catch(_){}});
-stage.addEventListener('pointermove',function(e){if(!drag)return;
+var ptr={},pd0=0,pf0=75;document.addEventListener('gesturestart',function(e){e.preventDefault()});stage.addEventListener('pointerdown',function(e){drag=true;lx=e.clientX;ly=e.clientY;vx=vy=0;ptr[e.pointerId]=[e.clientX,e.clientY];var ids=Object.keys(ptr);if(ids.length===2){var a=ptr[ids[0]],b=ptr[ids[1]];pd0=Math.hypot(a[0]-b[0],a[1]-b[1]);pf0=fov}try{stage.setPointerCapture(e.pointerId)}catch(_){}});
+stage.addEventListener('pointermove',function(e){if(!drag)return;if(ptr[e.pointerId])ptr[e.pointerId]=[e.clientX,e.clientY];var ids=Object.keys(ptr);if(ids.length>=2){var a=ptr[ids[0]],b=ptr[ids[1]],dd=Math.hypot(a[0]-b[0],a[1]-b[1]);if(pd0>0&&dd>0){fov=Math.min(100,Math.max(30,pf0*pd0/dd));setP()}vx=vy=0;return}
   var dx=e.clientX-lx,dy=e.clientY-ly;lx=e.clientX;ly=e.clientY;
   vx=-dx*k();vy=dy*k();yaw+=vx;pitch+=vy});
-function up(){drag=false}
+function up(e){delete ptr[e.pointerId];pd0=0;var ids=Object.keys(ptr);if(ids.length===1){lx=ptr[ids[0]][0];ly=ptr[ids[0]][1]}else if(!ids.length)drag=false}
 stage.addEventListener('pointerup',up);stage.addEventListener('pointercancel',up);
 stage.addEventListener('touchmove',function(e){e.preventDefault()},{passive:false});
-stage.addEventListener('wheel',function(e){e.preventDefault();fov=Math.min(100,Math.max(45,fov+e.deltaY*.05));setP()},{passive:false});
+stage.addEventListener('wheel',function(e){e.preventDefault();fov=Math.min(100,Math.max(30,fov+e.deltaY*.05));setP()},{passive:false});
 function loop(){
   requestAnimationFrame(loop);
   if(!drag){yaw+=vx;pitch+=vy;vx*=.95;vy*=.95;if(Math.abs(vx)<.0004&&Math.abs(vy)<.0004)yaw+=.0006}
