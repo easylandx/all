@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX | Landing pages that turn every visit into a conversation</title>
+<meta name="description" content="EasyLandX crafts affordable, conversion-focused landing pages for small businesses, inspired by the courage lessons of Jia Jiang's Rejection Proof.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    --coral:#FF6B6B;
+    --coral-soft:#FF8F8F;
+    --coral-deep:#D94646;
+    --blush:#FFEDEA;
+    --blush-2:#FFC7C1;
+    --amber:#F59E0B;
+    --ink:#2B0A0A;
+    --edge:clamp(28px, 9vw, 190px);
+    --display:'Bricolage Grotesque','Trebuchet MS',system-ui,sans-serif;
+    --body:'DM Sans','Segoe UI',system-ui,sans-serif;
+  }
+  *,*::before,*::after{box-sizing:inherit}
+  html{scroll-padding-top:env(safe-area-inset-top, 0px);scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--coral);color:var(--ink);
+    font-family:var(--body);font-size:1.125rem;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin:0}
+  h1{font-size:clamp(2.7rem,6.4vw,5.2rem)}
+  h2{font-size:clamp(2rem,4.4vw,3.4rem)}
+  h3{font-size:clamp(1.6rem,3vw,2.3rem);line-height:1.12}
+  p{margin:0 0 1em;max-width:62ch}
+  a{color:inherit}
+  .wrap{width:min(100% - var(--edge)*2, 1080px);margin-inline:auto}
+  section{padding-block:clamp(72px,11vw,150px)}
+
+  /* buttons */
+  .btn{
+    display:inline-flex;align-items:center;gap:.65em;
+    padding:.9em 1.55em;border-radius:999px;border:3px solid var(--ink);
+    background:var(--amber);color:var(--ink);
+    font-family:var(--display);font-weight:800;font-size:1.05rem;line-height:1;
+    text-decoration:none;cursor:pointer;
+    box-shadow:5px 5px 0 var(--ink);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+  .btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+  .btn:focus-visible,.chip:focus-visible,.dot:focus-visible,input:focus-visible,.linkish:focus-visible{outline:4px solid var(--ink);outline-offset:4px}
+  .btn-ink{background:var(--ink);color:var(--blush);box-shadow:5px 5px 0 var(--blush)}
+  .btn-ink:hover{box-shadow:7px 7px 0 var(--blush)}
+  .btn-ink:active{box-shadow:2px 2px 0 var(--blush)}
+  .btn-pale{background:var(--blush)}
+  .btn svg{width:1.2em;height:1.2em;flex:none}
+
+  /* header */
+  header{padding-block:clamp(22px,3vw,36px)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .logo{display:inline-flex;align-items:center;gap:12px;font-family:var(--display);font-weight:800;font-size:1.6rem;text-decoration:none;letter-spacing:-.02em}
+  .logo svg{width:42px;height:42px}
+
+  /* hero */
+  .hero{padding-block:clamp(40px,6vw,90px) clamp(72px,10vw,140px)}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(36px,6vw,90px);align-items:center}
+  .hero p.lead{font-size:clamp(1.15rem,1.8vw,1.4rem);margin-top:1.4em;max-width:34ch}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:20px;margin-top:2.2em}
+  .hero-art svg{width:100%;height:auto;display:block;overflow:visible}
+  .spin{transform-box:view-box;transform-origin:290px 260px;animation:spin 70s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .facts{display:flex;flex-wrap:wrap;gap:16px;margin-top:clamp(48px,7vw,90px)}
+  .fact{background:var(--blush);border:3px solid var(--ink);border-radius:22px 22px 22px 6px;padding:14px 22px;font-weight:700;box-shadow:5px 5px 0 var(--ink)}
+  .fact:nth-child(2){border-radius:22px 22px 6px 22px}
+  .fact:nth-child(3){border-radius:6px 22px 22px 22px}
+
+  /* big idea */
+  .idea-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,100px);align-items:start}
+  .idea-grid h2{max-width:11ch}
+
+  /* panels */
+  .panel{background:var(--blush);border:3px solid var(--ink);border-radius:36px;box-shadow:8px 8px 0 var(--ink);padding:clamp(26px,4.5vw,56px)}
+  .panel > h2{margin-bottom:.45em}
+  .panel > p.intro{font-size:1.15rem}
+
+  /* lessons */
+  .section-head{max-width:46rem;margin-bottom:clamp(40px,6vw,80px)}
+  .lesson{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,6vw,96px);align-items:center;margin-block:clamp(56px,8vw,112px)}
+  .lesson:last-child{margin-bottom:0}
+  .lesson:nth-of-type(even) .art{order:2}
+  .art{
+    background:var(--blush);border:3px solid var(--ink);aspect-ratio:1;display:grid;place-items:center;
+    box-shadow:8px 8px 0 var(--ink);padding:clamp(18px,3vw,36px);
+  }
+  .art svg{width:100%;height:auto;display:block}
+  .art.b1{border-radius:58% 42% 55% 45% / 48% 56% 44% 52%}
+  .art.b2{border-radius:42% 58% 40% 60% / 56% 44% 56% 44%}
+  .art.b3{border-radius:50% 50% 36% 64% / 60% 40% 60% 40%}
+  .art.b4{border-radius:62% 38% 52% 48% / 44% 58% 42% 56%}
+  .lesson h3{margin-bottom:.6em}
+  .onpage{background:var(--blush);border:3px solid var(--ink);border-radius:24px;padding:20px 26px;margin-top:1.4em;box-shadow:5px 5px 0 var(--amber)}
+  .onpage p{margin:0}
+
+  /* ask why */
+  .chips{display:flex;flex-wrap:wrap;gap:14px;margin:1.6em 0 1.2em}
+  .chip{
+    font:inherit;font-weight:700;background:#fff;color:var(--ink);cursor:pointer;
+    border:3px solid var(--ink);border-radius:999px;padding:.6em 1.2em;text-align:left;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .chip:hover{transform:translateY(-2px)}
+  .chip[aria-pressed="true"]{background:var(--amber)}
+  .chat{min-height:210px;background:#fff;border:3px solid var(--ink);border-radius:26px;padding:12px 22px 14px;margin-bottom:1.6em}
+  .bubble{max-width:min(88%,480px);padding:12px 18px;border:3px solid var(--ink);border-radius:22px;margin:14px 0;font-weight:500;line-height:1.45;animation:pop .35s ease both}
+  .bubble small{display:block;font-weight:700;font-size:.85rem;margin-bottom:2px}
+  .from-visitor{background:var(--blush);margin-right:auto;border-bottom-left-radius:6px}
+  .from-you{background:var(--amber);margin-left:auto;border-bottom-right-radius:6px}
+  .from-move{background:var(--coral);max-width:100%;border-radius:22px}
+  @keyframes pop{from{transform:translateY(8px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+  .meter-wrap{margin-top:1.8em}
+  .meter{height:26px;background:#fff;border:3px solid var(--ink);border-radius:999px;overflow:hidden}
+  .meter i{display:block;height:100%;width:0;background:var(--amber);border-right:3px solid var(--ink);transition:width .9s cubic-bezier(.2,.8,.2,1)}
+  .meter-text{margin:.7em 0 0;font-weight:500}
+
+  /* habits */
+  .habits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,56px)}
+  .habit{background:var(--blush);border:3px solid var(--ink);padding:clamp(22px,3vw,36px);box-shadow:7px 7px 0 var(--ink)}
+  .habit:nth-child(1){border-radius:44px 14px 44px 14px}
+  .habit:nth-child(2){border-radius:14px 44px 14px 44px}
+  .habit:nth-child(3){border-radius:14px 44px 14px 44px}
+  .habit:nth-child(4){border-radius:44px 14px 44px 14px}
+  .habit svg{width:min(190px,60%);height:auto;display:block;margin-bottom:1em}
+  .habit h3{font-size:clamp(1.4rem,2.4vw,1.8rem);margin-bottom:.5em}
+  .habit p{margin:0}
+
+  /* tracker */
+  .grid100{display:grid;grid-template-columns:repeat(10,1fr);gap:clamp(5px,1.1vw,12px);margin:1.8em 0 1.4em;max-width:640px}
+  .dot{
+    aspect-ratio:1;border-radius:50%;border:3px solid var(--ink);background:#fff;cursor:pointer;padding:0;
+    transition:transform .15s ease, background .2s ease;
+  }
+  .dot:hover{transform:scale(1.18)}
+  .dot[aria-pressed="true"]{background:var(--amber)}
+  .tr-foot{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline;margin-bottom:1.4em;font-weight:700}
+  .tr-foot .cheer{font-weight:500}
+  .tr-actions{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+  .linkish{font:inherit;font-weight:700;background:none;border:0;padding:6px;cursor:pointer;text-decoration:underline;text-underline-offset:4px;color:var(--ink)}
+  .idea-out{margin:1.4em 0 0;padding:16px 22px;background:#fff;border:3px solid var(--ink);border-radius:20px;font-weight:500;min-height:3.4em}
+
+  /* mask */
+  .range-row{margin:1.6em 0 .6em}
+  input[type=range]{width:100%;accent-color:var(--amber);height:34px;cursor:pointer}
+  .range-labels{display:flex;justify-content:space-between;font-weight:700;gap:12px}
+  .sample{display:grid;grid-template-columns:150px minmax(0,1fr);gap:clamp(20px,4vw,40px);align-items:center;margin-top:1.8em;background:var(--coral);border:3px solid var(--ink);border-radius:30px;padding:clamp(20px,3.5vw,38px)}
+  .sample svg{width:100%;height:auto;display:block}
+  .sample h3{font-size:clamp(1.4rem,2.6vw,2rem);margin-bottom:.4em}
+  .sample p{margin-bottom:1em}
+  .sample .btn{font-size:.95rem;cursor:default}
+  .sample .btn:hover,.sample .btn:active{transform:none;box-shadow:5px 5px 0 var(--ink)}
+  .mask-shape{transition:opacity .4s ease}
+
+  /* final */
+  .final{background:var(--amber);border-block:3px solid var(--ink)}
+  .final-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(30px,6vw,90px);align-items:center}
+  .final svg{width:100%;height:auto;display:block}
+  .final .hero-actions{margin-top:1.8em}
+
+  footer{padding-block:clamp(40px,6vw,72px)}
+  .foot{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center}
+  .foot p{margin:0;font-weight:500}
+
+  @media (max-width:880px){
+    .hero-grid,.idea-grid,.lesson,.final-grid{grid-template-columns:minmax(0,1fr)}
+    .lesson:nth-of-type(even) .art{order:0}
+    .art{max-width:380px}
+    .habits{grid-template-columns:minmax(0,1fr)}
+    .sample{grid-template-columns:minmax(0,1fr)}
+    .sample svg{max-width:130px}
+    .final-grid .art-wrap{max-width:320px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .spin{animation:none}
+    .bubble{animation:none}
+    .meter i,.btn,.chip,.dot,.mask-shape{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="EasyLandX home">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="3" y="3" width="42" height="42" rx="14" fill="#F59E0B" stroke="#2B0A0A" stroke-width="3.5"/><path d="M15 15 L33 33 M33 15 L15 33" stroke="#2B0A0A" stroke-width="5" stroke-linecap="round"/></svg>
+      EasyLandX
+    </a>
+    <a class="btn btn-pale" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX
+      <svg viewBox="0 0 24 24" fill="none" stroke="#2B0A0A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h1>Turn every visit into a conversation.</h1>
+        <p class="lead">EasyLandX crafts affordable, conversion-focused landing pages for small businesses, shaped by the courage lessons of Jia Jiang's <em>Rejection Proof</em>.</p>
+        <div class="hero-actions">
+          <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2B0A0A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+          <a class="btn btn-pale" href="#ask">Try the Ask Why demo</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 560 520" role="img" aria-label="Illustration of a landing page in a browser window glowing in front of a bright sun, with friendly speech bubbles reading Maybe later, Why, and Yes">
+          <g class="spin"><circle cx="290" cy="260" r="214" fill="none" stroke="#F59E0B" stroke-width="40" stroke-dasharray="14 30"/></g>
+          <circle cx="290" cy="260" r="176" fill="#F59E0B" stroke="#2B0A0A" stroke-width="5"/>
+          <!-- browser -->
+          <rect x="110" y="120" width="360" height="290" rx="22" fill="#FFEDEA"/>
+          <path d="M110 142a22 22 0 0 1 22-22H448a22 22 0 0 1 22 22V164H110Z" fill="#FFC7C1"/>
+          <path d="M110 164H470" stroke="#2B0A0A" stroke-width="5"/>
+          <rect x="110" y="120" width="360" height="290" rx="22" fill="none" stroke="#2B0A0A" stroke-width="5"/>
+          <circle cx="138" cy="142" r="7" fill="#FF6B6B" stroke="#2B0A0A" stroke-width="3"/>
+          <circle cx="162" cy="142" r="7" fill="#F59E0B" stroke="#2B0A0A" stroke-width="3"/>
+          <circle cx="186" cy="142" r="7" fill="#FFEDEA" stroke="#2B0A0A" stroke-width="3"/>
+          <rect x="215" y="130" width="230" height="24" rx="12" fill="#fff" stroke="#2B0A0A" stroke-width="3"/>
+          <text x="330" y="147" font-size="13" font-weight="700" fill="#2B0A0A" text-anchor="middle" font-family="DM Sans, sans-serif">easylandx.github.io</text>
+          <rect x="142" y="190" width="200" height="24" rx="12" fill="#2B0A0A"/>
+          <rect x="142" y="224" width="150" height="24" rx="12" fill="#2B0A0A"/>
+          <rect x="142" y="264" width="190" height="10" rx="5" fill="#FF8F8F"/>
+          <rect x="142" y="284" width="150" height="10" rx="5" fill="#FF8F8F"/>
+          <rect x="142" y="318" width="136" height="44" rx="22" fill="#F59E0B" stroke="#2B0A0A" stroke-width="4"/>
+          <text x="210" y="346" font-size="17" font-weight="800" fill="#2B0A0A" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif">Say hello</text>
+          <circle cx="408" cy="256" r="44" fill="#FF6B6B" stroke="#2B0A0A" stroke-width="4"/>
+          <circle cx="394" cy="248" r="4.5" fill="#2B0A0A"/><circle cx="422" cy="248" r="4.5" fill="#2B0A0A"/>
+          <path d="M391 266Q408 286 425 266" fill="none" stroke="#2B0A0A" stroke-width="4" stroke-linecap="round"/>
+          <rect x="376" y="318" width="64" height="44" rx="14" fill="#FFC7C1" stroke="#2B0A0A" stroke-width="4"/>
+          <path d="M408 349c-14-9-16-18-9-22 4-2 8 0 9 4 1-4 5-6 9-4 7 4 5 13-9 22Z" fill="#FF6B6B" stroke="#2B0A0A" stroke-width="3" stroke-linejoin="round"/>
+          <!-- bubbles -->
+          <path d="M50 60H160a30 30 0 0 1 30 30v8a30 30 0 0 1-30 30H100L66 160l6-32H50a30 30 0 0 1-30-30v-8a30 30 0 0 1 30-30Z" fill="#fff" stroke="#2B0A0A" stroke-width="4" stroke-linejoin="round"/>
+          <text x="105" y="102" font-size="20" font-weight="700" fill="#2B0A0A" text-anchor="middle" font-family="DM Sans, sans-serif">Maybe later</text>
+          <path d="M60 390H120a30 30 0 0 1 30 30a30 30 0 0 1-30 30H100L84 478V450H60a30 30 0 0 1-30-30a30 30 0 0 1 30-30Z" fill="#F59E0B" stroke="#2B0A0A" stroke-width="4" stroke-linejoin="round"/>
+          <text x="90" y="429" font-size="25" font-weight="800" fill="#2B0A0A" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif">Why?</text>
+          <path d="M410 420H490a30 30 0 0 1 30 30a30 30 0 0 1-30 30H470L486 508L452 480H410a30 30 0 0 1-30-30a30 30 0 0 1 30-30Z" fill="#FFEDEA" stroke="#2B0A0A" stroke-width="4" stroke-linejoin="round"/>
+          <text x="450" y="459" font-size="27" font-weight="800" fill="#2B0A0A" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif">Yes!</text>
+          <!-- sparkles -->
+          <path transform="translate(505 92)" d="M0-18Q3-3 18 0Q3 3 0 18Q-3 3-18 0Q-3-3 0-18Z" fill="#FFEDEA" stroke="#2B0A0A" stroke-width="3" stroke-linejoin="round"/>
+          <path transform="translate(44 300)" d="M0-14Q2-2 14 0Q2 2 0 14Q-2 2-14 0Q-2-2 0-14Z" fill="#F59E0B" stroke="#2B0A0A" stroke-width="3" stroke-linejoin="round"/>
+          <path transform="translate(528 330)" d="M0-12Q2-2 12 0Q2 2 0 12Q-2 2-12 0Q-2-2 0-12Z" fill="#2B0A0A"/>
+          <circle cx="250" cy="52" r="7" fill="#FFEDEA" stroke="#2B0A0A" stroke-width="3"/>
+          <circle cx="330" cy="478" r="6" fill="#F59E0B" stroke="#2B0A0A" stroke-width="3"/>
+        </svg>
+      </div>
+    </div>
+    <div class="facts">
+      <div class="fact">100 days of bold asks</div>
+      <div class="fact">1 friendly question: Why?</div>
+      <div class="fact">About half of first replies became yeses</div>
+    </div>
+  </div>
+</section>
+
+<!-- BIG IDEA -->
+<section>
+  <div class="wrap idea-grid">
+    <h2>Courage is a landing page skill.</h2>
+    <div>
+      <p>Jia Jiang spent 100 days making bold, playful requests and discovered something wonderful: when you step toward a reply instead of away from it, the whole experience turns into freedom, humor, and fresh opportunity.</p>
+      <p>Most replies are friendlier, lighter, and more useful than we imagine. A pause, a smile, and a curious question can open a door that looked closed.</p>
+      <p>EasyLandX brings that spirit to small business websites. Every page we craft welcomes visitors, listens to them, and invites them forward, so each visit becomes the start of a conversation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LESSONS -->
+<section id="lessons">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Four lessons, built into every page.</h2>
+      <p style="margin-top:1em">Each insight from the book becomes a practical choice in how your landing page looks, sounds, and listens.</p>
+    </div>
+
+    <article class="lesson">
+      <div class="art b1">
+        <svg viewBox="0 0 240 240" role="img" aria-label="Illustration of a calendar with a clock, showing that every reply reflects the other person's moment">
+          <rect x="36" y="56" width="136" height="124" rx="18" fill="#fff" stroke="#2B0A0A" stroke-width="5"/>
+          <path d="M36 76a18 18 0 0 1 18-18H154a18 18 0 0 1 18 18V102H36Z" fill="#F59E0B" stroke="#2B0A0A" stroke-width="5" stroke-linejoin="round"/>
+          <rect x="68" y="40" width="11" height="34" rx="5.5" fill="#2B0A0A"/><rect x="128" y="40" width="11" height="34" rx="5.5" fill="#2B0A0A"/>
+          <g fill="#FFC7C1" stroke="#2B0A0A" stroke-width="3"><rect x="54" y="116" width="20" height="18" rx="5"/><rect x="84" y="116" width="20" height="18" rx="5"/><rect x="114" y="116" width="20" height="18" rx="5"/><rect x="54" y="146" width="20" height="18" rx="5"/><rect x="84" y="146" width="20" height="18" rx="5"/></g>
+          <circle cx="124" cy="155" r="14" fill="#FF6B6B" stroke="#2B0A0A" stroke-width="3"/>
+          <circle cx="176" cy="170" r="46" fill="#FFEDEA" stroke="#2B0A0A" stroke-width="5"/>
+          <path d="M176 170V144M176 170l19 9" stroke="#2B0A0A" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="176" cy="170" r="5" fill="#F59E0B" stroke="#2B0A0A" stroke-width="2"/>
+          <path transform="translate(206 62)" d="M0-14Q2-2 14 0Q2 2 0 14Q-2 2-14 0Q-2-2 0-14Z" fill="#F59E0B" stroke="#2B0A0A" stroke-width="3" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <h3>Every reply reflects the visitor's moment.</h3>
+        <p>Replies usually come from the other person's schedule, budget, mood, and habits. They describe a moment in someone else's day, and your idea stays as valuable as ever.</p>
+        <div class="onpage"><p><strong>On your page:</strong> EasyLandX writes for the visitor's moment. You get clear hours, friendly pricing, one easy next step, and a "maybe later" path that keeps the door wide open.</p></div>
+      </div>
+    </article>
+
+    <article class="lesson">
+      <div class="art b2">
+        <svg viewBox="0 0 240 240" role="img" aria-label="Illustration of a smiling face lifting away a golden mask">
+          <circle cx="104" cy="140" r="64" fill="#FFC7C1" stroke="#2B0A0A" stroke-width="5"/>
+          <circle cx="84" cy="130" r="6" fill="#2B0A0A"/><circle cx="124" cy="130" r="6" fill="#2B0A0A"/>
+          <path d="M80 158Q104 188 128 158" fill="none" stroke="#2B0A0A" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="68" cy="152" r="9" fill="#FF6B6B" opacity=".75"/><circle cx="140" cy="152" r="9" fill="#FF6B6B" opacity=".75"/>
+          <g transform="rotate(16 170 70)">
+            <path d="M138 30C172 22 206 38 206 76C206 108 180 126 152 120C124 112 116 52 138 30Z" fill="#F59E0B" stroke="#2B0A0A" stroke-width="5" stroke-linejoin="round"/>
+            <ellipse cx="156" cy="68" rx="10" ry="6" fill="#2B0A0A"/><ellipse cx="186" cy="74" rx="10" ry="6" fill="#2B0A0A"/>
+            <path d="M158 96Q172 104 186 98" fill="none" stroke="#2B0A0A" stroke-width="4" stroke-linecap="round"/>
+          </g>
+          <path d="M72 70 100 108" stroke="#2B0A0A" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 10"/>
+          <path transform="translate(46 62)" d="M0-16Q3-3 16 0Q3 3 0 16Q-3 3-16 0Q-3-3 0-16Z" fill="#FFEDEA" stroke="#2B0A0A" stroke-width="3" stroke-linejoin="round"/>
+          <path transform="translate(204 196)" d="M0-12Q2-2 12 0Q2 2 0 12Q-2 2-12 0Q-2-2 0-12Z" fill="#2B0A0A"/>
+        </svg>
+      </div>
+      <div>
+        <h3>Openness is a superpower.</h3>
+        <p>Society invites us to wear a mask of perfection. Jia found the opposite works beautifully: when you lower the mask and bring transparency and humor, even strangers relax and want to help.</p>
+        <div class="onpage"><p><strong>On your page:</strong> real faces, real stories, and warm, playful words. Visitors feel they are meeting a person instead of reading a brochure. Try the slider further down.</p></div>
+      </div>
+    </article>
+
+    <article class="lesson">
+      <div class="art b3">
+        <svg viewBox="0 0 240 240" role="img" aria-label="Illustration of rising steps leading to a golden flag">
+          <path d="M30 202V164H84V128H138V92H192V202Z" fill="#FFC7C1" stroke="#2B0A0A" stroke-width="5" stroke-linejoin="round"/>
+          <path d="M30 164H84M84 128H138M138 92H192" stroke="#2B0A0A" stroke-width="5" stroke-linecap="round"/>
+          <path d="M30 164H84V176H30ZM84 128H138V140H84ZM138 92H192V104H138Z" fill="#F59E0B" stroke="#2B0A0A" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M165 92V38" stroke="#2B0A0A" stroke-width="6" stroke-linecap="round"/>
+          <path d="M165 40L215 56L165 74Z" fill="#F59E0B" stroke="#2B0A0A" stroke-width="5" stroke-linejoin="round"/>
+          <circle cx="57" cy="150" r="9" fill="#FF6B6B" stroke="#2B0A0A" stroke-width="3"/>
+          <circle cx="111" cy="114" r="9" fill="#FF6B6B" stroke="#2B0A0A" stroke-width="3"/>
+          <path d="M44 124Q60 96 92 100" fill="none" stroke="#2B0A0A" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 10"/>
+          <path transform="translate(60 64)" d="M0-16Q3-3 16 0Q3 3 0 16Q-3 3-16 0Q-3-3 0-16Z" fill="#FFEDEA" stroke="#2B0A0A" stroke-width="3" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <h3>Make new things familiar.</h3>
+        <p>Butterflies settle quickly once an experience becomes familiar. Jia found that the world keeps spinning, the flutter settles fast, and each bold ask feels lighter than the one before.</p>
+        <div class="onpage"><p><strong>On your page:</strong> EasyLandX loves small, friendly experiments: a fresh headline, a new button color, a new offer. Every change becomes learning, and confidence grows with each one.</p></div>
+      </div>
+    </article>
+
+    <article class="lesson">
+      <div class="art b4">
+        <svg viewBox="0 0 240 240" role="img" aria-label="Illustration of a golden speech bubble with a question mark beside a small bubble with an exclamation mark">
+          <path d="M72 148 62 192 108 148Z" fill="#F59E0B" stroke="#2B0A0A" stroke-width="5" stroke-linejoin="round"/>
+          <rect x="28" y="36" width="144" height="114" rx="42" fill="#F59E0B" stroke="#2B0A0A" stroke-width="5"/>
+          <rect x="72" y="145" width="34" height="9" fill="#F59E0B"/>
+          <text x="100" y="124" font-size="96" font-weight="800" fill="#2B0A0A" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif">?</text>
+          <ellipse cx="180" cy="176" rx="42" ry="32" fill="#FFEDEA" stroke="#2B0A0A" stroke-width="5"/>
+          <text x="180" y="192" font-size="46" font-weight="800" fill="#2B0A0A" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif">!</text>
+          <path transform="translate(202 52)" d="M0-14Q2-2 14 0Q2 2 0 14Q-2 2-14 0Q-2-2 0-14Z" fill="#FFEDEA" stroke="#2B0A0A" stroke-width="3" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <h3>Ask why, and the conversation opens.</h3>
+        <p>When a reply arrives, pause and ask "Why?" Jia learned that a friendly question often opens a conversation, invites a compromise, or turns a first reply into a yes.</p>
+        <div class="onpage"><p><strong>On your page:</strong> short, friendly prompts such as "What would help you decide?", plus thoughtful follow-ups. Visitors share what they need, and your page answers it.</p></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ASK WHY DEMO -->
+<section id="ask" style="padding-top:0">
+  <div class="wrap">
+    <div class="panel">
+      <h2>Try it: turn a hesitation into a yes.</h2>
+      <p class="intro">Pick something a visitor might say, then ask why and watch the conversation open.</p>
+      <div class="chips" role="group" aria-label="Choose a visitor message">
+        <button class="chip" type="button" data-i="0" aria-pressed="true">"I'd like to think it over."</button>
+        <button class="chip" type="button" data-i="1" aria-pressed="false">"The price feels high right now."</button>
+        <button class="chip" type="button" data-i="2" aria-pressed="false">"I'm curious if this suits my business."</button>
+      </div>
+      <div class="chat" id="chat" aria-live="polite"></div>
+      <button class="btn" id="whyBtn" type="button">Ask why</button>
+      <div class="meter-wrap">
+        <div class="meter" role="img" aria-label="Meter showing about 50 percent of first replies turning into yes"><i id="fill"></i></div>
+        <p class="meter-text" id="meterText">Press "Ask why" to see what unfolds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HABITS -->
+<section id="habits" style="padding-top:clamp(20px,4vw,50px)">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Four habits that keep your page growing.</h2>
+      <p style="margin-top:1em">The book's practical strategies become everyday habits for your landing page.</p>
+    </div>
+    <div class="habits">
+      <article class="habit">
+        <svg viewBox="0 0 200 200" role="img" aria-label="Progress ring reading 100 days">
+          <circle cx="100" cy="100" r="72" fill="#fff" stroke="#2B0A0A" stroke-width="5"/>
+          <circle cx="100" cy="100" r="72" fill="none" stroke="#F59E0B" stroke-width="16" stroke-dasharray="320 453" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="72" fill="none" stroke="#2B0A0A" stroke-width="5"/>
+          <text x="100" y="112" font-size="48" font-weight="800" fill="#2B0A0A" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif">100</text>
+          <text x="100" y="136" font-size="17" font-weight="700" fill="#2B0A0A" text-anchor="middle" font-family="DM Sans, sans-serif">days</text>
+        </svg>
+        <h3>100 days of small experiments</h3>
+        <p>Jia's 100-Day Challenge built resilience through volume. EasyLandX pages grow the same way: launch, learn, refine, and repeat until confidence feels natural.</p>
+      </article>
+      <article class="habit">
+        <svg viewBox="0 0 200 200" role="img" aria-label="Phone showing a friendly chat">
+          <rect x="58" y="14" width="84" height="172" rx="20" fill="#fff" stroke="#2B0A0A" stroke-width="5"/>
+          <path d="M88 28H112" stroke="#2B0A0A" stroke-width="5" stroke-linecap="round"/>
+          <rect x="70" y="52" width="60" height="36" rx="14" fill="#F59E0B" stroke="#2B0A0A" stroke-width="3.5"/>
+          <circle cx="88" cy="70" r="3.5" fill="#2B0A0A"/><circle cx="100" cy="70" r="3.5" fill="#2B0A0A"/><circle cx="112" cy="70" r="3.5" fill="#2B0A0A"/>
+          <rect x="70" y="100" width="60" height="36" rx="14" fill="#FFC7C1" stroke="#2B0A0A" stroke-width="3.5"/>
+          <path d="M100 124c-12-8-14-16-8-19 4-2 7 0 8 3 1-3 4-5 8-3 6 3 4 11-8 19Z" fill="#FF6B6B" stroke="#2B0A0A" stroke-width="2.5" stroke-linejoin="round"/>
+          <rect x="70" y="148" width="60" height="24" rx="12" fill="#FFEDEA" stroke="#2B0A0A" stroke-width="3.5"/>
+          <path transform="translate(166 44)" d="M0-14Q2-2 14 0Q2 2 0 14Q-2 2-14 0Q-2-2 0-14Z" fill="#F59E0B" stroke="#2B0A0A" stroke-width="3" stroke-linejoin="round"/>
+        </svg>
+        <h3>Stay in the conversation</h3>
+        <p>When a visitor pauses, stay friendly and available. A sticky contact button, quick replies, and a warm follow-up keep the dialogue glowing while they decide.</p>
+      </article>
+      <article class="habit">
+        <svg viewBox="0 0 200 200" role="img" aria-label="Two stacked buttons joined by a plus sign">
+          <rect x="24" y="36" width="152" height="50" rx="25" fill="#F59E0B" stroke="#2B0A0A" stroke-width="5"/>
+          <text x="100" y="69" font-size="19" font-weight="800" fill="#2B0A0A" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif">Book a call</text>
+          <rect x="24" y="114" width="152" height="50" rx="25" fill="#fff" stroke="#2B0A0A" stroke-width="5"/>
+          <text x="100" y="147" font-size="19" font-weight="800" fill="#2B0A0A" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif">Chat first</text>
+          <circle cx="100" cy="100" r="19" fill="#FF6B6B" stroke="#2B0A0A" stroke-width="5"/>
+          <path d="M100 90V110M90 100H110" stroke="#2B0A0A" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <h3>Offer a second path</h3>
+        <p>The "And" strategy: when someone hesitates, add an alternative, extra context, or a follow-up question. Your page pairs a main button with a friendly second route.</p>
+      </article>
+      <article class="habit">
+        <svg viewBox="0 0 200 200" role="img" aria-label="A donut decorated with five interlocking rings">
+          <circle cx="100" cy="100" r="78" fill="#F59E0B" stroke="#2B0A0A" stroke-width="5"/>
+          <circle cx="100" cy="100" r="64" fill="#FFC7C1" stroke="#2B0A0A" stroke-width="4"/>
+          <circle cx="100" cy="100" r="21" fill="#FFEDEA" stroke="#2B0A0A" stroke-width="4"/>
+          <g fill="none" stroke-width="4.5">
+            <circle cx="70" cy="62" r="12" stroke="#2B0A0A"/>
+            <circle cx="100" cy="62" r="12" stroke="#D94646"/>
+            <circle cx="130" cy="62" r="12" stroke="#2B0A0A"/>
+            <circle cx="85" cy="140" r="12" stroke="#D94646"/>
+            <circle cx="115" cy="140" r="12" stroke="#2B0A0A"/>
+          </g>
+          <g fill="#F59E0B" stroke="#2B0A0A" stroke-width="2"><rect x="46" y="96" width="12" height="5" rx="2.5" transform="rotate(-30 52 98)"/><rect x="142" y="98" width="12" height="5" rx="2.5" transform="rotate(30 148 100)"/><rect x="58" y="124" width="12" height="5" rx="2.5" transform="rotate(50 64 126)"/><rect x="132" y="122" width="12" height="5" rx="2.5" transform="rotate(-40 138 124)"/></g>
+        </svg>
+        <h3>Ask playfully</h3>
+        <p>Jia asked for Olympic rings on a donut and gained grace and humor. EasyLandX crafts headlines, offers, and buttons with that same playful spark, so your page gets remembered.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TRACKER -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="panel">
+      <h2>Your 100 days of bold asks.</h2>
+      <p class="intro">Each day, try one small, friendly experiment on your page. Tap a circle when you complete one, or let the button pick today's idea.</p>
+      <div class="grid100" id="grid" role="group" aria-label="One hundred bold asks"></div>
+      <div class="tr-foot">
+        <div><span id="count">0</span> of 100 bold asks complete</div>
+        <div class="cheer" id="cheer" aria-live="polite"></div>
+      </div>
+      <div class="tr-actions">
+        <button class="btn" id="ideaBtn" type="button">Give me today's bold ask</button>
+        <button class="linkish" id="resetBtn" type="button">Start fresh</button>
+      </div>
+      <p class="idea-out" id="ideaOut" aria-live="polite">Your first bold ask is one tap away.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MASK -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="panel">
+      <h2>Slide from polished to open.</h2>
+      <p class="intro">Move the slider and see how the same bakery page feels when the mask comes off.</p>
+      <div class="range-row">
+        <input type="range" id="maskRange" min="0" max="2" step="1" value="0" aria-label="Openness level">
+        <div class="range-labels"><span>Polished mask</span><span>Friendly</span><span>Fully open</span></div>
+      </div>
+      <div class="sample">
+        <svg viewBox="0 0 150 150" role="img" aria-label="Face that smiles wider as the mask lifts away">
+          <circle cx="75" cy="78" r="56" fill="#FFC7C1" stroke="#2B0A0A" stroke-width="5"/>
+          <circle cx="56" cy="68" r="5.5" fill="#2B0A0A"/><circle cx="94" cy="68" r="5.5" fill="#2B0A0A"/>
+          <path id="mouth" d="M54 98Q75 98 96 98" fill="none" stroke="#2B0A0A" stroke-width="5.5" stroke-linecap="round"/>
+          <circle cx="44" cy="90" r="8" fill="#FF6B6B" opacity=".7" id="cheekL"/><circle cx="106" cy="90" r="8" fill="#FF6B6B" opacity=".7" id="cheekR"/>
+          <g class="mask-shape" id="maskShape">
+            <path d="M22 52C22 30 48 20 75 20C102 20 128 30 128 52C128 82 108 102 75 102C42 102 22 82 22 52Z" fill="#F59E0B" stroke="#2B0A0A" stroke-width="5" stroke-linejoin="round"/>
+            <ellipse cx="55" cy="58" rx="12" ry="7" fill="#2B0A0A"/><ellipse cx="95" cy="58" rx="12" ry="7" fill="#2B0A0A"/>
+            <path d="M60 84H90" stroke="#2B0A0A" stroke-width="5" stroke-linecap="round"/>
+          </g>
+        </svg>
+        <div>
+          <h3 id="sHead"></h3>
+          <p id="sBody"></p>
+          <span class="btn" id="sBtn"></span>
+        </div>
+      </div>
+      <div class="meter-wrap">
+        <div class="meter" role="img" aria-label="Visitor warmth meter"><i id="warmFill"></i></div>
+        <p class="meter-text">Visitor warmth: <strong id="warmText">25%</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap final-grid">
+    <div>
+      <h2>Ready to open the door?</h2>
+      <p style="margin-top:1em">EasyLandX creates affordable, conversion-focused landing pages and websites for small businesses, handcrafted around your story. Bring your bold ask, and we will shape a page that welcomes every visitor.</p>
+      <div class="hero-actions">
+        <a class="btn btn-ink" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FFEDEA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="art-wrap">
+      <svg viewBox="0 0 240 280" role="img" aria-label="Illustration of an open door with warm light and a welcome mat">
+        <path d="M60 250V60a60 60 0 0 1 120 0V250Z" fill="#FFEDEA" stroke="#2B0A0A" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M70 250V62a50 50 0 0 1 100 0V250Z" fill="#FF6B6B" stroke="#2B0A0A" stroke-width="4"/>
+                <path d="M96 250 138 232V52L96 36Z" fill="#F59E0B" stroke="#2B0A0A" stroke-width="5" stroke-linejoin="round"/>
+        <circle cx="124" cy="146" r="6" fill="#2B0A0A"/>
+        <path d="M150 90 210 66M152 140 224 140M150 190 210 214" stroke="#FFEDEA" stroke-width="6" stroke-linecap="round"/>
+        <rect x="52" y="250" width="136" height="20" rx="10" fill="#2B0A0A"/>
+        <text x="120" y="265" font-size="12" font-weight="800" fill="#FFEDEA" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif">Welcome</text>
+        <path transform="translate(40 60)" d="M0-14Q2-2 14 0Q2 2 0 14Q-2 2-14 0Q-2-2 0-14Z" fill="#FFEDEA" stroke="#2B0A0A" stroke-width="3" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="#top" aria-label="Back to top">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="3" y="3" width="42" height="42" rx="14" fill="#F59E0B" stroke="#2B0A0A" stroke-width="3.5"/><path d="M15 15 L33 33 M33 15 L15 33" stroke="#2B0A0A" stroke-width="5" stroke-linecap="round"/></svg>
+      EasyLandX
+    </a>
+    <p>Ideas inspired by <em>Rejection Proof</em> by Jia Jiang.</p>
+    <a class="btn btn-pale" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---------- Ask Why demo ---------- */
+  var scenarios = [
+    {v:"I'd like to think it over.",
+     a:"Of course! What would help you feel ready?",
+     r:"Seeing a real example would be great.",
+     m:"Add a \"See a live sample\" button beside your main button, so ideas become easy to picture."},
+    {v:"The price feels high right now.",
+     a:"Thank you for sharing! What budget would feel comfortable?",
+     r:"Something small I can start with this month.",
+     m:"Offer a friendly starter option and show it right on the page, so the first step feels light."},
+    {v:"I'm curious if this suits my business.",
+     a:"Great question! What makes your business special?",
+     r:"Our regulars love our family recipes.",
+     m:"Open the page with that story and feature photos of those regulars, so visitors see themselves in it."}
+  ];
+  var chat = document.getElementById('chat');
+  var whyBtn = document.getElementById('whyBtn');
+  var fill = document.getElementById('fill');
+  var meterText = document.getElementById('meterText');
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var cur = 0, asked = false, timers = [];
+
+  function bubble(cls, who, text){
+    var d = document.createElement('div');
+    d.className = 'bubble ' + cls;
+    var s = document.createElement('small'); s.textContent = who;
+    var p = document.createElement('span'); p.textContent = text;
+    d.appendChild(s); d.appendChild(p);
+    chat.appendChild(d);
+  }
+  function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+  function reset(i){
+    clearTimers();
+    cur = i; asked = false;
+    chat.innerHTML = '';
+    bubble('from-visitor', 'Visitor', scenarios[i].v);
+    whyBtn.textContent = 'Ask why';
+    fill.style.width = '0%';
+    meterText.textContent = 'Press "Ask why" to see what unfolds.';
+    chips.forEach(function(c, k){ c.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
+  }
+  chips.forEach(function(c, k){ c.addEventListener('click', function(){ reset(k); }); });
+  whyBtn.addEventListener('click', function(){
+    if (asked) { reset(cur); return; }
+    asked = true;
+    var s = scenarios[cur];
+    whyBtn.textContent = 'Replay';
+    bubble('from-you', 'You', s.a);
+    timers.push(setTimeout(function(){ bubble('from-visitor', 'Visitor', s.r); }, 650));
+    timers.push(setTimeout(function(){
+      bubble('from-move', 'Your EasyLandX page', s.m);
+      fill.style.width = '50%';
+      meterText.textContent = 'In Jia Jiang\'s experiments, a friendly "Why?" turned roughly half of first replies into yeses.';
+    }, 1400));
+  });
+  reset(0);
+
+  /* ---------- 100-day tracker ---------- */
+  var N = 100, done = [], i;
+  for (i = 0; i < N; i++) done.push(false);
+  try {
+    var saved = JSON.parse(localStorage.getItem('elx-bold-asks') || 'null');
+    if (Array.isArray(saved) && saved.length === N) done = saved.map(Boolean);
+  } catch (e) {}
+  function save(){ try { localStorage.setItem('elx-bold-asks', JSON.stringify(done)); } catch (e) {} }
+
+  var ideas = [
+    "Open your headline with a friendly question.",
+    "Add a one-tap WhatsApp button beside your main button.",
+    "Swap a stock photo for a real photo of you smiling.",
+    "Ask visitors \"What would help you decide?\" in one short line.",
+    "Offer a second path: \"Prefer a quick chat first?\"",
+    "Try a playful offer, like a free surprise with every first order.",
+    "Add a short, honest story about why you started.",
+    "Test a bolder button color for one week.",
+    "Invite a happy customer to share one sentence about you.",
+    "Write your tagline with a touch of humor.",
+    "Ask a neighbor which part of your page feels most inviting.",
+    "Add a \"Maybe later? Save this for later\" link."
+  ];
+  var cheers = [
+    [0, "Your first bold ask is one tap away."],
+    [1, "Wonderful start. Curiosity is building."],
+    [10, "Momentum is yours. Each ask feels lighter."],
+    [25, "A quarter of the way there. Confidence is glowing."],
+    [50, "Halfway! Bold asks are becoming second nature."],
+    [75, "Nearly there. You are a natural at asking."],
+    [100, "All 100 complete. You are ready for anything!"]
+  ];
+  var grid = document.getElementById('grid');
+  var countEl = document.getElementById('count');
+  var cheerEl = document.getElementById('cheer');
+  var ideaOut = document.getElementById('ideaOut');
+  var dots = [];
+  for (i = 0; i < N; i++) {
+    (function(k){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'dot';
+      b.setAttribute('aria-label', 'Bold ask ' + (k + 1));
+      b.addEventListener('click', function(){ done[k] = !done[k]; render(); save(); });
+      grid.appendChild(b); dots.push(b);
+    })(i);
+  }
+  function render(){
+    var n = 0;
+    done.forEach(function(d, k){ dots[k].setAttribute('aria-pressed', d ? 'true' : 'false'); if (d) n++; });
+    countEl.textContent = n;
+    var msg = cheers[0][1];
+    cheers.forEach(function(c){ if (n >= c[0]) msg = c[1]; });
+    cheerEl.textContent = msg;
+  }
+  document.getElementById('ideaBtn').addEventListener('click', function(){
+    var idx = done.indexOf(false);
+    if (idx === -1) { ideaOut.textContent = "All 100 bold asks are complete. Time to celebrate!"; return; }
+    done[idx] = true;
+    ideaOut.textContent = 'Bold ask #' + (idx + 1) + ': ' + ideas[idx % ideas.length];
+    render(); save();
+  });
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    for (var k = 0; k < N; k++) done[k] = false;
+    ideaOut.textContent = 'Fresh start! Your first bold ask is one tap away.';
+    render(); save();
+  });
+  render();
+
+  /* ---------- Mask slider ---------- */
+  var levels = [
+    {h:"Welcome to our company.", b:"We provide quality solutions for all of your needs.", btn:"Learn more",
+     warm:25, op:1, mouth:"M54 98Q75 98 96 98", cheek:0},
+    {h:"Hello, we're glad you stopped by!", b:"We bake fresh every morning and love helping neighbors find a new favorite.", btn:"See today's menu",
+     warm:62, op:.4, mouth:"M52 94Q75 112 98 94", cheek:.5},
+    {h:"Hi, I'm Maria, and I bake with my grandmother's recipes.", b:"Come say hello on Saturday. Tell me your favorite flavor and I'll bake it just for you!", btn:"Tell Maria your favorite flavor",
+     warm:96, op:0, mouth:"M48 90Q75 124 102 90", cheek:.85}
+  ];
+  var range = document.getElementById('maskRange');
+  var sHead = document.getElementById('sHead'), sBody = document.getElementById('sBody'), sBtn = document.getElementById('sBtn');
+  var mouth = document.getElementById('mouth'), maskShape = document.getElementById('maskShape');
+  var warmFill = document.getElementById('warmFill'), warmText = document.getElementById('warmText');
+  var cl = document.getElementById('cheekL'), cr = document.getElementById('cheekR');
+  function setMask(){
+    var L = levels[+range.value];
+    sHead.textContent = L.h; sBody.textContent = L.b; sBtn.textContent = L.btn;
+    mouth.setAttribute('d', L.mouth);
+    maskShape.style.opacity = L.op;
+    cl.style.opacity = L.cheek; cr.style.opacity = L.cheek;
+    warmFill.style.width = L.warm + '%';
+    warmText.textContent = L.warm + '%';
+  }
+  range.addEventListener('input', setMask);
+  setMask();
+})();
+</script>
+</body>
+</html>
