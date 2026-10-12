@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Landing pages with a steady centre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--sage:#FFD60A;--cream:#FFF1A8;--deep:#3B2F00;--shade:rgba(59,47,0,.14);
+ --head:'Bricolage Grotesque','Trebuchet MS',sans-serif;--body:'Figtree','Segoe UI',sans-serif;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--sage);color:var(--deep);font:400 18px/1.6 var(--body)}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:clamp(24px,6vw,64px)}
+h1,h2,h3{font-family:var(--head);line-height:1.05;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.6rem,7vw,5.2rem);font-weight:800}
+h2{font-size:clamp(1.9rem,4.5vw,3rem);font-weight:800}
+h3{font-size:1.35rem;font-weight:600}
+p{margin:0 0 1em;max-width:62ch}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
+header{position:sticky;top:0;z-index:5;background:var(--sage);border-bottom:2px solid var(--shade);padding-top:env(safe-area-inset-top,0px)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.logo{font:800 1.4rem var(--head);text-decoration:none}
+.btn{display:inline-block;background:var(--cream);color:var(--deep);font:800 1rem var(--head);padding:14px 26px;border-radius:999px;text-decoration:none;border:3px solid var(--deep);cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.alt{background:transparent;border-color:var(--deep)}
+section{padding-block:clamp(56px,9vw,104px)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero svg{width:100%;height:auto}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+.panel{background:var(--cream);color:var(--deep);border-radius:28px;padding:clamp(24px,4vw,44px)}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;margin-top:34px}
+.card{background:var(--cream);border-radius:24px;padding:28px}
+.card svg{width:72px;height:72px;margin-bottom:10px}
+.card p{margin:0}
+.tag{display:inline-block;background:var(--deep);color:var(--cream);font:600 .95rem var(--body);padding:5px 16px;border-radius:999px;margin-bottom:18px}
+/* pause */
+.pause{display:grid;grid-template-columns:260px 1fr;gap:36px;align-items:center}
+.ring{position:relative;width:240px;height:240px;margin:auto}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring .c{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font:800 3.4rem var(--head)}
+.ring small{display:block;font:600 1rem var(--body)}
+#prog{stroke-dasharray:691;stroke-dashoffset:691}
+.run #prog{transition:stroke-dashoffset 5s linear;stroke-dashoffset:0}
+#core{transition:transform 5s ease-in-out;transform-origin:120px 120px}
+.run #core{transform:scale(1.18)}
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 18px}
+.tab{font:600 1rem var(--body);background:transparent;color:var(--deep);border:3px solid var(--deep);border-radius:999px;padding:10px 20px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--deep);color:var(--cream)}
+.tp{display:none;grid-template-columns:150px 1fr;gap:28px;align-items:center}
+.tp.on{display:grid}
+.tp svg{width:150px;height:150px}
+.tp strong{display:block;font:800 1.5rem var(--head);margin-bottom:6px}
+/* sorter */
+.say{font:600 1.5rem/1.3 var(--head);margin:10px 0 22px;min-height:3.9em}
+.opts{display:flex;flex-wrap:wrap;gap:12px}
+.opts .btn{background:var(--deep);color:var(--cream);border-color:var(--deep)}
+.opts .btn+.btn{background:transparent;color:var(--deep)}
+#fb{min-height:3.6em;margin-top:18px;font-weight:600}
+.dots{display:flex;gap:8px;margin-top:6px}
+.dots i{width:16px;height:16px;border-radius:50%;border:3px solid var(--deep)}
+.dots i.f{background:var(--deep)}
+/* compass slider */
+input[type=range]{width:100%;accent-color:var(--deep);height:36px}
+.labels{display:flex;justify-content:space-between;font-weight:600}
+.compass{display:grid;grid-template-columns:240px 1fr;gap:30px;align-items:center}
+/* toggle */
+.sw{display:inline-flex;border:3px solid var(--deep);border-radius:999px;overflow:hidden;margin-bottom:22px}
+.sw button{font:800 1rem var(--head);padding:12px 26px;border:0;background:transparent;color:var(--deep);cursor:pointer}
+.sw button[aria-pressed="true"]{background:var(--deep);color:var(--cream)}
+.final{text-align:center}
+.final p{margin-inline:auto}
+footer{padding-block:34px;border-top:2px solid var(--shade);font-weight:600}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+@media(max-width:760px){.hero,.pause,.compass,.tp.on{grid-template-columns:1fr}.tp svg{width:110px;height:110px}.compass svg{max-width:220px;margin:auto}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+ <a class="logo" href="#top">easylandx</a>
+ <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a>
+</div></header>
+
+<main id="top">
+<section><div class="wrap hero">
+ <div>
+  <span class="tag">Landing pages with a steady centre</span>
+  <h1>Launch calmly. Shine clearly.</h1>
+  <p>An easylandx landing page rests on one lovely idea: your best work appears when you stand in your own centre. Each page is shaped around you, so your message arrives with ease and every visitor meets it in their own way.</p>
+  <div class="cta-row">
+   <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+   <a class="btn alt" href="#pause">Try the 5-second pause</a>
+  </div>
+ </div>
+ <svg viewBox="0 0 400 400" role="img" aria-label="Calm ripples spreading around a smooth stone with a leaf">
+  <circle cx="200" cy="210" r="180" fill="none" stroke="#FFF1A8" stroke-width="4" opacity=".35"/>
+  <circle cx="200" cy="210" r="140" fill="none" stroke="#FFF1A8" stroke-width="5" opacity=".55"/>
+  <circle cx="200" cy="210" r="100" fill="none" stroke="#FFF1A8" stroke-width="6" opacity=".8"/>
+  <circle cx="200" cy="210" r="62" fill="#FFF1A8"/>
+  <ellipse cx="200" cy="215" rx="38" ry="26" fill="#3B2F00"/>
+  <path d="M200 60 C250 90 250 150 200 175 C150 150 150 90 200 60Z" fill="#FFF1A8"/>
+  <path d="M200 70 V172" stroke="#3B2F00" stroke-width="4" stroke-linecap="round"/>
+  <path d="M200 100 L228 120 M200 125 L174 142 M200 140 L224 152" stroke="#3B2F00" stroke-width="3" stroke-linecap="round"/>
+ </svg>
+</div></section>
+
+<section id="partone"><div class="wrap">
+ <span class="tag">Part I · Rest in your centre</span>
+ <h2>Three ideas that make every page lighter</h2>
+ <p>Inspired by Shubham Kumar Singh's <em>Take Nothing Personally</em>, easylandx pages translate emotional clarity into clear, welcoming design.</p>
+ <div class="grid3">
+  <div class="card">
+   <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="30" fill="none" stroke="#3B2F00" stroke-width="4"/><circle cx="36" cy="36" r="9" fill="#3B2F00"/><path d="M36 6V18M36 54V66M6 36H18M54 36H66" stroke="#3B2F00" stroke-width="4" stroke-linecap="round"/></svg>
+   <h3>Every visitor brings a lens</h3>
+   <p>What people say and do reflects their own world, their own stories and their own moment. Your page shares your message with warmth and clarity, and your worth stays steady.</p>
+  </div>
+  <div class="card">
+   <svg viewBox="0 0 72 72" aria-hidden="true"><path d="M36 8C52 24 56 40 36 64C16 40 20 24 36 8Z" fill="#3B2F00"/><path d="M36 26V50" stroke="#FFF1A8" stroke-width="4" stroke-linecap="round"/></svg>
+   <h3>Your energy is precious</h3>
+   <p>Every hour is a gift. easylandx shapes the structure, so your energy flows into your craft, your offer and the people you love to serve.</p>
+  </div>
+  <div class="card">
+   <svg viewBox="0 0 72 72" aria-hidden="true"><rect x="18" y="10" width="12" height="52" rx="6" fill="#3B2F00"/><rect x="42" y="10" width="12" height="52" rx="6" fill="#3B2F00"/></svg>
+   <h3>Freedom lives in the pause</h3>
+   <p>Between a trigger and a response sits your choice. Launch when you feel steady, and let each decision come from clarity.</p>
+  </div>
+ </div>
+</div></section>
+
+<section id="pause"><div class="wrap">
+ <div class="panel pause" id="pausebox">
+  <div class="ring">
+   <svg viewBox="0 0 240 240" aria-hidden="true">
+    <circle cx="120" cy="120" r="110" fill="none" stroke="#FFD60A" stroke-width="12" opacity=".5"/>
+    <circle id="prog" cx="120" cy="120" r="110" fill="none" stroke="#3B2F00" stroke-width="12" stroke-linecap="round"/>
+    <circle id="core" cx="120" cy="120" r="60" fill="#FFD60A"/>
+   </svg>
+   <div class="c" aria-live="polite"><span id="num">5<small>seconds</small></span></div>
+  </div>
+  <div>
+   <h2>The 5-second pause</h2>
+   <p>When feedback arrives, give yourself five calm seconds. Breathe, notice what is yours, and choose your response. Try it now and feel the space open up.</p>
+   <button class="btn" id="pbtn" style="background:var(--deep);color:var(--cream)">Begin my pause</button>
+   <p id="pmsg" style="margin:18px 0 0;font-weight:600" aria-live="polite">Press begin and breathe along with the ring.</p>
+  </div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <span class="tag">Response over reaction</span>
+ <h2>Two ways to meet a comment</h2>
+ <div class="sw" role="group" aria-label="Choose how to meet a comment">
+  <button id="bR" aria-pressed="false">Reaction</button>
+  <button id="bS" aria-pressed="true">Response</button>
+ </div>
+ <div class="panel" style="display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:center">
+  <svg id="rsvg" viewBox="0 0 120 120" width="120" height="120" aria-hidden="true"></svg>
+  <div><h3 id="rt"></h3><p id="rp" style="margin:0"></p></div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <span class="tag">Growth insight or passing breeze</span>
+ <h2>Sort the feedback, keep your energy</h2>
+ <p>Valuable feedback becomes a gift for your page. Passing breezes drift by while your centre stays warm. Tap how you would hold each comment.</p>
+ <div class="panel">
+  <div class="dots" id="dots" aria-label="Progress"></div>
+  <div class="say" id="say"></div>
+  <div class="opts"><button class="btn" id="o1">Growth insight</button><button class="btn" id="o2">Passing breeze</button></div>
+  <div id="fb" aria-live="polite"></div>
+ </div>
+</div></section>
+
+<section id="partwo"><div class="wrap">
+ <span class="tag">Part II · Focus on yourself</span>
+ <h2>Four daily practices, shaped for your page</h2>
+ <p>Reclaimed energy becomes self-respect, a trusted inner voice and an intentional life. These practices bring that energy to your landing page.</p>
+ <div class="tabs" role="tablist">
+  <button class="tab" role="tab" aria-selected="true" data-t="0">5-second pause</button>
+  <button class="tab" role="tab" aria-selected="false" data-t="1">Perspective shift</button>
+  <button class="tab" role="tab" aria-selected="false" data-t="2">Self-audit</button>
+  <button class="tab" role="tab" aria-selected="false" data-t="3">Healthy boundaries</button>
+ </div>
+ <div class="panel">
+  <div class="tp on"><svg viewBox="0 0 150 150" aria-hidden="true"><circle cx="75" cy="75" r="62" fill="none" stroke="#3B2F00" stroke-width="8"/><path d="M75 75V35M75 75L100 90" stroke="#3B2F00" stroke-width="8" stroke-linecap="round"/></svg><div><strong>Pause, then publish</strong>Before editing after a comment, take five seconds. Ask whether it reflects your page or the reader's own moment. Then update with a calm hand.</div></div>
+  <div class="tp"><svg viewBox="0 0 150 150" aria-hidden="true"><circle cx="48" cy="75" r="34" fill="#3B2F00"/><circle cx="102" cy="75" r="34" fill="none" stroke="#3B2F00" stroke-width="8"/></svg><div><strong>See through the visitor's eyes</strong>Every reader arrives with a story of their own. Write headlines that welcome many viewpoints and speak kindly to all of them.</div></div>
+  <div class="tp"><svg viewBox="0 0 150 150" aria-hidden="true"><path d="M104 20A58 58 0 1 0 104 130A46 46 0 1 1 104 20Z" fill="#3B2F00"/><circle cx="108" cy="42" r="6" fill="#3B2F00"/></svg><div><strong>An evening review</strong>Spend a few minutes at night. Notice the trigger, see what felt personal, and plan a graceful reply for tomorrow. Your page evolves with you.</div></div>
+  <div class="tp"><svg viewBox="0 0 150 150" aria-hidden="true"><rect x="22" y="22" width="106" height="106" rx="22" fill="none" stroke="#3B2F00" stroke-width="8"/><circle cx="75" cy="75" r="20" fill="#3B2F00"/></svg><div><strong>Clear edges, open space</strong>One message, one invitation, one button per section. Clear boundaries keep your page spacious and keep responsibility with the person who owns it.</div></div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <span class="tag">Validation from within</span>
+ <h2>Where does your confidence live?</h2>
+ <p>Slide toward your inner compass and watch your steady core grow.</p>
+ <div class="panel compass">
+  <svg viewBox="0 0 240 240" aria-hidden="true">
+   <circle cx="120" cy="120" r="108" fill="none" stroke="#FFD60A" stroke-width="6" stroke-dasharray="4 12" stroke-linecap="round"/>
+   <circle id="orb" cx="120" cy="120" r="30" fill="#3B2F00"/>
+   <circle id="halo" cx="120" cy="120" r="40" fill="none" stroke="#3B2F00" stroke-width="5" opacity=".4"/>
+   <circle cx="120" cy="120" r="8" fill="#FFF1A8"/>
+  </svg>
+  <div>
+   <input type="range" id="sl" min="0" max="100" value="20" aria-label="Applause to inner compass">
+   <div class="labels"><span>Outer applause</span><span>Inner compass</span></div>
+   <h3 id="st" style="margin-top:22px"></h3>
+   <p id="sp" style="margin:0"></p>
+  </div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="card" style="display:grid;grid-template-columns:110px 1fr;gap:24px;align-items:center">
+  <svg viewBox="0 0 110 110" width="110" height="110" aria-hidden="true"><circle cx="55" cy="55" r="48" fill="none" stroke="#3B2F00" stroke-width="6"/><path d="M55 80C25 58 32 34 47 34C52 34 55 38 55 41C55 38 58 34 63 34C78 34 85 58 55 80Z" fill="#3B2F00"/></svg>
+  <div><h3>Care deeply, hold lightly</h3><p>Detachment is warm care with a steady core. You pour heart into your page and welcome every outcome with grace, because your inner foundation stays strong.</p></div>
+ </div>
+</div></section>
+
+<section class="final"><div class="wrap">
+ <svg viewBox="0 0 300 90" width="300" height="90" aria-hidden="true" style="max-width:100%"><path d="M0 50 Q37 10 75 50 T150 50 T225 50 T300 50" fill="none" stroke="#FFF1A8" stroke-width="8" stroke-linecap="round"/><path d="M0 74 Q37 38 75 74 T150 74 T225 74 T300 74" fill="none" stroke="#3B2F00" stroke-width="6" stroke-linecap="round" opacity=".6"/></svg>
+ <h2>Your steady page awaits</h2>
+ <p>Bring your message, your calm and your centre. easylandx shapes a landing page around you, ready to welcome the right people with ease.</p>
+ <div class="cta-row" style="justify-content:center"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a></div>
+</div></section>
+</main>
+
+<footer><div class="wrap foot"><span>Made by <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a></span><span>Inspired by the ideas of Shubham Kumar Singh</span></div></footer>
+
+<script>
+const $=id=>document.getElementById(id);
+/* pause */
+let busy=false;
+$('pbtn').onclick=()=>{
+ if(busy)return;busy=true;const box=$('pausebox'),n=$('num'),m=$('pmsg');
+ box.classList.remove('run');void box.offsetWidth;box.classList.add('run');
+ const steps=['Breathe in slowly','Feel your feet and your seat','Let your shoulders soften','Notice what is yours','Choose your response'];
+ let s=5;n.innerHTML=s+'<small>seconds</small>';m.textContent=steps[0];
+ const t=setInterval(()=>{s--;
+  if(s>0){n.innerHTML=s+'<small>seconds</small>';m.textContent=steps[5-s];}
+  else{clearInterval(t);n.innerHTML='✓<small>centred</small>';m.textContent='Welcome back. You hold the choice, and your response comes from clarity.';busy=false;box.classList.remove('run');}
+ },1000);
+};
+/* reaction / response */
+const RS={R:{t:'Reaction: quick and unplanned',p:'A comment lands at midnight and the whole page gets rewritten in a rush. Energy flows outward and the page loses its original shine.',svg:'<path d="M60 10L40 62H62L50 110L84 48H62Z" fill="#3B2F00"/>'},
+S:{t:'Response: calm and chosen',p:'A comment lands, five seconds pass, and you read it with fresh eyes. You keep what helps, thank the sender, and your page grows with intention.',svg:'<circle cx="60" cy="60" r="46" fill="none" stroke="#3B2F00" stroke-width="6"/><circle cx="60" cy="60" r="24" fill="none" stroke="#3B2F00" stroke-width="6"/><circle cx="60" cy="60" r="8" fill="#3B2F00"/>'}};
+function setRS(k){$('rt').textContent=RS[k].t;$('rp').textContent=RS[k].p;$('rsvg').innerHTML=RS[k].svg;$('bR').setAttribute('aria-pressed',k==='R');$('bS').setAttribute('aria-pressed',k==='S');}
+$('bR').onclick=()=>setRS('R');$('bS').onclick=()=>setRS('S');setRS('S');
+/* sorter */
+const Q=[
+ ['“Your headline could share the offer in fewer words.”',1,'Beautiful catch. Specific and useful, a perfect gift for your next edit.','This one is a gift. It points to something your page can polish, so it earns a spot in your next edit.'],
+ ['“I would have picked a different path for my own life.”',2,'Lovely. This reflects the speaker’s own story, so it drifts by and your centre stays warm.','This one reflects the speaker’s own story. Let it drift by and keep your energy for your craft.'],
+ ['“The button sits below the fold on my phone.”',1,'Wonderful. Clear, objective and actionable, a growth insight for your layout.','This one is objective and actionable, which makes it a growth insight for your layout.'],
+ ['“All landing pages look the same to me.”',2,'Well sorted. A broad impression like this drifts away while you keep building your own voice.','A broad impression offers nothing specific to refine, so it drifts by while you keep building your own voice.']];
+let qi=0,sc=0;const dots=$('dots');
+Q.forEach(()=>dots.appendChild(document.createElement('i')));
+function showQ(){
+ if(qi>=Q.length){$('say').textContent='Steady score: '+sc+' of '+Q.length+'. '+(sc===4?'Your inner compass shines.':'Every sort strengthens your inner compass.');$('o1').style.display=$('o2').style.display='none';
+  $('fb').innerHTML='<button class="btn" id="again" style="background:var(--deep);color:var(--cream)">Play again</button>';
+  $('again').onclick=()=>{qi=0;sc=0;[...dots.children].forEach(d=>d.className='');$('o1').style.display=$('o2').style.display='';showQ();};return;}
+ $('say').textContent=Q[qi][0];$('fb').textContent='';}
+function pick(v){const q=Q[qi];if(!q||$('fb').dataset.l==='1')return;
+ const ok=q[1]===v;if(ok)sc++;dots.children[qi].className='f';
+ $('fb').textContent=ok?q[2]:q[3];$('fb').dataset.l='1';
+ setTimeout(()=>{$('fb').dataset.l='0';qi++;showQ();},2600);}
+$('o1').onclick=()=>pick(1);$('o2').onclick=()=>pick(2);showQ();
+/* tabs */
+const tabs=[...document.querySelectorAll('.tab')],tps=[...document.querySelectorAll('.tp')];
+tabs.forEach(b=>b.onclick=()=>{tabs.forEach(x=>x.setAttribute('aria-selected',x===b));tps.forEach((p,i)=>p.classList.toggle('on',i==b.dataset.t));});
+/* compass */
+const M=[[25,'Applause sets the weather','Your mood follows each opinion. Good news: awareness is the first step, and you are already here.'],
+[60,'Your compass is warming up','Self-respect is growing. You welcome feedback and let your own evaluation lead.'],
+[101,'Steady and centred','Your peace rests on your own foundation. Your page, your voice and your pace all radiate calm.']];
+function setC(){const v=+$('sl').value;$('orb').setAttribute('r',22+v*0.62);$('halo').setAttribute('r',34+v*0.7);
+ const m=M.find(x=>v<x[0]);$('st').textContent=m[1];$('sp').textContent=m[2];}
+$('sl').oninput=setC;setC();
+</script>
+</body>
+</html>
