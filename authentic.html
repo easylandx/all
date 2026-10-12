@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx | Landing pages with a confident, authentic voice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#B3141A; --red-deep:#8A0E13; --red-dark:#5F0A0E; --red-soft:#CC2A30; --blush:#FFE6DF;
+  --bronze:#CD7F32; --bronze-lt:#E8A964; --bronze-dk:#8C5420;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--red:#B3141A;--red-deep:#8A0E13}}
+:root[data-theme="dark"]{--red:#B3141A;--red-deep:#8A0E13}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px)}
+body{margin:0;background:var(--red);color:var(--blush);font:400 18px/1.65 Karla,system-ui,sans-serif}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding-left:clamp(24px,6vw,72px);padding-right:clamp(24px,6vw,72px)}
+h1,h2,h3{font-family:'Archivo Black',Impact,sans-serif;font-weight:400;line-height:1.08;margin:0;color:var(--blush)}
+h1{font-size:clamp(2.3rem,6vw,4.4rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.8rem,4vw,2.9rem);margin-bottom:14px}
+h3{font-size:1.25rem;margin:14px 0 8px;color:var(--bronze-lt)}
+p{margin:0 0 14px;max-width:62ch}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--bronze-lt);outline-offset:3px}
+
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--red-deep);border-bottom:3px solid var(--bronze)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:'Archivo Black',sans-serif;font-size:1.5rem;text-decoration:none;color:var(--bronze-lt)}
+.btn{display:inline-block;background:var(--bronze);color:var(--red-dark);font:700 1rem Karla,sans-serif;padding:13px 26px;border:3px solid var(--bronze);border-radius:999px;text-decoration:none;cursor:pointer;transition:transform .15s,background .15s}
+.btn:hover{background:var(--bronze-lt);border-color:var(--bronze-lt);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--bronze-lt)}
+.btn.ghost:hover{background:var(--red-dark);color:var(--bronze-lt)}
+.btn.big{font-size:1.15rem;padding:17px 34px}
+
+/* hero */
+.hero{padding:70px 0 80px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.hero p.lead{font-size:1.25rem;margin:22px 0 30px}
+.btns{display:flex;flex-wrap:wrap;gap:14px}
+.hero svg{width:100%;height:auto;display:block}
+.rise{animation:rise 1.4s ease-out both}
+@keyframes rise{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.spin{transform-origin:260px 250px;animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+section{padding:76px 0}
+section.band{background:var(--red-deep);border-top:3px solid var(--bronze);border-bottom:3px solid var(--bronze)}
+.intro{max-width:64ch;margin-bottom:38px}
+
+/* principles */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:24px}
+.card{background:var(--red-deep);border:3px solid var(--bronze);border-radius:22px 4px 22px 4px;padding:26px}
+.card svg{width:64px;height:64px;display:block}
+.card p{margin:0;font-size:1rem}
+.card .tag{display:inline-block;margin-top:14px;color:var(--bronze-lt);font-weight:700;font-size:.92rem}
+
+/* tool 1 */
+.tool{background:var(--red-dark);border:3px solid var(--bronze);border-radius:28px;padding:clamp(20px,4vw,40px)}
+.row{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;padding:18px 0;border-bottom:2px dashed var(--bronze-dk)}
+.row:last-of-type{border-bottom:0}
+.row small{display:block;color:var(--bronze-lt);font-weight:700;margin-bottom:2px}
+.row .txt{font-size:1.1rem;transition:color .2s}
+.row.clear .txt{color:var(--bronze-lt);font-weight:700}
+.score{font-family:'Archivo Black',sans-serif;color:var(--bronze-lt);font-size:1.2rem;margin-top:14px}
+
+/* tool 2 */
+.dial{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.checks{display:grid;gap:12px}
+.check{display:flex;gap:14px;align-items:center;text-align:left;width:100%;background:var(--red-deep);color:var(--blush);border:3px solid var(--bronze-dk);border-radius:16px;padding:14px 16px;font:600 1rem Karla,sans-serif;cursor:pointer;transition:border-color .2s,background .2s}
+.check:hover{border-color:var(--bronze)}
+.check .box{flex:none;width:28px;height:28px;border:3px solid var(--bronze);border-radius:8px;display:grid;place-items:center;color:transparent;font-weight:700}
+.check[aria-pressed="true"]{background:var(--bronze);color:var(--red-dark);border-color:var(--bronze-lt)}
+.check[aria-pressed="true"] .box{background:var(--red-dark);color:var(--bronze-lt);border-color:var(--red-dark)}
+.gauge{text-align:center}
+.gauge svg{width:100%;max-width:400px;height:auto}
+.gauge .pct{font-family:'Archivo Black',sans-serif;font-size:3rem;color:var(--bronze-lt);line-height:1}
+.gauge .msg{margin:8px auto 0;font-weight:700;min-height:3.3em}
+
+/* path */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;counter-reset:s}
+.step{position:relative;border-left:6px solid var(--bronze);padding:4px 0 4px 22px;counter-increment:s}
+.step::before{content:counter(s);font-family:'Archivo Black',sans-serif;font-size:2.6rem;color:var(--bronze-lt);line-height:1;display:block}
+.step p{font-size:1rem;margin:0}
+
+.cta{text-align:center}
+.cta p{margin-left:auto;margin-right:auto}
+.cta svg{width:150px;height:auto;margin-bottom:10px}
+footer{background:var(--red-dark);border-top:3px solid var(--bronze);padding:30px 0;text-align:center;font-weight:600}
+footer a{color:var(--bronze-lt);font-weight:700}
+
+@media (max-width:820px){
+  .hero .wrap,.dial{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr}
+  section{padding:56px 0}
+}
+@media (prefers-reduced-motion:reduce){.rise,.spin{animation:none}html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">easylandx</a>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>Landing pages with a confident, authentic voice.</h1>
+      <p class="lead">easylandx crafts landing pages that state your offer clearly, welcome every visitor warmly, and invite action with strength. Your message leads. Your visitors follow with joy.</p>
+      <div class="btns">
+        <a class="btn big" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+        <a class="btn ghost big" href="#tools">Explore the interactive tools</a>
+      </div>
+    </div>
+    <svg class="rise" viewBox="0 0 520 440" role="img" aria-label="Illustration of a bold landing page with a rising bronze sun and a compass star">
+      <g class="spin" fill="none" stroke="#CD7F32" stroke-width="2" opacity=".5">
+        <circle cx="260" cy="250" r="200" stroke-dasharray="3 12"/>
+        <circle cx="260" cy="250" r="165"/>
+      </g>
+      <circle cx="260" cy="250" r="130" fill="#8A0E13"/>
+      <!-- browser -->
+      <rect x="90" y="70" width="340" height="270" rx="18" fill="#5F0A0E" stroke="#CD7F32" stroke-width="5"/>
+      <path d="M90 108h340" stroke="#CD7F32" stroke-width="5"/>
+      <circle cx="116" cy="89" r="6" fill="#CD7F32"/><circle cx="138" cy="89" r="6" fill="#E8A964"/><circle cx="160" cy="89" r="6" fill="#8C5420"/>
+      <!-- rising sun -->
+      <path d="M110 250a70 70 0 0 1 140 0z" fill="#CD7F32"/>
+      <g stroke="#E8A964" stroke-width="5" stroke-linecap="round"><path d="M180 150v-18M128 170l-12-12M232 170l12-12"/></g>
+      <!-- headline bars -->
+      <rect x="276" y="140" width="130" height="16" rx="8" fill="#FFE6DF"/>
+      <rect x="276" y="168" width="104" height="16" rx="8" fill="#FFE6DF"/>
+      <rect x="276" y="200" width="120" height="9" rx="4.5" fill="#CD7F32" opacity=".7"/>
+      <rect x="276" y="218" width="96" height="9" rx="4.5" fill="#CD7F32" opacity=".7"/>
+      <rect x="110" y="282" width="150" height="38" rx="19" fill="#CD7F32"/>
+      <rect x="132" y="297" width="106" height="9" rx="4.5" fill="#5F0A0E"/>
+      <path d="M110 250h300" stroke="#CD7F32" stroke-width="4"/>
+      <!-- compass star -->
+      <g transform="translate(400 330)">
+        <circle r="46" fill="#B3141A" stroke="#E8A964" stroke-width="5"/>
+        <path d="M0-38L9-9 38 0 9 9 0 38-9 9-38 0-9-9z" fill="#CD7F32" stroke="#E8A964" stroke-width="2"/>
+        <circle r="5" fill="#5F0A0E"/>
+      </g>
+      <!-- sparks -->
+      <g fill="#E8A964"><circle cx="70" cy="60" r="6"/><circle cx="470" cy="150" r="5"/><circle cx="50" cy="330" r="4"/><circle cx="455" cy="60" r="4"/></g>
+    </svg>
+  </div>
+</header>
+
+<section class="band" id="voice">
+  <div class="wrap">
+    <div class="intro">
+      <h2>An authentic page attracts the right people.</h2>
+      <p>Pages shine when they speak honestly, lead with value, and invite action directly. Drawing on Dr. Robert A. Glover's insights about authenticity, easylandx builds six strengths into every landing page.</p>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#CD7F32" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="32" r="16"/><circle cx="40" cy="32" r="16"/><path d="M32 22v20M26 32h12" stroke="#E8A964"/></svg>
+        <h3>Clear Agreements</h3>
+        <p>Every visitor knows exactly what they receive and what happens next. Offer, price, and next step appear in plain, friendly words.</p>
+        <span class="tag">Direct, open invitations</span>
+      </article>
+
+      <article class="card">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#CD7F32" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="32" cy="32" r="22"/><path d="M32 14l6 14 14 4-14 4-6 14-6-14-14-4 14-4z" fill="#CD7F32" stroke="#E8A964" stroke-width="2"/></svg>
+        <h3>Self-Approval</h3>
+        <p>Your page celebrates your work with quiet confidence. Worth comes from within, so the copy leads with what you stand for and what you deliver.</p>
+        <span class="tag">Validation from the inside</span>
+      </article>
+
+      <article class="card">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#CD7F32" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="12" y="12" width="40" height="40" rx="6"/><rect x="22" y="22" width="20" height="20" rx="3" fill="#CD7F32" stroke="#E8A964" stroke-width="2"/></svg>
+        <h3>Healthy Boundaries</h3>
+        <p>One page, one purpose, one invitation. A focused layout protects your visitor's attention and your brand's energy, and gives a firm yes to what matters most.</p>
+        <span class="tag">Focus that feels good</span>
+      </article>
+
+      <article class="card">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#CD7F32" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 52L24 20l10 18 8-12 14 26z" fill="#CD7F32" stroke="#E8A964" stroke-width="2"/><path d="M8 52h48"/><path d="M44 10v8M40 14h8" stroke="#E8A964"/></svg>
+        <h3>Bold Strength</h3>
+        <p>Powerful headlines, decisive buttons, and ambitious design give your brand a strong stance. Healthy drive and confident energy fuel every section.</p>
+        <span class="tag">Ambition on display</span>
+      </article>
+
+      <article class="card">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#CD7F32" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 54S10 40 10 25a11 11 0 0 1 22-3 11 11 0 0 1 22 3c0 15-22 29-22 29z" fill="#CD7F32" stroke="#E8A964" stroke-width="2"/></svg>
+        <h3>Real Stories</h3>
+        <p>Share the journey, the lessons, and the human side of your work. Open, honest storytelling builds genuine connection and lasting trust.</p>
+        <span class="tag">Healthy vulnerability</span>
+      </article>
+
+      <article class="card">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#CD7F32" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 56V30"/><path d="M32 36C20 36 14 28 14 16c12 0 18 8 18 20z" fill="#CD7F32" stroke="#E8A964" stroke-width="2"/><path d="M32 30c0-10 6-16 18-16 0 10-6 16-18 16z" fill="#CD7F32" stroke="#E8A964" stroke-width="2"/><path d="M22 56h20"/></svg>
+        <h3>Own Your Results</h3>
+        <p>Your page becomes an active partner: measurable, adjustable, and fully yours. You choose the goal, and you grow it with every visit.</p>
+        <span class="tag">Responsibility for your success</span>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <div class="intro">
+      <h2>Turn hopeful hints into clear invitations.</h2>
+      <p>Hopeful hints leave visitors guessing. Clear invitations give them a confident next step. Press each button to upgrade the line.</p>
+    </div>
+    <div class="tool" id="agree">
+      <div id="rows"></div>
+      <div class="score" id="agreeScore" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="dial">
+  <div class="wrap">
+    <div class="intro">
+      <h2>Build your Page Strength Dial.</h2>
+      <p>Switch on each practice your landing page celebrates and watch the dial rise toward a fully authentic page.</p>
+    </div>
+    <div class="dial">
+      <div class="checks" id="checks"></div>
+      <div class="gauge">
+        <svg viewBox="0 0 240 150" role="img" aria-label="Page strength dial">
+          <path d="M20 120A100 100 0 0 1 220 120" fill="none" stroke="#5F0A0E" stroke-width="22" stroke-linecap="round"/>
+          <path id="arc" d="M20 120A100 100 0 0 1 220 120" fill="none" stroke="#CD7F32" stroke-width="22" stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="314.16" style="transition:stroke-dashoffset .6s ease"/>
+          <g id="needle" style="transform-origin:120px 120px;transform:rotate(-90deg);transition:transform .6s ease"><path d="M120 120L120 40" stroke="#FFE6DF" stroke-width="5" stroke-linecap="round"/></g>
+          <circle cx="120" cy="120" r="11" fill="#E8A964" stroke="#5F0A0E" stroke-width="4"/>
+        </svg>
+        <div class="pct" id="pct">0%</div>
+        <p class="msg" id="msg">Choose a practice to begin.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="path">
+  <div class="wrap">
+    <div class="intro">
+      <h2>The easylandx path to your page.</h2>
+      <p>Three confident steps take you from vision to a live landing page.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Share your vision</h3><p>Tell us what you offer, who you serve, and the result you celebrate. Your voice sets the direction.</p></div>
+      <div class="step"><h3>Shape your message</h3><p>We craft clear headlines, direct invitations, and warm stories that reflect the real you.</p></div>
+      <div class="step"><h3>Launch and grow</h3><p>Your page goes live, ready to welcome visitors. You steer the next chapter with full ownership.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band cta">
+  <div class="wrap">
+    <svg viewBox="0 0 150 120" fill="none" aria-hidden="true"><path d="M10 100a65 65 0 0 1 130 0z" fill="#CD7F32"/><g stroke="#E8A964" stroke-width="5" stroke-linecap="round"><path d="M75 20v-14M25 44l-10-10M125 44l10-10"/></g><path d="M0 100h150" stroke="#E8A964" stroke-width="5"/></svg>
+    <h2>Your confident voice deserves a landing page.</h2>
+    <p>Step into a page that sounds like you, welcomes the right people, and invites them forward.</p>
+    <a class="btn big" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Made by <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a></div>
+</footer>
+
+<script>
+(function(){
+  /* Tool 1: hints to invitations */
+  var items=[
+    ["Perhaps take a look whenever a moment appears.","Book your free 15-minute walkthrough today."],
+    ["Our service could be useful for some people.","Our service helps coaches fill their calendar in 30 days."],
+    ["Possibly consider reaching out at some point.","Tap Launch and your page goes live this week."],
+    ["Hoping you enjoy it and maybe share it around.","Share your page with three friends and celebrate your launch."]
+  ];
+  var rows=document.getElementById('rows'), score=document.getElementById('agreeScore'), done=0;
+  function upd(){score.textContent="Clear invitations: "+done+" of "+items.length+(done===items.length?" — your page speaks with confidence!":"");}
+  items.forEach(function(it){
+    var r=document.createElement('div'); r.className='row';
+    var t=document.createElement('div');
+    t.innerHTML='<small>Hopeful hint</small><span class="txt"></span>';
+    var s=t.querySelector('.txt'); s.textContent=it[0];
+    var b=document.createElement('button'); b.className='btn'; b.type='button'; b.textContent='Make it clear';
+    var on=false;
+    b.addEventListener('click',function(){
+      on=!on; r.classList.toggle('clear',on);
+      t.querySelector('small').textContent=on?'Clear invitation':'Hopeful hint';
+      s.textContent=on?it[1]:it[0]; b.textContent=on?'Show the hint':'Make it clear';
+      b.classList.toggle('ghost',on); done+=on?1:-1; upd();
+    });
+    r.appendChild(t); r.appendChild(b); rows.appendChild(r);
+  });
+  upd();
+
+  /* Tool 2: page strength dial */
+  var list=["Headline states the offer clearly","One focused call to action","A real story or founder note","Confident, benefit-led copy","Visible next step and contact","A measurable goal for the page"];
+  var msgs=["Choose a practice to begin.","A great start, keep the momentum going!","Building real strength, your voice is rising.","Confident and clear, visitors feel welcome.","Strong and authentic, nearly ready to shine.","Powerful, nearly complete!","Fully authentic and ready to launch with easylandx!"];
+  var box=document.getElementById('checks'), arc=document.getElementById('arc'), needle=document.getElementById('needle'),
+      pct=document.getElementById('pct'), msg=document.getElementById('msg'), n=0;
+  var LEN=314.16;
+  list.forEach(function(txt){
+    var b=document.createElement('button'); b.type='button'; b.className='check'; b.setAttribute('aria-pressed','false');
+    b.innerHTML='<span class="box">✓</span><span></span>'; b.lastChild.textContent=txt;
+    b.addEventListener('click',function(){
+      var p=b.getAttribute('aria-pressed')==='true'; b.setAttribute('aria-pressed',String(!p)); n+=p?-1:1; draw();
+    });
+    box.appendChild(b);
+  });
+  function draw(){
+    var f=n/list.length;
+    arc.style.strokeDashoffset=String(LEN*(1-f));
+    needle.style.transform='rotate('+(-90+180*f)+'deg)';
+    pct.textContent=Math.round(f*100)+'%'; msg.textContent=msgs[n];
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX | Poke the box. Launch your landing page.</title>
+<meta name="description" content="EasyLandX builds affordable, conversion-focused landing pages for small businesses. Start today, launch fast, learn live.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* Brand colors are fixed by design: bold yellow with black accents, in light and dark viewers alike */
+  :root {
+    --yellow: #FFD60A;
+    --yellow-soft: #FFE55C;
+    --yellow-deep: #F0C000;
+    --ink: #0A0A0A;
+    --radius: 22px;
+    --display: 'Bricolage Grotesque', 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+    --body: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --yellow: #FFD60A; --yellow-soft: #FFE55C; --yellow-deep: #F0C000; --ink: #0A0A0A; }
+  }
+  :root[data-theme="dark"] { --yellow: #FFD60A; --yellow-soft: #FFE55C; --yellow-deep: #F0C000; --ink: #0A0A0A; }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    background: var(--yellow);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img, svg { max-width: 100%; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.02; letter-spacing: -0.025em; margin: 0; }
+  h1 { font-size: clamp(2.8rem, 7.4vw, 5.8rem); }
+  h2 { font-size: clamp(2.1rem, 5vw, 3.7rem); }
+  h3 { font-size: 1.45rem; line-height: 1.15; letter-spacing: -0.015em; }
+  p { margin: 0; max-width: 62ch; }
+
+  /* Side margins live on the container only; sections never override them */
+  .container {
+    width: 100%;
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .section { padding-top: 96px; padding-bottom: 96px; }
+  .section-head { margin-bottom: 48px; display: grid; gap: 18px; }
+  .lead { font-size: 1.2rem; max-width: 56ch; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible { outline: 4px solid var(--ink); outline-offset: 4px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--display); font-weight: 800; font-size: 1.1rem;
+    background: var(--ink); color: var(--yellow);
+    border: 3px solid var(--ink); border-radius: 999px;
+    padding-top: 14px; padding-bottom: 14px; padding-left: 28px; padding-right: 28px;
+    text-decoration: none; cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+    box-shadow: 0 5px 0 0 rgba(0,0,0,.28);
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 9px 0 0 rgba(0,0,0,.28); }
+  .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 0 rgba(0,0,0,.28); }
+  .btn.ghost { background: transparent; color: var(--ink); box-shadow: none; }
+  .btn.ghost:hover { background: var(--ink); color: var(--yellow); }
+  .btn.big { font-size: 1.5rem; padding-top: 20px; padding-bottom: 20px; padding-left: 44px; padding-right: 44px; }
+  .btn.invert { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
+
+  /* Nav */
+  .nav { padding-top: 18px; padding-bottom: 18px; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .logo { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 1.6rem; color: var(--ink); text-decoration: none; letter-spacing: -0.03em; }
+  .logo svg { width: 38px; height: 38px; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links a.link { color: var(--ink); text-decoration: none; font-weight: 700; border-bottom: 3px solid transparent; }
+  .nav-links a.link:hover { border-bottom-color: var(--ink); }
+  @media (max-width: 760px) { .nav-links a.link { display: none; } }
+
+  /* Hero */
+  .hero { padding-top: 40px; padding-bottom: 88px; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; }
+  .hero-copy { display: grid; gap: 28px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; }
+  @media (max-width: 920px) { .hero-grid { grid-template-columns: 1fr; } }
+
+  .stage {
+    position: relative;
+    background: var(--yellow-soft);
+    border: 4px solid var(--ink);
+    border-radius: 32px;
+    padding-top: 22px; padding-bottom: 26px; padding-left: 22px; padding-right: 22px;
+    box-shadow: 10px 10px 0 0 var(--ink);
+    display: grid; gap: 14px; justify-items: center;
+    overflow: hidden;
+  }
+  .poke-svg { width: 100%; max-width: 420px; height: auto; cursor: pointer; display: block; touch-action: manipulation; }
+  #box { transform-box: fill-box; transform-origin: 50% 100%; }
+  .stage-msg { font-family: var(--display); font-weight: 800; font-size: 1.3rem; line-height: 1.2; text-align: center; min-height: 3.2em; display: grid; align-items: center; letter-spacing: -0.01em; }
+  .stage-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; width: 100%; flex-wrap: wrap; }
+  .dots { display: flex; gap: 8px; }
+  .dots i { width: 18px; height: 18px; border-radius: 50%; border: 3px solid var(--ink); background: transparent; transition: background .2s ease, transform .2s ease; }
+  .dots i.on { background: var(--ink); transform: scale(1.12); }
+  .pokes { font-weight: 700; }
+  .particle { position: absolute; left: 50%; top: 42%; width: 12px; height: 12px; background: var(--ink); pointer-events: none; z-index: 3; }
+
+  /* Marquee */
+  .marquee { background: var(--ink); color: var(--yellow); overflow: hidden; border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink); }
+  .track { display: flex; width: max-content; animation: slide 26s linear infinite; }
+  .track span { font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 4vw, 2.6rem); padding-top: 18px; padding-bottom: 18px; padding-left: 28px; padding-right: 28px; white-space: nowrap; display: inline-flex; align-items: center; gap: 56px; }
+  .track svg { width: 30px; height: 30px; flex: none; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  /* Cards */
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  @media (max-width: 920px) { .grid-3 { grid-template-columns: 1fr; } }
+  @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+  .card { border: 4px solid var(--ink); border-radius: var(--radius); padding-top: 28px; padding-bottom: 30px; padding-left: 28px; padding-right: 28px; display: grid; gap: 14px; align-content: start; background: var(--yellow-soft); }
+  .card.dark { background: var(--ink); color: var(--yellow); }
+  .card .art { width: 96px; height: 96px; }
+  .card.tilt-a { transform: rotate(-1.2deg); }
+  .card.tilt-b { transform: rotate(1deg); }
+  @media (max-width: 920px) { .card.tilt-a, .card.tilt-b { transform: none; } }
+
+  /* Inner voice flip cards */
+  .flip { perspective: 1100px; background: none; border: 0; padding: 0; text-align: left; font: inherit; color: inherit; cursor: pointer; min-height: 290px; display: block; width: 100%; }
+  .flip-inner { position: relative; width: 100%; height: 100%; min-height: 290px; transition: transform .6s cubic-bezier(.2,.8,.2,1); transform-style: preserve-3d; }
+  .flip.on .flip-inner { transform: rotateY(180deg); }
+  .face { position: absolute; inset: 0; border: 4px solid var(--ink); border-radius: var(--radius); padding-top: 26px; padding-bottom: 26px; padding-left: 26px; padding-right: 26px; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: grid; gap: 12px; align-content: space-between; }
+  .face.front { background: var(--yellow-soft); }
+  .face.back { background: var(--ink); color: var(--yellow); transform: rotateY(180deg); }
+  .face .tag { font-weight: 700; font-size: .95rem; display: inline-flex; align-items: center; gap: 8px; }
+  .face .quote { font-family: var(--display); font-weight: 800; font-size: 1.6rem; line-height: 1.12; letter-spacing: -0.02em; }
+  .face .hint { font-weight: 700; font-size: .95rem; text-decoration: underline; text-underline-offset: 4px; }
+  .lizard-wrap { display: flex; align-items: end; gap: 28px; flex-wrap: wrap; }
+  .lizard-wrap svg { width: 200px; height: auto; flex: none; }
+
+  /* Plan to ship slider */
+  .ship-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; align-items: center; }
+  @media (max-width: 920px) { .ship-grid { grid-template-columns: 1fr; } }
+  .ship-copy { display: grid; gap: 22px; }
+  .range-wrap { display: grid; gap: 10px; }
+  .range-labels { display: flex; justify-content: space-between; font-weight: 700; }
+  input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 18px; border-radius: 999px; background: var(--ink); outline: none; cursor: pointer; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 40px; height: 40px; border-radius: 50%; background: var(--yellow); border: 5px solid var(--ink); box-shadow: 0 0 0 4px var(--yellow); cursor: grab; }
+  input[type=range]::-moz-range-thumb { width: 30px; height: 30px; border-radius: 50%; background: var(--yellow); border: 5px solid var(--ink); box-shadow: 0 0 0 4px var(--yellow); cursor: grab; }
+  .ship-msg { font-family: var(--display); font-weight: 800; font-size: 1.5rem; line-height: 1.15; min-height: 3.6em; letter-spacing: -0.015em; }
+
+  .browser { border: 4px solid var(--ink); border-radius: 20px; background: var(--yellow-soft); overflow: hidden; box-shadow: 10px 10px 0 0 var(--ink); }
+  .browser-bar { background: var(--ink); padding-top: 12px; padding-bottom: 12px; padding-left: 16px; padding-right: 16px; display: flex; align-items: center; gap: 8px; }
+  .browser-bar i { width: 12px; height: 12px; border-radius: 50%; background: var(--yellow); display: block; }
+  .browser-bar span { margin-left: 10px; background: var(--yellow); color: var(--ink); font-size: .85rem; font-weight: 700; border-radius: 999px; padding-top: 3px; padding-bottom: 3px; padding-left: 14px; padding-right: 14px; }
+  .browser-body { position: relative; min-height: 400px; padding-top: 28px; padding-bottom: 28px; padding-left: 28px; padding-right: 28px; display: grid; gap: 18px; align-content: start; }
+  .m { opacity: .16; transform: scale(.97); transition: opacity .45s ease, transform .45s ease; }
+  .m.on { opacity: 1; transform: none; }
+  .m-head { font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 3.6vw, 2.3rem); line-height: 1.05; letter-spacing: -0.02em; border: 3px dashed var(--ink); border-radius: 14px; padding-top: 14px; padding-bottom: 14px; padding-left: 16px; padding-right: 16px; }
+  .m.on.m-head { border-style: solid; border-color: transparent; padding-left: 0; padding-right: 0; }
+  .m-img { height: 130px; border: 3px solid var(--ink); border-radius: 14px; background: var(--yellow); overflow: hidden; }
+  .m-img svg { width: 100%; height: 100%; display: block; }
+  .m-btn { justify-self: start; }
+  .m-btn span { display: inline-block; background: var(--ink); color: var(--yellow); font-family: var(--display); font-weight: 800; border-radius: 999px; padding-top: 12px; padding-bottom: 12px; padding-left: 26px; padding-right: 26px; }
+  .m-live { position: absolute; right: 18px; top: 18px; background: var(--ink); color: var(--yellow); font-family: var(--display); font-weight: 800; border-radius: 999px; padding-top: 6px; padding-bottom: 6px; padding-left: 14px; padding-right: 14px; display: inline-flex; align-items: center; gap: 8px; }
+  .m-live i { width: 10px; height: 10px; border-radius: 50%; background: var(--yellow); display: block; animation: pulse 1.2s ease-in-out infinite; }
+  @keyframes pulse { 50% { transform: scale(1.7); opacity: .4; } }
+  .m-visitors { font-weight: 700; display: flex; align-items: center; gap: 10px; }
+  .m-visitors b { font-family: var(--display); font-size: 1.8rem; }
+
+  /* Lessons */
+  .lesson { display: grid; gap: 16px; align-content: start; }
+  .lesson .big-word { font-family: var(--display); font-weight: 800; font-size: clamp(3rem, 6vw, 4.6rem); line-height: .95; letter-spacing: -0.04em; }
+
+  /* Strategies */
+  .strat { background: var(--yellow-soft); border: 4px solid var(--ink); border-radius: var(--radius); padding-top: 26px; padding-bottom: 28px; padding-left: 28px; padding-right: 28px; display: grid; grid-template-columns: 72px 1fr; gap: 20px; align-items: start; transition: transform .2s ease, background .2s ease, color .2s ease; }
+  .strat:hover { background: var(--ink); color: var(--yellow); transform: translateY(-4px); }
+  .strat svg { width: 72px; height: 72px; }
+  .strat p { margin-top: 8px; }
+
+  /* Checklist */
+  .check-panel { background: var(--ink); color: var(--yellow); border-radius: 32px; padding-top: 44px; padding-bottom: 48px; padding-left: 40px; padding-right: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  @media (max-width: 920px) { .check-panel { grid-template-columns: 1fr; padding-left: 24px; padding-right: 24px; } }
+  .checks { display: grid; gap: 12px; }
+  .check { display: flex; align-items: center; gap: 16px; border: 3px solid var(--yellow); border-radius: 16px; padding-top: 14px; padding-bottom: 14px; padding-left: 18px; padding-right: 18px; cursor: pointer; font-weight: 700; font-size: 1.1rem; transition: background .2s ease, color .2s ease; }
+  .check:hover { background: rgba(255,214,10,.14); }
+  .check input { position: absolute; opacity: 0; pointer-events: none; }
+  .check .box { width: 30px; height: 30px; border: 3px solid var(--yellow); border-radius: 9px; flex: none; display: grid; place-items: center; }
+  .check .box svg { width: 20px; height: 20px; opacity: 0; transform: scale(.4); transition: all .2s ease; }
+  .check input:checked + .box { background: var(--yellow); }
+  .check input:checked + .box svg { opacity: 1; transform: none; }
+  .check input:checked ~ .txt { text-decoration: line-through; text-decoration-thickness: 3px; }
+  .check input:focus-visible + .box { outline: 4px solid var(--yellow); outline-offset: 4px; }
+  .runway { position: relative; height: 150px; display: grid; align-items: end; }
+  .runway-line { height: 16px; border-radius: 999px; background: rgba(255,214,10,.25); overflow: hidden; }
+  .runway-fill { height: 100%; width: 0%; background: var(--yellow); transition: width .5s cubic-bezier(.2,.8,.2,1); }
+  .rocket { position: absolute; bottom: 14px; left: 0; width: 84px; transition: left .5s cubic-bezier(.2,.8,.2,1); transform: rotate(0deg); }
+  .check-msg { font-family: var(--display); font-weight: 800; font-size: 1.6rem; line-height: 1.12; letter-spacing: -0.02em; margin-top: 18px; min-height: 3.4em; }
+  .check-side { display: grid; gap: 8px; }
+
+  /* Final CTA */
+  .final { background: var(--ink); color: var(--yellow); padding-top: 110px; padding-bottom: 110px; position: relative; overflow: hidden; }
+  .final-inner { display: grid; gap: 30px; justify-items: start; position: relative; z-index: 2; }
+  .final h2 { font-size: clamp(2.6rem, 7vw, 5.6rem); }
+  .final .art { position: absolute; right: -30px; bottom: -40px; width: min(420px, 60vw); opacity: .95; z-index: 1; }
+  @media (max-width: 760px) { .final .art { opacity: .25; } }
+
+  footer { background: var(--ink); color: var(--yellow); padding-top: 28px; padding-bottom: 36px; border-top: 3px solid var(--yellow); }
+  .foot-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  footer a { color: var(--yellow); font-weight: 700; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .track { animation: none; }
+    .flip-inner, .m, .runway-fill, .rocket, .btn { transition: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="#top" aria-label="EasyLandX home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="3" y="3" width="34" height="34" rx="9" fill="#0A0A0A"/><path d="M12 12h16M12 20h11M12 28h16" stroke="#FFD60A" stroke-width="4.5" stroke-linecap="round"/></svg>
+      EasyLandX
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a class="link" href="#messages">Big ideas</a>
+      <a class="link" href="#ship">Plan to launch</a>
+      <a class="link" href="#strategies">Strategies</a>
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1>Poke the box. Launch your landing page.</h1>
+        <p class="lead">EasyLandX creates affordable, conversion-focused landing pages for small businesses. Our team builds your page for you, so you can start sharing your story with the world today.</p>
+        <div class="hero-actions">
+          <a class="btn big" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+          <a class="btn ghost big" href="#messages">See the big ideas</a>
+        </div>
+      </div>
+
+      <div class="stage" id="stage">
+        <svg class="poke-svg" id="pokeSvg" viewBox="0 0 400 340" role="button" tabindex="0" aria-label="Poke the box. Press to poke.">
+          <!-- ground shadow -->
+          <ellipse cx="190" cy="318" rx="130" ry="14" fill="#0A0A0A" opacity=".18"/>
+          <g id="box">
+            <!-- left face -->
+            <polygon points="70,130 190,190 190,310 70,250" fill="#FFD60A" stroke="#0A0A0A" stroke-width="6" stroke-linejoin="round"/>
+            <!-- right face -->
+            <polygon points="310,130 190,190 190,310 310,250" fill="#F0C000" stroke="#0A0A0A" stroke-width="6" stroke-linejoin="round"/>
+            <!-- top face -->
+            <polygon points="190,70 310,130 190,190 70,130" fill="#FFE55C" stroke="#0A0A0A" stroke-width="6" stroke-linejoin="round"/>
+            <!-- lid seam -->
+            <path d="M130,100 L250,160" stroke="#0A0A0A" stroke-width="5" stroke-linecap="round" opacity=".35"/>
+            <!-- left face: question mark -->
+            <text x="116" y="244" font-family="Bricolage Grotesque, Arial Black, sans-serif" font-weight="800" font-size="86" fill="#0A0A0A" transform="skewY(26.5) translate(0,-62)">?</text>
+            <!-- right face: spark -->
+            <g transform="translate(250 235)">
+              <path d="M0,-34 L8,-8 L34,0 L8,8 L0,34 L-8,8 L-34,0 L-8,-8 Z" fill="#0A0A0A" transform="skewY(-26.5)"/>
+            </g>
+          </g>
+          <!-- poking finger -->
+          <g id="finger">
+            <path d="M392,20 L248,104" stroke="#0A0A0A" stroke-width="30" stroke-linecap="round"/>
+            <circle cx="236" cy="111" r="21" fill="#0A0A0A"/>
+            <circle cx="229" cy="106" r="7" fill="#FFD60A"/>
+          </g>
+        </svg>
+        <div class="stage-msg" id="pokeMsg" aria-live="polite">Give the box a poke and see what happens!</div>
+        <div class="stage-row">
+          <div class="dots" id="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="pokes">Pokes: <span id="pokeCount">0</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="track" id="track"></div>
+  </div>
+
+  <!-- THREE MAIN MESSAGES -->
+  <section class="section" id="messages">
+    <div class="container">
+      <div class="section-head">
+        <h2>Initiative opens every door.</h2>
+        <p class="lead">Seth Godin's <em>Poke the Box</em> celebrates people who begin. EasyLandX brings that spirit to your business with a landing page that is ready to meet your first visitors.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card tilt-a">
+          <svg class="art" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="44" fill="#FFD60A" stroke="#0A0A0A" stroke-width="5"/><path d="M30 26 L30 68 L41 58 L49 76 L58 72 L50 55 L65 54 Z" fill="#0A0A0A" stroke="#0A0A0A" stroke-width="3" stroke-linejoin="round"/></svg>
+          <h3>Initiative leads the way</h3>
+          <p>The modern world celebrates starters: people who make the first move, follow their curiosity, and try something fresh. Your landing page is that first move, and it is a bold one.</p>
+        </article>
+        <article class="card dark tilt-b">
+          <svg class="art" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="44" fill="#FFD60A"/><path d="M48 12 C62 24 66 42 60 62 L36 62 C30 42 34 24 48 12 Z" fill="#0A0A0A"/><circle cx="48" cy="38" r="7" fill="#FFD60A"/><path d="M36 62 L24 74 L38 70 Z M60 62 L72 74 L58 70 Z" fill="#0A0A0A"/><path d="M42 68 Q48 88 54 68 Z" fill="#0A0A0A"/></svg>
+          <h3>Launching beats perfecting</h3>
+          <p>Ready-enough is the perfect moment to begin. Putting a page into the world is where the best learning happens, because real visitors share real reactions.</p>
+        </article>
+        <article class="card tilt-a">
+          <svg class="art" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="44" fill="#FFD60A" stroke="#0A0A0A" stroke-width="5"/><path d="M26 56 C26 40 40 34 52 38 C60 28 74 34 72 46 C80 50 78 62 68 62 L34 62 C28 62 26 60 26 56 Z" fill="#0A0A0A"/><circle cx="58" cy="46" r="4" fill="#FFD60A"/></svg>
+          <h3>Greet your lizard brain kindly</h3>
+          <p>Your inner alarm loves comfort and familiar paths. Thank it for caring, then press launch. Excitement and nerves feel alike, and both mean something good is beginning.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- INNER VOICE REFRAME -->
+  <section class="section" id="voice" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <div class="lizard-wrap">
+          <svg viewBox="0 0 220 120" aria-hidden="true">
+            <path d="M18 78 C40 108 74 108 98 88 C118 72 140 80 160 70 C176 62 186 44 204 40" fill="none" stroke="#0A0A0A" stroke-width="16" stroke-linecap="round"/>
+            <ellipse cx="96" cy="76" rx="52" ry="26" fill="#0A0A0A"/>
+            <path d="M70 94 L56 112 M118 96 L130 114 M76 56 L62 42 M122 58 L136 44" stroke="#0A0A0A" stroke-width="9" stroke-linecap="round"/>
+            <circle cx="40" cy="64" r="20" fill="#0A0A0A"/>
+            <circle cx="34" cy="58" r="6" fill="#FFD60A"/>
+            <circle cx="35" cy="58" r="2.4" fill="#0A0A0A"/>
+            <path d="M24 74 Q34 80 42 74" stroke="#FFD60A" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M92 52 L100 44 L108 52 M114 55 L122 47 L130 55" stroke="#FFD60A" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h2>Turn the whisper into a win.</h2>
+        </div>
+        <p class="lead">Tap a card to flip the inner voice into an EasyLandX launch mindset.</p>
+      </div>
+      <div class="grid-3">
+        <button class="flip" aria-pressed="false">
+          <div class="flip-inner">
+            <div class="face front">
+              <span class="tag"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9" fill="none" stroke="#0A0A0A" stroke-width="3"/><circle cx="11" cy="11" r="3" fill="#0A0A0A"/></svg>The inner voice says</span>
+              <span class="quote">“Let's polish a little longer first.”</span>
+              <span class="hint">Tap to flip</span>
+            </div>
+            <div class="face back">
+              <span class="tag">EasyLandX says</span>
+              <span class="quote">Launch a strong first version and learn from real visitors.</span>
+              <span class="hint">Tap to flip back</span>
+            </div>
+          </div>
+        </button>
+        <button class="flip" aria-pressed="false">
+          <div class="flip-inner">
+            <div class="face front">
+              <span class="tag"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9" fill="none" stroke="#0A0A0A" stroke-width="3"/><circle cx="11" cy="11" r="3" fill="#0A0A0A"/></svg>The inner voice says</span>
+              <span class="quote">“Maybe someone will give me the green light.”</span>
+              <span class="hint">Tap to flip</span>
+            </div>
+            <div class="face back">
+              <span class="tag">EasyLandX says</span>
+              <span class="quote">You hold the green light. Choose yourself today.</span>
+              <span class="hint">Tap to flip back</span>
+            </div>
+          </div>
+        </button>
+        <button class="flip" aria-pressed="false">
+          <div class="flip-inner">
+            <div class="face front">
+              <span class="tag"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9" fill="none" stroke="#0A0A0A" stroke-width="3"/><circle cx="11" cy="11" r="3" fill="#0A0A0A"/></svg>The inner voice says</span>
+              <span class="quote">“What will everyone think?”</span>
+              <span class="hint">Tap to flip</span>
+            </div>
+            <div class="face back">
+              <span class="tag">EasyLandX says</span>
+              <span class="quote">They will notice, respond, and start a great conversation.</span>
+              <span class="hint">Tap to flip back</span>
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAN TO SHIP -->
+  <section class="section" id="ship" style="background: var(--yellow-soft); border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink);">
+    <div class="container ship-grid">
+      <div class="ship-copy">
+        <h2>Slide from idea to launch.</h2>
+        <p class="lead">An idea gains value the moment it meets its audience. Drag the slider and watch a landing page come alive as planning turns into shipping.</p>
+        <div class="range-wrap">
+          <input type="range" id="shipRange" min="0" max="100" value="0" step="1" aria-label="From planning to launch day">
+          <div class="range-labels"><span>Planning</span><span>Launch day</span></div>
+        </div>
+        <div class="ship-msg" id="shipMsg" aria-live="polite">An idea, ready for its audience.</div>
+      </div>
+
+      <div class="browser" aria-label="Landing page preview that builds as you slide">
+        <div class="browser-bar"><i></i><i></i><i></i><span>yourbusiness.com</span></div>
+        <div class="browser-body">
+          <div class="m-live m" data-at="100"><i></i>Live</div>
+          <div class="m m-head on" data-at="0" id="mHead">Your big idea</div>
+          <div class="m m-img" data-at="40">
+            <svg viewBox="0 0 400 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="400" height="130" fill="#FFD60A"/>
+              <circle cx="310" cy="38" r="26" fill="#0A0A0A"/>
+              <path d="M0 130 L80 50 L140 100 L210 30 L300 130 Z" fill="#0A0A0A"/>
+              <path d="M120 130 L220 70 L300 110 L400 60 L400 130 Z" fill="#F0C000" stroke="#0A0A0A" stroke-width="5"/>
+            </svg>
+          </div>
+          <div class="m m-btn" data-at="70"><span>Say hello</span></div>
+          <div class="m m-visitors" data-at="100"><b id="visitors">0</b> friendly visitors saying hello (sample)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY LESSONS -->
+  <section class="section" id="lessons">
+    <div class="container">
+      <div class="section-head">
+        <h2>Three lessons that light the path.</h2>
+      </div>
+      <div class="grid-3">
+        <div class="lesson">
+          <svg viewBox="0 0 200 120" width="200" aria-hidden="true"><rect x="10" y="20" width="180" height="90" rx="14" fill="#FFE55C" stroke="#0A0A0A" stroke-width="5"/><path d="M30 80 L70 50 L100 70 L150 34" fill="none" stroke="#0A0A0A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="150" cy="34" r="9" fill="#0A0A0A"/></svg>
+          <div class="big-word">Ship.</div>
+          <h3>Shipping is the metric that matters</h3>
+          <p>A page that is live creates value. An idea on a whiteboard is a wonderful seed, and a launched page is the garden. EasyLandX helps you plant it.</p>
+        </div>
+        <div class="lesson">
+          <svg viewBox="0 0 200 120" width="200" aria-hidden="true"><path d="M20 100 L20 20" stroke="#0A0A0A" stroke-width="6" stroke-linecap="round"/><path d="M20 100 L180 100" stroke="#0A0A0A" stroke-width="6" stroke-linecap="round"/><path d="M30 90 L60 70 L80 80 L110 50 L130 56 L172 22" fill="none" stroke="#0A0A0A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="60" cy="70" r="7" fill="#0A0A0A"/><circle cx="110" cy="50" r="7" fill="#0A0A0A"/><circle cx="172" cy="22" r="9" fill="#0A0A0A"/></svg>
+          <div class="big-word">Learn.</div>
+          <h3>Every result is a useful clue</h3>
+          <p>Each reaction, click, and reply shows what shines brightest. Start, listen, adjust, and try again. The only way to miss is to wait on the sidelines.</p>
+        </div>
+        <div class="lesson">
+          <svg viewBox="0 0 200 120" width="200" aria-hidden="true"><path d="M20 70 L20 50 L50 50 L110 20 L110 100 L50 70 Z" fill="#0A0A0A"/><path d="M130 40 Q150 60 130 80 M144 28 Q176 60 144 92 M158 16 Q202 60 158 104" fill="none" stroke="#0A0A0A" stroke-width="7" stroke-linecap="round"/></svg>
+          <div class="big-word">Shine.</div>
+          <h3>Make a happy commotion</h3>
+          <p>Bold pages spark conversations. A confident headline and a clear button invite people to respond, share, and remember your business.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRATEGIES -->
+  <section class="section" id="strategies" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <h2>Four strategies, built into every EasyLandX page.</h2>
+        <p class="lead">Seth Godin's actionable ideas shape how we work with small businesses like yours.</p>
+      </div>
+      <div class="grid-2">
+        <article class="strat">
+          <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="33" fill="#FFD60A" stroke="#0A0A0A" stroke-width="4"/><path d="M26 20 L54 36 L26 52 Z" fill="#0A0A0A"/></svg>
+          <div><h3>Start over planning</h3><p>We keep the planning phase short and put a crisp first version in front of real people, so your business learns from live reactions.</p></div>
+        </article>
+        <article class="strat">
+          <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="33" fill="#FFD60A" stroke="#0A0A0A" stroke-width="4"/><path d="M20 38 A16 16 0 1 1 36 52" fill="none" stroke="#0A0A0A" stroke-width="6" stroke-linecap="round"/><path d="M12 36 L22 46 L30 34 Z" fill="#0A0A0A"/></svg>
+          <div><h3>Build a habit of shipping</h3><p>Launch, refine, and launch again. Small, regular updates keep your page fresh and your momentum strong.</p></div>
+        </article>
+        <article class="strat">
+          <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="33" fill="#FFD60A" stroke="#0A0A0A" stroke-width="4"/><path d="M36 14 L42 30 L58 30 L45 40 L50 56 L36 46 L22 56 L27 40 L14 30 L30 30 Z" fill="#0A0A0A"/></svg>
+          <div><h3>Enjoy the edge of excitement</h3><p>A little butterfly feeling shows you are aiming high. We turn that energy into a bold headline and a button people love to press.</p></div>
+        </article>
+        <article class="strat">
+          <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="33" fill="#FFD60A" stroke="#0A0A0A" stroke-width="4"/><rect x="22" y="32" width="28" height="22" rx="5" fill="#0A0A0A"/><path d="M28 32 L28 24 A8 8 0 0 1 44 22" fill="none" stroke="#0A0A0A" stroke-width="5" stroke-linecap="round"/></svg>
+          <div><h3>Give yourself permission</h3><p>Your business is ready to be seen today. EasyLandX handles the building, and you hold the key that opens the door.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section class="section" id="checklist" style="padding-top:0">
+    <div class="container">
+      <div class="check-panel">
+        <div class="check-side">
+          <h2>Build your launch checklist.</h2>
+          <p class="lead">Tick each step and watch the rocket head for liftoff.</p>
+          <div class="runway">
+            <div class="runway-line"><div class="runway-fill" id="runFill"></div></div>
+            <svg class="rocket" id="rocket" viewBox="0 0 84 84" aria-hidden="true">
+              <path d="M42 6 C58 18 62 40 54 62 L30 62 C22 40 26 18 42 6 Z" fill="#FFD60A"/>
+              <circle cx="42" cy="34" r="8" fill="#0A0A0A"/>
+              <path d="M30 62 L16 76 L32 70 Z M54 62 L68 76 L52 70 Z" fill="#FFD60A"/>
+              <path d="M36 66 Q42 84 48 66 Z" fill="#FFE55C"/>
+            </svg>
+          </div>
+          <div class="check-msg" id="checkMsg" aria-live="polite">Your first tick starts the journey.</div>
+        </div>
+        <div class="checks" id="checks">
+          <label class="check"><input type="checkbox"><span class="box"><svg viewBox="0 0 20 20"><path d="M3 10 L8 15 L17 5" fill="none" stroke="#0A0A0A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">Choose what your business loves to offer</span></label>
+          <label class="check"><input type="checkbox"><span class="box"><svg viewBox="0 0 20 20"><path d="M3 10 L8 15 L17 5" fill="none" stroke="#0A0A0A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">Write one bold, friendly headline</span></label>
+          <label class="check"><input type="checkbox"><span class="box"><svg viewBox="0 0 20 20"><path d="M3 10 L8 15 L17 5" fill="none" stroke="#0A0A0A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">Pick one clear button for visitors</span></label>
+          <label class="check"><input type="checkbox"><span class="box"><svg viewBox="0 0 20 20"><path d="M3 10 L8 15 L17 5" fill="none" stroke="#0A0A0A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">Share your page with the world</span></label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final" id="start">
+    <svg class="art" viewBox="0 0 420 320" aria-hidden="true">
+      <polygon points="140,130 260,190 260,310 140,250" fill="#FFD60A"/>
+      <polygon points="380,130 260,190 260,310 380,250" fill="#F0C000"/>
+      <polygon points="260,70 380,130 260,190 140,130" fill="#FFE55C"/>
+      <path d="M260 70 L260 20 M300 90 L340 50 M220 90 L180 50" stroke="#FFD60A" stroke-width="10" stroke-linecap="round"/>
+      <circle cx="260" cy="14" r="9" fill="#FFD60A"/>
+      <circle cx="346" cy="44" r="9" fill="#FFD60A"/>
+      <circle cx="174" cy="44" r="9" fill="#FFD60A"/>
+    </svg>
+    <div class="container final-inner">
+      <h2>You are chosen. By you.</h2>
+      <p class="lead">Your landing page is ready to be built, your visitors are ready to say hello, and the box is ready for a poke.</p>
+      <a class="btn invert big" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container foot-inner">
+    <span>EasyLandX: affordable, conversion-focused landing pages for small businesses.</span>
+    <span>Inspired by lessons from <em>Poke the Box</em> by Seth Godin. Visit <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx.github.io</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Marquee words */
+  var words = ['Start', 'Ship', 'Learn', 'Shine', 'Repeat'];
+  var star = '<svg viewBox="0 0 30 30" aria-hidden="true"><path d="M15 1 L19 11 L29 15 L19 19 L15 29 L11 19 L1 15 L11 11 Z" fill="#FFD60A"/></svg>';
+  var group = words.map(function (w) { return '<span>' + w + star + '</span>'; }).join('');
+  document.getElementById('track').innerHTML = group + group + group + group;
+
+  /* Poke the box */
+  var msgs = [
+    'Nice poke! Starting is the whole game.',
+    'Launching teaches more than planning.',
+    'Every reaction is a helpful clue.',
+    'Live and lovely beats perfect and hidden.',
+    'Your lizard brain is quietly cheering you on.',
+    'Make a happy commotion. People love fresh ideas!',
+    'Launched! You are a starter. Let EasyLandX build your landing page.'
+  ];
+  var pokes = 0;
+  var svg = document.getElementById('pokeSvg');
+  var box = document.getElementById('box');
+  var finger = document.getElementById('finger');
+  var msg = document.getElementById('pokeMsg');
+  var count = document.getElementById('pokeCount');
+  var dots = document.querySelectorAll('#dots i');
+  var stage = document.getElementById('stage');
+
+  function burst() {
+    if (reduce) return;
+    for (var i = 0; i < 12; i++) {
+      var p = document.createElement('span');
+      p.className = 'particle';
+      var round = Math.random() > 0.5;
+      p.style.borderRadius = round ? '50%' : '3px';
+      stage.appendChild(p);
+      var a = Math.random() * Math.PI * 2;
+      var d = 80 + Math.random() * 120;
+      var anim = p.animate([
+        { transform: 'translate(0,0) rotate(0deg) scale(1)', opacity: 1 },
+        { transform: 'translate(' + Math.cos(a) * d + 'px,' + Math.sin(a) * d + 'px) rotate(' + (Math.random() * 360) + 'deg) scale(.3)', opacity: 0 }
+      ], { duration: 700 + Math.random() * 300, easing: 'cubic-bezier(.1,.8,.3,1)' });
+      anim.onfinish = (function (el) { return function () { el.remove(); }; })(p);
+    }
+  }
+
+  function poke() {
+    pokes++;
+    count.textContent = pokes;
+    var idx = pokes <= msgs.length ? pokes - 1 : 1 + ((pokes - msgs.length - 1) % (msgs.length - 2));
+    msg.textContent = msgs[idx];
+    var lit = Math.min(pokes, dots.length);
+    for (var i = 0; i < dots.length; i++) dots[i].classList.toggle('on', i < lit);
+    if (!reduce) {
+      finger.animate([
+        { transform: 'translate(0,0)' },
+        { transform: 'translate(-38px,24px)', offset: 0.4 },
+        { transform: 'translate(0,0)' }
+      ], { duration: 420, easing: 'ease-out' });
+      box.animate([
+        { transform: 'rotate(0deg) scale(1,1)' },
+        { transform: 'rotate(-3deg) scale(1.04,.95)', offset: 0.35 },
+        { transform: 'rotate(2deg) scale(.98,1.03)', offset: 0.65 },
+        { transform: 'rotate(0deg) scale(1,1)' }
+      ], { duration: 520, easing: 'ease-out' });
+    }
+    burst();
+  }
+  svg.addEventListener('click', poke);
+  svg.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); poke(); }
+  });
+
+  /* Flip cards */
+  document.querySelectorAll('.flip').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var on = b.classList.toggle('on');
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  });
+
+  /* Plan to ship slider */
+  var range = document.getElementById('shipRange');
+  var shipMsg = document.getElementById('shipMsg');
+  var mHead = document.getElementById('mHead');
+  var visitors = document.getElementById('visitors');
+  var items = document.querySelectorAll('.browser-body .m');
+  var stages = [
+    { at: 0,   t: 'An idea, ready for its audience.', h: 'Your big idea' },
+    { at: 25,  t: 'A draft headline appears. Great momentum!', h: 'Fresh flowers, delivered with joy' },
+    { at: 40,  t: 'A visual joins the page. Reactions are on the way.', h: 'Fresh flowers, delivered with joy' },
+    { at: 70,  t: 'A clear button invites visitors to say hello.', h: 'Fresh flowers, delivered with joy' },
+    { at: 100, t: 'Live! Real visitors now show you what shines.', h: 'Fresh flowers, delivered with joy' }
+  ];
+  var counted = false;
+  function countUp() {
+    if (counted) return;
+    counted = true;
+    var n = 0;
+    var timer = setInterval(function () {
+      n += 1;
+      visitors.textContent = n;
+      if (n >= 24) clearInterval(timer);
+    }, 55);
+  }
+  function updateShip() {
+    var v = parseInt(range.value, 10);
+    var cur = stages[0];
+    stages.forEach(function (s) { if (v >= s.at) cur = s; });
+    shipMsg.textContent = cur.t;
+    mHead.textContent = v >= 25 ? cur.h : stages[0].h;
+    items.forEach(function (el) {
+      var at = parseInt(el.getAttribute('data-at'), 10);
+      if (el === mHead) { el.classList.add('on'); el.style.opacity = v >= 25 ? 1 : 0.5; return; }
+      el.classList.toggle('on', v >= at);
+    });
+    if (v >= 100) countUp();
+    if (v < 100 && counted) { counted = false; visitors.textContent = '0'; }
+  }
+  range.addEventListener('input', updateShip);
+  updateShip();
+
+  /* Launch checklist */
+  var checks = document.querySelectorAll('#checks input');
+  var runFill = document.getElementById('runFill');
+  var rocket = document.getElementById('rocket');
+  var checkMsg = document.getElementById('checkMsg');
+  var cm = [
+    'Your first tick starts the journey.',
+    'One step done. The engines are warming up!',
+    'Halfway there. Momentum looks wonderful.',
+    'Almost at liftoff. One more tick!',
+    'Ready for liftoff! Visit EasyLandX and launch your page.'
+  ];
+  function updateChecks() {
+    var done = 0;
+    checks.forEach(function (c) { if (c.checked) done++; });
+    var pct = done / checks.length;
+    runFill.style.width = (pct * 100) + '%';
+    var track = rocket.parentElement.clientWidth - rocket.clientWidth;
+    rocket.style.left = (pct * track) + 'px';
+    checkMsg.textContent = cm[done];
+    if (done === checks.length && !reduce) {
+      rocket.animate([
+        { transform: 'translateY(0) rotate(0)' },
+        { transform: 'translateY(-26px) rotate(-6deg)' },
+        { transform: 'translateY(0) rotate(0)' }
+      ], { duration: 700, easing: 'ease-in-out' });
+    }
+  }
+  checks.forEach(function (c) { c.addEventListener('change', updateChecks); });
+  window.addEventListener('resize', updateChecks);
+  updateChecks();
+})();
+</script>
+</body>
+</html>

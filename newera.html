@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Choose Yourself — Launch Your Page with easylandx</title>
+<style>
+:root{--y:#FFD400;--b:#1236E0;--bd:#0A1F80;--w:#FFE75A;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--y:#FFD400;--b:#1236E0;--bd:#0A1F80;--w:#FFE75A}}
+:root[data-theme="dark"]{--y:#FFD400;--b:#1236E0;--bd:#0A1F80;--w:#FFE75A}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--y);color:var(--bd);font-family:"Trebuchet MS",Verdana,system-ui,sans-serif;line-height:1.55;font-size:18px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 clamp(22px,6vw,64px)}
+section{padding:64px 0}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.1;margin:0 0 .5em;color:var(--b)}
+h1{font-size:clamp(2.4rem,7vw,4.6rem)}
+h2{font-size:clamp(1.8rem,4.5vw,2.8rem)}
+h3{font-size:1.3rem}
+p{margin:0 0 1em}
+.tag{display:inline-block;background:var(--b);color:var(--y);font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.75rem;padding:.35em .9em;border-radius:99px;margin-bottom:1em}
+.btn{display:inline-block;background:var(--b);color:var(--y);font-weight:800;font-size:1.05rem;padding:.9em 1.7em;border-radius:14px;text-decoration:none;border:3px solid var(--b);cursor:pointer;font-family:inherit;transition:transform .15s,background .15s,color .15s}
+.btn:hover{transform:translateY(-3px);background:var(--y);color:var(--b)}
+.btn.alt{background:transparent;color:var(--b)}
+.btn.alt:hover{background:var(--b);color:var(--y)}
+nav{position:sticky;top:0;z-index:5;background:var(--y);border-bottom:3px solid var(--b);padding-top:env(safe-area-inset-top,0px)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;padding-bottom:12px}
+nav b{font-family:Georgia,serif;font-size:1.3rem;color:var(--b)}
+nav .btn{padding:.55em 1.1em;font-size:.95rem}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
+.hero p.lead{font-size:1.25rem;max-width:34em}
+.row{display:flex;flex-wrap:wrap;gap:14px;margin-top:1.4em}
+@media(max-width:780px){.hero .wrap{grid-template-columns:1fr}}
+.card{background:var(--w);border:3px solid var(--b);border-radius:22px;padding:26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.big{font-family:Georgia,serif;font-size:3rem;color:var(--b);line-height:1}
+/* pillars */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.pillar{background:var(--y);border:3px solid var(--b);border-radius:20px;padding:20px;text-align:left;cursor:pointer;font:inherit;color:var(--bd);transition:.2s}
+.pillar svg{width:56px;height:56px;display:block;margin-bottom:8px}
+.pillar b{display:block;color:var(--b);font-size:1.15rem}
+.pillar small{display:block;font-size:.95rem}
+.pillar[aria-pressed="true"]{background:var(--b);color:var(--y);transform:translateY(-4px)}
+.pillar[aria-pressed="true"] b{color:var(--y)}
+.pillar[aria-pressed="true"] svg *{stroke:var(--y)}
+.meter{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:24px}
+.meter svg{width:150px;height:150px;flex:none}
+#ringMsg{font-weight:800;font-size:1.2rem;color:var(--b);flex:1;min-width:200px}
+/* ideas */
+.ideas{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:780px){.ideas{grid-template-columns:1fr}}
+input[type=text]{width:100%;font:inherit;padding:.8em 1em;border:3px solid var(--b);border-radius:12px;background:#FFF3A0;color:var(--bd);margin-bottom:10px}
+input:focus{outline:3px solid var(--bd)}
+.bar{height:16px;background:#FFF3A0;border:3px solid var(--b);border-radius:99px;overflow:hidden;margin:10px 0}
+.bar i{display:block;height:100%;width:0;background:var(--b);transition:width .4s}
+ol#list{padding-left:1.3em;margin:10px 0 0;min-height:1.5em}
+ol#list li{animation:pop .3s}
+@keyframes pop{from{transform:scale(.8);opacity:0}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{border:3px solid var(--b);background:var(--y);color:var(--b);font:inherit;font-weight:700;padding:.4em .9em;border-radius:99px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--b);color:var(--y)}
+.mini{border:3px solid var(--b);border-radius:18px;background:var(--y);overflow:hidden;margin-top:12px}
+.mini .bar2{background:var(--b);height:22px;display:flex;gap:6px;align-items:center;padding:0 10px}
+.mini .bar2 span{width:9px;height:9px;border-radius:50%;background:var(--y)}
+.mini div.body{padding:18px}
+.mini h4{margin:0 0 6px;font-family:Georgia,serif;font-size:1.35rem;color:var(--b)}
+.mini .fake{display:inline-block;background:var(--b);color:var(--y);padding:.35em 1em;border-radius:8px;font-weight:800;font-size:.9rem}
+/* platform steps */
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.step{counter-increment:s;background:var(--w);border:3px solid var(--b);border-radius:20px;padding:22px}
+.step::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--b);color:var(--y);font-weight:800;margin-bottom:10px}
+.slider{width:100%;accent-color:var(--b)}
+.band{background:var(--b);color:var(--y)}
+.band h2,.band h3{color:var(--y)}
+.band .btn{background:var(--y);color:var(--b);border-color:var(--y)}
+.band .btn:hover{background:var(--b);color:var(--y)}
+footer{padding:36px 0 48px;border-top:3px solid var(--b);text-align:center}
+.reveal{opacity:0;transform:translateY(22px);transition:.7s}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap"><b>Choose Yourself ✦</b><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a></div></nav>
+
+<header class="hero"><section><div class="wrap">
+  <div>
+    <span class="tag">Landing pages · made by easylandx</span>
+    <h1>Choose yourself. Launch your page.</h1>
+    <p class="lead">The best moment to share your work is today. A landing page is your own stage, your own doorway, your own platform — and it welcomes you the moment you decide to open it.</p>
+    <div class="row">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+      <a class="btn alt" href="#pillars">Explore the daily practice ↓</a>
+    </div>
+  </div>
+  <svg viewBox="0 0 400 380" role="img" aria-label="A bright landing page opening like a door with a rising sun">
+    <circle cx="200" cy="190" r="170" fill="#FFE75A" stroke="#1236E0" stroke-width="6"/>
+    <g stroke="#1236E0" stroke-width="6" stroke-linecap="round">
+      <path d="M200 20v34M60 80l24 24M340 80l-24 24M20 190h34M346 190h34"/>
+    </g>
+    <rect x="110" y="110" width="180" height="200" rx="16" fill="#FFD400" stroke="#1236E0" stroke-width="6"/>
+    <rect x="110" y="110" width="180" height="30" rx="14" fill="#1236E0"/>
+    <circle cx="130" cy="125" r="5" fill="#FFD400"/><circle cx="148" cy="125" r="5" fill="#FFD400"/><circle cx="166" cy="125" r="5" fill="#FFD400"/>
+    <rect x="132" y="160" width="136" height="16" rx="8" fill="#1236E0"/>
+    <rect x="132" y="188" width="96" height="10" rx="5" fill="#1236E0" opacity=".55"/>
+    <rect x="132" y="206" width="116" height="10" rx="5" fill="#1236E0" opacity=".55"/>
+    <rect x="132" y="240" width="84" height="34" rx="10" fill="#1236E0"/>
+    <path d="M148 257h52" stroke="#FFD400" stroke-width="6" stroke-linecap="round"/>
+    <path d="M250 300l30 30 50-70" fill="none" stroke="#1236E0" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div></section></header>
+
+<section class="reveal"><div class="wrap">
+  <span class="tag">The big idea</span>
+  <h2>A new era opens when you choose yourself</h2>
+  <p style="max-width:40em">Careers used to move along one straight path with one gatekeeper. Today the doors are open to everyone: you can publish, launch, share and grow directly with the people who love your work. A landing page by easylandx is the quickest way to step through.</p>
+  <div class="grid">
+    <div class="card"><div class="big">01</div><h3>Own your stage</h3><p>Your page, your words, your audience. Every visit is a warm welcome you designed.</p></div>
+    <div class="card"><div class="big">02</div><h3>Ideas are the currency</h3><p>Original thinking is the most valuable thing you can share. A page gives it a home.</p></div>
+    <div class="card"><div class="big">03</div><h3>Feedback is fuel</h3><p>Every reply and every reaction shows what to polish next. Each one makes your page brighter.</p></div>
+    <div class="card"><div class="big">04</div><h3>Progress over perfection</h3><p>Launch, learn, refine. A live page teaches more in a day than a draft in a drawer.</p></div>
+  </div>
+</div></section>
+
+<section id="pillars" class="band reveal"><div class="wrap">
+  <span class="tag" style="background:var(--y);color:var(--b)">Interactive · Daily practice</span>
+  <h2>The Four Pillars of a strong foundation</h2>
+  <p style="max-width:40em">Inner success powers outer success. Tap each pillar to add it to today and watch your foundation fill up.</p>
+  <div class="pillars" id="pillarBox">
+    <button class="pillar" aria-pressed="false" data-m="Rested, nourished and moving: your body is ready to build.">
+      <svg viewBox="0 0 60 60" fill="none" stroke="#1236E0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="30" cy="12" r="7"/><path d="M30 20v20M30 28l-14 8M30 28l14 8M30 40l-10 14M30 40l10 14"/></svg>
+      <b>Physical</b><small>7–9 hours of sleep, nourishing food, daily movement.</small></button>
+    <button class="pillar" aria-pressed="false" data-m="Surrounded by supportive people: your energy is high.">
+      <svg viewBox="0 0 60 60" fill="none" stroke="#1236E0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M30 52C6 36 8 14 20 12c6-1 10 4 10 8 0-4 4-9 10-8 12 2 14 24-10 40z"/></svg>
+      <b>Emotional</b><small>Choose uplifting people who cheer your growth.</small></button>
+    <button class="pillar" aria-pressed="false" data-m="Ten fresh ideas written: your idea muscle is warm.">
+      <svg viewBox="0 0 60 60" fill="none" stroke="#1236E0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 38c-8-6-8-24 10-24s18 18 10 24v6H20z"/><path d="M23 52h14M26 47h8"/></svg>
+      <b>Mental</b><small>Write ten ideas a day. Quantity builds brilliance.</small></button>
+    <button class="pillar" aria-pressed="false" data-m="Grateful and present: you feel calm, clear and ready.">
+      <svg viewBox="0 0 60 60" fill="none" stroke="#1236E0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="30" cy="30" r="9"/><path d="M30 6v8M30 46v8M6 30h8M46 30h8M13 13l6 6M41 41l6 6M47 13l-6 6M19 41l-6 6"/></svg>
+      <b>Spiritual</b><small>Gratitude, meditation and joy in the present moment.</small></button>
+  </div>
+  <div class="meter">
+    <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50" fill="none" stroke="#FFD400" stroke-opacity=".3" stroke-width="14"/><circle id="ring" cx="60" cy="60" r="50" fill="none" stroke="#FFD400" stroke-width="14" stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="314.16" transform="rotate(-90 60 60)" style="transition:stroke-dashoffset .6s"/><text id="pct" x="60" y="68" text-anchor="middle" font-family="Georgia,serif" font-size="26" font-weight="700" fill="#FFD400">0%</text></svg>
+    <div id="ringMsg">Tap a pillar to begin your day.</div>
+  </div>
+</div></section>
+
+<section class="reveal"><div class="wrap">
+  <span class="tag">Interactive · Idea machine</span>
+  <h2>Ten ideas a day, then combine them</h2>
+  <p style="max-width:40em">Your idea muscle grows every time you use it. Add ideas below, then try Idea Sex: blend two ideas into a brand-new page concept.</p>
+  <div class="ideas">
+    <div class="card">
+      <h3>Your daily ten</h3>
+      <input id="ideaIn" type="text" maxlength="60" placeholder="Type an idea and press Enter" aria-label="New idea">
+      <button class="btn" id="addIdea" style="padding:.6em 1.2em">Add idea</button>
+      <div class="bar"><i id="ideaBar"></i></div>
+      <b id="ideaCount" style="color:var(--b)">0 of 10 ideas</b>
+      <ol id="list"></ol>
+    </div>
+    <div class="card">
+      <h3>Idea Blender</h3>
+      <p style="margin-bottom:6px"><b>Pick a passion</b></p>
+      <div class="chips" id="grpA"></div>
+      <p style="margin-bottom:6px"><b>Pick a way to share it</b></p>
+      <div class="chips" id="grpB"></div>
+      <div class="mini" id="mini">
+        <div class="bar2"><span></span><span></span><span></span></div>
+        <div class="body"><h4 id="miniH">Pick one of each ✦</h4><p id="miniP" style="margin:0 0 10px">Your brand-new landing page concept appears here.</p><span class="fake" id="miniB">Join in</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="band reveal"><div class="wrap">
+  <span class="tag" style="background:var(--y);color:var(--b)">Build your platform</span>
+  <h2>Your page is ready in four joyful steps</h2>
+  <div class="steps">
+    <div class="step" style="background:var(--y);color:var(--bd)"><h3 style="color:var(--b)">Name your idea</h3><p>Choose the one idea you are most excited to share.</p></div>
+    <div class="step" style="background:var(--y);color:var(--bd)"><h3 style="color:var(--b)">Welcome your audience</h3><p>Write a headline that makes the right people smile.</p></div>
+    <div class="step" style="background:var(--y);color:var(--bd)"><h3 style="color:var(--b)">Launch with easylandx</h3><p>Go live and start gathering friendly feedback right away.</p></div>
+    <div class="step" style="background:var(--y);color:var(--bd)"><h3 style="color:var(--b)">Refine and grow</h3><p>Every reaction shapes the next, even better version.</p></div>
+  </div>
+</div></section>
+
+<section class="reveal"><div class="wrap">
+  <span class="tag">Interactive · Feedback is fuel</span>
+  <h2>Watch feedback power your page</h2>
+  <p style="max-width:40em">Slide to try more versions. Each version brings you closer to the page your audience loves.</p>
+  <div class="card">
+    <input class="slider" type="range" id="ver" min="1" max="10" value="1" aria-label="Number of versions launched">
+    <div style="display:flex;justify-content:space-between;font-weight:800;color:var(--b);margin-top:6px"><span>Version <span id="vn">1</span></span><span id="vs">Launched!</span></div>
+    <svg viewBox="0 0 600 150" style="width:100%;margin-top:10px" aria-label="Growing bars showing improvement across versions"><g id="bars" fill="#1236E0"></g><line x1="10" y1="140" x2="590" y2="140" stroke="#1236E0" stroke-width="4" stroke-linecap="round"/></svg>
+  </div>
+</div></section>
+
+<section class="band reveal"><div class="wrap" style="text-align:center">
+  <h2>Today is a wonderful day to choose yourself</h2>
+  <p style="max-width:36em;margin:0 auto 1.4em">Your ideas, your audience, your page. Launch it with easylandx and open the door.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+</div></section>
+
+<footer><div class="wrap"><b>Landing pages made by easylandx</b> · Inspired by <i>Choose Yourself!</i> by James Altucher</div></footer>
+
+<script>
+(function(){
+var P=document.querySelectorAll('.pillar'),ring=document.getElementById('ring'),pct=document.getElementById('pct'),msg=document.getElementById('ringMsg');
+function upd(){var n=0,last='';P.forEach(function(p){if(p.getAttribute('aria-pressed')==='true'){n++;last=p.dataset.m}});
+ring.style.strokeDashoffset=314.16*(1-n/4);pct.textContent=(n*25)+'%';
+msg.textContent=n===0?'Tap a pillar to begin your day.':n===4?'Your whole foundation is glowing. Time to launch with easylandx!':last}
+P.forEach(function(p){p.addEventListener('click',function(){p.setAttribute('aria-pressed',p.getAttribute('aria-pressed')==='true'?'false':'true');upd()})});
+
+var ideas=[],inp=document.getElementById('ideaIn'),list=document.getElementById('list');
+function addIdea(){var v=inp.value.trim();if(!v||ideas.length>=10)return;ideas.push(v);var li=document.createElement('li');li.textContent=v;list.appendChild(li);inp.value='';
+document.getElementById('ideaBar').style.width=(ideas.length*10)+'%';
+document.getElementById('ideaCount').textContent=ideas.length===10?'10 of 10 — your idea muscle is glowing!':ideas.length+' of 10 ideas'}
+document.getElementById('addIdea').onclick=addIdea;inp.addEventListener('keydown',function(e){if(e.key==='Enter')addIdea()});
+
+var A=['Cooking','Music','Fitness','Art','Teaching','Travel'],B=['Online course','Weekly newsletter','Workshop','Small shop','Community club','Coaching call'];
+var sa=null,sb=null;
+function chips(id,arr,set){var box=document.getElementById(id);arr.forEach(function(t){var b=document.createElement('button');b.className='chip';b.textContent=t;b.setAttribute('aria-pressed','false');
+b.onclick=function(){box.querySelectorAll('.chip').forEach(function(c){c.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');set(t);show()};box.appendChild(b)})}
+chips('grpA',A,function(t){sa=t});chips('grpB',B,function(t){sb=t});
+var cta={'Online course':'Start learning','Weekly newsletter':'Subscribe free','Workshop':'Save my seat','Small shop':'Visit the shop','Community club':'Join the club','Coaching call':'Book a call'};
+function show(){if(!sa||!sb)return;document.getElementById('miniH').textContent=sa+' + '+sb+' = a fresh idea';
+document.getElementById('miniP').textContent='A cheerful landing page where friends of '+sa.toLowerCase()+' discover your '+sb.toLowerCase()+'.';
+document.getElementById('miniB').textContent=cta[sb]}
+
+var sl=document.getElementById('ver'),bars=document.getElementById('bars');
+var notes=['Launched!','Learning','Polishing','Growing','Glowing','Thriving','Shining','Soaring','Flourishing','Brilliant!'];
+function bar(){var n=+sl.value,h='';for(var i=1;i<=10;i++){var ht=i<=n?20+i*11:8;h+='<rect x="'+(20+(i-1)*57)+'" y="'+(140-ht)+'" width="40" height="'+ht+'" rx="8" opacity="'+(i<=n?1:.25)+'"/>'}
+bars.innerHTML=h;document.getElementById('vn').textContent=n;document.getElementById('vs').textContent=notes[n-1]}
+sl.addEventListener('input',bar);bar();
+
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+})();
+</script>
+</body>
+</html>

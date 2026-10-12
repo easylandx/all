@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX | Fearless Landing Pages</title>
+<meta name="description" content="EasyLandX builds bold, conversion-focused landing pages for small businesses, shaped by ten fearless strategies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C1121F;
+    --red-deep: #8E0D17;
+    --red-darker: #6A0912;
+    --red-light: #D9272E;
+    --gold: #FFC83D;
+    --gold-soft: #FFE08A;
+    --gold-deep: #E0A400;
+    --ink: #FFF4DA;
+    --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+    --body: "Karla", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  /* The palette is deliberately the same in light and dark viewers: bold red and gold */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --red: #C1121F; --red-deep: #8E0D17; --red-darker: #6A0912; --gold: #FFC83D; --ink: #FFF4DA;
+    }
+  }
+  :root[data-theme="dark"] {
+    --red: #C1121F; --red-deep: #8E0D17; --red-darker: #6A0912; --gold: #FFC83D; --ink: #FFF4DA;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--red);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, svg { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+
+  /* Side margins live on the wrap; sections only set vertical padding */
+  .wrap {
+    width: 100%;
+    max-width: 1120px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 48px);
+  }
+  .band { padding-block: clamp(56px, 9vw, 104px); }
+  .band-deep { background: var(--red-deep); }
+  .band-darker { background: var(--red-darker); }
+
+  h1, h2, h3 { font-family: var(--display); margin: 0; line-height: 0.98; letter-spacing: 0.005em; }
+  h1 { font-size: clamp(2.9rem, 7vw, 5.4rem); font-weight: 900; color: var(--gold); }
+  h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 900; color: var(--gold); margin-bottom: 16px; }
+  h3 { font-size: 1.7rem; font-weight: 800; color: var(--gold); margin-bottom: 8px; }
+  p { margin: 0 0 1em; max-width: 62ch; }
+  .lede { font-size: 1.2rem; color: var(--ink); }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--display); font-weight: 900; font-size: 1.35rem; letter-spacing: 0.02em;
+    text-decoration: none; cursor: pointer;
+    padding: 14px 28px; border-radius: 999px; border: 3px solid var(--gold);
+    transition: transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .btn-gold { background: var(--gold); color: var(--red-darker); }
+  .btn-gold:hover { transform: translateY(-2px); background: var(--gold-soft); }
+  .btn-line { background: transparent; color: var(--gold); }
+  .btn-line:hover { background: var(--gold); color: var(--red-darker); }
+  .btn svg { width: 22px; height: 22px; }
+
+  /* Top bar */
+  .topbar { padding-block: 18px; }
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-weight: 900; font-size: 1.9rem; color: var(--gold); }
+  .brand svg { width: 38px; height: 38px; }
+  .topbar .btn { padding: 8px 20px; font-size: 1.1rem; }
+
+  /* Hero */
+  .hero { padding-block: clamp(32px, 6vw, 72px) clamp(48px, 8vw, 96px); }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .hero p { margin-top: 22px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+  .hero-art { width: 100%; }
+  .hero-art svg { width: 100%; height: auto; }
+  .bar { transform-origin: 50% 100%; animation: grow 1.1s cubic-bezier(.2,.8,.2,1) both; }
+  .bar:nth-child(2) { animation-delay: .12s; }
+  .bar:nth-child(3) { animation-delay: .24s; }
+  .bar:nth-child(4) { animation-delay: .36s; }
+  .bar:nth-child(5) { animation-delay: .48s; }
+  .flag { transform-origin: 0 100%; animation: raise 1s .7s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes raise { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+  /* Skyline divider */
+  .skyline { display: block; width: 100%; height: auto; margin-bottom: -1px; }
+
+  /* Core lessons */
+  .lessons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 36px; }
+  .lesson {
+    background: var(--red);
+    border: 3px solid var(--gold);
+    border-radius: 24px;
+    padding-block: 28px;
+    padding-inline: 26px;
+  }
+  .lesson svg { width: 76px; height: 76px; color: var(--gold); margin-bottom: 14px; }
+  .lesson p { margin: 0; }
+
+  /* Strategy explorer */
+  .explorer-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px; }
+  .score { min-width: min(100%, 320px); }
+  .score-label { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 8px; color: var(--gold); }
+  .meter { height: 18px; border-radius: 999px; background: var(--red-darker); border: 2px solid var(--gold); overflow: hidden; }
+  .meter > i { display: block; height: 100%; width: 0; background: var(--gold); transition: width .5s ease; }
+  .score-msg { margin-top: 10px; font-size: 1rem; min-height: 1.6em; }
+
+  .tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 32px; }
+  .tab {
+    position: relative;
+    display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center;
+    font-family: var(--body); font-weight: 700; font-size: 0.95rem; line-height: 1.2;
+    color: var(--ink); background: var(--red); cursor: pointer;
+    border: 3px solid var(--gold); border-radius: 18px;
+    padding: 14px 8px;
+    transition: transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .tab svg { width: 38px; height: 38px; color: var(--gold); }
+  .tab .n { font-family: var(--display); font-weight: 900; font-size: 1.3rem; color: var(--gold); line-height: 1; }
+  .tab:hover { transform: translateY(-2px); }
+  .tab[aria-selected="true"] { background: var(--gold); color: var(--red-darker); }
+  .tab[aria-selected="true"] svg, .tab[aria-selected="true"] .n { color: var(--red-darker); }
+  .tab.done::after {
+    content: ""; position: absolute; top: 8px; right: 8px; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--gold); box-shadow: 0 0 0 3px var(--red);
+  }
+  .tab[aria-selected="true"].done::after { background: var(--red-darker); box-shadow: 0 0 0 3px var(--gold); }
+
+  .panel {
+    margin-top: 24px;
+    background: var(--red);
+    border: 3px solid var(--gold);
+    border-radius: 28px;
+    padding-block: clamp(24px, 4vw, 40px);
+    padding-inline: clamp(20px, 4vw, 44px);
+    display: grid; grid-template-columns: 220px 1fr; gap: clamp(20px, 4vw, 44px); align-items: center;
+  }
+  .panel-art svg { width: 100%; height: auto; color: var(--gold); }
+  .panel h3 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 4px; }
+  .panel .tag { color: var(--gold-soft); font-weight: 700; margin-bottom: 16px; }
+  .panel h4 { font-family: var(--display); font-size: 1.25rem; font-weight: 800; color: var(--gold); margin: 14px 0 2px; }
+  .panel p { margin-bottom: 0.4em; }
+  .panel .btn { margin-top: 18px; padding: 10px 22px; font-size: 1.15rem; }
+  .panel .btn[aria-pressed="true"] { background: var(--gold); color: var(--red-darker); }
+  .finish { margin-top: 24px; display: none; text-align: center; }
+  .finish.show { display: block; }
+  .finish p { margin-inline: auto; }
+
+  /* Builder */
+  .builder { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(24px, 4vw, 48px); margin-top: 36px; align-items: start; }
+  .toggles { display: grid; gap: 12px; }
+  .toggle {
+    display: flex; align-items: center; justify-content: space-between; gap: 14px; width: 100%;
+    text-align: left; cursor: pointer; font-family: var(--body); font-size: 1.05rem; font-weight: 700;
+    color: var(--ink); background: var(--red-deep); border: 3px solid var(--gold); border-radius: 16px;
+    padding: 14px 18px;
+  }
+  .toggle small { display: block; font-weight: 400; color: var(--gold-soft); font-size: 0.88rem; }
+  .switch { flex: none; width: 52px; height: 30px; border-radius: 999px; border: 3px solid var(--gold); position: relative; background: transparent; transition: background .2s ease; }
+  .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--gold); transition: transform .2s ease, background .2s ease; }
+  .toggle[aria-pressed="true"] .switch { background: var(--gold); }
+  .toggle[aria-pressed="true"] .switch::after { transform: translateX(22px); background: var(--red-darker); }
+
+  .browser { background: var(--red-darker); border: 3px solid var(--gold); border-radius: 20px; overflow: hidden; }
+  .browser-bar { display: flex; align-items: center; gap: 8px; padding-block: 10px; padding-inline: 14px; border-bottom: 3px solid var(--gold); }
+  .browser-bar i { width: 12px; height: 12px; border-radius: 50%; background: var(--gold); display: block; }
+  .browser-bar span { margin-left: 8px; flex: 1; font-size: 0.85rem; color: var(--gold-soft); background: var(--red-deep); border-radius: 999px; padding: 3px 14px; }
+  .browser-body { padding-block: 22px; padding-inline: 22px; min-height: 360px; display: flex; flex-direction: column; gap: 14px; }
+  .pv-empty { margin: auto; text-align: center; color: var(--gold-soft); }
+  .pv { animation: pop .35s ease both; }
+  @keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
+  .pv-local { font-weight: 700; color: var(--gold-soft); font-size: 0.9rem; }
+  .pv-h { font-family: var(--display); font-weight: 900; font-size: 2.1rem; line-height: 1; color: var(--gold); }
+  .pv-offer { background: var(--red-deep); border: 2px dashed var(--gold); border-radius: 12px; padding: 10px 14px; }
+  .pv-story { font-style: italic; border-left: 4px solid var(--gold); padding-left: 14px; }
+  .pv-btn { align-self: flex-start; font-family: var(--display); font-weight: 900; font-size: 1.2rem; background: var(--gold); color: var(--red-darker); border-radius: 999px; padding: 10px 24px; }
+  .pv-form { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+  .pv-form span { background: var(--red-deep); border: 2px solid var(--gold-soft); border-radius: 10px; padding: 8px 12px; color: var(--gold-soft); font-size: 0.95rem; }
+  .pv-form b { font-family: var(--display); background: var(--gold-deep); color: var(--red-darker); border-radius: 10px; padding: 8px 16px; display: grid; place-items: center; }
+  .pv-faq { font-size: 0.95rem; }
+  .pv-faq div { border-top: 2px solid var(--red-light); padding-block: 6px; }
+  .energy { margin-top: 18px; }
+
+  /* Process */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 36px; counter-reset: s; }
+  .step { border-top: 6px solid var(--gold); padding-top: 18px; }
+  .step::before { counter-increment: s; content: counter(s); display: block; font-family: var(--display); font-weight: 900; font-size: 3.4rem; line-height: 1; color: var(--gold); margin-bottom: 6px; }
+  .step p { margin: 0; }
+
+  /* Closing */
+  .closing { text-align: center; }
+  .closing .wrap { display: flex; flex-direction: column; align-items: center; }
+  .closing h2 { font-size: clamp(2.6rem, 7vw, 5rem); }
+  .closing p { margin-inline: auto; }
+  .closing .sun { width: 150px; margin-bottom: 18px; }
+  footer { padding-block: 28px; text-align: center; font-size: 0.95rem; color: var(--gold-soft); background: var(--red-darker); }
+
+  @media (max-width: 900px) {
+    .hero-grid, .builder { grid-template-columns: 1fr; }
+    .lessons, .steps { grid-template-columns: 1fr; }
+    .tabs { grid-template-columns: repeat(2, 1fr); }
+    .panel { grid-template-columns: 1fr; }
+    .panel-art { max-width: 170px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .bar, .flag, .pv { animation: none; }
+    .meter > i, .switch, .switch::after, .btn, .tab { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="EasyLandX home">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="3" y="3" width="42" height="42" rx="12" fill="#FFC83D"/><path d="M13 33V15h18M13 24h14M13 33h20" fill="none" stroke="#6A0912" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M33 24l5 5-5 5" fill="none" stroke="#6A0912" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      EasyLandX
+    </a>
+    <a class="btn btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Fearless landing pages that turn visitors into customers.</h1>
+      <p class="lede">EasyLandX crafts clear, bold, conversion-focused landing pages for small businesses at an affordable price. Every page is shaped by ten fearless strategies from <em>The 50th Law</em> by Curtis "50 Cent" Jackson and Robert Greene.</p>
+      <div class="cta-row">
+        <a class="btn btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">
+          Visit EasyLandX
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-line" href="#strategies">Explore the ten strategies</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 520 480" role="img" aria-label="Illustration of a landing page on a rising sun with growth bars and a flag on a mountain peak">
+        <!-- sun -->
+        <g fill="none" stroke="#FFC83D" stroke-width="3">
+          <circle cx="260" cy="230" r="200" opacity=".25"/>
+          <circle cx="260" cy="230" r="160" opacity=".45"/>
+          <circle cx="260" cy="230" r="120" opacity=".7"/>
+        </g>
+        <g stroke="#FFC83D" stroke-width="4" stroke-linecap="round" opacity=".6">
+          <path d="M260 6v26M260 428v26M36 230h26M458 230h26M102 72l18 18M400 370l18 18M418 72l-18 18M120 370l-18 18"/>
+        </g>
+        <!-- browser -->
+        <g>
+          <rect x="82" y="88" width="356" height="262" rx="20" fill="#6A0912" stroke="#FFC83D" stroke-width="5"/>
+          <path d="M82 128h356" stroke="#FFC83D" stroke-width="5"/>
+          <circle cx="106" cy="108" r="6" fill="#FFC83D"/><circle cx="128" cy="108" r="6" fill="#FFC83D"/><circle cx="150" cy="108" r="6" fill="#FFC83D"/>
+          <rect x="178" y="99" width="190" height="18" rx="9" fill="#8E0D17"/>
+          <!-- headline lines -->
+          <rect x="108" y="154" width="170" height="16" rx="8" fill="#FFC83D"/>
+          <rect x="108" y="180" width="124" height="16" rx="8" fill="#FFC83D"/>
+          <rect x="108" y="212" width="150" height="8" rx="4" fill="#FFE08A" opacity=".7"/>
+          <rect x="108" y="228" width="130" height="8" rx="4" fill="#FFE08A" opacity=".7"/>
+          <!-- button -->
+          <rect x="108" y="256" width="112" height="38" rx="19" fill="#FFC83D"/>
+          <path d="M146 275h28m-8-7l8 7-8 7" stroke="#6A0912" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- bars -->
+          <g fill="#FFC83D">
+            <rect class="bar" x="298" y="290" width="22" height="30" rx="5"/>
+            <rect class="bar" x="326" y="268" width="22" height="52" rx="5"/>
+            <rect class="bar" x="354" y="240" width="22" height="80" rx="5"/>
+            <rect class="bar" x="382" y="208" width="22" height="112" rx="5"/>
+            <rect class="bar" x="410" y="170" width="0" height="0"/>
+          </g>
+          <path d="M296 196l36-24 28 14 44-40" stroke="#FFE08A" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M386 142h18v18" stroke="#FFE08A" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <!-- mountain -->
+        <path d="M30 450L170 318l62 70 72-102 186 164z" fill="#8E0D17" stroke="#FFC83D" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M304 286l-26 36 20-6 14 18 18-24 16 8z" fill="#FFC83D" opacity=".9"/>
+        <g class="flag">
+          <path d="M304 286V222" stroke="#FFC83D" stroke-width="5" stroke-linecap="round"/>
+          <path d="M304 222l50 16-50 18z" fill="#FFC83D"/>
+        </g>
+        <!-- sparkles -->
+        <g fill="#FFE08A">
+          <path d="M60 130c2 10 5 13 15 15-10 2-13 5-15 15-2-10-5-13-15-15 10-2 13-5 15-15z"/>
+          <path d="M470 100c1.5 7 3.5 9 10 10.5-6.5 1.5-8.5 3.5-10 10.5-1.5-7-3.5-9-10-10.5 6.5-1.5 8.5-3.5 10-10.5z"/>
+          <path d="M452 390c1.5 7 3.5 9 10 10.5-6.5 1.5-8.5 3.5-10 10.5-1.5-7-3.5-9-10-10.5 6.5-1.5 8.5-3.5 10-10.5z"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<svg class="skyline" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 120V70l120-40 100 50 140-60 150 70 130-50 160 60 140-70 150 60 120-40 130 50V120z" fill="#8E0D17"/>
+  <path d="M0 70l120-40 100 50 140-60 150 70 130-50 160 60 140-70 150 60 120-40 130 50" fill="none" stroke="#FFC83D" stroke-width="4" stroke-linejoin="round"/>
+</svg>
+
+<!-- CORE MESSAGE -->
+<section class="band band-deep" id="message">
+  <div class="wrap">
+    <h2>Fearlessness is freedom, and freedom converts.</h2>
+    <p class="lede">The 50th Law shows how confidence, clear sight and bold action create real power. EasyLandX brings the same energy to your landing page, so every visitor meets a business that knows exactly who it serves and what it offers.</p>
+
+    <div class="lessons">
+      <article class="lesson">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M8 40c6-4 10-14 18-20 4-3 8-4 10-4-1 6-3 10-6 14 8-3 14-9 20-18 2 10-2 20-10 28-8 8-18 10-26 6z"/>
+          <path d="M14 56l14-18"/>
+        </svg>
+        <h3>Fearlessness is freedom</h3>
+        <p>Confident choices open every door. Your page speaks with courage, and visitors respond with trust.</p>
+      </article>
+      <article class="lesson">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 32c8-13 17-19 26-19s18 6 26 19c-8 13-17 19-26 19S14 45 6 32z"/>
+          <circle cx="32" cy="32" r="8"/><circle cx="32" cy="32" r="2.5" fill="currentColor"/>
+        </svg>
+        <h3>Reality is the best teacher</h3>
+        <p>Seeing things exactly as they are brings clarity. We shape your message around what your customers truly want.</p>
+      </article>
+      <article class="lesson">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 54h52"/>
+          <path d="M12 54V40h12V28h12V16h16v38"/>
+          <path d="M40 8h14v14M54 8L36 26"/>
+        </svg>
+        <h3>Every challenge is fuel</h3>
+        <p>Each setback holds the seeds of power. Bold thinking turns it into your next headline, offer or launch.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGIES -->
+<section class="band" id="strategies">
+  <div class="wrap">
+    <div class="explorer-head">
+      <div>
+        <h2>Ten fearless strategies,<br>ten landing page advantages.</h2>
+        <p class="lede">Choose a strategy to see how it shapes your page. Add each one to your launch plan and watch your fearless score climb.</p>
+      </div>
+      <div class="score" aria-live="polite">
+        <div class="score-label"><span>Fearless score</span><span id="scoreNum">0 of 10</span></div>
+        <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" id="meter"><i id="meterFill"></i></div>
+        <div class="score-msg" id="scoreMsg">Pick a strategy and add it to your launch plan.</div>
+      </div>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="The ten fearless strategies" id="tabs"></div>
+
+    <div class="panel" role="tabpanel" id="panel" aria-live="polite">
+      <div class="panel-art" id="panelArt"></div>
+      <div>
+        <h3 id="pTitle"></h3>
+        <div class="tag" id="pTag"></div>
+        <h4>The lesson</h4>
+        <p id="pLesson"></p>
+        <h4>On your landing page</h4>
+        <p id="pPage"></p>
+        <h4>Your fearless action</h4>
+        <p id="pAction"></p>
+        <button class="btn btn-line" id="addBtn" aria-pressed="false" type="button">Add to my launch plan</button>
+      </div>
+    </div>
+
+    <div class="finish" id="finish">
+      <h3>Your fearless launch plan is complete!</h3>
+      <p>All ten strategies are in place. The next step is to bring them to life on a page that welcomes customers every day.</p>
+      <a class="btn btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch with EasyLandX</a>
+    </div>
+  </div>
+</section>
+
+<!-- BUILDER -->
+<section class="band band-deep" id="builder">
+  <div class="wrap">
+    <h2>Build a fearless page in seconds.</h2>
+    <p class="lede">Switch on the building blocks and watch a sample bakery page come to life. Each block carries one of the ten strategies and adds conversion energy.</p>
+
+    <div class="builder">
+      <div>
+        <div class="toggles" id="toggles"></div>
+        <div class="energy">
+          <div class="score-label"><span>Conversion energy</span><span id="enNum">0%</span></div>
+          <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="enMeter"><i id="enFill"></i></div>
+          <div class="score-msg" id="enMsg"></div>
+        </div>
+      </div>
+      <div class="browser" aria-live="polite">
+        <div class="browser-bar"><i></i><i></i><i></i><span>sunrise-bakery.com</span></div>
+        <div class="browser-body" id="preview"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="band band-darker" id="process">
+  <div class="wrap">
+    <h2>How EasyLandX brings it to life.</h2>
+    <p class="lede">A simple, friendly path from your idea to a page that welcomes customers.</p>
+    <div class="steps">
+      <div class="step">
+        <h3>Listen and observe</h3>
+        <p>We learn your audience, your offer and your goals, staying close to the real world your customers live in.</p>
+      </div>
+      <div class="step">
+        <h3>Craft with care</h3>
+        <p>We build your page ourselves, section by section, refining layout, rhythm and words until everything shines.</p>
+      </div>
+      <div class="step">
+        <h3>Launch and keep moving</h3>
+        <p>Your page goes live and keeps evolving with fresh ideas, so your momentum keeps growing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="band closing">
+  <div class="wrap">
+    <svg class="sun" viewBox="0 0 160 100" fill="none" stroke="#FFC83D" stroke-width="5" stroke-linecap="round" aria-hidden="true">
+      <path d="M20 90a60 60 0 0 1 120 0"/>
+      <path d="M80 8v14M30 28l10 10M130 28l-10 10M8 62h14M138 62h14"/>
+      <path d="M4 92h152"/>
+    </svg>
+    <h2>Ready to launch with courage?</h2>
+    <p class="lede">Your business deserves a landing page as bold as your vision. Meet the team that builds it with you, affordably and beautifully.</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">
+        EasyLandX
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">EasyLandX: affordable, conversion-focused landing pages for small businesses. Inspired by the lessons of <em>The 50th Law</em>.</div>
+</footer>
+
+<script>
+(function () {
+  var ICONS = [
+    '<path d="M6 32c8-13 17-19 26-19s18 6 26 19c-8 13-17 19-26 19S14 45 6 32z"/><circle cx="32" cy="32" r="8"/><circle cx="32" cy="32" r="2.5" fill="currentColor"/>',
+    '<circle cx="20" cy="32" r="10"/><path d="M30 32h28M50 32v9M42 32v7"/>',
+    '<path d="M32 6c2 14 6 18 20 20-14 2-18 6-20 20-2-14-6-18-20-20 14-2 18-6 20-20z"/><path d="M50 44c1 5 2 6 7 7-5 1-6 2-7 7-1-5-2-6-7-7 5-1 6-2 7-7z"/>',
+    '<path d="M8 14l17 18L8 50M26 14l17 18-17 18M44 14l14 18-14 18"/>',
+    '<path d="M36 4L12 36h16l-4 24 28-34H36z"/>',
+    '<path d="M4 58L26 22l12 18 8-10 14 28z"/><path d="M26 22V6l14 5-14 5"/>',
+    '<circle cx="32" cy="14" r="7"/><circle cx="12" cy="48" r="7"/><circle cx="52" cy="48" r="7"/><path d="M28 20L15 42M36 20l13 22M19 48h26"/>',
+    '<path d="M6 58V46h14V34h14V22h14V8h10v50z"/>',
+    '<path d="M6 22h52" stroke-dasharray="4 4"/><path d="M32 58V12M20 24l12-14 12 14"/>',
+    '<path d="M16 6h32M16 58h32M18 6c0 16 10 20 14 26-4 6-14 10-14 26M46 6c0 16-10 20-14 26 4 6 14 10 14 26"/>'
+  ];
+  function icon(i, size) {
+    return '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"' + (size ? ' width="' + size + '" height="' + size + '"' : '') + '>' + ICONS[i] + '</svg>';
+  }
+  function bigIcon(i) {
+    return '<svg viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">' +
+      '<circle cx="80" cy="80" r="74" opacity=".35"/><circle cx="80" cy="80" r="58" opacity=".6"/>' +
+      '<g transform="translate(40 40) scale(1.25)" stroke-width="2.6" stroke-linejoin="round">' + ICONS[i] + '</g></svg>';
+  }
+
+  var S = [
+    { n: 'See things clearly', tag: 'Intense Realism', lesson: 'Clear thinking and honest observation reveal exactly where you stand, so every decision rests on solid ground.', page: 'Your page starts with your real audience: their words, their goals, their moments. EasyLandX shapes the message around what visitors truly want.', action: 'Write one sentence that names what your customer wants most.' },
+    { n: 'Make it your own', tag: 'Self-Reliance', lesson: 'Own your skills and your judgment. Independence grows when you build your own path.', page: 'Your page is a home base you control, with your voice, your offer and your brand at the center. EasyLandX builds it for you, hands-on.', action: 'Choose the one offer that is uniquely yours.' },
+    { n: 'Turn challenges into opportunities', tag: 'Opportunism', lesson: 'Every challenge is raw material. Bold thinkers shape it into something powerful.', page: 'A quiet season becomes a launch moment. A new competitor becomes a reason to sharpen your message.', action: 'Pick a recent challenge and turn it into a headline.' },
+    { n: 'Keep moving', tag: 'Calculated Momentum', lesson: 'Stay fluid, experiment often and adapt as conditions evolve.', page: 'Landing pages are made for iteration. Fresh headlines, new buttons and updated offers keep your momentum high.', action: 'Plan one small experiment for next week.' },
+    { n: 'Know when to be bold', tag: 'Strategic Firmness', lesson: 'Confident assertiveness earns respect. Firm decisions and clear boundaries keep you moving forward.', page: 'One strong call to action, placed with confidence. Your page invites visitors to take a clear, friendly, firm next step.', action: 'Choose the single action every visitor can take.' },
+    { n: 'Lead from the front', tag: 'Authority', lesson: 'Trust grows when you step forward first, show courage and work harder than anyone.', page: 'Lead with your proof: your results, your story, your face. Visitors happily follow confident guides.', action: 'Gather one customer story to feature near the top.' },
+    { n: 'Know your environment', tag: 'Connection', lesson: 'Stay close to your audience and the front lines. Connection keeps your view sharp and real.', page: 'Speak in the language of your neighborhood, your industry and your customers. Local detail builds instant rapport.', action: 'Add one local detail or customer phrase to your page.' },
+    { n: 'Respect the process', tag: 'Mastery', lesson: 'Patience, deep practice and steady repetition build true mastery.', page: 'Every section is crafted with care: layout, rhythm, spacing and copy refined until it shines.', action: 'Commit to one refinement round after launch.' },
+    { n: 'Push beyond your limits', tag: 'Self-Belief', lesson: 'High expectations and bold action create a powerful self-fulfilling prophecy.', page: 'Set an ambitious goal for your page, such as doubling your inquiries, and build toward it with confidence.', action: 'Write down a bold goal for your page.' },
+    { n: 'Embrace your timeline', tag: 'Sublime Perspective', lesson: 'Life is brief and precious. Remembering that brings urgency, purpose and freedom.', page: 'The best moment to launch is now. A live page starts welcoming customers today.', action: 'Choose your launch date.' }
+  ];
+  var MSGS = [
+    'Pick a strategy and add it to your launch plan.',
+    'A bold beginning! Keep going.',
+    'Two strategies in place. Momentum is building.',
+    'Three down. Your page is gaining confidence.',
+    'Four strategies strong. Fantastic progress.',
+    'Halfway there. Your plan has real power.',
+    'Six strategies in place. Your vision is sharpening.',
+    'Seven! Your page is becoming unstoppable.',
+    'Eight strategies strong. Almost fully fearless.',
+    'Nine! One more for the full set.',
+    'Fully fearless! Your launch plan is ready.'
+  ];
+
+  var tabsEl = document.getElementById('tabs');
+  var done = S.map(function () { return false; });
+  var current = 0;
+
+  S.forEach(function (s, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'tab';
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    b.setAttribute('tabindex', i === 0 ? '0' : '-1');
+    b.innerHTML = '<span class="n">' + (i + 1) + '</span>' + icon(i) + '<span>' + s.n + '</span>';
+    b.addEventListener('click', function () { select(i, false); });
+    b.addEventListener('keydown', function (e) {
+      var d = 0;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') d = 1;
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') d = -1;
+      if (d) { e.preventDefault(); select((i + d + S.length) % S.length, true); }
+    });
+    tabsEl.appendChild(b);
+  });
+
+  var addBtn = document.getElementById('addBtn');
+
+  function select(i, focus) {
+    current = i;
+    var tabs = tabsEl.children;
+    for (var k = 0; k < tabs.length; k++) {
+      tabs[k].setAttribute('aria-selected', k === i ? 'true' : 'false');
+      tabs[k].setAttribute('tabindex', k === i ? '0' : '-1');
+    }
+    if (focus) tabs[i].focus();
+    var s = S[i];
+    document.getElementById('panelArt').innerHTML = bigIcon(i);
+    document.getElementById('pTitle').textContent = (i + 1) + '. ' + s.n;
+    document.getElementById('pTag').textContent = s.tag;
+    document.getElementById('pLesson').textContent = s.lesson;
+    document.getElementById('pPage').textContent = s.page;
+    document.getElementById('pAction').textContent = s.action;
+    syncAdd();
+  }
+
+  function syncAdd() {
+    addBtn.setAttribute('aria-pressed', done[current] ? 'true' : 'false');
+    addBtn.textContent = done[current] ? 'In my launch plan' : 'Add to my launch plan';
+  }
+
+  addBtn.addEventListener('click', function () {
+    done[current] = !done[current];
+    syncAdd();
+    tabsEl.children[current].classList.toggle('done', done[current]);
+    var count = done.filter(Boolean).length;
+    document.getElementById('scoreNum').textContent = count + ' of 10';
+    document.getElementById('meterFill').style.width = (count * 10) + '%';
+    document.getElementById('meter').setAttribute('aria-valuenow', count);
+    document.getElementById('scoreMsg').textContent = MSGS[count];
+    document.getElementById('finish').classList.toggle('show', count === 10);
+    if (done[current] && count < 10) {
+      var next = done.indexOf(false, current + 1);
+      if (next === -1) next = done.indexOf(false);
+      if (next !== -1) setTimeout(function () { select(next, false); }, 450);
+    }
+  });
+
+  select(0, false);
+
+  /* ---------- Page builder ---------- */
+  var BLOCKS = [
+    { id: 'headline', label: 'Bold headline', sub: 'Strategy 9: Push beyond your limits', w: 15, html: '<div class="pv-h">Warm, fresh bread at your door every morning.</div>' },
+    { id: 'offer', label: 'Clear offer', sub: 'Strategy 2: Make it your own', w: 15, html: '<div class="pv-offer">Order today and enjoy a free pastry with your first box.</div>' },
+    { id: 'stories', label: 'Customer story', sub: 'Strategy 6: Lead from the front', w: 15, html: '<div class="pv-story">"The best loaf in the neighborhood. We look forward to it every day!" Maria, happy customer</div>' },
+    { id: 'button', label: 'Confident button', sub: 'Strategy 5: Know when to be bold', w: 20, html: '<div class="pv-btn">Order my first box</div>' },
+    { id: 'form', label: 'Quick contact form', sub: 'Strategy 4: Keep moving', w: 15, html: '<div class="pv-form"><span>Your email</span><b>Send</b></div>' },
+    { id: 'faq', label: 'Friendly FAQ', sub: 'Strategy 1: See things clearly', w: 10, html: '<div class="pv-faq"><div><b>How fast is delivery?</b> Same day, before 9 am.</div><div><b>Can I choose my bread?</b> Yes, pick your favorites each week.</div></div>' },
+    { id: 'local', label: 'Local touch', sub: 'Strategy 7: Know your environment', w: 10, html: '<div class="pv-local">Baking fresh in your neighborhood since 2015</div>' }
+  ];
+  var ORDER = ['local', 'headline', 'offer', 'stories', 'button', 'form', 'faq'];
+  var on = { headline: true };
+  var togglesEl = document.getElementById('toggles');
+
+  BLOCKS.forEach(function (b) {
+    var t = document.createElement('button');
+    t.type = 'button';
+    t.className = 'toggle';
+    t.setAttribute('aria-pressed', on[b.id] ? 'true' : 'false');
+    t.dataset.id = b.id;
+    t.innerHTML = '<span>' + b.label + '<small>' + b.sub + '</small></span><span class="switch"></span>';
+    t.addEventListener('click', function () {
+      on[b.id] = !on[b.id];
+      t.setAttribute('aria-pressed', on[b.id] ? 'true' : 'false');
+      render(b.id);
+    });
+    togglesEl.appendChild(t);
+  });
+
+  var EN_MSGS = [
+    'Switch on a block to start building.',
+    'A confident start!',
+    'Your page is taking shape.',
+    'Strong energy. Visitors feel the confidence.',
+    'Outstanding! This page is ready to convert.'
+  ];
+
+  function render(justChanged) {
+    var pv = document.getElementById('preview');
+    var html = '';
+    ORDER.forEach(function (id) {
+      if (on[id]) {
+        var b = BLOCKS.filter(function (x) { return x.id === id; })[0];
+        html += '<div class="pv' + (id === justChanged ? '' : '') + '" data-id="' + id + '">' + b.html + '</div>';
+      }
+    });
+    if (!html) html = '<div class="pv-empty">Your sample page is waiting.<br>Switch on a block to start building.</div>';
+    pv.innerHTML = html;
+    if (justChanged) {
+      var el = pv.querySelector('[data-id="' + justChanged + '"]');
+      if (!el) pv.querySelectorAll('.pv').forEach(function (n) { n.style.animation = 'none'; });
+      else pv.querySelectorAll('.pv').forEach(function (n) { if (n !== el) n.style.animation = 'none'; });
+    } else {
+      pv.querySelectorAll('.pv').forEach(function (n) { n.style.animation = 'none'; });
+    }
+    var total = 0;
+    BLOCKS.forEach(function (b) { if (on[b.id]) total += b.w; });
+    document.getElementById('enNum').textContent = total + '%';
+    document.getElementById('enFill').style.width = total + '%';
+    document.getElementById('enMeter').setAttribute('aria-valuenow', total);
+    var idx = total === 0 ? 0 : total < 35 ? 1 : total < 65 ? 2 : total < 100 ? 3 : 4;
+    document.getElementById('enMsg').textContent = EN_MSGS[idx];
+  }
+  render(null);
+})();
+</script>
+</body>
+</html>

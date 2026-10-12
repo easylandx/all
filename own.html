@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>easylandx Ownership Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout concept: a blueprint on bold blue. Landing page wireframes sit on a drafting grid and olive marks every element the leader owns. */
+:root{
+  --blue:#1140C9;
+  --blue-deep:#0C2F96;
+  --blue-lift:#1B4FE0;
+  --ink:#F2F6FF;
+  --ink-soft:#C5D4FF;
+  --line:#5F88F4;
+  --grid:rgba(242,246,255,.07);
+  --olive:#C2C64F;
+  --olive-soft:#D6DA7C;
+  --olive-dim:#9EA33B;
+  --olive-wash:rgba(194,198,79,.14);
+  --olive-ink:#0A2270;
+  --font-display:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;
+  --font-body:'Hanken Grotesk','Segoe UI',system-ui,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{
+  margin:0;
+  background-color:var(--blue);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:48px 48px;
+  color:var(--ink);
+  font:400 1.0625rem/1.6 var(--font-body);
+  -webkit-font-smoothing:antialiased;
+}
+p{margin:0}
+h1,h2,h3{font-family:var(--font-display);text-transform:uppercase;font-weight:800;line-height:.95;letter-spacing:.01em;margin:0;text-wrap:balance}
+h2{font-size:clamp(2.3rem,5.6vw,4rem)}
+.wrap{width:100%;max-width:1160px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+.mono{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;font-size:1.15rem;letter-spacing:.08em;text-transform:uppercase;line-height:1;text-decoration:none;padding:15px 22px;border:2px solid var(--olive);background:var(--olive);color:var(--olive-ink);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink);box-shadow:5px 5px 0 var(--olive)}
+.btn.small{font-size:1rem;padding:11px 16px}
+.btn.dark{background:var(--olive-ink);border-color:var(--olive-ink);color:var(--ink)}
+.btn svg{flex:none}
+
+/* Header */
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
+.logo{font-family:var(--font-display);font-weight:900;font-size:2rem;letter-spacing:.05em;text-transform:uppercase;line-height:1;text-decoration:none;color:var(--ink)}
+.logo b{color:var(--olive)}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center;padding-block:clamp(28px,6vw,72px)}
+.hero>*{min-width:0}
+h1{font-size:clamp(3.2rem,9.5vw,7rem);font-weight:900;line-height:.9}
+h1 span{display:block;color:var(--olive)}
+.eyebrow{color:var(--olive);display:block;margin-bottom:18px}
+.lede{color:var(--ink-soft);max-width:34rem;margin-top:24px;font-size:1.15rem}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 0;padding:0;list-style:none}
+.chips li{border:1px solid var(--line);padding:7px 12px;color:var(--olive-soft)}
+.art{width:100%;height:auto;display:block}
+
+/* SVG helpers */
+.f-ink{fill:var(--ink)}.f-soft{fill:var(--ink-soft)}.f-olive{fill:var(--olive)}.f-olive-soft{fill:var(--olive-soft)}.f-dim{fill:var(--olive-dim)}
+.f-deep{fill:var(--blue-deep)}.f-lift{fill:var(--blue-lift)}.f-blue{fill:var(--blue)}.f-none{fill:none}.f-dark{fill:var(--olive-ink)}
+.s-line{stroke:var(--line)}.s-ink{stroke:var(--ink)}.s-olive{stroke:var(--olive)}.s-soft{stroke:var(--ink-soft)}.s-dark{stroke:var(--olive-ink)}
+.t-mono{font-family:var(--font-mono);font-weight:600;letter-spacing:.1em}
+.t-disp{font-family:var(--font-display);font-weight:800;letter-spacing:.08em}
+.pulse{fill:none;stroke:var(--olive);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.2)}}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none;opacity:0}}
+
+/* Premise band */
+.premise{background:var(--blue-deep);border-block:1px solid var(--line)}
+.premise .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 56px;padding-block:40px}
+.premise .mono{color:var(--olive);display:block;margin-bottom:10px}
+.big{font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1}
+.big em{font-style:normal;color:var(--olive)}
+
+/* Sections */
+.sec{padding-block:clamp(56px,9vw,104px)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:20px 48px;align-items:end;margin-bottom:40px}
+.sec-head p{color:var(--ink-soft)}
+.kicker{color:var(--olive);display:block;margin-bottom:14px}
+
+/* Foundations */
+.found{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.card{background:var(--blue-deep);border:1px solid var(--line);padding:28px;display:grid;gap:16px;align-content:start}
+.ico{width:64px;height:64px;border:1px solid var(--line);background:var(--blue);padding:8px}
+.ico svg{width:100%;height:100%;display:block}
+.card h3{font-size:2.1rem}
+.card p{color:var(--ink-soft)}
+.page-note{border-top:1px dashed var(--line);padding-top:16px}
+.page-note .mono{color:var(--olive);display:block;margin-bottom:8px}
+.page-note p{color:var(--ink)}
+
+/* Playbook */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.tab{font-family:var(--font-display);font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:1.15rem;line-height:1;padding:13px 18px;background:transparent;border:2px solid var(--line);color:var(--ink);cursor:pointer}
+.tab:hover{border-color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--olive);border-color:var(--olive);color:var(--olive-ink)}
+.panel{border:1px solid var(--line);background:var(--blue-deep);padding:clamp(20px,3.5vw,40px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(20px,4vw,48px);align-items:start}
+.panel h3{font-size:clamp(2.1rem,4.5vw,3.1rem);margin-bottom:14px}
+.idea{color:var(--ink-soft)}
+.upgrade{margin-top:22px;padding-top:18px;border-top:1px dashed var(--line)}
+.upgrade .mono{color:var(--olive);display:block;margin-bottom:8px}
+.stage{background:var(--blue);border:1px solid var(--line);padding:20px;display:grid;gap:16px;min-width:0}
+.stage-label{color:var(--ink-soft)}
+.caption{min-height:3.2em;color:var(--olive-soft);font-weight:500}
+.stage-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+
+.node rect{fill:var(--blue-lift);stroke:var(--line);stroke-width:2;transition:fill .3s,stroke .3s}
+.node text{text-anchor:middle;transition:fill .3s}
+.node .main{fill:var(--ink);font-family:var(--font-display);font-weight:800;font-size:24px;letter-spacing:.08em}
+.node .sub{fill:var(--ink-soft);font-family:var(--font-mono);font-weight:600;font-size:12px;letter-spacing:.14em}
+.node.on rect{fill:var(--olive);stroke:var(--olive)}
+.node.on .main,.node.on .sub{fill:var(--olive-ink)}
+.arrow{stroke:var(--line);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.arrow.on{stroke:var(--olive)}
+
+.browser{border:1px solid var(--line);background:var(--blue-deep)}
+.browser-bar{display:flex;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.browser-bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:block}
+.mock-body{padding:14px 14px 6px}
+.mock-block{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--line);padding:10px 12px;margin-bottom:8px;font-size:.92rem;color:var(--ink-soft);overflow:hidden;max-height:64px;transition:max-height .45s ease,opacity .35s ease,padding .45s ease,margin .45s ease,border-width .45s ease,background .3s}
+.mock-block .mono{font-size:.66rem;color:var(--olive-soft);flex:none}
+.mock-block.keep{border-color:var(--olive);color:var(--ink);background:var(--olive-wash)}
+.simple .extra{max-height:0;opacity:0;padding-block:0;margin-bottom:0;border-width:0}
+.simple .keep{padding-block:18px;font-size:1.08rem}
+
+.tasks{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.task{width:100%;display:flex;align-items:center;gap:12px;text-align:left;background:var(--blue-deep);border:1px solid var(--line);color:var(--ink);padding:12px 14px;font:inherit;cursor:pointer}
+.task:hover{border-color:var(--ink)}
+.task .tag{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--olive-soft);flex:0 0 5.8rem}
+.task.is-focus{background:var(--olive);border-color:var(--olive);color:var(--olive-ink);font-weight:700}
+.task.is-focus .tag{color:var(--olive-ink)}
+
+.hub{width:100%;height:auto;display:block}
+.spoke{stroke:var(--line);stroke-width:2;transition:stroke .3s}
+.spoke.on{stroke:var(--olive);stroke-width:3}
+.sat{cursor:pointer}
+.sat circle{fill:var(--blue-lift);stroke:var(--line);stroke-width:2;transition:fill .3s,stroke .3s}
+.sat text{fill:var(--ink);font-family:var(--font-display);font-weight:800;font-size:15px;letter-spacing:.06em;text-anchor:middle;pointer-events:none}
+.sat:hover circle{stroke:var(--ink)}
+.sat.on circle{fill:var(--olive);stroke:var(--olive)}
+.sat.on text{fill:var(--olive-ink)}
+.sat:focus-visible{outline:none}
+.sat:focus-visible circle{stroke:var(--ink);stroke-width:4}
+
+.bal{display:grid;gap:8px}
+.bal-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--font-display);font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:1.1rem}
+.slider{position:relative;height:30px}
+.slider::before{content:"";position:absolute;left:0;right:0;top:11px;height:8px;background:linear-gradient(90deg,var(--line) 0 40%,var(--olive) 40% 60%,var(--line) 60% 100%)}
+.slider input{-webkit-appearance:none;appearance:none;background:transparent;position:absolute;inset:0;width:100%;height:30px;margin:0;cursor:pointer}
+.slider input::-webkit-slider-runnable-track{background:transparent;height:30px}
+.slider input::-moz-range-track{background:transparent;height:30px}
+.slider input::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:30px;background:var(--ink);border:3px solid var(--blue);border-radius:0}
+.slider input::-moz-range-thumb{width:14px;height:24px;background:var(--ink);border:3px solid var(--blue);border-radius:0}
+.bal.good .slider input::-webkit-slider-thumb{background:var(--olive-soft)}
+.bal.good .slider input::-moz-range-thumb{background:var(--olive-soft)}
+.state{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+.bal.good .state{color:var(--olive-soft)}
+
+/* Intent builder */
+.intent{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(20px,4vw,48px);align-items:stretch}
+.fields{display:grid;gap:18px;align-content:start}
+.fields label{display:grid;gap:6px}
+.fields label>span{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--olive-soft)}
+.fields input{font:inherit;background:var(--blue-deep);color:var(--ink);border:2px solid var(--line);padding:12px 14px;border-radius:0;width:100%;min-width:0}
+.fields input:focus{border-color:var(--olive)}
+.output{background:var(--olive);color:var(--olive-ink);padding:clamp(22px,4vw,40px);display:grid;gap:22px;align-content:space-between;min-width:0}
+.output blockquote{margin:0;font-family:var(--font-display);font-weight:700;font-size:clamp(1.7rem,3.6vw,2.6rem);line-height:1.08;overflow-wrap:anywhere}
+.output .foot{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+
+/* Readiness */
+.ready{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(20px,4vw,56px);align-items:start}
+.gauge-card{background:var(--blue-deep);border:1px solid var(--line);padding:28px;display:grid;gap:16px;justify-items:center;text-align:center}
+.gauge{width:min(100%,260px);height:auto;display:block}
+.gauge .track{fill:none;stroke:var(--blue-lift);stroke-width:16}
+.gauge .arc{fill:none;stroke:var(--olive);stroke-width:16;transition:stroke-dashoffset .6s ease}
+.gauge .num{fill:var(--ink);font-family:var(--font-display);font-weight:900;font-size:64px;text-anchor:middle}
+.gauge .of{fill:var(--ink-soft);font-family:var(--font-mono);font-weight:600;font-size:11px;letter-spacing:.14em;text-anchor:middle}
+.gauge-msg{font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:1.7rem;line-height:1.05;color:var(--olive);min-height:2.1em}
+.checks{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.check label{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:start;gap:14px;background:var(--blue-deep);border:1px solid var(--line);padding:14px 16px;cursor:pointer}
+.check label:hover{border-color:var(--ink)}
+.check label:has(input:checked){border-color:var(--olive)}
+.check input{-webkit-appearance:none;appearance:none;width:24px;height:24px;border:2px solid var(--line);background:var(--blue);margin:2px 0 0;display:grid;place-content:center;cursor:pointer;border-radius:0}
+.check input::after{content:"";width:12px;height:12px;background:var(--olive);transform:scale(0);transition:transform .15s}
+.check input:checked{border-color:var(--olive)}
+.check input:checked::after{transform:scale(1)}
+.check .who{display:block;color:var(--olive-soft);margin-bottom:2px}
+.ready-note{color:var(--ink-soft);margin-top:14px}
+.ready-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:14px}
+
+/* Closing */
+.closing{background:var(--blue-deep);border-top:1px solid var(--line)}
+.closing .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,5vw,64px);align-items:center;padding-block:clamp(56px,9vw,104px)}
+.closing p{color:var(--ink-soft);max-width:32rem;margin-top:20px;font-size:1.15rem}
+.closing .cta-row{margin-top:28px}
+.closing .mono{color:var(--olive-soft)}
+.foot-note{border-top:1px solid var(--line);padding-block:24px;color:var(--ink-soft)}
+.foot-note .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+
+@media (max-width:880px){
+  .hero,.premise .wrap,.sec-head,.panel,.intent,.ready,.closing .wrap{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:760px){
+  .found{grid-template-columns:minmax(0,1fr)}
+  .task .tag{flex-basis:4.8rem}
+}
+</style>
+</head>
+<body>
+<header class="wrap top">
+  <a class="logo" href="https://easylandx.github.io" target="_blank" rel="noopener">easyland<b>x</b></a>
+  <a class="btn small" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx
+    <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M5 15L15 5M7 5h8v8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"/></svg>
+  </a>
+</header>
+
+<main>
+<section class="wrap hero" aria-labelledby="h1">
+  <div>
+    <span class="mono eyebrow">Extreme Ownership &times; Landing Pages</span>
+    <h1 id="h1">Own the page. <span>Lead the visit.</span></h1>
+    <p class="lede">Leaders who own their whole mission build landing pages that guide visitors to one confident next step. Discover how the leadership lessons of <em>Extreme Ownership</em> by Jocko Willink and Leif Babin shape landing pages on easylandx.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx
+        <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M5 15L15 5M7 5h8v8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"/></svg>
+      </a>
+      <a class="btn ghost" href="#playbook">Explore the playbook</a>
+    </div>
+    <ul class="chips mono" aria-label="Three qualities of an owned page">
+      <li>Clear promise</li><li>One action</li><li>Shared why</li>
+    </ul>
+  </div>
+
+  <svg class="art" viewBox="0 0 560 440" role="img" aria-labelledby="heroT heroD">
+    <title id="heroT">Landing page blueprint</title>
+    <desc id="heroD">A browser window showing a landing page with a clear headline, one olive button, a summit with a flag, and three benefit cards below the fold line.</desc>
+    <rect x="20" y="20" width="520" height="400" rx="14" class="f-deep s-line" stroke-width="2"/>
+    <path d="M20 58H540" class="s-line" stroke-width="2"/>
+    <circle cx="46" cy="39" r="5" class="f-none s-soft" stroke-width="1.5"/>
+    <circle cx="64" cy="39" r="5" class="f-none s-soft" stroke-width="1.5"/>
+    <circle cx="82" cy="39" r="5" class="f-none s-soft" stroke-width="1.5"/>
+    <rect x="110" y="29" width="250" height="20" rx="10" class="f-lift s-line" stroke-width="1.5"/>
+    <text x="126" y="43" class="f-soft t-mono" font-size="11">yourbrand.com</text>
+    <!-- hero copy -->
+    <rect x="48" y="90" width="250" height="20" rx="3" class="f-ink"/>
+    <rect x="48" y="118" width="190" height="20" rx="3" class="f-ink"/>
+    <rect x="48" y="154" width="240" height="8" rx="4" class="f-soft" opacity=".55"/>
+    <rect x="48" y="170" width="200" height="8" rx="4" class="f-soft" opacity=".55"/>
+    <rect x="44" y="192" width="148" height="50" rx="5" class="pulse"/>
+    <rect x="48" y="196" width="140" height="42" rx="3" class="f-olive"/>
+    <text x="118" y="223" text-anchor="middle" class="f-dark t-disp" font-size="17">START NOW</text>
+    <rect x="204" y="213" width="70" height="8" rx="4" class="f-soft" opacity=".5"/>
+    <!-- summit illustration -->
+    <rect x="330" y="84" width="186" height="154" rx="6" class="f-lift s-line" stroke-width="1.5"/>
+    <circle cx="368" cy="114" r="14" class="f-none s-soft" stroke-width="1.5"/>
+    <polygon points="330,238 350,200 392,160 430,210 470,170 516,238" fill="#2F63F5"/>
+    <polygon points="330,238 372,190 402,222 446,164 490,206 516,186 516,238" class="f-olive"/>
+    <polygon points="446,164 490,206 516,186 516,238 470,238" class="f-dim"/>
+    <line x1="446" y1="164" x2="446" y2="128" class="s-ink" stroke-width="2.5"/>
+    <polygon points="446,128 476,138 446,148" class="f-ink"/>
+    <!-- fold line -->
+    <line x1="20" y1="262" x2="540" y2="262" class="s-olive" stroke-width="1.5" stroke-dasharray="6 5"/>
+    <rect x="396" y="250" width="128" height="24" rx="2" class="f-olive"/>
+    <text x="460" y="266" text-anchor="middle" class="f-dark t-mono" font-size="10.5">ABOVE THE FOLD</text>
+    <!-- benefits -->
+    <g>
+      <rect x="48" y="292" width="144" height="96" rx="4" class="f-none s-line" stroke-width="1.5"/>
+      <circle cx="72" cy="316" r="10" class="f-olive-soft"/>
+      <path d="M67 316l4 4 8-8" class="f-none s-dark" stroke-width="2.5" stroke-linecap="square"/>
+      <rect x="64" y="344" width="96" height="8" rx="4" class="f-ink"/>
+      <rect x="64" y="360" width="70" height="6" rx="3" class="f-soft" opacity=".5"/>
+    </g>
+    <g>
+      <rect x="208" y="292" width="144" height="96" rx="4" class="f-none s-line" stroke-width="1.5"/>
+      <circle cx="232" cy="316" r="10" class="f-olive-soft"/>
+      <path d="M227 316l4 4 8-8" class="f-none s-dark" stroke-width="2.5" stroke-linecap="square"/>
+      <rect x="224" y="344" width="96" height="8" rx="4" class="f-ink"/>
+      <rect x="224" y="360" width="70" height="6" rx="3" class="f-soft" opacity=".5"/>
+    </g>
+    <g>
+      <rect x="368" y="292" width="144" height="96" rx="4" class="f-none s-line" stroke-width="1.5"/>
+      <circle cx="392" cy="316" r="10" class="f-olive-soft"/>
+      <path d="M387 316l4 4 8-8" class="f-none s-dark" stroke-width="2.5" stroke-linecap="square"/>
+      <rect x="384" y="344" width="96" height="8" rx="4" class="f-ink"/>
+      <rect x="384" y="360" width="70" height="6" rx="3" class="f-soft" opacity=".5"/>
+    </g>
+  </svg>
+</section>
+
+<section class="premise" aria-label="The central premise">
+  <div class="wrap">
+    <div>
+      <span class="mono">The premise</span>
+      <p class="big">Every team can win with a leader who <em>owns the result.</em></p>
+    </div>
+    <div>
+      <span class="mono">On a landing page</span>
+      <p class="big">Every page can win with an owner who <em>leads it.</em></p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="foundH">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="mono kicker">Core lessons</span>
+        <h2 id="foundH">Four foundations of an owned page</h2>
+      </div>
+      <p>Each lesson from the book becomes a daily habit for page builders. Together they turn a landing page into a mission with a clear leader.</p>
+    </div>
+
+    <div class="found">
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 48 48" fill="none" stroke="#C2C64F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="24" cy="18" rx="11" ry="14"/><path d="M24 32V43M17 43H31M17 12Q19 8 24 7"/></svg></div>
+        <h3>Absolute Accountability</h3>
+        <p>Leaders own everything in their world. When results arrive, the first step is a look in the mirror, and the next step is a confident improvement.</p>
+        <div class="page-note"><span class="mono">On your page</span><p>The headline, images, form and speed are all yours to shape. Review the page, choose one refinement, relaunch and celebrate the progress.</p></div>
+      </article>
+
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 48 48" fill="none" stroke="#C2C64F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 42V22M14 42H34"/><path d="M24 30C14 30 10 22 10 15C19 15 24 21 24 30Z"/><path d="M24 24C33 24 38 17 38 10C29 10 24 16 24 24Z"/></svg></div>
+        <h3>Humility Fuels Growth</h3>
+        <p>Humility opens the door to feedback, learning and stronger collaboration. A humble leader grows faster and brings the team along.</p>
+        <div class="page-note"><span class="mono">On your page</span><p>Let visitor data crown the winning headline, even when it is the version a teammate wrote. Every test result is a gift that sharpens the page.</p></div>
+      </article>
+
+      <article class="card" id="alignment">
+        <div class="ico"><svg viewBox="0 0 48 48" fill="none" stroke="#C2C64F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="9"/><circle cx="24" cy="24" r="2.5" fill="#C2C64F"/><path d="M24 2V8M24 40V46M2 24H8M40 24H46"/></svg></div>
+        <h3>Total Alignment</h3>
+        <p>Every team member understands what they are doing and why they are doing it. The book calls this the commander's intent, and it powers confident action.</p>
+        <div class="page-note"><span class="mono">On your page</span><p>Write one sentence that explains the purpose of the page, then share it with writers, designers and developers. The tool below makes it easy.</p></div>
+      </article>
+
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 48 48" fill="none" stroke="#C2C64F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="9" width="32" height="30" rx="2"/><path d="M14 17H34"/><rect x="14" y="26" width="20" height="7" rx="3.5" fill="#C2C64F"/></svg></div>
+        <h3>Simplicity Drives Execution</h3>
+        <p>Clear, concise plans stay powerful when circumstances shift. Simple instructions let every team member act with speed and confidence.</p>
+        <div class="page-note"><span class="mono">On your page</span><p>One promise, one primary button and three benefits. Visitors understand the page within seconds and know exactly what to do next.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="playbook" aria-labelledby="playH" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="mono kicker">The playbook</span>
+        <h2 id="playH">Five strategies, five page upgrades</h2>
+      </div>
+      <p>Pick a strategy and try its interaction. Each one shows how a leadership principle from Extreme Ownership strengthens a landing page.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Leadership strategies">
+      <button class="tab" role="tab" id="tab1" aria-controls="p1" aria-selected="true">Cover and Move</button>
+      <button class="tab" role="tab" id="tab2" aria-controls="p2" aria-selected="false" tabindex="-1">Simple</button>
+      <button class="tab" role="tab" id="tab3" aria-controls="p3" aria-selected="false" tabindex="-1">Prioritize and Execute</button>
+      <button class="tab" role="tab" id="tab4" aria-controls="p4" aria-selected="false" tabindex="-1">Decentralized Command</button>
+      <button class="tab" role="tab" id="tab5" aria-controls="p5" aria-selected="false" tabindex="-1">Dichotomy of Leadership</button>
+    </div>
+
+    <!-- 1 Cover and Move -->
+    <div class="panel" role="tabpanel" id="p1" aria-labelledby="tab1">
+      <div>
+        <h3>Cover and Move</h3>
+        <p class="idea">Teams connect and support one another as they move toward the mission. Every group strengthens the others, and the whole organization advances together.</p>
+        <div class="upgrade"><span class="mono">Page upgrade</span><p>Let headline, proof and button work as one team. Each section hands the visitor to the next with confidence.</p></div>
+      </div>
+      <div class="stage">
+        <span class="mono stage-label">Section teamwork</span>
+        <svg id="handoffSvg" viewBox="0 0 620 150" role="img" aria-label="Three page sections connected by arrows: Headline, Proof and Button" style="width:100%;height:auto;display:block">
+          <path class="arrow" d="M188 75H217M209 66L218 75L209 84"/>
+          <path class="arrow" d="M403 75H432M424 66L433 75L424 84"/>
+          <g class="node"><rect x="10" y="30" width="170" height="90"/><text class="main" x="95" y="76">HEADLINE</text><text class="sub" x="95" y="100">SPARKS INTEREST</text></g>
+          <g class="node"><rect x="225" y="30" width="170" height="90"/><text class="main" x="310" y="76">PROOF</text><text class="sub" x="310" y="100">BUILDS TRUST</text></g>
+          <g class="node"><rect x="440" y="30" width="170" height="90"/><text class="main" x="525" y="76">BUTTON</text><text class="sub" x="525" y="100">INVITES ACTION</text></g>
+        </svg>
+        <p class="caption" id="handoffCap" aria-live="polite">Press the button to watch the sections support one another.</p>
+        <div class="stage-foot"><button class="btn small" type="button" id="handoffBtn">Run the handoff</button></div>
+      </div>
+    </div>
+
+    <!-- 2 Simple -->
+    <div class="panel" role="tabpanel" id="p2" aria-labelledby="tab2" hidden>
+      <div>
+        <h3>Simple</h3>
+        <p class="idea">Simple plans and clear instructions let everyone act instantly, even when circumstances shift.</p>
+        <div class="upgrade"><span class="mono">Page upgrade</span><p>Choose the sections that serve the mission and let them shine. Tap the button to watch the page become clear.</p></div>
+      </div>
+      <div class="stage">
+        <span class="mono stage-label">Page sections</span>
+        <div class="browser" id="mock">
+          <div class="browser-bar"><i></i><i></i><i></i></div>
+          <div class="mock-body">
+            <div class="mock-block extra"><span>Menu with 9 links</span><span class="mono">Extra</span></div>
+            <div class="mock-block keep"><span>Hero headline with one promise</span><span class="mono">Keep</span></div>
+            <div class="mock-block extra"><span>Image carousel</span><span class="mono">Extra</span></div>
+            <div class="mock-block keep"><span>Three clear benefits</span><span class="mono">Keep</span></div>
+            <div class="mock-block extra"><span>Pop-up offer</span><span class="mono">Extra</span></div>
+            <div class="mock-block extra"><span>Form with 12 fields</span><span class="mono">Extra</span></div>
+            <div class="mock-block keep"><span>Primary button</span><span class="mono">Keep</span></div>
+          </div>
+        </div>
+        <div class="stage-foot">
+          <p class="caption" id="simpleCap" style="min-height:0" aria-live="polite">7 sections</p>
+          <button class="btn small" type="button" id="simpleBtn" aria-pressed="false">Simplify the page</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Prioritize and Execute -->
+    <div class="panel" role="tabpanel" id="p3" aria-labelledby="tab3" hidden>
+      <div>
+        <h3>Prioritize and Execute</h3>
+        <p class="idea">When many priorities arrive, step back, choose the highest-impact one, give it every resource, then move to the next.</p>
+        <div class="upgrade"><span class="mono">Page upgrade</span><p>Tap the improvement that will matter most today. It moves to the top and receives your full focus.</p></div>
+      </div>
+      <div class="stage">
+        <span class="mono stage-label">Mission board</span>
+        <ul class="tasks" id="taskList"></ul>
+        <p class="caption" style="min-height:0">All energy goes to one mission. The rest line up right behind it.</p>
+      </div>
+    </div>
+
+    <!-- 4 Decentralized Command -->
+    <div class="panel" role="tabpanel" id="p4" aria-labelledby="tab4" hidden>
+      <div>
+        <h3>Decentralized Command</h3>
+        <p class="idea">Empowered leaders decide on the spot. Set the mission and the boundaries, then give people the freedom to act.</p>
+        <div class="upgrade"><span class="mono">Page upgrade</span><p>Give every section an owner who improves it quickly, inside the brand voice and the page mission.</p></div>
+      </div>
+      <div class="stage">
+        <span class="mono stage-label">Select a section owner</span>
+        <svg class="hub" viewBox="0 0 620 320" role="group" aria-label="Mission at the center with three section owners inside the mission boundaries">
+          <circle cx="310" cy="160" r="145" fill="none" stroke="#5F88F4" stroke-width="2" stroke-dasharray="7 7"/>
+          <text x="468" y="154" class="f-soft t-mono" font-size="11">MISSION</text>
+          <text x="468" y="170" class="f-soft t-mono" font-size="11">BOUNDARIES</text>
+          <line class="spoke" data-key="headline" x1="310" y1="160" x2="310" y2="58"/>
+          <line class="spoke" data-key="visuals" x1="310" y1="160" x2="223" y2="210"/>
+          <line class="spoke" data-key="form" x1="310" y1="160" x2="397" y2="210"/>
+          <circle cx="310" cy="160" r="44" class="f-olive"/>
+          <text x="310" y="167" text-anchor="middle" class="f-dark t-disp" font-size="19">MISSION</text>
+          <g class="sat" data-key="headline" role="button" tabindex="0" aria-label="Headline owner"><circle cx="310" cy="58" r="36"/><text x="310" y="63">HEADLINE</text></g>
+          <g class="sat" data-key="visuals" role="button" tabindex="0" aria-label="Visuals owner"><circle cx="223" cy="210" r="36"/><text x="223" y="215">VISUALS</text></g>
+          <g class="sat" data-key="form" role="button" tabindex="0" aria-label="Form owner"><circle cx="397" cy="210" r="36"/><text x="397" y="215">FORM</text></g>
+        </svg>
+        <p class="caption" id="hubCap" aria-live="polite">Select a section owner to see their freedom to act.</p>
+      </div>
+    </div>
+
+    <!-- 5 Dichotomy -->
+    <div class="panel" role="tabpanel" id="p5" aria-labelledby="tab5" hidden>
+      <div>
+        <h3>Dichotomy of Leadership</h3>
+        <p class="idea">Great leaders balance opposing forces: confident and humble, brave and thoughtful, detail-aware and trusting.</p>
+        <div class="upgrade"><span class="mono">Page upgrade</span><p>Slide each handle into the olive zone to find the balance that makes a page feel confident and welcoming.</p></div>
+      </div>
+      <div class="stage">
+        <span class="mono stage-label">Balance board</span>
+        <div class="bal"><div class="bal-top"><span>Confident</span><span>Humble</span></div><div class="slider"><input type="range" min="0" max="100" value="22" aria-label="Confident to humble"></div><span class="state"></span></div>
+        <div class="bal"><div class="bal-top"><span>Bold</span><span>Thoughtful</span></div><div class="slider"><input type="range" min="0" max="100" value="72" aria-label="Bold to thoughtful"></div><span class="state"></span></div>
+        <div class="bal"><div class="bal-top"><span>Detail-aware</span><span>Trusting</span></div><div class="slider"><input type="range" min="0" max="100" value="50" aria-label="Detail-aware to trusting"></div><span class="state"></span></div>
+        <p class="caption" id="balSum" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="intent" aria-labelledby="intentH" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="mono kicker">Total Alignment in action</span>
+        <h2 id="intentH">Write your page's commander's intent</h2>
+      </div>
+      <p>Alignment begins with one shared sentence. Fill in the three fields and share the result with everyone who touches the page. The starter text is an example you can replace.</p>
+    </div>
+    <div class="intent">
+      <div class="fields">
+        <label><span>Who is this page for?</span><input type="text" id="fWho" value="local bakery owners" autocomplete="off"></label>
+        <label><span>What will they achieve?</span><input type="text" id="fWhat" value="launch a beautiful page in a day" autocomplete="off"></label>
+        <label><span>What is the one action?</span><input type="text" id="fAct" value="tap Start my page" autocomplete="off"></label>
+      </div>
+      <div class="output">
+        <span class="mono">Your page intent</span>
+        <blockquote id="intentOut"></blockquote>
+        <div class="foot">
+          <button class="btn small dark" type="button" id="copyBtn">Copy sentence</button>
+          <span class="mono">Share the why with the whole team</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="ready" aria-labelledby="readyH" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="mono kicker">Mission readiness</span>
+        <h2 id="readyH">Check your mission readiness</h2>
+      </div>
+      <p>Tick each statement that describes your page today. Every tick moves you closer to a page that leads visitors to a win.</p>
+    </div>
+    <div class="ready">
+      <div class="gauge-card">
+        <svg class="gauge" viewBox="0 0 180 180" role="img" aria-label="Readiness gauge">
+          <circle class="track" cx="90" cy="90" r="70"/>
+          <circle class="arc" id="arc" cx="90" cy="90" r="70" transform="rotate(-90 90 90)" stroke-dasharray="439.82" stroke-dashoffset="439.82"/>
+          <text class="num" id="count" x="90" y="104">0</text>
+          <text class="of" x="90" y="128">OF 10 OWNED</text>
+        </svg>
+        <p class="gauge-msg" id="gaugeMsg" aria-live="polite"></p>
+      </div>
+      <div>
+        <ul class="checks">
+          <li class="check"><label><input type="checkbox" checked><span><span class="who mono">Absolute Accountability</span>I review every section of my page and own the results.</span></label></li>
+          <li class="check"><label><input type="checkbox"><span><span class="who mono">Absolute Accountability</span>I check results weekly and choose one refinement to launch.</span></label></li>
+          <li class="check"><label><input type="checkbox"><span><span class="who mono">Humility Fuels Growth</span>I welcome visitor data and let it pick the winning headline.</span></label></li>
+          <li class="check"><label><input type="checkbox" checked><span><span class="who mono">Total Alignment</span>My team can state the purpose of the page in one sentence.</span></label></li>
+          <li class="check"><label><input type="checkbox"><span><span class="who mono">Total Alignment</span>Everyone on my team knows the why behind each section.</span></label></li>
+          <li class="check"><label><input type="checkbox" checked><span><span class="who mono">Simplicity</span>My headline makes one clear promise.</span></label></li>
+          <li class="check"><label><input type="checkbox"><span><span class="who mono">Simplicity</span>My page leads to one primary button.</span></label></li>
+          <li class="check"><label><input type="checkbox"><span><span class="who mono">Prioritize and Execute</span>I focus on the single highest-impact improvement first.</span></label></li>
+          <li class="check"><label><input type="checkbox"><span><span class="who mono">Decentralized Command</span>Each section has an owner empowered to improve it.</span></label></li>
+          <li class="check"><label><input type="checkbox"><span><span class="who mono">Dichotomy of Leadership</span>I balance bold design with thoughtful readability.</span></label></li>
+        </ul>
+        <div class="ready-actions">
+          <button class="btn small ghost" type="button" id="resetBtn">Start fresh</button>
+          <span class="mono" style="color:var(--ink-soft)">Example starting point. Adjust it to match your page.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing" aria-labelledby="closeH">
+  <div class="wrap">
+    <div>
+      <span class="mono kicker">Your next mission</span>
+      <h2 id="closeH">Ready to lead your next landing page?</h2>
+      <p>Own your message, your design and your results. easylandx landing pages bring these leadership lessons to life, one clear page at a time.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx
+          <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M5 15L15 5M7 5h8v8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"/></svg>
+        </a>
+        <span class="mono" style="align-self:center">easylandx.github.io</span>
+      </div>
+    </div>
+    <svg class="art" viewBox="0 0 420 310" role="img" aria-labelledby="sumT">
+      <title id="sumT">A summit with a flag at the top and a path leading up</title>
+      <circle cx="350" cy="70" r="28" class="f-none s-soft" stroke-width="1.5"/>
+      <circle cx="350" cy="70" r="14" class="f-olive-soft"/>
+      <polygon points="0,300 70,200 130,255 190,205 250,300" class="f-lift s-line" stroke-width="1.5"/>
+      <polygon points="150,300 260,92 400,300" class="f-olive"/>
+      <polygon points="260,92 400,300 300,300" class="f-dim"/>
+      <path d="M170 300Q205 266 214 236T240 176T255 122" class="f-none s-dark" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"/>
+      <line x1="260" y1="92" x2="260" y2="50" class="s-ink" stroke-width="3"/>
+      <polygon points="260,50 296,61 260,72" class="f-ink"/>
+      <path d="M0 252Q60 240 120 252M300 150Q340 140 380 150M20 120Q70 108 120 120" class="f-none s-line" stroke-width="1.5" stroke-dasharray="4 6"/>
+      <rect x="0" y="300" width="420" height="8" class="f-blue s-line" stroke-width="1.5"/>
+    </svg>
+  </div>
+</section>
+</main>
+
+<footer class="foot-note">
+  <div class="wrap">
+    <span class="mono">Inspired by Extreme Ownership by Jocko Willink and Leif Babin</span>
+    <a class="mono" style="color:var(--olive-soft)" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* Tabs */
+  var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  var panels=[].slice.call(document.querySelectorAll('[role="tabpanel"]'));
+  function select(i){
+    tabs.forEach(function(t,j){t.setAttribute('aria-selected',j===i?'true':'false');t.tabIndex=j===i?0:-1;});
+    panels.forEach(function(p,j){p.hidden=j!==i;});
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){select(i);});
+    t.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+        var n=(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length;
+        select(n);tabs[n].focus();
+      }
+    });
+  });
+
+  /* 1 Cover and Move */
+  var hNodes=[].slice.call(document.querySelectorAll('#handoffSvg .node'));
+  var hArrows=[].slice.call(document.querySelectorAll('#handoffSvg .arrow'));
+  var hCap=document.getElementById('handoffCap');
+  var hText=['Headline sparks interest.','Proof builds trust.','The button invites the next step.'];
+  var hTimers=[];
+  document.getElementById('handoffBtn').addEventListener('click',function(){
+    hTimers.forEach(clearTimeout);hTimers=[];
+    hNodes.concat(hArrows).forEach(function(n){n.classList.remove('on');});
+    hCap.textContent='The handoff is underway...';
+    hNodes.forEach(function(n,i){
+      hTimers.push(setTimeout(function(){
+        n.classList.add('on');
+        if(i>0)hArrows[i-1].classList.add('on');
+        hCap.textContent=hText[i];
+        if(i===2)hTimers.push(setTimeout(function(){hCap.textContent='The visitor moves forward, supported at every step.';},1000));
+      },750*i+100));
+    });
+  });
+
+  /* 2 Simple */
+  var mock=document.getElementById('mock'),sBtn=document.getElementById('simpleBtn'),sCap=document.getElementById('simpleCap');
+  sBtn.addEventListener('click',function(){
+    var s=mock.classList.toggle('simple');
+    sBtn.textContent=s?'Show everything':'Simplify the page';
+    sBtn.setAttribute('aria-pressed',s?'true':'false');
+    sCap.textContent=s?'3 sections, one clear path':'7 sections';
+  });
+
+  /* 3 Prioritize and Execute */
+  var tasks=['Sharpen the headline promise','Speed up image loading','Shorten the form to three fields','Add customer testimonials','Refresh the footer links'];
+  var focus=0,list=document.getElementById('taskList');
+  function renderTasks(refocus){
+    list.innerHTML='';
+    var order=[focus].concat(tasks.map(function(_,i){return i;}).filter(function(i){return i!==focus;}));
+    order.forEach(function(idx,pos){
+      var li=document.createElement('li'),b=document.createElement('button');
+      b.type='button';b.className='task'+(pos===0?' is-focus':'');
+      b.setAttribute('aria-pressed',pos===0?'true':'false');
+      var tag=document.createElement('span');tag.className='tag';tag.textContent=pos===0?'Focus now':'Up next';
+      var t=document.createElement('span');t.textContent=tasks[idx];
+      b.appendChild(tag);b.appendChild(t);
+      b.addEventListener('click',function(){focus=idx;renderTasks(true);});
+      li.appendChild(b);list.appendChild(li);
+    });
+    if(refocus)list.querySelector('button').focus();
+  }
+  renderTasks(false);
+
+  /* 4 Decentralized Command */
+  var owners={
+    headline:'The headline owner tests fresh wording this week, guided by the page mission.',
+    visuals:'The visuals owner picks images that match the brand and the page intent.',
+    form:'The form owner trims fields so visitors finish quickly and happily.'
+  };
+  var sats=[].slice.call(document.querySelectorAll('.sat')),spokes=[].slice.call(document.querySelectorAll('.spoke'));
+  sats.forEach(function(g){
+    function act(){
+      sats.forEach(function(x){x.classList.remove('on');});
+      g.classList.add('on');
+      spokes.forEach(function(s){s.classList.toggle('on',s.getAttribute('data-key')===g.getAttribute('data-key'));});
+      document.getElementById('hubCap').textContent=owners[g.getAttribute('data-key')];
+    }
+    g.addEventListener('click',act);
+    g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});
+  });
+
+  /* 5 Dichotomy */
+  var bals=[].slice.call(document.querySelectorAll('.bal'));
+  function updBal(){
+    var ok=0;
+    bals.forEach(function(b){
+      var v=+b.querySelector('input').value,good=v>=40&&v<=60;
+      if(good)ok++;
+      b.classList.toggle('good',good);
+      b.querySelector('.state').textContent=good?'Balanced':'Slide toward the center';
+    });
+    document.getElementById('balSum').textContent=ok===3?'Balanced leadership achieved. The page feels confident and welcoming.':ok+' of 3 pairs balanced. Slide each handle into the olive zone.';
+  }
+  bals.forEach(function(b){b.querySelector('input').addEventListener('input',updBal);});
+  updBal();
+
+  /* Intent builder */
+  var fWho=document.getElementById('fWho'),fWhat=document.getElementById('fWhat'),fAct=document.getElementById('fAct'),out=document.getElementById('intentOut');
+  function buildIntent(){
+    var a=fWho.value.trim()||'your audience',o=fWhat.value.trim()||'reach their goal',x=fAct.value.trim()||'take the next step';
+    out.textContent='This page helps '+a+' '+o+'. Every element leads to one confident action: '+x+'.';
+  }
+  [fWho,fWhat,fAct].forEach(function(f){f.addEventListener('input',buildIntent);});
+  buildIntent();
+  var copyBtn=document.getElementById('copyBtn');
+  copyBtn.addEventListener('click',function(){
+    var done=function(msg){copyBtn.textContent=msg;setTimeout(function(){copyBtn.textContent='Copy sentence';},1800);};
+    var fallback=function(){
+      try{var r=document.createRange();r.selectNodeContents(out);var s=window.getSelection();s.removeAllRanges();s.addRange(r);}catch(e){}
+      done('Selected for copying');
+    };
+    try{
+      navigator.clipboard.writeText(out.textContent).then(function(){done('Copied');},fallback);
+    }catch(e){fallback();}
+  });
+
+  /* Readiness */
+  var boxes=[].slice.call(document.querySelectorAll('.check input')),arc=document.getElementById('arc'),C=439.82;
+  function msgFor(n){
+    if(n===0)return 'Mission prep begins. Pick one statement to own today.';
+    if(n<=3)return 'Momentum is building.';
+    if(n<=6)return 'Strong alignment is forming.';
+    if(n<=9)return 'Nearly mission ready.';
+    return 'Mission ready. Launch with confidence.';
+  }
+  function updReady(){
+    var n=boxes.filter(function(b){return b.checked;}).length;
+    arc.style.strokeDashoffset=String(C*(1-n/boxes.length));
+    document.getElementById('count').textContent=n;
+    document.getElementById('gaugeMsg').textContent=msgFor(n);
+  }
+  boxes.forEach(function(b){b.addEventListener('change',updReady);});
+  document.getElementById('resetBtn').addEventListener('click',function(){boxes.forEach(function(b){b.checked=false;});updReady();});
+  updReady();
+})();
+</script>
+</body>
+</html>
