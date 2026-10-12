@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Landing Pages with a Champion's Mindset</title>
+<style>
+:root{--bg:#FFBF00;--ink:#1C1C1C;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.6;font-size:18px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 clamp(22px,6vw,56px)}
+h1,h2,h3{font-family:'Arial Black',Impact,Helvetica,sans-serif;line-height:1.08;margin:0 0 .5em;letter-spacing:-.01em}
+h1{font-size:clamp(2.3rem,7vw,4.6rem)}
+h2{font-size:clamp(1.7rem,4.5vw,2.8rem)}
+h3{font-size:1.2rem}
+p{margin:0 0 1em}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-family:Arial,sans-serif;font-weight:700}
+.logo{font-family:'Arial Black',sans-serif;font-size:1.3rem}
+.btn{display:inline-block;background:var(--ink);color:var(--bg);font-family:'Arial Black',Arial,sans-serif;text-decoration:none;padding:15px 28px;border:3px solid var(--ink);border-radius:999px;cursor:pointer;font-size:1rem;transition:transform .15s,background .15s,color .15s}
+.btn:hover{transform:translateY(-3px);background:var(--bg);color:var(--ink)}
+.btn.alt{background:var(--bg);color:var(--ink)}
+.btn.alt:hover{background:var(--ink);color:var(--bg)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;padding:36px 0 70px}
+.hero p{font-size:1.2rem;max-width:34em}
+.tag{display:inline-block;border:2px solid var(--ink);border-radius:999px;padding:4px 14px;font-family:Arial,sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+section{padding:70px 0}
+.dark{background:var(--ink);color:var(--bg)}
+.dark .btn{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.dark .btn:hover{background:var(--ink);color:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{border:3px solid var(--ink);border-radius:20px;padding:26px;background:var(--bg)}
+.dark .card{border-color:var(--bg);background:var(--ink)}
+.card svg{width:64px;height:64px;margin-bottom:12px}
+.num{font-family:'Arial Black',sans-serif;font-size:2.4rem;opacity:.25}
+.lead{max-width:38em;font-size:1.15rem}
+/* interactive: opening switch */
+.panel{border:3px solid var(--bg);border-radius:24px;padding:clamp(18px,4vw,34px)}
+.light .panel{border-color:var(--ink)}
+.toggle{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.toggle button{font-family:'Arial Black',sans-serif;font-size:1rem;padding:12px 22px;border-radius:999px;border:3px solid currentColor;background:transparent;color:inherit;cursor:pointer}
+.toggle button[aria-pressed=true]{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.light .toggle button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.wire{width:100%;max-width:340px;margin:0 auto;display:block}
+.wire rect,.wire circle,.wire line,.wire path{transition:all .45s ease}
+/* board builder */
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:4px solid var(--ink);width:min(100%,340px);margin:0 auto;aspect-ratio:1}
+.sq{border:0;font-family:'Arial Black',sans-serif;font-size:.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;text-align:center;padding:4px;color:var(--ink);background:var(--bg)}
+.sq.dk{background:var(--ink);color:var(--bg)}
+.sq.on{background:var(--ink);color:var(--bg);outline:3px solid var(--bg);outline-offset:-6px}
+.sq.dk.on{background:var(--bg);color:var(--ink);outline-color:var(--ink)}
+.meter{height:18px;border:3px solid var(--ink);border-radius:99px;overflow:hidden;margin:14px 0}
+.meter i{display:block;height:100%;width:0;background:var(--ink);transition:width .4s}
+.check{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:2px solid rgba(28,28,28,.25);cursor:pointer;font-family:Arial,sans-serif}
+.check input{width:24px;height:24px;accent-color:#1C1C1C;flex:none;margin-top:2px}
+.out{font-family:'Arial Black',sans-serif;min-height:3.2em}
+textarea{width:100%;min-height:90px;border:3px solid var(--ink);background:transparent;color:var(--ink);font:inherit;padding:12px;border-radius:14px}
+footer{padding:60px 0 40px;text-align:center}
+footer small{display:block;margin-top:26px;font-family:Arial,sans-serif;font-weight:700}
+@media(max-width:760px){.hero,.split{grid-template-columns:1fr}.hero svg{max-width:300px;margin:0 auto}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<nav><span class="logo">easylandx</span><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a></nav>
+
+<header class="hero">
+<div>
+<span class="tag">Landing pages · Champion mindset</span>
+<h1>Launch pages that move like a champion.</h1>
+<p>Five-time World Chess Champion Viswanathan Anand shows that lasting success comes from adapting, learning from every result, and keeping a calm mind. easylandx brings that same spirit to your landing page: crafted one-of-a-kind for your brand, ready to evolve with you.</p>
+<p><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a></p>
+</div>
+<svg viewBox="0 0 320 340" role="img" aria-label="Chess knight on a board">
+<g stroke="#1C1C1C" stroke-width="4">
+<rect x="20" y="250" width="280" height="70" fill="#1C1C1C"/>
+<g fill="#FFBF00"><rect x="20" y="250" width="35" height="35"/><rect x="90" y="250" width="35" height="35"/><rect x="160" y="250" width="35" height="35"/><rect x="230" y="250" width="35" height="35"/><rect x="55" y="285" width="35" height="35"/><rect x="125" y="285" width="35" height="35"/><rect x="195" y="285" width="35" height="35"/><rect x="265" y="285" width="35" height="35"/></g>
+<path d="M90 250 C90 210 120 200 128 170 C100 175 78 160 72 135 C66 110 90 70 125 50 L130 25 L150 45 C200 40 245 85 240 150 C238 190 215 210 225 250 Z" fill="#1C1C1C"/>
+<circle cx="148" cy="88" r="9" fill="#FFBF00" stroke="none"/>
+<path d="M92 140 L122 128" stroke="#FFBF00" stroke-width="5" fill="none"/>
+<path d="M175 70 C205 90 215 130 205 170" stroke="#FFBF00" stroke-width="4" fill="none"/>
+</g>
+</svg>
+</header>
+</div>
+
+<section class="dark">
+<div class="wrap">
+<h2>Three ideas that shape every champion's journey</h2>
+<p class="lead">Anand's story shows how top performers stay at the summit across eras. Each idea fits beautifully into the way easylandx builds your page.</p>
+<div class="grid" style="margin-top:34px">
+<div class="card">
+<svg viewBox="0 0 64 64" fill="none" stroke="#FFBF00" stroke-width="4" stroke-linecap="round"><path d="M10 40 C10 16 40 10 50 24"/><path d="M42 20 L52 24 L50 12"/><path d="M54 24 C54 48 24 54 14 40"/><path d="M22 44 L12 40 L14 52"/></svg>
+<h3>Adaptability Is Strength</h3>
+<p>Success is a living journey. Champions refresh their approach as environments, audiences, and technology evolve. Your landing page grows the same way, with easy updates whenever your story advances.</p>
+</div>
+<div class="card">
+<svg viewBox="0 0 64 64" fill="none" stroke="#FFBF00" stroke-width="4" stroke-linecap="round"><rect x="8" y="34" width="10" height="20"/><rect x="27" y="22" width="10" height="32"/><rect x="46" y="8" width="10" height="46"/><path d="M6 58 H60"/></svg>
+<h3>Every Result Is Data</h3>
+<p>Each outcome carries insight. Anand reviews right away, with ego set aside and curiosity in front. Look at your page results with the same open mind and turn every number into your next improvement.</p>
+</div>
+<div class="card">
+<svg viewBox="0 0 64 64" fill="none" stroke="#FFBF00" stroke-width="4" stroke-linecap="round"><path d="M8 24 H56"/><path d="M32 24 V54"/><path d="M14 54 H50"/><path d="M12 24 L6 40 H22 Z"/><path d="M52 24 L46 40 H62 Z"/></svg>
+<h3>Balance Builds Longevity</h3>
+<p>A strong support system and rich life beyond work keep energy high for years. A page that runs smoothly gives you time for the things you love, so your best ideas keep flowing.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="light">
+<div class="wrap">
+<h2>Interactive 1 · Calculated Risk: Switch Your Opening</h2>
+<p class="lead">In the 2008 World Championship, Anand shifted his lifelong 1.e4 to 1.d4 and brought fresh energy to the match. Try the same bold shift: choose an opening layout for your page and watch it transform.</p>
+<div class="panel" style="margin-top:28px">
+<div class="toggle" role="group" aria-label="Choose opening">
+<button id="b1" aria-pressed="true">1. e4 · Classic Hero</button>
+<button id="b2" aria-pressed="false">1. d4 · Bold Split</button>
+</div>
+<div class="split">
+<svg class="wire" viewBox="0 0 340 300" aria-label="Page layout wireframe">
+<rect x="4" y="4" width="332" height="292" rx="14" fill="none" stroke="#1C1C1C" stroke-width="4"/>
+<rect x="4" y="4" width="332" height="32" rx="14" fill="#1C1C1C"/>
+<circle cx="24" cy="20" r="5" fill="#FFBF00"/><circle cx="42" cy="20" r="5" fill="#FFBF00"/>
+<!-- headline -->
+<rect id="wh" x="60" y="64" width="220" height="26" rx="6" fill="#1C1C1C"/>
+<rect id="wl1" x="80" y="104" width="180" height="10" rx="5" fill="#1C1C1C" opacity=".5"/>
+<rect id="wl2" x="100" y="124" width="140" height="10" rx="5" fill="#1C1C1C" opacity=".5"/>
+<rect id="wb" x="120" y="154" width="100" height="32" rx="16" fill="#1C1C1C"/>
+<rect id="wi" x="30" y="206" width="280" height="76" rx="10" fill="none" stroke="#1C1C1C" stroke-width="4"/>
+<circle id="wc1" cx="90" cy="244" r="16" fill="#1C1C1C"/><circle id="wc2" cx="170" cy="244" r="16" fill="#1C1C1C"/><circle id="wc3" cx="250" cy="244" r="16" fill="#1C1C1C"/>
+</svg>
+<div>
+<h3 id="ot">Classic Hero</h3>
+<p id="od">A centered headline, a warm promise, and one inviting button. Clear, confident, and welcoming for every visitor.</p>
+<p style="font-family:Arial,sans-serif;font-weight:700">Both openings are fully crafted for you at easylandx.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="dark">
+<div class="wrap">
+<h2>The Champion's Playbook, Applied to Your Page</h2>
+<div class="grid" style="margin-top:30px">
+<div class="card"><div class="num">01</div><h3>Unlearn to Re-learn</h3><p>When engines reshaped chess, Anand refreshed his preparation. easylandx pages are designed fresh around your goals, so your message feels current and original.</p></div>
+<div class="card"><div class="num">02</div><h3>Emotional Neutrality</h3><p>Celebrate wins calmly and meet every outcome with steady focus. A clean, composed page reflects that calm and helps visitors feel confident.</p></div>
+<div class="card"><div class="num">03</div><h3>Immediate Reflection</h3><p>Thoughts captured right after the match stay vivid. Review your page soon after each campaign while insights are fresh.</p></div>
+<div class="card"><div class="num">04</div><h3>Technology as Collaborator</h3><p>Anand welcomed engines early to spot ideas and sharpen his thinking. easylandx pairs smart tools with a human touch to bring your vision to life.</p></div>
+<div class="card"><div class="num">05</div><h3>Opponent Profiling</h3><p>Anand studied body language and habits. Know your visitors just as closely: their goals, questions, and favorite moments, then speak straight to them.</p></div>
+<div class="card"><div class="num">06</div><h3>Gut and Calculation</h3><p>Instinct refined by years of practice works hand in hand with careful analysis. Blend your creative sense with clear page data for winning choices.</p></div>
+</div>
+</div>
+</section>
+
+<section class="light">
+<div class="wrap">
+<h2>Interactive 2 · Build Your Winning Board</h2>
+<p class="lead">Every square holds a page element. Select the squares that matter most to your brand and see your strategy take shape.</p>
+<div class="split" style="margin-top:28px">
+<div class="board" id="board"></div>
+<div>
+<h3 id="bt">0 of 6 key moves selected</h3>
+<div class="meter"><i id="bm"></i></div>
+<p class="out" id="bo">Tap the squares to begin your game plan.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="dark">
+<div class="wrap">
+<h2>Interactive 3 · Immediate Reflection Check</h2>
+<p class="lead">Anand records thoughts right after each match. Tick what your current page already shines at and capture a quick note while it is fresh.</p>
+<div class="panel" style="margin-top:28px">
+<div id="chk"></div>
+<div class="meter" style="border-color:#FFBF00"><i id="cm" style="background:#FFBF00"></i></div>
+<p class="out" id="co">Select a lesson to see your champion rating.</p>
+<textarea id="note" placeholder="Write one insight from today..." style="border-color:#FFBF00;color:#FFBF00"></textarea>
+</div>
+</div>
+</section>
+
+<section class="light">
+<div class="wrap">
+<h2>Your Next Move</h2>
+<p class="lead">Champions grow by choosing the next bold, well-prepared step. Your next step is a landing page crafted uniquely for you, built to adapt, learn, and shine for years to come.</p>
+<p><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a></p>
+</div>
+</section>
+
+<footer class="dark">
+<div class="wrap">
+<h2>Ready when you are.</h2>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a>
+<small>Page made by easylandx · Inspired by Mind Master by Viswanathan Anand with Susan Ninan</small>
+</div>
+</footer>
+
+<script>
+// Opening switch
+var layouts={
+ e4:{t:'Classic Hero',d:'A centered headline, a warm promise, and one inviting button. Clear, confident, and welcoming for every visitor.',
+  h:[60,64,220,26],l1:[80,104,180,10],l2:[100,124,140,10],b:[120,154,100,32],c:[90,170,250]},
+ d4:{t:'Bold Split',d:'A strong left-aligned headline with proof points beside it. Fresh energy that surprises and delights, just like the 2008 shift.',
+  h:[24,60,170,40],l1:[24,116,140,10],l2:[24,136,110,10],b:[24,164,100,32],c:[90,170,250]}
+};
+function setL(k){
+ var L=layouts[k];
+ [['wh',L.h],['wl1',L.l1],['wl2',L.l2],['wb',L.b]].forEach(function(p){
+  var e=document.getElementById(p[0]),v=p[1];
+  e.setAttribute('x',v[0]);e.setAttribute('y',v[1]);e.setAttribute('width',v[2]);e.setAttribute('height',v[3]);
+ });
+ var ys=k=='e4'?244:244;
+ document.getElementById('wc1').setAttribute('cx',k=='e4'?90:60);
+ document.getElementById('wc2').setAttribute('cx',k=='e4'?170:130);
+ document.getElementById('wc3').setAttribute('cx',k=='e4'?250:200);
+ document.getElementById('ot').textContent=L.t;
+ document.getElementById('od').textContent=L.d;
+ document.getElementById('b1').setAttribute('aria-pressed',k=='e4');
+ document.getElementById('b2').setAttribute('aria-pressed',k=='d4');
+}
+document.getElementById('b1').onclick=function(){setL('e4')};
+document.getElementById('b2').onclick=function(){setL('d4')};
+
+// Board builder
+var moves=[
+ ['Headline','A clear promise greets every visitor.'],
+ ['Story','Your journey builds trust and connection.'],
+ ['Proof','Results and kind words inspire confidence.'],
+ ['Offer','A generous, easy-to-grasp value shines.'],
+ ['Button','One bright invitation guides the next step.'],
+ ['Visuals','Artwork and illustration bring joy and memory.']
+];
+var board=document.getElementById('board'),sel={};
+for(var i=0;i<16;i++){
+ var b=document.createElement('button');
+ var r=Math.floor(i/4),c=i%4;
+ b.className='sq'+((r+c)%2?' dk':'');
+ b.setAttribute('aria-label','Square '+(i+1));
+ if(i<6){b.textContent=moves[i][0];b.dataset.m=i}
+ else if(i==15){b.textContent='♞'}
+ board.appendChild(b);
+}
+// place 6 moves at spread squares
+var map=[1,3,5,10,12,14],sq=board.children;
+for(var k=0;k<16;k++){sq[k].textContent='';sq[k].removeAttribute('data-m')}
+map.forEach(function(p,i){sq[p].textContent=moves[i][0];sq[p].dataset.m=i});
+board.onclick=function(e){
+ var t=e.target.closest('.sq');if(!t||t.dataset.m===undefined)return;
+ var m=t.dataset.m;
+ if(sel[m]){delete sel[m];t.classList.remove('on')}else{sel[m]=1;t.classList.add('on')}
+ var n=Object.keys(sel).length;
+ document.getElementById('bt').textContent=n+' of 6 key moves selected';
+ document.getElementById('bm').style.width=(n/6*100)+'%';
+ document.getElementById('bo').textContent=n===6?'Checkmate-ready! Your full game plan is set. Let easylandx craft it.':moves[m][0]+': '+moves[m][1];
+};
+
+// Reflection check
+var lessons=['Adapts easily as my audience evolves','Welcomes insights from every result','Shows a calm, composed look','Uses smart tools as a collaborator','Speaks directly to my ideal visitor','Blends instinct with clear data'];
+var rat=['Rising Talent','Club Champion','Master','Grandmaster','Super Grandmaster','World Champion'];
+var chk=document.getElementById('chk');
+lessons.forEach(function(l){
+ var lb=document.createElement('label');lb.className='check';
+ lb.style.borderBottomColor='rgba(255,191,0,.35)';
+ lb.innerHTML='<input type="checkbox" style="accent-color:#FFBF00"><span>'+l+'</span>';
+ chk.appendChild(lb);
+});
+chk.onchange=function(){
+ var n=chk.querySelectorAll('input:checked').length;
+ document.getElementById('cm').style.width=(n/6*100)+'%';
+ document.getElementById('co').textContent=n?('Rating: '+rat[n-1]+' · '+n+'/6 strengths shining'):'Select a lesson to see your champion rating.';
+};
+try{var s=localStorage.getItem('exl_note');if(s)document.getElementById('note').value=s}catch(e){}
+document.getElementById('note').oninput=function(){try{localStorage.setItem('exl_note',this.value)}catch(e){}};
+</script>
+</body>
+</html>

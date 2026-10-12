@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX Landing Pages · The Moves That Matter</title>
+<style>
+:root{--bg:#ff6a00;--ink:#0a0a0a;--paper:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Arial,sans-serif;line-height:1.55}
+.wrap{max-width:1100px;margin:0 auto;padding:0 clamp(22px,6vw,72px)}
+section{padding:clamp(48px,8vw,96px) 0}
+h1,h2,h3{line-height:1.05;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(40px,8vw,88px);font-weight:900}
+h2{font-size:clamp(30px,5vw,52px);font-weight:900}
+h3{font-size:22px;font-weight:800}
+p{margin:0 0 1em;max-width:62ch}
+.eyebrow{display:inline-block;background:var(--ink);color:var(--paper);padding:6px 14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:12px;margin-bottom:20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0;gap:12px;flex-wrap:wrap}
+.logo{font-weight:900;font-size:22px;letter-spacing:-.03em}
+.btn{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:900;padding:16px 30px;border:3px solid var(--ink);font-size:17px;transition:.2s;cursor:pointer}
+.btn:hover{background:var(--paper);color:var(--ink);transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
+.btn.alt{background:var(--paper);color:var(--ink)}
+.btn.alt:hover{background:var(--ink);color:var(--paper)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+.board{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));grid-template-rows:repeat(8,minmax(0,1fr));border:6px solid var(--ink);width:100%;max-width:460px;margin:0 auto;aspect-ratio:1;box-shadow:12px 12px 0 var(--ink)}
+.sq{border:0;padding:0;margin:0;min-width:0;min-height:0;overflow:hidden;line-height:1;border-radius:0;-webkit-appearance:none;appearance:none;aspect-ratio:1/1;font-variant-emoji:text;font-size:clamp(14px,3.6vw,30px);cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit}
+.sq.l{background:var(--paper);color:var(--ink)}
+.sq.d{background:var(--ink);color:var(--paper)}
+.sq:hover,.sq.on{background:var(--bg);color:var(--ink);outline:3px solid var(--ink);outline-offset:-3px}
+.lesson{background:var(--ink);color:var(--paper);padding:20px 24px;margin:28px auto 0;max-width:460px;min-height:140px}
+.lesson b{color:var(--bg)}
+.lesson small{display:block;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-bottom:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.card{background:var(--paper);border:3px solid var(--ink);padding:26px;position:relative}
+.card.k{background:var(--ink);color:var(--paper)}
+.card .big{font-size:56px;line-height:1;margin-bottom:12px}
+.tag{font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.1em;border-bottom:3px solid var(--bg);display:inline-block;margin-bottom:10px}
+.band{background:var(--ink);color:var(--paper)}
+.band .eyebrow{background:var(--paper);color:var(--ink)}
+.band .card{color:var(--ink)}
+.steps{counter-reset:s;display:grid;gap:18px}
+.step{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start;border-top:3px solid var(--ink);padding-top:18px}
+.step::before{counter-increment:s;content:counter(s);background:var(--ink);color:var(--paper);font-weight:900;font-size:30px;width:56px;height:56px;display:flex;align-items:center;justify-content:center}
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0}
+.chip{background:var(--ink);color:var(--paper);border:3px solid var(--paper);font-weight:800;padding:12px 18px;cursor:pointer;font-size:15px;font-family:inherit}
+.chip[aria-pressed="true"]{background:var(--paper);color:var(--ink);border-color:var(--bg);box-shadow:0 0 0 3px var(--ink)}
+.meter{height:30px;background:var(--paper);border:3px solid var(--paper);margin:14px 0;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--bg);transition:width .4s}
+.out{font-size:20px;font-weight:700;min-height:64px}
+.quote{font-size:clamp(26px,4.5vw,46px);font-weight:900;letter-spacing:-.02em;line-height:1.1}
+.cta{text-align:center}
+.cta p{margin-left:auto;margin-right:auto}
+footer{padding:30px 0 40px;border-top:4px solid var(--ink);font-weight:700}
+svg{display:block;max-width:100%}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><div class="logo">♞ EasyLandX</div><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a></nav>
+
+<section class="hero" style="padding-top:30px">
+<div>
+<span class="eyebrow">Landing pages · The Moves That Matter</span>
+<h1>Every great page begins with a great move.</h1>
+<p style="font-size:20px">Grandmaster Jonathan Rowson shows that life, like chess, rewards clear attention and intentional choices. EasyLandX turns that wisdom into landing pages that welcome visitors, guide their focus, and invite one confident next step.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with EasyLandX</a>
+</div>
+<div>
+<div class="board" id="board" aria-label="Interactive chessboard of 64 lessons"></div>
+<div class="lesson" id="lesson"><small>64 squares · 64 vignettes</small><b>Tap any square</b> to open a lesson from the board and see how it shapes a landing page.</div>
+</div>
+</section>
+</div>
+
+<section class="band"><div class="wrap">
+<span class="eyebrow">Core philosophy</span>
+<h2>Four big ideas, one beautiful page.</h2>
+<div class="grid" style="margin-top:30px">
+<div class="card"><div class="big">♚</div><span class="tag">Concentration is freedom</span><h3>Focus sets visitors free</h3><p>Undivided attention is a gift. Each EasyLandX page gives visitors one clear story and one clear button, so their attention rests on what matters.</p></div>
+<div class="card"><div class="big">♝</div><span class="tag">Life is a dynamic process</span><h3>Pages that grow with you</h3><p>A chess game flows and evolves. Your page evolves too: refine headlines, refresh offers, and keep your position strong as your audience grows.</p></div>
+<div class="card"><div class="big">♞</div><span class="tag">Psyche · community · world</span><h3>Designed for real people</h3><p>Decisions happen within emotions, communities, and technology. Warm words, friendly layouts, and social proof meet visitors exactly where they are.</p></div>
+<div class="card"><div class="big">♜</div><span class="tag">Embrace the struggle</span><h3>Purposeful effort feels great</h3><p>Fulfilment grows from caring deeply about a chosen aim. Launching a page you believe in is a meaningful, energizing challenge.</p></div>
+</div>
+</div></section>
+
+<div class="wrap">
+<section>
+<span class="eyebrow">Four strategies</span>
+<h2>Rowson's lessons, applied to your landing page.</h2>
+<div class="steps" style="margin-top:34px">
+<div class="step"><div><h3>Befriend your autopilot</h3><p><b>Lesson:</b> under pressure we follow habits and instincts. <b>Strategy:</b> observe them kindly and bring intention back to key choices.</p><p><b>On your page:</b> EasyLandX layouts guide visitors through a calm, intentional path, so every click is a deliberate, happy choice.</p></div></div>
+<div class="step"><div><h3>Practice strategic sacrifice</h3><p><b>Lesson:</b> progress welcomes the courage to release something good for something greater. <b>Strategy:</b> know what you give up and why.</p><p><b>On your page:</b> keep the elements that serve your goal and let the rest go. Try the sacrifice studio below.</p></div></div>
+<div class="step"><div><h3>Navigate uncertainty with confidence</h3><p><b>Lesson:</b> you steer your own moves, while the board keeps changing. <b>Strategy:</b> choose well from the position in front of you.</p><p><b>On your page:</b> launch, learn from real visitors, and adjust. Every update is a fresh, creative move.</p></div></div>
+<div class="step"><div><h3>Reclaim deep focus</h3><p><b>Lesson:</b> digital noise fragments attention. <b>Strategy:</b> build spaces that protect deep thought and meaningful connection.</p><p><b>On your page:</b> a spacious, quiet design lets your message shine and lets visitors connect with you.</p></div></div>
+</div>
+</section>
+</div>
+
+<section class="band"><div class="wrap">
+<span class="eyebrow">Interactive · Sacrifice studio</span>
+<h2>Choose your 3 winning elements.</h2>
+<p>A grandmaster knows what to keep. Tap exactly three elements that will anchor your landing page and watch your focus meter rise.</p>
+<div class="chips" id="chips"></div>
+<div class="meter"><i id="meter"></i></div>
+<div class="out" id="out">Pick up to three elements to begin.</div>
+</div></section>
+
+<div class="wrap">
+<section>
+<div class="grid" style="align-items:center">
+<svg viewBox="0 0 300 300" role="img" aria-label="Illustration of a knight leaping toward a glowing target square">
+<rect x="10" y="10" width="280" height="280" fill="#fff" stroke="#0a0a0a" stroke-width="8"/>
+<g fill="#0a0a0a"><rect x="10" y="10" width="70" height="70"/><rect x="150" y="10" width="70" height="70"/><rect x="80" y="80" width="70" height="70"/><rect x="220" y="80" width="70" height="70"/><rect x="10" y="150" width="70" height="70"/><rect x="150" y="150" width="70" height="70"/><rect x="80" y="220" width="70" height="70"/><rect x="220" y="220" width="70" height="70"/></g>
+<rect x="220" y="10" width="70" height="70" fill="#ff6a00" stroke="#0a0a0a" stroke-width="5"/>
+<path d="M45 255 Q45 120 110 115 Q190 112 250 50" fill="none" stroke="#ff6a00" stroke-width="8" stroke-dasharray="4 14" stroke-linecap="round"/>
+<text x="45" y="270" font-size="64" text-anchor="middle" fill="#fff" stroke="#0a0a0a" stroke-width="2">♞</text>
+<text x="255" y="62" font-size="46" text-anchor="middle" fill="#0a0a0a">★</text>
+</svg>
+<div>
+<p class="quote">“Concentration is freedom.”</p>
+<p>That is the heartbeat of every EasyLandX page: a clear aim, a confident path, and a visitor who feels welcome from the very first glance.</p>
+</div>
+</div>
+</section>
+
+<section class="cta">
+<div style="font-size:72px;line-height:1">♔</div>
+<h2>Your next move is a great one.</h2>
+<p style="font-size:20px">Hand-crafted, purposeful, and ready to welcome your audience. Make your opening move today.</p>
+<a class="btn alt" href="https://easylandx.github.io" target="_blank" rel="noopener" style="font-size:20px">Launch your page with EasyLandX →</a>
+</section>
+<footer>Made by EasyLandX · Inspired by <i>The Moves That Matter</i> by Jonathan Rowson</footer>
+</div>
+
+<script>
+const L=[
+["Concentration","Undivided attention is freedom. Give each landing page one headline and one call to action."],
+["Autopilot","Observe habits kindly. Friendly, predictable layouts help visitors move with ease."],
+["Sacrifice","Releasing good elements makes room for great ones. Keep the content that serves your aim."],
+["Uncertainty","Choose from the position you see today. Launch, learn, and refine."],
+["Community","People decide together. Testimonials and shared stories build warm trust."],
+["Deep focus","Quiet space around your message lets it shine."],
+["Meaning","Care about your aim and your page carries that energy to every visitor."],
+["Opening move","A confident first screen sets the tempo for the whole game."]
+];
+const P={0:"♜",1:"♞",2:"♝",3:"♛",4:"♚",5:"♝",6:"♞",7:"♜",8:"♟",9:"♟",10:"♟",11:"♟",12:"♟",13:"♟",14:"♟",15:"♟"};
+const b=document.getElementById("board"),ls=document.getElementById("lesson");
+for(let i=0;i<64;i++){
+ const r=Math.floor(i/8),c=i%8,s=document.createElement("button");
+ s.className="sq "+((r+c)%2?"d":"l");
+ s.textContent=P[i]?P[i]+"\uFE0E":"";
+ const name="abcdefgh"[c]+(8-r);
+ s.setAttribute("aria-label","Square "+name);
+ s.onclick=()=>{
+  document.querySelectorAll(".sq.on").forEach(x=>x.classList.remove("on"));
+  s.classList.add("on");
+  const q=L[(r+c*3)%8];
+  ls.innerHTML="<small>Square "+name+" · Vignette "+(i+1)+" of 64</small><b>"+q[0]+".</b> "+q[1];
+ };
+ b.appendChild(s);
+}
+const E=[["Clear headline",3],["One bold button",3],["Customer stories",2],["Short origin story",2],["Photo gallery",1],["Social links",1],["Pop-up window",0],["Animated banner",0]];
+const ch=document.getElementById("chips"),m=document.getElementById("meter"),o=document.getElementById("out");
+let sel=new Set();
+E.forEach((e,i)=>{
+ const c=document.createElement("button");
+ c.className="chip";c.textContent=e[0];c.setAttribute("aria-pressed","false");
+ c.onclick=()=>{
+  if(sel.has(i))sel.delete(i);
+  else if(sel.size<3)sel.add(i);
+  else{o.textContent="Three is the magic number. Release one to choose another.";return}
+  ch.querySelectorAll(".chip").forEach((x,j)=>x.setAttribute("aria-pressed",sel.has(j)));
+  const t=[...sel].reduce((a,j)=>a+E[j][1],0);
+  m.style.width=(t/8*100)+"%";
+  o.textContent=sel.size<3?"Great start! Choose "+(3-sel.size)+" more."
+   :t>=8?"Grandmaster move! A clear headline and one bold button lead your visitor straight to action."
+   :t>=6?"Strong position! Your focus is sharp and your visitors feel welcome."
+   :"Nice choice! Try swapping in the headline or the bold button for an even sharper focus.";
+ };
+ ch.appendChild(c);
+});
+</script>
+</body>
+</html>
