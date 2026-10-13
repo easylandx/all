@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX | Tune In to the Landing Page Universe You Love</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#2A1B8C;--bg2:#34229F;--bg3:#1F1370;--g:#3CFF6B;--w:#F1EEFF;--pad:clamp(20px,6vw,80px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--w);font-family:'Space Grotesk',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+.wrap{max-width:1120px;margin:0 auto;padding:0 var(--pad)}
+section{padding:84px 0}
+h1,h2,h3{line-height:1.08;font-weight:700}
+h1{font-size:clamp(2.5rem,7vw,5rem)}
+h2{font-size:clamp(1.9rem,4.5vw,3.1rem);margin-bottom:14px}
+h3{font-size:1.25rem;margin-bottom:8px}
+.g{color:var(--g)}
+.mono{font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g)}
+p.lead{font-size:1.15rem;max-width:640px;opacity:.9}
+.btn{display:inline-block;background:var(--g);color:var(--bg3);font-weight:700;padding:14px 28px;border-radius:999px;text-decoration:none;border:3px solid var(--g);cursor:pointer;font:inherit;font-weight:700;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 0 var(--bg3),0 0 28px rgba(60,255,107,.6)}
+.btn.o{background:transparent;color:var(--g)}
+nav{position:sticky;top:0;z-index:9;background:var(--bg3);border-bottom:3px solid var(--g)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:12px;padding-bottom:12px;gap:12px}
+.logo{font-weight:700;font-size:1.3rem}
+.hero{padding:60px 0 70px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero p.lead{margin:20px 0 28px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.hero svg{width:100%;height:auto}
+.orbit{transform-origin:250px 250px;animation:spin 40s linear infinite}
+.orbit.r{animation-duration:60s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pulse{animation:pl 3s ease-in-out infinite;transform-origin:250px 250px}
+@keyframes pl{50%{transform:scale(1.08)}}
+.band{background:var(--bg3);border-block:3px solid var(--g)}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;margin-top:36px}
+.card{background:var(--bg2);border:3px solid var(--g);border-radius:20px;padding:26px}
+.card svg{width:64px;height:64px;margin-bottom:12px}
+.card p{opacity:.9}
+/* channel switcher */
+.tv{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;margin-top:36px;align-items:center}
+.screen{background:var(--bg3);border:4px solid var(--g);border-radius:26px;padding:18px;position:relative;overflow:hidden}
+.screen::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(60,255,107,.06) 0 2px,transparent 2px 5px);pointer-events:none}
+.screen.sw{animation:glitch .5s}
+@keyframes glitch{0%{filter:contrast(3) brightness(2);transform:skewX(8deg)}50%{filter:blur(3px);transform:skewX(-6deg)}100%{filter:none;transform:none}}
+.chlabel{display:flex;justify-content:space-between;margin-bottom:12px}
+.mock{background:var(--bg);border-radius:14px;padding:22px;min-height:250px;display:flex;flex-direction:column;gap:12px}
+.mock .bar{height:8px;border-radius:4px;background:var(--g);opacity:.35}
+.mock .bar.s{width:45%}
+.mock h4{font-size:clamp(1.3rem,3vw,1.9rem);line-height:1.15}
+.mock .fb{margin-top:auto;display:inline-block;align-self:flex-start;background:var(--g);color:var(--bg3);font-weight:700;padding:10px 20px;border-radius:999px;font-size:.9rem}
+.mock.c{text-align:center;align-items:center}.mock.c .fb{align-self:center;margin-top:8px}
+.mock.l{border-left:10px solid var(--g)}
+.mock.b{border:3px dashed var(--g)}
+.dial{display:grid;gap:10px}
+.dial button{font:inherit;text-align:left;background:var(--bg2);color:var(--w);border:3px solid var(--bg2);border-radius:14px;padding:12px 16px;cursor:pointer;display:flex;gap:12px;align-items:center;transition:.2s}
+.dial button b{font-family:'Space Mono',monospace;color:var(--g)}
+.dial button.on,.dial button:hover{border-color:var(--g);background:var(--bg3)}
+.note{margin-top:14px;font-size:.95rem;opacity:.9;min-height:3em}
+/* embody */
+.emb{display:grid;grid-template-columns:.9fr 1.1fr;gap:34px;margin-top:36px;align-items:center}
+.orbbox{display:grid;place-items:center}
+.orb{width:min(280px,70vw);aspect-ratio:1;border-radius:50%;border:4px solid var(--g);display:grid;place-items:center;position:relative;background:radial-gradient(circle,rgba(60,255,107,.35),transparent 70%)}
+.orb::before,.orb::after{content:"";position:absolute;inset:-18px;border-radius:50%;border:2px solid var(--g);opacity:.4;animation:br 8s ease-in-out infinite}
+.orb::after{inset:-38px;opacity:.2;animation-delay:.4s}
+.orb span{font-family:'Space Mono',monospace;color:var(--g);font-weight:700;letter-spacing:.1em;animation:br2 8s ease-in-out infinite}
+@keyframes br{0%,100%{transform:scale(.85)}50%{transform:scale(1.1)}}
+@keyframes br2{0%,100%{transform:scale(.8)}50%{transform:scale(1.15)}}
+.steps{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.steps button{font:inherit;font-family:'Space Mono',monospace;width:44px;height:44px;border-radius:50%;border:3px solid var(--g);background:transparent;color:var(--g);font-weight:700;cursor:pointer}
+.steps button.on{background:var(--g);color:var(--bg3)}
+.steps+div p{min-height:5.5em}
+/* flip */
+.flip{perspective:900px;cursor:pointer;background:none;border:0;font:inherit;color:inherit;text-align:left;height:230px}
+.fi{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.flip.on .fi{transform:rotateY(180deg)}
+.fa,.fb2{position:absolute;inset:0;backface-visibility:hidden;border:3px solid var(--g);border-radius:20px;padding:24px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.fa{background:var(--bg2)}
+.fb2{background:var(--g);color:var(--bg3);transform:rotateY(180deg)}
+.fb2 .mono{color:var(--bg3)}
+/* adventure */
+.adv{background:var(--bg2);border:3px solid var(--g);border-radius:24px;padding:clamp(20px,4vw,40px);margin-top:36px}
+.crumbs{font-family:'Space Mono',monospace;font-size:.8rem;color:var(--g);margin-bottom:12px;min-height:1.4em}
+.adv h3{font-size:clamp(1.3rem,3vw,1.9rem)}
+.opts{display:grid;gap:12px;margin-top:20px}
+.opts button{font:inherit;text-align:left;padding:14px 18px;border-radius:14px;border:3px solid var(--g);background:var(--bg3);color:var(--w);cursor:pointer;transition:.2s}
+.opts button:hover{background:var(--g);color:var(--bg3)}
+.rv{opacity:0;transform:translateY(26px);transition:.7s}
+.rv.in{opacity:1;transform:none}
+.final{text-align:center}
+.final p.lead{margin:16px auto 28px}
+footer{border-top:3px solid var(--g);background:var(--bg3);padding:28px 0;text-align:center;font-size:.9rem}
+@media(max-width:820px){.hero .wrap,.tv,.emb{grid-template-columns:1fr}.hero svg{max-width:380px;margin:0 auto}section{padding:60px 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><div class="logo">Easy<span class="g">LandX</span></div><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></div></nav>
+
+<header class="hero"><div class="wrap">
+<div>
+<p class="mono">Parallel Universes of Self</p>
+<h1>Your best landing page is <span class="g">one channel away.</span></h1>
+<p class="lead">Every version of your business already exists, including the one with a beautiful page that welcomes clients every day. EasyLandX helps you tune in and step into it.</p>
+<div class="cta-row"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a><a class="btn o" href="#tv">Switch the channel</a></div>
+</div>
+<svg viewBox="0 0 500 500" role="img" aria-label="Parallel universes as glowing orbits around a central self">
+<circle class="pulse" cx="250" cy="250" r="70" fill="#3CFF6B" opacity=".15"/>
+<circle cx="250" cy="250" r="34" fill="#3CFF6B"/>
+<circle cx="250" cy="250" r="100" fill="none" stroke="#3CFF6B" stroke-width="3"/>
+<g class="orbit"><circle cx="250" cy="250" r="160" fill="none" stroke="#3CFF6B" stroke-width="2" stroke-dasharray="6 10"/>
+<rect x="222" y="82" width="56" height="40" rx="8" fill="#1F1370" stroke="#3CFF6B" stroke-width="3"/><rect x="232" y="94" width="36" height="5" fill="#3CFF6B"/><rect x="232" y="104" width="20" height="5" fill="#3CFF6B" opacity=".5"/>
+<rect x="382" y="230" width="56" height="40" rx="8" fill="#1F1370" stroke="#3CFF6B" stroke-width="3"/><rect x="392" y="242" width="36" height="5" fill="#3CFF6B"/><rect x="392" y="252" width="20" height="5" fill="#3CFF6B" opacity=".5"/>
+<rect x="62" y="230" width="56" height="40" rx="8" fill="#1F1370" stroke="#3CFF6B" stroke-width="3"/><rect x="72" y="242" width="36" height="5" fill="#3CFF6B"/><rect x="72" y="252" width="20" height="5" fill="#3CFF6B" opacity=".5"/></g>
+<g class="orbit r"><circle cx="250" cy="250" r="220" fill="none" stroke="#F1EEFF" stroke-opacity=".35" stroke-width="2"/>
+<circle cx="250" cy="30" r="12" fill="#3CFF6B"/><circle cx="470" cy="250" r="9" fill="#F1EEFF"/><circle cx="140" cy="440" r="12" fill="#3CFF6B"/><circle cx="60" cy="130" r="8" fill="#F1EEFF"/></g>
+</svg>
+</div></header>
+
+<section class="band"><div class="wrap rv">
+<p class="mono">Core messages</p>
+<h2>Your page reflects the <span class="g">you</span> who built it.</h2>
+<p class="lead">Three ideas shape every EasyLandX page, so your online home feels like a natural expression of your best self.</p>
+<div class="grid3">
+<div class="card"><svg viewBox="0 0 64 64" fill="none" stroke="#3CFF6B" stroke-width="3"><circle cx="32" cy="32" r="10" fill="#3CFF6B"/><path d="M32 6v10M32 48v10M6 32h10M48 32h10M14 14l7 7M43 43l7 7M50 14l-7 7M21 43l-7 7"/></svg><h3>Awareness Creates Reality</h3><p>Your page begins as a clear picture in your awareness. Shape the picture and the page follows. EasyLandX turns that vision into a live, shining reality.</p></div>
+<div class="card"><svg viewBox="0 0 64 64" fill="none" stroke="#3CFF6B" stroke-width="3"><path d="M12 56V34c0-4 6-4 6 0V14c0-4 6-4 6 0v18-22c0-4 6-4 6 0v22-16c0-4 6-4 6 0v18-8c0-4 6-4 6 0v14c0 12-6 18-14 18H24c-6 0-12-2-12-8z" fill="#3CFF6B" fill-opacity=".2"/></svg><h3>One Palm, Many Fingers</h3><p>Your Oversoul explores many timelines at once. Your page is the finger that reaches your audience, with a clear voice and a welcoming message.</p></div>
+<div class="card"><svg viewBox="0 0 64 64" fill="none" stroke="#3CFF6B" stroke-width="3"><circle cx="32" cy="22" r="10" fill="#3CFF6B" fill-opacity=".3"/><path d="M12 56c0-12 8-20 20-20s20 8 20 20"/><path d="M26 22l4 4 8-8"/></svg><h3>Be It, Then Receive It</h3><p>Wanting points to tomorrow. Being points to today. Step into the identity of a business whose page is ready, and clients arrive as a natural next step.</p></div>
+</div></div></section>
+
+<section id="tv"><div class="wrap rv">
+<p class="mono">Lesson: the channel switching metaphor</p>
+<h2>Change the channel. <span class="g">Change the universe.</span></h2>
+<p class="lead">Moving between realities feels as light as pressing a button on a remote. Tune in to a target universe and preview the page that lives there.</p>
+<div class="tv">
+<div><div class="screen" id="screen"><div class="chlabel mono"><span id="chn">CH 01</span><span id="chname">Studio</span></div><div class="mock" id="mock"></div></div><p class="note" id="note"></p></div>
+<div class="dial" id="dial"></div>
+</div></div></section>
+
+<section class="band"><div class="wrap rv">
+<p class="mono">Strategy 1: identity embodiment technique</p>
+<h2>Step into the <span class="g">owner of your page.</span></h2>
+<p class="lead">Five calm steps help you embody the business you are creating. Choose a step and breathe with the orb.</p>
+<div class="emb">
+<div class="orbbox"><div class="orb"><span id="breath">BREATHE IN</span></div></div>
+<div><div class="steps" id="steps"></div><div><h3 id="sth"></h3><p id="stp"></p></div></div>
+</div></div></section>
+
+<section><div class="wrap rv">
+<p class="mono">Strategy 2: the behavioral shift experiment</p>
+<h2>Flip a habit. <span class="g">Meet a new frequency.</span></h2>
+<p class="lead">Tap each card to turn a familiar reaction into a fresh, energizing choice.</p>
+<div class="grid3" id="flips"></div>
+</div></section>
+
+<section class="band"><div class="wrap rv">
+<p class="mono">Strategy 3: choose your own adventure</p>
+<h2>Every choice opens a <span class="g">new trajectory.</span></h2>
+<p class="lead">Write your story one branch at a time. Pick a path and discover the universe waiting there.</p>
+<div class="adv"><div class="crumbs" id="crumbs"></div><h3 id="ah"></h3><div class="opts" id="opts"></div></div>
+</div></section>
+
+<section><div class="wrap rv">
+<p class="mono">More lessons</p>
+<h2>Welcome the present. <span class="g">Step forward with ease.</span></h2>
+<div class="grid3">
+<div class="card"><h3>Releasing Resistance</h3><p>Appreciate the page you have today. Warm acceptance dissolves resistance and clears the way for the next version to arrive.</p></div>
+<div class="card"><h3>Radical Self-Responsibility</h3><p>You author your timeline. Each headline, image, and button is a confident choice that shapes the life of your business.</p></div>
+<div class="card"><h3>Normalize the Reality</h3><p>Launch your page, then return to your day with calm certainty. Visitors, messages, and bookings become your ordinary.</p></div>
+</div></div></section>
+
+<section class="band final"><div class="wrap rv">
+<svg viewBox="0 0 120 120" width="110" height="110" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="none" stroke="#3CFF6B" stroke-width="4"/><circle cx="60" cy="60" r="32" fill="none" stroke="#3CFF6B" stroke-width="3" stroke-dasharray="5 7"/><circle cx="60" cy="60" r="12" fill="#3CFF6B"/></svg>
+<h2>Your universe is <span class="g">ready to welcome you.</span></h2>
+<p class="lead">Choose your channel, embody your identity, and let EasyLandX shape the landing page that already exists for you.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</div></section>
+<footer><div class="wrap">EasyLandX Landing Pages · Inspired by Parallel Universes of Self by Frederick Dodson</div></footer>
+
+<script>
+const CH=[
+["Studio","l","Your studio calendar glows with bookings","Book your session","Identity: a creative whose page greets every guest with clarity."],
+["Artist","c","Your art finds the eyes that love it","Explore the gallery","Identity: an artist whose work is easy to discover and enjoy."],
+["Local pro","","Your phone lights up with happy new clients","Call today","Identity: a trusted expert whom the neighborhood already knows."],
+["Course","b","Your lessons welcome eager learners","Join the class","Identity: a teacher whose message lands warmly every time."],
+["Cafe","c","Your tables fill with smiling regulars","Reserve a table","Identity: a host whose online welcome mirrors the real one."]];
+const dial=document.getElementById('dial'),mock=document.getElementById('mock'),scr=document.getElementById('screen');
+function ch(i){const c=CH[i];document.getElementById('chn').textContent='CH 0'+(i+1);document.getElementById('chname').textContent=c[0];
+mock.className='mock '+c[1];mock.innerHTML='<div class="bar"></div><div class="bar s"></div><h4>'+c[2]+'</h4><div class="bar"></div><span class="fb">'+c[3]+'</span>';
+document.getElementById('note').textContent=c[4];
+[...dial.children].forEach((b,j)=>b.classList.toggle('on',j==i));
+scr.classList.remove('sw');void scr.offsetWidth;scr.classList.add('sw');}
+CH.forEach((c,i)=>{const b=document.createElement('button');b.innerHTML='<b>0'+(i+1)+'</b> '+c[0]+' universe';b.onclick=()=>ch(i);dial.appendChild(b)});
+ch(0);
+
+const ST=[["Define the target universe","Describe the business and the version of you that thrives in it. Name the audience, the offer, and the feeling your page shares."],
+["Enter stillness","Settle into a quiet moment. Let expectations rest and let your thoughts become gentle and spacious."],
+["Visualize","Picture your finished EasyLandX page glowing on a screen. Feel the delight of someone discovering it."],
+["Step into the identity","Move from watching the scene to living it. Adopt the posture, the breath, and the mindset of the owner whose page is live."],
+["Normalize the reality","Treat the outcome as complete and return to your day with ease. Messages and bookings arrive as part of your ordinary."]];
+const sb=document.getElementById('steps');
+function st(i){[...sb.children].forEach((b,j)=>b.classList.toggle('on',j==i));document.getElementById('sth').textContent=(i+1)+'. '+ST[i][0];document.getElementById('stp').textContent=ST[i][1]}
+ST.forEach((s,i)=>{const b=document.createElement('button');b.textContent=i+1;b.setAttribute('aria-label',s[0]);b.onclick=()=>st(i);sb.appendChild(b)});st(0);
+let inh=true;const br=document.getElementById('breath');
+setInterval(()=>{inh=!inh;br.textContent=inh?'BREATHE IN':'BREATHE OUT'},4000);
+
+const FL=[["Usual reaction","Rushing to add every feature at once","New choice","Choose one clear message and let it shine. Simplicity attracts the right visitors."],
+["Usual reaction","Checking stats every hour","New choice","Launch with calm confidence and celebrate each new visitor when they arrive."],
+["Usual reaction","Comparing with other pages","New choice","Enjoy your own style. Your voice is the one your audience is looking for."]];
+const fl=document.getElementById('flips');
+FL.forEach(f=>{const b=document.createElement('button');b.className='flip';b.innerHTML='<div class="fi"><div class="fa"><span class="mono">'+f[0]+'</span><h3>'+f[1]+'</h3><span class="mono">Tap to flip</span></div><div class="fb2"><span class="mono">'+f[2]+'</span><p>'+f[3]+'</p></div></div>';b.onclick=()=>b.classList.toggle('on');fl.appendChild(b)});
+
+const A={start:["Your page is live in your mind. Which path feels inviting?",[["Share one clear offer","a"],["Show the visitor a journey","b"],["Invite action right away","c"]]],
+a:["One clear offer shines. What comes next?",[["Add a warm story","a1"],["Add a vivid visual","a2"]]],
+b:["The journey unfolds step by step. What comes next?",[["Add a friendly guide","b1"],["Add a celebration moment","b2"]]],
+c:["The invitation is open. What comes next?",[["Add a one-tap contact","c1"],["Add a preview of results","c2"]]],
+a1:["Universe unlocked: Storyteller. Visitors feel instantly welcomed and reply with enthusiasm."],
+a2:["Universe unlocked: Visual Magnet. Your imagery brings smiles and shares across the web."],
+b1:["Universe unlocked: Trusted Guide. Visitors move forward feeling supported and inspired."],
+b2:["Universe unlocked: Celebration Hub. Every visit ends with joy and a booked date."],
+c1:["Universe unlocked: Open Door. Messages arrive daily from happy new clients."],
+c2:["Universe unlocked: Proof of Magic. Results speak and visitors say yes with delight."]};
+let path=[];
+function go(k,l){if(l)path.push(l);const n=A[k];document.getElementById('crumbs').textContent=['Start'].concat(path).join('  >  ');
+document.getElementById('ah').textContent=n[0];const o=document.getElementById('opts');o.innerHTML='';
+if(n[1])n[1].forEach(x=>{const b=document.createElement('button');b.textContent=x[0];b.onclick=()=>go(x[1],x[0]);o.appendChild(b)});
+else{const b=document.createElement('button');b.textContent='Explore another timeline';b.onclick=()=>{path=[];go('start')};o.appendChild(b);
+const a=document.createElement('a');a.className='btn';a.style.textAlign='center';a.href='https://easylandx.github.io';a.target='_blank';a.rel='noopener';a.textContent='EasyLandX';o.appendChild(a)}}
+go('start');
+
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>
