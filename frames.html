@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX: Landing Pages for Every Kind of Mind</title>
+<meta name="description" content="EasyLandX crafts affordable, conversion-focused landing pages that welcome every kind of mind, inspired by Howard Gardner's Frames of Mind.">
+<meta name="color-scheme" content="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+  --white:#FFFFFF;
+  --ink:#0B3A28;
+  --ink-soft:#35604E;
+  --green:#0F7A52;
+  --green-2:#17A06B;
+  --green-tint:#E8F6EF;
+  --gold:#E3A600;
+  --gold-2:#F7C948;
+  --gold-tint:#FFF4CF;
+  --line:#D3E6DB;
+  --gutter:clamp(24px,8vw,128px);
+  --display:'Bricolage Grotesque','Trebuchet MS',system-ui,sans-serif;
+  --body:'Figtree','Segoe UI',system-ui,-apple-system,sans-serif;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.08;letter-spacing:-.02em;color:var(--ink)}
+h1{font-size:clamp(2.5rem,5.6vw,4.6rem);font-weight:800}
+h2{font-size:clamp(2rem,3.8vw,3.2rem);font-weight:800}
+h3{font-size:1.4rem;font-weight:800}
+h4{font-size:1.1rem;font-weight:800}
+p{margin:0}
+a{color:inherit}
+svg{display:block}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1120px,calc(100% - 2*var(--gutter)));margin-inline:auto}
+section{padding-block:clamp(72px,10vw,140px)}
+.lead{font-size:clamp(1.1rem,1.6vw,1.3rem);color:var(--ink-soft);max-width:60ch}
+.sec-head{display:grid;gap:18px;max-width:760px;margin-bottom:clamp(36px,5vw,64px)}
+.jump{position:absolute;left:-999px;top:0;background:var(--gold);color:var(--ink);padding:10px 16px;border-radius:0 0 12px 0;font-weight:700;z-index:50}
+.jump:focus{left:0}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.7em;padding:.95em 1.6em;border-radius:999px;font-weight:700;font-size:1rem;text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:var(--body);transition:transform .18s ease,background .18s ease,color .18s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:var(--gold-2)}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{background:var(--green-2)}
+.btn-line{border-color:var(--green);color:var(--green);background:#fff}
+.btn-line:hover{background:var(--green-tint)}
+.btn svg{width:22px;height:22px}
+
+/* header */
+header.top{border-bottom:2px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:16px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.02em}
+.brand svg{width:34px;height:34px}
+.brand b{color:var(--green)}
+
+/* hero */
+.hero{padding-block:clamp(48px,7vw,96px)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,5vw,72px);align-items:center}
+.hero h1{margin-bottom:24px}
+.hero .lead{margin-bottom:34px}
+.hero .actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:28px}
+.hero .credit{font-size:.95rem;color:var(--ink-soft)}
+.hero-art{width:100%;max-width:560px;justify-self:center}
+.hero-art .orb{cursor:pointer}
+.hero-art .pop{transform-box:fill-box;transform-origin:center;animation:pop .6s cubic-bezier(.2,.9,.3,1.2) both}
+.hero-art .orb circle.disc{transition:transform .2s ease;transform-box:fill-box;transform-origin:center}
+.hero-art .orb:hover circle.disc,.hero-art .orb:focus-visible circle.disc{transform:scale(1.14)}
+.hero-art .orb:focus-visible{outline:none}
+.hero-art .orb:focus-visible circle.disc{stroke:var(--ink);stroke-width:3}
+.hero-art text{font-family:var(--body);font-weight:700;font-size:13px;fill:var(--ink);paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}
+@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+
+/* messages */
+.messages{background:var(--green-tint)}
+.messages .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,88px);align-items:start}
+.messages .sec-head{margin:0}
+.msg-list{display:grid;gap:0}
+.msg{display:grid;grid-template-columns:64px 1fr;gap:22px;padding-block:28px;border-top:2px solid var(--line)}
+.msg:first-child{border-top:0;padding-top:0}
+.msg .ic{width:64px;height:64px;border-radius:50%;display:grid;place-items:center}
+.msg:nth-child(odd) .ic{background:var(--gold);color:var(--ink)}
+.msg:nth-child(even) .ic{background:var(--green);color:#fff}
+.msg .ic svg{width:30px;height:30px}
+.msg h3{margin-bottom:8px}
+.msg p{color:var(--ink-soft)}
+
+/* explorer */
+.explorer .grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.wire{width:100%;max-width:440px;justify-self:center}
+.wire .zone{opacity:.32;transition:opacity .35s ease}
+.wire .zone.on{opacity:1}
+.wire .hl{fill:none;stroke:var(--gold);stroke-width:4;stroke-dasharray:0;opacity:0;transition:opacity .35s ease}
+.wire .zone.on .hl{opacity:1}
+.tabs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:22px}
+.tab{display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:999px;border:2px solid var(--line);background:#fff;font:600 .98rem var(--body);color:var(--ink);cursor:pointer;transition:background .2s,border-color .2s,transform .2s;text-align:left}
+.tab:hover{border-color:var(--gold)}
+.tab .chip-ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--green-tint);color:var(--green);flex:none}
+.tab .chip-ic svg{width:20px;height:20px}
+.tab[aria-selected="true"]{background:var(--gold);border-color:var(--gold);}
+.tab[aria-selected="true"] .chip-ic{background:#fff;color:var(--ink)}
+.panel{background:var(--gold-tint);border-radius:28px;padding:clamp(24px,3.4vw,40px);border-left:10px solid var(--gold)}
+.panel h3{font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:6px}
+.panel .shines{color:var(--green);font-weight:700;margin-bottom:18px}
+.panel dl{margin:0;display:grid;gap:16px}
+.panel dt{font-weight:800;color:var(--green);font-size:.98rem}
+.panel dd{margin:2px 0 0;color:var(--ink)}
+.note{margin-top:18px;font-size:.95rem;color:var(--ink-soft)}
+
+/* profile builder */
+.builder{background:var(--green);color:#fff}
+.builder h2,.builder h3,.builder h4{color:#fff}
+.builder .lead{color:#E3F5EC}
+.b-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.sliders{display:grid;gap:14px}
+.row{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center}
+.row label{font-weight:700}
+.row label small{font-weight:500;color:#CDEBDD;margin-left:6px}
+.row output{font-family:var(--display);font-weight:800;font-size:1.2rem;color:var(--gold-2);min-width:1.6ch;text-align:right}
+.row input{grid-column:1/-1;width:100%;accent-color:var(--gold);height:28px;margin:0}
+.b-actions{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.btn-white{background:#fff;color:var(--green)}
+.btn-white:hover{background:var(--gold-tint)}
+.radar-box{background:#fff;border-radius:32px;padding:clamp(12px,2vw,24px)}
+.radar{width:100%;height:auto}
+.radar text{font-family:var(--body);font-weight:700;font-size:15px;fill:var(--ink)}
+.blue{margin-top:clamp(40px,6vw,72px);display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,48px);align-items:start}
+.blue h3{margin-bottom:6px}
+.shine-line{color:var(--gold-2);font-weight:700;margin-bottom:20px}
+.moves{display:grid;gap:12px}
+.move{display:grid;grid-template-columns:48px 1fr;gap:16px;background:#fff;color:var(--ink);border-radius:22px;padding:16px 18px}
+.move .ic{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--ink)}
+.move:nth-child(2) .ic{background:var(--green-tint);color:var(--green)}
+.move .ic svg{width:26px;height:26px}
+.move h4{color:var(--ink);margin-bottom:2px}
+.move p{color:var(--ink-soft);font-size:.98rem;line-height:1.5}
+.mock{background:#fff;color:var(--ink);border-radius:24px;overflow:hidden}
+.mock .bar{background:var(--gold);height:30px;display:flex;gap:6px;align-items:center;padding-inline:14px}
+.mock .bar i{width:10px;height:10px;border-radius:50%;background:#fff;display:block}
+.mock .body{padding:26px 22px 28px;display:grid;gap:16px}
+.mock .hd{font-family:var(--display);font-weight:800;font-size:1.55rem;line-height:1.1;color:var(--ink)}
+.mock .ln{height:10px;border-radius:5px;background:var(--green-tint)}
+.mock .ln.s{width:70%}
+.mock .pill{justify-self:start;background:var(--gold);color:var(--ink);font-weight:700;padding:.65em 1.3em;border-radius:999px}
+.mock-cap{margin-top:10px;font-size:.92rem;color:#CDEBDD}
+
+/* lessons */
+.lessons .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.6vw,32px)}
+.lesson{border-radius:32px;padding:clamp(22px,3vw,36px);display:grid;gap:14px;align-content:start}
+.lesson:nth-child(1){background:var(--gold-tint)}
+.lesson:nth-child(2){background:var(--green-tint)}
+.lesson:nth-child(3){background:var(--green-tint)}
+.lesson:nth-child(4){background:var(--gold-tint)}
+.lesson svg.art{width:100%;max-width:260px;height:auto}
+.lesson p{color:var(--ink-soft)}
+.lesson .page{color:var(--ink);font-weight:600;padding-top:12px;border-top:2px solid rgba(15,122,82,.25)}
+.lesson .page b{color:var(--green)}
+
+/* framework */
+.track{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;position:relative;margin-bottom:34px}
+.track::before{content:"";position:absolute;left:10%;right:10%;top:30px;height:6px;background:var(--line);border-radius:3px}
+.track::after{content:"";position:absolute;left:10%;top:30px;height:6px;background:var(--gold);border-radius:3px;width:var(--prog,0%);transition:width .45s ease}
+.step{position:relative;z-index:1;background:none;border:0;cursor:pointer;display:grid;justify-items:center;gap:12px;font:700 1rem var(--body);color:var(--ink);padding:0 4px;text-align:center}
+.step .n{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;background:#fff;border:4px solid var(--line);font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--green);transition:all .25s}
+.step:hover .n{border-color:var(--gold)}
+.step.done .n{border-color:var(--gold);background:var(--gold-tint)}
+.step[aria-selected="true"] .n{background:var(--green);border-color:var(--green);color:#fff;transform:scale(1.08)}
+.step-panel{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,40px)}
+.step-panel>div{border-radius:28px;padding:clamp(22px,3vw,34px)}
+.step-panel .g{background:var(--green-tint)}
+.step-panel .e{background:var(--gold-tint)}
+.step-panel h4{margin-bottom:8px;color:var(--green)}
+.step-panel h3{margin-bottom:10px}
+.step-nav{display:flex;gap:12px;margin-top:26px}
+
+/* cta */
+.cta{background:var(--gold);text-align:center}
+.cta .wrap{display:grid;gap:26px;justify-items:center}
+.cta h2{max-width:20ch}
+.cta p{max-width:52ch;font-size:1.2rem;color:var(--ink)}
+.cta .btn-green{font-size:1.15rem;padding:1.05em 2em}
+footer{padding-block:36px;border-top:2px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;color:var(--ink-soft);font-size:.95rem}
+
+@media (max-width:920px){
+  .hero .wrap,.messages .wrap,.explorer .grid,.b-grid,.blue{grid-template-columns:1fr}
+  .hero-art{order:-1;max-width:440px}
+  .wire{max-width:380px}
+  .lessons .grid,.step-panel{grid-template-columns:1fr}
+  .track{grid-template-columns:1fr;gap:6px}
+  .track::before,.track::after{display:none}
+  .step{grid-template-columns:auto 1fr;justify-items:start;text-align:left;align-items:center;gap:16px;padding:6px 0}
+  .step .n{width:52px;height:52px;font-size:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-ling" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v10h-9l-4 4v-4H4z"/><path d="M8 9h8M8 12h5"/></g></symbol>
+  <symbol id="i-logic" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V12M12 20V5M19 20V9"/><path d="M3 20h18"/></g></symbol>
+  <symbol id="i-spatial" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></g></symbol>
+  <symbol id="i-body" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l12 8-5.2 1.4L10.4 18z"/><path d="M13 13l4 5"/></g></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></g></symbol>
+  <symbol id="i-inter" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 19c0-3.2 2.5-5.5 5.5-5.5s5.5 2.300 5.500 5.500"/><path d="M14.500 14.200c.8-.4 1.600-.6 2.500-.6 2.500 0 4.500 1.900 4.500 4.800"/></g></symbol>
+  <symbol id="i-intra" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.500"/><circle cx="12" cy="12" r="3.500"/><path d="M12 1.500V4M12 20v2.500M1.500 12H4M20 12h2.500"/></g></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></g></symbol>
+  <symbol id="i-growth" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-9"/><path d="M12 12C12 8 9 6 5 6c0 4 2 6 7 6z"/><path d="M12 14c0-3 2-5 6-5 0 3-2 5-6 5z"/></g></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></g></symbol>
+  <symbol id="i-logo" viewBox="0 0 40 40"><rect x="3" y="3" width="34" height="34" rx="10" fill="#E3A600"/><rect x="10" y="10" width="20" height="20" rx="5" fill="#fff"/><circle cx="20" cy="20" r="5" fill="#0F7A52"/></symbol>
+</svg>
+
+<a class="jump" href="#frames">Jump to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="EasyLandX home"><svg viewBox="0 0 40 40"><use href="#i-logo"/></svg><span>Easy<b>LandX</b></span></a>
+    <a class="btn btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><use href="#i-logo"/></svg>EasyLandX
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Every visitor sees your business through a frame of their own.</h1>
+      <p class="lead">EasyLandX crafts affordable, conversion-focused landing pages that welcome every kind of mind: the word lovers, number lovers, picture lovers, doers, listeners, connectors, and dreamers.</p>
+      <div class="actions">
+        <a class="btn btn-gold" href="https://easylandx.github.io" target="_blank" rel="noopener"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#i-logo"/></svg>Visit EasyLandX</a>
+        <a class="btn btn-line" href="#frames">Explore the seven frames</a>
+      </div>
+      <p class="credit">Inspired by <em>Frames of Mind: The Theory of Multiple Intelligences</em> by Howard Gardner (1983).</p>
+    </div>
+
+    <svg class="hero-art" viewBox="0 0 560 520" role="img" aria-label="A landing page inside a golden frame, surrounded by seven icons that stand for the seven intelligences">
+      <defs><clipPath id="hc"><rect x="152" y="117" width="256" height="286" rx="16"/></clipPath></defs>
+      <g id="spokes"></g>
+      <rect x="140" y="105" width="280" height="310" rx="26" fill="#E3A600"/>
+      <rect x="152" y="117" width="256" height="286" rx="16" fill="#fff"/>
+      <g clip-path="url(#hc)">
+        <rect x="152" y="117" width="256" height="30" fill="#0F7A52"/>
+        <circle cx="170" cy="132" r="4.500" fill="#fff"/><circle cx="184" cy="132" r="4.500" fill="#F7C948"/><circle cx="198" cy="132" r="4.500" fill="#17A06B"/>
+        <rect x="172" y="165" width="150" height="14" rx="7" fill="#0B3A28"/>
+        <rect x="172" y="187" width="108" height="14" rx="7" fill="#0B3A28"/>
+        <rect x="172" y="212" width="190" height="8" rx="4" fill="#BFE0CF"/>
+        <rect x="172" y="228" width="140" height="8" rx="4" fill="#BFE0CF"/>
+        <rect x="172" y="250" width="216" height="86" rx="14" fill="#E8F6EF"/>
+        <circle cx="352" cy="278" r="14" fill="#E3A600"/>
+        <path d="M172 336V312q30-34 62-8t54-4q40-6 100 20v16z" fill="#17A06B"/>
+        <path d="M172 336v-10q50-20 90 0t126-6v16z" fill="#0F7A52"/>
+        <rect x="172" y="352" width="104" height="32" rx="16" fill="#E3A600"/>
+        <rect x="286" y="353" width="72" height="30" rx="15" fill="#fff" stroke="#0F7A52" stroke-width="3"/>
+      </g>
+      <g id="orbs"></g>
+    </svg>
+  </div>
+</section>
+
+<!-- MAIN MESSAGES -->
+<section class="messages" id="messages">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Four big ideas that shape every EasyLandX page</h2>
+      <p class="lead">Howard Gardner's <em>Frames of Mind</em> reshaped how we picture human cognition. Here is how its main messages become landing page magic.</p>
+    </div>
+    <div class="msg-list">
+      <article class="msg">
+        <div class="ic"><svg viewBox="0 0 24 24"><use href="#i-spatial"/></svg></div>
+        <div>
+          <h3>Intelligence is plural</h3>
+          <p>Minds process information, solve challenges, and create valuable things in many distinct ways. Each EasyLandX page opens several welcoming doors so every visitor finds a favorite way in.</p>
+        </div>
+      </article>
+      <article class="msg">
+        <div class="ic"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg></div>
+        <div>
+          <h3>Every strength gets a stage</h3>
+          <p>Traditional tests spotlight words and logic. Gardner widened the spotlight to the full range of human capability, and landing pages can do the same by celebrating many kinds of talent.</p>
+        </div>
+      </article>
+      <article class="msg">
+        <div class="ic"><svg viewBox="0 0 24 24"><use href="#i-globe"/></svg></div>
+        <div>
+          <h3>Rooted in nature and culture</h3>
+          <p>Each intelligence has its own biological foundation and developmental path, shaped by the community around it. EasyLandX shapes your page to the language, tastes, and traditions of your community.</p>
+        </div>
+      </article>
+      <article class="msg">
+        <div class="ic"><svg viewBox="0 0 24 24"><use href="#i-growth"/></svg></div>
+        <div>
+          <h3>Always growing</h3>
+          <p>Intelligences blossom through the meeting of natural gifts, culture, tools, and training. Your landing page grows the same way, refined with real visitor activity and fresh ideas.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SEVEN FRAMES EXPLORER -->
+<section class="explorer" id="frames">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>The seven frames, one landing page</h2>
+      <p class="lead">Gardner named seven intelligences in <em>Frames of Mind</em>, and later welcomed an eighth, Naturalistic. Tap a frame to watch it light up on a landing page and see how EasyLandX brings it to life.</p>
+    </div>
+    <div class="grid">
+      <svg class="wire" viewBox="0 0 420 550" role="img" aria-label="A landing page wireframe with seven zones. The selected zone is highlighted.">
+        <rect x="10" y="10" width="400" height="530" rx="22" fill="#fff" stroke="#0B3A28" stroke-width="3"/>
+        <path d="M10 44V32a22 22 0 0 1 22-22h356a22 22 0 0 1 22 22v12z" fill="#0F7A52"/>
+        <circle cx="34" cy="27" r="5" fill="#fff"/><circle cx="50" cy="27" r="5" fill="#F7C948"/><circle cx="66" cy="27" r="5" fill="#17A06B"/>
+
+        <g class="zone" data-z="ling">
+          <rect class="hl" x="22" y="52" width="376" height="68" rx="14"/>
+          <rect x="34" y="62" width="250" height="16" rx="8" fill="#0B3A28"/>
+          <rect x="34" y="86" width="176" height="16" rx="8" fill="#0B3A28"/>
+          <rect x="34" y="108" width="300" height="7" rx="3.500" fill="#BFE0CF"/>
+        </g>
+        <g class="zone" data-z="spatial">
+          <rect class="hl" x="22" y="126" width="376" height="98" rx="14"/>
+          <rect x="34" y="136" width="352" height="78" rx="12" fill="#E8F6EF"/>
+          <circle cx="338" cy="162" r="13" fill="#E3A600"/>
+          <path d="M34 214v-18q50-36 100-8t90-2q70-14 162 24v4z" fill="#17A06B"/>
+          <path d="M34 214v-8q80-22 150 0t202-6v14z" fill="#0F7A52"/>
+        </g>
+        <g class="zone" data-z="logic">
+          <rect class="hl" x="22" y="230" width="376" height="66" rx="14"/>
+          <g fill="#fff" stroke="#0F7A52" stroke-width="3"><rect x="34" y="240" width="112" height="46" rx="10"/><rect x="154" y="240" width="112" height="46" rx="10"/><rect x="274" y="240" width="112" height="46" rx="10"/></g>
+          <g fill="#E3A600"><rect x="52" y="266" width="10" height="10" rx="2"/><rect x="68" y="258" width="10" height="18" rx="2"/><rect x="84" y="250" width="10" height="26" rx="2"/></g>
+          <g fill="#0F7A52"><rect x="172" y="266" width="10" height="10" rx="2"/><rect x="188" y="258" width="10" height="18" rx="2"/><rect x="204" y="250" width="10" height="26" rx="2"/></g>
+          <g fill="#E3A600"><rect x="292" y="266" width="10" height="10" rx="2"/><rect x="308" y="258" width="10" height="18" rx="2"/><rect x="324" y="250" width="10" height="26" rx="2"/></g>
+          <rect x="102" y="252" width="34" height="8" rx="4" fill="#BFE0CF"/><rect x="222" y="252" width="34" height="8" rx="4" fill="#BFE0CF"/><rect x="342" y="252" width="34" height="8" rx="4" fill="#BFE0CF"/>
+        </g>
+        <g class="zone" data-z="body">
+          <rect class="hl" x="22" y="302" width="376" height="54" rx="14"/>
+          <rect x="34" y="312" width="150" height="34" rx="17" fill="#E3A600"/>
+          <rect x="196" y="313" width="112" height="32" rx="16" fill="#fff" stroke="#0F7A52" stroke-width="3"/>
+          <g transform="translate(330 311) scale(1.4)" style="color:#0F7A52"><use href="#i-body" width="24" height="24"/></g>
+          <rect x="60" y="324" width="80" height="9" rx="4.500" fill="#fff"/>
+        </g>
+        <g class="zone" data-z="music">
+          <rect class="hl" x="22" y="362" width="376" height="54" rx="14"/>
+          <g id="wave"></g>
+        </g>
+        <g class="zone" data-z="inter">
+          <rect class="hl" x="22" y="422" width="376" height="54" rx="14"/>
+          <circle cx="58" cy="449" r="15" fill="#E3A600"/><circle cx="84" cy="449" r="15" fill="#17A06B" stroke="#fff" stroke-width="3"/><circle cx="110" cy="449" r="15" fill="#F7C948" stroke="#fff" stroke-width="3"/>
+          <rect x="140" y="436" width="210" height="10" rx="5" fill="#0B3A28"/><rect x="140" y="454" width="150" height="8" rx="4" fill="#BFE0CF"/>
+          <circle cx="372" cy="449" r="13" fill="#0F7A52"/><path d="M366 449h12M372 443v12" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <g class="zone" data-z="intra">
+          <rect class="hl" x="22" y="482" width="376" height="50" rx="14"/>
+          <rect x="34" y="491" width="104" height="32" rx="16" fill="#fff" stroke="#BFE0CF" stroke-width="3"/>
+          <rect x="148" y="491" width="104" height="32" rx="16" fill="#E8F6EF" stroke="#0F7A52" stroke-width="3"/>
+          <path d="M170 507l6 6 11-12" fill="none" stroke="#0F7A52" stroke-width="3.500" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="262" y="491" width="104" height="32" rx="16" fill="#fff" stroke="#BFE0CF" stroke-width="3"/>
+        </g>
+      </svg>
+
+      <div>
+        <div class="tabs" role="tablist" aria-label="The seven intelligences" id="tabs"></div>
+        <div class="panel" id="panel" role="tabpanel" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE BUILDER -->
+<section class="builder" id="profile">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Map your cognitive profile</h2>
+      <p class="lead">Gardner invites everyone to identify personal strengths and lean on them. Slide each frame to describe the people your business welcomes, and watch your landing page blueprint take shape.</p>
+    </div>
+
+    <div class="b-grid">
+      <div>
+        <div class="sliders" id="sliders"></div>
+        <div class="b-actions">
+          <button class="btn btn-white" type="button" id="shuffle">Surprise me</button>
+          <button class="btn btn-gold" type="button" id="reset">Reset profile</button>
+        </div>
+      </div>
+      <div class="radar-box">
+        <svg class="radar" id="radar" viewBox="0 0 460 430" role="img" aria-label="Radar chart of your cognitive profile"></svg>
+      </div>
+    </div>
+
+    <div class="blue">
+      <div>
+        <h3>Your landing page blueprint</h3>
+        <p class="shine-line" id="shineLine"></p>
+        <div class="moves" id="moves"></div>
+      </div>
+      <div>
+        <div class="mock" aria-label="Sample landing page preview">
+          <div class="bar"><i></i><i></i><i></i></div>
+          <div class="body">
+            <div class="hd" id="mockHead"></div>
+            <div class="ln"></div><div class="ln s"></div>
+            <span class="pill">Start now</span>
+          </div>
+        </div>
+        <p class="mock-cap">A sample headline in the voice of your strongest frame.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LESSONS -->
+<section class="lessons" id="lessons">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Four lessons that make pages shine</h2>
+      <p class="lead">Gardner's key lessons translate into clear, friendly choices on every page EasyLandX builds.</p>
+    </div>
+    <div class="grid">
+      <article class="lesson">
+        <svg class="art" viewBox="0 0 240 170" role="img" aria-label="Two different seven-sided profile shapes layered together">
+          <circle cx="120" cy="85" r="64" fill="#fff" opacity=".7"/>
+          <polygon id="polyA" fill="#E3A600" fill-opacity=".45" stroke="#E3A600" stroke-width="3" stroke-linejoin="round"/>
+          <polygon id="polyB" fill="#0F7A52" fill-opacity=".25" stroke="#0F7A52" stroke-width="3" stroke-linejoin="round"/>
+        </svg>
+        <h3>Every visitor has a unique profile</h3>
+        <p>Every mind holds its own special blend of strengths, even among identical twins. That is a wonderful reason to welcome visitors with variety.</p>
+        <p class="page"><b>On your page:</b> EasyLandX shapes each design around the one-of-a-kind people who visit your business.</p>
+      </article>
+      <article class="lesson">
+        <svg class="art" viewBox="0 0 240 170" role="img" aria-label="Three stages, each lit by its own spotlight">
+          <g opacity=".9"><path d="M45 8h30l16 120H29z" fill="#F7C948" opacity=".55"/><path d="M105 8h30l16 120h-62z" fill="#17A06B" opacity=".35"/><path d="M165 8h30l16 120h-62z" fill="#F7C948" opacity=".55"/></g>
+          <rect x="22" y="128" width="76" height="14" rx="7" fill="#0F7A52"/><rect x="82" y="128" width="76" height="14" rx="7" fill="#E3A600"/><rect x="142" y="128" width="76" height="14" rx="7" fill="#0F7A52"/>
+          <circle cx="60" cy="108" r="17" fill="#E3A600"/><circle cx="120" cy="108" r="17" fill="#0F7A52"/><circle cx="180" cy="108" r="17" fill="#E3A600"/>
+          <g style="color:#0B3A28"><use href="#i-music" x="49" y="97" width="22" height="22"/></g>
+          <g style="color:#fff"><use href="#i-spatial" x="109" y="97" width="22" height="22"/></g>
+          <g style="color:#0B3A28"><use href="#i-ling" x="169" y="97" width="22" height="22"/></g>
+        </svg>
+        <h3>Each strength shines on its own stage</h3>
+        <p>A talent in music, space, or words stands beautifully on its own. Every domain deserves its own spotlight.</p>
+        <p class="page"><b>On your page:</b> every section gives one strength a stage, so each visitor finds the spot where they sparkle.</p>
+      </article>
+      <article class="lesson">
+        <svg class="art" viewBox="0 0 240 170" role="img" aria-label="A sunny neighborhood with colorful houses on rolling hills">
+          <circle cx="188" cy="44" r="20" fill="#E3A600"/>
+          <path d="M0 170V112q50-40 100-12t80-8q40-6 60 14v64z" fill="#17A06B"/>
+          <path d="M0 170v-28q60-26 120-4t120-8v40z" fill="#0F7A52"/>
+          <g><rect x="40" y="108" width="34" height="28" fill="#fff"/><path d="M34 108l23-20 23 20z" fill="#E3A600"/><rect x="52" y="120" width="10" height="16" fill="#0F7A52"/></g>
+          <g><rect x="104" y="100" width="40" height="34" fill="#fff"/><path d="M98 100l26-24 26 24z" fill="#0B3A28"/><rect x="118" y="116" width="12" height="18" fill="#E3A600"/></g>
+          <g><rect x="166" y="112" width="30" height="24" fill="#fff"/><path d="M160 112l21-18 21 18z" fill="#E3A600"/><rect x="177" y="123" width="9" height="13" fill="#0F7A52"/></g>
+        </svg>
+        <h3>Culture shapes what people value</h3>
+        <p>Every community celebrates its own mix of talents. Some honor storytelling, some celebrate music, others treasure craft and movement.</p>
+        <p class="page"><b>On your page:</b> EasyLandX speaks the language, colors, and rhythms your community loves.</p>
+      </article>
+      <article class="lesson">
+        <svg class="art" viewBox="0 0 240 170" role="img" aria-label="Rising bars with a golden check badge">
+          <rect x="30" y="100" width="34" height="50" rx="8" fill="#17A06B"/><rect x="78" y="76" width="34" height="74" rx="8" fill="#0F7A52"/><rect x="126" y="50" width="34" height="100" rx="8" fill="#E3A600"/><rect x="174" y="22" width="34" height="128" rx="8" fill="#0F7A52"/>
+          <rect x="18" y="150" width="204" height="6" rx="3" fill="#0B3A28"/>
+          <circle cx="62" cy="40" r="22" fill="#E3A600"/><path d="M51 40l8 8 13-15" fill="none" stroke="#0B3A28" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>Real-world results tell the story</h3>
+        <p>Gardner favors authentic assessment: real tasks, portfolios, and practical performances that reveal true ability.</p>
+        <p class="page"><b>On your page:</b> success shows up as real actions like messages, calls, bookings, and visits, and every refinement follows them.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORK -->
+<section id="framework" style="background:var(--green-tint)">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>The EasyLandX Frames framework</h2>
+      <p class="lead">Five strategies from Gardner's work become five moves in our process. Select a move to explore it.</p>
+    </div>
+    <div class="track" id="track" role="tablist" aria-label="Framework steps"></div>
+    <div class="step-panel" id="stepPanel" role="tabpanel" aria-live="polite"></div>
+    <div class="step-nav">
+      <button class="btn btn-line" type="button" id="prev">Previous move</button>
+      <button class="btn btn-green" type="button" id="next">Next move</button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h2>Ready to frame your story?</h2>
+    <p>Let EasyLandX craft an affordable, conversion-focused landing page that welcomes every kind of mind to your business.</p>
+    <a class="btn btn-green" href="https://easylandx.github.io" target="_blank" rel="noopener"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#i-logo"/></svg>Visit EasyLandX</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top" style="font-size:1.2rem"><svg viewBox="0 0 40 40" style="width:28px;height:28px"><use href="#i-logo"/></svg><span>Easy<b>LandX</b></span></a>
+    <span>Landing pages and websites for small businesses. Inspired by Howard Gardner's <em>Frames of Mind</em> (1983).</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var NS = 'http://www.w3.org/2000/svg';
+
+  /* ---------- data ---------- */
+  var FR = [
+    {id:'ling', name:'Linguistic', short:'Words', sub:'words and stories',
+     shines:'Shines in poets, writers, and lawyers',
+     strength:'Sensitivity to spoken and written language, to word meanings, order, and rhythm, plus the skill of using language to reach goals.',
+     page:'A headline that sounds like your customers, short stories that make the offer easy to picture, and calls to action that say exactly what happens next.',
+     move:'EasyLandX writes warm, clear copy in your brand voice.',
+     bp:'Lead with a headline in your customers\u2019 own words and a short story that makes the offer easy to picture.',
+     head:'Your story, told in words your neighbors love.'},
+    {id:'logic', name:'Logical-Mathematical', short:'Logic', sub:'numbers and steps',
+     shines:'Shines in scientists, mathematicians, and programmers',
+     strength:'The capacity to analyze situations step by step, work with numbers, and investigate ideas scientifically.',
+     page:'Offers laid out in clear steps, transparent prices, and visible results that are easy to compare.',
+     move:'EasyLandX structures every page around a clear path from curiosity to action, then measures what happens.',
+     bp:'Show the offer in three clear steps, with prices and results laid out neatly.',
+     head:'Three clear steps to your new favorite service.'},
+    {id:'spatial', name:'Spatial', short:'Space', sub:'images and layout',
+     shines:'Shines in navigators, sculptors, architects, and chess players',
+     strength:'The ability to recognize, arrange, and recreate patterns and visual images, from wide landscapes to fine details.',
+     page:'Generous white space, bold imagery, and a layout where the eye travels straight to your offer.',
+     move:'EasyLandX designs balanced layouts with striking visuals and original illustrations.',
+     bp:'Give the hero a bold image and generous white space so the eye lands right on your offer.',
+     head:'See your business at its brightest.'},
+    {id:'body', name:'Bodily-Kinesthetic', short:'Action', sub:'touch and movement',
+     shines:'Shines in dancers, athletes, surgeons, and craftspeople',
+     strength:'The potential to use the whole body or the hands to solve challenges, make things, and express ideas.',
+     page:'Tappable moments: one-tap call, WhatsApp chat, sliders, quick quizzes, and booking buttons that feel great to press.',
+     move:'EasyLandX adds interactions that turn curiosity into action.',
+     bp:'Add tappable moments such as click-to-call, chat buttons, sliders, and quick quizzes.',
+     head:'Tap, slide, and book in seconds.'},
+    {id:'music', name:'Musical', short:'Music', sub:'rhythm and flow',
+     shines:'Shines in composers, musicians, and conductors',
+     strength:'Skill in performing, composing, and enjoying patterns of tone, pitch, and rhythm.',
+     page:'A pleasing cadence: sections that flow, repeated colors and shapes like a refrain, and a steady beat from top to bottom.',
+     move:'EasyLandX sets the pace of each page so scrolling feels like a favorite song.',
+     bp:'Set a rhythm with short sections, repeated motifs, and a steady beat of color from top to bottom.',
+     head:'A page with a rhythm your customers can feel.'},
+    {id:'inter', name:'Interpersonal', short:'People', sub:'connection',
+     shines:'Shines in teachers, therapists, and leaders',
+     strength:'The capacity to understand the intentions, motivations, moods, and desires of other people, which supports wonderful collaboration.',
+     page:'Real customer voices, friendly faces, and an inviting chat button that starts conversations.',
+     move:'EasyLandX places connection points where visitors feel welcomed.',
+     bp:'Feature real customer voices, friendly faces, and a one-tap chat so conversations start easily.',
+     head:'Meet the people behind the business.'},
+    {id:'intra', name:'Intrapersonal', short:'Self', sub:'self-guided choices',
+     shines:'Shines in reflective thinkers and self-guided learners',
+     strength:'The capacity to understand oneself, including desires, fears, capabilities, and emotions, and to use that insight to guide life.',
+     page:'Choose-your-path cards and gentle prompts that help visitors recognize their own goals and pick the option that fits.',
+     move:'EasyLandX offers clear options so every visitor can choose with confidence.',
+     bp:'Offer self-guided choices like \u201cWhich path fits you?\u201d so visitors recognize their own goals.',
+     head:'Find the path that fits you best.'}
+  ];
+
+  var STEPS = [
+    {t:'Map the profile',
+     g:'Identify your personal strengths and use them to approach new learning tasks and career transitions with confidence.',
+     e:'Every EasyLandX project begins with a friendly conversation about your story, your community, and your goals.'},
+    {t:'Configure individually',
+     g:'Individually configured education matches teaching techniques to the cognitive profile of each learner.',
+     e:'Each page is configured around your customers and your brand, so it feels made for you from the first scroll.'},
+    {t:'Pluralize the message',
+     g:'Present core concepts through multiple modalities, such as storytelling, timeline math, drama, and music, to reach diverse learners.',
+     e:'Your offer appears as words, visuals, clear steps, taps, rhythm, voices, and choices, all on one beautiful page.'},
+    {t:'Blend complementary talents',
+     g:'Strong teams combine spatial visionaries, interpersonal organizers, logical analysts, and linguistic communicators.',
+     e:'EasyLandX brings design, structure, copy, and connection together in one affordable package for small businesses.'},
+    {t:'Celebrate real results',
+     g:'Authentic assessment evaluates learning through real-world tasks, portfolios, and practical performances.',
+     e:'Success appears as genuine actions: messages, calls, bookings, and visits. These guide every refinement.'}
+  ];
+
+  function el(tag, attrs, html){
+    var n = document.createElement(tag);
+    if(attrs){ for(var k in attrs){ n.setAttribute(k, attrs[k]); } }
+    if(html!==undefined){ n.innerHTML = html; }
+    return n;
+  }
+  function svgEl(tag, attrs){
+    var n = document.createElementNS(NS, tag);
+    for(var k in attrs){ n.setAttribute(k, attrs[k]); }
+    return n;
+  }
+  function icon(id){ return '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-'+id+'"/></svg>'; }
+  function polar(i, r, cx, cy){
+    var a = -Math.PI/2 + i*2*Math.PI/7;
+    return [cx + r*Math.cos(a), cy + r*Math.sin(a)];
+  }
+  function polyPoints(vals, R, cx, cy, max){
+    return vals.map(function(v,i){ var p = polar(i, R*v/max, cx, cy); return p[0].toFixed(1)+','+p[1].toFixed(1); }).join(' ');
+  }
+
+  /* ---------- explorer ---------- */
+  var tabsBox = document.getElementById('tabs');
+  var panel = document.getElementById('panel');
+  var zones = document.querySelectorAll('.wire .zone');
+  var tabBtns = [];
+  var current = 0;
+
+  FR.forEach(function(f,i){
+    var b = el('button', {type:'button', role:'tab', id:'tab-'+i, 'aria-selected':'false', tabindex:'-1', 'aria-controls':'panel'},
+      '<span class="chip-ic">'+icon(f.id)+'</span><span>'+f.name+'</span>');
+    b.addEventListener('click', function(){ select(i); });
+    b.addEventListener('keydown', function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowDown'){ e.preventDefault(); select((i+1)%FR.length, true); }
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp'){ e.preventDefault(); select((i+FR.length-1)%FR.length, true); }
+    });
+    tabsBox.appendChild(b); tabBtns.push(b);
+  });
+
+  function select(i, focus){
+    current = i;
+    var f = FR[i];
+    tabBtns.forEach(function(b,j){
+      b.setAttribute('aria-selected', j===i ? 'true' : 'false');
+      b.setAttribute('tabindex', j===i ? '0' : '-1');
+    });
+    if(focus){ tabBtns[i].focus(); }
+    panel.setAttribute('aria-labelledby', 'tab-'+i);
+    panel.innerHTML =
+      '<h3>'+f.name+' intelligence</h3>'+
+      '<p class="shines">'+f.shines+'</p>'+
+      '<dl>'+
+        '<div><dt>The strength</dt><dd>'+f.strength+'</dd></div>'+
+        '<div><dt>On your landing page</dt><dd>'+f.page+'</dd></div>'+
+        '<div><dt>The EasyLandX move</dt><dd>'+f.move+'</dd></div>'+
+      '</dl>';
+    zones.forEach(function(z){ z.classList.toggle('on', z.getAttribute('data-z')===f.id); });
+  }
+
+  /* wave bars for the musical zone */
+  (function(){
+    var g = document.getElementById('wave');
+    var hs = [10,22,32,18,36,24,12,30,38,20,28,14,34,22,10,26,36,18,30,12,24,34,16,28];
+    hs.forEach(function(h,i){
+      var x = 34 + i*15.2;
+      g.appendChild(svgEl('rect', {x:x.toFixed(1), y:(389-h/2).toFixed(1), width:9, height:h, rx:4.5, fill: i%2 ? '#0F7A52' : '#E3A600'}));
+    });
+  })();
+
+  /* ---------- hero orbs ---------- */
+  (function(){
+    var orbs = document.getElementById('orbs');
+    var spokes = document.getElementById('spokes');
+    var cx=280, cy=260, rx=240, ry=215;
+    FR.forEach(function(f,i){
+      var a = -Math.PI/2 + i*2*Math.PI/7;
+      var x = cx + rx*Math.cos(a), y = cy + ry*Math.sin(a);
+      spokes.appendChild(svgEl('line', {x1:cx, y1:cy, x2:x.toFixed(1), y2:y.toFixed(1), stroke:'#E3A600', 'stroke-width':3, 'stroke-dasharray':'2 9', 'stroke-linecap':'round'}));
+      var gold = i%2===0;
+      var outer = svgEl('g', {transform:'translate('+x.toFixed(1)+' '+y.toFixed(1)+')', 'class':'orb', role:'button', tabindex:'0', 'aria-label':f.name+': open in the explorer'});
+      var pop = svgEl('g', {'class':'pop', style:'animation-delay:'+(0.15+i*0.09)+'s'});
+      var disc = svgEl('circle', {'class':'disc', r:30, fill: gold ? '#E3A600' : '#0F7A52'});
+      var ic = svgEl('use', {href:'#i-'+f.id, x:-15, y:-15, width:30, height:30, style:'color:'+(gold ? '#0B3A28' : '#ffffff')});
+      var lab = svgEl('text', {y:50, 'text-anchor':'middle'}); lab.textContent = f.short;
+      pop.appendChild(disc); pop.appendChild(ic); pop.appendChild(lab);
+      outer.appendChild(pop); orbs.appendChild(outer);
+      function go(){ select(i); document.getElementById('frames').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'}); }
+      outer.addEventListener('click', go);
+      outer.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
+    });
+  })();
+
+  /* ---------- profile builder ---------- */
+  var DEFAULTS = [4,2,5,3,2,4,3];
+  var vals = DEFAULTS.slice();
+  var slidersBox = document.getElementById('sliders');
+  var outs = [], ranges = [];
+
+  FR.forEach(function(f,i){
+    var row = el('div', {'class':'row'});
+    var lab = el('label', {'for':'r'+i}, f.name+'<small>'+f.sub+'</small>');
+    var out = el('output', {'for':'r'+i}, String(vals[i]));
+    var inp = el('input', {type:'range', id:'r'+i, min:'1', max:'5', step:'1', value:String(vals[i])});
+    inp.addEventListener('input', function(){ vals[i] = +inp.value; update(); });
+    row.appendChild(lab); row.appendChild(out); row.appendChild(inp);
+    slidersBox.appendChild(row);
+    outs.push(out); ranges.push(inp);
+  });
+
+  var radar = document.getElementById('radar');
+  var RC = {x:230, y:215, R:135};
+  (function(){
+    for(var k=1;k<=5;k++){
+      radar.appendChild(svgEl('polygon', {points:polyPoints([k,k,k,k,k,k,k], RC.R, RC.x, RC.y, 5), fill: k%2 ? '#F4FBF7' : '#FFFFFF', stroke:'#D3E6DB', 'stroke-width':2}));
+    }
+    FR.forEach(function(f,i){
+      var p = polar(i, RC.R, RC.x, RC.y);
+      radar.appendChild(svgEl('line', {x1:RC.x, y1:RC.y, x2:p[0].toFixed(1), y2:p[1].toFixed(1), stroke:'#D3E6DB', 'stroke-width':2}));
+      var q = polar(i, RC.R+26, RC.x, RC.y);
+      var anchor = q[0] > RC.x+8 ? 'start' : (q[0] < RC.x-8 ? 'end' : 'middle');
+      var dy = i===0 ? -2 : (q[1] > RC.y+RC.R*0.8 ? 12 : 5);
+      var t = svgEl('text', {x:q[0].toFixed(1), y:(q[1]+dy).toFixed(1), 'text-anchor':anchor}); t.textContent = f.short;
+      radar.appendChild(t);
+    });
+  })();
+  var shape = svgEl('polygon', {fill:'#E3A600', 'fill-opacity':'.5', stroke:'#0F7A52', 'stroke-width':4, 'stroke-linejoin':'round'});
+  radar.appendChild(shape);
+  var dots = FR.map(function(){ var c = svgEl('circle', {r:6.5, fill:'#fff', stroke:'#0F7A52', 'stroke-width':3.5}); radar.appendChild(c); return c; });
+
+  var movesBox = document.getElementById('moves');
+  var shineLine = document.getElementById('shineLine');
+  var mockHead = document.getElementById('mockHead');
+
+  function update(){
+    vals.forEach(function(v,i){ outs[i].textContent = v; });
+    shape.setAttribute('points', polyPoints(vals, RC.R, RC.x, RC.y, 5));
+    vals.forEach(function(v,i){ var p = polar(i, RC.R*v/5, RC.x, RC.y); dots[i].setAttribute('cx', p[0].toFixed(1)); dots[i].setAttribute('cy', p[1].toFixed(1)); });
+    var order = FR.map(function(f,i){ return i; }).sort(function(a,b){ return vals[b]-vals[a] || a-b; }).slice(0,3);
+    var names = order.map(function(i){ return FR[i].name; });
+    shineLine.textContent = 'Your profile shines in ' + names[0] + ', ' + names[1] + ', and ' + names[2] + '.';
+    movesBox.innerHTML = '';
+    order.forEach(function(i){
+      var f = FR[i];
+      movesBox.appendChild(el('div', {'class':'move'}, '<div class="ic">'+icon(f.id)+'</div><div><h4>'+f.name+'</h4><p>'+f.bp+'</p></div>'));
+    });
+    mockHead.textContent = FR[order[0]].head;
+  }
+  function setVals(arr){
+    vals = arr.slice();
+    ranges.forEach(function(r,i){ r.value = String(vals[i]); });
+    update();
+  }
+  document.getElementById('reset').addEventListener('click', function(){ setVals(DEFAULTS); });
+  document.getElementById('shuffle').addEventListener('click', function(){
+    setVals(FR.map(function(){ return 1 + Math.floor(Math.random()*5); }));
+  });
+
+  /* ---------- lesson art ---------- */
+  document.getElementById('polyA').setAttribute('points', polyPoints([5,3,4,2,5,3,4], 64, 120, 85, 5));
+  document.getElementById('polyB').setAttribute('points', polyPoints([2,5,3,5,3,5,2], 64, 120, 85, 5));
+
+  /* ---------- framework stepper ---------- */
+  var track = document.getElementById('track');
+  var stepPanel = document.getElementById('stepPanel');
+  var stepBtns = [];
+  var cur = 0;
+  STEPS.forEach(function(s,i){
+    var b = el('button', {type:'button', 'class':'step', role:'tab', id:'step-'+i, 'aria-selected':'false', tabindex:'-1'},
+      '<span class="n">'+(i+1)+'</span><span>'+s.t+'</span>');
+    b.addEventListener('click', function(){ goStep(i); });
+    track.appendChild(b); stepBtns.push(b);
+  });
+  function goStep(i){
+    cur = i;
+    var s = STEPS[i];
+    stepBtns.forEach(function(b,j){
+      b.setAttribute('aria-selected', j===i ? 'true' : 'false');
+      b.setAttribute('tabindex', j===i ? '0' : '-1');
+      b.classList.toggle('done', j<i);
+    });
+    track.style.setProperty('--prog', (i/(STEPS.length-1)*80)+'%');
+    stepPanel.setAttribute('aria-labelledby', 'step-'+i);
+    stepPanel.innerHTML =
+      '<div class="g"><h4>Gardner\u2019s insight</h4><h3>'+s.t+'</h3><p>'+s.g+'</p></div>'+
+      '<div class="e"><h4>The EasyLandX way</h4><h3>Made for your business</h3><p>'+s.e+'</p></div>';
+  }
+  document.getElementById('prev').addEventListener('click', function(){ goStep((cur+STEPS.length-1)%STEPS.length); });
+  document.getElementById('next').addEventListener('click', function(){ goStep((cur+1)%STEPS.length); });
+
+  select(0);
+  update();
+  goStep(0);
+})();
+</script>
+</body>
+</html>
