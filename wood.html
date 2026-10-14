@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#38A3F4">
 <title>EasyLandX Daily Craft</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -153,12 +159,67 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space
   .fuel-wrap svg { max-width: 120px; }
   .btn.big { font-size: 19px; padding: 14px 22px; }
 }
+
+/* ===== Mobile adaptation ===== */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; overflow-x: hidden; }
+body { overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
+img, svg { max-width: 100%; }
+.wrap { padding-inline: max(20px, env(safe-area-inset-left, 0px)) max(20px, env(safe-area-inset-right, 0px)); }
+.top { padding-top: env(safe-area-inset-top, 0px); top: 0; }
+footer { padding-bottom: calc(22px + env(safe-area-inset-bottom, 0px)); }
+@media (hover: none) {
+  .btn:hover, .task:hover { transform: none; box-shadow: inherit; }
+  .btn:hover { box-shadow: 0 5px 0 var(--ink); }
+}
+.btn:active { transform: translateY(2px); box-shadow: 0 3px 0 var(--ink); }
+.field input[type=text] { font-size: 16px; }
+.task, .chip, .check, .btn { touch-action: manipulation; }
+.compare, input[type=range] { touch-action: pan-y; }
+@media (max-width: 860px) {
+  .hero { padding-top: 32px; padding-bottom: 44px; }
+  .hero-grid, .story-grid, .final-grid { gap: 28px; }
+  .art { max-width: 520px; margin-inline: auto; }
+  .sec-head { margin-bottom: 28px; }
+  .lede { font-size: 18px; }
+}
+@media (max-width: 520px) {
+  section { padding-block: 44px; }
+  .wrap { padding-inline: max(22px, env(safe-area-inset-left, 0px)) max(22px, env(safe-area-inset-right, 0px)); }
+  .brand { font-size: 20px; }
+  .brand i { width: 22px; height: 22px; border-width: 2px; border-radius: 6px; }
+  .top .btn { font-size: 14px; padding: 8px 12px; border-width: 2px; box-shadow: 0 3px 0 var(--ink); }
+  .eyebrow { font-size: 12px; letter-spacing: .1em; }
+  .hero h1 { font-size: clamp(38px, 11.5vw, 52px); }
+  .lede { font-size: 17px; }
+  .cta-row { flex-direction: column; align-items: stretch; gap: 14px; text-align: center; }
+  .cta-row .btn { width: 100%; }
+  .card { padding: 20px; border-radius: 18px; }
+  .card h3 { font-size: 23px; }
+  .grid2, .grid3 { gap: 16px; }
+  .sec-head h2 { font-size: clamp(30px, 9vw, 40px); }
+  .story h2 { font-size: clamp(30px, 9vw, 40px); }
+  .task { padding: 12px 14px; }
+  .task b { font-size: 17px; }
+  .big-quote { font-size: 22px; padding: 16px; min-height: 4.2em; }
+  .preview { padding: 16px; }
+  .chip { padding: 11px 12px; }
+  .check { padding: 12px; }
+  .fuel-wrap svg { margin-inline: auto; }
+  .final { padding-block: 56px; }
+  .final h2 { font-size: clamp(36px, 11vw, 48px); }
+  footer .wrap { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 360px) {
+  .fuel-grid { grid-template-columns: minmax(0, 1fr); }
+}
 @media (prefers-reduced-motion: reduce) {
   .float, .spin { animation: none; }
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
 </style>
+</head>
+<body>
 
 <header class="top">
   <div class="wrap">
@@ -649,3 +710,6 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space
   });
 })();
 </script>
+
+</body>
+</html>
