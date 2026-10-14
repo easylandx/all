@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX | Landing pages built to turn attention into results</title>
+<meta name="description" content="EasyLandX builds affordable, conversion-focused landing pages for small businesses, shaped by the practices of The Effective Executive.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B2545;
+  --navy-2:#102F57;
+  --navy-3:#163A69;
+  --gold:#D4AF37;
+  --gold-soft:rgba(212,175,55,.14);
+  --gold-line:rgba(212,175,55,.38);
+  --ink:#EEF2F8;
+  --ink-dim:#B9C5D8;
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --navy:#0B2545; --navy-2:#102F57; --navy-3:#163A69; --gold:#D4AF37;
+    --gold-soft:rgba(212,175,55,.14); --gold-line:rgba(212,175,55,.38);
+    --ink:#EEF2F8; --ink-dim:#B9C5D8;
+  }
+}
+:root[data-theme="dark"]{
+  --navy:#0B2545; --navy-2:#102F57; --navy-3:#163A69; --gold:#D4AF37;
+  --gold-soft:rgba(212,175,55,.14); --gold-line:rgba(212,175,55,.38);
+  --ink:#EEF2F8; --ink-dim:#B9C5D8;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px);background:var(--navy)}
+@media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;background:var(--navy);color:var(--ink);
+  font-family:"Instrument Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{
+  font-family:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  font-weight:800;line-height:1.08;letter-spacing:-.02em;margin:0;color:var(--ink);
+}
+h1{font-size:clamp(2.5rem,6.4vw,4.9rem)}
+h2{font-size:clamp(2rem,4.4vw,3.2rem)}
+h3{font-size:1.3rem;line-height:1.2}
+p{margin:0}
+a{color:var(--gold)}
+svg{display:block;max-width:100%;height:auto}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+/* layout: side margins live on .wrap, sections only set vertical rhythm */
+.wrap{width:100%;max-width:1160px;margin-inline:auto;padding-inline:clamp(20px,5vw,56px)}
+.band{padding-block:clamp(60px,9vw,116px)}
+.band + .band{border-top:1px solid var(--gold-line)}
+.lead{color:var(--ink-dim);font-size:1.15rem;max-width:62ch}
+.sec-head{display:grid;gap:16px;margin-bottom:clamp(32px,5vw,56px)}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font:inherit;font-weight:600;font-size:1rem;text-decoration:none;cursor:pointer;
+  padding-block:14px;padding-inline:28px;border-radius:999px;
+  border:2px solid var(--gold);background:var(--gold);color:var(--navy);
+  transition:transform .18s ease,background .18s ease,color .18s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--gold)}
+.btn.ghost:hover{background:var(--gold-soft)}
+.btn.sm{padding-block:9px;padding-inline:20px;font-size:.95rem}
+
+/* header */
+.site-header{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:30;
+  background:rgba(11,37,69,.93);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--gold-line);
+}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);
+  font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-.02em}
+.brand b{color:var(--gold)}
+.nav{display:flex;align-items:center;gap:26px}
+.nav a.link{color:var(--ink-dim);text-decoration:none;font-weight:500;font-size:.98rem}
+.nav a.link:hover{color:var(--gold)}
+@media (max-width:820px){.nav a.link{display:none}}
+
+/* hero */
+.hero{padding-block:clamp(40px,7vw,96px) clamp(56px,8vw,104px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center}
+.hero h1{margin-bottom:24px;max-width:13ch}
+.hero .lead{margin-bottom:34px}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px}
+.hero-art{width:100%;max-width:560px;justify-self:center}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-art{order:-1;max-width:420px}}
+.draw{stroke-dasharray:700;stroke-dashoffset:0}
+@media (prefers-reduced-motion: no-preference){
+  .draw{animation:drawIn 1.6s ease-out both}
+  .draw.d2{animation-delay:.25s}.draw.d3{animation-delay:.5s}.draw.d4{animation-delay:.8s}
+  @keyframes drawIn{from{stroke-dashoffset:700}to{stroke-dashoffset:0}}
+}
+
+/* lessons */
+.lessons{display:grid;grid-template-columns:repeat(2,1fr);column-gap:clamp(28px,5vw,72px)}
+@media (max-width:760px){.lessons{grid-template-columns:1fr}}
+.lesson{display:flex;gap:20px;padding-block:28px;border-top:1px solid var(--gold-line)}
+.lesson .ico{flex:none;width:56px;height:56px;border-radius:50%;border:2px solid var(--gold);color:var(--gold);display:grid;place-items:center}
+.lesson .ico svg{width:28px;height:28px}
+.lesson h3{margin-bottom:8px}
+.lesson p{color:var(--ink-dim)}
+
+/* journey */
+.journey{background:var(--navy-2)}
+.journey svg{width:100%;margin-top:8px}
+.jt{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:26px;fill:var(--ink)}
+.js{font-family:"Instrument Sans",sans-serif;font-size:17px;fill:var(--ink-dim)}
+
+/* practices */
+.practice{display:grid;grid-template-columns:300px 1fr;gap:clamp(24px,4vw,56px);align-items:start}
+@media (max-width:900px){.practice{grid-template-columns:1fr}}
+.tabs{display:flex;flex-direction:column;gap:10px}
+@media (max-width:900px){.tabs{flex-direction:row;overflow-x:auto;padding-bottom:6px}}
+.tab{
+  display:flex;align-items:center;gap:14px;text-align:left;cursor:pointer;
+  font:inherit;font-weight:600;color:var(--ink);background:transparent;
+  border:2px solid var(--gold-line);border-radius:16px;padding-block:14px;padding-inline:18px;
+  transition:background .18s,border-color .18s;white-space:nowrap;
+}
+.tab .n{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+  background:var(--gold-soft);color:var(--gold);font-family:"Bricolage Grotesque",sans-serif;font-weight:800}
+.tab:hover{border-color:var(--gold)}
+.tab[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.tab[aria-selected="true"] .n{background:var(--navy);color:var(--gold)}
+.panel{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px);align-items:center;
+  background:var(--navy-2);border:2px solid var(--gold-line);border-radius:28px;
+  padding-block:clamp(22px,3vw,36px);padding-inline:clamp(22px,3vw,36px)}
+.panel[hidden]{display:none}
+@media (max-width:700px){.panel{grid-template-columns:1fr}}
+.panel .kicker{color:var(--gold);font-weight:600;margin-bottom:10px}
+.panel h3{font-size:clamp(1.6rem,3vw,2.15rem);margin-bottom:14px}
+.panel ul{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:12px}
+.panel li{display:flex;gap:12px;color:var(--ink-dim)}
+.panel li::before{content:"";flex:none;width:10px;height:10px;margin-top:.55em;border-radius:50%;background:var(--gold)}
+.panel svg{width:100%}
+.t{font-family:"Instrument Sans",system-ui,sans-serif;font-size:14px;fill:var(--ink)}
+.tg{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:15px;fill:var(--navy)}
+
+/* meter */
+.meter-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,56px);align-items:start}
+@media (max-width:920px){.meter-grid{grid-template-columns:1fr}}
+.browser{border:3px solid var(--gold);border-radius:22px;background:var(--navy-2);overflow:hidden}
+.browser-bar{display:flex;gap:8px;align-items:center;padding-block:12px;padding-inline:16px;border-bottom:3px solid var(--gold)}
+.browser-bar i{width:11px;height:11px;border-radius:50%;background:var(--gold)}
+.browser-bar i:nth-child(2){opacity:.65}.browser-bar i:nth-child(3){opacity:.35}
+.mock-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding-block:16px;padding-inline:16px}
+.slot{
+  display:grid;place-items:center;text-align:center;min-height:54px;padding-block:8px;padding-inline:10px;
+  border:2px dashed var(--gold-line);border-radius:12px;color:var(--ink-dim);font-size:.85rem;font-weight:500;
+  opacity:.55;transition:all .35s ease;
+}
+.slot.on{opacity:1;border-style:solid;border-color:var(--gold);background:var(--gold-soft);color:var(--gold);font-weight:600}
+.slot.on.btn-slot{background:var(--gold);color:var(--navy)}
+.s-nav,.s-banner,.s-benefits,.s-popup{grid-column:span 6}
+.s-headline{grid-column:span 4;min-height:80px}
+.s-image{grid-column:span 2;grid-row:span 2}
+.s-button{grid-column:span 4}
+.s-proof,.s-form{grid-column:span 3}
+.s-benefits{min-height:64px}
+.controls{display:grid;gap:12px}
+.ctl{
+  display:flex;align-items:flex-start;gap:14px;cursor:pointer;
+  border:2px solid var(--gold-line);border-radius:16px;padding-block:14px;padding-inline:16px;
+  transition:border-color .18s,background .18s;
+}
+.ctl:hover{border-color:var(--gold)}
+.ctl input{position:absolute;opacity:0;pointer-events:none}
+.ctl .box{flex:none;width:26px;height:26px;border-radius:8px;border:2px solid var(--gold);display:grid;place-items:center;margin-top:2px}
+.ctl .box svg{width:16px;height:16px;stroke:var(--navy);opacity:0;transition:opacity .15s}
+.ctl input:checked + .box{background:var(--gold)}
+.ctl input:checked + .box svg{opacity:1}
+.ctl input:checked ~ .txt strong{color:var(--gold)}
+.ctl input:focus-visible + .box{outline:3px solid var(--ink);outline-offset:3px}
+.ctl strong{display:block;font-weight:600}
+.ctl small{display:block;color:var(--ink-dim);font-size:.9rem;line-height:1.45}
+.grp{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;color:var(--gold);margin:10px 0 2px}
+.score{display:flex;align-items:center;gap:20px;margin-top:22px;flex-wrap:wrap}
+.score .num{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:4rem;line-height:1;color:var(--gold);min-width:2.4ch}
+.score .num span{font-size:1.4rem;color:var(--ink-dim)}
+.bar{flex:1;min-width:180px;height:18px;border-radius:999px;border:2px solid var(--gold);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .5s ease}
+.msg{margin-top:14px;font-weight:500;min-height:3.2em}
+.reset{margin-top:6px}
+
+/* planner */
+.planner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:start}
+@media (max-width:920px){.planner{grid-template-columns:1fr}}
+.field{display:grid;gap:10px;margin-bottom:26px}
+.field > label,.field > .lbl{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.1rem}
+.field input[type=text]{
+  font:inherit;color:var(--ink);background:var(--navy-2);border:2px solid var(--gold-line);
+  border-radius:14px;padding-block:13px;padding-inline:16px;width:100%;
+}
+.field input[type=text]::placeholder{color:var(--ink-dim)}
+.field input[type=text]:focus{border-color:var(--gold);outline:none}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{
+  font:inherit;font-weight:600;color:var(--ink);background:transparent;cursor:pointer;
+  border:2px solid var(--gold-line);border-radius:999px;padding-block:10px;padding-inline:20px;
+  transition:all .18s;
+}
+.chip:hover{border-color:var(--gold)}
+.chip[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.blueprint{border:3px solid var(--gold);border-radius:26px;background:var(--navy-2);padding-block:clamp(22px,3vw,34px);padding-inline:clamp(22px,3vw,34px)}
+.bp-brand{color:var(--gold);font-weight:600;margin-bottom:8px}
+.bp-head{font-size:clamp(1.7rem,3.2vw,2.35rem);margin-bottom:10px}
+.bp-sub{color:var(--ink-dim);margin-bottom:20px}
+.bp-btn{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;border-radius:999px;padding-block:12px;padding-inline:26px;margin-bottom:26px}
+.bp-list{margin:0 0 24px;padding:0;list-style:none;display:grid;gap:10px;counter-reset:s}
+.bp-list li{display:flex;gap:12px;counter-increment:s;color:var(--ink-dim)}
+.bp-list li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;background:var(--gold-soft);border:1px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-size:.85rem;font-weight:700}
+.bp-facts{display:grid;gap:8px;border-top:1px solid var(--gold-line);padding-top:18px;margin-bottom:22px}
+.bp-facts div{display:flex;gap:10px;flex-wrap:wrap}
+.bp-facts b{color:var(--gold);min-width:7.5em}
+.bp-actions{display:flex;flex-wrap:wrap;gap:12px}
+.toast{margin-top:12px;color:var(--gold);font-weight:600;min-height:1.6em}
+
+/* benefits */
+.gives{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,56px)}
+@media (max-width:860px){.gives{grid-template-columns:1fr}}
+.give{border-top:6px solid var(--gold);padding-top:22px}
+.give h3{font-size:1.55rem;margin-bottom:12px}
+.give p{color:var(--ink-dim)}
+
+/* closing */
+.closing{background:var(--gold);color:var(--navy)}
+.closing .band-inner{display:grid;grid-template-columns:1.3fr .7fr;gap:32px;align-items:center}
+@media (max-width:820px){.closing .band-inner{grid-template-columns:1fr}}
+.closing h2{color:var(--navy);margin-bottom:14px}
+.closing p{color:var(--navy);font-size:1.15rem;max-width:50ch}
+.closing .btn{background:var(--navy);border-color:var(--navy);color:var(--gold);justify-self:start;font-size:1.15rem;padding-block:18px;padding-inline:40px}
+.closing .btn:hover{background:var(--navy-2)}
+.band.closing{border-top:0}
+footer{padding-block:34px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;color:var(--ink-dim);font-size:.95rem}
+</style>
+</head>
+<body>
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-habit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3"/><path d="M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4"/><path d="M6 21v-4h4"/></symbol>
+    <symbol id="i-exec" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></symbol>
+    <symbol id="i-contrib" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19L19 5"/><path d="M10 5h9v9"/></symbol>
+    <symbol id="i-strength" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20v-8M12 20V4M19 20v-6"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="EasyLandX home">
+      <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><rect x="3" y="3" width="34" height="34" rx="10" fill="none" stroke="#D4AF37" stroke-width="3"/><path d="M12 24l6-6 4 4 7-8" fill="none" stroke="#D4AF37" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="29" cy="14" r="2.6" fill="#D4AF37"/></svg>
+      Easy<b>LandX</b>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a class="link" href="#lessons">Lessons</a>
+      <a class="link" href="#practices">Practices</a>
+      <a class="link" href="#meter">Meter</a>
+      <a class="link" href="#blueprint">Blueprint</a>
+      <a class="btn sm" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Landing pages that turn attention into results.</h1>
+      <p class="lead">EasyLandX creates affordable, conversion-focused landing pages and websites for small businesses. Every page is guided by the practices in Peter Drucker's <em>The Effective Executive</em>: focus, contribution, strengths and decisive action.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+        <a class="btn ghost" href="#practices">Explore the five practices</a>
+      </div>
+    </div>
+
+    <svg class="hero-art" viewBox="0 0 560 480" role="img" aria-labelledby="heroArtT">
+      <title id="heroArtT">A landing page with a gold target and rising results bars</title>
+      <!-- page frame -->
+      <rect x="30" y="40" width="400" height="320" rx="20" fill="#102F57" stroke="#D4AF37" stroke-width="3"/>
+      <line x1="30" y1="84" x2="430" y2="84" stroke="#D4AF37" stroke-width="3"/>
+      <circle cx="58" cy="62" r="6" fill="#D4AF37"/><circle cx="80" cy="62" r="6" fill="#D4AF37" opacity=".65"/><circle cx="102" cy="62" r="6" fill="#D4AF37" opacity=".35"/>
+      <rect x="130" y="53" width="220" height="18" rx="9" fill="none" stroke="#D4AF37" stroke-opacity=".5"/>
+      <!-- headline + text -->
+      <rect x="56" y="112" width="210" height="16" rx="8" fill="#EEF2F8"/>
+      <rect x="56" y="138" width="160" height="16" rx="8" fill="#EEF2F8"/>
+      <rect x="56" y="172" width="190" height="8" rx="4" fill="#EEF2F8" opacity=".45"/>
+      <rect x="56" y="188" width="150" height="8" rx="4" fill="#EEF2F8" opacity=".45"/>
+      <rect x="56" y="214" width="124" height="38" rx="19" fill="#D4AF37"/>
+      <rect x="78" y="229" width="80" height="8" rx="4" fill="#0B2545"/>
+      <!-- image block -->
+      <rect x="282" y="108" width="122" height="146" rx="14" fill="#163A69" stroke="#D4AF37" stroke-opacity=".55"/>
+      <circle cx="378" cy="136" r="12" fill="#D4AF37"/>
+      <path d="M296 240l34-58 22 30 16-20 28 48z" fill="#D4AF37" opacity=".88"/>
+      <!-- proof tiles -->
+      <rect x="56" y="282" width="108" height="56" rx="12" fill="none" stroke="#D4AF37" stroke-opacity=".55"/>
+      <rect x="176" y="282" width="108" height="56" rx="12" fill="none" stroke="#D4AF37" stroke-opacity=".55"/>
+      <rect x="296" y="282" width="108" height="56" rx="12" fill="none" stroke="#D4AF37" stroke-opacity=".55"/>
+      <path d="M110 298l4 8 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z" fill="#D4AF37"/>
+      <path d="M230 298l4 8 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z" fill="#D4AF37"/>
+      <path d="M350 298l4 8 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z" fill="#D4AF37"/>
+      <!-- target -->
+      <g>
+        <circle cx="440" cy="300" r="100" fill="#0B2545" stroke="#D4AF37" stroke-width="4" class="draw"/>
+        <circle cx="440" cy="300" r="70" fill="#102F57" stroke="#D4AF37" stroke-width="4" class="draw d2"/>
+        <circle cx="440" cy="300" r="40" fill="#0B2545" stroke="#D4AF37" stroke-width="4" class="draw d3"/>
+        <circle cx="440" cy="300" r="14" fill="#D4AF37"/>
+        <line x1="540" y1="196" x2="450" y2="292" stroke="#D4AF37" stroke-width="6" stroke-linecap="round" class="draw d4"/>
+        <path d="M532 182l14 2-2 14M520 194l14 2-2 14" fill="none" stroke="#D4AF37" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <!-- rising bars -->
+      <g fill="#D4AF37">
+        <rect x="40" y="426" width="28" height="24" rx="6" opacity=".35"/>
+        <rect x="82" y="412" width="28" height="38" rx="6" opacity=".5"/>
+        <rect x="124" y="398" width="28" height="52" rx="6" opacity=".65"/>
+        <rect x="166" y="382" width="28" height="68" rx="6" opacity=".82"/>
+        <rect x="208" y="366" width="28" height="84" rx="6"/>
+      </g>
+      <!-- sparkles -->
+      <path d="M498 70l6 16 16 6-16 6-6 16-6-16-16-6 16-6z" fill="#D4AF37"/>
+      <path d="M470 130l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#D4AF37" opacity=".7"/>
+    </svg>
+  </div>
+</section>
+
+<!-- LESSONS -->
+<section class="band" id="lessons">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Six lessons that shape every EasyLandX page</h2>
+      <p class="lead">Drucker's central idea is that effectiveness is learnable. We bring that idea to landing pages, so each page you receive carries the same clarity and purpose.</p>
+    </div>
+    <div class="lessons">
+      <article class="lesson">
+        <div class="ico"><svg aria-hidden="true"><use href="#i-habit"/></svg></div>
+        <div><h3>Effectiveness is a habit</h3><p>Strong results grow from repeatable practices. Every EasyLandX page follows a proven routine, so your business enjoys dependable quality launch after launch.</p></div>
+      </article>
+      <article class="lesson">
+        <div class="ico"><svg aria-hidden="true"><use href="#i-exec"/></svg></div>
+        <div><h3>Every decision-maker is an executive</h3><p>The choices you make shape your results. We bring your decisions to life in a page where each one guides visitors toward action.</p></div>
+      </article>
+      <article class="lesson">
+        <div class="ico"><svg aria-hidden="true"><use href="#i-contrib"/></svg></div>
+        <div><h3>Contribution is the measure</h3><p>Effort matters most when it contributes to results. Each headline, image and button earns its place by supporting one clear outcome for your business.</p></div>
+      </article>
+      <article class="lesson">
+        <div class="ico"><svg aria-hidden="true"><use href="#i-strength"/></svg></div>
+        <div><h3>Strengths create progress</h3><p>Growth comes from amplifying what you do best. Your page spotlights your standout qualities so visitors meet your brightest advantages first.</p></div>
+      </article>
+      <article class="lesson">
+        <div class="ico"><svg aria-hidden="true"><use href="#i-target"/></svg></div>
+        <div><h3>First things first</h3><p>Concentration multiplies impact. One page carries one priority: a single message that leads to a single action.</p></div>
+      </article>
+      <article class="lesson">
+        <div class="ico"><svg aria-hidden="true"><use href="#i-check"/></svg></div>
+        <div><h3>Choose the right things, then do them well</h3><p>Direction comes before polish. We confirm the right goal for your page, then craft every detail around it with care.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section class="band journey" aria-labelledby="journeyH">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="journeyH">Every visit is a path from attention to action</h2>
+      <p class="lead">Applying the practice of knowing your time, each EasyLandX page guides a visitor through three welcoming moments in a smooth, unbroken flow.</p>
+    </div>
+    <svg viewBox="0 0 1000 250" role="img" aria-labelledby="jT">
+      <title id="jT">A rising path with three stops: Notice, Trust and Act</title>
+      <path d="M60 190 Q280 190 500 120 T940 50" fill="none" stroke="#D4AF37" stroke-width="6" stroke-linecap="round" stroke-dasharray="2 14"/>
+      <path d="M60 190 Q280 190 500 120 T940 50" fill="none" stroke="#D4AF37" stroke-width="6" stroke-linecap="round" opacity=".25"/>
+      <circle cx="60" cy="190" r="22" fill="#0B2545" stroke="#D4AF37" stroke-width="5"/>
+      <circle cx="500" cy="120" r="22" fill="#0B2545" stroke="#D4AF37" stroke-width="5"/>
+      <circle cx="940" cy="50" r="30" fill="#D4AF37"/>
+      <path d="M926 50l10 10 18-20" fill="none" stroke="#0B2545" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="60" cy="190" r="7" fill="#D4AF37"/><circle cx="500" cy="120" r="7" fill="#D4AF37"/>
+      <text class="jt" x="30" y="150">Notice</text><text class="js" x="30" y="232">A clear headline greets the visitor</text>
+      <text class="jt" x="440" y="80">Trust</text><text class="js" x="330" y="172" >Proof and benefits build confidence</text>
+      <text class="jt" x="800" y="110" >Act</text><text class="js" x="720" y="150">One bold button invites the next step</text>
+    </svg>
+  </div>
+</section>
+
+<!-- FIVE PRACTICES -->
+<section class="band" id="practices">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Five practices, applied to your landing page</h2>
+      <p class="lead">Choose a practice to see how Drucker's framework becomes a concrete design choice on your page.</p>
+    </div>
+    <div class="practice">
+      <div class="tabs" role="tablist" aria-label="Five practices" aria-orientation="vertical">
+        <button class="tab" role="tab" id="tab1" aria-controls="p1" aria-selected="true"><span class="n">1</span>Know thy time</button>
+        <button class="tab" role="tab" id="tab2" aria-controls="p2" aria-selected="false" tabindex="-1"><span class="n">2</span>External contribution</button>
+        <button class="tab" role="tab" id="tab3" aria-controls="p3" aria-selected="false" tabindex="-1"><span class="n">3</span>Productive strengths</button>
+        <button class="tab" role="tab" id="tab4" aria-controls="p4" aria-selected="false" tabindex="-1"><span class="n">4</span>First things first</button>
+        <button class="tab" role="tab" id="tab5" aria-controls="p5" aria-selected="false" tabindex="-1"><span class="n">5</span>Effective decisions</button>
+      </div>
+
+      <div>
+        <!-- 1 -->
+        <div class="panel" role="tabpanel" id="p1" aria-labelledby="tab1">
+          <div>
+            <p class="kicker">Drucker: gather your time into focused blocks</p>
+            <h3>Honor every visitor's first seconds</h3>
+            <p>Visitors decide quickly, so your page presents its value right away and keeps one smooth, unbroken flow.</p>
+            <ul>
+              <li>The headline and button appear together in the opening view.</li>
+              <li>Sections follow one natural sequence, each building on the last.</li>
+              <li>A lightweight, streamlined layout loads quickly and keeps attention steady.</li>
+            </ul>
+          </div>
+          <svg viewBox="0 0 360 260" role="img" aria-labelledby="a1">
+            <title id="a1">A clock with a highlighted slice and three timeline bars</title>
+            <circle cx="110" cy="130" r="82" fill="#0B2545" stroke="#D4AF37" stroke-width="4"/>
+            <path d="M110 130 L110 48 A82 82 0 0 1 181 171 Z" fill="#D4AF37"/>
+            <circle cx="110" cy="130" r="7" fill="#EEF2F8"/>
+            <line x1="110" y1="130" x2="150" y2="98" stroke="#EEF2F8" stroke-width="5" stroke-linecap="round"/>
+            <g stroke="#D4AF37" stroke-width="3" stroke-linecap="round"><line x1="110" y1="56" x2="110" y2="66"/><line x1="110" y1="194" x2="110" y2="204"/><line x1="28" y1="130" x2="38" y2="130"/><line x1="182" y1="130" x2="192" y2="130"/></g>
+            <rect x="214" y="70" width="130" height="30" rx="15" fill="#D4AF37"/><text class="tg" x="228" y="90">First glance</text>
+            <rect x="214" y="116" width="100" height="30" rx="15" fill="none" stroke="#D4AF37" stroke-width="3"/><text class="t" x="228" y="136">Value</text>
+            <rect x="214" y="162" width="70" height="30" rx="15" fill="none" stroke="#D4AF37" stroke-width="3" opacity=".7"/><text class="t" x="228" y="182">Action</text>
+          </svg>
+        </div>
+
+        <!-- 2 -->
+        <div class="panel" role="tabpanel" id="p2" aria-labelledby="tab2" hidden>
+          <div>
+            <p class="kicker">Drucker: ask what you can contribute</p>
+            <h3>Speak to the outcome your visitor wants</h3>
+            <p>The most effective pages shift from "what we do" to "what we contribute," and visitors feel that welcome right away.</p>
+            <ul>
+              <li>Headlines describe the benefit your customer will enjoy.</li>
+              <li>Every element points toward the result your business values most.</li>
+              <li>Stories and proof show how your work lifts real customers.</li>
+            </ul>
+          </div>
+          <svg viewBox="0 0 360 260" role="img" aria-labelledby="a2">
+            <title id="a2">A central gold circle with arrows reaching four people</title>
+            <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#D4AF37"/></marker></defs>
+            <g stroke="#D4AF37" stroke-width="4" stroke-linecap="round" marker-end="url(#ar)">
+              <line x1="152" y1="104" x2="84" y2="62"/><line x1="208" y1="104" x2="276" y2="62"/>
+              <line x1="152" y1="156" x2="84" y2="198"/><line x1="208" y1="156" x2="276" y2="198"/>
+            </g>
+            <circle cx="180" cy="130" r="48" fill="#D4AF37"/><text class="tg" x="180" y="136" text-anchor="middle" style="font-size:18px">Your page</text>
+            <g fill="#0B2545" stroke="#D4AF37" stroke-width="3">
+              <circle cx="60" cy="48" r="28"/><circle cx="300" cy="48" r="28"/><circle cx="60" cy="212" r="28"/><circle cx="300" cy="212" r="28"/>
+            </g>
+            <g fill="#EEF2F8">
+              <circle cx="60" cy="43" r="7"/><path d="M47 62c0-8 6-13 13-13s13 5 13 13z"/>
+              <circle cx="300" cy="43" r="7"/><path d="M287 62c0-8 6-13 13-13s13 5 13 13z"/>
+              <circle cx="60" cy="207" r="7"/><path d="M47 226c0-8 6-13 13-13s13 5 13 13z"/>
+              <circle cx="300" cy="207" r="7"/><path d="M287 226c0-8 6-13 13-13s13 5 13 13z"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- 3 -->
+        <div class="panel" role="tabpanel" id="p3" aria-labelledby="tab3" hidden>
+          <div>
+            <p class="kicker">Drucker: staff for strength</p>
+            <h3>Lead with what your business does best</h3>
+            <p>Your standout qualities are your greatest assets, so your page gives them center stage.</p>
+            <ul>
+              <li>Your top three strengths appear in the opening view.</li>
+              <li>We tailor the layout around the talent that sets you apart.</li>
+              <li>Photography and wording echo your unique voice and style.</li>
+            </ul>
+          </div>
+          <svg viewBox="0 0 360 260" role="img" aria-labelledby="a3">
+            <title id="a3">Three bars with the tallest highlighted in gold and topped with a star</title>
+            <line x1="30" y1="220" x2="330" y2="220" stroke="#D4AF37" stroke-width="4" stroke-linecap="round"/>
+            <rect x="50" y="140" width="68" height="80" rx="10" fill="none" stroke="#D4AF37" stroke-width="4" opacity=".6"/>
+            <rect x="146" y="50" width="68" height="170" rx="10" fill="#D4AF37"/>
+            <rect x="242" y="100" width="68" height="120" rx="10" fill="none" stroke="#D4AF37" stroke-width="4" opacity=".8"/>
+            <path d="M180 8l9 19 21 3-15 15 4 21-19-10-19 10 4-21-15-15 21-3z" fill="#D4AF37"/>
+            <text class="t" x="84" y="244" text-anchor="middle">Craft</text>
+            <text class="t" x="180" y="244" text-anchor="middle">Service</text>
+            <text class="t" x="276" y="244" text-anchor="middle">Value</text>
+          </svg>
+        </div>
+
+        <!-- 4 -->
+        <div class="panel" role="tabpanel" id="p4" aria-labelledby="tab4" hidden>
+          <div>
+            <p class="kicker">Drucker: one thing at a time</p>
+            <h3>One page, one priority</h3>
+            <p>Concentration gives your message its power. Your page invites one action, and every section supports it.</p>
+            <ul>
+              <li>A single primary button repeats at natural moments in the page.</li>
+              <li>Yesterday's habits make room for a sharper, fresher layout.</li>
+              <li>Courageous priorities favor your biggest opportunity, such as bookings or sign-ups.</li>
+            </ul>
+          </div>
+          <svg viewBox="0 0 360 260" role="img" aria-labelledby="a4">
+            <title id="a4">A spotlight shining on one gold button</title>
+            <polygon points="180,6 96,196 264,196" fill="#D4AF37" opacity=".2"/>
+            <circle cx="180" cy="22" r="14" fill="#D4AF37"/>
+            <g fill="none" stroke="#D4AF37" stroke-width="3" opacity=".4">
+              <rect x="20" y="170" width="70" height="30" rx="15"/><rect x="270" y="170" width="70" height="30" rx="15"/>
+              <rect x="30" y="214" width="90" height="22" rx="11"/><rect x="240" y="214" width="90" height="22" rx="11"/>
+            </g>
+            <rect x="100" y="176" width="160" height="52" rx="26" fill="#D4AF37"/>
+            <text class="tg" x="180" y="208" text-anchor="middle" style="font-size:18px">One action</text>
+          </svg>
+        </div>
+
+        <!-- 5 -->
+        <div class="panel" role="tabpanel" id="p5" aria-labelledby="tab5" hidden>
+          <div>
+            <p class="kicker">Drucker: decisions become action</p>
+            <h3>Decide with clear criteria, then launch</h3>
+            <p>A decision shines when it turns into assigned steps and dates. Our process makes that natural.</p>
+            <ul>
+              <li>Boundary conditions come first: your goal, audience and offer.</li>
+              <li>Diverse views shape the final direction as we compare page variations.</li>
+              <li>Every decision gains an owner, a date and a next step.</li>
+            </ul>
+          </div>
+          <svg viewBox="0 0 360 260" role="img" aria-labelledby="a5">
+            <title id="a5">A flow from Criteria to Views to Action with a checklist below</title>
+            <defs><marker id="ar5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D4AF37"/></marker></defs>
+            <rect x="10" y="30" width="96" height="48" rx="14" fill="none" stroke="#D4AF37" stroke-width="3"/><text class="t" x="58" y="59" text-anchor="middle">Criteria</text>
+            <rect x="132" y="30" width="96" height="48" rx="14" fill="none" stroke="#D4AF37" stroke-width="3"/><text class="t" x="180" y="59" text-anchor="middle">Views</text>
+            <rect x="254" y="30" width="96" height="48" rx="14" fill="#D4AF37"/><text class="tg" x="302" y="59" text-anchor="middle">Action</text>
+            <g stroke="#D4AF37" stroke-width="3" stroke-linecap="round" marker-end="url(#ar5)"><line x1="108" y1="54" x2="128" y2="54" marker-end="url(#ar5)"/><line x1="230" y1="54" x2="250" y2="54" marker-end="url(#ar5)"/></g>
+            <g fill="none" stroke="#D4AF37" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M30 124l8 8 14-16"/><path d="M30 164l8 8 14-16"/><path d="M30 204l8 8 14-16"/>
+            </g>
+            <g fill="#EEF2F8"><rect x="68" y="120" width="200" height="10" rx="5"/><rect x="68" y="160" width="160" height="10" rx="5"/><rect x="68" y="200" width="120" height="10" rx="5"/></g>
+            <g fill="#D4AF37"><rect x="280" y="116" width="56" height="18" rx="9"/><rect x="280" y="156" width="56" height="18" rx="9" opacity=".75"/><rect x="280" y="196" width="56" height="18" rx="9" opacity=".5"/></g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRIBUTION METER -->
+<section class="band journey" id="meter">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Try the Contribution Meter</h2>
+      <p class="lead">Every element earns its place by contributing to your goal. Select the elements for your page and watch the contribution score grow toward 100.</p>
+    </div>
+    <div class="meter-grid">
+      <div>
+        <div class="browser" aria-hidden="true">
+          <div class="browser-bar"><i></i><i></i><i></i></div>
+          <div class="mock-grid" id="mock">
+            <div class="slot s-nav" data-el="nav">Extra menu links</div>
+            <div class="slot s-banner" data-el="banner">Sliding banner</div>
+            <div class="slot s-headline" data-el="headline">Clear headline</div>
+            <div class="slot s-image" data-el="image">Hero image</div>
+            <div class="slot s-button btn-slot" data-el="button">Primary button</div>
+            <div class="slot s-benefits" data-el="benefits">Benefit highlights</div>
+            <div class="slot s-proof" data-el="proof">Customer proof</div>
+            <div class="slot s-form" data-el="form">Short form</div>
+            <div class="slot s-popup" data-el="popup">Pop-up window</div>
+          </div>
+        </div>
+        <div class="score">
+          <div class="num"><span id="scoreNum">0</span><span> / 100</span></div>
+          <div class="bar" role="progressbar" aria-label="Contribution score" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar"><i id="barFill"></i></div>
+        </div>
+        <p class="msg" id="msg" aria-live="polite">Select elements to see their contribution.</p>
+      </div>
+
+      <div class="controls" id="controls">
+        <p class="grp">Core elements</p>
+        <p class="grp" style="display:none"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLUEPRINT PLANNER -->
+<section class="band" id="blueprint">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Draft your page blueprint</h2>
+      <p class="lead">Define your boundary conditions the Drucker way: one goal, one strength, one clear action. Your blueprint updates as you choose.</p>
+    </div>
+    <div class="planner">
+      <div>
+        <div class="field">
+          <label for="bizName">Your business name</label>
+          <input type="text" id="bizName" placeholder="Sunrise Bakery" autocomplete="organization" maxlength="40">
+        </div>
+        <div class="field">
+          <span class="lbl" id="goalLbl">Your primary goal</span>
+          <div class="chips" role="group" aria-labelledby="goalLbl" id="goalChips"></div>
+        </div>
+        <div class="field">
+          <span class="lbl" id="strLbl">Your standout strength</span>
+          <div class="chips" role="group" aria-labelledby="strLbl" id="strChips"></div>
+        </div>
+      </div>
+
+      <div class="blueprint" aria-live="polite">
+        <p class="bp-brand" id="bpBrand"></p>
+        <h3 class="bp-head" id="bpHead"></h3>
+        <p class="bp-sub" id="bpSub"></p>
+        <span class="bp-btn" id="bpBtn"></span>
+        <ol class="bp-list" id="bpList"></ol>
+        <div class="bp-facts" id="bpFacts"></div>
+        <div class="bp-actions">
+          <button class="btn sm" type="button" id="copyBtn">Copy my blueprint</button>
+          <a class="btn sm ghost" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+        </div>
+        <p class="toast" id="toast"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU RECEIVE -->
+<section class="band journey">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>What EasyLandX brings to your business</h2>
+    </div>
+    <div class="gives">
+      <div class="give"><h3>Affordable by design</h3><p>Small businesses receive professional landing pages and websites at a very friendly price, so great design is within reach.</p></div>
+      <div class="give"><h3>Conversion-focused structure</h3><p>Every page is organized around one clear action, so visitors move naturally from curiosity to contact, booking or purchase.</p></div>
+      <div class="give"><h3>Built personally for you</h3><p>The EasyLandX team crafts each page by hand around your goals, your voice and your strengths.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="band closing">
+  <div class="wrap band-inner">
+    <div>
+      <h2>Ready to bring your blueprint to life?</h2>
+      <p>Visit EasyLandX and let's build a landing page where every element contributes to your next customer.</p>
+    </div>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 EasyLandX. Landing pages built to turn attention into results.</span>
+    <span>Inspired by <em>The Effective Executive</em> by Peter F. Drucker.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---------- Practices tabs ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  function selectTab(i, focus){
+    tabs.forEach(function(t, idx){
+      var on = idx === i;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if(focus) tabs[i].focus();
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ selectTab(i); });
+    t.addEventListener('keydown', function(e){
+      var k = e.key, n = tabs.length;
+      if(k === 'ArrowDown' || k === 'ArrowRight'){ e.preventDefault(); selectTab((i+1)%n, true); }
+      else if(k === 'ArrowUp' || k === 'ArrowLeft'){ e.preventDefault(); selectTab((i-1+n)%n, true); }
+      else if(k === 'Home'){ e.preventDefault(); selectTab(0, true); }
+      else if(k === 'End'){ e.preventDefault(); selectTab(n-1, true); }
+    });
+  });
+
+  /* ---------- Contribution Meter ---------- */
+  var items = [
+    {id:'headline', label:'Clear headline',      note:'Names the benefit in a few words.',          w:20, core:true},
+    {id:'button',   label:'One primary button',  note:'Invites the single action you value most.',  w:25, core:true},
+    {id:'proof',    label:'Customer proof',      note:'Stories and ratings build confidence.',      w:15, core:true},
+    {id:'benefits', label:'Benefit highlights',  note:'Three short reasons to say yes.',            w:15, core:true},
+    {id:'form',     label:'Short contact form',  note:'Name and one contact detail keep it easy.',  w:10, core:true},
+    {id:'image',    label:'Hero image',          note:'A bright, fast-loading visual of your work.', w:5,  core:true},
+    {id:'nav',      label:'Extra menu links',    note:'Wonderful on a full website.',               w:0,  core:false},
+    {id:'banner',   label:'Sliding banner',      note:'Great for seasonal showcases.',              w:0,  core:false},
+    {id:'popup',    label:'Pop-up window',       note:'Handy for newsletters on larger sites.',     w:0,  core:false}
+  ];
+  var controls = document.getElementById('controls');
+  controls.innerHTML = '';
+  var state = {};
+  function addGroup(text){
+    var p = document.createElement('p'); p.className = 'grp'; p.textContent = text; controls.appendChild(p);
+  }
+  function addItem(it){
+    var lab = document.createElement('label'); lab.className = 'ctl';
+    lab.innerHTML =
+      '<input type="checkbox" data-id="'+it.id+'">' +
+      '<span class="box"><svg viewBox="0 0 16 16" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8"/></svg></span>' +
+      '<span class="txt"><strong>'+it.label+'</strong><small>'+it.note+'</small></span>';
+    controls.appendChild(lab);
+  }
+  addGroup('Core elements');
+  items.filter(function(i){return i.core;}).forEach(addItem);
+  addGroup('Website extras');
+  items.filter(function(i){return !i.core;}).forEach(addItem);
+
+  var reset = document.createElement('button');
+  reset.type = 'button'; reset.className = 'btn ghost sm reset'; reset.textContent = 'Reset the meter';
+  controls.appendChild(reset);
+
+  var scoreNum = document.getElementById('scoreNum');
+  var barFill = document.getElementById('barFill');
+  var bar = document.getElementById('bar');
+  var msg = document.getElementById('msg');
+
+  function updateMeter(){
+    var core = 0, extras = 0, score = 0;
+    items.forEach(function(it){
+      var on = !!state[it.id];
+      var slot = document.querySelector('[data-el="'+it.id+'"]');
+      if(slot) slot.classList.toggle('on', on);
+      if(on){ if(it.core){ core++; score += it.w; } else { extras++; } }
+    });
+    var bonus = (extras === 0 && core >= 3) ? 10 : 0;
+    score += bonus;
+    scoreNum.textContent = score;
+    barFill.style.width = score + '%';
+    bar.setAttribute('aria-valuenow', score);
+
+    var text;
+    if(score === 0 && extras === 0) text = 'Select elements to see their contribution.';
+    else if(score >= 100) text = 'Full contribution! One message, one action and visible trust work together beautifully.';
+    else if(score >= 85) text = 'Wonderful. Your page is focused and ready to welcome visitors.';
+    else if(score >= 50) text = 'Great momentum. Each element adds clarity and confidence.';
+    else text = 'A bright start. Add more core elements to grow your score.';
+    if(extras > 0) text += ' Extras shine on a full website. For this landing page, a single path lets visitors act with confidence.';
+    msg.textContent = text;
+  }
+  controls.addEventListener('change', function(e){
+    var id = e.target.getAttribute('data-id');
+    if(id){ state[id] = e.target.checked; updateMeter(); }
+  });
+  reset.addEventListener('click', function(){
+    state = {};
+    Array.prototype.forEach.call(controls.querySelectorAll('input[type=checkbox]'), function(c){ c.checked = false; });
+    updateMeter();
+  });
+  updateMeter();
+
+  /* ---------- Blueprint planner ---------- */
+  var goals = {
+    calls:    {label:'Phone calls', cta:'Call us today',     verb:'give us a call today',   outcome:'new calls'},
+    bookings: {label:'Bookings',    cta:'Book your visit',   verb:'reserve your spot',      outcome:'new bookings'},
+    signups:  {label:'Sign-ups',    cta:'Join today',        verb:'join the community',     outcome:'new sign-ups'},
+    sales:    {label:'Sales',       cta:'Shop the offer',    verb:'pick your favorite',     outcome:'new sales'}
+  };
+  var strengths = {
+    craft:     {label:'Craftsmanship',    head:'Made with care, made for you',            phrase:'beautiful craftsmanship'},
+    service:   {label:'Friendly service', head:'Friendly help every step of the way',     phrase:'warm, friendly service'},
+    speed:     {label:'Fast delivery',    head:'Quick results, right on schedule',        phrase:'speedy, reliable delivery'},
+    expertise: {label:'Trusted expertise',head:'Expert guidance you can trust',           phrase:'trusted expertise'},
+    value:     {label:'Outstanding value',head:'Outstanding quality at a friendly price', phrase:'outstanding value'}
+  };
+  var cur = {goal:'bookings', strength:'service'};
+
+  var goalChips = document.getElementById('goalChips');
+  var strChips  = document.getElementById('strChips');
+  function chips(container, map, key){
+    Object.keys(map).forEach(function(k){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = map[k].label;
+      b.setAttribute('data-k', k);
+      b.setAttribute('aria-pressed', cur[key] === k ? 'true' : 'false');
+      b.addEventListener('click', function(){
+        cur[key] = k;
+        Array.prototype.forEach.call(container.children, function(c){
+          c.setAttribute('aria-pressed', c.getAttribute('data-k') === k ? 'true' : 'false');
+        });
+        render();
+      });
+      container.appendChild(b);
+    });
+  }
+  chips(goalChips, goals, 'goal');
+  chips(strChips, strengths, 'strength');
+
+  var nameInput = document.getElementById('bizName');
+  nameInput.addEventListener('input', render);
+
+  function esc(s){ return s.replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  var lastText = '';
+  function render(){
+    var name = nameInput.value.trim() || 'Your business';
+    var g = goals[cur.goal], s = strengths[cur.strength];
+    document.getElementById('bpBrand').textContent = name;
+    document.getElementById('bpHead').textContent = s.head;
+    document.getElementById('bpSub').textContent = 'Join ' + name + ' and ' + g.verb + '.';
+    document.getElementById('bpBtn').textContent = g.cta;
+
+    var steps = [
+      'Headline that celebrates ' + s.phrase,
+      'Subline inviting visitors to ' + g.verb,
+      'Primary button: "' + g.cta + '"',
+      'Customer proof that shows ' + s.phrase + ' in action',
+      'Three benefit highlights',
+      'Closing invitation with the same button'
+    ];
+    document.getElementById('bpList').innerHTML = steps.map(function(t){ return '<li>'+esc(t)+'</li>'; }).join('');
+
+    var facts = [
+      ['Goal', g.label],
+      ['Strength', s.label],
+      ['Audience', 'Customers of ' + name],
+      ['Success', 'A steady flow of ' + g.outcome],
+      ['Next step', 'Share this blueprint with EasyLandX']
+    ];
+    document.getElementById('bpFacts').innerHTML = facts.map(function(f){
+      return '<div><b>'+esc(f[0])+'</b><span>'+esc(f[1])+'</span></div>';
+    }).join('');
+
+    lastText = 'EasyLandX page blueprint for ' + name + '\n\n' +
+      'Headline: ' + s.head + '\n' +
+      'Subline: Join ' + name + ' and ' + g.verb + '.\n' +
+      'Primary button: ' + g.cta + '\n\n' +
+      'Section order:\n- ' + steps.join('\n- ') + '\n\n' +
+      facts.map(function(f){ return f[0] + ': ' + f[1]; }).join('\n') +
+      '\n\nhttps://easylandx.github.io';
+  }
+  render();
+
+  var toast = document.getElementById('toast');
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    function done(ok){
+      toast.textContent = ok ? 'Blueprint copied. Share it with EasyLandX!' : 'Select the blueprint text and copy it to share with EasyLandX.';
+      setTimeout(function(){ toast.textContent = ''; }, 3500);
+    }
+    try{
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(lastText).then(function(){ done(true); }, function(){ done(false); });
+      } else {
+        var ta = document.createElement('textarea'); ta.value = lastText;
+        ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta);
+        ta.select(); var ok = document.execCommand('copy'); document.body.removeChild(ta); done(ok);
+      }
+    } catch(err){ done(false); }
+  });
+})();
+</script>
+</body>
+</html>
