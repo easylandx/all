@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx | Simple Landing Pages, Bold Results</title>
+<style>
+:root{--bg:#fff;--ink:#0a0a0a;--red:#e10600;--gray:#f3f3f3;--m:clamp(22px,6vw,90px);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Arial,sans-serif;line-height:1.55}
+section,header,footer{padding:clamp(48px,8vw,96px) var(--m)}
+.wrap{max-width:1100px;margin:0 auto}
+h1,h2,h3{line-height:1.05;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.6rem,8vw,5.6rem);font-weight:900}
+h2{font-size:clamp(1.9rem,4.5vw,3.2rem);font-weight:900}
+h3{font-size:1.2rem;font-weight:800}
+.red{color:var(--red)}
+.tag{display:inline-block;background:var(--ink);color:#fff;font-weight:800;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;padding:.35em .8em;margin-bottom:1.2rem}
+.btn{display:inline-block;background:var(--red);color:#fff;font-weight:900;text-decoration:none;padding:.95em 1.7em;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s;cursor:pointer;font-size:1rem;font-family:inherit}
+.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.btn.alt{background:#fff;color:var(--ink)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px var(--m);border-bottom:4px solid var(--ink);position:sticky;top:0;background:#fff;z-index:5}
+.logo{font-weight:900;font-size:1.35rem}
+.logo span{color:var(--red)}
+nav .btn{padding:.55em 1.1em;font-size:.9rem;box-shadow:3px 3px 0 var(--ink)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero p{font-size:1.2rem;max-width:34ch}
+.hero .row{display:flex;gap:16px;flex-wrap:wrap;margin-top:1.6rem}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+.draw path.t{stroke-dasharray:1400;stroke-dashoffset:1400;animation:d 3s ease forwards}
+.draw path.s{stroke-dasharray:600;stroke-dashoffset:600;animation:d 1.6s 2.6s ease forwards}
+@keyframes d{to{stroke-dashoffset:0}}
+.band{background:var(--ink);color:#fff}
+.band .red{color:#ff3b30}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;margin-top:2rem}
+.card{border:3px solid var(--ink);padding:24px;background:#fff;color:var(--ink);transition:transform .2s}
+.card:hover{transform:translateY(-6px);box-shadow:0 8px 0 var(--red)}
+.card svg{width:56px;height:56px;margin-bottom:10px}
+.lab{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;margin-top:2rem}
+@media(max-width:820px){.lab{grid-template-columns:1fr}}
+.browser{border:4px solid var(--ink);background:#fff}
+.bar{background:var(--ink);padding:8px 12px;display:flex;gap:6px}
+.bar i{width:11px;height:11px;border-radius:50%;background:#fff;display:block}
+.bar i:first-child{background:var(--red)}
+.stack{padding:14px;display:flex;flex-direction:column;gap:8px;min-height:380px}
+.blk{border:2px dashed var(--ink);background:var(--gray);padding:10px 14px;font-weight:700;text-align:left;font-family:inherit;font-size:.95rem;cursor:pointer;max-height:80px;overflow:hidden;transition:max-height .45s,opacity .45s,padding .45s,margin .45s,border-width .45s;color:var(--ink)}
+.blk:hover{border-color:var(--red)}
+.blk.gone{max-height:0;opacity:0;padding-top:0;padding-bottom:0;border-width:0;margin:-4px 0;pointer-events:none}
+.blk.ess{background:#fff;border:3px solid var(--ink);font-size:1.15rem}
+.blk.ess.btnlike{background:var(--red);color:#fff}
+.blk.shake{animation:sh .4s}
+@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.panel{border:4px solid var(--ink);padding:24px;align-self:start}
+.meter{height:28px;border:3px solid var(--ink);background:#fff;margin:12px 0}
+.meter div{height:100%;width:0;background:var(--red);transition:width .5s}
+.score{font-size:3.6rem;font-weight:900;line-height:1}
+#msg{min-height:3.2em;font-weight:700}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:2rem 0 0}
+.tab{font-family:inherit;font-weight:800;padding:.7em 1.1em;border:3px solid var(--ink);background:#fff;cursor:pointer;font-size:.95rem}
+.tab[aria-selected=true]{background:var(--red);color:#fff}
+.tp{border:4px solid var(--ink);padding:28px;margin-top:-3px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:820px){.tp{grid-template-columns:1fr}}
+.tp h3{font-size:1.5rem}
+.lbl{font-size:.75rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.steps{display:flex;flex-wrap:wrap;gap:14px;margin-top:2rem}
+.steps div{flex:1 1 150px;border:3px solid #fff;padding:18px;text-align:center;font-weight:900}
+.steps b{display:block;font-size:2.4rem;color:#ff3b30}
+.cta{text-align:center}
+.cta h2{max-width:16ch;margin:0 auto .6em}
+footer{border-top:4px solid var(--ink);font-size:.9rem}
+</style>
+</head>
+<body>
+<nav><div class="logo">easy<span>landx</span></div><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a></nav>
+
+<header>
+<div class="wrap hero">
+<div>
+<span class="tag">Landing pages, made simple</span>
+<h1>Simple is <span class="red">brave.</span></h1>
+<p>Every great page shares one bold idea: a single clear message that welcomes visitors straight to action. Launch your page with easylandx and let clarity lead.</p>
+<div class="row"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a><a class="btn alt" href="#lab">Try the Clarity Studio</a></div>
+</div>
+<svg class="draw" viewBox="0 0 420 360" role="img" aria-label="A tangled line becoming one straight red line">
+<rect x="6" y="6" width="408" height="348" fill="none" stroke="#0a0a0a" stroke-width="6"/>
+<path class="t" d="M30 90 C120 20 60 200 160 120 S260 40 200 180 S120 300 250 240 S370 90 300 200 S200 330 330 290" fill="none" stroke="#0a0a0a" stroke-width="7" stroke-linecap="round"/>
+<path class="s" d="M40 310 L380 310" stroke="#e10600" stroke-width="12" stroke-linecap="round"/>
+<circle cx="380" cy="310" r="16" fill="#e10600"/>
+<text x="40" y="344" font-weight="800" font-size="16" font-family="Arial">ONE MESSAGE. ONE PATH.</text>
+</svg>
+</div>
+</header>
+
+<section class="band">
+<div class="wrap">
+<span class="tag" style="background:#e10600">Core messages</span>
+<h2>Clarity is a <span class="red">leadership superpower.</span></h2>
+<p style="max-width:60ch;font-size:1.1rem">Inspired by Rohit Chandrasekharan Nambiar's <em>The Simplicity Trap</em>: organizations thrive when leaders choose courage and keep things simple. Landing pages thrive on exactly the same idea.</p>
+<div class="grid">
+<div class="card"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="24" fill="none" stroke="#0a0a0a" stroke-width="4"/><circle cx="28" cy="28" r="12" fill="none" stroke="#0a0a0a" stroke-width="4"/><circle cx="28" cy="28" r="4" fill="#e10600"/></svg><h3>Choose simplicity daily</h3><p>Pages grow richer in content over time. A fresh, intentional edit keeps them bright and focused.</p></div>
+<div class="card"><svg viewBox="0 0 56 56"><path d="M8 48 L28 8 L48 48 Z" fill="none" stroke="#0a0a0a" stroke-width="4" stroke-linejoin="round"/><path d="M28 22 V36" stroke="#e10600" stroke-width="5"/></svg><h3>Courage creates space</h3><p>Adding is easy, and editing is bold. Every thoughtful trim gives your message more room to shine.</p></div>
+<div class="card"><svg viewBox="0 0 56 56"><rect x="6" y="6" width="44" height="44" fill="none" stroke="#0a0a0a" stroke-width="4"/><path d="M16 28 L25 37 L41 18" fill="none" stroke="#e10600" stroke-width="6"/></svg><h3>Ownership shines</h3><p>One page, one purpose, one clear owner. Decisions flow quickly when responsibility is visible.</p></div>
+<div class="card"><svg viewBox="0 0 56 56"><path d="M6 28 H40" stroke="#0a0a0a" stroke-width="5"/><path d="M30 14 L48 28 L30 42" fill="none" stroke="#e10600" stroke-width="6"/></svg><h3>Flow over friction</h3><p>Every element that clears the path between your visitor and your offer boosts impact.</p></div>
+</div>
+</div>
+</section>
+
+<section id="lab">
+<div class="wrap">
+<span class="tag">Interactive</span>
+<h2>The Clarity <span class="red">Studio</span></h2>
+<p style="max-width:62ch;font-size:1.1rem">Tap the grey blocks to prune this page. Keep the three bold essentials, and watch your clarity score climb to 100%.</p>
+<div class="lab">
+<div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="stack" id="stack"></div></div>
+<div class="panel">
+<div class="lbl">Clarity score</div>
+<div class="score"><span id="sc">0</span>%</div>
+<div class="meter"><div id="mt"></div></div>
+<p id="msg">Pick any grey block to begin pruning.</p>
+<button class="btn alt" id="rs" style="padding:.6em 1.2em;box-shadow:3px 3px 0 #0a0a0a">Restart</button>
+</div>
+</div>
+</div>
+</section>
+
+<section class="band">
+<div class="wrap">
+<span class="tag" style="background:#e10600">Strategies</span>
+<h2>Five leadership strategies, <span class="red">one launch-ready page.</span></h2>
+<div class="tabs" id="tabs" role="tablist"></div>
+<div class="tp" id="tp" style="background:#fff;color:#0a0a0a"></div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<span class="tag">The easylandx rhythm</span>
+<h2>Simplicity is a <span class="red">habit</span> you can celebrate.</h2>
+<p style="max-width:60ch;font-size:1.1rem">Essential rigor stays in place, while accumulated extras are gently released. Return to this cycle whenever your page is ready for a refresh.</p>
+<div class="steps" style="color:#0a0a0a">
+<div style="border-color:#0a0a0a"><b>1</b>Prune</div><div style="border-color:#0a0a0a"><b>2</b>Own</div><div style="border-color:#0a0a0a"><b>3</b>Welcome the customer</div><div style="border-color:#0a0a0a"><b>4</b>Invite ideas</div><div style="border-color:#0a0a0a"><b>5</b>Refresh</div>
+</div>
+</div>
+</section>
+
+<section class="band cta">
+<div class="wrap">
+<svg viewBox="0 0 200 80" width="200" aria-hidden="true"><path d="M10 40 H170" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M140 14 L184 40 L140 66" fill="none" stroke="#e10600" stroke-width="10" stroke-linejoin="round"/></svg>
+<h2>Your clear, bold page is <span class="red">ready to launch.</span></h2>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+</div>
+</section>
+
+<footer><div class="wrap">made by <b>easylandx</b> &middot; inspired by <em>The Simplicity Trap</em> by Rohit Chandrasekharan Nambiar</div></footer>
+
+<script>
+const items=[
+["Clear headline",1],["Seven-link menu",0],["Rotating banner",0],["Pop-up greeting",0],["Long intro paragraph",0],["Four competing buttons",0],["One hero image",1],["Stock-photo carousel",0],["Auto-play music",0],["One bold button",1,1],["Footer link maze",0]];
+const stack=document.getElementById('stack'),sc=document.getElementById('sc'),mt=document.getElementById('mt'),msg=document.getElementById('msg');
+const total=items.filter(i=>!i[1]).length;let n=0;
+function build(){stack.innerHTML='';n=0;items.forEach(i=>{const b=document.createElement('button');b.className='blk'+(i[1]?' ess':'')+(i[2]?' btnlike':'');b.textContent=i[0];b.onclick=()=>{
+if(i[1]){b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake');msg.textContent='"'+i[0]+'" carries your message. Keep it shining!';return}
+if(!b.classList.contains('gone')){b.classList.add('gone');n++;upd()}};stack.appendChild(b)});upd(true)}
+function upd(r){const p=Math.round(n/total*100);sc.textContent=p;mt.style.width=p+'%';
+if(r){msg.textContent='Pick any grey block to begin pruning.';return}
+msg.textContent=p==100?'Beautiful! One headline, one image, one button. Your visitors glide straight to action.':p>=50?'Wonderful progress. Space is opening up for your message.':'Great start. Every trim adds clarity.'}
+document.getElementById('rs').onclick=build;build();
+const S=[
+["1. Prune","Prune the portfolio","Routinely review processes, metrics, and products, then release whatever has completed its job.","Choose one purpose for each landing page. Sections that lead to that purpose stay, and the rest gracefully step aside."],
+["2. Embrace bold choices","Accept career risk for innovation","Challenge status-quo structures with confidence, and let courage guide the decision.","Pick a brave, minimal layout and publish it. Fresh, focused pages earn attention quickly."],
+["3. Pinpoint ownership","Decentralize and clarify ownership","Distribute authority so teams act with speed and every outcome has a name beside it.","One person owns each page. With easylandx, edits go live in moments, so ideas turn into results the same day."],
+["4. Meet the customer","Go where the customer is","Direct resources toward meeting customer expectations directly and efficiently.","Open with the visitor's goal in the first line, followed by one inviting button that takes them there."],
+["5. Cultivate simplifying","Cultivate a culture of simplification","Empower everyone to suggest streamlined alternatives and celebrate each improvement.","Invite your whole team to propose edits. Each simpler version becomes a new favorite."]];
+const tabs=document.getElementById('tabs'),tp=document.getElementById('tp');
+function show(k){[...tabs.children].forEach((t,i)=>t.setAttribute('aria-selected',i==k));const s=S[k];
+tp.innerHTML='<div><div class="lbl">From the book</div><h3>'+s[1]+'</h3><p>'+s[2]+'</p></div><div style="border-left:6px solid #e10600;padding-left:22px"><div class="lbl">On your landing page</div><h3>Simple &amp; bold</h3><p>'+s[3]+'</p></div>'}
+S.forEach((s,i)=>{const t=document.createElement('button');t.className='tab';t.textContent=s[0];t.setAttribute('role','tab');t.onclick=()=>show(i);tabs.appendChild(t)});show(0);
+</script>
+</body>
+</html>

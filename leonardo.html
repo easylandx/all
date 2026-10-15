@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx | Landing pages crafted the Leonardo way</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Karla:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#B3001B;--deep:rgba(60,0,8,.38);--gold:#FFD24A;--gold2:#E8B923;--cream:#FFF4E0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--red:#A80019}}
+:root[data-theme="dark"]{--red:#A80019}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--red);color:var(--cream);font-family:Karla,system-ui,sans-serif;font-size:1.05rem;line-height:1.65}
+.wrap{max-width:1040px;margin:0 auto;padding:0 clamp(22px,6vw,64px)}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;color:var(--gold);line-height:1.1;margin:0 0 .5em}
+h1{font-size:clamp(2.6rem,8vw,5rem)}
+h2{font-size:clamp(2rem,5vw,3rem)}
+h3{font-size:1.5rem}
+p{margin:0 0 1em;max-width:62ch}
+section{padding:clamp(48px,9vw,96px) 0;border-top:1px solid rgba(255,210,74,.35)}
+.btn{display:inline-block;background:var(--gold);color:#5a0010;font-weight:700;text-decoration:none;padding:.9em 1.8em;border-radius:999px;border:2px solid var(--gold);transition:transform .2s,background .2s;cursor:pointer;font:inherit;font-weight:700}
+.btn:hover{transform:translateY(-2px);background:var(--cream);border-color:var(--cream)}
+.btn.ghost{background:transparent;color:var(--gold)}
+.btn.ghost:hover{background:var(--gold);color:#5a0010}
+:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.logo{font-family:"Cormorant Garamond",serif;font-weight:700;font-size:1.7rem;color:var(--gold);text-decoration:none}
+.hero{display:grid;gap:32px;align-items:center;grid-template-columns:1.1fr .9fr;padding:clamp(24px,6vw,64px) 0 clamp(48px,8vw,90px)}
+.hero svg{width:100%;max-width:440px;justify-self:center}
+.sub{font-size:1.2rem;color:var(--cream)}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--deep);border:1px solid rgba(255,210,74,.55);border-radius:18px;padding:22px}
+.card svg{width:54px;height:54px;margin-bottom:10px}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.tab{background:transparent;color:var(--gold);border:2px solid var(--gold2);border-radius:999px;padding:.55em 1.2em;font:inherit;font-weight:700;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--gold);color:#5a0010}
+.panel{display:grid;gap:24px;grid-template-columns:200px 1fr;align-items:center;background:var(--deep);border:1px solid rgba(255,210,74,.55);border-radius:18px;padding:26px}
+.panel[hidden]{display:none}
+.panel svg{width:100%}
+.lab{display:grid;gap:28px;grid-template-columns:1fr 1fr;align-items:center}
+.check{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;margin-bottom:10px;background:var(--deep);border:1px solid rgba(255,210,74,.45);border-radius:14px;cursor:pointer}
+.check input{accent-color:var(--gold);width:22px;height:22px;margin-top:3px;flex:none}
+.check b{color:var(--gold)}
+.ring{text-align:center}
+.ring svg{width:100%;max-width:320px}
+#msg{font-family:"Cormorant Garamond",serif;font-size:1.5rem;color:var(--gold);min-height:2.4em;margin-top:8px}
+input[type=range]{width:100%;accent-color:var(--gold)}
+.sf{display:grid;gap:28px;grid-template-columns:1fr 1fr;align-items:center}
+.orb{aspect-ratio:1;max-width:300px;width:100%;border-radius:50%;justify-self:center;border:1px solid var(--gold)}
+footer{padding:48px 0 60px;border-top:1px solid rgba(255,210,74,.35);text-align:center}
+footer p{margin:0 auto 1em}
+@media (max-width:760px){.hero,.lab,.sf,.panel{grid-template-columns:1fr}.panel svg{max-width:150px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a class="logo" href="#top">easylandx</a><a class="btn ghost" href="https://easylandx.github.io/" target="_blank" rel="noopener">easylandx</a></nav>
+
+<header class="hero" id="top">
+<div>
+<h1>Landing pages crafted with a master's eye</h1>
+<p class="sub">Leonardo da Vinci reached genius through habits anyone can grow: curiosity, close observation, and joyful experimenting. easylandx brings the same spirit to every landing page you launch.</p>
+<a class="btn" href="https://easylandx.github.io/" target="_blank" rel="noopener">Launch your page with easylandx</a>
+</div>
+<svg viewBox="0 0 400 400" role="img" aria-label="Golden Vitruvian figure inside a circle and square, drawn as a landing page blueprint">
+<g fill="none" stroke="#FFD24A" stroke-width="2.5" stroke-linecap="round">
+<circle cx="200" cy="200" r="170"/><rect x="50" y="50" width="300" height="300" rx="4"/>
+<circle cx="200" cy="108" r="22"/><path d="M200 130v110M200 150L112 168M200 150L288 168M200 150L110 120M200 150L290 120M200 240L150 330M200 240L250 330M200 240L128 312M200 240L272 312"/>
+<path d="M30 200h340M200 30v340" stroke-width="1" stroke-dasharray="4 8"/>
+<rect x="150" y="372" width="100" height="14" rx="7" fill="#FFD24A"/>
+</g>
+<g fill="#FFD24A"><circle cx="112" cy="168" r="5"/><circle cx="288" cy="168" r="5"/><circle cx="200" cy="240" r="5"/></g>
+</svg>
+</header>
+
+<section>
+<h2>Four ideas that shape every easylandx page</h2>
+<div class="grid">
+<div class="card"><svg viewBox="0 0 60 60" fill="none" stroke="#FFD24A" stroke-width="2.5"><circle cx="22" cy="30" r="12"/><circle cx="40" cy="30" r="12"/><path d="M31 20a12 12 0 010 20"/></svg><h3>Art meets science</h3><p>Great work grows where disciplines connect. Beautiful design and clear structure move together on your page.</p></div>
+<div class="card"><svg viewBox="0 0 60 60" fill="none" stroke="#FFD24A" stroke-width="2.5"><path d="M10 50L30 8l20 42z"/><path d="M20 50l10-21 10 21"/><circle cx="30" cy="38" r="3" fill="#FFD24A"/></svg><h3>Genius is within reach</h3><p>Observing closely, asking questions, and testing ideas are habits you can start today.</p></div>
+<div class="card"><svg viewBox="0 0 60 60" fill="none" stroke="#FFD24A" stroke-width="2.5"><path d="M8 40c10-24 34-24 44 0M30 14v8M16 20l4 6M44 20l-4 6"/><circle cx="30" cy="44" r="5"/></svg><h3>A fresh perspective</h3><p>Leonardo learned through direct experience. Your own voice and viewpoint make your page memorable.</p></div>
+<div class="card"><svg viewBox="0 0 60 60" fill="none" stroke="#FFD24A" stroke-width="2.5"><path d="M30 6l5 14 14 1-11 9 4 14-12-8-12 8 4-14-11-9 14-1z"/></svg><h3>Imagination builds reality</h3><p>Playful pageants inspired his inventions. Playful ideas become polished pages.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Explore the lessons</h2>
+<p>Choose a lesson and see how it shapes a landing page.</p>
+<div class="tabs" role="tablist" aria-label="Leonardo lessons">
+<button class="tab" role="tab" aria-selected="true" data-i="0">Curiosity</button>
+<button class="tab" role="tab" aria-selected="false" data-i="1">Observation</button>
+<button class="tab" role="tab" aria-selected="false" data-i="2">Analogy</button>
+<button class="tab" role="tab" aria-selected="false" data-i="3">Work in progress</button>
+</div>
+<div class="panel" role="tabpanel"><svg viewBox="0 0 120 120" fill="none" stroke="#FFD24A" stroke-width="3" stroke-linecap="round"><circle cx="50" cy="50" r="30"/><path d="M72 72l30 30"/><path d="M50 36v28M36 50h28"/></svg><div><h3>Relentless curiosity</h3><p>Leonardo wondered about heart valves, the blue sky, and the tongue of a woodpecker. He explored simply for the joy of understanding.</p><p><b>On your page:</b> start with curiosity about your visitors. Ask what delights them, then let every headline answer it.</p></div></div>
+<div class="panel" role="tabpanel" hidden><svg viewBox="0 0 120 120" fill="none" stroke="#FFD24A" stroke-width="3" stroke-linecap="round"><path d="M10 60c20-30 80-30 100 0-20 30-80 30-100 0z"/><circle cx="60" cy="60" r="16"/><circle cx="60" cy="60" r="6" fill="#FFD24A"/><path d="M60 22v-10M30 30l-6-8M90 30l6-8"/></svg><div><h3>Intense observation</h3><p>Most people glance. Leonardo studied how light touches drapery, how water swirls around stones, and how a smile moves the muscles.</p><p><b>On your page:</b> notice where eyes land first, which words sparkle, and which colors invite a click. Small details create big delight.</p></div></div>
+<div class="panel" role="tabpanel" hidden><svg viewBox="0 0 120 120" fill="none" stroke="#FFD24A" stroke-width="3" stroke-linecap="round"><path d="M60 110V60M60 60L30 30M60 60l30-30M30 30L16 14M30 30l10-16M90 30l-10-16M90 30l14-16M60 80L40 62M60 80l20-18"/></svg><div><h3>Analogy as a thinking tool</h3><p>He compared blood flow to rivers and the branching lungs to trees, discovering shared patterns across nature.</p><p><b>On your page:</b> a landing page flows like a river: a welcoming headline, a clear current of benefits, and a bright destination button.</p></div></div>
+<div class="panel" role="tabpanel" hidden><svg viewBox="0 0 120 120" fill="none" stroke="#FFD24A" stroke-width="3" stroke-linecap="round"><path d="M60 60m0 0c0-8 10-8 10 0s-16 10-16 0 22-16 22 0-28 24-28 0 34-30 34 0"/><path d="M20 100h80" stroke-dasharray="3 9"/></svg><div><h3>Every work is a work in progress</h3><p>Leonardo returned to the Mona Lisa and St. Jerome for years, adding fresh insights each time. Continued refinement was part of his mastery.</p><p><b>On your page:</b> launch, learn, and polish. With easylandx, updating your page is a joyful routine.</p></div></div>
+</section>
+
+<section>
+<h2>Your Leonardo toolkit</h2>
+<p>Tick each strategy you embrace and watch the masterpiece take shape.</p>
+<div class="lab">
+<div id="checks">
+<label class="check"><input type="checkbox"><span><b>Keep a notebook.</b> Capture ideas, sketches, and visitor questions daily.</span></label>
+<label class="check"><input type="checkbox"><span><b>Start with first principles, then ask experts.</b> Build from the basics, then welcome fresh insights.</span></label>
+<label class="check"><input type="checkbox"><span><b>Master sfumato.</b> Welcome nuance, mystery, and softly blended ideas.</span></label>
+<label class="check"><input type="checkbox"><span><b>Indulge fantasy and play.</b> Imaginative play incubates real solutions.</span></label>
+<label class="check"><input type="checkbox"><span><b>Prize process over product.</b> Savor the craft and the hidden details.</span></label>
+</div>
+<div class="ring">
+<svg viewBox="0 0 300 300" role="img" aria-label="Progress ring that completes as strategies are ticked">
+<circle cx="150" cy="150" r="120" fill="none" stroke="rgba(255,210,74,.25)" stroke-width="12"/>
+<circle id="arc" cx="150" cy="150" r="120" fill="none" stroke="#FFD24A" stroke-width="12" stroke-linecap="round" stroke-dasharray="754" stroke-dashoffset="754" transform="rotate(-90 150 150)" style="transition:stroke-dashoffset .6s"/>
+<g id="fig" fill="none" stroke="#FFD24A" stroke-width="3" stroke-linecap="round" opacity=".35"><circle cx="150" cy="95" r="14"/><path d="M150 109v62M150 122L100 134M150 122l50 12M150 122l-48-22M150 122l48-22M150 171l-30 62M150 171l30 62M150 171l-48 50M150 171l48 50"/></g>
+<text id="pct" x="150" y="270" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="30" fill="#FFD24A">0 of 5</text>
+</svg>
+<div id="msg" aria-live="polite">Tick a strategy to begin your masterpiece.</div>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Master sfumato: blend with nuance</h2>
+<div class="sf">
+<div>
+<p>Sfumato is Leonardo's soft, boundary-free shading. Slide to blend a crisp edge into a glowing gradient, and notice how softness brings warmth to a design.</p>
+<label for="sfr"><b>Softness</b></label>
+<input id="sfr" type="range" min="0" max="100" value="20">
+<p id="sft" style="margin-top:10px;color:var(--gold)">Crisp and confident.</p>
+</div>
+<div class="orb" id="orb" role="img" aria-label="Golden orb that softens as the slider moves"></div>
+</div>
+</section>
+
+<footer>
+<h2>Your page, your masterpiece</h2>
+<p style="margin-inline:auto">Bring curiosity, play, and patient craft to your next launch.</p>
+<a class="btn" href="https://easylandx.github.io/" target="_blank" rel="noopener">Launch your page with easylandx</a>
+<p style="margin-top:28px;font-size:.9rem">Made by easylandx</p>
+</footer>
+</div>
+
+<script>
+(function(){
+var tabs=document.querySelectorAll('.tab'),panels=document.querySelectorAll('.panel');
+tabs.forEach(function(t){t.addEventListener('click',function(){
+tabs.forEach(function(x,i){var on=x===t;x.setAttribute('aria-selected',on);panels[i].hidden=!on});
+})});
+var boxes=document.querySelectorAll('#checks input'),arc=document.getElementById('arc'),pct=document.getElementById('pct'),fig=document.getElementById('fig'),msg=document.getElementById('msg');
+var words=["Tick a strategy to begin your masterpiece.","A lovely first brushstroke!","Your notebook is filling with brilliance.","The sketch is taking shape beautifully.","Nearly a masterpiece. Savor the craft!","A true Renaissance page. Time to launch!"];
+function upd(){var n=0;boxes.forEach(function(b){if(b.checked)n++});
+arc.style.strokeDashoffset=754*(1-n/5);pct.textContent=n+' of 5';fig.setAttribute('opacity',.35+n*.13);msg.textContent=words[n]}
+boxes.forEach(function(b){b.addEventListener('change',upd)});
+var r=document.getElementById('sfr'),o=document.getElementById('orb'),s=document.getElementById('sft');
+function sf(){var v=+r.value,a=Math.max(0,70-v*.6),b=Math.min(100,72+v*.28);
+o.style.background='radial-gradient(circle,#FFD24A '+a+'%,rgba(255,210,74,0) '+b+'%)';
+s.textContent=v<34?'Crisp and confident.':v<67?'Edges melting into warmth.':'Fully blended: gentle, glowing, inviting.'}
+r.addEventListener('input',sf);sf();
+})();
+</script>
+</body>
+</html>
