@@ -1,0 +1,614 @@
+<title>EasyLandX 10% Happier Pages</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout concept: one breathing ring motif radiates from the hero. Lessons sit on flat monochrome bands, and every interactive is a single bold panel. */
+:root{
+  --bg:#112233;
+  --panel:#16293D;
+  --panel-2:#1B3248;
+  --line:#2A4863;
+  --accent:#178088;
+  --accent-hi:#6CC6CD;
+  --accent-deep:#0F5E65;
+  --fg:#EEF7F8;
+  --fg-soft:#A8C4CA;
+  --f-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 1.0625rem/1.65 var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.06;margin:0;text-wrap:balance;letter-spacing:-.02em}
+p{margin:0;max-width:62ch}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sec{padding-block:clamp(56px,9vw,104px);position:relative;overflow:hidden}
+.sec.alt{background:var(--panel)}
+.eyebrow{font:700 .78rem/1.2 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--accent-hi);margin-bottom:14px}
+h2{font-size:clamp(2rem,4.6vw,3.3rem);font-weight:800}
+h3{font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:800}
+.lead{color:var(--fg-soft);font-size:1.125rem;margin-top:18px}
+.btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--accent);color:#fff;font:700 1rem/1 var(--f-body);padding:.95rem 1.4rem;border-radius:6px;text-decoration:none;border:2px solid var(--accent);cursor:pointer;transition:transform .2s,background .2s}
+.btn:hover{background:var(--accent-deep);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--fg)}
+.btn.ghost:hover{background:var(--accent-deep)}
+.btn.sm{padding:.7rem 1.05rem;font-size:.95rem}
+.btn.inv{background:var(--bg);border-color:var(--bg);color:#fff}
+.btn.inv:hover{background:#0A1722;border-color:#0A1722}
+.btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.btn:disabled{opacity:.6;cursor:default;transform:none}
+:focus-visible{outline:3px solid var(--accent-hi);outline-offset:3px}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:2px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{font:800 1.45rem/1 var(--f-display);text-decoration:none;letter-spacing:-.02em}
+.brand span{color:var(--accent-hi)}
+.top nav{display:flex;gap:26px}
+.top nav a{color:var(--fg-soft);text-decoration:none;font-weight:500}
+.top nav a:hover{color:var(--fg)}
+
+/* hero */
+.hero{padding-block:clamp(40px,7vw,88px) clamp(48px,7vw,96px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,5vw,64px);align-items:center}
+h1{font-size:clamp(2.5rem,6.2vw,4.8rem);font-weight:800}
+h1 em{font-style:normal;color:var(--accent-hi)}
+.hero .lead{margin-top:24px}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.orb{max-width:440px;width:100%;margin-inline:auto}
+.orb svg{display:block;width:100%;height:auto}
+.ring{fill:none;stroke:var(--accent);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:breathe 8s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(.84)}50%{transform:scale(1)}}
+.card{fill:var(--panel);stroke:var(--accent-hi);stroke-width:2}
+.dot{fill:var(--line)}
+.bar-s{fill:var(--line)}
+.img{fill:var(--accent-deep)}
+.mtn{fill:var(--accent)}
+.sun{fill:var(--accent-hi)}
+.cbtn{fill:var(--accent);animation:softpulse 8s ease-in-out infinite}
+@keyframes softpulse{0%,100%{opacity:.8}50%{opacity:1}}
+.badge{animation:floaty 5s ease-in-out infinite alternate}
+.bd{fill:var(--accent)}
+.badge text{fill:#fff;font:800 20px var(--f-display)}
+@keyframes floaty{from{transform:translateY(-5px)}to{transform:translateY(7px)}}
+.breath{text-align:center;font:700 .95rem/1.4 var(--f-body);letter-spacing:.22em;text-transform:uppercase;color:var(--accent-hi);height:1.4em;position:relative;margin-top:6px}
+.breath span{position:absolute;inset:0;opacity:0}
+.breath .in{opacity:1;animation:inShow 8s infinite}
+.breath .out{animation:outShow 8s infinite}
+@keyframes inShow{0%,45%{opacity:1}55%,100%{opacity:0}}
+@keyframes outShow{0%,45%{opacity:0}55%,95%{opacity:1}100%{opacity:0}}
+
+/* lessons */
+.lessons{margin-top:48px;border-top:2px solid var(--line)}
+.lesson{display:grid;grid-template-columns:190px minmax(0,1fr);gap:clamp(16px,3vw,40px);align-items:center;padding-block:30px;border-bottom:2px solid var(--line)}
+.lhead{display:flex;align-items:center;gap:18px}
+.num{font:800 3.4rem/1 var(--f-display);color:var(--accent);min-width:34px}
+.ico{width:88px;height:88px;flex:none}
+.ico *{fill:none;stroke:var(--accent-hi);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.ico .f{fill:var(--accent);stroke:none}
+.from{color:var(--accent-hi);font:700 .78rem/1.3 var(--f-body);letter-spacing:.14em;text-transform:uppercase}
+.lesson h3{margin:8px 0 10px}
+.lesson p{color:var(--fg-soft)}
+
+/* inner voice */
+.voice{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(24px,5vw,60px);margin-top:44px;align-items:start}
+.chips{display:flex;flex-direction:column;gap:10px}
+.chip{background:var(--bg);color:var(--fg);border:2px solid var(--line);padding:14px 18px;border-radius:6px;font:700 1.1rem/1.3 var(--f-display);text-align:left;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.chip:hover{border-color:var(--accent);transform:translateX(3px)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.chip.small{font:700 .95rem/1.2 var(--f-body);padding:10px 14px}
+.chip.small:hover{transform:none}
+.reply{margin-top:22px;background:var(--bg);border:2px solid var(--accent);border-radius:8px;padding:20px 22px;min-height:7.5em}
+.reply strong{color:var(--accent-hi);display:block;margin-bottom:6px;font-family:var(--f-display);font-size:1.15rem}
+.wire{max-width:360px;width:100%;margin-inline:auto}
+.wire svg{display:block;width:100%;height:auto}
+.fr{fill:var(--bg);stroke:var(--line);stroke-width:2}
+.tdot{fill:var(--line)}
+.blk .bg{fill:var(--panel-2);stroke:var(--line);stroke-width:2;transition:fill .35s,stroke .35s}
+.blk .bar{fill:var(--line);transition:fill .35s}
+.blk.on .bg{fill:var(--accent);stroke:var(--accent-hi)}
+.blk.on .bar{fill:#fff;fill-opacity:.92}
+
+/* compounder */
+.comp{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,5vw,56px);margin-top:44px;align-items:start}
+.steps{display:flex;flex-wrap:wrap;gap:8px}
+.ctl label{display:flex;justify-content:space-between;gap:12px;font-weight:700;margin-top:26px;margin-bottom:8px}
+.ctl output{color:var(--accent-hi);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.ctl .btn{margin-top:26px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.stat{background:var(--panel);border:2px solid var(--line);border-radius:8px;padding:14px 14px 16px;min-width:0}
+.sl{display:block;font:700 .7rem/1.3 var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--accent-hi)}
+.sv{display:block;font:800 clamp(1.7rem,4vw,2.6rem)/1.1 var(--f-display);margin-top:8px;font-variant-numeric:tabular-nums}
+.sf{display:block;color:var(--fg-soft);font-size:.85rem;margin-top:2px}
+.chartbox{margin-top:16px;background:var(--panel);border:2px solid var(--line);border-radius:8px;padding:16px 12px 8px}
+.chartbox svg{display:block;width:100%;height:auto}
+.cbar{fill:var(--panel-2);stroke:var(--line);stroke-width:2;transition:fill .3s,stroke .3s}
+.cbar.on{fill:var(--accent-deep);stroke:var(--accent)}
+.cbar.cur{fill:var(--accent);stroke:var(--accent-hi)}
+.vl{fill:var(--fg-soft);font:600 12px var(--f-body);text-anchor:middle}
+.vl.cur{fill:#fff;font-weight:800}
+.xl{fill:var(--fg-soft);font:500 12px var(--f-body);text-anchor:middle}
+.axis{stroke:var(--line);stroke-width:2}
+.note{color:var(--fg-soft);font-size:.9rem;margin-top:10px}
+
+/* calm and driven */
+.quad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,60px);align-items:center}
+.qsvg{max-width:420px;width:100%;margin-inline:auto}
+.qsvg svg{display:block;width:100%;height:auto}
+.qbox{fill:var(--bg);stroke:var(--line);stroke-width:2}
+.qgrid{stroke:var(--line);stroke-width:1.5;stroke-dasharray:4 5}
+.qsweet{fill:var(--accent-deep);stroke:var(--accent-hi);stroke-width:2;stroke-dasharray:6 5;transition:fill .3s}
+.qwrap.ok .qsweet{fill:var(--accent)}
+.ql{fill:var(--fg-soft);font:600 12px var(--f-body)}
+.ql.hi{fill:#fff;font-weight:800}
+.qax{fill:var(--accent-hi);font:700 12px var(--f-body);letter-spacing:.14em;text-transform:uppercase}
+.qdot{fill:var(--fg);stroke:var(--accent);stroke-width:4;transition:cx .2s,cy .2s}
+.qpulse{fill:none;stroke:var(--accent-hi);stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center}
+.qwrap.ok .qpulse{opacity:1;animation:ping 1.8s ease-out infinite}
+@keyframes ping{from{transform:scale(1);opacity:.9}to{transform:scale(3);opacity:0}}
+.qmsg{margin-top:22px;min-height:3.4em;font-weight:500}
+
+/* practices */
+.panel{background:var(--panel);border:2px solid var(--line);border-radius:8px;padding:clamp(20px,3vw,34px)}
+.game{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(20px,4vw,48px);align-items:center;margin-top:44px}
+.game p{color:var(--fg-soft);margin-top:12px}
+.game .msg{color:var(--fg);font-weight:700;margin-top:18px;min-height:3.2em}
+.game .btn{margin-top:6px}
+.stage{--p:0;position:relative;height:400px;background:var(--bg);border:2px solid var(--line);border-radius:8px;overflow:hidden}
+.mock{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(62%,300px);padding:22px;background:var(--panel-2);border:2px solid var(--line);border-radius:8px;opacity:calc(.5 + var(--p)*.5);transition:border-color .4s,box-shadow .4s}
+.stage.done .mock{border-color:var(--accent-hi);box-shadow:0 0 0 8px rgba(23,128,136,.35)}
+.mh{font:800 1.4rem/1.15 var(--f-display)}
+.ms{color:var(--fg-soft);font-size:.92rem;margin-top:6px}
+.mbtn{display:inline-block;background:var(--accent);color:#fff;font:700 .95rem/1 var(--f-body);padding:.75rem 1.2rem;border-radius:5px;margin-top:16px}
+.stage.done .mbtn{animation:glow 1.6s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(108,198,205,.55)}50%{box-shadow:0 0 0 10px rgba(108,198,205,0)}}
+.drift{position:absolute;background:var(--panel);color:var(--fg-soft);border:2px dashed var(--fg-soft);border-radius:6px;padding:8px 12px;font:600 .85rem/1.2 var(--f-body);cursor:pointer;animation:drift 5s ease-in-out infinite alternate;transition:opacity .5s,transform .5s}
+.drift:hover{border-color:var(--accent-hi);color:var(--fg)}
+.d1{top:4%;left:4%}
+.d2{top:4%;right:4%;animation-delay:-1.3s}
+.d3{bottom:4%;left:4%;animation-delay:-2.6s}
+.d4{bottom:4%;right:4%;animation-delay:-3.9s}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(7px,9px)}}
+.drift.gone{animation:none;opacity:0;transform:scale(.5);pointer-events:none}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:24px}
+.duo p{color:var(--fg-soft);margin-top:12px}
+.gflow{display:grid;grid-template-columns:minmax(0,1fr) 96px minmax(0,1fr);gap:10px;align-items:center;margin:24px 0}
+.gnode{background:var(--bg);border:2px solid var(--line);border-radius:6px;padding:12px 10px;text-align:center;font:700 .92rem/1.25 var(--f-display);transition:background .4s,border-color .4s}
+.gnode.on{background:var(--accent);border-color:var(--accent-hi);color:#fff}
+.gring{position:relative;width:96px;height:96px}
+.gring svg{width:96px;height:96px;transform:rotate(-90deg)}
+.gring circle{fill:none;stroke-width:6}
+.gring .tr{stroke:var(--line)}
+.gring .pg{stroke:var(--accent-hi);stroke-linecap:round;stroke-dasharray:251.3;stroke-dashoffset:251.3}
+.gring.run .pg{stroke-dashoffset:0;transition:stroke-dashoffset 3s linear}
+.gtx{position:absolute;inset:0;display:grid;place-items:center;font:800 1.15rem/1 var(--f-display)}
+.gout{background:var(--bg);border:2px solid var(--accent);border-radius:8px;padding:14px 16px;margin-bottom:18px;color:var(--fg)!important}
+.seg{display:flex;gap:8px;margin-top:18px}
+.lang{margin-top:18px;background:var(--bg);border:2px solid var(--line);border-radius:8px;padding:22px}
+.lang h4{font-size:1.5rem;font-weight:800}
+.lang p{margin-top:8px}
+
+/* closing band */
+.cta{background:var(--accent);color:#fff}
+.cta h2{color:#fff;max-width:16ch}
+.cta p{color:#fff;margin-top:18px;font-size:1.125rem}
+.cta .btn{margin-top:30px}
+.cta .rings{position:absolute;right:-120px;top:50%;width:520px;height:520px;transform:translateY(-50%);pointer-events:none}
+.cta .rings circle{fill:none;stroke:#fff;stroke-width:2;transform-box:fill-box;transform-origin:center;animation:breathe 8s ease-in-out infinite}
+.cta .wrap{position:relative}
+footer{padding-block:32px;border-top:2px solid var(--line);color:var(--fg-soft);font-size:.92rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between}
+
+@media (max-width:860px){
+  .hero-grid,.voice,.comp,.quad,.game,.duo{grid-template-columns:minmax(0,1fr)}
+  .top nav{display:none}
+  .lesson{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:480px){
+  .stat{padding:12px 10px 14px}
+  .gflow{grid-template-columns:minmax(0,1fr) 84px minmax(0,1fr)}
+  .gring,.gring svg{width:84px;height:84px}
+  .stage{height:420px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="EasyLandX home">Easy<span>LandX</span></a>
+    <nav aria-label="Sections">
+      <a href="#lessons">Lessons</a>
+      <a href="#voice">Inner voice</a>
+      <a href="#compounder">Compounder</a>
+      <a href="#practice">Practices</a>
+    </nav>
+    <a class="btn sm" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Inspired by 10% Happier by Dan Harris</p>
+      <h1>Clear landing pages. <em>10% better</em>, week after week.</h1>
+      <p class="lead">EasyLandX creates affordable, conversion-focused landing pages for small businesses. This page shows how the mindfulness lessons of 10% Happier shape the way your website welcomes every visitor.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a>
+        <a class="btn ghost" href="#compounder">Try the 10% Compounder</a>
+      </div>
+    </div>
+    <div class="orb">
+      <svg viewBox="0 0 400 400" role="img" aria-label="A landing page glowing at the center of softly breathing rings">
+        <circle class="ring" cx="200" cy="200" r="110" style="stroke-opacity:.7"/>
+        <circle class="ring" cx="200" cy="200" r="135" style="stroke-opacity:.5;animation-delay:-.25s"/>
+        <circle class="ring" cx="200" cy="200" r="160" style="stroke-opacity:.32;animation-delay:-.5s"/>
+        <circle class="ring" cx="200" cy="200" r="185" style="stroke-opacity:.18;animation-delay:-.75s"/>
+        <rect class="card" x="140" y="112" width="120" height="176" rx="10"/>
+        <circle class="dot" cx="154" cy="126" r="3"/><circle class="dot" cx="165" cy="126" r="3"/><circle class="dot" cx="176" cy="126" r="3"/>
+        <rect class="bar-s" x="154" y="142" width="80" height="10" rx="3"/>
+        <rect class="bar-s" x="154" y="158" width="58" height="10" rx="3"/>
+        <rect class="img" x="154" y="178" width="92" height="46" rx="6"/>
+        <circle class="sun" cx="172" cy="192" r="7"/>
+        <path class="mtn" d="M154 224L180 202L198 214L214 205L246 224Z"/>
+        <rect class="bar-s" x="154" y="232" width="92" height="6" rx="3"/>
+        <rect class="bar-s" x="154" y="244" width="70" height="6" rx="3"/>
+        <rect class="cbtn" x="154" y="260" width="92" height="20" rx="5"/>
+        <g class="badge"><circle class="bd" cx="320" cy="92" r="30"/><text x="320" y="99" text-anchor="middle">10%</text></g>
+      </svg>
+      <div class="breath" aria-hidden="true"><span class="in">Breathe in</span><span class="out">Breathe out</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="lessons">
+  <div class="wrap">
+    <p class="eyebrow">Five lessons, five page principles</p>
+    <h2>What 10% Happier teaches a landing page</h2>
+    <p class="lead">Dan Harris found a practical, science-backed path to calm focus and shared it with high achievers who want to keep their drive. EasyLandX turns each of his lessons into a way of building pages that welcome visitors with clarity.</p>
+
+    <div class="lessons">
+      <article class="lesson">
+        <div class="lhead"><span class="num">1</span>
+          <svg class="ico" viewBox="0 0 96 96" aria-hidden="true"><circle cx="26" cy="48" r="16"/><path d="M50 36q10 12 0 24"/><path d="M60 28q18 20 0 40"/><path d="M70 20q26 28 0 56"/></svg></div>
+        <div><p class="from">From the book: The voice in the head</p>
+          <h3>Answer the inner voice</h3>
+          <p>Every visitor arrives with a running commentary of questions. A great page hears each one and answers it, in the order it appears. Try it in the next section.</p></div>
+      </article>
+      <article class="lesson">
+        <div class="lhead"><span class="num">2</span>
+          <svg class="ico" viewBox="0 0 96 96" aria-hidden="true"><path d="M6 48C14 14 24 82 34 48S52 30 60 48S72 44 78 48L88 48"/><circle class="f" cx="90" cy="48" r="4"/></svg></div>
+        <div><p class="from">From the book: A new relationship with thoughts</p>
+          <h3>Guide attention with clarity</h3>
+          <p>Mindfulness is about changing how we relate to thoughts, so every visitor feels at ease and in charge. EasyLandX pages guide attention one idea at a time, and plenty of content fits when each part has a purpose.</p></div>
+      </article>
+      <article class="lesson">
+        <div class="lhead"><span class="num">3</span>
+          <svg class="ico" viewBox="0 0 96 96" aria-hidden="true"><rect class="f" x="10" y="32" width="12" height="32" rx="3"/><rect class="f" x="22" y="40" width="8" height="16"/><rect class="f" x="30" y="46" width="36" height="4"/><rect class="f" x="66" y="40" width="8" height="16"/><rect class="f" x="74" y="32" width="12" height="32" rx="3"/></svg></div>
+        <div><p class="from">From the book: Meditation made practical</p>
+          <h3>Build on practical, proven structure</h3>
+          <p>Mindfulness works like strength training for focus. EasyLandX pages work like a training plan: headline, benefits, proof, offer, and one button, in the order visitors recognize.</p></div>
+      </article>
+      <article class="lesson">
+        <div class="lhead"><span class="num">4</span>
+          <svg class="ico" viewBox="0 0 96 96" aria-hidden="true"><rect x="10" y="68" width="16" height="16" rx="2"/><rect x="30" y="58" width="16" height="26" rx="2"/><rect x="50" y="46" width="16" height="38" rx="2"/><rect class="f" x="70" y="30" width="16" height="54" rx="2"/></svg></div>
+        <div><p class="from">From the book: 10% is a game-changer</p>
+          <h3>Compound small improvements</h3>
+          <p>A 10% clearer headline, a 10% friendlier button, a 10% faster page. Small gains multiply over months, and the Compounder below shows how far seven steps can go.</p></div>
+      </article>
+      <article class="lesson">
+        <div class="lhead"><span class="num">5</span>
+          <svg class="ico" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="36"/><circle cx="48" cy="48" r="24"/><circle cx="48" cy="48" r="12"/><circle class="f" cx="48" cy="48" r="4"/></svg></div>
+        <div><p class="from">From the book: You keep your edge</p>
+          <h3>Be calm and driven</h3>
+          <p>Responding with clarity sharpens focus. Pages that feel calm convert with confidence, and your ambition stays in the lead.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="voice">
+  <div class="wrap">
+    <p class="eyebrow">Lesson 1 · Try it</p>
+    <h2>Hear the inner voice</h2>
+    <p class="lead">Harris teaches us to label a thought as it arrives. Tap each question a visitor might think and watch the matching part of the page light up.</p>
+    <div class="voice">
+      <div>
+        <div class="chips" id="chips" role="group" aria-label="Visitor thoughts"></div>
+        <div class="reply" id="reply" aria-live="polite"></div>
+      </div>
+      <div class="wire">
+        <svg id="wire" viewBox="0 0 320 440" role="img" aria-label="A landing page with five sections: headline, benefits, proof, price, and button">
+          <rect class="fr" x="1" y="1" width="318" height="438" rx="10"/>
+          <circle class="tdot" cx="20" cy="18" r="4"/><circle class="tdot" cx="32" cy="18" r="4"/><circle class="tdot" cx="44" cy="18" r="4"/>
+          <g class="blk on"><rect class="bg" x="16" y="40" width="288" height="96" rx="6"/>
+            <rect class="bar" x="32" y="56" width="170" height="12" rx="3"/><rect class="bar" x="32" y="76" width="120" height="8" rx="3"/><rect class="bar" x="32" y="90" width="140" height="8" rx="3"/><rect class="bar" x="32" y="108" width="68" height="16" rx="4"/></g>
+          <g class="blk"><rect class="bg" x="16" y="148" width="288" height="84" rx="6"/>
+            <rect class="bar" x="30" y="164" width="76" height="52" rx="4"/><rect class="bar" x="122" y="164" width="76" height="52" rx="4"/><rect class="bar" x="214" y="164" width="76" height="52" rx="4"/></g>
+          <g class="blk"><rect class="bg" x="16" y="244" width="288" height="72" rx="6"/>
+            <circle class="bar" cx="64" cy="268" r="12"/><circle class="bar" cx="160" cy="268" r="12"/><circle class="bar" cx="256" cy="268" r="12"/>
+            <rect class="bar" x="36" y="290" width="56" height="8" rx="3"/><rect class="bar" x="132" y="290" width="56" height="8" rx="3"/><rect class="bar" x="228" y="290" width="56" height="8" rx="3"/></g>
+          <g class="blk"><rect class="bg" x="16" y="328" width="288" height="56" rx="6"/>
+            <rect class="bar" x="32" y="342" width="90" height="28" rx="4"/><rect class="bar" x="140" y="344" width="120" height="8" rx="3"/><rect class="bar" x="140" y="360" width="90" height="8" rx="3"/></g>
+          <g class="blk"><rect class="bg" x="16" y="396" width="288" height="36" rx="6"/>
+            <rect class="bar" x="100" y="406" width="120" height="16" rx="8"/></g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="compounder">
+  <div class="wrap">
+    <p class="eyebrow">Lesson 4 · Try it</p>
+    <h2>The 10% Compounder</h2>
+    <p class="lead">Tap each improvement to add one 10% step. Every step multiplies the one before it, so the bars climb faster as you go.</p>
+    <div class="comp">
+      <div class="ctl">
+        <div class="steps" id="steps" role="group" aria-label="Page improvements"></div>
+        <label for="vis">Visitors per month <output id="visOut"></output></label>
+        <input type="range" id="vis" min="500" max="10000" step="250" value="2000">
+        <label for="base">Starting conversion rate <output id="baseOut"></output></label>
+        <input type="range" id="base" min="1" max="5" step="0.5" value="2">
+        <button class="btn ghost sm" id="reset" type="button">Reset steps</button>
+      </div>
+      <div>
+        <div class="stats">
+          <div class="stat"><span class="sl">Conversion rate</span><span class="sv" id="sRate"></span><span class="sf" id="sRate0"></span></div>
+          <div class="stat"><span class="sl">Enquiries per month</span><span class="sv" id="sLeads"></span><span class="sf" id="sLeads0"></span></div>
+          <div class="stat"><span class="sl">Growth</span><span class="sv" id="sGrow"></span><span class="sf" id="sGrow0"></span></div>
+        </div>
+        <div class="chartbox">
+          <svg id="chart" viewBox="0 0 420 240" role="img" aria-label="Bar chart of conversion rate after zero to seven 10% improvements"></svg>
+          <p class="note" style="padding-left:6px">Conversion rate (%) after 0 to 7 improvements of 10% each. This is an illustrative example.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="driven">
+  <div class="wrap quad">
+    <div>
+      <p class="eyebrow">Lesson 5 · Try it</p>
+      <h2>Calm and driven</h2>
+      <p class="lead">Harris found that calm sharpens ambition. He calls it constructive discontent: keep the drive to improve, and let go of what sits outside your control. Slide to find the sweet spot for your page.</p>
+      <div class="ctl">
+        <label for="calm">Calm <output id="calmOut"></output></label>
+        <input type="range" id="calm" min="0" max="100" value="45">
+        <label for="drive">Drive <output id="driveOut"></output></label>
+        <input type="range" id="drive" min="0" max="100" value="85">
+      </div>
+      <p class="qmsg" id="qmsg" aria-live="polite"></p>
+    </div>
+    <div class="qsvg qwrap" id="quadWrap">
+      <svg viewBox="0 0 360 330" role="img" aria-label="A chart of calm against drive with a highlighted calm and driven zone">
+        <rect class="qbox" x="40" y="20" width="300" height="270" rx="6"/>
+        <line class="qgrid" x1="190" y1="20" x2="190" y2="290"/><line class="qgrid" x1="40" y1="155" x2="340" y2="155"/>
+        <rect class="qsweet" x="235" y="20" width="105" height="94.5" rx="4"/>
+        <text class="ql hi" x="287" y="62" text-anchor="middle">Calm and</text><text class="ql hi" x="287" y="78" text-anchor="middle">driven</text>
+        <text class="ql" x="52" y="40">Energetic</text>
+        <text class="ql" x="52" y="278">Starting</text>
+        <text class="ql" x="328" y="278" text-anchor="end">Peaceful</text>
+        <text class="qax" x="190" y="316" text-anchor="middle">Calm →</text>
+        <text class="qax" x="14" y="155" text-anchor="middle" transform="rotate(-90 14 155)">Drive →</text>
+        <circle class="qpulse" id="qpulse" cx="175" cy="60" r="10"/>
+        <circle class="qdot" id="qdot" cx="175" cy="60" r="10"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="practice">
+  <div class="wrap">
+    <p class="eyebrow">Strategies for mindful pages</p>
+    <h2>Practices that keep a page clear</h2>
+    <p class="lead">Harris recommends a simple loop: focus, notice the wander, and return gently. EasyLandX pages follow the same loop, with one clear action at the center.</p>
+
+    <div class="panel game">
+      <div>
+        <p class="eyebrow">Practice 1 · Anchor on the breath</p>
+        <h3>Notice, then return</h3>
+        <p>Attention gathers around one clear action. Tap each wandering element to notice it, and watch the page settle on a single next step.</p>
+        <p class="msg" id="gameMsg" aria-live="polite">Noticed 0 of 4</p>
+        <button class="btn ghost sm" id="gameReset" type="button">Breathe in, start again</button>
+      </div>
+      <div class="stage" id="stage">
+        <div class="mock"><div class="mh">Fresh bread, delivered</div><div class="ms">Order by 9am, enjoy by noon.</div><span class="mbtn">Order now</span></div>
+        <button class="drift d1" type="button">Extra menu</button>
+        <button class="drift d2" type="button">Side banner</button>
+        <button class="drift d3" type="button">Second offer</button>
+        <button class="drift d4" type="button">Moving ticker</button>
+      </div>
+    </div>
+
+    <div class="duo">
+      <div class="panel" id="gapPanel">
+        <p class="eyebrow">Practice 2 · Notice the gap</p>
+        <h3>Pause, then respond</h3>
+        <p>Between an enquiry and a reply sits a small gap. Use it to choose a warm, thoughtful answer.</p>
+        <div class="gflow">
+          <div class="gnode on">Enquiry arrives</div>
+          <div class="gring" id="gapRing"><svg viewBox="0 0 96 96" aria-hidden="true"><circle class="tr" cx="48" cy="48" r="40"/><circle class="pg" cx="48" cy="48" r="40"/></svg><span class="gtx" id="gapTxt">Gap</span></div>
+          <div class="gnode" id="gReply">Reply ready</div>
+        </div>
+        <p class="gout" id="gapOut" hidden>Thank you for reaching out. Here is your clear next step.</p>
+        <button class="btn sm" id="takePause" type="button">Take the pause</button>
+      </div>
+      <div class="panel">
+        <p class="eyebrow">Practice 3 · Full presence</p>
+        <h3>Welcome every visitor in their language</h3>
+        <p>Full attention deepens connection. EasyLandX builds pages in English and Spanish, so each visitor reads in the language they love. Every first draft is a step forward, and each update makes it 10% better.</p>
+        <div class="seg" role="group" aria-label="Language"><button class="chip small" type="button" data-l="en" aria-pressed="true">English</button><button class="chip small" type="button" data-l="es" aria-pressed="false">Español</button></div>
+        <div class="lang"><h4 id="lh">Welcome. Your next step is clear.</h4><p id="lp">Tell us about your business and we build your page.</p><span class="mbtn" id="lb">Start now</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec cta">
+  <svg class="rings" viewBox="0 0 520 520" aria-hidden="true"><circle cx="260" cy="260" r="90" style="stroke-opacity:.5"/><circle cx="260" cy="260" r="140" style="stroke-opacity:.38;animation-delay:-.3s"/><circle cx="260" cy="260" r="190" style="stroke-opacity:.26;animation-delay:-.6s"/><circle cx="260" cy="260" r="240" style="stroke-opacity:.16;animation-delay:-.9s"/></svg>
+  <div class="wrap">
+    <h2>Ready for a page that feels 10% better?</h2>
+    <p>EasyLandX builds clear, affordable landing pages for small businesses, in English and Spanish.</p>
+    <a class="btn inv" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7"/></svg></a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>EasyLandX · Affordable, conversion-focused landing pages for small businesses</span>
+    <span>Lessons inspired by 10% Happier by Dan Harris</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+
+  /* Lesson 1: the inner voice */
+  var voices=[
+    {q:"Is this for me?",label:"curiosity",t:"Your headline names your customer and your promise in one clear line, so the visitor feels welcome within seconds."},
+    {q:"What will I get?",label:"interest",t:"Three benefits in plain words show the visitor what life looks like after choosing you."},
+    {q:"Can I trust this?",label:"care",t:"Reviews, results, and familiar names give the visitor a warm reason to say yes."},
+    {q:"Is the price fair?",label:"thoughtfulness",t:"A simple, visible offer lets the visitor decide with confidence."},
+    {q:"What happens next?",label:"readiness",t:"One bold button with one clear next step turns interest into action."}
+  ];
+  var chips=$('#chips'), reply=$('#reply'), blocks=document.querySelectorAll('#wire .blk');
+  voices.forEach(function(v,i){
+    var b=document.createElement('button');
+    b.type='button'; b.className='chip'; b.textContent='“'+v.q+'”';
+    b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',function(){pick(i)});
+    chips.appendChild(b);
+  });
+  function pick(i){
+    Array.prototype.forEach.call(chips.children,function(c,j){c.setAttribute('aria-pressed',String(i===j))});
+    Array.prototype.forEach.call(blocks,function(g,j){g.classList.toggle('on',j===i)});
+    reply.textContent='';
+    var s=document.createElement('strong'); s.textContent='There is '+voices[i].label+'.';
+    reply.appendChild(s); reply.appendChild(document.createTextNode(voices[i].t));
+  }
+  pick(0);
+
+  /* Lesson 4: the 10% compounder */
+  var names=["Headline","Offer","Proof","Button","Speed","Mobile view","Follow-up"];
+  var defaults=[0,2,3];
+  var on=new Set(defaults), stepsEl=$('#steps'), stepBtns=[];
+  names.forEach(function(n,i){
+    var b=document.createElement('button');
+    b.type='button'; b.className='chip small'; b.textContent='+10% '+n;
+    b.addEventListener('click',function(){ if(on.has(i)){on.delete(i)}else{on.add(i)} render(); });
+    stepsEl.appendChild(b); stepBtns.push(b);
+  });
+  $('#vis').addEventListener('input',render);
+  $('#base').addEventListener('input',render);
+  $('#reset').addEventListener('click',function(){on.clear();render()});
+  function render(){
+    var vis=+$('#vis').value, base=+$('#base').value, n=on.size, m=Math.pow(1.1,n);
+    stepBtns.forEach(function(b,i){b.setAttribute('aria-pressed',String(on.has(i)))});
+    $('#visOut').textContent=vis.toLocaleString('en-US');
+    $('#baseOut').textContent=base.toFixed(1)+'%';
+    var rate=base*m, leads=vis*rate/100, l0=vis*base/100;
+    $('#sRate').textContent=rate.toFixed(1)+'%';
+    $('#sRate0').textContent='from '+base.toFixed(1)+'%';
+    $('#sLeads').textContent=Math.round(leads);
+    $('#sLeads0').textContent='from '+Math.round(l0);
+    $('#sGrow').textContent='+'+Math.round((m-1)*100)+'%';
+    $('#sGrow0').textContent=n+(n===1?' step':' steps')+' of 10%';
+    var x0=8,bw=40,gap=(420-16-8*bw)/7,by=200,mh=150,max=base*Math.pow(1.1,7),s='';
+    s+='<line class="axis" x1="4" y1="'+by+'" x2="416" y2="'+by+'"/>';
+    for(var k=0;k<=7;k++){
+      var v=base*Math.pow(1.1,k), h=v/max*mh, x=x0+k*(bw+gap), y=by-h;
+      var cls=k<n?'cbar on':(k===n?'cbar cur':'cbar');
+      s+='<rect class="'+cls+'" x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+bw+'" height="'+h.toFixed(1)+'" rx="3"/>';
+      s+='<text class="vl'+(k===n?' cur':'')+'" x="'+(x+bw/2).toFixed(1)+'" y="'+(y-8).toFixed(1)+'">'+v.toFixed(1)+'</text>';
+      s+='<text class="xl" x="'+(x+bw/2).toFixed(1)+'" y="'+(by+22)+'">'+k+'</text>';
+    }
+    $('#chart').innerHTML=s;
+  }
+  render();
+
+  /* Lesson 5: calm and driven */
+  function quad(){
+    var c=+$('#calm').value, d=+$('#drive').value;
+    $('#calmOut').textContent=c+'%'; $('#driveOut').textContent=d+'%';
+    var cx=40+c*3, cy=290-d*2.7;
+    ['qdot','qpulse'].forEach(function(id){var e=$('#'+id); e.setAttribute('cx',cx); e.setAttribute('cy',cy)});
+    var ok=c>=65&&d>=65;
+    $('#quadWrap').classList.toggle('ok',ok);
+    var m;
+    if(ok){m='This is the 10% Happier sweet spot: calm and driven. Your page welcomes visitors with clarity and energy.'}
+    else if(c<65&&d>=65){m='Add a breath of calm and your page gains clarity.'}
+    else if(d<65&&c>=65){m='Add a spark of drive and your page gains momentum.'}
+    else{m='Every journey starts here. Add calm and drive in small, steady steps.'}
+    $('#qmsg').textContent=m;
+  }
+  $('#calm').addEventListener('input',quad);
+  $('#drive').addEventListener('input',quad);
+  quad();
+
+  /* Practice 1: notice and return */
+  var stage=$('#stage'), drifts=Array.prototype.slice.call(stage.querySelectorAll('.drift')), noticed=0;
+  function gameUpdate(){
+    stage.style.setProperty('--p',noticed/4);
+    stage.classList.toggle('done',noticed===4);
+    $('#gameMsg').textContent=noticed===4?'One clear next step. Attention has returned.':'Noticed '+noticed+' of 4';
+  }
+  drifts.forEach(function(b){
+    b.addEventListener('click',function(){
+      if(b.classList.contains('gone'))return;
+      b.classList.add('gone'); b.tabIndex=-1; noticed++; gameUpdate();
+    });
+  });
+  $('#gameReset').addEventListener('click',function(){
+    noticed=0; drifts.forEach(function(b){b.classList.remove('gone'); b.tabIndex=0}); gameUpdate();
+  });
+  gameUpdate();
+
+  /* Practice 2: the gap */
+  var gbtn=$('#takePause'), gring=$('#gapRing'), gtx=$('#gapTxt'), grep=$('#gReply'), gout=$('#gapOut'), gtimer;
+  gbtn.addEventListener('click',function(){
+    clearInterval(gtimer);
+    gbtn.disabled=true; grep.classList.remove('on'); gout.hidden=true;
+    gring.classList.remove('run'); void gring.getBoundingClientRect(); gring.classList.add('run');
+    var t=3; gtx.textContent=t;
+    gtimer=setInterval(function(){
+      t--;
+      if(t>0){gtx.textContent=t}
+      else{
+        clearInterval(gtimer); gtx.textContent='Ready';
+        grep.classList.add('on'); gout.hidden=false;
+        gbtn.disabled=false; gbtn.textContent='Pause again';
+      }
+    },1000);
+  });
+
+  /* Practice 3: language */
+  var copy={
+    en:{h:'Welcome. Your next step is clear.',p:'Tell us about your business and we build your page.',b:'Start now'},
+    es:{h:'Bienvenido. Tu próximo paso está claro.',p:'Cuéntanos sobre tu negocio y construimos tu página.',b:'Empieza ahora'}
+  };
+  var langBtns=document.querySelectorAll('.seg [data-l]');
+  Array.prototype.forEach.call(langBtns,function(b){
+    b.addEventListener('click',function(){
+      var l=b.getAttribute('data-l');
+      Array.prototype.forEach.call(langBtns,function(o){o.setAttribute('aria-pressed',String(o===b))});
+      $('#lh').textContent=copy[l].h; $('#lp').textContent=copy[l].p; $('#lb').textContent=copy[l].b;
+    });
+  });
+})();
+</script>
