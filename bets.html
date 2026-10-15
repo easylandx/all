@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx | Landing Pages Built on Smart Bets</title>
+<style>
+:root{--g:#0B6623;--g2:#08531c;--g3:#118a31;--r:#DC2626;--t:#fff;--s:rgba(255,255,255,.82);--l:rgba(255,255,255,.22);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--g);color:var(--t);font:400 18px/1.6 "Trebuchet MS","Segoe UI",system-ui,sans-serif}
+h1,h2,h3{font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;line-height:1.05;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,7vw,4.6rem)}h2{font-size:clamp(1.8rem,4.5vw,3rem)}h3{font-size:1.25rem}
+p{margin:0 0 1em;color:var(--s)}
+a{color:inherit}
+.w{max-width:1040px;margin:0 auto;padding-inline:clamp(22px,6vw,36px)}
+section{padding-block:72px;border-top:3px solid var(--l)}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:16px clamp(22px,6vw,36px);max-width:1040px;margin:0 auto}
+.logo{font:900 1.4rem "Arial Black",Arial,sans-serif;text-decoration:none}.logo b{color:var(--r);background:var(--t);padding:0 6px;border-radius:6px;margin-left:2px}
+.btn{display:inline-block;background:var(--r);color:#fff;font-weight:900;text-decoration:none;padding:14px 26px;border-radius:999px;border:3px solid #fff;cursor:pointer;font-size:1rem;transition:transform .15s}
+.btn:hover,.btn:focus-visible{transform:translateY(-3px) rotate(-1deg);outline:3px solid #fff;outline-offset:3px}
+.btn.alt{background:#fff;color:var(--g);border-color:#fff}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;padding-block:40px 72px}
+.hero p{font-size:1.2rem;max-width:34em}
+.red{color:var(--r);background:#fff;padding:0 .2em;border-radius:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.card{background:var(--g2);border:3px solid var(--l);border-radius:22px;padding:24px}
+.card svg{width:64px;height:64px;margin-bottom:10px}
+.card:hover{border-color:var(--r)}
+.panel{background:var(--g2);border:3px solid #fff;border-radius:28px;padding:28px;margin-top:24px;box-shadow:10px 10px 0 var(--r)}
+input[type=range]{width:100%;accent-color:var(--r);height:36px}
+.panel label{display:block;margin-bottom:18px;line-height:1.4}.big{font:900 clamp(3rem,10vw,5.5rem)/1.2 "Arial Black",Arial,sans-serif;color:#fff;margin:0 0 14px;clear:both}.big span{display:inline-block;color:var(--r);background:#fff;padding:.05em .15em;border-radius:12px;line-height:1.1}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.tab{background:transparent;color:#fff;border:3px solid #fff;border-radius:999px;padding:10px 20px;font:900 1rem Arial,sans-serif;cursor:pointer}
+.tab[aria-selected=true]{background:var(--r);border-color:var(--r)}
+.tab:focus-visible,.chk:focus-visible,.step:focus-visible{outline:3px solid var(--r);outline-offset:3px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.list{display:grid;gap:10px}
+.step,.chk{display:flex;gap:12px;align-items:center;text-align:left;width:100%;background:var(--g);color:#fff;border:3px solid var(--l);border-radius:16px;padding:12px 16px;font:600 1rem/1.35 "Trebuchet MS",sans-serif;cursor:pointer}
+.step .dot,.chk .dot{flex:0 0 28px;height:28px;border-radius:50%;border:3px solid #fff;display:grid;place-items:center;font-weight:900;font-size:.9rem}
+.on{border-color:var(--r);background:#0a5a1f}.on .dot{background:var(--r);border-color:var(--r)}
+.bar{height:20px;background:var(--g);border:3px solid #fff;border-radius:999px;overflow:hidden;margin:14px 0}
+.bar i{display:block;height:100%;width:0;background:var(--r);transition:width .4s}
+.charter{background:#fff;color:var(--g);border-radius:18px;padding:18px 20px;font-weight:700;margin-top:16px;min-height:60px}
+.charter p{color:var(--g);margin:.2em 0}
+.pull{font:900 clamp(1.4rem,3.5vw,2.2rem)/1.2 "Arial Black",Arial,sans-serif;max-width:22em}
+.cta{text-align:center;padding-block:90px}
+footer{padding:28px clamp(22px,6vw,36px);text-align:center;border-top:3px solid var(--l);color:var(--s);font-size:.95rem}
+.float{animation:fl 5s ease-in-out infinite}.float2{animation:fl 6s ease-in-out infinite reverse}
+@keyframes fl{50%{transform:translateY(-10px)}}
+@media(max-width:760px){.hero,.two{grid-template-columns:1fr}section{padding-block:52px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="nav"><a class="logo" href="#top">easy<b>landx</b></a><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a></div>
+
+<main id="top">
+<div class="w hero">
+ <div>
+  <h1>Every landing page is a <span class="red">smart bet</span> worth making.</h1>
+  <p>Inspired by Annie Duke's <em>Thinking in Bets</em>, easylandx crafts individual, conversion-focused pages for small businesses. Each design choice is a well-reasoned wager on your future customers.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+  <a class="btn alt" href="#bet">Place your first bet</a>
+ </div>
+ <svg viewBox="0 0 420 380" role="img" aria-label="Playing cards, chips and a landing page wireframe">
+  <g class="float2"><rect x="30" y="40" width="190" height="260" rx="18" fill="#fff" transform="rotate(-12 125 170)"/><text x="55" y="95" font-size="54" font-weight="900" fill="#DC2626" font-family="Arial" transform="rotate(-12 125 170)">A</text><path d="M125 150c-30-35-60-5-40 25 10 15 40 30 40 45 0-15 30-30 40-45 20-30-10-60-40-25z" fill="#DC2626" transform="rotate(-12 125 170)"/></g>
+  <g class="float"><rect x="150" y="30" width="230" height="290" rx="20" fill="#0B6623" stroke="#fff" stroke-width="6"/>
+   <rect x="170" y="52" width="190" height="28" rx="8" fill="#fff"/><circle cx="182" cy="66" r="6" fill="#DC2626"/>
+   <rect x="170" y="96" width="140" height="22" rx="6" fill="#fff"/><rect x="170" y="126" width="100" height="14" rx="6" fill="#fff" opacity=".6"/>
+   <rect x="170" y="156" width="110" height="38" rx="19" fill="#DC2626"/><rect x="170" y="212" width="55" height="70" rx="10" fill="#fff" opacity=".85"/><rect x="233" y="212" width="55" height="70" rx="10" fill="#fff" opacity=".6"/><rect x="296" y="212" width="55" height="70" rx="10" fill="#fff" opacity=".4"/></g>
+  <g><ellipse cx="90" cy="335" rx="52" ry="20" fill="#DC2626" stroke="#fff" stroke-width="5"/><ellipse cx="90" cy="320" rx="52" ry="20" fill="#DC2626" stroke="#fff" stroke-width="5"/><ellipse cx="90" cy="305" rx="52" ry="20" fill="#fff"/><path d="M60 305h60" stroke="#DC2626" stroke-width="5" stroke-dasharray="8 6"/></g>
+  <g><ellipse cx="330" cy="352" rx="46" ry="17" fill="#fff"/><ellipse cx="330" cy="338" rx="46" ry="17" fill="#DC2626" stroke="#fff" stroke-width="5"/></g>
+ </svg>
+</div>
+
+<section id="core"><div class="w">
+ <h2>Life is poker, and poker rewards great thinking.</h2>
+ <p>Chess shows every piece. Poker, like business, mixes hidden information with a dash of luck. Landing pages live in that world, and easylandx designs for it with confidence.</p>
+ <div class="grid">
+  <div class="card"><svg viewBox="0 0 64 64"><rect x="4" y="10" width="34" height="46" rx="6" fill="#fff"/><path d="M21 28c-6-8-14-1-9 6 3 4 9 7 9 11 0-4 6-7 9-11 5-7-3-14-9-6z" fill="#DC2626"/><rect x="26" y="6" width="34" height="46" rx="6" fill="#0B6623" stroke="#fff" stroke-width="3"/></svg><h3>Life is poker</h3><p>Hidden details and luck are part of every launch. Skilled players shape their approach around what they can see and welcome what they cannot.</p></div>
+  <div class="card"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="none" stroke="#fff" stroke-width="5"/><path d="M18 33l9 9 19-21" fill="none" stroke="#DC2626" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Process over outcome</h3><p>Duke calls judging by results alone "resulting." Great decisions are celebrated for their craft, so every page is shaped by careful reasoning.</p></div>
+  <div class="card"><svg viewBox="0 0 64 64"><ellipse cx="32" cy="46" rx="24" ry="9" fill="#DC2626" stroke="#fff" stroke-width="3"/><ellipse cx="32" cy="36" rx="24" ry="9" fill="#fff"/><ellipse cx="32" cy="26" rx="24" ry="9" fill="#DC2626" stroke="#fff" stroke-width="3"/></svg><h3>Decisions are bets</h3><p>Time, budget and attention are your chips. A focused landing page places them on what your customers value most.</p></div>
+  <div class="card"><svg viewBox="0 0 64 64"><path d="M6 50A26 26 0 0 1 58 50" fill="none" stroke="#fff" stroke-width="6"/><path d="M32 50L20 22" stroke="#DC2626" stroke-width="6" stroke-linecap="round"/><circle cx="32" cy="50" r="6" fill="#fff"/></svg><h3>Embrace the unknown</h3><p>"I'm 60% sure" is a strong, honest statement. Percentages invite curiosity and open the way to better answers.</p></div>
+  <div class="card"><svg viewBox="0 0 64 64"><path d="M8 40c10-24 22 12 32-8s12-14 16-14" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/><circle cx="56" cy="18" r="6" fill="#DC2626"/></svg><h3>Beliefs are fluid</h3><p>Every belief is a hypothesis. When fresh evidence arrives, easylandx pages evolve gracefully and keep growing.</p></div>
+ </div>
+</div></section>
+
+<section id="bet"><div class="w">
+ <h2>1. Calibrate: set your confidence</h2>
+ <p>Express beliefs in percentages. At easylandx, a headline, an offer or a button color starts as a hypothesis with a confidence level, and every visitor adds evidence. Slide to place your bet on a new landing page.</p>
+ <div class="panel">
+  <label for="conf"><b>I'm this confident my new landing page will delight visitors:</b></label>
+  <div class="big"><span id="pct">70</span>%</div>
+  <input id="conf" type="range" min="50" max="95" value="70" step="5">
+  <svg id="chips" viewBox="0 0 600 90" style="width:100%;height:90px" aria-hidden="true"></svg>
+  <p id="confMsg" style="font-weight:700;color:#fff;font-size:1.15rem"></p>
+ </div>
+ <div class="two" style="margin-top:28px">
+  <div class="card"><h3>Seek truth, enjoy learning</h3><p>Self-worth rooted in finding what works frees you to celebrate every new insight. Each result becomes a bright data point for your next version.</p></div>
+  <div class="card"><h3>Form a decision pod</h3><p>Gather friends, customers and peers who love exploring alternatives. Share your page draft, invite fresh angles and reward open-minded feedback. easylandx welcomes that collaboration with every client.</p></div>
+ </div>
+</div></section>
+
+<section id="time"><div class="w">
+ <h2>2. Travel in time with 10-10-10</h2>
+ <p>Look at your page decision through three horizons. Short-term excitement meets long-term vision, and your choices align with the business you are building.</p>
+ <div class="panel">
+  <div class="tabs" role="tablist">
+   <button class="tab" role="tab" aria-selected="true" data-i="0">10 minutes</button>
+   <button class="tab" role="tab" aria-selected="false" data-i="1">10 months</button>
+   <button class="tab" role="tab" aria-selected="false" data-i="2">10 years</button>
+  </div>
+  <svg viewBox="0 0 600 70" style="width:100%;height:70px" aria-hidden="true"><path d="M20 40H580" stroke="#fff" stroke-width="6" stroke-linecap="round"/><g id="nodes"></g></svg>
+  <h3 id="tt"></h3><p id="tp" style="font-size:1.1rem;margin:0"></p>
+ </div>
+</div></section>
+
+<section id="path"><div class="w">
+ <h2>3. Work backward from success</h2>
+ <p>Backcasting starts at the finish line. Picture your launch thriving a year from now, then follow the steps that led there. Pair it with a pre-success safeguard check: imagine the launch exceeding every goal and strengthen each foundation today. Tap each card to lock it in.</p>
+ <div class="two">
+  <div class="panel" style="box-shadow:none"><h3>Backcast: the road to a thriving page</h3><div class="list" id="back"></div></div>
+  <div class="panel" style="box-shadow:none"><h3>Safeguards: a launch that shines</h3><div class="list" id="safe"></div></div>
+ </div>
+ <div class="panel"><b>Launch readiness</b><div class="bar"><i id="fill"></i></div><p id="ready" style="margin:0;color:#fff;font-weight:700"></p></div>
+</div></section>
+
+<section id="ulysses"><div class="w">
+ <h2>4. Pre-commit like Ulysses</h2>
+ <p>Calm moments are perfect for setting rules. Decide today how your future self will act on launch day, and let your charter guide you with ease.</p>
+ <div class="panel">
+  <div class="list" id="rules"></div>
+  <div class="charter" id="charter"></div>
+ </div>
+ <p class="pull" style="margin-top:40px">Great decisions are crafted, tested and improved. That is exactly how easylandx builds every page.</p>
+</div></section>
+
+<section class="cta"><div class="w">
+ <svg viewBox="0 0 200 110" width="200" aria-hidden="true"><ellipse cx="100" cy="88" rx="70" ry="18" fill="#DC2626" stroke="#fff" stroke-width="5"/><ellipse cx="100" cy="68" rx="70" ry="18" fill="#fff"/><ellipse cx="100" cy="48" rx="70" ry="18" fill="#DC2626" stroke="#fff" stroke-width="5"/><path d="M100 10l8 18h-16z" fill="#fff"/></svg>
+ <h2>Ready to place a winning bet on your business?</h2>
+ <p style="max-width:34em;margin:0 auto 28px">Affordable, custom-crafted, conversion-focused landing pages for small businesses. Every page is individually designed for you.</p>
+ <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener" style="font-size:1.2rem;padding:18px 36px">easylandx</a>
+</div></section>
+</main>
+<footer>&copy; easylandx. Inspired by the ideas in Thinking in Bets by Annie Duke.</footer>
+
+<script>
+var $=function(s){return document.querySelector(s)};
+// 1. confidence
+var msgs={50:"A confident starting point! A quick test will sharpen your view.",60:"Great! Share your draft with your pod to gather fresh angles.",70:"Strong conviction. Test two headlines and let the evidence guide you.",80:"High confidence. Welcome new data and keep your beliefs flexible.",90:"Outstanding. Stay curious and update gladly when new evidence arrives."};
+function chips(v){var n=Math.round((v-40)/10),h="";for(var i=0;i<n;i++){h+='<ellipse cx="'+(40+i*58)+'" cy="55" rx="26" ry="14" fill="'+(i%2?'#fff':'#DC2626')+'" stroke="#fff" stroke-width="3"/><ellipse cx="'+(40+i*58)+'" cy="43" rx="26" ry="14" fill="'+(i%2?'#DC2626':'#fff')+'" stroke="#fff" stroke-width="3"/>'}$("#chips").innerHTML=h}
+function conf(){var v=+$("#conf").value;$("#pct").textContent=v;$("#confMsg").textContent=msgs[Math.floor(v/10)*10]||msgs[90];chips(v)}
+$("#conf").addEventListener("input",conf);conf();
+// 2. 10-10-10
+var T=[["In 10 minutes","You feel the excitement of a fresh idea. Capture it, then give it a short pause to shine even brighter."],["In 10 months","Your page has welcomed real visitors. Clear messaging and a bold button have built steady momentum."],["In 10 years","Your brand is a trusted name. Each thoughtful choice today became a cornerstone of that story."]];
+function tab(i){document.querySelectorAll(".tab").forEach(function(b,j){b.setAttribute("aria-selected",i==j)});$("#tt").textContent=T[i][0];$("#tp").textContent=T[i][1];$("#nodes").innerHTML=[0,1,2].map(function(j){return '<circle cx="'+(60+j*240)+'" cy="40" r="'+(j<=i?16:10)+'" fill="'+(j==i?'#DC2626':'#fff')+'" stroke="#fff" stroke-width="4"/>'}).join("")}
+document.querySelectorAll(".tab").forEach(function(b){b.addEventListener("click",function(){tab(+b.dataset.i)})});tab(0);
+// 3. backcast + safeguards
+var B=["Define one clear goal for the page","Craft a headline that speaks to your customer","Add a bold button above the fold","Gather feedback from your decision pod","Launch, learn and celebrate progress"];
+var S=["Page loads quickly on every phone","Message stays clear in one glance","Contact form is easy and friendly","Pre-launch review by trusted peers","Review plan set for week two"];
+function build(id,arr){$(id).innerHTML=arr.map(function(t){return '<button class="step" aria-pressed="false"><span class="dot"></span>'+t+'</button>'}).join("")}
+build("#back",B);build("#safe",S);
+function ready(){var a=document.querySelectorAll("#back .on,#safe .on").length,p=a*10;$("#fill").style.width=p+"%";$("#ready").textContent=p==100?"Launch ready! Everything is in place for a thriving page.":p+"% ready. "+(10-a)+" more steps to a radiant launch."}
+document.querySelectorAll(".step").forEach(function(b){b.addEventListener("click",function(){var o=b.classList.toggle("on");b.setAttribute("aria-pressed",o);b.querySelector(".dot").textContent=o?"✓":"";ready()})});ready();
+// 4. Ulysses
+var R=["Review results after 14 days","Test one change at a time","Share data with my decision pod","Celebrate every lesson learned","Keep the promise to pause before big edits"];
+$("#rules").innerHTML=R.map(function(t){return '<button class="chk" aria-pressed="false"><span class="dot"></span>'+t+'</button>'}).join("");
+function charter(){var on=[].map.call(document.querySelectorAll("#rules .on"),function(e){return e.textContent.replace("✓","")});$("#charter").innerHTML=on.length?"<p>My launch charter:</p>"+on.map(function(t){return "<p>&bull; "+t+"</p>"}).join(""):"<p>Tap the rules above to write your launch charter.</p>"}
+document.querySelectorAll(".chk").forEach(function(b){b.addEventListener("click",function(){var o=b.classList.toggle("on");b.setAttribute("aria-pressed",o);b.querySelector(".dot").textContent=o?"✓":"";charter()})});charter();
+</script>
+</body>
+</html>

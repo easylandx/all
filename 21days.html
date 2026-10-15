@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyLandX Author Pages</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+/* Layout concept: one bold golden canvas, ink-navy accents, hard-offset cards; a journey from principles to a live page builder, a 21-day tracker, and a growth slider. */
+:root{
+  --gold:#E5A93C;
+  --gold-lt:#EDBE69;
+  --gold-pale:#F5D99B;
+  --gold-dp:#CF922A;
+  --ink:#1E2A38;
+  --ink-80:rgba(30,42,56,.84);
+  --ink-20:rgba(30,42,56,.22);
+  --ink-10:rgba(30,42,56,.1);
+  --display:"Bricolage Grotesque","Trebuchet MS",Arial,sans-serif;
+  --body:"Figtree","Segoe UI",Helvetica,Arial,sans-serif;
+  --hand:"Caveat","Segoe Print","Comic Sans MS",cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--gold);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;margin:0}
+h1,h2,h3{font-family:var(--display);line-height:1.05;margin:0;text-wrap:balance;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,6.2vw,4.5rem);font-weight:800}
+h2{font-size:clamp(1.9rem,4.2vw,3rem);font-weight:800}
+h3{font-size:1.35rem;font-weight:800}
+p{margin:0}
+a{color:inherit}
+.in{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{padding-block:clamp(48px,8vw,96px);border-top:3px solid var(--ink)}
+.eyebrow{font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
+.lede{max-width:62ch;font-size:1.12rem;color:var(--ink-80)}
+.head{display:grid;gap:14px;margin-bottom:40px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--gold);font-family:var(--display);font-weight:800;font-size:1.05rem;text-decoration:none;padding:14px 26px;border:3px solid var(--ink);border-radius:999px;box-shadow:5px 5px 0 var(--gold-dp);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--gold-dp)}
+.btn.alt{background:transparent;color:var(--ink);box-shadow:none}
+.btn.alt:hover{background:var(--gold-pale);box-shadow:none;transform:none}
+.btn.sm{padding:9px 18px;font-size:.95rem;box-shadow:3px 3px 0 var(--gold-dp)}
+
+/* nav */
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:1.5rem;text-decoration:none}
+.nav-links{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.nav-links a:not(.btn){text-decoration:none;font-weight:700;font-size:.95rem}
+.nav-links a:not(.btn):hover{text-decoration:underline;text-decoration-thickness:3px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-block:clamp(28px,5vw,64px) clamp(48px,7vw,88px)}
+.hero-copy{display:grid;gap:22px;min-width:0}
+.hero-copy .lede{font-size:1.18rem}
+.cta-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.hero-art{min-width:0}
+.hero-art svg{width:100%;height:auto;display:block;overflow:visible}
+.pen{animation:bob 3.2s ease-in-out infinite;transform-origin:center}
+@keyframes bob{0%,100%{transform:translate(0,0)}50%{transform:translate(-6px,4px)}}
+
+/* cards */
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.card{background:var(--gold-pale);border:3px solid var(--ink);border-radius:10px;box-shadow:7px 7px 0 var(--ink);padding:24px;display:grid;gap:12px;align-content:start;min-width:0}
+.card svg{width:72px;height:72px}
+.card .tag{font-weight:700;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase}
+.card .book{color:var(--ink-80);font-size:.98rem}
+.card .move{border-top:2px dashed var(--ink-20);padding-top:12px;font-size:.98rem}
+.hand{font-family:var(--hand);font-size:1.6rem;line-height:1}
+
+/* builder */
+.studio{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:32px;align-items:start}
+.panel{background:var(--gold-pale);border:3px solid var(--ink);border-radius:10px;box-shadow:7px 7px 0 var(--ink);padding:24px;display:grid;gap:20px;min-width:0}
+.field{display:grid;gap:8px}
+.field label,.field .lab{font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase}
+.field input[type=text]{font:inherit;font-weight:700;font-size:1.1rem;color:var(--ink);background:var(--gold);border:3px solid var(--ink);border-radius:8px;padding:11px 14px;width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{font:inherit;font-weight:700;font-size:.95rem;color:var(--ink);background:transparent;border:3px solid var(--ink);border-radius:999px;padding:8px 16px;cursor:pointer;transition:background .15s}
+.chip:hover{background:var(--gold-lt)}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--gold)}
+.mini{background:var(--gold);border:3px solid var(--ink);border-radius:12px;overflow:hidden;box-shadow:7px 7px 0 var(--ink);min-width:0}
+.mini-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:var(--gold-lt);border-bottom:3px solid var(--ink)}
+.mini-bar i{width:11px;height:11px;border-radius:50%;background:var(--ink);display:block}
+.mini-bar span{margin-left:10px;font-size:.8rem;font-weight:700;background:var(--gold-pale);border:2px solid var(--ink);border-radius:99px;padding:1px 12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.mini-body{display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;padding:26px 22px;align-items:center}
+.glyph svg{width:100%;height:auto;display:block}
+.mini-brand{font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;overflow-wrap:anywhere}
+.mini h3{font-size:clamp(1.3rem,2.6vw,1.8rem);margin-block:6px 8px;overflow-wrap:anywhere}
+.mini-sub{font-size:.98rem;color:var(--ink-80);overflow-wrap:anywhere}
+.mini-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.mini-btn{background:var(--ink);color:var(--gold);font-family:var(--display);font-weight:800;padding:9px 18px;border-radius:99px;font-size:.95rem}
+.mood{font-family:var(--hand);font-size:1.4rem}
+.mini-foot{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 22px 22px}
+.mini-foot b{display:block;height:40px;background:var(--gold-pale);border:3px solid var(--ink);border-radius:8px}
+
+/* tracker */
+.journey{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:32px;align-items:start}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+.day{aspect-ratio:1;font:inherit;font-family:var(--display);font-weight:800;font-size:1.05rem;color:var(--ink);background:var(--gold);border:3px solid var(--ink);border-radius:10px;cursor:pointer;display:grid;place-items:center;transition:transform .12s,background .15s;min-width:0}
+.day:hover{transform:translateY(-3px);background:var(--gold-lt)}
+.day[aria-pressed=true]{background:var(--ink);color:var(--gold)}
+.bar{height:20px;border:3px solid var(--ink);border-radius:99px;background:var(--gold);overflow:hidden}
+.bar>i{display:block;height:100%;width:0;background:var(--ink);transition:width .35s}
+.status{font-family:var(--display);font-weight:800;font-size:1.3rem}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.ch2{display:grid;gap:10px;list-style:none;margin:0;padding:0}
+.ch2 li{display:flex;gap:12px;align-items:center;border:3px dashed var(--ink-20);border-radius:10px;padding:10px 14px;font-weight:500;transition:all .25s;opacity:.7}
+.ch2 li b{font-family:var(--display);font-weight:800}
+.ch2.open li{border:3px solid var(--ink);background:var(--gold-lt);opacity:1}
+.stackout{background:var(--gold);border:3px solid var(--ink);border-radius:10px;padding:14px 16px;font-weight:500}
+.stackout b{font-family:var(--display)}
+
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.tab{font:inherit;font-family:var(--display);font-weight:800;font-size:1.02rem;color:var(--ink);background:transparent;border:3px solid var(--ink);border-radius:10px;padding:10px 20px;cursor:pointer}
+.tab:hover{background:var(--gold-lt)}
+.tab[aria-selected=true]{background:var(--ink);color:var(--gold)}
+.tabpanel{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:28px;align-items:center}
+.tabpanel svg{width:100%;height:auto;display:block}
+.tabcols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.tabcols h4{margin:0 0 6px;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+
+/* audit */
+.audit{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:start}
+.checks{display:grid;gap:10px}
+.check{display:flex;gap:14px;align-items:center;cursor:pointer;background:var(--gold);border:3px solid var(--ink);border-radius:10px;padding:12px 16px;font-weight:500}
+.check input{appearance:none;flex:none;width:26px;height:26px;border:3px solid var(--ink);border-radius:7px;background:var(--gold-pale);display:grid;place-items:center;margin:0;cursor:pointer}
+.check input:checked{background:var(--ink)}
+.check input:checked::after{content:"";width:12px;height:6px;border-left:3px solid var(--gold);border-bottom:3px solid var(--gold);transform:rotate(-45deg) translate(1px,-1px)}
+.check:has(input:checked){background:var(--gold-lt)}
+.score{font-family:var(--display);font-weight:800;font-size:3.4rem;line-height:1}
+
+/* grow */
+.grow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:center}
+.grow svg{width:100%;height:auto;display:block;max-width:420px;margin-inline:auto}
+.lv{transition:opacity .35s,transform .35s}
+input[type=range]{width:100%;accent-color:var(--ink);height:34px}
+.lvlist{display:grid;gap:8px;list-style:none;margin:0;padding:0}
+.lvlist li{display:flex;gap:12px;align-items:center;padding:8px 12px;border-radius:8px;border:3px solid transparent;opacity:.6}
+.lvlist li.on{opacity:1;border-color:var(--ink);background:var(--gold-lt)}
+.lvlist li.cur{background:var(--ink);color:var(--gold)}
+
+/* closing */
+.finale{text-align:center;display:grid;gap:26px;justify-items:center}
+.finale .lede{margin-inline:auto}
+footer{border-top:3px solid var(--ink);padding-block:26px;font-weight:500;font-size:.95rem}
+footer .in{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
+
+@media (max-width:860px){
+  .hero,.studio,.journey,.audit,.grow{grid-template-columns:1fr}
+  .tabpanel{grid-template-columns:1fr}
+  .tabpanel svg{max-width:200px}
+  .mini-body{grid-template-columns:80px minmax(0,1fr);gap:14px}
+}
+@media (max-width:480px){
+  body{font-size:16px}
+  .days{gap:7px}
+  .day{font-size:.9rem;border-radius:8px}
+  .nav-links a:not(.btn){display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .pen{animation:none}
+  *{transition:none!important}
+}
+</style>
+
+</head>
+<body>
+<header class="in">
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="#top" aria-label="EasyLandX home">
+      <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><rect x="3" y="3" width="34" height="34" rx="9" fill="#1E2A38"/><path d="M11 27 L24 14 M24 14 L24 22 M24 14 L16 14" stroke="#E5A93C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      EasyLandX
+    </a>
+    <div class="nav-links">
+      <a href="#principles">Lessons</a>
+      <a href="#author">Page builder</a>
+      <a href="#journey">21 days</a>
+      <a href="#grow">Grow</a>
+      <a class="btn sm" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyLandX ↗</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="in hero">
+    <div class="hero-copy">
+      <p class="eyebrow">EasyLandX · Landing pages for small businesses</p>
+      <h1>You hold the pen. Write a landing page your customers love.</h1>
+      <p class="lede">EasyLandX creates custom, conversion-focused landing pages at friendly prices. Inspired by <em>Life After 21 Days: You Are the Author of Your Life</em> by Plancourr, every page grows from daily intention, a confident identity, and steady progress.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyLandX <span aria-hidden="true">→</span></a>
+        <a class="btn alt" href="#author">Author a headline</a>
+      </div>
+      <p class="hand">Day 21 is the beginning of your best chapter.</p>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 520 440" role="img" aria-label="Illustration of a landing page being written with a pen, with a rising sun and Day 22 badge">
+        <rect x="64" y="56" width="400" height="320" rx="14" fill="#F5D99B" stroke="#1E2A38" stroke-width="4" transform="rotate(-6 264 216)"/>
+        <rect x="56" y="52" width="410" height="326" rx="14" fill="#EDBE69" stroke="#1E2A38" stroke-width="4" transform="rotate(3 261 215)"/>
+        <rect x="40" y="40" width="440" height="340" rx="14" fill="#F7E0AA" stroke="#1E2A38" stroke-width="4"/>
+        <path d="M40 84 H480" stroke="#1E2A38" stroke-width="4"/>
+        <circle cx="66" cy="62" r="7" fill="#1E2A38"/><circle cx="88" cy="62" r="7" fill="#1E2A38"/><circle cx="110" cy="62" r="7" fill="#1E2A38"/>
+        <rect x="150" y="51" width="210" height="22" rx="11" fill="#F5D99B" stroke="#1E2A38" stroke-width="3"/>
+        <rect x="64" y="112" width="176" height="18" rx="9" fill="#1E2A38"/>
+        <rect x="64" y="140" width="136" height="18" rx="9" fill="#1E2A38"/>
+        <path d="M64 184 q14 -14 28 0 t28 0 t28 0 t28 0 t28 0" fill="none" stroke="#1E2A38" stroke-width="4" stroke-linecap="round"/>
+        <rect x="64" y="206" width="170" height="8" rx="4" fill="#1E2A38" opacity=".28"/>
+        <rect x="64" y="224" width="140" height="8" rx="4" fill="#1E2A38" opacity=".28"/>
+        <rect x="64" y="250" width="116" height="38" rx="19" fill="#1E2A38"/>
+        <path d="M92 269 H150 M142 261 L150 269 L142 277" stroke="#E5A93C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <rect x="272" y="108" width="188" height="170" rx="12" fill="#EDBE69" stroke="#1E2A38" stroke-width="4"/>
+        <g stroke="#1E2A38" stroke-width="4" stroke-linecap="round"><path d="M366 128 V138"/><path d="M322 150 L330 157"/><path d="M410 150 L402 157"/><path d="M304 190 H314"/><path d="M418 190 H428"/></g>
+        <circle cx="366" cy="190" r="32" fill="#E5A93C" stroke="#1E2A38" stroke-width="4"/>
+        <path d="M272 278 V250 Q320 206 366 238 T460 226 V278 Z" fill="#1E2A38"/>
+        <rect x="64" y="312" width="124" height="48" rx="9" fill="#F5D99B" stroke="#1E2A38" stroke-width="3.5"/>
+        <rect x="198" y="312" width="124" height="48" rx="9" fill="#F5D99B" stroke="#1E2A38" stroke-width="3.5"/>
+        <rect x="332" y="312" width="128" height="48" rx="9" fill="#F5D99B" stroke="#1E2A38" stroke-width="3.5"/>
+        <path d="M84 336 H168 M218 336 H302 M352 336 H440" stroke="#1E2A38" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+        <g class="pen">
+          <g transform="translate(184 184) rotate(-38)">
+            <polygon points="0,0 28,-10 28,10" fill="#F5D99B" stroke="#1E2A38" stroke-width="3.5" stroke-linejoin="round"/>
+            <polygon points="0,0 9,-3.4 9,3.4" fill="#1E2A38"/>
+            <rect x="28" y="-10" width="120" height="20" fill="#1E2A38"/>
+            <rect x="52" y="-10" width="8" height="20" fill="#E5A93C"/>
+            <rect x="148" y="-10" width="20" height="20" rx="5" fill="#E5A93C" stroke="#1E2A38" stroke-width="3.5"/>
+          </g>
+        </g>
+        <circle cx="468" cy="56" r="42" fill="#1E2A38"/>
+        <text x="468" y="52" text-anchor="middle" font-family="Bricolage Grotesque, Arial, sans-serif" font-weight="800" font-size="13" fill="#E5A93C" letter-spacing="2">DAY</text>
+        <text x="468" y="80" text-anchor="middle" font-family="Bricolage Grotesque, Arial, sans-serif" font-weight="800" font-size="30" fill="#E5A93C">22</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Core lessons -->
+  <section class="band" id="principles">
+    <div class="in">
+      <div class="head">
+        <p class="eyebrow">Four core lessons</p>
+        <h2>Day 21 is where your page story begins</h2>
+        <p class="lede">Twenty-one days of steady action builds a routine. The magic grows in what comes next, and your landing page is built to grow right along with you.</p>
+      </div>
+      <div class="grid4">
+        <article class="card">
+          <svg viewBox="0 0 72 72" aria-hidden="true"><path d="M8 60 H64" stroke="#1E2A38" stroke-width="4" stroke-linecap="round"/><path d="M10 60 V48 H26 V36 H42 V24 H58 V60 Z" fill="#EDBE69" stroke="#1E2A38" stroke-width="4" stroke-linejoin="round"/><path d="M44 14 L56 8 L58 21" fill="none" stroke="#1E2A38" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p class="tag">Lesson 1</p>
+          <h3>21 days opens the door</h3>
+          <p class="book">The 21-day mark begins the routine, and long-term growth lives in what follows.</p>
+          <p class="move"><b>On your page:</b> Launch quickly, then let your page evolve with every new chapter of your business.</p>
+        </article>
+        <article class="card">
+          <svg viewBox="0 0 72 72" aria-hidden="true"><path d="M14 58 L22 38 L50 10 L62 22 L34 50 Z" fill="#EDBE69" stroke="#1E2A38" stroke-width="4" stroke-linejoin="round"/><path d="M14 58 L22 38 L34 50 Z" fill="#1E2A38"/><path d="M44 16 L56 28" stroke="#1E2A38" stroke-width="4"/></svg>
+          <p class="tag">Lesson 2</p>
+          <h3>You hold the pen</h3>
+          <p class="book">Full ownership of your choices, responses, and path puts you in the author's seat.</p>
+          <p class="move"><b>On your page:</b> You direct the story. EasyLandX shapes the words, layout, and visuals around your vision.</p>
+        </article>
+        <article class="card">
+          <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="26" r="13" fill="#EDBE69" stroke="#1E2A38" stroke-width="4"/><path d="M12 62 Q12 42 36 42 Q60 42 60 62 Z" fill="#EDBE69" stroke="#1E2A38" stroke-width="4" stroke-linejoin="round"/><path d="M58 8 V20 M52 14 H64" stroke="#1E2A38" stroke-width="4" stroke-linecap="round"/></svg>
+          <p class="tag">Lesson 3</p>
+          <h3>Identity leads outcomes</h3>
+          <p class="book">Lasting change grows from who you believe you are, and each day writes another page of it.</p>
+          <p class="move"><b>On your page:</b> Your brand speaks as "I am someone who..." so visitors meet a confident, clear business.</p>
+        </article>
+        <article class="card">
+          <svg viewBox="0 0 72 72" aria-hidden="true"><rect x="10" y="10" width="52" height="52" rx="6" fill="#EDBE69" stroke="#1E2A38" stroke-width="4"/><path d="M10 28 H62 M28 28 V62" stroke="#1E2A38" stroke-width="4"/><circle cx="46" cy="45" r="7" fill="#1E2A38"/></svg>
+          <p class="tag">Lesson 4</p>
+          <h3>Intentional design</h3>
+          <p class="book">Life happens for you to design. Conscious daily choices build purposeful achievements.</p>
+          <p class="move"><b>On your page:</b> Every headline, color, and button is chosen on purpose to invite one clear action.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive 1: Daily scripting -->
+  <section class="band" id="author">
+    <div class="in">
+      <div class="head">
+        <p class="eyebrow">Strategy 1 · Daily scripting</p>
+        <h2>Draft your daily narrative, then watch your page appear</h2>
+        <p class="lede">Begin the day with your identity, your intention, and your emotional state. Choose yours below and see how a landing page takes shape from that script.</p>
+      </div>
+      <div class="studio">
+        <div class="panel">
+          <div class="field">
+            <label for="biz">Your business name</label>
+            <input type="text" id="biz" maxlength="26" value="Sunrise Bakery" autocomplete="off">
+          </div>
+          <div class="field">
+            <span class="lab" id="idlab">I am someone who...</span>
+            <div class="chips" id="idChips" role="group" aria-labelledby="idlab"></div>
+          </div>
+          <div class="field">
+            <span class="lab" id="inlab">Today's intention</span>
+            <div class="chips" id="inChips" role="group" aria-labelledby="inlab"></div>
+          </div>
+          <div class="field">
+            <span class="lab" id="molab">Emotional state</span>
+            <div class="chips" id="moChips" role="group" aria-labelledby="molab"></div>
+          </div>
+        </div>
+        <div class="mini" aria-live="polite">
+          <div class="mini-bar"><i></i><i></i><i></i><span id="pUrl">sunrisebakery.com</span></div>
+          <div class="mini-body">
+            <div class="glyph" id="pGlyph"></div>
+            <div>
+              <p class="mini-brand" id="pBrand"></p>
+              <h3 id="pHead"></h3>
+              <p class="mini-sub" id="pSub"></p>
+              <div class="mini-actions"><span class="mini-btn" id="pBtn"></span><span class="mood" id="pMood"></span></div>
+            </div>
+          </div>
+          <div class="mini-foot"><b></b><b></b><b></b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive 2: 21-day tracker + habit stacking -->
+  <section class="band" id="journey">
+    <div class="in">
+      <div class="head">
+        <p class="eyebrow">Strategies 2 and 3 · Routine and fresh pages</p>
+        <h2>The 21-day page habit, and the chapter that follows</h2>
+        <p class="lede">Tap each day as you write it in. Every morning opens a fresh page, so any day can be filled in whenever you are ready and momentum keeps building.</p>
+      </div>
+      <div class="journey">
+        <div class="panel">
+          <div class="days" id="days"></div>
+          <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="21" aria-valuenow="0" id="bar"><i id="barFill"></i></div>
+          <p class="status" id="status"></p>
+          <div class="row">
+            <button class="btn sm" id="nextDay" type="button">Write today's page</button>
+            <button class="btn alt sm" id="fresh" type="button">Start a fresh page</button>
+          </div>
+        </div>
+        <div style="display:grid;gap:24px;min-width:0">
+          <div class="panel">
+            <h3>Chapter two: after day 21</h3>
+            <ul class="ch2" id="ch2">
+              <li><b>Days 22–42</b> Raise the depth of your page</li>
+              <li><b>Weekly</b> Audit your script and refine</li>
+              <li><b>Always</b> Update your identity language</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Habit stacking</h3>
+            <p>Anchor your page habit to a routine you already enjoy.</p>
+            <div class="chips" id="anchors" role="group" aria-label="Choose an anchor routine"></div>
+            <p class="stackout" id="stackOut"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Frameworks -->
+  <section class="band" id="framework">
+    <div class="in">
+      <div class="head">
+        <p class="eyebrow">The framework</p>
+        <h2>Four strategies, one living landing page</h2>
+        <p class="lede">Choose a strategy to see the idea from the book and the way EasyLandX brings it to your page.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Strategies" id="tabs"></div>
+      <div class="panel tabpanel" role="tabpanel" id="tabpanel" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- Audit -->
+  <section class="band" id="audit">
+    <div class="in">
+      <div class="head">
+        <p class="eyebrow">Strategy 1 · Weekly review</p>
+        <h2>Audit your script in five minutes</h2>
+        <p class="lede">Once a week, celebrate the actions that align with your ideal self. Tick what is already shining on your page.</p>
+      </div>
+      <div class="audit">
+        <div class="checks" id="checks"></div>
+        <div class="panel">
+          <p class="score"><span id="scoreN">0</span>/6</p>
+          <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="aBar"><i id="aFill"></i></div>
+          <p id="aMsg" style="font-weight:500"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grow -->
+  <section class="band" id="grow">
+    <div class="in">
+      <div class="head">
+        <p class="eyebrow">Strategy 4 · Gradual escalation</p>
+        <h2>Raise the level, one section at a time</h2>
+        <p class="lede">After the foundation is solid, add depth. Slide to build your page level by level and keep your growth rising.</p>
+      </div>
+      <div class="grow">
+        <div class="panel">
+          <label for="lvl" class="eyebrow">Page level: <span id="lvN">2</span> of 5</label>
+          <input type="range" id="lvl" min="1" max="5" step="1" value="2">
+          <ul class="lvlist" id="lvlist"></ul>
+        </div>
+        <svg viewBox="0 0 420 440" role="img" aria-label="A landing page that gains sections as the level rises" id="growSvg">
+          <rect x="30" y="10" width="360" height="420" rx="14" fill="#F7E0AA" stroke="#1E2A38" stroke-width="4"/>
+          <path d="M30 46 H390" stroke="#1E2A38" stroke-width="4"/>
+          <circle cx="54" cy="28" r="6" fill="#1E2A38"/><circle cx="74" cy="28" r="6" fill="#1E2A38"/><circle cx="94" cy="28" r="6" fill="#1E2A38"/>
+          <g class="lv" id="L1">
+            <rect x="52" y="64" width="316" height="86" rx="10" fill="#EDBE69" stroke="#1E2A38" stroke-width="3.5"/>
+            <rect x="70" y="82" width="150" height="14" rx="7" fill="#1E2A38"/>
+            <rect x="70" y="104" width="110" height="14" rx="7" fill="#1E2A38"/>
+            <rect x="70" y="126" width="84" height="16" rx="8" fill="#1E2A38"/>
+            <circle cx="320" cy="108" r="28" fill="#E5A93C" stroke="#1E2A38" stroke-width="3.5"/>
+          </g>
+          <g class="lv" id="L2">
+            <rect x="52" y="164" width="316" height="62" rx="10" fill="#F5D99B" stroke="#1E2A38" stroke-width="3.5"/>
+            <circle cx="88" cy="195" r="16" fill="#E5A93C" stroke="#1E2A38" stroke-width="3.5"/>
+            <rect x="116" y="180" width="200" height="10" rx="5" fill="#1E2A38"/>
+            <rect x="116" y="200" width="150" height="10" rx="5" fill="#1E2A38" opacity=".4"/>
+          </g>
+          <g class="lv" id="L3">
+            <rect x="52" y="240" width="150" height="62" rx="10" fill="#EDBE69" stroke="#1E2A38" stroke-width="3.5"/>
+            <rect x="218" y="240" width="150" height="62" rx="10" fill="#EDBE69" stroke="#1E2A38" stroke-width="3.5"/>
+            <path d="M72 262 l5 -9 l5 9 l-9 -5.5 h9.6 z M236 262 l5 -9 l5 9 l-9 -5.5 h9.6 z" fill="#1E2A38"/>
+            <rect x="72" y="276" width="108" height="8" rx="4" fill="#1E2A38" opacity=".4"/>
+            <rect x="236" y="276" width="108" height="8" rx="4" fill="#1E2A38" opacity=".4"/>
+          </g>
+          <g class="lv" id="L4">
+            <rect x="52" y="316" width="316" height="52" rx="10" fill="#F5D99B" stroke="#1E2A38" stroke-width="3.5"/>
+            <rect x="68" y="328" width="84" height="28" rx="8" fill="#E5A93C" stroke="#1E2A38" stroke-width="3"/>
+            <rect x="168" y="328" width="84" height="28" rx="8" fill="#E5A93C" stroke="#1E2A38" stroke-width="3"/>
+            <rect x="268" y="328" width="84" height="28" rx="8" fill="#E5A93C" stroke="#1E2A38" stroke-width="3"/>
+          </g>
+          <g class="lv" id="L5">
+            <rect x="52" y="380" width="316" height="38" rx="19" fill="#1E2A38"/>
+            <path d="M160 399 H260 M250 391 L260 399 L250 407" stroke="#E5A93C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Finale -->
+  <section class="band" id="start">
+    <div class="in finale">
+      <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="72" r="34" fill="#EDBE69" stroke="#1E2A38" stroke-width="4"/><g stroke="#1E2A38" stroke-width="4" stroke-linecap="round"><path d="M60 14 V28"/><path d="M20 34 L30 44"/><path d="M100 34 L90 44"/><path d="M8 72 H20"/><path d="M100 72 H112"/></g><path d="M14 106 H106" stroke="#1E2A38" stroke-width="4" stroke-linecap="round"/></svg>
+      <h2>You are the author. EasyLandX is your co-writer.</h2>
+      <p class="lede">Bring your story, your identity, and your intention. EasyLandX turns them into a custom, conversion-focused landing page that welcomes customers and grows with every chapter.</p>
+      <a class="btn" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyLandX <span aria-hidden="true">→</span></a>
+      <p class="hand">Your next page starts today.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="in">
+    <span>© 2026 EasyLandX. All rights reserved.</span>
+    <span>Inspired by <em>Life After 21 Days: You Are the Author of Your Life</em> by Plancourr.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+  var INK="#1E2A38";
+
+  /* ---------- Page builder ---------- */
+  var glyphs=[
+    '<svg viewBox="0 0 110 110" aria-hidden="true"><path d="M12 56 L55 16 L98 56" fill="#EDBE69" stroke="'+INK+'" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><rect x="24" y="54" width="62" height="44" fill="#F5D99B" stroke="'+INK+'" stroke-width="5" stroke-linejoin="round"/><path d="M55 90 C40 80 38 68 46 64 C51 62 55 66 55 66 C55 66 59 62 64 64 C72 68 70 80 55 90 Z" fill="'+INK+'"/></svg>',
+    '<svg viewBox="0 0 110 110" aria-hidden="true"><path d="M55 8 L67 40 L102 42 L74 63 L84 98 L55 78 L26 98 L36 63 L8 42 L43 40 Z" fill="#EDBE69" stroke="'+INK+'" stroke-width="5" stroke-linejoin="round"/><circle cx="55" cy="56" r="10" fill="'+INK+'"/></svg>',
+    '<svg viewBox="0 0 110 110" aria-hidden="true"><path d="M10 82 H100" stroke="'+INK+'" stroke-width="5" stroke-linecap="round"/><path d="M26 82 A29 29 0 0 1 84 82 Z" fill="#EDBE69" stroke="'+INK+'" stroke-width="5" stroke-linejoin="round"/><g stroke="'+INK+'" stroke-width="5" stroke-linecap="round"><path d="M55 20 V34"/><path d="M18 34 L28 44"/><path d="M92 34 L82 44"/></g><path d="M30 96 H80" stroke="'+INK+'" stroke-width="5" stroke-linecap="round"/></svg>'
+  ];
+  var ids=[
+    {t:"welcomes every neighbor with warmth",b:"Say hello"},
+    {t:"crafts every detail with care",b:"See our work"},
+    {t:"turns ideas into daily progress",b:"Start today"}
+  ];
+  var intents=[
+    {t:"Invite more visitors",s:"to invite more visitors"},
+    {t:"Share my story",s:"to share its story"},
+    {t:"Welcome new customers",s:"to welcome new customers"}
+  ];
+  var moods=["Confident","Joyful","Calm"];
+  var st={id:0,inn:0,mo:0};
+
+  function chips(el,items,key,label){
+    el.innerHTML="";
+    items.forEach(function(it,i){
+      var b=document.createElement("button");
+      b.type="button";b.className="chip";
+      b.textContent=label(it);
+      b.setAttribute("aria-pressed",String(st[key]===i));
+      b.addEventListener("click",function(){st[key]=i;renderBuilder();});
+      el.appendChild(b);
+    });
+  }
+  function renderBuilder(){
+    var name=($("#biz").value||"Your Business").trim()||"Your Business";
+    chips($("#idChips"),ids,"id",function(x){return x.t});
+    chips($("#inChips"),intents,"inn",function(x){return x.t});
+    chips($("#moChips"),moods,"mo",function(x){return x});
+    $("#pBrand").textContent=name;
+    $("#pHead").textContent="I am someone who "+ids[st.id].t+".";
+    $("#pSub").textContent="Every day, "+name+" writes a new page "+intents[st.inn].s+".";
+    $("#pBtn").textContent=ids[st.id].b;
+    $("#pMood").textContent="Page mood: "+moods[st.mo];
+    $("#pGlyph").innerHTML=glyphs[st.id];
+    $("#pUrl").textContent=name.toLowerCase().replace(/[^a-z0-9]+/g,"")+".com";
+  }
+  $("#biz").addEventListener("input",function(){
+    var name=($("#biz").value||"Your Business").trim()||"Your Business";
+    $("#pBrand").textContent=name;
+    $("#pSub").textContent="Every day, "+name+" writes a new page "+intents[st.inn].s+".";
+    $("#pUrl").textContent=(name.toLowerCase().replace(/[^a-z0-9]+/g,"")||"yourbusiness")+".com";
+  });
+  renderBuilder();
+
+  /* ---------- 21-day tracker ---------- */
+  var done=[];for(var d=0;d<21;d++)done.push(false);
+  try{var saved=JSON.parse(localStorage.getItem("elx21")||"null");if(saved&&saved.length===21)done=saved;}catch(e){}
+  var daysEl=$("#days");
+  var tiles=[];
+  for(var k=0;k<21;k++){
+    (function(i){
+      var b=document.createElement("button");
+      b.type="button";b.className="day";b.textContent=i+1;
+      b.addEventListener("click",function(){done[i]=!done[i];renderDays();});
+      daysEl.appendChild(b);tiles.push(b);
+    })(k);
+  }
+  function renderDays(){
+    var n=done.filter(Boolean).length;
+    tiles.forEach(function(t,i){
+      t.setAttribute("aria-pressed",String(done[i]));
+      t.setAttribute("aria-label","Day "+(i+1)+(done[i]?" written":" ready to write"));
+    });
+    $("#barFill").style.width=(n/21*100)+"%";
+    $("#bar").setAttribute("aria-valuenow",n);
+    var msg=n===0?"A fresh page is waiting for you.":
+      n<7?"Day "+n+" is written. Momentum is building.":
+      n<14?n+" days written. Week one is complete.":
+      n<21?n+" days written. The finish line is in sight.":
+      "Day 21 complete. Chapter two is open.";
+    $("#status").textContent=msg;
+    $("#ch2").className="ch2"+(n===21?" open":"");
+    try{localStorage.setItem("elx21",JSON.stringify(done));}catch(e){}
+  }
+  $("#nextDay").addEventListener("click",function(){
+    var i=done.indexOf(false);
+    if(i>-1){done[i]=true;renderDays();}
+  });
+  $("#fresh").addEventListener("click",function(){
+    done=done.map(function(){return false});renderDays();
+  });
+  renderDays();
+
+  /* ---------- Habit stacking ---------- */
+  var anchors=[
+    {a:"morning coffee",m:"read your headline out loud and polish one word"},
+    {a:"lunch break",m:"swap in one fresh photo that shows your best work"},
+    {a:"closing the shop",m:"add one customer kind word to your page notes"}
+  ];
+  var ai=0;
+  var aEl=$("#anchors");
+  function renderAnchors(){
+    aEl.innerHTML="";
+    anchors.forEach(function(x,i){
+      var b=document.createElement("button");
+      b.type="button";b.className="chip";b.textContent=x.a.charAt(0).toUpperCase()+x.a.slice(1);
+      b.setAttribute("aria-pressed",String(ai===i));
+      b.addEventListener("click",function(){ai=i;renderAnchors();});
+      aEl.appendChild(b);
+    });
+    $("#stackOut").innerHTML="After <b>"+anchors[ai].a+"</b>, spend ten minutes to "+anchors[ai].m+".";
+  }
+  renderAnchors();
+
+  /* ---------- Framework tabs ---------- */
+  var S=function(inner){return '<svg viewBox="0 0 160 130" aria-hidden="true">'+inner+'</svg>'};
+  var tabs=[
+    {k:"Script",t:"Daily scripting",
+     book:"Open each day by writing your intention, your key actions, and your emotional state.",
+     move:"Your page starts with a short script: a headline, a promise, and one inviting action. EasyLandX turns it into a polished, conversion-focused page.",
+     art:S('<rect x="26" y="10" width="108" height="110" rx="10" fill="#EDBE69" stroke="'+INK+'" stroke-width="4"/><path d="M26 34 H134" stroke="'+INK+'" stroke-width="4"/><g fill="'+INK+'"><rect x="64" y="48" width="56" height="8" rx="4"/><rect x="64" y="70" width="44" height="8" rx="4"/><rect x="64" y="92" width="52" height="8" rx="4"/></g><g stroke="'+INK+'" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M40 52 l5 5 l9 -10"/><path d="M40 74 l5 5 l9 -10"/><path d="M40 96 l5 5 l9 -10"/></g>')},
+    {k:"Routine",t:"Habit stacking and systems",
+     book:"Anchor new habits to routines you already enjoy, and shape your surroundings so good choices feel effortless.",
+     move:"Your page connects to the places customers already visit: social profiles, QR codes, and messages. One clear path leads everyone home to your page.",
+     art:S('<rect x="40" y="86" width="80" height="30" rx="6" fill="#EDBE69" stroke="'+INK+'" stroke-width="4"/><rect x="50" y="52" width="60" height="30" rx="6" fill="#F5D99B" stroke="'+INK+'" stroke-width="4"/><rect x="60" y="18" width="40" height="30" rx="6" fill="'+INK+'"/><path d="M80 26 V40 M74 33 H86" stroke="#E5A93C" stroke-width="4" stroke-linecap="round"/>')},
+    {k:"Edit",t:"Edit mindset",
+     book:"Every draft is a rough draft ready for polish, and each morning opens a fresh page.",
+     move:"Your page is a living draft. Try a new headline, swap a photo, refine an offer, and keep improving a little every week.",
+     art:S('<rect x="22" y="14" width="86" height="104" rx="8" fill="#F5D99B" stroke="'+INK+'" stroke-width="4"/><g fill="'+INK+'" opacity=".45"><rect x="36" y="34" width="56" height="7" rx="3.5"/><rect x="36" y="52" width="44" height="7" rx="3.5"/></g><path d="M36 78 q8 -9 16 0 t16 0 t16 0" stroke="'+INK+'" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M96 112 L104 84 L134 54 L146 66 L116 96 Z" fill="#EDBE69" stroke="'+INK+'" stroke-width="4" stroke-linejoin="round"/>')},
+    {k:"Grow",t:"Gradual escalation and identity",
+     book:"After day 21, raise the depth of the habit and update your self-talk from \"I'm trying to...\" to \"I am someone who...\".",
+     move:"Begin with a focused page, then add stories, offers, and booking as your business grows. Your page language rises with your confidence.",
+     art:S('<path d="M10 116 H150" stroke="'+INK+'" stroke-width="4" stroke-linecap="round"/><rect x="18" y="86" width="26" height="30" fill="#F5D99B" stroke="'+INK+'" stroke-width="4"/><rect x="50" y="68" width="26" height="48" fill="#EDBE69" stroke="'+INK+'" stroke-width="4"/><rect x="82" y="48" width="26" height="68" fill="#EDBE69" stroke="'+INK+'" stroke-width="4"/><rect x="114" y="26" width="26" height="90" fill="'+INK+'"/><path d="M26 60 L62 40 L96 26 L128 10" stroke="'+INK+'" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="2 9"/>')}
+  ];
+  var tabsEl=$("#tabs"),panel=$("#tabpanel"),ti=0;
+  function renderTabs(){
+    tabsEl.innerHTML="";
+    tabs.forEach(function(x,i){
+      var b=document.createElement("button");
+      b.type="button";b.className="tab";b.setAttribute("role","tab");
+      b.setAttribute("aria-selected",String(i===ti));b.textContent=x.k;
+      b.addEventListener("click",function(){ti=i;renderTabs();});
+      tabsEl.appendChild(b);
+    });
+    var c=tabs[ti];
+    panel.innerHTML='<div>'+c.art+'</div><div style="display:grid;gap:14px;min-width:0"><h3>'+c.t+'</h3><div class="tabcols"><div><h4>From the book</h4><p>'+c.book+'</p></div><div><h4>On your EasyLandX page</h4><p>'+c.move+'</p></div></div></div>';
+  }
+  renderTabs();
+
+  /* ---------- Audit ---------- */
+  var checks=[
+    "My headline speaks directly to my ideal customer.",
+    "My main button invites one clear action.",
+    "My page voice says \"I am someone who...\".",
+    "My photos and colors reflect my brand.",
+    "My page loads quickly on a phone.",
+    "I refreshed one detail on my page this week."
+  ];
+  var cEl=$("#checks");
+  checks.forEach(function(txt,i){
+    var l=document.createElement("label");l.className="check";
+    l.innerHTML='<input type="checkbox" id="chk'+i+'"><span>'+txt+'</span>';
+    cEl.appendChild(l);
+  });
+  function renderAudit(){
+    var n=cEl.querySelectorAll("input:checked").length;
+    $("#scoreN").textContent=n;
+    $("#aFill").style.width=(n/6*100)+"%";
+    $("#aBar").setAttribute("aria-valuenow",n);
+    $("#aMsg").textContent=n===0?"Tick the actions already shining on your page to see your alignment.":
+      n<3?"A fresh page is ready. Choose one action to polish today.":
+      n<5?"Strong rhythm. Your page is lining up with your ideal self.":
+      n===5?"Beautifully aligned. One more step completes the set.":
+      "Fully aligned. Time to raise the level.";
+  }
+  cEl.addEventListener("change",renderAudit);
+  renderAudit();
+
+  /* ---------- Grow slider ---------- */
+  var lv=[
+    ["Hero and button","A clear headline and one inviting action."],
+    ["Story and identity","Your \"I am someone who...\" statement."],
+    ["Customer stories","Warm words from happy customers."],
+    ["Offers and packages","Friendly options that are easy to choose."],
+    ["Booking and follow-up","A smooth path from interest to hello."]
+  ];
+  var range=$("#lvl"),list=$("#lvlist");
+  function renderGrow(){
+    var v=+range.value;
+    $("#lvN").textContent=v;
+    list.innerHTML="";
+    lv.forEach(function(x,i){
+      var li=document.createElement("li");
+      li.className=(i<v?"on":"")+(i===v-1?" cur":"");
+      li.innerHTML='<b style="font-family:var(--display)">'+(i+1)+'</b><span><b>'+x[0]+'</b><br>'+x[1]+'</span>';
+      list.appendChild(li);
+      var g=document.getElementById("L"+(i+1));
+      g.style.opacity=i<v?1:.14;
+      g.style.transform=i<v?"none":"translateY(8px)";
+    });
+  }
+  range.addEventListener("input",renderGrow);
+  renderGrow();
+})();
+</script>
+
+</body>
+</html>

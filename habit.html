@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX Landing Pages</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: left-aligned, asymmetric sections on one flat navy field; orange is the single accent; each interactive module sits on a raised navy panel. */
+:root {
+  --bg: #1B2A4A;
+  --bg-2: #223660;
+  --bg-3: #2B4272;
+  --ink: #F2F5FB;
+  --ink-2: #B7C3DD;
+  --line: #3C5489;
+  --accent: #E67E22;
+  --accent-ink: #1B2A4A;
+  --display: 'Bricolage Grotesque', 'Arial Black', system-ui, sans-serif;
+  --body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 17px/1.6 var(--body);
+  margin: 0;
+  padding-block: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1120px; margin-inline: auto; }
+h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.02; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.7rem, 7.4vw, 5.6rem); }
+h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h3 { font-size: 1.35rem; line-height: 1.15; }
+p { margin: 0; }
+a { color: inherit; }
+button { font-family: inherit; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.eyebrow { font: 500 0.78rem/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.lede { color: var(--ink-2); font-size: 1.15rem; max-width: 60ch; }
+.accent { color: var(--accent); }
+
+/* buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.85rem 1.45rem; border-radius: 999px;
+  border: 2px solid var(--accent); background: var(--accent); color: var(--accent-ink);
+  font: 700 1rem/1 var(--body); text-decoration: none; cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+.btn:hover { transform: translateY(-3px); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn.ghost:hover { background: var(--accent); color: var(--accent-ink); }
+.btn.big { padding: 1.15rem 2.1rem; font-size: 1.2rem; }
+.btn svg { width: 1.1em; height: 1.1em; }
+
+/* nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); border-bottom: 2px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.8rem; flex-wrap: wrap; }
+.brand { display: inline-flex; align-items: center; gap: 0.6rem; font: 800 1.35rem/1 var(--display); text-decoration: none; letter-spacing: -0.02em; }
+.brand svg { width: 34px; height: 34px; }
+.nav-links { display: flex; gap: 1.4rem; font: 500 0.9rem/1 var(--mono); }
+.nav-links a { text-decoration: none; color: var(--ink-2); padding-block: 0.4rem; border-bottom: 2px solid transparent; }
+.nav-links a:hover { color: var(--ink); border-color: var(--accent); }
+.nav .btn { padding: 0.65rem 1.1rem; font-size: 0.92rem; }
+@media (max-width: 860px) { .nav-links { display: none; } }
+
+/* sections */
+section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+.sec-head { display: grid; gap: 1.1rem; margin-bottom: clamp(1.8rem, 4vw, 3rem); }
+.panel { background: var(--bg-2); border: 2px solid var(--line); border-radius: 22px; padding: clamp(1.1rem, 3vw, 2rem); }
+.divider { border: 0; border-top: 2px solid var(--line); margin: 0; }
+
+/* hero */
+.hero { padding-block: clamp(2.5rem, 6vw, 5rem); }
+.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+.hero-copy { display: grid; gap: 1.5rem; min-width: 0; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+.hero-art { min-width: 0; }
+.hero-art svg { width: 100%; height: auto; max-width: 480px; display: block; margin-inline: auto; }
+.hero-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; font: 500 0.8rem/1 var(--mono); color: var(--ink-2); }
+.hero-tags span { border: 2px solid var(--line); border-radius: 999px; padding: 0.5rem 0.8rem; }
+@media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+
+.orbit { transform-box: view-box; transform-origin: 210px 230px; animation: spin 9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.pulse-ring { transform-box: fill-box; transform-origin: center; opacity: 0; animation: ring 9s ease-out infinite; }
+.pulse-ring.r2 { animation-delay: 3s; }
+.pulse-ring.r3 { animation-delay: 6s; }
+@keyframes ring { 0% { transform: scale(1); opacity: 0.9; } 14% { transform: scale(1.5); opacity: 0; } 100% { transform: scale(1.5); opacity: 0; } }
+.breathe { transform-box: fill-box; transform-origin: center; animation: breathe 4s ease-in-out infinite; }
+@keyframes breathe { 50% { transform: scale(1.08); } }
+.float { animation: float 5s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-8px); } }
+
+/* lessons */
+.lessons { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 1.2rem; }
+.lesson { background: var(--bg-2); border: 2px solid var(--line); border-radius: 22px; padding: 1.6rem; display: grid; gap: 0.9rem; align-content: start; transition: transform 0.2s, border-color 0.2s; min-width: 0; }
+.lesson:hover { transform: translateY(-5px); border-color: var(--accent); }
+.lesson svg { width: 64px; height: 64px; }
+.lesson p { color: var(--ink-2); font-size: 0.98rem; }
+.lesson .tag { font: 500 0.75rem/1 var(--mono); color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* chips */
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip { border: 2px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 999px; padding: 0.55rem 1rem; font: 500 0.92rem/1 var(--body); cursor: pointer; transition: all 0.15s; }
+.chip:hover { border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.label { font: 500 0.78rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 0.7rem; display: block; }
+
+/* builder */
+.builder { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 1.5rem; }
+.controls { display: grid; gap: 1.5rem; align-content: start; min-width: 0; }
+.mock { background: var(--bg); border: 2px solid var(--line); border-radius: 16px; overflow: hidden; min-width: 0; }
+.mock-bar { display: flex; align-items: center; gap: 0.4rem; padding: 0.7rem 0.9rem; border-bottom: 2px solid var(--line); background: var(--bg-3); }
+.mock-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--ink-2); opacity: 0.6; display: block; }
+.mock-bar i:first-child { background: var(--accent); opacity: 1; }
+.mock-url { margin-left: 0.6rem; font: 400 0.75rem/1 var(--mono); color: var(--ink-2); background: var(--bg); padding: 0.4rem 0.8rem; border-radius: 999px; }
+.mock-body { padding: clamp(1.2rem, 4vw, 2.2rem); display: grid; gap: 1rem; position: relative; overflow: hidden; min-height: 330px; align-content: center; }
+.mock-body .deco { position: absolute; right: -40px; top: -40px; width: 180px; height: 180px; border-radius: 50%; background: var(--accent); opacity: 0.16; }
+.mock-body .deco2 { position: absolute; right: 30px; bottom: -30px; width: 90px; height: 90px; border-radius: 50%; border: 6px solid var(--accent); opacity: 0.5; }
+.mock-body > * { position: relative; }
+.mock-body h3 { font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1.04; }
+.mock-body .sub { color: var(--ink-2); max-width: 36ch; }
+.mock-body .btn { justify-self: start; }
+.swap { animation: swap 0.45s ease; }
+@keyframes swap { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.loop-strip { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0.9rem 1.2rem 1.2rem; font: 500 0.78rem/1 var(--mono); }
+.loop-strip span { border: 2px solid var(--accent); color: var(--accent); border-radius: 999px; padding: 0.45rem 0.8rem; }
+.loop-strip b { color: var(--ink); font-weight: 500; }
+@media (max-width: 860px) { .builder { grid-template-columns: 1fr; } }
+
+/* routes */
+.route-tabs { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.4rem; }
+.route { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem; min-height: 120px; }
+.endpoint { border: 3px solid var(--accent); border-radius: 18px; padding: 0.9rem 1.1rem; min-width: 150px; display: grid; gap: 0.25rem; }
+.endpoint small, .step small { font: 500 0.7rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.endpoint b { font-weight: 700; }
+.step { background: var(--bg-3); border-radius: 14px; padding: 0.8rem 1rem; display: grid; gap: 0.25rem; animation: swap 0.4s ease both; }
+.step small { color: var(--ink-2); }
+.step.hot { background: var(--accent); color: var(--accent-ink); }
+.step.hot small { color: var(--accent-ink); }
+.arrow { color: var(--accent); font: 700 1.4rem/1 var(--mono); }
+.meter { height: 14px; border-radius: 999px; background: var(--bg); border: 2px solid var(--line); overflow: hidden; }
+.meter > i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 999px; transition: width 0.6s cubic-bezier(.2,.8,.2,1); }
+.readout { display: flex; flex-wrap: wrap; align-items: baseline; gap: 1rem; justify-content: space-between; margin-top: 1.4rem; }
+.readout .num { font: 800 clamp(2.4rem, 6vw, 3.6rem)/1 var(--display); color: var(--accent); }
+.readout p { color: var(--ink-2); }
+
+/* if-then */
+.ifthen { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.ifthen > * { min-width: 0; }
+.field { display: grid; gap: 0.5rem; }
+select { width: 100%; background: var(--bg); color: var(--ink); border: 2px solid var(--line); border-radius: 12px; padding: 0.85rem 1rem; font: 500 1rem var(--body); }
+select:hover { border-color: var(--accent); }
+.sentence { grid-column: 1 / -1; background: var(--bg); border: 2px solid var(--accent); border-radius: 16px; padding: 1.2rem 1.4rem; font: 500 clamp(1rem, 2.4vw, 1.3rem)/1.5 var(--mono); }
+.sentence b { color: var(--accent); font-weight: 500; }
+.plan-actions { grid-column: 1 / -1; display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.plans { grid-column: 1 / -1; list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.plans li { display: flex; gap: 1rem; align-items: center; justify-content: space-between; background: var(--bg); border-radius: 12px; padding: 0.8rem 1rem; font: 400 0.92rem/1.5 var(--mono); animation: swap 0.35s ease; }
+.plans li span { min-width: 0; }
+.plans li b { color: var(--accent); font-weight: 500; }
+.x { background: transparent; border: 2px solid var(--line); color: var(--ink-2); border-radius: 50%; width: 32px; height: 32px; cursor: pointer; flex: none; font-size: 1rem; line-height: 1; }
+.x:hover { border-color: var(--accent); color: var(--accent); }
+@media (max-width: 700px) { .ifthen { grid-template-columns: 1fr; } }
+
+/* wins */
+.wins { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 1.5rem; align-items: center; }
+.wins > * { min-width: 0; }
+.wins svg { width: 100%; height: auto; display: block; }
+.stair { fill: var(--bg-3); transition: fill 0.4s; }
+.stair.done { fill: var(--accent); }
+.hero-fig { transition: transform 0.7s cubic-bezier(.3,1.4,.5,1); }
+.confetti { opacity: 0; }
+.party .confetti { animation: pop 1.2s ease-out forwards; }
+@keyframes pop { 0% { opacity: 1; transform: translate(0, 0); } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)); } }
+.win-copy { display: grid; gap: 1rem; }
+.win-copy .stage { font: 800 1.9rem/1.1 var(--display); color: var(--accent); min-height: 2.2em; }
+.win-copy .msg { color: var(--ink-2); min-height: 3em; }
+@media (max-width: 860px) { .wins { grid-template-columns: 1fr; } }
+
+/* keystone */
+.ripple-wrap { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.5rem; align-items: center; }
+.ripple-wrap > * { min-width: 0; }
+.ripple-wrap svg { width: 100%; height: auto; display: block; }
+.k-node circle { fill: var(--bg-3); stroke: var(--line); stroke-width: 3; transition: fill 0.4s, stroke 0.4s; }
+.k-node text { fill: var(--ink); font: 500 12px var(--mono); }
+.k-node { cursor: pointer; }
+.k-node.on circle { fill: var(--accent); stroke: var(--accent); }
+.k-node.sel circle { stroke: var(--ink); }
+.k-node:hover circle { stroke: var(--accent); }
+.k-core { cursor: pointer; }
+.k-ring { fill: none; stroke: var(--accent); stroke-width: 3; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.k-ring.go { animation: kring 1.6s ease-out forwards; }
+.k-ring.go.b { animation-delay: 0.3s; }
+.k-ring.go.c { animation-delay: 0.6s; }
+@keyframes kring { 0% { transform: scale(0.3); opacity: 0.9; } 100% { transform: scale(1); opacity: 0; } }
+.k-info { display: grid; gap: 1rem; align-content: start; }
+.k-info h3 { color: var(--accent); }
+.k-info p { color: var(--ink-2); }
+
+/* community */
+.crowd { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 1.5rem; align-items: center; }
+.crowd > * { min-width: 0; }
+.crowd svg { width: 100%; height: auto; max-width: 440px; display: block; margin-inline: auto; }
+.dot { fill: var(--bg-3); opacity: 0; transition: opacity 0.35s, fill 0.35s; }
+.dot.in { opacity: 1; }
+.dot.core.in { fill: var(--accent); }
+input[type=range] { width: 100%; accent-color: var(--accent); height: 28px; }
+.crowd-count { font: 800 clamp(3rem, 8vw, 5rem)/1 var(--display); color: var(--accent); }
+.crowd-msg { font: 700 1.3rem/1.3 var(--body); min-height: 2.7em; }
+
+/* anatomy */
+.anatomy { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 1.5rem; align-items: center; }
+.anatomy > * { min-width: 0; }
+.anatomy svg { width: 100%; height: auto; max-width: 320px; display: block; margin-inline: auto; }
+.band rect.bg { fill: var(--bg-3); transition: fill 0.3s; }
+.band .sh { fill: var(--ink-2); transition: fill 0.3s; }
+.band .sk { fill: none; stroke: var(--ink-2); stroke-width: 4; stroke-linecap: round; transition: stroke 0.3s; }
+.band { cursor: pointer; }
+.band.on rect.bg { fill: var(--accent); }
+.band.on .sh { fill: var(--accent-ink); }
+.band.on .sk { stroke: var(--accent-ink); }
+.tabs { display: grid; gap: 0.6rem; }
+.tab { text-align: left; background: var(--bg); border: 2px solid var(--line); border-radius: 14px; padding: 0.9rem 1.1rem; color: var(--ink); cursor: pointer; display: grid; gap: 0.3rem; transition: border-color 0.15s, background 0.15s; }
+.tab b { font: 700 1.05rem/1.2 var(--body); }
+.tab span { color: var(--ink-2); font-size: 0.92rem; display: none; }
+.tab:hover { border-color: var(--accent); }
+.tab[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.tab[aria-selected="true"] span { display: block; color: var(--accent-ink); }
+@media (max-width: 860px) { .anatomy, .crowd, .ripple-wrap { grid-template-columns: 1fr; } }
+
+/* final */
+.final { text-align: left; }
+.final-box { background: var(--accent); color: var(--accent-ink); border-radius: 28px; padding: clamp(2rem, 6vw, 4.5rem); display: grid; gap: 1.5rem; position: relative; overflow: hidden; }
+.final-box h2 { max-width: 16ch; }
+.final-box p { font-size: 1.15rem; max-width: 46ch; font-weight: 500; }
+.final-box .btn { background: var(--accent-ink); border-color: var(--accent-ink); color: var(--ink); justify-self: start; }
+.final-box .btn:hover { background: var(--ink); color: var(--accent-ink); border-color: var(--ink); }
+.final-art { position: absolute; right: -60px; bottom: -60px; width: min(46%, 380px); opacity: 0.22; }
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-block: 2rem 3rem; color: var(--ink-2); font: 400 0.85rem/1.5 var(--mono); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .pulse-ring, .confetti { display: none; }
+}
+</style>
+
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="EasyLandX home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="#E67E22"/><path d="M10 28h20M13 22h14M17 16h6" stroke="#1B2A4A" stroke-width="4" stroke-linecap="round"/></svg>
+      EasyLandX
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#loop">The loop</a>
+      <a href="#builder">Builder</a>
+      <a href="#routine">Routine</a>
+      <a href="#plan">If-Then</a>
+      <a href="#wins">Wins</a>
+      <a href="#ripple">Ripple</a>
+    </nav>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15L15 5M7 5h8v8"/></svg>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Landing pages · powered by habit science</span>
+      <h1>Landing pages that become a <span class="accent">habit</span>.</h1>
+      <p class="lede">Every great visit follows a loop: a cue, a routine, a reward. EasyLandX shapes that loop into a single page your visitors love coming back to, so every tap feels natural and every result feels good.</p>
+      <div class="hero-actions">
+        <a class="btn big" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to EasyLandX
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15L15 5M7 5h8v8"/></svg>
+        </a>
+        <a class="btn big ghost" href="#builder">Build your loop</a>
+      </div>
+      <div class="hero-tags"><span>Cue</span><span>Routine</span><span>Reward</span><span>Belief</span></div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 420 440" role="img" aria-label="Animated habit loop with three stages: cue, routine and reward">
+        <circle cx="210" cy="230" r="140" fill="none" stroke="#3C5489" stroke-width="3" stroke-dasharray="3 12" stroke-linecap="round"/>
+        <circle class="breathe" cx="210" cy="230" r="78" fill="#223660"/>
+        <circle cx="210" cy="230" r="78" fill="none" stroke="#3C5489" stroke-width="3"/>
+        <text x="210" y="226" text-anchor="middle" fill="#F2F5FB" font-family="Bricolage Grotesque, Arial Black, sans-serif" font-weight="800" font-size="24">HABIT</text>
+        <text x="210" y="252" text-anchor="middle" fill="#E67E22" font-family="Bricolage Grotesque, Arial Black, sans-serif" font-weight="800" font-size="24">LOOP</text>
+        <!-- arrows along ring -->
+        <g fill="#E67E22">
+          <path d="M290 112l14 -4l-5 14z" transform="rotate(8 290 112)"/>
+          <path d="M300 340l-8 -12l-8 12z" transform="rotate(30 292 336)"/>
+          <path d="M120 346l12 -4l-4 -12z" transform="rotate(-10 126 340)"/>
+        </g>
+        <!-- nodes -->
+        <g>
+          <circle class="pulse-ring" cx="210" cy="90" r="44" fill="none" stroke="#E67E22" stroke-width="4"/>
+          <circle cx="210" cy="90" r="44" fill="#1B2A4A" stroke="#E67E22" stroke-width="4"/>
+          <path d="M0 -17L5 -5L17 0L5 5L0 17L-5 5L-17 0L-5 -5Z" transform="translate(210 90)" fill="#E67E22"/>
+          <text x="210" y="24" text-anchor="middle" fill="#B7C3DD" font-family="DM Mono, monospace" font-size="13" letter-spacing="2">CUE</text>
+        </g>
+        <g>
+          <circle class="pulse-ring r2" cx="331" cy="300" r="44" fill="none" stroke="#E67E22" stroke-width="4"/>
+          <circle cx="331" cy="300" r="44" fill="#1B2A4A" stroke="#E67E22" stroke-width="4"/>
+          <g transform="translate(331 300)" fill="none" stroke="#E67E22" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle r="6" fill="#E67E22"/><circle r="17"/></g>
+          <text x="331" y="372" text-anchor="middle" fill="#B7C3DD" font-family="DM Mono, monospace" font-size="13" letter-spacing="2">ROUTINE</text>
+        </g>
+        <g>
+          <circle class="pulse-ring r3" cx="89" cy="300" r="44" fill="none" stroke="#E67E22" stroke-width="4"/>
+          <circle cx="89" cy="300" r="44" fill="#1B2A4A" stroke="#E67E22" stroke-width="4"/>
+          <polygon points="0,-18 5.3,-5.5 18.7,-5.5 7.9,3 11.6,15.6 0,8.2 -11.6,15.6 -7.9,3 -18.7,-5.5 -5.3,-5.5" transform="translate(89 300)" fill="#E67E22"/>
+          <text x="89" y="372" text-anchor="middle" fill="#B7C3DD" font-family="DM Mono, monospace" font-size="13" letter-spacing="2">REWARD</text>
+        </g>
+        <!-- traveling dot -->
+        <g class="orbit"><circle cx="210" cy="90" r="10" fill="#F2F5FB"/></g>
+        <!-- tiny floating accents -->
+        <g class="float"><circle cx="38" cy="150" r="7" fill="#E67E22"/><circle cx="392" cy="200" r="5" fill="#B7C3DD"/></g>
+        <g class="float" style="animation-delay:-2s"><circle cx="372" cy="62" r="9" fill="none" stroke="#E67E22" stroke-width="3"/><circle cx="52" cy="402" r="5" fill="#B7C3DD"/></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- LESSONS -->
+<section id="loop">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Four lessons, one page</span>
+      <h2>What habit science teaches landing pages.</h2>
+      <p class="lede">The Power of Habit by Charles Duhigg shows how routines shape behaviour. EasyLandX brings its four core ideas into every page it helps you create.</p>
+    </div>
+    <div class="lessons">
+      <article class="lesson">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#E67E22" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 12c-6-6-18-2-18 8c-6 2-8 10-3 15c-3 6 2 13 9 12c2 6 10 8 12 2c2 6 10 4 12-2c7 1 12-6 9-12c5-5 3-13-3-15c0-10-12-14-18-8z"/><path d="M32 14v38"/></svg>
+        <span class="tag">Lesson 1</span>
+        <h3>Habits are brain shortcuts</h3>
+        <p>The brain loves saving energy, so familiar and predictable pages feel effortless. EasyLandX layouts guide the eye the same way every time, and visitors act on instinct.</p>
+      </article>
+      <article class="lesson">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#E67E22" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M50 22A20 20 0 0 0 14 26"/><path d="M50 10v12H38"/><path d="M14 42a20 20 0 0 0 36-4"/><path d="M14 54V42h12"/></svg>
+        <span class="tag">Lesson 2</span>
+        <h3>Routines can be upgraded</h3>
+        <p>Keep the cue that brings people in and the reward they want. Swap in a routine that gets them there faster: one focused page and one clear action.</p>
+      </article>
+      <article class="lesson">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#E67E22" stroke-width="3.5" stroke-linecap="round" aria-hidden="true"><circle cx="32" cy="32" r="6" fill="#E67E22"/><circle cx="32" cy="32" r="14"/><circle cx="32" cy="32" r="25" stroke-dasharray="2 8"/></svg>
+        <span class="tag">Lesson 3</span>
+        <h3>Keystone habits ripple</h3>
+        <p>One small action, such as a single button tap, sets off a chain of good things: a booking, a message, a returning customer, a referral.</p>
+      </article>
+      <article class="lesson">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#E67E22" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="32" cy="20" r="8"/><circle cx="14" cy="46" r="8"/><circle cx="50" cy="46" r="8"/><path d="M26 27l-8 12M38 27l8 12M22 46h20"/></svg>
+        <span class="tag">Lesson 4</span>
+        <h3>Belief grows in community</h3>
+        <p>People trust that change is possible when others share it. Reviews, member counts and shared stories bring that confidence right onto the page.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- BUILDER -->
+<section id="builder">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Interactive · Habit Loop Builder</span>
+      <h2>Pick a cue, a reward and a routine. Watch your page appear.</h2>
+      <p class="lede">The five cue types from the book are ready to use: location, time, emotional state, other people and the preceding action. Choose your own mix and see a landing page take shape instantly.</p>
+    </div>
+    <div class="panel builder">
+      <div class="controls">
+        <div>
+          <span class="label">1 · The cue that brings them in</span>
+          <div class="chips" id="cueChips" role="group" aria-label="Cue"></div>
+        </div>
+        <div>
+          <span class="label">2 · The reward they enjoy</span>
+          <div class="chips" id="rewardChips" role="group" aria-label="Reward"></div>
+        </div>
+        <div>
+          <span class="label">3 · The routine you offer</span>
+          <div class="chips" id="routineChips" role="group" aria-label="Routine"></div>
+        </div>
+      </div>
+      <div class="mock">
+        <div class="mock-bar"><i></i><i></i><i></i><span class="mock-url">yourbrand.com</span></div>
+        <div class="mock-body" id="mockBody" aria-live="polite">
+          <div class="deco"></div><div class="deco2"></div>
+          <span class="eyebrow" id="mEyebrow"></span>
+          <h3 id="mHead"></h3>
+          <p class="sub" id="mSub"></p>
+          <a class="btn" id="mCta" href="#builder"></a>
+        </div>
+        <div class="loop-strip" id="mStrip"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- GOLDEN RULE -->
+<section id="routine">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Interactive · The golden rule</span>
+      <h2>Keep the cue. Keep the reward. Upgrade the routine.</h2>
+      <p class="lede">Habits flourish when the trigger and the craving stay familiar and the middle becomes easier. Switch the route below and see the same journey become wonderfully short.</p>
+    </div>
+    <div class="panel">
+      <div class="route-tabs" role="group" aria-label="Route">
+        <button class="chip" id="rtMulti" aria-pressed="false" type="button">Multi-page route</button>
+        <button class="chip" id="rtFocus" aria-pressed="true" type="button">Focused landing page</button>
+      </div>
+      <div class="route" id="route" aria-live="polite"></div>
+      <div class="readout">
+        <div><div class="num" id="rtNum">1</div><p id="rtLabel">routine step to reward</p></div>
+        <div style="flex:1;min-width:200px;max-width:420px"><div class="meter" aria-hidden="true"><i id="rtMeter"></i></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- IF THEN -->
+<section id="plan">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Interactive · If-Then planner</span>
+      <h2>Plan the moments that matter.</h2>
+      <p class="lede">Clear if-then plans turn good intentions into dependable routines. Compose a few for your page and let every visitor moment meet a helpful response.</p>
+    </div>
+    <div class="panel ifthen">
+      <div class="field">
+        <label class="label" for="ifSel">If a visitor…</label>
+        <select id="ifSel"></select>
+      </div>
+      <div class="field">
+        <label class="label" for="thenSel">Then the page…</label>
+        <select id="thenSel"></select>
+      </div>
+      <p class="sentence" id="sentence"></p>
+      <div class="plan-actions">
+        <button class="btn" id="addPlan" type="button">Add to my plan</button>
+        <button class="btn ghost" id="copyPlan" type="button">Copy my plan</button>
+      </div>
+      <ul class="plans" id="plans" aria-label="My plan"></ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SMALL WINS -->
+<section id="wins">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Interactive · Small wins</span>
+      <h2>Small wins build a confident new identity.</h2>
+      <p class="lede">Each tiny success adds momentum. EasyLandX pages arrange a friendly staircase of micro-victories, and every step lifts the visitor closer to a happy result.</p>
+    </div>
+    <div class="panel wins">
+      <svg id="stairs" viewBox="0 0 520 320" role="img" aria-label="A staircase of five small wins with a climbing figure">
+        <line x1="10" y1="290" x2="510" y2="290" stroke="#3C5489" stroke-width="4" stroke-linecap="round"/>
+        <g id="stairRects"></g>
+        <g id="flag"><line x1="482" y1="82" x2="482" y2="40" stroke="#B7C3DD" stroke-width="4" stroke-linecap="round"/><path d="M484 40l32 11l-32 11z" fill="#E67E22"/></g>
+        <g id="figure" class="hero-fig" style="transform:translate(22px,290px)">
+          <circle cx="0" cy="-38" r="11" fill="#F2F5FB"/>
+          <path d="M0 -26v-0" stroke="#F2F5FB"/>
+          <path d="M0 -26v18M0 -20l-10 10M0 -20l10 10M0 -8l-8 8M0 -8l8 8" stroke="#F2F5FB" stroke-width="5" stroke-linecap="round" fill="none"/>
+        </g>
+        <g id="confetti"></g>
+      </svg>
+      <div class="win-copy">
+        <span class="label">Identity forming</span>
+        <div class="stage" id="stage">Curious visitor</div>
+        <div class="meter" aria-hidden="true"><i id="winMeter"></i></div>
+        <p class="msg" id="winMsg">Welcome! Tap the button to claim the first small win.</p>
+        <div class="hero-actions">
+          <button class="btn" id="winNext" type="button">Claim next small win</button>
+          <button class="btn ghost" id="winReset" type="button">Replay</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- KEYSTONE -->
+<section id="ripple">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Interactive · Keystone ripple</span>
+      <h2>One keystone action lights up everything around it.</h2>
+      <p class="lede">Tap the orange core to send a ripple outward. Tap any glowing node to see how the keystone habit spreads good outcomes across your whole business.</p>
+    </div>
+    <div class="panel ripple-wrap">
+      <svg id="kSvg" viewBox="0 0 520 430" role="img" aria-label="A keystone action at the center with six outcomes around it">
+        <circle class="k-ring" id="kr1" cx="260" cy="215" r="200"/>
+        <circle class="k-ring b" id="kr2" cx="260" cy="215" r="200"/>
+        <circle class="k-ring c" id="kr3" cx="260" cy="215" r="200"/>
+        <g id="kLinks" stroke="#3C5489" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"></g>
+        <g id="kNodes"></g>
+        <g class="k-core" id="kCore" role="button" tabindex="0" aria-label="Send a ripple from the keystone action">
+          <circle cx="260" cy="215" r="48" fill="#E67E22"/>
+          <text x="260" y="213" text-anchor="middle" fill="#1B2A4A" font-family="Bricolage Grotesque, Arial Black, sans-serif" font-weight="800" font-size="17">Keystone</text>
+          <text x="260" y="232" text-anchor="middle" fill="#1B2A4A" font-family="DM Mono, monospace" font-size="11">tap me</text>
+        </g>
+      </svg>
+      <div class="k-info">
+        <span class="label">Outcome</span>
+        <h3 id="kTitle">Tap the core</h3>
+        <p id="kText">A single clear action on your landing page, such as one friendly button, becomes the keystone that starts the chain.</p>
+        <button class="btn ghost" id="kReplay" type="button" style="justify-self:start">Send a ripple</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Interactive · Community</span>
+      <h2>Close friends spark it. Wider circles carry it further.</h2>
+      <p class="lede">Strong friendships start a change and a growing network keeps it alive. Slide to watch a community gather, and picture the same warm confidence on your page.</p>
+    </div>
+    <div class="panel crowd">
+      <svg viewBox="-160 -160 320 320" role="img" aria-label="A growing circle of community members">
+        <g id="dots"></g>
+      </svg>
+      <div style="display:grid;gap:1.2rem;min-width:0">
+        <div class="crowd-count" id="crowdNum">12</div>
+        <div class="crowd-msg" id="crowdMsg"></div>
+        <label class="label" for="crowdRange">Community size</label>
+        <input type="range" id="crowdRange" min="1" max="150" value="12">
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ANATOMY -->
+<section id="anatomy">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Interactive · Page anatomy</span>
+      <h2>A dependable routine from top to bottom.</h2>
+      <p class="lede">Organizations thrive on shared routines. Every EasyLandX page follows the same five-part rhythm, so each campaign is easy to launch and easy to love.</p>
+    </div>
+    <div class="panel anatomy">
+      <svg viewBox="0 0 300 350" role="img" aria-label="Wireframe of a landing page with five sections">
+        <g class="band on" data-i="0" transform="translate(0,10)">
+          <rect class="bg" x="10" y="0" width="280" height="58" rx="10"/>
+          <rect class="sh" x="26" y="11" width="150" height="9" rx="4"/><rect class="sh" x="26" y="25" width="110" height="9" rx="4"/><rect class="sh" x="26" y="40" width="62" height="10" rx="5"/><circle class="sh" cx="250" cy="29" r="17"/>
+        </g>
+        <g class="band" data-i="1" transform="translate(0,76)">
+          <rect class="bg" x="10" y="0" width="280" height="58" rx="10"/>
+          <circle class="sh" cx="48" cy="29" r="12"/><circle class="sh" cx="84" cy="29" r="12"/><circle class="sh" cx="120" cy="29" r="12"/><rect class="sh" x="160" y="19" width="110" height="8" rx="4"/><rect class="sh" x="160" y="33" width="76" height="8" rx="4"/>
+        </g>
+        <g class="band" data-i="2" transform="translate(0,142)">
+          <rect class="bg" x="10" y="0" width="280" height="58" rx="10"/>
+          <rect class="sh" x="62" y="13" width="176" height="32" rx="16"/>
+        </g>
+        <g class="band" data-i="3" transform="translate(0,208)">
+          <rect class="bg" x="10" y="0" width="280" height="58" rx="10"/>
+          <polygon class="sh" points="150,10 156,23 170,23 159,32 163,46 150,38 137,46 141,32 130,23 144,23"/>
+        </g>
+        <g class="band" data-i="4" transform="translate(0,274)">
+          <rect class="bg" x="10" y="0" width="280" height="58" rx="10"/>
+          <circle class="sk" cx="150" cy="29" r="15" stroke-dasharray="70 25"/><path class="sh" d="M162 8l12 8l-14 4z"/>
+        </g>
+      </svg>
+      <div class="tabs" role="tablist" aria-label="Page sections" id="tabs"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <div class="final-box">
+      <svg class="final-art" viewBox="0 0 200 200" fill="none" stroke="#1B2A4A" stroke-width="10" aria-hidden="true"><circle cx="100" cy="100" r="80" stroke-dasharray="4 18" stroke-linecap="round"/><circle cx="100" cy="100" r="46"/><circle cx="100" cy="100" r="12" fill="#1B2A4A"/></svg>
+      <span class="eyebrow" style="color:var(--accent-ink)">Your loop is ready</span>
+      <h2>Build the landing page your visitors will love.</h2>
+      <p>Bring your cue, your reward and one clear routine to EasyLandX, and launch a page that feels like a favourite habit from the very first tap.</p>
+      <a class="btn big" href="https://easylandx.github.io" target="_blank" rel="noopener">Open EasyLandX
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15L15 5M7 5h8v8"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>EasyLandX · Landing pages made easy</span>
+    <span>Ideas inspired by The Power of Habit, Charles Duhigg</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+
+  /* ---------- helpers ---------- */
+  function makeChips(id, items, initial, onPick) {
+    var box = $(id);
+    items.forEach(function (it) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = it.label;
+      b.setAttribute('aria-pressed', it.key === initial ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        box.querySelectorAll('.chip').forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+        b.setAttribute('aria-pressed', 'true');
+        onPick(it.key);
+      });
+      box.appendChild(b);
+    });
+  }
+
+  /* ---------- 1. Habit loop builder ---------- */
+  var cues = [
+    { key: 'location', label: 'Location', when: 'When you scan the code at the counter', cue: 'Location' },
+    { key: 'time', label: 'Time', when: 'When Sunday evening is planning time', cue: 'Time' },
+    { key: 'emotion', label: 'Emotional state', when: 'When curiosity sparks', cue: 'Emotional state' },
+    { key: 'people', label: 'Other people', when: 'When a friend shares a link', cue: 'Other people' },
+    { key: 'action', label: 'Preceding action', when: 'When the reel you loved ends', cue: 'Preceding action' }
+  ];
+  var rewards = [
+    { key: 'connection', label: 'Connection', head: 'Join a community that feels like home.', sub: 'Meet people who share your spark and grow together.' },
+    { key: 'clarity', label: 'Clarity', head: 'See exactly what you need in one glance.', sub: 'Every detail is laid out simply, so choosing feels easy.' },
+    { key: 'energy', label: 'Energy', head: 'Start today with a burst of momentum.', sub: 'A fresh, lively start that carries you through the day.' },
+    { key: 'recognition', label: 'Recognition', head: 'Be celebrated for every step you take.', sub: 'Your progress is seen, cheered and remembered.' },
+    { key: 'calm', label: 'Calm', head: 'Enjoy a smooth, relaxed path to your goal.', sub: 'Everything is arranged for an easy, peaceful experience.' }
+  ];
+  var routines = [
+    { key: 'book', label: 'Book', cta: 'Book my spot' },
+    { key: 'chat', label: 'Chat', cta: 'Say hello on WhatsApp' },
+    { key: 'join', label: 'Subscribe', cta: 'Join the list' },
+    { key: 'shop', label: 'Shop', cta: 'Pick my favourite' }
+  ];
+  var sel = { cue: 'location', reward: 'connection', routine: 'book' };
+  function find(arr, k) { return arr.filter(function (x) { return x.key === k; })[0]; }
+  function renderMock(animate) {
+    var c = find(cues, sel.cue), r = find(rewards, sel.reward), t = find(routines, sel.routine);
+    $('#mEyebrow').textContent = c.when;
+    $('#mHead').textContent = r.head;
+    $('#mSub').textContent = r.sub;
+    $('#mCta').textContent = t.cta;
+    $('#mStrip').innerHTML = '<span>Cue <b>' + c.cue + '</b></span><span>Routine <b>' + t.label + '</b></span><span>Reward <b>' + r.label + '</b></span>';
+    if (animate) {
+      ['#mEyebrow', '#mHead', '#mSub', '#mCta'].forEach(function (s) {
+        var el = $(s); el.classList.remove('swap'); void el.offsetWidth; el.classList.add('swap');
+      });
+    }
+  }
+  makeChips('#cueChips', cues, sel.cue, function (k) { sel.cue = k; renderMock(true); });
+  makeChips('#rewardChips', rewards, sel.reward, function (k) { sel.reward = k; renderMock(true); });
+  makeChips('#routineChips', routines, sel.routine, function (k) { sel.routine = k; renderMock(true); });
+  $('#mCta').addEventListener('click', function (e) { e.preventDefault(); });
+  renderMock(false);
+
+  /* ---------- 2. Golden rule route ---------- */
+  var routes = {
+    multi: ['Home page', 'Menu', 'Sub-page', 'Contact form'],
+    focus: ['One clear action']
+  };
+  var current = 'focus';
+  function renderRoute(key) {
+    current = key;
+    $('#rtMulti').setAttribute('aria-pressed', key === 'multi');
+    $('#rtFocus').setAttribute('aria-pressed', key === 'focus');
+    var steps = routes[key];
+    var html = '<div class="endpoint"><small>Cue</small><b>Visitor taps your link</b></div><span class="arrow">→</span>';
+    steps.forEach(function (s, i) {
+      html += '<div class="step' + (key === 'focus' ? ' hot' : '') + '" style="animation-delay:' + (i * 0.08) + 's"><small>Routine ' + (i + 1) + '</small><b>' + s + '</b></div><span class="arrow">→</span>';
+    });
+    html += '<div class="endpoint"><small>Reward</small><b>Booking confirmed</b></div>';
+    $('#route').innerHTML = html;
+    $('#rtNum').textContent = steps.length;
+    $('#rtLabel').textContent = steps.length === 1 ? 'routine step to reward' : 'routine steps to reward';
+    $('#rtMeter').style.width = (key === 'focus' ? 100 : 25) + '%';
+  }
+  $('#rtMulti').addEventListener('click', function () { renderRoute('multi'); });
+  $('#rtFocus').addEventListener('click', function () { renderRoute('focus'); });
+  renderRoute('multi');
+  setTimeout(function () { renderRoute('focus'); }, 900);
+
+  /* ---------- 3. If-Then planner ---------- */
+  var ifs = ['arrives from Instagram', 'visits at lunchtime', 'returns on a phone', 'opens a friend’s link', 'finishes viewing the gallery', 'is exploring the options'];
+  var thens = ['shows a one-tap booking button', 'greets them with a friendly welcome', 'highlights the favourite option', 'slides a reviews strip into view', 'opens a WhatsApp chat in one tap', 'celebrates their step with a thank-you'];
+  var ifSel = $('#ifSel'), thenSel = $('#thenSel');
+  ifs.forEach(function (t, i) { ifSel.add(new Option(t, i)); });
+  thens.forEach(function (t, i) { thenSel.add(new Option(t, i)); });
+  var plans = [[0, 0], [1, 3]];
+  function sentenceHTML(a, b) { return 'IF a visitor <b>' + ifs[a] + '</b>, THEN the page <b>' + thens[b] + '</b>.'; }
+  function renderSentence() { $('#sentence').innerHTML = sentenceHTML(+ifSel.value, +thenSel.value); }
+  function renderPlans() {
+    var ul = $('#plans'); ul.innerHTML = '';
+    plans.forEach(function (p, i) {
+      var li = document.createElement('li');
+      li.innerHTML = '<span>' + sentenceHTML(p[0], p[1]) + '</span>';
+      var x = document.createElement('button');
+      x.className = 'x'; x.type = 'button'; x.setAttribute('aria-label', 'Remove this plan'); x.textContent = '×';
+      x.addEventListener('click', function () { plans.splice(i, 1); renderPlans(); });
+      li.appendChild(x); ul.appendChild(li);
+    });
+  }
+  ifSel.addEventListener('change', renderSentence);
+  thenSel.addEventListener('change', renderSentence);
+  $('#addPlan').addEventListener('click', function () {
+    var a = +ifSel.value, b = +thenSel.value;
+    if (plans.length < 6) { plans.push([a, b]); renderPlans(); }
+  });
+  $('#copyPlan').addEventListener('click', function () {
+    var btn = this;
+    var text = plans.map(function (p) { return 'IF a visitor ' + ifs[p[0]] + ', THEN the page ' + thens[p[1]] + '.'; }).join('\n');
+    function done(msg) { var o = btn.textContent; btn.textContent = msg; setTimeout(function () { btn.textContent = o; }, 1600); }
+    try {
+      navigator.clipboard.writeText(text).then(function () { done('Copied!'); }, function () { selectPlans(); done('Selected, press copy'); });
+    } catch (e) { selectPlans(); done('Selected, press copy'); }
+  });
+  function selectPlans() {
+    var r = document.createRange(); r.selectNodeContents($('#plans'));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+  renderSentence(); renderPlans();
+
+  /* ---------- 4. Small wins ---------- */
+  var NS = 'http://www.w3.org/2000/svg';
+  var stages = ['Curious visitor', 'Explorer', 'Chooser', 'Doer', 'Happy regular'];
+  var msgs = [
+    'Welcome! Tap the button to claim the first small win.',
+    'Great start! You found the headline.',
+    'Lovely pick! Momentum is building.',
+    'Wonderful! The main button is tapped and you are on your way.',
+    'Almost at the top. One more detail makes it complete.',
+    'Celebrate! You are now a happy regular.'
+  ];
+  var stairG = $('#stairRects');
+  for (var i = 0; i < 5; i++) {
+    var h = 34 * (i + 1), r = document.createElementNS(NS, 'rect');
+    r.setAttribute('x', 50 + i * 88); r.setAttribute('y', 290 - h);
+    r.setAttribute('width', 88); r.setAttribute('height', h);
+    r.setAttribute('class', 'stair'); r.setAttribute('rx', 6);
+    stairG.appendChild(r);
+  }
+  var cg = $('#confetti');
+  for (var j = 0; j < 12; j++) {
+    var c = document.createElementNS(NS, 'circle');
+    var ang = (j / 12) * Math.PI * 2;
+    c.setAttribute('cx', 482); c.setAttribute('cy', 60); c.setAttribute('r', 5);
+    c.setAttribute('fill', j % 2 ? '#E67E22' : '#F2F5FB'); c.setAttribute('class', 'confetti');
+    c.style.setProperty('--dx', Math.round(Math.cos(ang) * 60) + 'px');
+    c.style.setProperty('--dy', Math.round(Math.sin(ang) * 60) + 'px');
+    cg.appendChild(c);
+  }
+  var win = 0;
+  function renderWin() {
+    var rects = stairG.querySelectorAll('rect');
+    rects.forEach(function (rc, i) { rc.classList.toggle('done', i < win); });
+    var x, y;
+    if (win === 0) { x = 22; y = 290; }
+    else { x = 50 + (win - 1) * 88 + 44; y = 290 - 34 * win; }
+    $('#figure').style.transform = 'translate(' + x + 'px,' + y + 'px)';
+    $('#stage').textContent = stages[Math.min(win, 4)];
+    $('#winMsg').textContent = msgs[win];
+    $('#winMeter').style.width = (win / 5 * 100) + '%';
+    $('#winNext').disabled = win >= 5;
+    $('#winNext').style.opacity = win >= 5 ? 0.5 : 1;
+    var svg = $('#stairs'); svg.classList.remove('party');
+    if (win === 5) { void svg.getBoundingClientRect(); svg.classList.add('party'); }
+  }
+  $('#winNext').addEventListener('click', function () { if (win < 5) { win++; renderWin(); } });
+  $('#winReset').addEventListener('click', function () { win = 0; renderWin(); });
+  renderWin();
+
+  /* ---------- 5. Keystone ripple ---------- */
+  var kItems = [
+    { t: 'Booking', d: 'The first confirmed action builds a sense of progress and trust.' },
+    { t: 'Reviews', d: 'Happy visitors share a few words that welcome the next person.' },
+    { t: 'Newsletter', d: 'A gentle weekly rhythm keeps your story close to your audience.' },
+    { t: 'Referrals', d: 'Friends invite friends, and the circle keeps growing.' },
+    { t: 'Repeat visits', d: 'Familiar cues bring people back with a smile.' },
+    { t: 'Community', d: 'Shared routines turn customers into a crew.' }
+  ];
+  var cx = 260, cy = 215, R = 140, angs = [-90, -30, 30, 90, 150, 210];
+  var nodes = $('#kNodes'), links = $('#kLinks'), nodeEls = [];
+  kItems.forEach(function (it, i) {
+    var a = angs[i] * Math.PI / 180, x = cx + R * Math.cos(a), y = cy + R * Math.sin(a);
+    var ln = document.createElementNS(NS, 'line');
+    ln.setAttribute('x1', cx); ln.setAttribute('y1', cy); ln.setAttribute('x2', x); ln.setAttribute('y2', y);
+    links.appendChild(ln);
+    var g = document.createElementNS(NS, 'g');
+    g.setAttribute('class', 'k-node'); g.setAttribute('tabindex', 0); g.setAttribute('role', 'button'); g.setAttribute('aria-label', it.t);
+    var c = document.createElementNS(NS, 'circle'); c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', 30);
+    var tx = document.createElementNS(NS, 'text'); tx.textContent = it.t;
+    var side = Math.abs(Math.cos(a)) < 0.2 ? 'v' : (Math.cos(a) > 0 ? 'r' : 'l');
+    if (side === 'v') { tx.setAttribute('x', x); tx.setAttribute('y', Math.sin(a) < 0 ? y - 40 : y + 52); tx.setAttribute('text-anchor', 'middle'); }
+    else if (side === 'r') { tx.setAttribute('x', x + 40); tx.setAttribute('y', y + 4); }
+    else { tx.setAttribute('x', x - 40); tx.setAttribute('y', y + 4); tx.setAttribute('text-anchor', 'end'); }
+    var star = document.createElementNS(NS, 'polygon');
+    star.setAttribute('points', '0,-9 2.6,-2.8 9.3,-2.8 3.9,1.5 5.8,7.8 0,4.1 -5.8,7.8 -3.9,1.5 -9.3,-2.8 -2.6,-2.8');
+    star.setAttribute('transform', 'translate(' + x + ' ' + y + ')'); star.setAttribute('fill', '#F2F5FB');
+    g.appendChild(c); g.appendChild(star); g.appendChild(tx); nodes.appendChild(g); nodeEls.push(g);
+    function pick() {
+      nodeEls.forEach(function (n) { n.classList.remove('sel'); }); g.classList.add('sel');
+      $('#kTitle').textContent = it.t; $('#kText').textContent = it.d;
+    }
+    g.addEventListener('click', pick);
+    g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+  });
+  var rippleTimers = [];
+  function ripple() {
+    rippleTimers.forEach(clearTimeout); rippleTimers = [];
+    ['#kr1', '#kr2', '#kr3'].forEach(function (s) { var el = $(s); el.classList.remove('go'); void el.getBoundingClientRect(); el.classList.add('go'); });
+    nodeEls.forEach(function (n) { n.classList.remove('on'); });
+    nodeEls.forEach(function (n, i) { rippleTimers.push(setTimeout(function () { n.classList.add('on'); }, 250 + i * 220)); });
+    $('#kTitle').textContent = 'Keystone in motion';
+    $('#kText').textContent = 'One clear action starts six good outcomes. Tap any node to explore it.';
+  }
+  $('#kCore').addEventListener('click', ripple);
+  $('#kCore').addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ripple(); } });
+  $('#kReplay').addEventListener('click', ripple);
+  setTimeout(function () { nodeEls.forEach(function (n) { n.classList.add('on'); }); }, 100);
+
+  /* ---------- 6. Community ---------- */
+  var dots = $('#dots'), dotEls = [], MAX = 150;
+  for (var d = 0; d < MAX; d++) {
+    var rr = 11.6 * Math.sqrt(d + 1), th = d * 137.508 * Math.PI / 180;
+    var dc = document.createElementNS(NS, 'circle');
+    dc.setAttribute('cx', (rr * Math.cos(th)).toFixed(1)); dc.setAttribute('cy', (rr * Math.sin(th)).toFixed(1));
+    dc.setAttribute('r', 4.6); dc.setAttribute('class', 'dot' + (d < 12 ? ' core' : ''));
+    dots.appendChild(dc); dotEls.push(dc);
+  }
+  function renderCrowd() {
+    var n = +$('#crowdRange').value;
+    dotEls.forEach(function (el, i) { el.classList.toggle('in', i < n); });
+    $('#crowdNum').textContent = n;
+    var m = n < 6 ? 'A first circle of friends takes shape.' : n < 30 ? 'Close ties spark the first step together.' : n < 80 ? 'Wider circles carry the habit further.' : 'A lively movement of habit-lovers!';
+    $('#crowdMsg').textContent = m;
+  }
+  $('#crowdRange').addEventListener('input', renderCrowd);
+  renderCrowd();
+
+  /* ---------- 7. Anatomy ---------- */
+  var parts = [
+    { t: 'Hero: echo the cue', d: 'The headline repeats what brought the visitor in, so the page feels instantly familiar.' },
+    { t: 'Proof: build belief', d: 'Reviews, numbers and faces show that change is possible and shared.' },
+    { t: 'Action: offer one routine', d: 'A single, clear button gives the habit loop a simple, repeatable step.' },
+    { t: 'Reward: deliver the craving', d: 'A confirmation, a warm message and a visible next win celebrate the action right away.' },
+    { t: 'Rhythm: keep the loop going', d: 'A follow-up cue, such as a reminder or an invitation, starts the next round.' }
+  ];
+  var tabs = $('#tabs'), bands = document.querySelectorAll('.band');
+  function selectPart(i) {
+    tabs.querySelectorAll('.tab').forEach(function (t, k) { t.setAttribute('aria-selected', k === i); });
+    bands.forEach(function (b, k) { b.classList.toggle('on', k === i); });
+  }
+  parts.forEach(function (p, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'tab'; b.setAttribute('role', 'tab');
+    b.innerHTML = '<b>' + p.t + '</b><span>' + p.d + '</span>';
+    b.addEventListener('click', function () { selectPart(i); });
+    tabs.appendChild(b);
+  });
+  bands.forEach(function (b, i) { b.addEventListener('click', function () { selectPart(i); }); });
+  selectPart(0);
+})();
+</script>
+
+</body>
+</html>
