@@ -1,0 +1,707 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>EasyLandX Landing Pages</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: a steady climb. Bold slate ground, green stepping-stone accents, four pillars each with an illustration and a hands-on tool. */
+:root {
+  --bg: #3A405A;
+  --surface: #2F3449;
+  --surface-2: #474E6E;
+  --line: #7B83A6;
+  --ink: #F2F4FA;
+  --ink-soft: #CBD0E2;
+  --leaf: #2D5A27;
+  --leaf-tint: #A8D49E;
+  --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  padding-block: 0 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.08; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.3rem, 6vw, 4.2rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.015em; }
+h3 { font-size: 1.25rem; font-weight: 700; }
+p { margin: 0; }
+a { color: inherit; }
+.wrap { max-width: 1120px; margin-inline: auto; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--leaf-tint); }
+.lead { font-size: 1.12rem; color: var(--ink-soft); max-width: 60ch; }
+:focus-visible { outline: 3px solid var(--leaf-tint); outline-offset: 3px; border-radius: 6px; }
+
+/* Header */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--surface-2);
+  margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  padding-inline: max(16px, env(safe-area-inset-left, 0px));
+}
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; flex-wrap: wrap; }
+.brand { font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.brand svg { width: 30px; height: 30px; }
+.top nav { display: flex; gap: 20px; font-size: 0.95rem; flex-wrap: wrap; }
+.top nav a { text-decoration: none; color: var(--ink-soft); padding-block: 4px; }
+.top nav a:hover { color: var(--ink); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--leaf); color: var(--ink);
+  border: 2px solid var(--leaf-tint);
+  font: 700 1rem var(--font-body);
+  padding: 12px 22px; border-radius: 999px; text-decoration: none; cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+}
+.btn:hover { transform: translateY(-2px); background: #377030; }
+.btn.ghost { background: transparent; border-color: var(--line); }
+.btn.ghost:hover { background: var(--surface-2); }
+.btn svg { width: 18px; height: 18px; }
+.btn.big { font-size: 1.15rem; padding: 16px 32px; }
+
+/* Hero */
+.hero { padding-block: 56px 64px; }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; }
+.hero .copy { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.hero .actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-art { min-width: 0; }
+.hero-art svg { width: 100%; height: auto; display: block; }
+
+/* Principles strip */
+.strip { background: var(--surface); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); padding-block: 40px; }
+.strip .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+.strip .item { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.strip .item b { font-family: var(--font-display); font-size: 1.15rem; color: var(--leaf-tint); }
+.strip .item span { color: var(--ink-soft); font-size: 0.98rem; }
+
+/* Pillars */
+.pillar { padding-block: 84px 20px; }
+.pillar .head { display: grid; grid-template-columns: 1fr 260px; gap: 40px; align-items: center; margin-bottom: 36px; }
+.pillar .head .txt { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.pillar.flip .head { grid-template-columns: 260px 1fr; }
+.pillar.flip .head .art { order: -1; }
+.art { min-width: 0; }
+.art svg { width: 100%; height: auto; display: block; }
+.practice { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.practice li { list-style: none; background: var(--leaf); border: 1px solid var(--leaf-tint); border-radius: 999px; padding: 6px 14px; font-size: 0.92rem; }
+.practice { padding: 0; margin-block: 4px 0; }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 28px; display: grid; gap: 28px; min-width: 0; }
+.panel.cols { grid-template-columns: 1fr 1fr; }
+.panel .tool-title { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--leaf-tint); margin-bottom: 14px; }
+.col { min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+
+/* Controls */
+.seg { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  background: var(--bg); color: var(--ink); border: 2px solid var(--line);
+  font: 500 0.98rem var(--font-body); padding: 9px 16px; border-radius: 999px; cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.chip:hover { border-color: var(--leaf-tint); transform: translateY(-1px); }
+.chip[aria-pressed="true"] { background: var(--leaf); border-color: var(--leaf-tint); font-weight: 700; }
+label.fld { display: flex; flex-direction: column; gap: 6px; font-size: 0.95rem; color: var(--ink-soft); }
+label.fld .row { display: flex; justify-content: space-between; align-items: baseline; }
+label.fld output { font-family: var(--font-mono); color: var(--ink); font-size: 1rem; }
+input[type="range"] { width: 100%; accent-color: var(--leaf-tint); height: 28px; }
+input[type="text"] { background: var(--bg); color: var(--ink); border: 2px solid var(--line); border-radius: 12px; padding: 10px 14px; font: 500 1rem var(--font-body); width: 100%; }
+input[type="text"]:focus-visible { border-color: var(--leaf-tint); }
+
+/* Pace planner */
+.big-num { font-family: var(--font-display); font-weight: 800; font-size: clamp(3rem, 8vw, 4.6rem); line-height: 1; color: var(--leaf-tint); }
+.big-num small { font-size: 1.1rem; color: var(--ink-soft); font-family: var(--font-body); font-weight: 500; margin-left: 8px; }
+.stones { display: flex; flex-wrap: wrap; gap: 14px 10px; }
+.stone { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 78px; text-align: center; }
+.stone i { width: 40px; height: 40px; border-radius: 50%; background: var(--leaf); border: 2px solid var(--leaf-tint); display: grid; place-items: center; font: 500 0.85rem var(--font-mono); font-style: normal; animation: pop .5s ease both; }
+.stone.last i { background: var(--leaf-tint); color: var(--surface); }
+.stone span { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.2; }
+@keyframes pop { from { transform: scale(.4); opacity: .2; } to { transform: scale(1); opacity: 1; } }
+.stats { display: flex; gap: 28px; flex-wrap: wrap; }
+.stats div { display: flex; flex-direction: column; }
+.stats b { font-family: var(--font-display); font-size: 1.6rem; }
+.stats span { font-size: 0.85rem; color: var(--ink-soft); }
+.note { background: var(--bg); border-left: 4px solid var(--leaf-tint); border-radius: 10px; padding: 14px 16px; color: var(--ink); }
+
+/* Signal reader */
+.signals { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.sig { text-align: left; background: var(--bg); border: 2px solid var(--line); color: var(--ink); border-radius: 16px; padding: 14px 16px; cursor: pointer; font: 700 0.98rem var(--font-body); display: flex; align-items: center; gap: 10px; transition: border-color .2s ease, background .2s ease; }
+.sig:hover { border-color: var(--leaf-tint); }
+.sig[aria-pressed="true"] { background: var(--leaf); border-color: var(--leaf-tint); }
+.sig svg { width: 26px; height: 26px; flex: none; }
+.readout { display: grid; gap: 14px; }
+.readout dl { margin: 0; display: grid; gap: 12px; }
+.readout dt { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--leaf-tint); }
+.readout dd { margin: 2px 0 0; }
+.fade { animation: fadeUp .45s ease both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.breath-box { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.breath { width: 120px; height: 120px; border-radius: 50%; background: var(--leaf); border: 2px solid var(--leaf-tint); display: grid; place-items: center; font: 700 0.9rem var(--font-body); text-align: center; transition: transform 4s ease-in-out; box-shadow: 0 0 0 10px rgba(168,212,158,.12); }
+.breath.in { transform: scale(1.22); }
+
+/* Voice shift + pivot */
+.line-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.line-list li { background: var(--bg); border-radius: 12px; padding: 12px 16px; animation: fadeUp .4s ease both; }
+.line-list li:nth-child(2) { animation-delay: .08s; }
+.line-list li:nth-child(3) { animation-delay: .16s; }
+.meter { height: 12px; border-radius: 999px; background: var(--bg); overflow: hidden; border: 1px solid var(--line); }
+.meter i { display: block; height: 100%; background: var(--leaf-tint); border-radius: 999px; transition: width .6s ease; }
+.mini { background: var(--bg); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.mini .bar { display: flex; gap: 6px; padding: 10px 14px; background: var(--surface); border-bottom: 1px solid var(--line); align-items: center; }
+.mini .bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+.mini .bar span { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-soft); margin-left: 8px; }
+.mini .body { padding: 26px 22px 28px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.mini .body h4 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.3rem, 3vw, 1.7rem); line-height: 1.15; margin: 0; text-wrap: balance; }
+.mini .body p { color: var(--ink-soft); font-size: 0.98rem; }
+.mini .fake-btn { background: var(--leaf); border: 2px solid var(--leaf-tint); border-radius: 999px; padding: 9px 20px; font-weight: 700; font-size: 0.95rem; }
+.tag { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--leaf-tint); }
+
+/* CTA */
+.cta { margin-top: 96px; background: var(--leaf); border: 2px solid var(--leaf-tint); border-radius: 28px; padding: clamp(28px, 6vw, 64px); display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: center; overflow: hidden; }
+.cta .txt { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.cta .btn { background: var(--ink); color: var(--leaf); border-color: var(--ink); }
+.cta .btn:hover { background: #fff; }
+.cta svg { width: 100%; height: auto; display: block; }
+.recap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 8px; }
+.foot { margin-top: 40px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 0.9rem; color: var(--ink-soft); }
+
+/* Ambient motion */
+.float { animation: float 6s ease-in-out infinite; }
+.float.d2 { animation-delay: -2s; }
+.float.d3 { animation-delay: -4s; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.pulse { animation: pulse 2.8s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+@keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.12); opacity: .75; } }
+.drift { animation: drift 18s linear infinite; }
+@keyframes drift { from { transform: translateX(-30px); } to { transform: translateX(40px); } }
+.spin { animation: spin 24s linear infinite; transform-origin: center; transform-box: fill-box; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.wave { stroke-dasharray: 600; animation: wave 5s ease-in-out infinite alternate; }
+@keyframes wave { from { stroke-dashoffset: 500; } to { stroke-dashoffset: 0; } }
+.dash { stroke-dasharray: 8 8; animation: dashmove 1.6s linear infinite; }
+@keyframes dashmove { to { stroke-dashoffset: -32; } }
+
+.f-leaf { fill: var(--leaf); }
+.f-tint { fill: var(--leaf-tint); }
+.f-surf { fill: var(--surface); }
+.f-line { fill: var(--line); }
+.f-bg { fill: var(--bg); }
+.f-ink { fill: var(--ink); }
+.s-tint { stroke: var(--leaf-tint); }
+.s-line { stroke: var(--line); }
+.s-ink { stroke: var(--ink); }
+.nf { fill: none; }
+
+@media (max-width: 860px) {
+  .hero .wrap, .pillar .head, .pillar.flip .head, .panel.cols, .cta { grid-template-columns: 1fr; }
+  .pillar.flip .head .art { order: 0; }
+  .art { max-width: 280px; }
+  .strip .wrap { grid-template-columns: 1fr 1fr; }
+  .recap { grid-template-columns: 1fr 1fr; }
+  .pillar { padding-top: 64px; }
+}
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .strip .wrap, .signals, .recap { grid-template-columns: 1fr; }
+  .panel { padding: 20px; }
+  .top nav { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: .01s !important; }
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="EasyLandX home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="9" class="f-leaf" style="stroke:var(--leaf-tint);stroke-width:2"/><path d="M8 22 L14 16 L18 19 L24 10" class="nf s-tint" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="10" r="2.6" class="f-tint"/></svg>
+      EasyLandX
+    </a>
+    <nav aria-label="Sections">
+      <a href="#pillar-1">See clearly</a>
+      <a href="#pillar-2">Read signals</a>
+      <a href="#pillar-3">Respond</a>
+      <a href="#pillar-4">Purpose</a>
+    </nav>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" class="nf" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="copy">
+        <span class="eyebrow">Landing pages built with calm confidence</span>
+        <h1>Launch bold pages with steady strength.</h1>
+        <p class="lead">Real toughness is clear thinking, kind self-talk and a strong reason to begin. EasyLandX turns those four ideas into a simple path from first idea to a landing page you are proud to share.</p>
+        <div class="actions">
+          <a class="btn big" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" class="nf" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn big ghost" href="#pillar-1">Try the toolkit</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 520 440" role="img" aria-label="An animated landing page wireframe beside a staircase leading to a waving flag, with a glowing traveller climbing the steps">
+          <circle cx="430" cy="78" r="40" class="nf s-tint pulse" stroke-width="3"/>
+          <circle cx="430" cy="78" r="22" class="f-tint pulse" opacity=".9"/>
+          <g class="drift" opacity=".9">
+            <ellipse cx="120" cy="44" rx="46" ry="12" class="f-surf"/>
+            <ellipse cx="150" cy="36" rx="30" ry="10" class="f-surf"/>
+          </g>
+          <g class="drift" style="animation-duration:26s;animation-delay:-9s" opacity=".7">
+            <ellipse cx="300" cy="28" rx="40" ry="10" class="f-surf"/>
+          </g>
+          <g class="float">
+            <rect x="24" y="80" width="316" height="320" rx="18" class="f-surf s-tint" stroke-width="2"/>
+            <line x1="24" y1="118" x2="340" y2="118" class="s-line" stroke-width="2"/>
+            <circle cx="46" cy="99" r="5" class="f-tint"/><circle cx="64" cy="99" r="5" class="f-line"/><circle cx="82" cy="99" r="5" class="f-line"/>
+            <rect x="104" y="91" width="200" height="16" rx="8" class="f-bg"/>
+            <rect x="46" y="138" width="272" height="86" rx="12" class="f-leaf s-tint" stroke-width="2"/>
+            <rect x="64" y="156" width="150" height="12" rx="6" class="f-ink"/>
+            <rect x="64" y="178" width="110" height="8" rx="4" class="f-tint"/>
+            <rect x="64" y="194" width="84" height="16" rx="8" class="f-ink pulse"/>
+            <circle cx="276" cy="181" r="22" class="f-tint" opacity=".85"/>
+            <rect x="46" y="240" width="84" height="72" rx="10" class="f-bg s-line" stroke-width="1.5"/>
+            <rect x="138" y="240" width="84" height="72" rx="10" class="f-bg s-line" stroke-width="1.5"/>
+            <rect x="230" y="240" width="88" height="72" rx="10" class="f-bg s-line" stroke-width="1.5"/>
+            <circle cx="88" cy="266" r="9" class="f-tint"/><circle cx="180" cy="266" r="9" class="f-tint"/><circle cx="274" cy="266" r="9" class="f-tint"/>
+            <rect x="58" y="284" width="60" height="6" rx="3" class="f-line"/><rect x="150" y="284" width="60" height="6" rx="3" class="f-line"/><rect x="244" y="284" width="60" height="6" rx="3" class="f-line"/>
+            <rect x="46" y="328" width="272" height="10" rx="5" class="f-line"/>
+            <rect x="46" y="348" width="180" height="10" rx="5" class="f-line"/>
+            <rect x="46" y="368" width="96" height="16" rx="8" class="f-leaf s-tint" stroke-width="1.5"/>
+          </g>
+          <rect x="356" y="350" width="36" height="50" class="f-leaf s-tint" stroke-width="2"/>
+          <rect x="392" y="310" width="36" height="90" class="f-leaf s-tint" stroke-width="2"/>
+          <rect x="428" y="270" width="36" height="130" class="f-leaf s-tint" stroke-width="2"/>
+          <rect x="464" y="230" width="36" height="170" class="f-leaf s-tint" stroke-width="2"/>
+          <line x1="0" y1="400" x2="520" y2="400" class="s-tint" stroke-width="3"/>
+          <line x1="482" y1="230" x2="482" y2="150" class="s-ink" stroke-width="3" stroke-linecap="round"/>
+          <polygon class="f-tint" points="482,150 482,180 520,165">
+            <animate attributeName="points" dur="2.4s" repeatCount="indefinite" values="482,150 482,180 518,165;482,150 482,180 512,172;482,150 482,180 518,165"/>
+          </polygon>
+          <circle r="11" class="f-tint">
+            <animateMotion dur="6s" repeatCount="indefinite" path="M374,340 L410,300 L446,260 L482,220 L482,220 L374,340" keyTimes="0;0.8;1" calcMode="linear" keyPoints="0;1;1"/>
+          </circle>
+          <circle r="20" class="nf s-tint" stroke-width="2" opacity=".6">
+            <animateMotion dur="6s" repeatCount="indefinite" path="M374,340 L410,300 L446,260 L482,220 L482,220 L374,340" keyTimes="0;0.8;1" calcMode="linear" keyPoints="0;1;1"/>
+          </circle>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="strip" aria-label="Core ideas">
+    <div class="wrap">
+      <div class="item"><b>Calm beats force</b><span>Steady focus builds pages that last. Energy stays high when the pace feels right.</span></div>
+      <div class="item"><b>Clarity builds confidence</b><span>An accurate picture of today makes every next step feel natural.</span></div>
+      <div class="item"><b>Signals are information</b><span>Every number, pause and click offers a useful hint for your next move.</span></div>
+      <div class="item"><b>Purpose fuels the climb</b><span>Curiosity, mastery and service keep you moving with a smile.</span></div>
+    </div>
+  </section>
+
+  <!-- PILLAR 1 -->
+  <section class="pillar wrap" id="pillar-1">
+    <div class="head">
+      <div class="txt">
+        <span class="eyebrow">Pillar 1 of 4 · See clearly</span>
+        <h2>Start from where you stand, and the path appears.</h2>
+        <p class="lead">Strong launches begin with an honest look at today. Name how bold the project feels, match the plan to your real capacity, and your pace becomes smooth from the first step to the last.</p>
+        <ul class="practice"><li>Welcome the size of the challenge</li><li>Match plans to capability</li></ul>
+      </div>
+      <div class="art">
+        <svg viewBox="0 0 240 200" role="img" aria-label="A friendly eye above a mountain horizon with measuring ticks">
+          <path d="M0 160 L50 100 L84 134 L130 70 L180 130 L210 106 L240 140 L240 200 L0 200Z" class="f-leaf s-tint" stroke-width="2"/>
+          <line x1="0" y1="160" x2="240" y2="160" class="s-line" stroke-width="2"/>
+          <g class="s-line" stroke-width="2"><line x1="20" y1="160" x2="20" y2="172"/><line x1="60" y1="160" x2="60" y2="172"/><line x1="100" y1="160" x2="100" y2="172"/><line x1="140" y1="160" x2="140" y2="172"/><line x1="180" y1="160" x2="180" y2="172"/><line x1="220" y1="160" x2="220" y2="172"/></g>
+          <g class="float">
+            <path d="M44 56 Q120 -8 196 56 Q120 120 44 56Z" class="f-surf s-tint" stroke-width="3"/>
+            <circle cx="120" cy="56" r="26" class="f-tint pulse"/>
+            <circle cx="120" cy="56" r="11" class="f-bg"/>
+            <circle cx="127" cy="49" r="4" class="f-ink"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="panel cols">
+      <div class="col">
+        <div class="tool-title">Pace Planner</div>
+        <div>
+          <p style="margin-bottom:10px;color:var(--ink-soft)">Where are you starting today?</p>
+          <div class="seg" id="startSeg" role="group" aria-label="Starting point">
+            <button class="chip" data-start="fresh" aria-pressed="true" type="button">Fresh idea</button>
+            <button class="chip" data-start="draft" aria-pressed="false" type="button">Draft in hand</button>
+            <button class="chip" data-start="live" aria-pressed="false" type="button">Page is live</button>
+          </div>
+        </div>
+        <label class="fld" for="hours"><span class="row"><span>Hours you enjoy each week</span><output id="hoursOut">6 h</output></span>
+          <input type="range" id="hours" min="2" max="20" step="1" value="6"></label>
+        <label class="fld" for="sections"><span class="row"><span>Sections on your page</span><output id="secOut">5</output></span>
+          <input type="range" id="sections" min="3" max="9" step="1" value="5"></label>
+      </div>
+      <div class="col">
+        <div class="tool-title">Your launch runway</div>
+        <div class="big-num"><span id="days">12</span><small>days to launch</small></div>
+        <div class="stats">
+          <div><b id="totalH">0 h</b><span>total creative time</span></div>
+          <div><b id="dailyM">0 min</b><span>per day, at a smooth pace</span></div>
+        </div>
+        <div class="stones" id="stones" aria-label="Stepping stones to launch"></div>
+        <p class="note" id="paceNote"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLAR 2 -->
+  <section class="pillar flip wrap" id="pillar-2">
+    <div class="head">
+      <div class="txt">
+        <span class="eyebrow">Pillar 2 of 4 · Read the signals</span>
+        <h2>Every signal is a friendly hint.</h2>
+        <p class="lead">Visits, scrolls and clicks speak the way a racing heart speaks before a big moment: your page is getting ready to act. Pause, read the hint calmly, then choose your next move with a clear mind.</p>
+        <ul class="practice"><li>Create space before responding</li><li>Hear energy as readiness</li></ul>
+      </div>
+      <div class="art">
+        <svg viewBox="0 0 240 200" role="img" aria-label="A glowing waveform leading to a pulsing circle marked ready">
+          <rect x="8" y="30" width="224" height="140" rx="18" class="f-surf s-line" stroke-width="2"/>
+          <g class="s-line" stroke-width="1" opacity=".6"><line x1="8" y1="70" x2="232" y2="70"/><line x1="8" y1="100" x2="232" y2="100"/><line x1="8" y1="130" x2="232" y2="130"/></g>
+          <path class="wave nf s-tint" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M20 110 L52 110 L66 78 L84 138 L100 62 L116 126 L132 98 L160 98"/>
+          <circle cx="190" cy="100" r="30" class="f-leaf s-tint pulse" stroke-width="3"/>
+          <text x="190" y="105" text-anchor="middle" class="f-ink" font-family="DM Mono, monospace" font-size="13" font-weight="500">ready</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="panel cols">
+      <div class="col">
+        <div class="tool-title">Signal Reader</div>
+        <p style="color:var(--ink-soft)">Choose a signal to see the calm reading.</p>
+        <div class="signals" id="signals" role="group" aria-label="Signals">
+          <button class="sig" type="button" data-i="0" aria-pressed="true"><svg viewBox="0 0 26 26" aria-hidden="true"><path d="M3 20 L9 12 L14 16 L23 5" class="nf s-tint" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Visitors surge</button>
+          <button class="sig" type="button" data-i="1" aria-pressed="false"><svg viewBox="0 0 26 26" aria-hidden="true"><path d="M13 4 V20 M7 14 L13 20 L19 14" class="nf s-tint" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Quiet scroll</button>
+          <button class="sig" type="button" data-i="2" aria-pressed="false"><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="8" class="nf s-tint" stroke-width="2.6"/><path d="M13 8 V13 L16 15" class="nf s-tint" stroke-width="2.6" stroke-linecap="round"/></svg>Calm week</button>
+          <button class="sig" type="button" data-i="3" aria-pressed="false"><svg viewBox="0 0 26 26" aria-hidden="true"><path d="M8 4 V16 L11 13 L14 20 L16 19 L13 12 L17 12Z" class="nf s-tint" stroke-width="2.2" stroke-linejoin="round"/></svg>Curious hovers</button>
+        </div>
+        <div class="breath-box">
+          <div class="breath" id="breath" aria-live="polite"><span id="breathLabel">Ready</span></div>
+          <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+            <p style="color:var(--ink-soft);max-width:30ch">Take three slow breaths before any big edit.</p>
+            <button class="btn ghost" id="breathBtn" type="button">Take a breath</button>
+          </div>
+        </div>
+      </div>
+      <div class="col readout" id="readout" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- PILLAR 3 -->
+  <section class="pillar wrap" id="pillar-3">
+    <div class="head">
+      <div class="txt">
+        <span class="eyebrow">Pillar 3 of 4 · Respond with flexibility</span>
+        <h2>Choose your move with perspective and a flexible plan.</h2>
+        <p class="lead">Speaking to yourself like a trusted coach widens your view. A flexible mindset then lets you rotate angles on your page with curiosity, keeping whatever resonates and trying fresh ideas with joy.</p>
+        <ul class="practice"><li>Use the voice of a coach</li><li>Rotate tactics with curiosity</li></ul>
+      </div>
+      <div class="art">
+        <svg viewBox="0 0 240 200" role="img" aria-label="A path that branches into three directions, one glowing">
+          <path d="M120 190 V120" class="nf s-tint" stroke-width="6" stroke-linecap="round"/>
+          <path d="M120 120 Q120 90 70 66 L48 54" class="nf s-line" stroke-width="6" stroke-linecap="round"/>
+          <path d="M120 120 V50" class="nf s-tint dash" stroke-width="6" stroke-linecap="round"/>
+          <path d="M120 120 Q120 90 170 66 L192 54" class="nf s-line" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="44" cy="50" r="18" class="f-surf s-line" stroke-width="3"/>
+          <circle cx="120" cy="30" r="22" class="f-leaf s-tint pulse" stroke-width="3"/>
+          <circle cx="196" cy="50" r="18" class="f-surf s-line" stroke-width="3"/>
+          <path d="M112 30 L118 36 L130 22" class="nf s-ink" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="120" cy="190" r="9" class="f-tint float"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="panel cols">
+      <div class="col">
+        <div class="tool-title">Voice Shift</div>
+        <p style="color:var(--ink-soft)">Pick a voice for your pre-launch self-talk.</p>
+        <div class="seg" id="voiceSeg" role="group" aria-label="Voice">
+          <button class="chip" type="button" data-v="first" aria-pressed="false">I</button>
+          <button class="chip" type="button" data-v="second" aria-pressed="false">You</button>
+          <button class="chip" type="button" data-v="third" aria-pressed="true">My name</button>
+        </div>
+        <label class="fld" for="myName"><span>Your name</span>
+          <input type="text" id="myName" value="Sam" maxlength="20" autocomplete="off"></label>
+        <ul class="line-list" id="voiceLines" aria-live="polite"></ul>
+        <label class="fld"><span class="row"><span>Perspective</span><output id="persOut">Wide</output></span>
+          <div class="meter"><i id="persBar" style="width:92%"></i></div></label>
+      </div>
+      <div class="col">
+        <div class="tool-title">Angle Rotator</div>
+        <div class="mini" aria-live="polite">
+          <div class="bar"><i></i><i></i><i></i><span>Sample page · Clay &amp; Co. Studio</span></div>
+          <div class="body" id="angleBody"></div>
+        </div>
+        <div class="seg" style="align-items:center">
+          <button class="btn" id="pivotBtn" type="button">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 8 A6.5 6.5 0 1 0 16.5 12 M16 3 V8 H11" class="nf" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Try the next angle</button>
+          <span class="tag" id="angleTag"></span>
+        </div>
+        <p class="note">Give each angle one week to shine, then rotate with curiosity and keep the best.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLAR 4 -->
+  <section class="pillar flip wrap" id="pillar-4">
+    <div class="head">
+      <div class="txt">
+        <span class="eyebrow">Pillar 4 of 4 · Rise through purpose</span>
+        <h2>A strong reason makes every step feel lighter.</h2>
+        <p class="lead">Curiosity, mastery and your values power the climb from within. Add the joy of serving others, and your landing page becomes a warm invitation that visitors feel straight away.</p>
+        <ul class="practice"><li>Choose inner motivation</li><li>Serve the people you love</li></ul>
+      </div>
+      <div class="art">
+        <svg viewBox="0 0 240 200" role="img" aria-label="A turning compass surrounded by connected community dots">
+          <g class="spin" style="animation-duration:40s">
+            <circle cx="120" cy="100" r="78" class="nf s-line dash" stroke-width="2"/>
+          </g>
+          <g class="s-line" stroke-width="2"><line x1="120" y1="100" x2="52" y2="62"/><line x1="120" y1="100" x2="192" y2="58"/><line x1="120" y1="100" x2="60" y2="152"/><line x1="120" y1="100" x2="190" y2="150"/></g>
+          <circle cx="52" cy="62" r="11" class="f-tint float"/>
+          <circle cx="192" cy="58" r="11" class="f-tint float d2"/>
+          <circle cx="60" cy="152" r="11" class="f-tint float d3"/>
+          <circle cx="190" cy="150" r="11" class="f-tint float d2"/>
+          <circle cx="120" cy="100" r="40" class="f-leaf s-tint" stroke-width="3"/>
+          <g class="spin" style="animation-duration:14s">
+            <path d="M120 66 L130 100 L120 134 L110 100Z" class="f-ink"/>
+            <path d="M120 66 L130 100 L110 100Z" class="f-tint"/>
+          </g>
+          <circle cx="120" cy="100" r="5" class="f-bg"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="panel cols">
+      <div class="col">
+        <div class="tool-title">Purpose Compass</div>
+        <div>
+          <p style="margin-bottom:10px;color:var(--ink-soft)">Who do you love to help?</p>
+          <div class="seg" id="whoSeg" role="group" aria-label="Audience">
+            <button class="chip" type="button" data-w="makers" aria-pressed="true">Makers</button>
+            <button class="chip" type="button" data-w="coaches" aria-pressed="false">Coaches</button>
+            <button class="chip" type="button" data-w="studios" aria-pressed="false">Studios</button>
+            <button class="chip" type="button" data-w="clubs" aria-pressed="false">Clubs</button>
+          </div>
+        </div>
+        <div>
+          <p style="margin-bottom:10px;color:var(--ink-soft)">What lights you up?</p>
+          <div class="seg" id="driveSeg" role="group" aria-label="Motivation">
+            <button class="chip" type="button" data-d="curiosity" aria-pressed="false">Curiosity</button>
+            <button class="chip" type="button" data-d="mastery" aria-pressed="false">Mastery</button>
+            <button class="chip" type="button" data-d="values" aria-pressed="true">Values</button>
+          </div>
+        </div>
+        <p class="note" id="purposeNote"></p>
+      </div>
+      <div class="col">
+        <div class="tool-title">Your hero section, live</div>
+        <div class="mini" aria-live="polite">
+          <div class="bar"><i></i><i></i><i></i><span>your-page.easylandx</span></div>
+          <div class="body" id="purposeBody"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta wrap" aria-labelledby="ctaTitle">
+    <div class="txt">
+      <span class="eyebrow" style="color:var(--ink)">Your next step</span>
+      <h2 id="ctaTitle">Build your landing page with EasyLandX.</h2>
+      <p style="color:var(--ink);opacity:.9;max-width:52ch">See clearly, read the signals, respond with flexibility and rise through purpose. Your page is ready to begin its climb.</p>
+      <div><a class="btn big" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to EasyLandX
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" class="nf" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    </div>
+    <svg viewBox="0 0 240 200" role="img" aria-label="Four stepping stones rising toward a flag">
+      <g class="float"><rect x="14" y="150" width="46" height="40" rx="8" class="f-surf s-ink" stroke-width="2"/></g>
+      <g class="float d2"><rect x="66" y="118" width="46" height="72" rx="8" class="f-surf s-ink" stroke-width="2"/></g>
+      <g class="float d3"><rect x="118" y="86" width="46" height="104" rx="8" class="f-surf s-ink" stroke-width="2"/></g>
+      <g class="float d2"><rect x="170" y="54" width="46" height="136" rx="8" class="f-surf s-ink" stroke-width="2"/></g>
+      <line x1="193" y1="54" x2="193" y2="14" class="s-ink" stroke-width="3" stroke-linecap="round"/>
+      <polygon class="f-ink" points="193,14 193,34 222,24">
+        <animate attributeName="points" dur="2.2s" repeatCount="indefinite" values="193,14 193,34 222,24;193,14 193,34 216,29;193,14 193,34 222,24"/>
+      </polygon>
+    </svg>
+  </section>
+
+  <div class="foot wrap">
+    <span>EasyLandX · landing pages made simple</span>
+    <span>Ideas inspired by Steve Magness, <em>Do Hard Things</em>.</span>
+  </div>
+</main>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function pressGroup(container, attr, onPick) {
+    container.addEventListener("click", function (e) {
+      var b = e.target.closest("button[" + attr + "]");
+      if (!b) return;
+      container.querySelectorAll("button[" + attr + "]").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      onPick(b.getAttribute(attr));
+    });
+  }
+
+  /* ---------- Pillar 1: Pace Planner ---------- */
+  var startKey = "fresh";
+  var mult = { fresh: 1, draft: 0.6, live: 0.35 };
+  var stoneNames = ["Clear promise", "Hero", "Benefits", "Proof", "Story", "Offer", "FAQ", "Gallery", "Contact"];
+  var lastStoneCount = 0;
+  function plan() {
+    var h = +$("hours").value, s = +$("sections").value;
+    $("hoursOut").textContent = h + " h";
+    $("secOut").textContent = s;
+    var total = (s * 2.5 + 3) * mult[startKey];
+    total = Math.round(total * 2) / 2;
+    var days = Math.max(1, Math.ceil(total / h * 7));
+    var daily = Math.round(h / 7 * 60);
+    $("days").textContent = days;
+    $("totalH").textContent = total + " h";
+    $("dailyM").textContent = daily + " min";
+    var note = days <= 7 ? "A one-week sprint with plenty of room to enjoy the process."
+      : days <= 21 ? "A few weeks of steady, energising progress. Your pace is a great fit."
+      : "A relaxed runway that keeps your energy high all the way to launch.";
+    $("paceNote").textContent = note;
+    var count = s + 1;
+    var box = $("stones");
+    if (count !== lastStoneCount) {
+      box.innerHTML = "";
+      for (var i = 0; i < count; i++) {
+        var d = document.createElement("div");
+        d.className = "stone" + (i === count - 1 ? " last" : "");
+        var name = i === count - 1 ? "Launch" : stoneNames[i];
+        d.innerHTML = "<i style=\"animation-delay:" + (i * 60) + "ms\">" + (i + 1) + "</i><span>" + name + "</span>";
+        box.appendChild(d);
+      }
+      lastStoneCount = count;
+    }
+  }
+  $("hours").addEventListener("input", plan);
+  $("sections").addEventListener("input", plan);
+  pressGroup($("startSeg"), "data-start", function (v) { startKey = v; plan(); });
+  plan();
+
+  /* ---------- Pillar 2: Signal Reader ---------- */
+  var signals = [
+    { name: "Visitors surge", sig: "Your audience is arriving ready to explore.", frame: "Rising attention is your page warming up for action, just like a racing heart before a great performance.", next: "Make your main button easy to spot, then celebrate the wave." },
+    { name: "Quiet scroll", sig: "Visitors are enjoying the top of the page.", frame: "A pause gives you information. Pausing yourself before editing keeps every decision sharp and kind.", next: "Lift your strongest benefit a little higher and watch the next few visits." },
+    { name: "Calm week", sig: "Fewer visitors arrived this week.", frame: "A calmer week is a window to refine, learn and prepare something wonderful.", next: "Share the page with three people who love your work and invite their thoughts." },
+    { name: "Curious hovers", sig: "Visitors are drawn to your button.", frame: "Curiosity is warm interest. A small, friendly nudge can turn it into action.", next: "Add one reassuring line under the button that tells people what happens next." }
+  ];
+  function showSignal(i) {
+    var s = signals[i];
+    var r = $("readout");
+    r.innerHTML = "<div class=\"fade\"><div class=\"tool-title\">Calm reading · " + s.name + "</div><dl>" +
+      "<div><dt>What it signals</dt><dd>" + s.sig + "</dd></div>" +
+      "<div><dt>Friendly reframe</dt><dd>" + s.frame + "</dd></div>" +
+      "<div><dt>Your next move</dt><dd>" + s.next + "</dd></div></dl></div>";
+  }
+  pressGroup($("signals"), "data-i", function (v) { showSignal(+v); });
+  showSignal(0);
+
+  var breathing = false;
+  $("breathBtn").addEventListener("click", function () {
+    if (breathing) return;
+    breathing = true;
+    var btn = $("breathBtn"), circle = $("breath"), label = $("breathLabel");
+    btn.disabled = true; btn.textContent = "Breathing";
+    var cycles = 3, step = 0, ms = reduce ? 1200 : 4000;
+    function tick() {
+      if (step >= cycles * 2) {
+        circle.classList.remove("in");
+        label.textContent = "Ready";
+        btn.disabled = false; btn.textContent = "Take a breath";
+        breathing = false;
+        return;
+      }
+      var inhale = step % 2 === 0;
+      circle.classList.toggle("in", inhale);
+      label.textContent = inhale ? "Breathe in" : "Breathe out";
+      step++;
+      setTimeout(tick, ms);
+    }
+    tick();
+  });
+
+  /* ---------- Pillar 3: Voice Shift + Angle Rotator ---------- */
+  var voices = {
+    first: ["I am ready to share this page.", "I adjust the plan with every lesson.", "I build this for the people who matter most."],
+    second: ["You are ready to share this page.", "You adjust the plan with every lesson.", "You build this for the people who matter most."],
+    third: ["{n} is ready to share this page.", "{n} adjusts the plan with every lesson.", "{n} builds this for the people who matter most."]
+  };
+  var persp = { first: [62, "Growing"], second: [80, "Broad"], third: [94, "Wide"] };
+  var voiceKey = "third";
+  function esc(t) { return t.replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]; }); }
+  function renderVoice() {
+    var n = esc(($("myName").value || "Sam").trim() || "Sam");
+    var ul = $("voiceLines");
+    ul.innerHTML = voices[voiceKey].map(function (l) { return "<li>" + l.replace(/\{n\}/g, n) + "</li>"; }).join("");
+    $("persBar").style.width = persp[voiceKey][0] + "%";
+    $("persOut").textContent = persp[voiceKey][1];
+  }
+  pressGroup($("voiceSeg"), "data-v", function (v) { voiceKey = v; renderVoice(); });
+  $("myName").addEventListener("input", renderVoice);
+  renderVoice();
+
+  var angles = [
+    { h: "Handmade ceramics for the table you love.", p: "Small-batch mugs and bowls, shaped by hand.", fit: "Fits craft lovers" },
+    { h: "Bring warmth to every meal you share.", p: "Gifts that turn a regular dinner into a memory.", fit: "Fits gift seekers" },
+    { h: "Fresh from the studio, shipped this week.", p: "Pick your favourite piece and it is on its way.", fit: "Fits quick shoppers" }
+  ];
+  var ai = 0;
+  function renderAngle(animate) {
+    var a = angles[ai];
+    var b = $("angleBody");
+    b.innerHTML = "<div class=\"" + (animate ? "fade" : "") + "\" style=\"display:flex;flex-direction:column;gap:14px;align-items:flex-start\"><h4>" + a.h + "</h4><p>" + a.p + "</p><span class=\"fake-btn\">Shop the collection</span></div>";
+    $("angleTag").textContent = "Angle " + (ai + 1) + " of " + angles.length + " · " + a.fit;
+  }
+  $("pivotBtn").addEventListener("click", function () { ai = (ai + 1) % angles.length; renderAngle(true); });
+  renderAngle(false);
+
+  /* ---------- Pillar 4: Purpose Compass ---------- */
+  var heads = {
+    makers: { curiosity: "Explore what your craft can become, together with people who love it.", mastery: "Craft that grows sharper every season, shared with those who value it.", values: "Made with care, offered to people who care right back.", cta: "Meet the maker", who: "makers" },
+    coaches: { curiosity: "Discover your next chapter with a guide who loves great questions.", mastery: "Grow your skills with a coach who keeps refining the craft.", values: "Guidance rooted in what matters most to you.", cta: "Book a first chat", who: "coaches" },
+    studios: { curiosity: "Step in, try something new and see where it takes you.", mastery: "Train, practise and celebrate every level you reach.", values: "A space built on welcome, where everyone belongs.", cta: "Join a class", who: "studios" },
+    clubs: { curiosity: "Meet people, try new things and see what unfolds.", mastery: "Sharpen your skills alongside friends who cheer you on.", values: "A club that grows stronger because everyone lifts each other up.", cta: "Join the club", who: "clubs" }
+  };
+  var driveName = { curiosity: "curiosity", mastery: "mastery", values: "your values" };
+  var who = "makers", drive = "values";
+  function renderPurpose() {
+    var o = heads[who];
+    $("purposeBody").innerHTML = "<div class=\"fade\" style=\"display:flex;flex-direction:column;gap:14px;align-items:flex-start\"><span class=\"tag\">For " + o.who + " and the people they serve</span><h4>" + o[drive] + "</h4><p>Everything on this page helps visitors find their next step quickly and happily.</p><span class=\"fake-btn\">" + o.cta + "</span></div>";
+    $("purposeNote").textContent = "Powered by " + driveName[drive] + ", your headline invites " + o.who + " and their community to join in.";
+  }
+  pressGroup($("whoSeg"), "data-w", function (v) { who = v; renderPurpose(); });
+  pressGroup($("driveSeg"), "data-d", function (v) { drive = v; renderPurpose(); });
+  renderPurpose();
+})();
+</script>
+
+</body></html>
