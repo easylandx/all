@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX | Landing Pages for the Ride of a Lifetime</title>
+<style>
+:root{--bg:#0B2545;--gold:#FFC857;--card:rgba(255,200,87,.07);--line:rgba(255,200,87,.28);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--gold);font-family:"Trebuchet MS",Verdana,system-ui,sans-serif;line-height:1.65;overflow-x:hidden}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(28px,9vw,120px)}
+section{padding:clamp(72px,11vw,130px) 0}
+h1,h2,h3{font-weight:900;line-height:1.1;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,7vw,4.6rem)}
+h2{font-size:clamp(1.9rem,4.5vw,3rem);margin-bottom:18px}
+h3{font-size:1.25rem;margin-bottom:8px}
+p{opacity:.9;max-width:62ch}
+.eyebrow{font-weight:800;letter-spacing:.2em;font-size:.78rem;text-transform:uppercase;opacity:.75;margin-bottom:14px;display:block}
+nav{position:sticky;top:0;z-index:20;background:rgba(11,37,69,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-weight:900;font-size:1.3rem;letter-spacing:-.02em}
+.btn{display:inline-block;background:var(--gold);color:var(--bg);font-weight:900;text-decoration:none;padding:14px 28px;border-radius:999px;border:0;cursor:pointer;font-size:1rem;font-family:inherit;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 10px 30px rgba(255,200,87,.35)}
+.btn.ghost{background:transparent;color:var(--gold);border:2px solid var(--gold)}
+.hero{padding-top:clamp(56px,8vw,100px);padding-bottom:40px;position:relative}
+.hero p{font-size:1.15rem;margin:22px 0 32px}
+.hero .row{display:flex;gap:14px;flex-wrap:wrap}
+.ride{width:100%;height:auto;margin-top:50px;display:block;overflow:visible}
+.track{stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 3s ease forwards .3s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.star{animation:tw 2.4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+.star{transform-box:fill-box;transform-origin:center}
+.float{animation:fl 5s ease-in-out infinite}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:none}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin:30px 0 22px}
+.tab{background:transparent;color:var(--gold);border:2px solid var(--line);padding:10px 18px;border-radius:999px;font-weight:800;cursor:pointer;font-family:inherit;font-size:.95rem;transition:.2s}
+.tab:hover{border-color:var(--gold)}
+.tab[aria-selected=true]{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(24px,4vw,44px);display:grid;grid-template-columns:150px 1fr;gap:34px;align-items:center;animation:pop .45s ease}
+@keyframes pop{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.panel svg{width:150px;height:150px}
+.tag{display:inline-block;background:var(--gold);color:var(--bg);font-weight:900;font-size:.75rem;padding:4px 12px;border-radius:999px;margin:14px 0 6px;letter-spacing:.06em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:34px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px;transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-8px);border-color:var(--gold)}
+.card .n{font-size:3rem;font-weight:900;line-height:1;margin-bottom:10px;-webkit-text-stroke:2px var(--gold);color:transparent}
+.card p{font-size:.97rem}
+.lab{display:grid;grid-template-columns:1fr 1.15fr;gap:34px;margin-top:34px;align-items:start}
+.toggles{display:flex;flex-direction:column;gap:14px}
+.tg{display:flex;gap:16px;align-items:center;text-align:left;background:var(--card);color:var(--gold);border:2px solid var(--line);border-radius:22px;padding:18px 20px;cursor:pointer;font-family:inherit;transition:.25s;width:100%}
+.tg:hover{border-color:var(--gold)}
+.tg.on{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.tg b{display:block;font-size:1.05rem}
+.tg span{font-size:.88rem;opacity:.85}
+.tg i{flex:none;width:34px;height:34px;border-radius:50%;border:2px solid currentColor;display:grid;place-items:center;font-style:normal;font-weight:900}
+.meter{height:14px;border-radius:99px;background:var(--card);border:1px solid var(--line);overflow:hidden;margin-top:6px}
+.meter div{height:100%;width:0;background:var(--gold);transition:width .6s cubic-bezier(.3,1.4,.5,1)}
+.msg{margin-top:12px;font-weight:800;min-height:3.4em}
+.browser{background:var(--bg);border:2px solid var(--gold);border-radius:20px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.bar{display:flex;gap:7px;padding:12px 16px;border-bottom:2px solid var(--gold);align-items:center}
+.bar u{width:11px;height:11px;border-radius:50%;background:var(--gold);opacity:.6;display:block}
+.bar em{margin-left:10px;flex:1;background:var(--card);border-radius:99px;padding:2px 14px;font-size:.78rem;font-style:normal;opacity:.8}
+.screen{padding:24px;min-height:330px;display:flex;flex-direction:column;gap:14px}
+.blk{border:2px dashed var(--line);border-radius:14px;padding:14px 16px;font-weight:800;font-size:.9rem;opacity:.35;transition:.5s;transform:scale(.97)}
+.blk.show{opacity:1;border:2px solid var(--gold);background:var(--card);transform:none}
+.blk small{display:block;font-weight:400;opacity:.85;margin-top:2px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.chips s{text-decoration:none;background:var(--gold);color:var(--bg);font-size:.7rem;font-weight:900;padding:2px 9px;border-radius:99px}
+.shine.show{animation:glow 2s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 0 rgba(255,200,87,0)}50%{box-shadow:0 0 28px rgba(255,200,87,.5)}}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:34px;align-items:center}
+.ring{width:190px;height:190px;position:relative;margin:0 auto}
+.ring svg{transform:rotate(-90deg)}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:2.4rem;font-weight:900}
+.ring circle{fill:none;stroke-width:14}
+.ring .fg{stroke:var(--gold);stroke-linecap:round;stroke-dasharray:502;stroke-dashoffset:502;transition:stroke-dashoffset .7s ease}
+.ring .bgc{stroke:var(--line)}
+.steps{display:flex;flex-direction:column;gap:12px}
+.st{display:flex;gap:14px;align-items:center;background:var(--card);border:2px solid var(--line);border-radius:18px;padding:14px 18px;cursor:pointer;color:var(--gold);font-family:inherit;font-size:1rem;font-weight:800;text-align:left;transition:.25s}
+.st:hover{border-color:var(--gold)}
+.st.done{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.st i{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid currentColor;display:grid;place-items:center;font-style:normal;font-size:.85rem}
+.cta{text-align:center;padding:clamp(80px,12vw,150px) 0}
+.cta p{margin:18px auto 34px}
+.cta .btn{font-size:1.25rem;padding:20px 46px}
+footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;font-size:.9rem;opacity:.8}
+@media(max-width:760px){.panel,.lab,.split{grid-template-columns:1fr}.panel svg{margin:0 auto}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.track{stroke-dashoffset:0}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <span class="logo">Easy<span style="opacity:.7">LandX</span></span>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX &rarr;</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="eyebrow">Landing pages inspired by The Ride of a Lifetime</span>
+  <h1>Your best ride starts with one brilliant landing page.</h1>
+  <p>Robert Iger guided Disney through 15 years of bold growth with optimism, quality, and decisive action. EasyLandX brings those same principles to your landing page, so your small business can welcome visitors with confidence and turn them into customers.</p>
+  <div class="row">
+    <a class="btn" href="#lab">Try the Pillar Builder</a>
+    <a class="btn ghost" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+  </div>
+
+  <svg class="ride" viewBox="0 0 900 260" aria-hidden="true">
+    <g fill="#FFC857">
+      <path class="star" d="M80 40l6 14 14 6-14 6-6 14-6-14-14-6 14-6z"/>
+      <path class="star" style="animation-delay:.6s" d="M470 28l5 11 11 5-11 5-5 11-5-11-11-5 11-5z"/>
+      <path class="star" style="animation-delay:1.2s" d="M790 60l6 13 13 6-13 6-6 13-6-13-13-6 13-6z"/>
+      <circle class="star" style="animation-delay:.3s" cx="250" cy="70" r="4"/>
+      <circle class="star" style="animation-delay:.9s" cx="640" cy="40" r="4"/>
+    </g>
+    <g class="float" fill="none" stroke="#FFC857" stroke-width="4" stroke-linejoin="round">
+      <path d="M690 190v-60l20-20 20 20v60z"/><path d="M700 130l10-34 10 34"/><path d="M706 190v-24h8v24"/>
+      <path d="M740 190v-80l16-18 16 18v80z"/><path d="M820 190v-50l14-14 14 14v50z"/>
+    </g>
+    <path id="trk" class="track" d="M20 220C120 220 150 60 260 60S360 200 460 200 560 90 640 110 760 215 880 215" fill="none" stroke="#FFC857" stroke-width="6" stroke-linecap="round"/>
+    <g>
+      <rect x="-18" y="-26" width="36" height="22" rx="7" fill="#FFC857"/>
+      <circle cx="-8" cy="-2" r="5" fill="#FFC857"/><circle cx="8" cy="-2" r="5" fill="#FFC857"/>
+      <animateMotion dur="7s" repeatCount="indefinite" rotate="auto" begin="2.4s"><mpath href="#trk"/></animateMotion>
+    </g>
+  </svg>
+</div></header>
+
+<section id="lessons"><div class="wrap reveal">
+  <span class="eyebrow">Five core lessons</span>
+  <h2>Principles that power every page we create</h2>
+  <p>Tap each lesson to see how it shapes an EasyLandX landing page.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="panel" id="panel" role="tabpanel"></div>
+</div></section>
+
+<section id="strategies"><div class="wrap">
+  <div class="reveal">
+    <span class="eyebrow">Four strategic priorities</span>
+    <h2>A framework for a landing page that shines</h2>
+    <p>Iger organized Disney's growth around four priorities. Each one translates into a clear step for your page.</p>
+  </div>
+  <div class="grid">
+    <div class="card reveal"><div class="n">01</div><h3>Focus on the Core</h3><p>Shape one simple vision built on three pillars: quality content, cutting-edge technology, and global reach. Every section of your page supports one clear message and one clear action.</p></div>
+    <div class="card reveal"><div class="n">02</div><h3>Build Trust, Protect Creativity</h3><p>Deals at Disney flourished through authentic relationships. Your page grows the same way: transparent offers, genuine stories, and a voice that stays true to your brand.</p></div>
+    <div class="card reveal"><div class="n">03</div><h3>Lead Through Change</h3><p>Own results quickly, celebrate what was learned, and keep moving toward solutions. Reinvent boldly, as Disney+ did, and invest today in a stronger tomorrow.</p></div>
+    <div class="card reveal"><div class="n">04</div><h3>Practice Great Leadership</h3><p>Lead with integrity and candor, treat every visitor with equal respect, and pair thoughtful analysis with calm, energetic action.</p></div>
+  </div>
+</div></section>
+
+<section id="lab"><div class="wrap">
+  <div class="reveal">
+    <span class="eyebrow">Interactive &middot; Pillar Builder</span>
+    <h2>Build your landing page on three pillars</h2>
+    <p>Iger's simple vision had three pillars. Switch each one on and watch your landing page come to life.</p>
+  </div>
+  <div class="lab reveal">
+    <div>
+      <div class="toggles">
+        <button class="tg" data-p="content"><i>+</i><div><b>Branded Content</b><span>Excellent copy, photos, and stories that reflect your brand</span></div></button>
+        <button class="tg" data-p="tech"><i>+</i><div><b>Cutting-Edge Technology</b><span>Fast loading, smooth animation, and delightful interactivity</span></div></button>
+        <button class="tg" data-p="global"><i>+</i><div><b>Global Reach</b><span>Mobile-ready layouts and multiple languages for every visitor</span></div></button>
+      </div>
+      <div style="margin-top:26px"><b>Focus Score: <span id="score">0</span>%</b>
+        <div class="meter"><div id="bar"></div></div>
+        <div class="msg" id="msg">Pick a pillar to begin. Each one adds strength to your page.</div>
+      </div>
+    </div>
+    <div class="browser">
+      <div class="bar"><u></u><u></u><u></u><em>yourbusiness.com</em></div>
+      <div class="screen">
+        <div class="blk show">Your Headline<small>One clear promise, one clear button</small></div>
+        <div class="blk" id="b-content">Branded Content<small>Stories, visuals, and testimonials in your voice</small></div>
+        <div class="blk" id="b-tech">Cutting-Edge Technology<small>Lightning-fast pages with lively animation</small></div>
+        <div class="blk" id="b-global">Global Reach<small>Beautiful on every screen</small><div class="chips"><s>EN</s><s>ES</s><s>FR</s><s>PT</s><s>Mobile</s></div></div>
+        <div class="blk shine" id="b-all">Magic Moment<small>All three pillars shine together. Visitors become customers.</small></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="launch"><div class="wrap">
+  <div class="reveal">
+    <span class="eyebrow">Interactive &middot; Thoughtful Urgency</span>
+    <h2>Your launch path, one confident step at a time</h2>
+    <p>Balance calm analysis with energetic action. Tap each step as you complete it and watch your launch readiness grow.</p>
+  </div>
+  <div class="split reveal">
+    <div class="ring">
+      <svg viewBox="0 0 180 180" width="190" height="190"><circle class="bgc" cx="90" cy="90" r="80"/><circle class="fg" id="fg" cx="90" cy="90" r="80"/></svg>
+      <b id="pct">0%</b>
+    </div>
+    <div>
+      <div class="steps" id="steps"></div>
+      <div class="msg" id="lmsg"></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="cta"><div class="wrap reveal">
+  <span class="eyebrow">Ready when you are</span>
+  <h2>Let's create your ride of a lifetime</h2>
+  <p>EasyLandX crafts affordable, conversion-focused landing pages that help small businesses grow with optimism, quality, and style.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX &rarr;</a>
+</div></section>
+
+<footer><div class="wrap">EasyLandX &middot; Landing pages with heart. Inspired by lessons from <em>The Ride of a Lifetime</em> by Robert Iger.</div></footer>
+
+<script>
+const L=[
+ {t:"Innovate Boldly",tag:"EMBRACE NEW WAYS",d:"In a fast-moving world, bold bets keep a brand thriving for decades. Calculated innovation is the engine of long-term growth.",a:"Your landing page becomes a modern, direct channel to customers, with fresh design, smooth animation, and clear next steps.",i:'<circle cx="75" cy="75" r="22"/><path d="M75 15v18M75 117v18M15 75h18M117 75h18M33 33l13 13M104 104l13 13M117 33l-13 13M46 104l-13 13"/>'},
+ {t:"Honor the Culture",tag:"AUTHENTIC VOICE",d:"Great partnerships flourish when original talent and distinct cultures are celebrated and given creative freedom.",a:"Every EasyLandX page is custom-built around your brand's personality, colors, and story, so it feels unmistakably yours.",i:'<path d="M75 125S25 92 25 58a25 25 0 0150-8 25 25 0 0150 8c0 34-50 67-50 67z"/>'},
+ {t:"Quality Above All",tag:"EXCELLENCE WINS",d:"Brand equity grows from excellence. When quality leads, success and returns follow naturally.",a:"Sharp visuals, crisp copy, and fast load times give visitors a first impression worth remembering.",i:'<path d="M75 15l18 38 42 5-31 29 8 41-37-21-37 21 8-41-31-29 42-5z"/>'},
+ {t:"Lead With Optimism",tag:"HOPE & ENERGY",d:"Teams and customers are drawn to leaders who radiate hope and enthusiasm. Positivity fuels action.",a:"Warm, uplifting language greets visitors, highlights benefits, and invites them to say yes with a smile.",i:'<circle cx="75" cy="75" r="55"/><circle cx="55" cy="62" r="5" fill="#FFC857"/><circle cx="95" cy="62" r="5" fill="#FFC857"/><path d="M48 88q27 32 54 0"/>'},
+ {t:"Decide Decisively",tag:"MOVE FORWARD",d:"Gather insight, then choose. Confident decisions create momentum, and ownership of outcomes builds trust.",a:"One clear goal, one clear button. Your page guides visitors to a confident decision and a quick yes.",i:'<path d="M20 75h95M85 40l35 35-35 35"/>'}
+];
+const tabs=document.getElementById('tabs'),panel=document.getElementById('panel');
+function show(k){
+ [...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',j===k));
+ const x=L[k];
+ panel.innerHTML=`<svg viewBox="0 0 150 150" fill="none" stroke="#FFC857" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><g class="float">${x.i}</g></svg><div><h3>${x.t}</h3><p>${x.d}</p><span class="tag">${x.tag}</span><p><b>On your landing page:</b> ${x.a}</p></div>`;
+}
+L.forEach((x,k)=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.textContent=x.t;b.onclick=()=>show(k);tabs.appendChild(b)});
+show(0);
+
+const on=new Set(),M=["Pick a pillar to begin. Each one adds strength to your page.","Great start! Your page already has a strong foundation.","Wonderful! Two pillars create real momentum.","Fantastic! All three pillars shine together. Your page is ready to welcome the world."];
+document.querySelectorAll('.tg').forEach(b=>b.onclick=()=>{
+ const p=b.dataset.p;on.has(p)?on.delete(p):on.add(p);
+ b.classList.toggle('on',on.has(p));b.querySelector('i').textContent=on.has(p)?'\u2713':'+';
+ ['content','tech','global'].forEach(q=>document.getElementById('b-'+q).classList.toggle('show',on.has(q)));
+ document.getElementById('b-all').classList.toggle('show',on.size===3);
+ const s=Math.round(on.size/3*100);
+ document.getElementById('score').textContent=s;document.getElementById('bar').style.width=s+'%';
+ document.getElementById('msg').textContent=M[on.size];
+});
+
+const S=["Simplify the vision into one clear message","Build trust with an authentic story","Polish quality in every detail","Greet visitors with optimism and warmth","Decide, launch, and celebrate"],
+ LM=["Every great ride begins with a single step.","Lovely momentum! Keep going.","Halfway there and shining.","Almost at the summit.","So close. One more confident step.","Launch day! Your landing page is ready to welcome the world."];
+const done=new Set(),sw=document.getElementById('steps');
+S.forEach((t,k)=>{const b=document.createElement('button');b.className='st';b.innerHTML=`<i>${k+1}</i>${t}`;
+ b.onclick=()=>{done.has(k)?done.delete(k):done.add(k);b.classList.toggle('done',done.has(k));b.querySelector('i').textContent=done.has(k)?'\u2713':k+1;
+ const p=Math.round(done.size/S.length*100);
+ document.getElementById('pct').textContent=p+'%';
+ document.getElementById('fg').style.strokeDashoffset=502-502*p/100;
+ document.getElementById('lmsg').textContent=LM[done.size];};
+ sw.appendChild(b)});
+document.getElementById('lmsg').textContent=LM[0];
+
+const io=new IntersectionObserver(e=>e.forEach(n=>{if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX Landing Pages | The 1-Page Marketing Plan</title>
+<style>
+:root{--o:#FF5722;--n:#1A2B4C;--t:rgba(255,255,255,.22);--c:#FFE6DC;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;background:var(--o)}
+body{background:var(--o);color:var(--n);font-family:"Trebuchet MS",Verdana,sans-serif;font-weight:700;line-height:1.55}
+.w{max-width:1040px;margin:0 auto;padding:0 clamp(24px,8vw,110px)}
+section{padding:84px 0}
+h1{font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.05;font-weight:900;letter-spacing:-1px}
+h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:14px;line-height:1.1}
+.k{display:inline-block;background:var(--n);color:var(--c);padding:6px 14px;border-radius:99px;font-size:.8rem;letter-spacing:2px;margin-bottom:18px}
+p.s{font-size:1.1rem;max-width:620px;margin-bottom:34px}
+nav{position:sticky;top:0;z-index:5;background:var(--o);border-bottom:3px solid var(--n);padding-top:env(safe-area-inset-top,0px)}
+nav .w{display:flex;justify-content:space-between;align-items:center;height:62px}
+nav b{font-size:1.25rem;font-weight:900}
+.btn{display:inline-block;background:var(--n);color:var(--c);text-decoration:none;padding:14px 28px;border-radius:14px;font-weight:900;border:3px solid var(--n);transition:.25s;cursor:pointer;font-family:inherit;font-size:1rem}
+.btn:hover{background:var(--o);color:var(--n);transform:translateY(-4px) rotate(-1deg);box-shadow:6px 6px 0 var(--n)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-top:60px}
+.hero svg{width:100%;height:auto}
+.fl{animation:fl 4s ease-in-out infinite}.fl:nth-child(2n){animation-delay:-1.3s}.fl:nth-child(3n){animation-delay:-2.4s}
+@keyframes fl{50%{transform:translateY(-10px)}}
+.spin{transform-origin:center;transform-box:fill-box;animation:sp 14s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.rv{opacity:0;transform:translateY(30px);transition:.8s}.rv.in{opacity:1;transform:none}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.tab{background:transparent;color:var(--n);border:3px solid var(--n);padding:10px 20px;border-radius:99px;font-weight:900;cursor:pointer;font-family:inherit;transition:.2s}
+.tab.on{background:var(--n);color:var(--c)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
+.sq{background:var(--t);border:3px solid var(--n);border-radius:18px;padding:18px;cursor:pointer;transition:.25s;text-align:left;color:var(--n);font-family:inherit;min-height:120px;position:relative}
+.sq:hover{transform:translateY(-5px) scale(1.02)}
+.sq.on{background:var(--n);color:var(--c)}
+.sq i{font-style:normal;font-size:1.8rem;font-weight:900;display:block}
+.sq.dim{opacity:.35}
+.pnl{background:var(--n);color:var(--c);border-radius:22px;padding:28px;min-height:160px}
+.pnl h3{font-size:1.5rem;margin-bottom:8px;color:#fff}
+.pnl em{font-style:normal;display:block;margin-top:12px;padding-top:12px;border-top:2px dashed rgba(255,230,220,.4)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.card{background:var(--n);color:var(--c);border-radius:20px;padding:24px;transition:.3s}
+.card:hover{transform:translateY(-6px) rotate(-.6deg)}
+.card h3{color:#fff;margin-bottom:6px}
+.lab{background:var(--n);color:var(--c);border-radius:26px;padding:clamp(22px,4vw,40px)}
+.row{display:flex;justify-content:space-between;gap:10px;margin:18px 0 6px}
+input[type=range]{width:100%;accent-color:var(--o);height:28px}
+.big{font-size:clamp(2.4rem,7vw,4rem);font-weight:900;color:var(--o);line-height:1}
+.bar{height:16px;background:rgba(255,230,220,.2);border-radius:9px;overflow:hidden;margin-top:6px}
+.bar span{display:block;height:100%;width:0;background:var(--o);border-radius:9px;transition:width .5s}
+.fun{display:flex;flex-direction:column;align-items:center;gap:8px}
+.fun div{background:var(--n);color:var(--c);padding:14px;border-radius:14px;text-align:center;transition:.6s;opacity:.3;transform:scale(.9)}
+.fun div.on{opacity:1;transform:scale(1)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+.pulse{animation:pu 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pu{50%{transform:scale(1.12)}}
+.dash{stroke-dasharray:8 10;animation:da 1.2s linear infinite}
+@keyframes da{to{stroke-dashoffset:-18}}
+.cta{text-align:center;background:var(--n);color:var(--c);border-radius:34px;padding:64px 28px}
+.cta h2{color:#fff}.cta .btn{background:var(--o);color:var(--n);border-color:var(--o);font-size:1.15rem}
+.cta .btn:hover{background:var(--c);border-color:var(--c);box-shadow:6px 6px 0 var(--o)}
+footer{padding:36px 0 56px;text-align:center}
+@media(max-width:760px){.hero,.two{grid-template-columns:1fr}section{padding:60px 0}.grid{gap:10px}.sq{padding:12px;min-height:100px;font-size:.85rem}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav><div class="w"><b>EasyLandX</b><a class="btn" style="padding:9px 20px" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a></div></nav>
+
+<header class="w hero">
+<div>
+<span class="k">LANDING PAGES + THE 1-PAGE MARKETING PLAN</span>
+<h1>Your whole marketing journey, beautifully on one page.</h1>
+<p class="s" style="margin-top:20px">Inspired by Allan Dib's 9-square canvas, EasyLandX crafts affordable, conversion-focused landing pages that guide visitors from first hello to loyal advocate.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX &rarr;</a>
+<a class="btn" style="background:transparent;color:var(--n);margin-left:8px" href="#canvas">Explore the canvas</a>
+</div>
+<svg viewBox="0 0 400 400" aria-label="Animated nine square marketing canvas illustration">
+<rect x="20" y="20" width="360" height="360" rx="30" fill="#1A2B4C"/>
+<g id="art"></g>
+<circle cx="200" cy="200" r="46" fill="#FF5722" class="pulse"/>
+<path d="M180 200l14 14 28-30" stroke="#1A2B4C" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<g class="spin"><circle cx="200" cy="200" r="150" fill="none" stroke="#FF5722" stroke-width="3" class="dash" opacity=".6"/></g>
+</svg>
+</header>
+
+<section><div class="w rv">
+<span class="k">THE BIG IDEA</span>
+<h2>Marketing is a friendly system.</h2>
+<p class="s">Five core lessons from the 1-Page Marketing Plan shape every EasyLandX page.</p>
+<div class="cards">
+<div class="card"><h3>A Flowing System</h3><p>One page guides visitors from curious to loyal, step by step.</p></div>
+<div class="card"><h3>Direct Response</h3><p>Every section has a clear offer and a clear call to action you can measure.</p></div>
+<div class="card"><h3>Niche Focus</h3><p>Speaking to your ideal client makes your message shine and your pricing confident.</p></div>
+<div class="card"><h3>Follow-Up Magic</h3><p>Friendly sequences warm up leads until they are ready to say yes.</p></div>
+<div class="card"><h3>Lifetime Value</h3><p>Delighted clients return, upgrade, and introduce friends.</p></div>
+</div>
+</div></section>
+
+<section id="canvas"><div class="w rv">
+<span class="k">INTERACTIVE CANVAS</span>
+<h2>Tap a square. See it on your landing page.</h2>
+<p class="s">Nine building blocks across three phases. Choose a phase to spotlight it, then tap any square.</p>
+<div class="tabs" id="tabs">
+<button class="tab on" data-p="all">All 9</button>
+<button class="tab" data-p="0">Before: Prospect</button>
+<button class="tab" data-p="1">During: Lead</button>
+<button class="tab" data-p="2">After: Customer</button>
+</div>
+<div class="grid" id="grid"></div>
+<div class="pnl" id="pnl"></div>
+</div></section>
+
+<section><div class="w two rv">
+<div>
+<span class="k">STEP 1 &middot; TARGET MARKET</span>
+<h2>Find your sweet spot with the PVP Index.</h2>
+<p class="s">Score a niche on Personal Fulfillment, Value to Marketplace, and Profitability. Slide to discover how bright it shines.</p>
+</div>
+<div class="lab">
+<div class="row"><span>Personal Fulfillment</span><span id="v1">7</span></div><input type="range" min="1" max="10" value="7" id="r1">
+<div class="row"><span>Value to Marketplace</span><span id="v2">7</span></div><input type="range" min="1" max="10" value="7" id="r2">
+<div class="row"><span>Profitability</span><span id="v3">7</span></div><input type="range" min="1" max="10" value="7" id="r3">
+<div class="row" style="margin-top:26px"><span>PVP Score</span><span class="big" id="pv">21</span></div>
+<div class="bar"><span id="pb"></span></div>
+<p id="pm" style="margin-top:14px"></p>
+</div>
+</div></section>
+
+<section><div class="w two rv">
+<div class="lab">
+<div class="fun" id="fun">
+<div>Prospect discovers your page</div>
+<div>Lead magnet: free guide or checklist</div>
+<div>Friendly nurture emails</div>
+<div>Irresistible offer + guarantee</div>
+<div>World-class onboarding</div>
+<div>Referrals welcome new prospects</div>
+</div>
+</div>
+<div>
+<span class="k">STEPS 4 &ndash; 6 &middot; THE FOLLOW-UP FLOW</span>
+<h2>Every visitor gets a warm welcome.</h2>
+<p class="s">The money is in the follow-up. Offer value first, build trust, then invite the next step with confidence. Press play to watch the journey glow.</p>
+<button class="btn" id="play">&#9654; Play the journey</button>
+</div>
+</div></section>
+
+<section><div class="w rv">
+<span class="k">STEPS 7 &ndash; 9 &middot; LIFETIME VALUE</span>
+<h2>Watch delighted customers multiply your results.</h2>
+<p class="s">Adjust the sliders to see how repeat purchases and referrals grow yearly revenue.</p>
+<div class="lab">
+<div class="two" style="gap:28px">
+<div>
+<div class="row"><span>New customers per month</span><span id="a1">10</span></div><input type="range" min="1" max="100" value="10" id="s1">
+<div class="row"><span>Average purchase ($)</span><span id="a2">150</span></div><input type="range" min="20" max="2000" step="10" value="150" id="s2">
+<div class="row"><span>Purchases per customer per year</span><span id="a3">2</span></div><input type="range" min="1" max="12" value="2" id="s3">
+<div class="row"><span>Referrals per happy customer</span><span id="a4">0.5</span></div><input type="range" min="0" max="3" step=".1" value=".5" id="s4">
+</div>
+<div style="text-align:center">
+<div style="opacity:.8">Yearly revenue potential</div>
+<div class="big" id="rev">$0</div>
+<svg viewBox="0 0 240 120" style="width:100%;margin-top:14px"><g id="bars"></g></svg>
+</div>
+</div>
+</div>
+</div></section>
+
+<section><div class="w rv">
+<span class="k">WHAT YOU GET</span>
+<h2>A landing page built around your canvas.</h2>
+<p class="s">EasyLandX is a creative studio. Each page is crafted for your business and your niche.</p>
+<div class="cards">
+<div class="card"><h3>Sharp USP</h3><p>A headline that answers why clients choose you.</p></div>
+<div class="card"><h3>Lead Magnet Spot</h3><p>A welcoming offer that grows your contact list.</p></div>
+<div class="card"><h3>Smooth Buying Path</h3><p>Guarantees and clear steps that make yes easy.</p></div>
+<div class="card"><h3>Referral Corner</h3><p>An effortless way for fans to introduce friends.</p></div>
+</div>
+</div></section>
+
+<section><div class="w rv">
+<div class="cta">
+<h2>Ready to place your plan on one beautiful page?</h2>
+<p class="s" style="margin:0 auto 28px">Let's craft an affordable, conversion-focused landing page that makes your 9 squares shine.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX &rarr;</a>
+</div>
+</div></section>
+<footer><div class="w">EasyLandX &middot; Landing pages that grow small businesses &middot; Inspired by <em>The 1-Page Marketing Plan</em> by Allan Dib</div></footer>
+
+<script>
+const D=[
+["Select Your Target Market","Before","Choose an ultra-specific niche you love serving.","Your page speaks directly to one ideal client, so they feel instantly seen."],
+["Craft Your Message","Before","A Unique Selling Proposition answers why you are the clear choice.","EasyLandX turns your USP into a bold headline above the fold."],
+["Reach Prospects with Media","Before","Meet your niche where they already pay attention.","Pages load fast and match your ads, with measurable tracking built in."],
+["Capture Leads","During","Offer a free guide, checklist, or audit in exchange for contact details.","A friendly lead magnet form invites visitors to join your list."],
+["Nurture Leads","During","Educate, share stories, and build trust with automated follow-ups.","Your page connects to welcome sequences and shows case studies."],
+["Sales Conversion","During","Create a smooth path with guarantees and a high-value offer.","Clear pricing, a guarantee badge, and one confident call to action."],
+["Deliver a World-Class Experience","After","Exceed expectations during onboarding.","A thank-you page with next steps delights new clients right away."],
+["Increase Lifetime Value","After","Premium tiers, subscriptions, and complementary services.","Upgrade options sit beautifully beside your core offer."],
+["Orchestrate Referrals","After","Invite and reward introductions in a systematic way.","A referral corner makes sharing effortless and rewarding."]];
+const g=document.getElementById('grid'),p=document.getElementById('pnl');
+D.forEach((d,i)=>{const b=document.createElement('button');b.className='sq';b.innerHTML='<i>'+(i+1)+'</i>'+d[0];b.onclick=()=>show(i);g.appendChild(b)});
+function show(i){[...g.children].forEach((c,j)=>c.classList.toggle('on',i===j));const d=D[i];p.innerHTML='<h3>'+(i+1)+'. '+d[0]+' <small style="opacity:.7">('+d[1]+')</small></h3><p>'+d[2]+'</p><em>On your EasyLandX page: '+d[3]+'</em>'}
+show(0);
+document.getElementById('tabs').onclick=e=>{const t=e.target.closest('.tab');if(!t)return;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));const v=t.dataset.p;[...g.children].forEach((c,j)=>c.classList.toggle('dim',v!=='all'&&Math.floor(j/3)!=v));if(v!=='all')show(v*3)};
+// hero art
+const art=document.getElementById('art');let h='';
+for(let r=0;r<3;r++)for(let c=0;c<3;c++){const x=48+c*108,y=48+r*108,i=r*3+c;if(i!==4)h+='<rect class="fl" x="'+x+'" y="'+y+'" width="96" height="96" rx="16" fill="#FF5722" opacity="'+(.35+.08*i)+'" style="animation-delay:-'+(i*.45)+'s"/><text x="'+(x+48)+'" y="'+(y+60)+'" text-anchor="middle" font-size="34" font-weight="900" fill="#1A2B4C" font-family="Trebuchet MS,sans-serif">'+(i+1)+'</text>'}
+art.innerHTML=h;
+// PVP
+const m=["Keep exploring. Every slide brings you closer to your sweet spot.","Promising! Polish one score to make this niche glow.","Wonderful niche. Your message can truly shine here.","A shining sweet spot. Specialize with confidence!"];
+function pvp(){const a=+r1.value,b=+r2.value,c=+r3.value;v1.textContent=a;v2.textContent=b;v3.textContent=c;const s=a+b+c;pv.textContent=s;pb.style.width=(s/30*100)+'%';pm.textContent=m[s>=27?3:s>=21?2:s>=15?1:0]}
+[r1,r2,r3].forEach(x=>x.oninput=pvp);pvp();
+// funnel
+let T;play.onclick=()=>{clearTimeout(T);const f=[...document.getElementById('fun').children];f.forEach(x=>x.classList.remove('on'));let i=0;(function n(){if(i<f.length){f[i++].classList.add('on');T=setTimeout(n,700)}})()};
+// LTV
+function ltv(){const n=+s1.value,a=+s2.value,pc=+s3.value,rf=+s4.value;a1.textContent=n;a2.textContent=a;a3.textContent=pc;a4.textContent=rf;
+const base=n*12*a*pc,tot=base*(1+rf);rev.textContent='$'+Math.round(tot).toLocaleString('en-US');
+const vals=[n*12*a,base,tot],mx=Math.max(...vals);bars.innerHTML=vals.map((v,i)=>'<rect x="'+(20+i*76)+'" y="'+(100-v/mx*90)+'" width="52" height="'+(v/mx*90)+'" rx="8" fill="#FF5722"/><text x="'+(46+i*76)+'" y="116" text-anchor="middle" font-size="10" fill="#FFE6DC" font-weight="700">'+['First sale','Repeat','+ Referrals'][i]+'</text>').join('')}
+[s1,s2,s3,s4].forEach(x=>x.oninput=ltv);ltv();
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(x=>io.observe(x));
+</script>
+</body>
+</html>

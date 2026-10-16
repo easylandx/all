@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EasyLandX · Your Landing Page, Your Freedom</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#7B2CBF;--deep:#5A189A;--soft:rgba(255,255,255,.12);--ac:#FF9F1C;--tx:#fff;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Trebuchet MS",Verdana,system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+.wrap{max-width:1040px;margin-inline:auto;padding-inline:28px}
+section{padding-block:72px;position:relative}
+h1,h2,h3{font-family:Impact,"Arial Black",system-ui,sans-serif;letter-spacing:.5px;line-height:1.05;margin:0 0 14px;text-transform:uppercase}
+h1{font-size:clamp(2.6rem,8vw,5.2rem)}h2{font-size:clamp(1.9rem,5vw,3rem)}h3{font-size:1.3rem}
+.ac{color:var(--ac)}
+p{margin:0 0 14px;font-size:1.05rem}
+.tag{display:inline-block;background:var(--ac);color:var(--deep);font-weight:900;padding:4px 14px;border-radius:99px;letter-spacing:2px;font-size:.8rem;margin-bottom:16px}
+.btn{display:inline-block;background:var(--ac);color:var(--deep);font-weight:900;text-decoration:none;padding:16px 34px;border-radius:99px;font-size:1.1rem;border:3px solid var(--ac);transition:transform .2s,background .2s,color .2s;cursor:pointer;font-family:inherit}
+.btn:hover{transform:translateY(-4px) scale(1.04);background:transparent;color:var(--ac)}
+.pulse{animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,159,28,.7)}70%{box-shadow:0 0 0 20px rgba(255,159,28,0)}100%{box-shadow:0 0 0 0 rgba(255,159,28,0)}}
+nav{position:sticky;top:0;z-index:10;background:var(--deep);padding-block:10px}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{font-family:Impact,system-ui,sans-serif;font-size:1.5rem;letter-spacing:1px}
+nav .btn{padding:8px 20px;font-size:.95rem}
+.hero{padding-block:64px 80px;overflow:hidden}
+.hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+.float{animation:float 5s ease-in-out infinite}.f2{animation-delay:-2s}.f3{animation-delay:-3.5s}
+@keyframes float{50%{transform:translateY(-16px) rotate(4deg)}}
+.spin{animation:spin 18s linear infinite;transform-origin:center;transform-box:fill-box}
+@keyframes spin{to{transform:rotate(360deg)}}
+.card{background:var(--soft);border:2px solid rgba(255,255,255,.25);border-radius:22px;padding:26px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.deal{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:26px}
+.deal .card{text-align:center;transition:transform .25s}
+.deal .card:hover{transform:translateY(-8px) rotate(-1.5deg);border-color:var(--ac)}
+.deal b{display:block;font:900 4rem Impact,system-ui,sans-serif;color:var(--ac)}
+.band{background:var(--deep)}
+input[type=range]{width:100%;accent-color:var(--ac);height:30px}
+label{font-weight:700;display:flex;justify-content:space-between;gap:10px}
+.big{font:900 3.4rem Impact,system-ui,sans-serif;color:var(--ac);line-height:1}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-block:14px}
+.chip{background:transparent;color:#fff;border:2px solid #fff;border-radius:99px;padding:10px 18px;font:700 1rem inherit;font-family:inherit;cursor:pointer;transition:all .2s}
+.chip:hover{transform:scale(1.06)}
+.chip.on{background:var(--ac);border-color:var(--ac);color:var(--deep)}
+.meter{height:26px;background:var(--soft);border-radius:99px;overflow:hidden;margin-block:10px}
+.meter i{display:block;height:100%;width:0;background:var(--ac);border-radius:99px;transition:width .6s cubic-bezier(.2,1.4,.4,1)}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.stage{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+.reveal{opacity:0;transform:translateY(34px);transition:all .8s}
+.reveal.in{opacity:1;transform:none}
+.check{list-style:none;padding:0;margin:0}
+.check li{padding:12px 0 12px 44px;position:relative;border-bottom:1px solid rgba(255,255,255,.2);cursor:pointer;transition:padding .2s}
+.check li:before{content:"";position:absolute;left:4px;top:12px;width:24px;height:24px;border-radius:50%;border:3px solid var(--ac);transition:all .3s}
+.check li.done:before{background:var(--ac);box-shadow:inset 0 0 0 4px var(--bg)}
+.check li:hover{padding-left:52px}
+footer{background:var(--deep);padding-block:60px;text-align:center}
+@media(max-width:760px){.hero .grid,.stage{grid-template-columns:1fr}.wrap{padding-inline:20px}section{padding-block:56px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><div class="logo">Easy<span class="ac">LandX</span></div><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a></div></nav>
+
+<header class="hero"><div class="wrap grid">
+<div>
+<span class="tag">THE DEAL FORMULA × LANDING PAGES</span>
+<h1>Work <span class="ac">smart.</span> Live <span class="ac">free.</span></h1>
+<p>A conversion-focused landing page is your most dependable teammate: it welcomes visitors, shares your offer and gathers customers around the clock while you enjoy your time. EasyLandX crafts it for you at a friendly price.</p>
+<a class="btn pulse" href="https://easylandx.github.io" target="_blank" rel="noopener">Get my EasyLandX page</a>
+</div>
+<svg viewBox="0 0 400 360" aria-label="Laptop on a sunny beach with a floating landing page">
+<circle cx="320" cy="60" r="38" fill="#FF9F1C" class="float"/>
+<g class="spin"><g stroke="#FF9F1C" stroke-width="5" stroke-linecap="round"><path d="M320 0v-4M320 120v4M260 60h-4M384 60h4"/></g></g>
+<path d="M0 300q100-40 200 0t200 0v60H0z" fill="#5A189A"/>
+<path d="M0 325q100-30 200 0t200 0v35H0z" fill="#3C096C"/>
+<g class="float f2"><rect x="70" y="120" width="230" height="150" rx="14" fill="#fff"/><rect x="82" y="132" width="206" height="126" rx="8" fill="#7B2CBF"/>
+<rect x="98" y="148" width="110" height="14" rx="7" fill="#fff"/><rect x="98" y="170" width="80" height="8" rx="4" fill="#fff" opacity=".6"/>
+<rect x="98" y="194" width="74" height="26" rx="13" fill="#FF9F1C"/>
+<circle cx="250" cy="190" r="28" fill="#FF9F1C"/><path d="M238 190l9 9 16-18" stroke="#5A189A" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M50 270h270l-14 22H64z" fill="#fff"/></g>
+<g class="float f3"><path d="M355 330V230" stroke="#fff" stroke-width="6"/><path d="M355 230q-50-10-60 20q30-20 60-8zM355 230q50-10 60 20q-30-20-60-8zM355 230q-10-50-45-48q30 10 45 48z" fill="#FF9F1C"/></g>
+</svg>
+</div></header>
+
+<section class="band"><div class="wrap reveal">
+<span class="tag">THE IDEA</span>
+<h2>Four steps to a <span class="ac">freedom-first</span> business</h2>
+<p>Timothy Ferriss's DEAL formula turns a busy schedule into a spacious lifestyle. Each step has a matching EasyLandX superpower. Explore them below.</p>
+<div class="deal">
+<div class="card"><b>D</b><h3>Definition</h3><p>Picture the life you want and price it.</p></div>
+<div class="card"><b>E</b><h3>Elimination</h3><p>Spotlight the vital 20%.</p></div>
+<div class="card"><b>A</b><h3>Automation</h3><p>Let your Muse run beautifully.</p></div>
+<div class="card"><b>L</b><h3>Liberation</h3><p>Travel, learn, explore.</p></div>
+</div></div></section>
+
+<section id="d"><div class="wrap reveal">
+<span class="tag">D · DEFINITION</span>
+<h2>Design your <span class="ac">dream lifestyle</span></h2>
+<p>Absolute freedom beats a bigger number. Slide to set your ideal monthly lifestyle and weekly working hours, then see the daily income that powers it.</p>
+<div class="grid2">
+<div class="card">
+<label>Monthly lifestyle budget <span class="ac" id="bv">$5,000</span></label>
+<input type="range" id="bud" min="1000" max="20000" step="250" value="5000">
+<label>Working hours per week <span class="ac" id="hv">10 h</span></label>
+<input type="range" id="hrs" min="4" max="40" value="10">
+<p style="margin-top:14px">Your landing page welcomes customers while you enjoy those other hours.</p>
+</div>
+<div class="card" style="text-align:center">
+<p>Daily income target</p><div class="big" id="day">$167</div>
+<p style="margin-top:14px">Value of each working hour</p><div class="big" id="hr">$500</div>
+<div class="meter"><i id="fm"></i></div><p id="fmt" style="font-weight:700"></p>
+</div></div>
+<h3 style="margin-top:34px">Confidence-Setting</h3>
+<p>Write your bounce-back plan before any big change. Tap each step as you complete it.</p>
+<ul class="check" id="fear">
+<li>Name the change you are excited to make</li>
+<li>Describe the smooth path that keeps everything on track</li>
+<li>List the quick moves that restore momentum</li>
+<li>Celebrate the gains of taking action today</li>
+</ul>
+</div></section>
+
+<section class="band" id="e"><div class="wrap reveal">
+<span class="tag">E · ELIMINATION</span>
+<h2>Spotlight your <span class="ac">vital 20%</span></h2>
+<p>Pareto's Law: about 20% of efforts create 80% of results. Tap the activities that bring you the most joy and income, and watch your focus meter rise.</p>
+<div class="chips" id="tasks"></div>
+<div class="meter"><i id="pm"></i></div>
+<p id="pt" style="font-weight:700">Choose your champions.</p>
+<div class="grid2" style="margin-top:20px">
+<div class="card"><h3>Parkinson's Law</h3><p>Short, friendly deadlines bring sharp focus. Your EasyLandX page launches fast so your offer goes live quickly.</p></div>
+<div class="card"><h3>Batching</h3><p>Check messages at 11:00 and 16:00. Leads gather on your page and wait neatly for your windows.</p></div>
+</div>
+</div></section>
+
+<section id="a"><div class="wrap reveal">
+<span class="tag">A · AUTOMATION</span>
+<h2>Build your <span class="ac">Muse</span></h2>
+<p>A Muse is a business that runs smoothly with light supervision. Click through the four stages and see where your landing page shines.</p>
+<div class="tabs" id="tabs"></div>
+<div class="card stage">
+<div><h3 id="st"></h3><p id="sp"></p></div>
+<svg id="sv" viewBox="0 0 300 220"></svg>
+</div>
+</div></section>
+
+<section class="band" id="l"><div class="wrap reveal">
+<span class="tag">L · LIBERATION</span>
+<h2>Plan a <span class="ac">mini-retirement</span></h2>
+<p>Spread your adventures through the year. Pick how many weeks you want to explore and watch the calendar light up.</p>
+<div class="card">
+<label>Adventure weeks per year <span class="ac" id="wv">6 weeks</span></label>
+<input type="range" id="wk" min="0" max="26" value="6">
+<div id="cal" style="display:grid;grid-template-columns:repeat(13,1fr);gap:6px;margin-top:14px"></div>
+<p style="margin-top:14px" id="wt"></p>
+<p>Fill your open time with new languages, skills and volunteering. Your landing page keeps welcoming customers all the while.</p>
+</div>
+</div></section>
+
+<section><div class="wrap reveal">
+<span class="tag">YOUR ACTION CHECKLIST</span>
+<h2>Start <span class="ac">today</span></h2>
+<ul class="check" id="act">
+<li>Complete a Confidence-Setting exercise</li>
+<li>Audit your week and celebrate the top 20% activities</li>
+<li>Set daily email windows at 11:00 and 16:00</li>
+<li>Give your team a spending limit for independent decisions</li>
+<li>Validate your next idea with a fast landing page</li>
+</ul>
+<div class="meter"><i id="am"></i></div><p id="at" style="font-weight:700"></p>
+</div></section>
+
+<footer><div class="wrap">
+<svg viewBox="0 0 120 120" width="110" aria-hidden="true"><circle cx="60" cy="60" r="44" fill="none" stroke="#FF9F1C" stroke-width="6" stroke-dasharray="14 10" class="spin"/><path d="M40 62l14 14 28-32" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<h2>Ready to <span class="ac">test your idea</span> fast?</h2>
+<p>Affordable, conversion-focused landing pages, crafted by hand for small businesses.</p>
+<a class="btn pulse" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a>
+</div></footer>
+
+<script>
+const $=id=>document.getElementById(id),fmt=n=>'$'+Math.round(n).toLocaleString('en-US');
+function calc(){const b=+$('bud').value,h=+$('hrs').value;
+$('bv').textContent=fmt(b);$('hv').textContent=h+' h';
+$('day').textContent=fmt(b/30);$('hr').textContent=fmt(b/(h*4.33));
+const f=Math.round((40-h)/36*100);$('fm').style.width=f+'%';
+$('fmt').textContent=f+'% of a full-time week is yours to enjoy';}
+$('bud').oninput=$('hrs').oninput=calc;calc();
+function checklist(id,m,t,msg){const li=[...$(id).children];
+li.forEach(x=>x.onclick=()=>{x.classList.toggle('done');if(m){const n=li.filter(y=>y.classList.contains('done')).length;
+$(m).style.width=n/li.length*100+'%';$(t).textContent=n==li.length?msg:n+' of '+li.length+' complete. Keep going!'}})}
+checklist('fear');checklist('act','am','at','Everything complete. Your freedom journey is rolling!');
+const T=['Client calls','Creative projects','Top-client work','Offer design','Inbox sorting','Meetings','Social scrolling','Admin forms'],good=new Set([0,1,2,3]);
+const sel=new Set();
+T.forEach((t,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=t;
+b.onclick=()=>{b.classList.toggle('on');sel.has(i)?sel.delete(i):sel.add(i);
+const hit=[...sel].filter(x=>good.has(x)).length;
+$('pm').style.width=Math.min(100,sel.size?hit/4*100:0)+'%';
+$('pt').textContent=sel.size==0?'Choose your champions.':hit==4?'Brilliant! Your top 20% is shining, and the rest is ready to delegate.':hit+' of 4 income-boosters spotted. Explore more!'};
+$('tasks').appendChild(b)});
+const S=[['1 · Pick a niche','Choose a market with clear buying interest and serve it brilliantly.','<circle cx="150" cy="110" r="80" fill="none" stroke="#fff" stroke-width="6"/><circle cx="150" cy="110" r="50" fill="none" stroke="#fff" stroke-width="6"/><circle cx="150" cy="110" r="20" fill="#FF9F1C" class="float"/>'],
+['2 · Test with a landing page','Share your offer on a EasyLandX page, then watch the excitement roll in before you invest in stock.','<rect x="60" y="30" width="180" height="150" rx="14" fill="#fff"/><rect x="76" y="50" width="100" height="14" rx="7" fill="#7B2CBF"/><rect x="76" y="76" width="140" height="8" rx="4" fill="#7B2CBF" opacity=".5"/><rect x="76" y="130" width="80" height="28" rx="14" fill="#FF9F1C" class="float"/><path d="M190 150l10-30 10 18 10-40" stroke="#FF9F1C" stroke-width="6" fill="none" stroke-linecap="round"/>'],
+['3 · Delegate the delivery','Friendly partners handle making, shipping, payments and support.','<g class="float"><circle cx="70" cy="110" r="30" fill="#fff"/><circle cx="150" cy="110" r="30" fill="#FF9F1C"/><circle cx="230" cy="110" r="30" fill="#fff"/></g><path d="M100 110h20M180 110h20" stroke="#fff" stroke-width="6"/>'],
+['4 · Enjoy the flow','Orders arrive, your page keeps greeting visitors, and your calendar stays open.','<circle cx="150" cy="110" r="60" fill="#FF9F1C" class="float"/><g class="spin" stroke="#fff" stroke-width="6" stroke-linecap="round"><path d="M150 20v20M150 180v20M60 110H40M260 110h-20M86 46l14 14M200 160l14 14M214 46l-14 14M100 160l-14 14"/></g>']];
+S.forEach((s,i)=>{const b=document.createElement('button');b.className='chip';b.textContent='Step '+(i+1);
+b.onclick=()=>{[...$('tabs').children].forEach(x=>x.classList.remove('on'));b.classList.add('on');
+$('st').textContent=s[0];$('sp').textContent=s[1];$('sv').innerHTML=s[2]};$('tabs').appendChild(b)});
+$('tabs').children[0].click();
+for(let i=0;i<52;i++){const d=document.createElement('div');d.style.cssText='aspect-ratio:1;border-radius:6px;background:rgba(255,255,255,.15);transition:all .4s '+(i*8)+'ms';d.className='wk';$('cal').appendChild(d)}
+function weeks(){const w=+$('wk').value;$('wv').textContent=w+' weeks';
+[...$('cal').children].forEach((d,i)=>{const on=i%Math.max(1,Math.floor(52/Math.max(w,1)))==0&&Math.floor(i/Math.max(1,Math.floor(52/Math.max(w,1))))<w;
+d.style.background=w&&on?'#FF9F1C':'rgba(255,255,255,.15)';d.style.transform=w&&on?'scale(1.1)':'none'});
+$('wt').textContent=w==0?'Slide to add your first adventure!':w+' adventures spread across 52 weeks: fresh energy all year.'}
+$('wk').oninput=weeks;weeks();
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
+</script>
+</body>
+</html>
