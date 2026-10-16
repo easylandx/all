@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX Landing Pages | Do More with Less</title>
+<style>
+:root{--bg:#06D6A0;--gold:#E9C46A;--ink:#033B2D;--tint:rgba(255,255,255,.38);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+.wrap{padding-inline:clamp(24px,10vw,160px);max-width:1400px;margin:0 auto}
+section{padding-block:clamp(56px,9vw,110px)}
+h1,h2,h3{font-weight:900;line-height:1.08;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,6.4vw,5rem)}
+h2{font-size:clamp(1.9rem,4.4vw,3.2rem)}
+h3{font-size:1.3rem}
+p{margin:0 0 1em;font-size:1.08rem}
+.eyebrow{display:inline-block;background:var(--gold);color:var(--ink);font-weight:900;padding:.35em 1em;border-radius:99px;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2em}
+.btn{display:inline-block;background:var(--ink);color:var(--gold);font-weight:900;font-size:1.1rem;padding:.9em 1.9em;border-radius:99px;text-decoration:none;border:3px solid var(--ink);transition:transform .2s,background .2s,color .2s;cursor:pointer;font-family:inherit}
+.btn:hover{transform:translateY(-4px) scale(1.04);background:var(--gold);color:var(--ink)}
+.btn.alt{background:var(--gold);color:var(--ink)}
+.btn.alt:hover{background:var(--ink);color:var(--gold)}
+nav{display:flex;justify-content:space-between;align-items:center;padding-block:22px;gap:12px;flex-wrap:wrap}
+.logo{font-weight:900;font-size:1.5rem;letter-spacing:-.03em}.logo b{color:var(--gold);background:var(--ink);padding:0 .3em;border-radius:8px;margin-left:2px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero svg{width:100%;height:auto}
+@media(max-width:860px){.hero{grid-template-columns:1fr}}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px}
+.card{background:var(--gold);border-radius:28px;padding:30px;transition:transform .3s;border:3px solid var(--ink)}
+.card:hover{transform:translateY(-8px) rotate(-1deg)}
+.card .ic{width:62px;height:62px;margin-bottom:14px}
+.card.tint{background:var(--tint)}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:none}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.tab{font-family:inherit;font-weight:900;font-size:1rem;padding:.7em 1.3em;border-radius:99px;border:3px solid var(--ink);background:var(--tint);color:var(--ink);cursor:pointer;transition:all .2s}
+.tab:hover{transform:translateY(-3px)}
+.tab[aria-selected=true]{background:var(--ink);color:var(--gold)}
+.panel{background:var(--gold);border:3px solid var(--ink);border-radius:32px;padding:clamp(24px,4vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;min-height:300px}
+@media(max-width:760px){.panel{grid-template-columns:1fr}}
+.panel ul{padding-left:1.2em;margin:0 0 1.2em}.panel li{margin-bottom:.4em;font-size:1.05rem}
+.panel .art{background:var(--bg);border-radius:24px;padding:18px;border:3px solid var(--ink)}
+.panel .art svg{width:100%;height:auto;display:block}
+.fade{animation:fade .5s}
+@keyframes fade{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+.calc{background:var(--ink);color:var(--gold);border-radius:36px;padding:clamp(26px,5vw,56px);display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+@media(max-width:820px){.calc{grid-template-columns:1fr}}
+.calc h2{color:var(--gold)}
+.calc label{display:flex;justify-content:space-between;font-weight:900;margin-top:20px}
+.calc input[type=range]{width:100%;accent-color:var(--gold);height:8px;cursor:pointer}
+.out{background:var(--bg);color:var(--ink);border-radius:28px;padding:28px;text-align:center}
+.out .big{font-size:clamp(2.4rem,6vw,3.8rem);font-weight:900;line-height:1}
+.out svg{width:170px;height:170px}
+.bar{height:16px;background:rgba(3,59,45,.2);border-radius:99px;overflow:hidden;margin-top:14px}
+.bar i{display:block;height:100%;background:var(--gold);border-right:3px solid var(--ink);width:0;transition:width .5s}
+.steps{counter-reset:s;display:grid;gap:18px}
+.step{display:flex;gap:20px;align-items:flex-start;background:var(--tint);border-radius:24px;padding:22px 26px;border:3px solid var(--ink)}
+.step:before{counter-increment:s;content:counter(s);flex:0 0 52px;height:52px;border-radius:50%;background:var(--ink);color:var(--gold);font-weight:900;font-size:1.5rem;display:grid;place-items:center}
+.step p{margin:0}
+.cta{text-align:center;background:var(--gold);border:3px solid var(--ink);border-radius:44px;padding:clamp(36px,7vw,84px) 24px;position:relative;overflow:hidden}
+.cta .btn{font-size:1.3rem}
+footer{padding-block:34px;text-align:center;font-weight:700}
+.float{animation:fl 6s ease-in-out infinite}.f2{animation-delay:-2s}.f3{animation-delay:-4s}
+@keyframes fl{50%{transform:translateY(-16px)}}
+.sway{transform-origin:300px 380px;animation:sw 4s ease-in-out infinite}
+@keyframes sw{50%{transform:rotate(3deg)}}
+.spin{transform-origin:480px 90px;animation:sp 40s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.pulse{animation:pu 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pu{50%{transform:scale(1.12)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <div class="logo">Easy<b>LandX</b></div>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</nav>
+
+<section class="hero" style="padding-top:30px">
+  <div>
+    <span class="eyebrow">Landing pages for small businesses</span>
+    <h1>Do more with focus. Launch a landing page that works.</h1>
+    <p>EasyLandX crafts affordable, conversion-focused landing pages and websites for small businesses. Inspired by <strong>The Minimalist Entrepreneur</strong> by Sahil Lavingia, every page is simple, profitable from day one, and built around the community you love serving.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+    <a class="btn alt" href="#journey" style="margin-left:8px">Explore the 5-step path</a>
+  </div>
+  <svg viewBox="0 0 600 460" role="img" aria-label="A sprout growing on a golden hill with floating coins">
+    <circle cx="300" cy="230" r="215" fill="#E9C46A" opacity=".35"/>
+    <g class="spin"><circle cx="480" cy="90" r="46" fill="#E9C46A"/>
+      <g stroke="#E9C46A" stroke-width="8" stroke-linecap="round"><path d="M480 20v-14M480 174v-14M410 90h-14M564 90h-14M430 40l-10-10M540 150l-10-10M530 40l10-10M420 150l10-10"/></g></g>
+    <path d="M0 400Q150 320 300 380T600 360V460H0Z" fill="#E9C46A" stroke="#033B2D" stroke-width="5"/>
+    <path d="M0 430Q200 380 360 420T600 410V460H0Z" fill="#033B2D"/>
+    <g class="sway">
+      <path d="M300 385C300 330 300 270 300 210" stroke="#033B2D" stroke-width="12" fill="none" stroke-linecap="round"/>
+      <path d="M300 280C250 280 215 245 210 200C260 200 298 235 300 280Z" fill="#E9C46A" stroke="#033B2D" stroke-width="5"/>
+      <path d="M300 240C350 240 390 205 395 160C345 160 302 195 300 240Z" fill="#E9C46A" stroke="#033B2D" stroke-width="5"/>
+      <circle cx="300" cy="200" r="34" fill="#E9C46A" stroke="#033B2D" stroke-width="5" class="pulse"/>
+      <path d="M288 200l9 10 17-20" stroke="#033B2D" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g class="float"><circle cx="110" cy="150" r="30" fill="#E9C46A" stroke="#033B2D" stroke-width="5"/><text x="110" y="162" text-anchor="middle" font-size="34" font-weight="900" fill="#033B2D">$</text></g>
+    <g class="float f2"><circle cx="170" cy="300" r="22" fill="#E9C46A" stroke="#033B2D" stroke-width="5"/><text x="170" y="309" text-anchor="middle" font-size="25" font-weight="900" fill="#033B2D">$</text></g>
+    <g class="float f3"><circle cx="470" cy="290" r="26" fill="#E9C46A" stroke="#033B2D" stroke-width="5"/><text x="470" y="300" text-anchor="middle" font-size="29" font-weight="900" fill="#033B2D">$</text></g>
+  </svg>
+</section>
+
+<section>
+  <h2 class="reveal">Five ideas that shape every EasyLandX page</h2>
+  <div class="cards">
+    <div class="card reveal"><svg class="ic" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="#06D6A0" stroke="#033B2D" stroke-width="4"/><path d="M18 40l10-12 8 8 10-14" stroke="#033B2D" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Profit-first growth</h3><p>A valuable business thrives on healthy profit. Early profitability gives founders freedom, control, and long-term autonomy.</p></div>
+    <div class="card tint reveal"><svg class="ic" viewBox="0 0 64 64"><circle cx="22" cy="24" r="9" fill="#E9C46A" stroke="#033B2D" stroke-width="4"/><circle cx="42" cy="24" r="9" fill="#E9C46A" stroke="#033B2D" stroke-width="4"/><path d="M8 54c2-14 12-16 14-16s10 2 10 8c0-6 8-8 10-8s12 2 14 16z" fill="#E9C46A" stroke="#033B2D" stroke-width="4"/></svg><h3>Community first</h3><p>The best businesses begin by serving a community the founder already loves and belongs to.</p></div>
+    <div class="card reveal"><svg class="ic" viewBox="0 0 64 64"><rect x="10" y="10" width="44" height="44" rx="12" fill="#06D6A0" stroke="#033B2D" stroke-width="4"/><rect x="22" y="22" width="20" height="20" rx="6" fill="#033B2D"/></svg><h3>Simple builds</h3><p>One core feature, launched quickly. A focused MVP turns real customer feedback into fast learning.</p></div>
+    <div class="card tint reveal"><svg class="ic" viewBox="0 0 64 64"><path d="M8 40h12l8-22 8 30 8-18h12" stroke="#033B2D" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="32" r="28" fill="none" stroke="#033B2D" stroke-width="4"/></svg><h3>Lean and sustainable</h3><p>Low fixed costs, small teams, and smart automation keep a business agile and efficient.</p></div>
+    <div class="card reveal"><svg class="ic" viewBox="0 0 64 64"><path d="M12 52V28l20-16 20 16v24z" fill="#06D6A0" stroke="#033B2D" stroke-width="4" stroke-linejoin="round"/><circle cx="32" cy="38" r="8" fill="#033B2D"/></svg><h3>Enjoy the journey</h3><p>Success is a business you own, a balanced life, and joy in the daily process.</p></div>
+  </div>
+</section>
+
+<section id="journey">
+  <h2 class="reveal">Your landing page path: explore each step</h2>
+  <p class="reveal">Tap a step to see how EasyLandX brings it to life for your business.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="panel" id="panel" aria-live="polite"></div>
+</section>
+
+<section>
+  <div class="calc reveal">
+    <div>
+      <h2>Try the Profit-First Planner</h2>
+      <p>Slide the numbers and watch your lean business grow. Simple pages and low overhead make profit arrive early.</p>
+      <label><span>Price per customer</span><span id="vp">$300</span></label>
+      <input type="range" id="price" min="50" max="1000" step="10" value="300">
+      <label><span>New customers per month</span><span id="vc">5</span></label>
+      <input type="range" id="cust" min="1" max="30" value="5">
+      <label><span>Monthly overhead</span><span id="vo">$150</span></label>
+      <input type="range" id="over" min="0" max="1000" step="10" value="150">
+    </div>
+    <div class="out">
+      <svg viewBox="0 0 170 170" id="plant" aria-hidden="true"></svg>
+      <div>Monthly profit</div>
+      <div class="big" id="profit">$0</div>
+      <div class="bar"><i id="pbar"></i></div>
+      <p id="msg" style="margin:14px 0 0;font-weight:700"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="reveal">The EasyLandX way, step by step</h2>
+  <div class="steps">
+    <div class="step reveal"><p><strong>Listen to your community.</strong> We learn the voice, needs, and favorite questions of your customers, then shape your page around them.</p></div>
+    <div class="step reveal"><p><strong>Launch one clear offer.</strong> A single, shining call to action helps visitors say yes with confidence.</p></div>
+    <div class="step reveal"><p><strong>Share what you know.</strong> Helpful stories, tips, and behind-the-scenes moments build trust with your ideal audience.</p></div>
+    <div class="step reveal"><p><strong>Charge from day one.</strong> Real value deserves real payment, and paying customers offer the most useful feedback.</p></div>
+    <div class="step reveal"><p><strong>Automate and celebrate.</strong> Bookings, payments, and replies run smoothly, and happy customers become your champions.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="cta reveal">
+    <svg viewBox="0 0 120 40" width="140" style="display:block;margin:0 auto 10px" aria-hidden="true"><g class="float"><circle cx="20" cy="20" r="12" fill="#06D6A0" stroke="#033B2D" stroke-width="4"/></g><g class="float f2"><circle cx="60" cy="20" r="12" fill="#033B2D"/></g><g class="float f3"><circle cx="100" cy="20" r="12" fill="#06D6A0" stroke="#033B2D" stroke-width="4"/></g></svg>
+    <h2>Ready to grow with a simple, beautiful landing page?</h2>
+    <p>Join the small businesses that choose clarity, community, and profit.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+  </div>
+</section>
+
+<footer>Inspired by <em>The Minimalist Entrepreneur</em> by Sahil Lavingia &middot; &copy; EasyLandX</footer>
+</div>
+
+<script>
+var DATA=[
+{t:"1 Community",h:"Serve your tribe",l:["Start with a community you already love","Listen first to questions and wishes","Shape your page in their language"],c:"EasyLandX landing pages speak directly to your people, so visitors feel at home from the first line.",a:'<circle cx="100" cy="60" r="26" fill="#E9C46A" stroke="#033B2D" stroke-width="4"/><circle cx="50" cy="105" r="20" fill="#E9C46A" stroke="#033B2D" stroke-width="4"/><circle cx="150" cy="105" r="20" fill="#E9C46A" stroke="#033B2D" stroke-width="4"/><path d="M100 86L58 90M100 86l42 4M70 105h60" stroke="#033B2D" stroke-width="4" stroke-dasharray="6 6"/>'},
+{t:"2 MVP",h:"Solve one thing beautifully",l:["Focus on one core offer","Pre-sell and learn from real replies","Launch quickly, refine happily"],c:"A focused page gets live fast, so you start learning from real visitors right away.",a:'<rect x="55" y="25" width="90" height="90" rx="18" fill="#E9C46A" stroke="#033B2D" stroke-width="4"/><rect x="75" y="45" width="50" height="14" rx="7" fill="#033B2D"/><rect x="75" y="68" width="50" height="8" rx="4" fill="#033B2D" opacity=".5"/><rect x="82" y="88" width="36" height="14" rx="7" fill="#06D6A0" stroke="#033B2D" stroke-width="3"/>'},
+{t:"3 Direct sales",h:"Personal and generous",l:["Reach out with warm, personal messages","Teach everything you know","Build in public and share lessons"],c:"Your page becomes a friendly home base that welcomes every message, share, and introduction.",a:'<path d="M30 40h140v70H95l-28 22V110H30z" fill="#E9C46A" stroke="#033B2D" stroke-width="4" stroke-linejoin="round"/><path d="M52 62h96M52 82h64" stroke="#033B2D" stroke-width="6" stroke-linecap="round"/>'},
+{t:"4 Lean profit",h:"Charge from day one",l:["Offer real value for real payment","Keep overhead delightfully low","Use micro-tools and simple workflows"],c:"Affordable pricing and a streamlined build keep your costs low and your margins bright.",a:'<circle cx="100" cy="72" r="46" fill="#E9C46A" stroke="#033B2D" stroke-width="4"/><text x="100" y="92" text-anchor="middle" font-size="58" font-weight="900" fill="#033B2D">$</text><path d="M40 125h120" stroke="#033B2D" stroke-width="5" stroke-linecap="round"/>'},
+{t:"5 Automate",h:"Turn customers into champions",l:["Automate payments, replies, and onboarding","Improve with every piece of feedback","Let happy customers spread the word"],c:"Your page welcomes, books, and thanks visitors automatically while you enjoy the journey.",a:'<circle cx="100" cy="72" r="34" fill="#E9C46A" stroke="#033B2D" stroke-width="4"/><circle cx="100" cy="72" r="12" fill="#033B2D"/><path d="M100 24v14M100 106v14M52 72h14M134 72h14M66 38l10 10M124 96l10 10M134 38l-10 10M76 96l-10 10" stroke="#033B2D" stroke-width="6" stroke-linecap="round"/>'}
+];
+var tabs=document.getElementById("tabs"),panel=document.getElementById("panel");
+function show(i){
+  var d=DATA[i];
+  [].forEach.call(tabs.children,function(b,j){b.setAttribute("aria-selected",j===i)});
+  panel.innerHTML='<div class="fade"><h3 style="font-size:1.8rem">'+d.h+'</h3><ul>'+d.l.map(function(x){return"<li>"+x+"</li>"}).join("")+'</ul><p><strong>'+d.c+'</strong></p><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></div><div class="art fade"><svg viewBox="0 0 200 150" aria-hidden="true">'+d.a+'</svg></div>';
+}
+DATA.forEach(function(d,i){var b=document.createElement("button");b.className="tab";b.setAttribute("role","tab");b.textContent=d.t;b.onclick=function(){show(i)};tabs.appendChild(b)});
+show(0);
+
+var $=function(i){return document.getElementById(i)};
+function calc(){
+  var p=+$("price").value,c=+$("cust").value,o=+$("over").value,pr=p*c-o;
+  $("vp").textContent="$"+p;$("vc").textContent=c;$("vo").textContent="$"+o;
+  $("profit").textContent="$"+pr.toLocaleString();
+  var pct=Math.max(0,Math.min(100,pr/80));
+  $("pbar").style.width=pct+"%";
+  var s=0.55+pct/100*0.9;
+  $("plant").innerHTML='<ellipse cx="85" cy="150" rx="60" ry="10" fill="#E9C46A" stroke="#033B2D" stroke-width="3"/><g transform="translate(85 148) scale('+s+') translate(-85 -148)"><path d="M85 148V70" stroke="#033B2D" stroke-width="7" stroke-linecap="round"/><path d="M85 110C55 110 38 92 36 68c30 0 48 18 49 42z" fill="#E9C46A" stroke="#033B2D" stroke-width="4"/><path d="M85 86C113 86 132 68 134 44c-28 0-47 18-49 42z" fill="#E9C46A" stroke="#033B2D" stroke-width="4"/><circle cx="85" cy="62" r="14" fill="#E9C46A" stroke="#033B2D" stroke-width="4"/></g>';
+  $("msg").textContent=pr<=0?"Add a customer or lower overhead and watch it bloom!":pr<1500?"Lovely start! Profit is on the way.":pr<4000?"Wonderful! A sustainable, founder-friendly business.":"Fantastic! Freedom, balance, and growth together.";
+}
+["price","cust","over"].forEach(function(i){$(i).addEventListener("input",calc)});calc();
+
+var els=document.querySelectorAll(".reveal");
+if("IntersectionObserver" in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.15});
+  els.forEach(function(e){io.observe(e)});
+}else{els.forEach(function(e){e.classList.add("in")})}
+</script>
+</body>
+</html>

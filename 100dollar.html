@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX Landing Pages — Launch Small, Live Free</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Figtree:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#00A8E8;--deep:#00293D;--tint:#E8F8FF;--sky:#7DD6F7;--sun:#FF9F1C;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--deep);font:500 18px/1.6 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,system-ui,sans-serif;font-weight:800;line-height:1.08;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(40px,6.4vw,84px)}
+h2{font-size:clamp(30px,4.2vw,54px)}
+h3{font-size:22px}
+p{margin:0 0 1em;max-width:62ch}
+.w{padding-inline:clamp(24px,10vw,160px);max-width:1440px;margin-inline:auto}
+section{padding-block:clamp(56px,9vw,112px)}
+.btn{display:inline-block;background:var(--sun);color:var(--deep);font:800 18px 'Bricolage Grotesque',Figtree,sans-serif;padding:14px 28px;border:3px solid var(--deep);border-radius:999px;text-decoration:none;cursor:pointer;box-shadow:5px 5px 0 var(--deep);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--deep)}
+.btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--deep)}
+:focus-visible{outline:4px solid var(--deep);outline-offset:3px}
+nav{display:flex;justify-content:space-between;align-items:center;padding-block:22px}
+.logo{font:800 28px 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em}
+.logo b{color:var(--sun);-webkit-text-stroke:1.5px var(--deep)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-top:20px}
+.hero .lead{font-size:21px}
+.row{display:flex;gap:16px;flex-wrap:wrap;margin-top:26px}
+.ghost{background:var(--tint)}
+.hero svg{width:100%;height:auto}
+.fl{animation:fl 5s ease-in-out infinite}
+.fl2{animation:fl 4s ease-in-out infinite reverse}
+.tw{animation:tw 2.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.coin{animation:up 3.6s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes fl{50%{transform:translateY(-12px)}}
+@keyframes tw{50%{opacity:.15;transform:scale(.5)}}
+@keyframes up{0%{transform:translateY(0);opacity:0}20%{opacity:1}100%{transform:translateY(-100px);opacity:0}}
+.sec-head{margin-bottom:40px}
+.tag{display:inline-block;background:var(--deep);color:var(--tint);font-weight:700;font-size:15px;padding:5px 16px;border-radius:999px;margin-bottom:16px}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px}
+.card{background:var(--tint);border:3px solid var(--deep);border-radius:24px;padding:26px;box-shadow:6px 6px 0 var(--deep)}
+.card svg{width:64px;height:64px;margin-bottom:10px}
+.card p{margin:0;font-size:17px}
+.panel{background:var(--tint);border:3px solid var(--deep);border-radius:28px;padding:clamp(20px,4vw,44px);box-shadow:8px 8px 0 var(--deep)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 20px}
+.lab{font-weight:700;margin-bottom:4px}
+.chips button,.sw{font:700 16px Figtree,sans-serif;color:var(--deep);background:#fff;border:2.5px solid var(--deep);border-radius:999px;padding:8px 16px;cursor:pointer;transition:background .15s,transform .15s}
+.chips button:hover{transform:translateY(-2px)}
+.chips button[aria-pressed=true]{background:var(--sun)}
+.venn{width:100%;max-width:420px;margin:auto;display:block}
+.venn circle.c{fill:var(--sky);fill-opacity:.25;stroke:var(--deep);stroke-width:3;transition:fill .4s,fill-opacity .4s}
+.venn circle.on{fill-opacity:.85}
+#c-skill.on{fill:#fff}#c-love.on{fill:var(--sun)}#c-value.on{fill:var(--bg)}
+#star{opacity:0;transform:scale(.2);transform-box:fill-box;transform-origin:center;transition:.6s cubic-bezier(.3,1.8,.5,1)}
+#star.on{opacity:1;transform:scale(1)}
+.idea{background:var(--deep);color:var(--tint);border-radius:18px;padding:16px 20px;min-height:84px;margin:0}
+.idea b{color:var(--sun)}
+.swrow{display:flex;align-items:center;gap:14px;margin-bottom:20px;flex-wrap:wrap}
+.sw{background:#fff;width:76px;height:40px;padding:4px;position:relative}
+.sw::after{content:"";position:absolute;top:4px;left:4px;width:26px;height:26px;border-radius:50%;background:var(--deep);transition:transform .25s}
+.sw[aria-pressed=true]{background:var(--sun)}
+.sw[aria-pressed=true]::after{transform:translateX(36px)}
+.fb{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.fb li{background:#fff;border:2.5px solid var(--deep);border-radius:16px;padding:14px 18px;font-weight:700;animation:pop .35s}
+@keyframes pop{from{transform:scale(.94);opacity:.3}}
+.fb.ben li{background:var(--sun)}
+.form{display:grid;gap:14px}
+.form label{font-weight:700;display:grid;gap:4px}
+.form input,.form select{font:500 17px Figtree,sans-serif;color:var(--deep);padding:11px 14px;border:2.5px solid var(--deep);border-radius:12px;background:#fff;width:100%}
+.mini{background:#fff;border:3px solid var(--deep);border-radius:20px;overflow:hidden;box-shadow:6px 6px 0 var(--deep)}
+.mini .bar{background:var(--deep);height:30px;display:flex;gap:6px;align-items:center;padding:0 14px}
+.mini .bar i{width:10px;height:10px;border-radius:50%;background:var(--sun)}
+.mini .bd{padding:24px}
+.mini h3{font-size:26px;min-height:2.2em}
+.mini .pr{display:inline-block;background:var(--sun);border:2.5px solid var(--deep);border-radius:999px;padding:8px 20px;font-weight:800;margin:8px 0}
+.prog{height:14px;background:#fff;border:2.5px solid var(--deep);border-radius:999px;overflow:hidden;margin:16px 0 6px}
+.prog i{display:block;height:100%;width:0;background:var(--sun);transition:width .4s}
+.track{position:relative;margin:44px 0 12px}
+.track input{width:100%;accent-color:var(--sun);height:32px;cursor:pointer}
+.rk{position:absolute;top:-38px;width:36px;transform:translateX(-50%);transition:left .15s;pointer-events:none}
+.msg{font-size:21px;font-weight:700;min-height:3.4em}
+.day{font:800 56px 'Bricolage Grotesque',sans-serif;color:var(--deep)}
+.day span{color:var(--sun);-webkit-text-stroke:2px var(--deep)}
+.hub{position:relative;height:250px}
+.hub svg{width:100%;height:100%}
+.orb{animation:fl 3.5s ease-in-out infinite}
+.gear{animation:spin 9s linear infinite;transform-box:fill-box;transform-origin:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+.final{text-align:center;padding-block:clamp(64px,10vw,130px)}
+.final p{margin-inline:auto}
+.big{font-size:24px;padding:20px 44px}
+footer{text-align:center;padding:0 24px 40px;font-weight:700}
+@media(max-width:820px){.hero,.two{grid-template-columns:1fr}.hero svg{max-width:440px;margin:auto}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="w">
+<nav><div class="logo">Easy<b>LandX</b></div><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></nav>
+
+<header class="hero">
+<div>
+<span class="tag">Inspired by The $100 Startup</span>
+<h1>A great page. A small start. A big new future.</h1>
+<p class="lead">EasyLandX Landing Pages turn what you love into an offer people happily say yes to. Choose your sweet spot, share one clear page, and welcome your first customer with joy.</p>
+<div class="row"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a><a class="btn ghost" href="#sweet">Find your sweet spot</a></div>
+</div>
+<svg viewBox="0 0 480 440" role="img" aria-label="Illustration of a bright landing page with coins and a rocket rising">
+<ellipse cx="210" cy="410" rx="150" ry="14" fill="#00293D" opacity=".18"/>
+<g class="fl">
+<rect x="60" y="70" width="300" height="270" rx="18" fill="#E8F8FF" stroke="#00293D" stroke-width="4"/>
+<rect x="60" y="70" width="300" height="38" rx="18" fill="#00293D"/><rect x="60" y="90" width="300" height="18" fill="#00293D"/>
+<circle cx="84" cy="89" r="6" fill="#FF9F1C"/><circle cx="104" cy="89" r="6" fill="#7DD6F7"/><circle cx="124" cy="89" r="6" fill="#E8F8FF"/>
+<rect x="80" y="124" width="260" height="92" rx="12" fill="#00A8E8"/>
+<rect x="98" y="142" width="160" height="14" rx="7" fill="#00293D"/><rect x="98" y="166" width="110" height="10" rx="5" fill="#E8F8FF"/>
+<rect x="98" y="186" width="86" height="20" rx="10" fill="#FF9F1C" stroke="#00293D" stroke-width="2.5"/>
+<g stroke="#00293D" stroke-width="3" fill="#fff"><rect x="80" y="232" width="78" height="84" rx="10"/><rect x="171" y="232" width="78" height="84" rx="10"/><rect x="262" y="232" width="78" height="84" rx="10"/></g>
+<circle cx="119" cy="262" r="14" fill="#FF9F1C"/><circle cx="210" cy="262" r="14" fill="#00A8E8"/><circle cx="301" cy="262" r="14" fill="#FF9F1C"/>
+<g fill="#00293D"><rect x="95" y="288" width="48" height="8" rx="4"/><rect x="186" y="288" width="48" height="8" rx="4"/><rect x="277" y="288" width="48" height="8" rx="4"/></g>
+</g>
+<g class="fl2"><circle cx="385" cy="108" r="46" fill="#FF9F1C" stroke="#00293D" stroke-width="4"/><text x="385" y="119" text-anchor="middle" font-family="Bricolage Grotesque,Figtree,sans-serif" font-weight="800" font-size="30" fill="#00293D">$100</text></g>
+<g stroke="#00293D" stroke-width="3" fill="#FF9F1C"><circle class="coin" cx="120" cy="372" r="15"/><circle class="coin" style="animation-delay:1.2s" cx="215" cy="380" r="15"/><circle class="coin" style="animation-delay:2.2s" cx="305" cy="368" r="15"/></g>
+<g class="fl" style="animation-delay:-2s"><g transform="translate(410 300) rotate(-28)"><path d="M0-52C22-32 22 8 0 30-22 8-22-32 0-52Z" fill="#E8F8FF" stroke="#00293D" stroke-width="4"/><circle cx="0" cy="-14" r="9" fill="#00A8E8" stroke="#00293D" stroke-width="3"/><path d="M-22 6-40 30-14 22ZM22 6 40 30 14 22Z" fill="#FF9F1C" stroke="#00293D" stroke-width="3"/><path d="M-8 32 0 62 8 32Z" fill="#FF9F1C" stroke="#00293D" stroke-width="3"/></g></g>
+<g fill="#E8F8FF" stroke="#00293D" stroke-width="2"><path class="tw" d="M30 40l5 12 12 5-12 5-5 12-5-12-12-5 12-5Z"/><path class="tw" style="animation-delay:.9s" d="M440 190l4 10 10 4-10 4-4 10-4-10-10-4 10-4Z"/><path class="tw" style="animation-delay:1.7s" d="M300 30l4 10 10 4-10 4-4 10-4-10-10-4 10-4Z"/></g>
+</svg>
+</header>
+</div>
+
+<section><div class="w">
+<div class="sec-head"><span class="tag">Core lessons</span><h2>Four ideas that make starting feel wonderful</h2></div>
+<div class="grid4">
+<div class="card"><svg viewBox="0 0 64 64"><circle cx="24" cy="32" r="18" fill="#00A8E8" stroke="#00293D" stroke-width="3"/><circle cx="40" cy="32" r="18" fill="#FF9F1C" fill-opacity=".85" stroke="#00293D" stroke-width="3"/></svg><h3>Passion meets value</h3><p>What you love becomes a business when it overlaps with something people are glad to pay for.</p></div>
+<div class="card"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="#FF9F1C" stroke="#00293D" stroke-width="3"/><text x="32" y="42" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="28" fill="#00293D">$</text></svg><h3>Micro-scale capital</h3><p>Modern tools let you launch with about $100. Your energy and your idea are the main ingredients.</p></div>
+<div class="card"><svg viewBox="0 0 64 64"><circle cx="32" cy="26" r="13" fill="#FF9F1C" stroke="#00293D" stroke-width="3"/><path d="M4 48q14-12 28 0t28 0v12H4Z" fill="#00A8E8" stroke="#00293D" stroke-width="3"/></svg><h3>Freedom first</h3><p>The goal is a life with flexibility, independence, and time for the things you enjoy.</p></div>
+<div class="card"><svg viewBox="0 0 64 64"><path d="M12 52 52 12M52 12H28M52 12V36" fill="none" stroke="#00293D" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="50" r="7" fill="#FF9F1C" stroke="#00293D" stroke-width="3"/></svg><h3>Action leads the way</h3><p>A one-page plan and a live page teach you more in a week than months of drafting.</p></div>
+</div></div></section>
+
+<section id="sweet"><div class="w">
+<div class="sec-head"><span class="tag">Strategy 1 · Value convergence</span><h2>Light up your sweet spot</h2><p>Choose one item from each row. When your skills, your passions, and what people value come together, your offer glows.</p></div>
+<div class="panel two">
+<div>
+<div class="lab">Your skill</div><div class="chips" id="r-skill"></div>
+<div class="lab">Your passion</div><div class="chips" id="r-love"></div>
+<div class="lab">What people value</div><div class="chips" id="r-value"></div>
+<p class="idea" id="idea" aria-live="polite">Pick one from each row to light up your sweet spot.</p>
+</div>
+<svg class="venn" viewBox="0 0 360 330" role="img" aria-label="Three overlapping circles: skills, passions, what people value">
+<circle class="c" id="c-skill" cx="135" cy="120" r="88"/><circle class="c" id="c-love" cx="225" cy="120" r="88"/><circle class="c" id="c-value" cx="180" cy="205" r="88"/>
+<g font-family="Bricolage Grotesque,Figtree,sans-serif" font-weight="800" font-size="17" fill="#00293D" text-anchor="middle"><text x="100" y="100">Skills</text><text x="262" y="100">Passions</text><text x="180" y="262">People value</text></g>
+<path id="star" d="M180 142l10 22 24 4-18 16 5 24-21-12-21 12 5-24-18-16 24-4Z" fill="#FF9F1C" stroke="#00293D" stroke-width="3" stroke-linejoin="round"/>
+</svg>
+</div></div></section>
+
+<section><div class="w">
+<div class="sec-head"><span class="tag">Strategy 2 · The irresistible offer</span><h2>Benefits make hearts say yes</h2><p>Customers love solutions, good feelings, and convenience. Flip the switch to see how EasyLandX turns page features into life-improving benefits, with a simple payment button right where people are ready to say yes.</p></div>
+<div class="panel">
+<div class="swrow"><span class="lab" style="margin:0">Features</span><button class="sw" id="sw" aria-pressed="false" aria-label="Switch between features and benefits"></button><span class="lab" style="margin:0">Benefits</span></div>
+<ul class="fb" id="fb"></ul>
+</div></div></section>
+
+<section><div class="w">
+<div class="sec-head"><span class="tag">Strategy 3 · One-page plan</span><h2>Five answers. One bright page.</h2><p>Guillebeau's one-page plan replaces long documents with five clear answers. Fill them in and watch your landing page take shape.</p></div>
+<div class="two">
+<div class="panel form">
+<label>What will you offer?<input id="f-offer" placeholder="Weekend sourdough baking classes" maxlength="48"></label>
+<label>Who will love it?<input id="f-cust" placeholder="Busy neighbors who adore fresh bread" maxlength="48"></label>
+<label>What is the price?<input id="f-price" placeholder="$45" maxlength="14"></label>
+<label>Where will you share it?<select id="f-chan"><option value="">Choose a channel</option><option>Instagram</option><option>WhatsApp</option><option>Friends and family</option><option>Local community groups</option></select></label>
+<label>What is your next stepping stone?<input id="f-step" placeholder="Invite five friends to the first class" maxlength="56"></label>
+<div><div class="prog"><i id="pg"></i></div><b id="pgt">0 of 5 answers ready</b></div>
+</div>
+<div class="mini" aria-live="polite"><div class="bar"><i></i><i></i><i></i></div><div class="bd">
+<h3 id="p-offer">Your offer appears here</h3>
+<p>Made for <b id="p-cust">your favorite people</b></p>
+<span class="pr" id="p-price">Start today</span>
+<p style="margin:8px 0 0;font-size:16px">Shared on <b id="p-chan">your favorite channel</b><br>Next: <b id="p-step">your first step</b></p>
+</div></div>
+</div></div></section>
+
+<section><div class="w">
+<div class="sec-head"><span class="tag">Strategy 4 · The 30-day launch</span><h2>Share the journey, build the excitement</h2><p>Slide through the month. Behind-the-scenes updates and warm word-of-mouth bring a loyal audience to launch day.</p></div>
+<div class="panel">
+<div class="day">Day <span id="dn">1</span></div>
+<div class="track">
+<svg class="rk" id="rk" viewBox="-30 -60 60 120" style="left:0"><g transform="rotate(0)"><path d="M0-52C22-32 22 8 0 30-22 8-22-32 0-52Z" fill="#E8F8FF" stroke="#00293D" stroke-width="5"/><circle cy="-14" r="9" fill="#00A8E8" stroke="#00293D" stroke-width="4"/><path d="M-8 32 0 58 8 32Z" fill="#FF9F1C" stroke="#00293D" stroke-width="4"/></g></svg>
+<input type="range" id="sl" min="1" max="30" value="1" aria-label="Launch day">
+</div>
+<p class="msg" id="msg" aria-live="polite"></p>
+</div></div></section>
+
+<section><div class="w">
+<div class="sec-head"><span class="tag">Strategy 5 · Scale with autonomy</span><h2>Grow gently and keep your freedom</h2></div>
+<div class="two">
+<div class="card hub"><svg viewBox="0 0 300 200" role="img" aria-label="One page connected to three complementary offers"><g stroke="#00293D" stroke-width="3"><path d="M150 100 60 40M150 100 240 40M150 100 150 170"/></g><circle cx="150" cy="100" r="34" fill="#FF9F1C" stroke="#00293D" stroke-width="4"/><text x="150" y="106" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="16" fill="#00293D">Your page</text><g fill="#fff" stroke="#00293D" stroke-width="3"><circle class="orb" cx="60" cy="40" r="22"/><circle class="orb" style="animation-delay:-1s" cx="240" cy="40" r="22"/><circle class="orb" style="animation-delay:-2s" cx="150" cy="170" r="22"/></g><g font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="#00293D" text-anchor="middle"><text x="60" y="44">Add-on</text><text x="240" y="44">Bundle</text><text x="150" y="174">Upgrade</text></g></svg></div>
+<div><h3>Horizontal expansion</h3><p>Offer complementary products and services to the friends who already love your work. Your team stays small and your revenue grows.</p>
+<h3>Automate and share the load</h3><p>Systemize repeating tasks so your landing page welcomes visitors, collects payments, and shares details while you enjoy high-value work and free time.</p></div>
+</div></div></section>
+
+<section class="final"><div class="w">
+<svg width="120" height="120" viewBox="0 0 64 64" class="fl" aria-hidden="true"><circle cx="32" cy="32" r="26" fill="#FF9F1C" stroke="#00293D" stroke-width="3"/><path d="M32 14l5 12 13 1-10 9 3 13-11-7-11 7 3-13-10-9 13-1Z" fill="#E8F8FF" stroke="#00293D" stroke-width="2.5" stroke-linejoin="round"/></svg>
+<h2>Your first customer is waiting to smile</h2>
+<p>Bring your passion, your one-page plan, and a bright landing page. EasyLandX builds affordable, conversion-focused pages that help your microbusiness shine.</p>
+<a class="btn big" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</div></section>
+<footer>EasyLandX Landing Pages · Inspired by The $100 Startup by Chris Guillebeau</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const sets={skill:['Design','Baking','Teaching','Photography'],love:['Travel','Fitness','Music','Gardening'],value:['More free time','Joy','Confidence','Convenience']};
+const pick={};
+for(const k in sets){const r=$('#r-'+k);sets[k].forEach(t=>{const b=document.createElement('button');b.textContent=t;b.setAttribute('aria-pressed','false');b.onclick=()=>{[...r.children].forEach(c=>c.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');pick[k]=t;upd()};r.append(b)})}
+function upd(){for(const k in sets)$('#c-'+k).classList.toggle('on',!!pick[k]);
+const all=pick.skill&&pick.love&&pick.value;$('#star').classList.toggle('on',!!all);
+$('#idea').innerHTML=all?`Your offer: <b>${pick.skill}</b> for people who love <b>${pick.love.toLowerCase()}</b>, delivering <b>${pick.value.toLowerCase()}</b>. Ready for its own landing page!`:'Pick one from each row to light up your sweet spot.'}
+const pairs=[['Secure payment button','Customers say yes in seconds'],['Clear photo gallery','Visitors picture themselves enjoying your offer'],['Mobile-friendly layout','Friends share your page with one tap'],['Simple contact form','Your next customer feels welcome right away']];
+const sw=$('#sw'),fb=$('#fb');
+function fbr(){const on=sw.getAttribute('aria-pressed')==='true';fb.className='fb'+(on?' ben':'');fb.innerHTML=pairs.map(p=>`<li>${p[on?1:0]}</li>`).join('')}
+sw.onclick=()=>{sw.setAttribute('aria-pressed',sw.getAttribute('aria-pressed')!=='true');fbr()};fbr();
+const ids=['offer','cust','price','chan','step'],dflt={offer:'Your offer appears here',cust:'your favorite people',price:'Start today',chan:'your favorite channel',step:'your first step'};
+function plan(){let n=0;ids.forEach(i=>{const v=$('#f-'+i).value.trim();if(v)n++;$('#p-'+i).textContent=v?(i==='price'?'Get started · '+v:v):dflt[i]});
+$('#pg').style.width=n*20+'%';$('#pgt').textContent=n===5?'Your one-page plan is complete. Time to launch!':n+' of 5 answers ready'}
+ids.forEach(i=>{$('#f-'+i).addEventListener('input',plan);$('#f-'+i).addEventListener('change',plan)});plan();
+const ms=[[1,'Announce your idea and invite friends to follow along.'],[7,'Share a behind-the-scenes photo of your first prototype.'],[14,'Open early-bird access for your closest supporters.'],[21,'Post a countdown and a warm thank-you to early fans.'],[30,'Launch day! Welcome your first paying customers and celebrate.']];
+const sl=$('#sl');
+function lv(){const v=+sl.value;$('#dn').textContent=v;$('#msg').textContent=ms.filter(m=>m[0]<=v).pop()[1];
+const t=(v-1)/29,w=sl.offsetWidth;$('#rk').style.left=(14+t*(w-28))+'px'}
+sl.addEventListener('input',lv);addEventListener('resize',lv);lv();
+</script>
+</body>
+</html>

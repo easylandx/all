@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX | Tune In to Landing Pages That Convert</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A4D68;--deep:#083C52;--mid:#0E6283;--soft:#2A80A3;--tint:#CFE6EF;--text:#EAF5F9;--acc:#E57C23;--ink:#062F40;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--text);font:400 18px/1.65 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,system-ui,sans-serif;line-height:1.08;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,6.4vw,4.6rem);font-weight:800}
+h2{font-size:clamp(1.9rem,4.2vw,3rem);font-weight:800}
+h3{font-size:1.35rem;font-weight:600}
+p{margin:0 0 1em;max-width:62ch}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:clamp(28px,9vw,150px)}
+section{padding-block:clamp(72px,11vw,130px)}
+.alt{background:var(--deep)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.btn{display:inline-block;background:var(--acc);color:var(--ink);font:800 1.05rem 'Bricolage Grotesque',sans-serif;padding:.9em 1.7em;border-radius:999px;text-decoration:none;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 0 -2px rgba(0,0,0,.25)}
+nav{position:sticky;top:0;z-index:5;background:rgba(10,77,104,.92);backdrop-filter:blur(8px);padding-top:env(safe-area-inset-top,0px)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:14px}
+.logo{font:800 1.4rem 'Bricolage Grotesque',sans-serif;color:var(--text);text-decoration:none}
+.logo b{color:var(--acc)}
+nav .btn{padding:.55em 1.3em;font-size:.95rem}
+/* hero */
+.hero{padding-top:clamp(48px,8vw,100px);overflow:hidden}
+.hero .grid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
+.hero p.lead{font-size:1.25rem;color:var(--tint)}
+.dial-art{width:100%;max-width:360px;justify-self:center}
+.ring{transform-origin:200px 200px;animation:pulse 3.6s ease-out infinite;fill:none;stroke:var(--acc);stroke-width:3}
+.ring:nth-child(2){animation-delay:1.2s}.ring:nth-child(3){animation-delay:2.4s}
+@keyframes pulse{0%{transform:scale(.35);opacity:.9}100%{transform:scale(1.25);opacity:0}}
+.hero h1,.hero .lead,.hero .btn{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero .lead{animation-delay:.15s}.hero .btn{animation-delay:.3s}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.tuner{margin-top:clamp(40px,6vw,72px);background:var(--deep);border-radius:28px;padding:clamp(20px,3vw,36px)}
+#wave{width:100%;height:210px;display:block}
+.tuner-row{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;margin-top:8px}
+.tuner label{font:600 1.05rem 'Bricolage Grotesque',sans-serif}
+#dial{flex:1 1 260px;accent-color:var(--acc);height:34px}
+#state{font:800 1.2rem 'Bricolage Grotesque',sans-serif;color:var(--acc);min-width:9.5ch;text-align:right}
+/* messages */
+.msgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:36px 48px;margin-top:48px}
+.msg svg{width:64px;height:64px;margin-bottom:14px}
+.msg h3{color:var(--acc)}
+/* lenses */
+.lenses{display:flex;flex-wrap:wrap;gap:10px;margin:36px 0 28px}
+.chip{font:600 1rem Figtree,sans-serif;color:var(--text);background:var(--mid);border:2px solid transparent;border-radius:999px;padding:.55em 1.2em;cursor:pointer;transition:background .2s,transform .2s}
+.chip:hover{transform:translateY(-2px)}
+.chip[aria-selected=true]{background:var(--acc);color:var(--ink)}
+.chip.done::after{content:" ✓"}
+.panel{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;background:var(--bg);border-radius:28px;padding:clamp(24px,4vw,48px)}
+.panel .tag{font:600 .95rem Figtree;color:var(--acc);margin-bottom:6px}
+.panel h3{font-size:clamp(1.6rem,3vw,2.2rem)}
+.panel .use{border-left:5px solid var(--acc);padding-left:18px;color:var(--tint)}
+.panel .anim{animation:swap .45s cubic-bezier(.2,.7,.2,1)}
+@keyframes swap{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+.meter{background:var(--deep);border-radius:22px;padding:24px;align-self:start}
+.bar{height:16px;border-radius:99px;background:var(--mid);overflow:hidden;margin:12px 0}
+#fill{height:100%;width:0;background:var(--acc);border-radius:99px;transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.meter .btn{margin-top:12px;width:100%;text-align:center}
+.bars{display:flex;gap:5px;align-items:flex-end;height:46px;margin-top:6px}
+.bars i{flex:1;background:var(--soft);border-radius:4px;height:20%;transition:height .5s,background .3s}
+.bars i.on{background:var(--acc)}
+/* strategies */
+.strat{display:grid;grid-template-columns:150px 1fr;gap:36px;align-items:center;padding-block:34px;border-top:2px solid var(--mid)}
+.strat:first-of-type{margin-top:36px}
+.strat svg{width:150px;height:150px}
+.strat h3{font-size:1.7rem;color:var(--acc)}
+.strat ul{margin:0;padding-left:1.2em;color:var(--tint)}
+.float{animation:bob 4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+/* process */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:28px;margin-top:44px;counter-reset:s}
+.step{background:var(--deep);border-radius:24px;padding:28px;counter-increment:s}
+.step::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--acc);color:var(--ink);font:800 1.2rem 'Bricolage Grotesque';margin-bottom:14px}
+/* cta */
+.cta{text-align:center}
+.cta p{margin-inline:auto}
+.cta svg{width:120px;margin-bottom:10px}
+footer{padding:36px 0 48px;color:var(--tint);font-size:.95rem;text-align:center;background:var(--deep)}
+@media(max-width:820px){.hero .grid,.panel{grid-template-columns:1fr}.dial-art{max-width:240px}.strat{grid-template-columns:1fr;gap:14px}.strat svg{width:100px;height:100px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="#top">Easy<b>Land</b>X</a><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <div class="grid">
+    <div>
+      <h1>Tune in to landing pages that turn visitors into customers.</h1>
+      <p class="lead">EasyLandX crafts affordable, conversion-focused landing pages for small businesses, shaped by the science of smarter decisions from <em>Tune In</em> by Nuala Walsh.</p>
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+    </div>
+    <svg class="dial-art" viewBox="0 0 400 400" aria-hidden="true">
+      <circle class="ring" cx="200" cy="200" r="190"/><circle class="ring" cx="200" cy="200" r="190"/><circle class="ring" cx="200" cy="200" r="190"/>
+      <circle cx="200" cy="200" r="118" fill="#083C52" stroke="#E57C23" stroke-width="6"/>
+      <g stroke="#CFE6EF" stroke-width="4" stroke-linecap="round" opacity=".7"><path d="M200 96v16M200 288v16M96 200h16M288 200h16M127 127l11 11M262 262l11 11M127 273l11-11M262 138l11-11"/></g>
+      <g id="needle" style="transform-origin:200px 200px;transition:transform .4s cubic-bezier(.2,.7,.2,1);transform:rotate(-110deg)"><path d="M200 200L200 112" stroke="#E57C23" stroke-width="9" stroke-linecap="round"/></g>
+      <circle cx="200" cy="200" r="16" fill="#E57C23"/>
+    </svg>
+  </div>
+  <div class="tuner">
+    <canvas id="wave" role="img" aria-label="A wave that becomes smooth and clear as you turn the dial"></canvas>
+    <div class="tuner-row">
+      <label for="dial">Turn the dial to tune your message</label>
+      <input id="dial" type="range" min="0" max="100" value="12">
+      <span id="state" aria-live="polite">Warming up</span>
+    </div>
+  </div>
+</div></header>
+
+<section id="messages"><div class="wrap">
+  <h2>Clear signals lead to confident choices</h2>
+  <p>Nuala Walsh shows that smart decisions grow from tuning in to the inputs that matter. Every EasyLandX page is built on four of her core messages.</p>
+  <div class="msgs">
+    <div class="msg"><svg viewBox="0 0 64 64" fill="none" stroke="#E57C23" stroke-width="4" stroke-linecap="round"><path d="M6 32h8l6-18 10 36 8-26 5 8h15"/></svg><h3>Clarity pays</h3><p>Visitors choose with joy when one clear message leads the way. Your page offers a single, bright promise.</p></div>
+    <div class="msg"><svg viewBox="0 0 64 64" fill="none" stroke="#E57C23" stroke-width="4" stroke-linecap="round"><circle cx="32" cy="32" r="8"/><circle cx="32" cy="32" r="18"/><circle cx="32" cy="32" r="28" opacity=".5"/></svg><h3>Listen to the right inputs</h3><p>Customer words, real data, and honest feedback guide the design, so your page speaks to what your audience cares about.</p></div>
+    <div class="msg"><svg viewBox="0 0 64 64" fill="none" stroke="#E57C23" stroke-width="4" stroke-linecap="round"><circle cx="32" cy="32" r="22"/><path d="M32 10v6M32 48v6M10 32h6M48 32h6M17 17l4 4M43 43l4 4M17 47l4-4M43 21l4-4"/></svg><h3>Ten lenses shape every choice</h3><p>The PERIMETERS framework names ten forces that color decisions. Knowing them turns each one into a design advantage.</p></div>
+    <div class="msg"><svg viewBox="0 0 64 64" fill="none" stroke="#E57C23" stroke-width="4" stroke-linecap="round"><path d="M10 50V36M22 50V26M34 50V16M46 50V28M58 50V38"/></svg><h3>Tuning in is a skill</h3><p>Smarter decisions improve with practice. We amplify quiet, high-value signals before every launch.</p></div>
+  </div>
+</div></section>
+
+<section class="alt" id="lenses"><div class="wrap">
+  <h2>The PERIMETERS lenses, tuned for your landing page</h2>
+  <p>Select a lens to see how it guides our design choices. Add it to your tune-up and watch your clarity meter rise.</p>
+  <div class="lenses" role="tablist" aria-label="PERIMETERS lenses" id="chips"></div>
+  <div class="panel">
+    <div id="detail" class="anim" role="tabpanel"></div>
+    <div class="meter">
+      <h3>Your tune-up</h3>
+      <div class="bars" id="bars" aria-hidden="true"></div>
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" id="pb"><div id="fill"></div></div>
+      <p id="mtext" style="margin:0;color:var(--tint)">Add lenses to brighten your page.</p>
+      <button class="btn" id="add" type="button">Add to my tune-up</button>
+    </div>
+  </div>
+</div></section>
+
+<section id="strategies"><div class="wrap">
+  <h2>Three strategies that sharpen judgment</h2>
+  <p>Walsh's practical tactics become simple steps in the EasyLandX way of working.</p>
+  <div class="strat">
+    <svg class="float" viewBox="0 0 150 150" fill="none" stroke-linecap="round"><circle cx="64" cy="64" r="38" stroke="#E57C23" stroke-width="8"/><path d="M92 92l36 36" stroke="#E57C23" stroke-width="10"/><path d="M46 66l12 12 22-26" stroke="#CFE6EF" stroke-width="7" stroke-linejoin="round"/></svg>
+    <div><h3>Run a PERIMETERS audit</h3><p>Before any choice, we ask which lens is active: Time, Ego, Story, or another.</p><ul><li>Review your page against all ten lenses</li><li>Separate facts from the story they arrive in</li><li>Choose elements for their proof of value</li></ul></div>
+  </div>
+  <div class="strat">
+    <svg class="float" viewBox="0 0 150 150" fill="#E57C23"><rect x="14" y="80" width="14" height="40" rx="7" opacity=".4"/><rect x="40" y="62" width="14" height="58" rx="7" opacity=".55"/><rect x="66" y="22" width="14" height="98" rx="7"/><rect x="92" y="54" width="14" height="66" rx="7" opacity=".65"/><rect x="118" y="76" width="14" height="44" rx="7" opacity=".4"/></svg>
+    <div><h3>Amplify quiet signals</h3><p>The most valuable insights often arrive softly. We turn the volume up on them.</p><ul><li>Welcome minority opinions and fresh perspectives</li><li>Listen to the first-hand voices of your customers</li><li>Highlight small details that delight visitors</li></ul></div>
+  </div>
+  <div class="strat">
+    <svg class="float" viewBox="0 0 150 150" fill="none"><circle cx="75" cy="75" r="56" stroke="#E57C23" stroke-width="8"/><rect x="54" y="50" width="14" height="50" rx="6" fill="#E57C23"/><rect x="82" y="50" width="14" height="50" rx="6" fill="#E57C23"/></svg>
+    <div><h3>Pause, then launch</h3><p>A calm moment lets excitement settle into clear thinking.</p><ul><li>Take a cooling-off pause before every big decision</li><li>Invite an independent listener to review your page</li><li>Launch with confidence and a clear mind</li></ul></div>
+  </div>
+</div></section>
+
+<section class="alt" id="process"><div class="wrap">
+  <h2>How EasyLandX puts it all together</h2>
+  <p>A simple four-step rhythm brings the framework to life, affordably and quickly.</p>
+  <div class="steps">
+    <div class="step"><h3>Listen</h3><p>We learn your goals, your customers, and your story.</p></div>
+    <div class="step"><h3>Audit</h3><p>We apply the ten lenses to find your brightest opportunities.</p></div>
+    <div class="step"><h3>Craft</h3><p>We design a focused page with one clear, inviting action.</p></div>
+    <div class="step"><h3>Launch</h3><p>We pause, polish, and publish a page ready to convert.</p></div>
+  </div>
+</div></section>
+
+<section class="cta" id="start"><div class="wrap">
+  <svg viewBox="0 0 120 80" fill="none" stroke="#E57C23" stroke-width="6" stroke-linecap="round"><path d="M6 40c14-30 24 30 38 0s24 30 38 0 22-14 32 0"/></svg>
+  <h2>Ready to tune in?</h2>
+  <p>Give your small business a landing page with a clear signal, a warm welcome, and a path visitors love to follow.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</div></section>
+
+<footer><div class="wrap">Inspired by <em>Tune In</em> by Nuala Walsh. Crafted by EasyLandX.</div></footer>
+
+<script>
+const L=[
+["Power","Invite every voice","Authority is strongest when it welcomes feedback from everyone.","Your headline speaks in your visitor's words, and real customer quotes share the spotlight."],
+["Ego","Curiosity over status","Choices shine when the goal is discovering what works.","The page opens with your visitor's goal and offers one clear promise."],
+["Risk","Weigh the real odds","Clear thinking about probabilities builds confidence.","Transparent pricing, guarantees, and a small first step make saying yes feel easy."],
+["Identity","Belong together","People love messages that reflect the community they care about.","Local flavor and shared values help your audience see themselves in your brand."],
+["Memory","Gather the full picture","Complete data beats vivid recollections.","Analytics and customer feedback guide each edit, so improvements rest on facts."],
+["Ethics","Steady integrity","Small honest choices build lasting trust.","Real photos, genuine reviews, and accurate claims make your page a trusted friend."],
+["Time","Space for the long view","Calm pacing leads to lasting results.","Lightning-fast loading and timeless value replace artificial countdowns."],
+["Emotion","Channel feeling","Warm feelings fuel great decisions when guided with care.","Color, imagery, and a pause point turn excitement into a confident click."],
+["Relationships","Harmony with honesty","Friendly conversation makes truth easy to share.","A WhatsApp button and a feedback invitation keep the conversation open and warm."],
+["Story","Facts with heart","A great story paired with proof is unforgettable.","A short, vivid story sits beside numbers and before-and-after results."]
+];
+const on=new Set();let cur=0;
+const chips=document.getElementById('chips'),detail=document.getElementById('detail'),bars=document.getElementById('bars'),add=document.getElementById('add');
+L.forEach((l,i)=>{const b=document.createElement('button');b.className='chip';b.type='button';b.setAttribute('role','tab');b.textContent=l[0];b.onclick=()=>show(i);chips.appendChild(b);const bi=document.createElement('i');bars.appendChild(bi)});
+function show(i){cur=i;const l=L[i];
+ detail.classList.remove('anim');void detail.offsetWidth;detail.classList.add('anim');
+ detail.innerHTML=`<div class="tag">Lens ${i+1} of 10: ${l[0]}</div><h3>${l[1]}</h3><p>${l[2]}</p><p class="use"><strong>On your landing page:</strong> ${l[3]}</p>`;
+ [...chips.children].forEach((c,j)=>{c.setAttribute('aria-selected',j===i);c.classList.toggle('done',on.has(j))});
+ add.textContent=on.has(i)?'Added to your tune-up ✓':'Add to my tune-up';
+ const n=on.size;document.getElementById('fill').style.width=n*10+'%';document.getElementById('pb').setAttribute('aria-valuenow',n);
+ [...bars.children].forEach((b,j)=>{b.classList.toggle('on',j<n);b.style.height=(20+(j<n?(j+1)*8:j*3))+'%'});
+ document.getElementById('mtext').textContent=n===0?'Add lenses to brighten your page.':n<5?`${n} of 10 lenses tuned. Your signal is growing.`:n<10?`${n} of 10 lenses tuned. Your page is sounding great.`:'All 10 lenses tuned. Your page rings out loud and clear!';
+}
+add.onclick=()=>{on.has(cur)?on.delete(cur):on.add(cur);show(cur)};
+show(0);
+
+/* hero wave */
+const cv=document.getElementById('wave'),ctx=cv.getContext('2d'),dial=document.getElementById('dial'),st=document.getElementById('state'),needle=document.getElementById('needle');
+const still=matchMedia('(prefers-reduced-motion: reduce)').matches;let t=0,tune=dial.value/100;
+function size(){const r=devicePixelRatio||1;cv.width=cv.clientWidth*r;cv.height=cv.clientHeight*r;ctx.setTransform(r,0,0,r,0,0)}
+function draw(){const w=cv.clientWidth,h=cv.clientHeight;ctx.clearRect(0,0,w,h);ctx.lineCap='round';
+ const extra=[[3.1,.9,1.3],[5.7,.7,-1.7],[9.3,.5,2.1],[13,.35,-2.6]];
+ for(const [f,a,s] of extra){ctx.beginPath();for(let x=0;x<=w;x+=4){const y=h/2+Math.sin(x/w*f*6.283+t*s)*h*.3*a*(1-tune);x?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.strokeStyle='rgba(207,230,239,'+(.35*(1-tune)).toFixed(2)+')';ctx.lineWidth=2;ctx.stroke()}
+ ctx.beginPath();for(let x=0;x<=w;x+=3){let y=Math.sin(x/w*6.283*2+t);for(const [f,a,s] of extra)y+=Math.sin(x/w*f*6.283+t*s)*a*.35*(1-tune);y=h/2+y*h*.26/(1+.5*(1-tune));x?ctx.lineTo(x,y):ctx.moveTo(x,y)}
+ ctx.strokeStyle='#E57C23';ctx.lineWidth=3+tune*3;ctx.shadowColor='#E57C23';ctx.shadowBlur=tune*18;ctx.stroke();ctx.shadowBlur=0}
+function loop(){t+=.02;draw();requestAnimationFrame(loop)}
+function upd(){tune=dial.value/100;st.textContent=tune<.34?'Warming up':tune<.75?'Sharpening':'Crystal clear';needle.style.transform='rotate('+(-110+tune*220)+'deg)';if(still)draw()}
+dial.addEventListener('input',upd);addEventListener('resize',()=>{size();if(still)draw()});
+size();upd();still?draw():loop();
+</script>
+</body>
+</html>
