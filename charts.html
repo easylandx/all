@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx · Landing Pages That Say It with Charts</title>
+<style>
+:root{--bg:#FF8A00;--deep:#E57600;--ink:#2B1100;--cyan:#00E5FF;--paper:#FFB04D;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#F27D00;--deep:#D96C00;--paper:#F59A33}}
+:root[data-theme="dark"]{--bg:#F27D00;--deep:#D96C00;--paper:#F59A33}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;line-height:1.55;overflow-x:hidden}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:clamp(22px,6vw,56px)}
+section{padding:72px 0}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.1;margin:0 0 14px}
+h1{font-size:clamp(2.3rem,6.5vw,4.4rem)}h2{font-size:clamp(1.7rem,4vw,2.6rem)}
+.eyebrow{display:inline-block;background:var(--ink);color:var(--cyan);font-weight:700;letter-spacing:.12em;font-size:.75rem;padding:5px 12px;border-radius:99px;text-transform:uppercase;margin-bottom:16px}
+.btn{display:inline-block;background:var(--cyan);color:var(--ink);font-weight:800;text-decoration:none;padding:14px 26px;border-radius:99px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s;cursor:pointer;font-size:1rem}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.top{position:sticky;top:0;z-index:5;background:var(--ink);color:#fff;padding:10px 0;padding-top:calc(10px + env(safe-area-inset-top,0px));margin-top:calc(-1*env(safe-area-inset-top,0px))}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{font-weight:900;font-size:1.2rem;color:var(--cyan)}
+.top .btn{padding:8px 18px;box-shadow:none;border-color:var(--cyan);font-size:.9rem}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.hero p{font-size:1.15rem;max-width:34em}
+.card{background:var(--paper);border:3px solid var(--ink);border-radius:22px;padding:24px}
+.dark{background:var(--ink);color:#FFE3C2;border-radius:28px;padding:clamp(22px,4vw,40px)}
+.dark h2,.dark h3{color:var(--cyan)}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card h3{font-size:1.3rem}.num{font-size:2.4rem;font-weight:900;color:var(--ink);font-family:Georgia,serif}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.tab{background:transparent;color:var(--cyan);border:2px solid var(--cyan);border-radius:99px;padding:9px 16px;font-weight:700;cursor:pointer;font-size:.95rem}
+.tab[aria-pressed="true"]{background:var(--cyan);color:var(--ink)}
+.chart-box{display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:center}
+@media(max-width:800px){.chart-box{grid-template-columns:1fr}}
+.chart-box svg{width:100%;height:auto;max-height:330px}
+.chip{display:inline-block;background:var(--cyan);color:var(--ink);border-radius:8px;padding:2px 9px;margin:3px 4px 3px 0;font-weight:700;font-size:.85rem}
+.headline{font-family:Georgia,serif;font-size:clamp(1.3rem,3.4vw,2rem);min-height:2.4em;transition:opacity .3s}
+.switch{display:inline-flex;border:3px solid var(--ink);border-radius:99px;overflow:hidden;margin-bottom:18px}
+.switch button{border:0;padding:10px 18px;font-weight:800;cursor:pointer;background:transparent;color:var(--ink);font-size:.95rem}
+.switch button[aria-pressed="true"]{background:var(--ink);color:var(--cyan)}
+.checks{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.checks label{background:var(--ink);color:var(--cyan);padding:8px 14px;border-radius:99px;font-weight:700;cursor:pointer;font-size:.9rem}
+.checks input{accent-color:var(--cyan);margin-right:6px}
+.tpl li{list-style:none;margin:8px 0}
+.tpl label{display:flex;gap:12px;align-items:flex-start;cursor:pointer}
+.tpl input{accent-color:var(--cyan);width:22px;height:22px;margin-top:2px;flex:none}
+.bar{height:16px;background:rgba(0,229,255,.2);border-radius:99px;overflow:hidden;margin:14px 0 6px}
+.bar i{display:block;height:100%;width:0;background:var(--cyan);transition:width .5s}
+.float{animation:fl 4s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-12px)}}
+.grow{transform-origin:bottom;transform-box:fill-box;animation:gr 1.4s cubic-bezier(.2,.9,.3,1) both}
+@keyframes gr{from{transform:scaleY(0)}}
+.pulse{animation:pu 2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}@keyframes pu{50%{transform:scale(1.15)}}
+.spin{animation:sp 18s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes sp{to{transform:rotate(360deg)}}
+.reveal{opacity:0;transform:translateY(28px);transition:all .7s}.reveal.in{opacity:1;transform:none}
+footer{background:var(--ink);color:#FFE3C2;padding:56px 0;padding-bottom:calc(56px + env(safe-area-inset-bottom,0px));text-align:center}
+footer .btn{margin:18px 0}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><span class="logo">easylandx</span><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch with easylandx</a></div></header>
+
+<main>
+<section class="wrap hero">
+<div>
+<span class="eyebrow">Inspired by Say It with Charts · Gene Zelazny</span>
+<h1>Landing pages that say it with clarity.</h1>
+<p>Every great chart starts with a message. Every great landing page does too. easylandx brings Zelazny’s message-first thinking to your page, so visitors see your point in seconds and take the next step with joy.</p>
+<p><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx →</a></p>
+</div>
+<svg viewBox="0 0 400 340" role="img" aria-label="Animated chart illustration with a highlighted cyan bar">
+<rect x="10" y="10" width="380" height="320" rx="26" fill="#2B1100"/>
+<g class="float"><circle cx="330" cy="60" r="26" fill="#00E5FF"/><path d="M318 60l9 9 16-18" stroke="#2B1100" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+<text x="36" y="62" fill="#00E5FF" font-family="Georgia" font-size="19" font-weight="700">Your message leads</text>
+<text x="36" y="86" fill="#FFB04D" font-family="Arial" font-size="13">one bright focal point, calm supporting tones</text>
+<g>
+<rect class="grow" x="48" y="210" width="44" height="90" rx="6" fill="#8A4A10" style="animation-delay:.1s"/>
+<rect class="grow" x="108" y="190" width="44" height="110" rx="6" fill="#8A4A10" style="animation-delay:.3s"/>
+<rect class="grow" x="168" y="170" width="44" height="130" rx="6" fill="#8A4A10" style="animation-delay:.5s"/>
+<rect class="grow" x="228" y="105" width="44" height="195" rx="6" fill="#00E5FF" style="animation-delay:.7s"/>
+<rect class="grow" x="288" y="180" width="44" height="120" rx="6" fill="#8A4A10" style="animation-delay:.9s"/>
+</g>
+<text x="250" y="96" text-anchor="middle" fill="#00E5FF" font-family="Arial" font-size="15" font-weight="800">+25%</text>
+<line x1="36" y1="300" x2="350" y2="300" stroke="#FFB04D" stroke-width="2"/>
+</svg>
+</section>
+
+<section class="wrap reveal">
+<span class="eyebrow">Three guiding ideas</span>
+<h2>One page, one message, one clear next step.</h2>
+<div class="grid3">
+<div class="card"><div class="num">01</div><h3>Message-driven design</h3><p>Form your headline first. Your page content, visuals and button all work together to support that single message.</p></div>
+<div class="card"><div class="num">02</div><h3>Form follows comparison</h3><p>The comparison you want to make selects the visual. Share, ranking, trend, distribution or relationship each have a perfect match.</p></div>
+<div class="card"><div class="num">03</div><h3>Simplicity shines</h3><p>Keep what supports your point. Generous space and one bright accent guide every visitor’s eyes straight to your offer.</p></div>
+</div>
+</section>
+
+<section class="wrap reveal">
+<div class="dark">
+<span class="eyebrow" style="background:var(--cyan);color:var(--ink)">Interactive · Chart Chooser</span>
+<h2>Pick a comparison. Meet its perfect chart.</h2>
+<p>Tap a trigger type to see the ideal visual, its trigger words and a ready-made action headline for your landing page.</p>
+<div class="tabs" id="tabs"></div>
+<div class="chart-box">
+<div><h3 id="ctype"></h3><p id="cpurpose"></p><div id="cwords"></div><p id="crule" style="color:#FFB04D"></p><p class="headline" id="chead" style="color:#fff"></p></div>
+<svg id="chart" viewBox="0 0 400 300" role="img" aria-label="Sample chart for the selected comparison"></svg>
+</div>
+</div>
+</section>
+
+<section class="wrap reveal">
+<span class="eyebrow">Interactive · Action Titles</span>
+<h2>Headlines that deliver the conclusion.</h2>
+<p>Flip between a topic label and an action headline. Action headlines tell visitors what to see before they scan a single visual.</p>
+<div class="switch" role="group" aria-label="Title style"><button id="bTopic" aria-pressed="true">Topic title</button><button id="bAction" aria-pressed="false">Action headline</button></div>
+<div class="card"><p class="headline" id="hl" aria-live="polite"></p><p id="hlnote" style="margin:0;font-weight:700"></p></div>
+</section>
+
+<section class="wrap reveal">
+<div class="dark">
+<span class="eyebrow" style="background:var(--cyan);color:var(--ink)">Interactive · Clarity Dial</span>
+<h2>Switch on clarity, one choice at a time.</h2>
+<p>Tick each refinement and watch the chart become crisp, calm and persuasive.</p>
+<div class="checks" id="dchecks">
+<label><input type="checkbox" value="grid">Remove gridlines</label>
+<label><input type="checkbox" value="tone">Muted baseline tone</label>
+<label><input type="checkbox" value="label">Direct labels</label>
+<label><input type="checkbox" value="round">Round to whole numbers</label>
+</div>
+<svg id="dsvg" viewBox="0 0 560 260" style="width:100%;height:auto;max-height:300px" role="img" aria-label="Column chart that becomes cleaner as options are ticked"></svg>
+<p id="dscore" style="color:var(--cyan);font-weight:800;margin:6px 0 0"></p>
+</div>
+</section>
+
+<section class="wrap reveal">
+<span class="eyebrow">Concept chart</span>
+<h2>A funnel that welcomes every visitor.</h2>
+<p>Zelazny shows that ideas, not only numbers, shine as visuals. Here is the easylandx page journey as a friendly funnel. Hover or tap a stage.</p>
+<div class="card" style="display:grid;grid-template-columns:1.2fr 1fr;gap:20px;align-items:center" id="fwrap">
+<svg id="fun" viewBox="0 0 420 280" style="width:100%;height:auto" role="img" aria-label="Funnel with four stages"></svg>
+<div><h3 id="ft">Welcome</h3><p id="fd">Hover or tap a stage to explore.</p></div>
+</div>
+</section>
+
+<section class="wrap reveal">
+<div class="dark">
+<span class="eyebrow" style="background:var(--cyan);color:var(--ink)">Your template</span>
+<h2>Chart selection &amp; design checklist for your page.</h2>
+<ul class="tpl" style="padding:0;margin:0" id="tpl"></ul>
+<div class="bar"><i id="pbar"></i></div>
+<p id="ptxt" style="color:var(--cyan);font-weight:800;margin:0"></p>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap">
+<svg class="spin" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" fill="none" stroke="#00E5FF" stroke-width="5" stroke-dasharray="40 20"/><circle cx="32" cy="32" r="8" fill="#00E5FF"/></svg>
+<h2 style="color:var(--cyan)">Your message deserves a beautiful page.</h2>
+<p>Share one clear point, highlight it with one bright accent and welcome your visitors with confidence.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx →</a>
+<p style="font-size:.9rem;color:#FFB04D">Made by easylandx · Inspired by Gene Zelazny’s <em>The Complete Say It with Charts Toolkit</em></p>
+</div>
+</footer>
+
+<script>
+(function(){
+var C='#00E5FF',M='#8A4A10',T='#FFB04D',NS='http://www.w3.org/2000/svg';
+function $(id){return document.getElementById(id)}
+function svgT(x,y,s,fill,anchor,size,w){return '<text x="'+x+'" y="'+y+'" fill="'+fill+'" text-anchor="'+(anchor||'start')+'" font-family="Arial" font-size="'+(size||13)+'" font-weight="'+(w||700)+'">'+s+'</text>'}
+var types=[
+{k:'Component',p:'Shows the percentage of a total.',w:['share','percentage','portion','ratio'],c:'Pie or 100% column chart',r:'Celebrate up to 6 components and group the rest as “Other”.',h:'Mobile Visitors Delivered 58% of Launch-Month Leads'},
+{k:'Item',p:'Compares items at a single point in time.',w:['larger than','smaller than','ranking','equal'],c:'Horizontal bar chart',r:'Order bars from highest to lowest for instant reading.',h:'Hero Section Variant B Ranked First in Sign-Ups'},
+{k:'Time-Series',p:'Shows movement or change over time.',w:['growth','trend','change','fluctuate'],c:'Column chart or line chart',r:'Columns suit a few periods; lines suit many.',h:'Weekly Sign-Ups Grew Every Month Since Launch'},
+{k:'Frequency',p:'Shows how many items fall into numeric ranges.',w:['distribution','frequency','age groups','concentration'],c:'Histogram',r:'Equal-width ranges keep the shape easy to read.',h:'Most Visitors Reach Your Offer Within 20 Seconds'},
+{k:'Correlation',p:'Shows whether two variables move together.',w:['relationship','varies with','increases with'],c:'Scatter plot',r:'Place the cause on the horizontal axis.',h:'Pages with Clearer Headlines Earn More Sign-Ups'}];
+var cur=0;
+types.forEach(function(t,i){var b=document.createElement('button');b.className='tab';b.textContent=t.k;b.setAttribute('aria-pressed',i===0);b.onclick=function(){cur=i;draw()};$('tabs').appendChild(b)});
+function draw(){
+var t=types[cur];
+Array.prototype.forEach.call($('tabs').children,function(b,i){b.setAttribute('aria-pressed',i===cur)});
+$('ctype').textContent=t.k+' comparison → '+t.c;$('cpurpose').textContent=t.p;
+$('cwords').innerHTML=t.w.map(function(w){return '<span class="chip">'+w+'</span>'}).join('');
+$('crule').textContent=t.r;$('chead').textContent='“'+t.h+'”';
+var s='<line x1="30" y1="260" x2="380" y2="260" stroke="'+T+'" stroke-width="2"/>',i;
+if(cur===0){var v=[58,20,12,10],a=0,L=['Mobile','Desktop','Tablet','Other'],R=70;
+v.forEach(function(x,j){var len=x/100*2*Math.PI*R;s+='<circle cx="140" cy="140" r="'+R+'" fill="none" stroke="'+(j?M:C)+'" stroke-width="'+(j?36:44)+'" stroke-dasharray="0 '+(2*Math.PI*R)+'" transform="rotate('+(-90+a*3.6)+' 140 140)"><animate attributeName="stroke-dasharray" to="'+len+' '+(2*Math.PI*R-len)+'" dur="1s" fill="freeze"/></circle>';s+=svgT(285,100+j*34,x+'% '+L[j],j?T:C,'start',j?14:18,j?600:800);a+=x});
+s=s.replace(/<line[^>]*>/,'')}
+if(cur===1){var d=[['Variant B',92],['Variant A',71],['Variant D',58],['Variant C',44]];
+d.forEach(function(x,j){var y=40+j*54,w=x[1]*2.6;s+='<rect class="grow" x="110" y="'+y+'" width="'+w+'" height="36" rx="6" fill="'+(j?M:C)+'" style="transform-origin:left;animation:none"><animate attributeName="width" from="0" to="'+w+'" dur=".9s" fill="freeze"/></rect>'+svgT(100,y+24,x[0],j?T:C,'end')+svgT(118+w,y+24,x[1],j?T:C,'start',15,800)})}
+if(cur===2){var d2=[30,38,47,60,76,95];['Apr','May','Jun','Jul','Aug','Sep'].forEach(function(m,j){var h=d2[j]*2.4,x=44+j*56;s+='<rect class="grow" x="'+x+'" y="'+(260-h)+'" width="40" height="'+h+'" rx="5" fill="'+(j===5?C:M)+'" style="animation-delay:'+j*.12+'s"/>'+svgT(x+20,278,m,T,'middle',12)+(j===5?svgT(x+20,250-h,d2[j],C,'middle',15,800):'')})}
+if(cur===3){var f=[4,9,18,30,22,12,5];f.forEach(function(n,j){var h=n*7.2,x=40+j*48;s+='<rect class="grow" x="'+x+'" y="'+(260-h)+'" width="46" height="'+h+'" fill="'+(j===3?C:M)+'" style="animation-delay:'+j*.1+'s"/>'+svgT(x+23,278,(j*10)+'-'+(j*10+9),T,'middle',11)});s+=svgT(180,38,'Peak range: 30% of visitors',C,'middle',14,800)}
+if(cur===4){var pts=[[60,230],[90,205],[120,190],[150,170],[180,150],[210,140],[240,110],[270,95],[300,70],[330,50]];
+s+='<line x1="30" y1="20" x2="30" y2="260" stroke="'+T+'" stroke-width="2"/>';
+pts.forEach(function(p,j){s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="9" fill="'+(j>6?C:M)+'" class="pulse" style="animation-delay:'+j*.15+'s"/>'});
+s+='<line x1="55" y1="238" x2="340" y2="42" stroke="'+C+'" stroke-width="3" stroke-dasharray="6 6"/>'+svgT(380,278,'Headline clarity →',T,'end',12)}
+$('chart').innerHTML=s}
+draw();
+
+/* action titles */
+var topic='2026 Regional Sales',action='Northern Region Led Growth with a 25% Increase';
+function setHL(a){$('bTopic').setAttribute('aria-pressed',!a);$('bAction').setAttribute('aria-pressed',a);var h=$('hl');h.style.opacity=0;setTimeout(function(){h.textContent=a?action:topic;h.style.opacity=1;$('hlnote').textContent=a?'✓ Visitors know the conclusion before reading a single bar.':'Describes the topic and invites a pause to interpret.'},180)}
+$('bTopic').onclick=function(){setHL(false)};$('bAction').onclick=function(){setHL(true)};setHL(false);
+
+/* clarity dial */
+var raw=[['North',25.4],['East',18.7],['South',14.2],['West',11.9],['Central',9.6]];
+function drawD(){
+var on={};Array.prototype.forEach.call($('dchecks').querySelectorAll('input'),function(i){on[i.value]=i.checked});
+var n=Object.keys(on).filter(function(k){return on[k]}).length,s='';
+if(!on.grid)for(var g=0;g<=4;g++)s+='';
+if(!on.grid)for(g=0;g<=4;g++)s+='<line x1="40" x2="540" y1="'+(220-g*45)+'" y2="'+(220-g*45)+'" stroke="#FFB04D" stroke-opacity=".5" stroke-dasharray="3 3"/>';
+raw.forEach(function(r,j){var h=r[1]*7,x=70+j*95,hi=j===0;
+var col=on.tone?(hi?C:M):['#C77A2E','#E0A04A','#8A4A10','#B8651A','#F0C080'][j];
+s+='<rect x="'+x+'" y="'+(220-h)+'" width="64" height="'+h+'" rx="5" fill="'+col+'" style="transition:all .5s"/>';
+s+=svgT(x+32,242,r[0],T,'middle',13);
+if(on.label)s+=svgT(x+32,212-h,(on.round?Math.round(r[1]):r[1].toFixed(1))+'%',hi?C:T,'middle',hi?18:14,800)});
+$('dsvg').innerHTML=s;
+$('dscore').textContent=n===4?'✓ Crisp and persuasive: the North Region stands out beautifully.':n+' of 4 refinements applied';}
+$('dchecks').onchange=drawD;drawD();
+
+/* funnel */
+var st=[['Welcome','Visitors arrive and see your headline in the first moments.',C],['Understand','One clear visual shares your message with ease.','#7DEFFF'],['Connect','Proof and stories build warm confidence.','#FFD199'],['Act','A bright button invites the next step.','#2B1100']];
+var fs='';st.forEach(function(x,j){var w1=380-j*80,w2=w1-80,y=j*66+8,x1=(420-w1)/2,x2=(420-w2)/2;
+fs+='<g tabindex="0" data-i="'+j+'" style="cursor:pointer"><path d="M'+x1+' '+y+'H'+(x1+w1)+'L'+(x2+w2)+' '+(y+58)+'H'+x2+'Z" fill="'+x[2]+'" stroke="#2B1100" stroke-width="3"/>'+svgT(210,y+35,x[0],j===3?C:'#2B1100','middle',17,800)+'</g>'});
+$('fun').innerHTML=fs;
+function pick(e){var g=e.target.closest('g[data-i]');if(!g)return;var x=st[g.dataset.i];$('ft').textContent=x[0];$('fd').textContent=x[1]}
+$('fun').addEventListener('mouseover',pick);$('fun').addEventListener('click',pick);$('fun').addEventListener('focusin',pick);
+if(window.matchMedia('(max-width:700px)').matches)$('fwrap').style.gridTemplateColumns='1fr';
+
+/* template */
+var items=['Headline: write your action title first','Comparison: pick share, ranking, trend, distribution or relationship','Chart type: match the visual to the comparison','Focal point: choose the single key bar, line or segment','Accent: shine Electric Cyan on the focal point','Baseline: keep supporting data in calm, muted tones','Labels: place values directly on the visuals','Clean-up: whole numbers, clear space, one bright story'];
+$('tpl').innerHTML=items.map(function(t,i){return '<li><label><input type="checkbox" data-t="1"><span>'+t+'</span></label></li>'}).join('');
+function prog(){var a=$('tpl').querySelectorAll('input'),c=0;a.forEach(function(i){if(i.checked)c++});$('pbar').style.width=(c/a.length*100)+'%';$('ptxt').textContent=c===a.length?'🎉 Your page blueprint is ready. Time to launch with easylandx!':c+' of '+a.length+' steps complete'}
+$('tpl').onchange=prog;prog();
+
+/* reveal */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+})();
+</script>
+</body>
+</html>

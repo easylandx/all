@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx · Landing Pages Built on the Pyramid Principle</title>
+<style>
+:root{--lime:#C8FF00;--coral:#FF6B5B;--ink:#16200A;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--lime);color:var(--ink);font-family:"Trebuchet MS",Verdana,system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+.wrap{max-width:1040px;margin:0 auto;padding:0 clamp(22px,6vw,56px)}
+section{padding:72px 0;position:relative}
+h1,h2,h3{font-family:Impact,"Arial Black",system-ui,sans-serif;text-transform:uppercase;line-height:1.02;margin:0 0 16px;letter-spacing:.5px}
+h1{font-size:clamp(40px,8vw,84px)}h2{font-size:clamp(30px,5vw,52px)}h3{font-size:22px}
+p{margin:0 0 14px;font-size:18px}
+.tag{display:inline-block;background:var(--ink);color:var(--lime);padding:4px 12px;border-radius:99px;font-weight:700;font-size:13px;letter-spacing:1px;margin-bottom:16px}
+.btn{display:inline-block;background:var(--coral);color:var(--ink);border:3px solid var(--ink);padding:14px 28px;font-weight:900;font-size:17px;text-decoration:none;border-radius:14px;box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s;cursor:pointer;font-family:inherit}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--lime);border-bottom:3px solid var(--ink)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:10px;padding-bottom:10px}
+nav b{font-family:Impact,sans-serif;font-size:24px;letter-spacing:1px}nav b span{color:var(--coral);-webkit-text-stroke:1px var(--ink)}
+nav .btn{padding:8px 16px;font-size:14px;box-shadow:3px 3px 0 var(--ink)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.hl{background:var(--coral);padding:0 8px;border:3px solid var(--ink);display:inline-block;transform:rotate(-1.5deg)}
+.float{position:absolute;border:3px solid var(--ink);animation:fl 7s ease-in-out infinite;z-index:-1}
+@keyframes fl{50%{transform:translateY(-22px) rotate(25deg)}}
+.rv{opacity:0;transform:translateY(30px);transition:all .8s}
+.rv.on{opacity:1;transform:none}
+.card{background:#fff8;border:3px solid var(--ink);border-radius:18px;padding:24px}
+.cardc{background:var(--coral);border:3px solid var(--ink);border-radius:18px;padding:24px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+#pyr svg{width:100%;max-width:440px;display:block;margin:0 auto}
+.tier{cursor:pointer;stroke:var(--ink);stroke-width:4;fill:var(--coral);transition:fill .25s,transform .25s;transform-origin:200px 150px;animation:drop .8s backwards}
+.tier:nth-of-type(2){animation-delay:.2s}.tier:nth-of-type(3){animation-delay:.4s}
+@keyframes drop{from{opacity:0;transform:translateY(-60px)}}
+.tier:hover{fill:#ff9488}.tier.act{fill:var(--ink)}
+.pt{font-family:Impact,sans-serif;font-size:17px;fill:var(--ink);pointer-events:none;text-anchor:middle}
+.tier.act+text.pt,.pt.on{fill:var(--lime)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+@media(max-width:800px){.split{grid-template-columns:1fr}}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.tab{background:transparent;border:3px solid var(--ink);padding:10px 18px;border-radius:99px;font-weight:900;cursor:pointer;font-family:inherit;font-size:15px;color:var(--ink)}
+.tab.act{background:var(--ink);color:var(--lime)}
+.sw{display:flex;flex-wrap:wrap;gap:12px}
+.sw button{border:3px solid var(--ink);background:#fff8;border-radius:12px;padding:12px 16px;font-weight:800;cursor:pointer;font-family:inherit;font-size:16px;color:var(--ink);transition:all .4s;text-align:left}
+.sw button.on{background:var(--coral);transform:rotate(-1deg) scale(1.03)}
+.sw button small{display:block;font-weight:600;opacity:.7;font-size:12px}
+label{font-weight:900;font-size:13px;letter-spacing:1px;display:block;margin:12px 0 4px}
+input{width:100%;border:3px solid var(--ink);border-radius:10px;padding:11px 13px;font-size:16px;font-family:inherit;background:#fff;color:var(--ink)}
+.pv{background:#fff;border:3px solid var(--ink);border-radius:18px;overflow:hidden;box-shadow:8px 8px 0 var(--ink)}
+.pv .top{background:var(--coral);padding:22px;border-bottom:3px solid var(--ink)}
+.pv .top h3{font-size:26px;margin:0;min-height:30px}
+.pv .cols{display:grid;grid-template-columns:repeat(3,1fr)}
+.pv .cols div{padding:14px;border-right:3px solid var(--ink);font-weight:800;font-size:14px;min-height:70px;word-break:break-word}
+.pv .cols div:last-child{border:0}
+.pv .cols div::before{content:"✓ ";color:var(--coral);-webkit-text-stroke:1px var(--ink)}
+.pv .cta{background:var(--ink);color:var(--lime);text-align:center;padding:12px;font-weight:900}
+.meter{height:16px;border:3px solid var(--ink);border-radius:99px;overflow:hidden;margin-top:14px;background:#fff}
+.meter i{display:block;height:100%;width:0;background:var(--coral);transition:width .5s}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:700px){.vs{grid-template-columns:1fr}}
+.chain{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-weight:800;font-size:14px}
+.chain span{background:var(--ink);color:var(--lime);padding:6px 10px;border-radius:8px}
+footer{background:var(--ink);color:var(--lime);text-align:center;padding:60px 0}
+footer h2{color:var(--lime)}
+.pulse{animation:pu 2s infinite}
+@keyframes pu{50%{box-shadow:5px 5px 0 var(--ink),0 0 0 12px #ff6b5b55}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>easy<span>landx</span></b><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx →</a></div></nav>
+
+<section>
+<div class="float" style="width:90px;height:90px;background:var(--coral);right:6%;top:50px;border-radius:50%"></div>
+<div class="float" style="width:70px;height:70px;background:var(--coral);left:3%;bottom:30px;animation-delay:-3s;clip-path:polygon(50% 0,0 100%,100% 100%);border:0"></div>
+<div class="wrap hero">
+<div>
+<span class="tag">THE PYRAMID PRINCIPLE × LANDING PAGES</span>
+<h1>Lead with your <span class="hl">answer.</span></h1>
+<p>Barbara Minto’s Pyramid Principle shows that every reader’s mind loves structure: one clear idea at the peak, supported by a few strong lines beneath. easylandx turns that wisdom into landing pages that welcome visitors, guide them, and invite action.</p>
+<a class="btn pulse" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+</div>
+<svg viewBox="0 0 300 280" aria-hidden="true" style="width:100%;max-width:360px;margin:auto">
+<polygon points="150,20 215,110 85,110" fill="#FF6B5B" stroke="#16200A" stroke-width="5"><animate attributeName="opacity" from="0" to="1" dur=".8s"/></polygon>
+<polygon points="75,125 225,125 265,195 35,195" fill="#FF6B5B" stroke="#16200A" stroke-width="5"/>
+<polygon points="25,210 275,210 295,265 5,265" fill="#16200A"/>
+<circle cx="150" cy="82" r="9" fill="#C8FF00" stroke="#16200A" stroke-width="3"><animate attributeName="r" values="9;13;9" dur="2s" repeatCount="indefinite"/></circle>
+<g fill="#16200A"><rect x="100" y="150" width="30" height="12" rx="6"/><rect x="135" y="150" width="30" height="12" rx="6"/><rect x="170" y="150" width="30" height="12" rx="6"/></g>
+<g fill="#C8FF00"><rect x="40" y="232" width="40" height="10" rx="5"/><rect x="95" y="232" width="40" height="10" rx="5"/><rect x="150" y="232" width="40" height="10" rx="5"/><rect x="205" y="232" width="40" height="10" rx="5"/></g>
+</svg>
+</div>
+</section>
+
+<section id="pyr"><div class="wrap rv">
+<span class="tag">1 · THE STRUCTURE</span>
+<h2>Every great page is a pyramid</h2>
+<div class="split">
+<svg viewBox="0 0 400 300" role="img" aria-label="Pyramid with three tiers">
+<polygon class="tier act" data-i="0" points="200,10 270,100 130,100"/><text class="pt on" x="200" y="82">ANSWER</text>
+<polygon class="tier" data-i="1" points="122,112 278,112 338,200 62,200"/><text class="pt" x="200" y="164">KEY LINES</text>
+<polygon class="tier" data-i="2" points="54,212 346,212 392,290 8,290"/><text class="pt" x="200" y="258">SUPPORTING DETAILS</text>
+</svg>
+<div class="cardc" aria-live="polite"><h3 id="pt">Tap a tier to explore</h3><p id="pd"></p><div class="meter"><i id="pm"></i></div></div>
+</div>
+<p style="margin-top:22px">Ideas at each level summarize the ones below (vertical logic), and ideas within a group share one kind (horizontal logic). Visitors read top-down and always know where they are.</p>
+</div></section>
+
+<section><div class="wrap rv">
+<span class="tag">2 · THE OPENING</span>
+<h2>SCQA: set the scene in four beats</h2>
+<p>Begin with what your visitor already knows, then guide them naturally to your answer. Pick a beat to see it in a landing page for a yoga studio.</p>
+<div class="tabs" id="tabs"></div>
+<div class="cardc"><h3 id="sh"></h3><p id="sp" style="margin:0"></p></div>
+</div></section>
+
+<section><div class="wrap rv">
+<span class="tag">3 · THE “SO WHAT?” TEST</span>
+<h2>Turn labels into promises</h2>
+<p>A generic header names a topic. An action title tells the reader why it matters. Tap each one to upgrade it.</p>
+<div class="sw" id="sw"></div>
+<div class="meter"><i id="sm"></i></div>
+<p id="sn" style="margin-top:12px;font-weight:800"></p>
+</div></section>
+
+<section><div class="wrap rv">
+<span class="tag">4 · MECE GROUPING</span>
+<h2>Three lines, whole picture</h2>
+<div class="grid3">
+<div class="card"><h3>Mutually Exclusive</h3><p>Each point owns its own space, so every idea shines on its own.</p></div>
+<div class="card"><h3>Collectively Exhaustive</h3><p>Together the points cover the full story, so visitors feel completely informed.</p></div>
+<div class="cardc"><h3>Parallel Style</h3><p>Start each bullet the same way. Rhythm makes reading effortless.</p></div>
+</div>
+<div class="vs" style="margin-top:22px">
+<div class="card"><h3>Deductive</h3><div class="chain"><span>Rule</span>→<span>Case</span>→<span>Conclusion</span></div><p style="margin-top:12px;font-size:16px">A powerful chain, wonderful for careful, step-by-step readers.</p></div>
+<div class="card"><h3>Inductive ★</h3><div class="chain"><span>Proof A</span><span>Proof B</span><span>Proof C</span>→<span>Answer</span></div><p style="margin-top:12px;font-size:16px">Similar ideas pointing one way. Quick to read, flexible, ideal for landing pages.</p></div>
+</div>
+</div></section>
+
+<section><div class="wrap rv">
+<span class="tag">5 · BUILD YOUR PYRAMID</span>
+<h2>Shape your page live</h2>
+<p>Write your answer and three key lines. Watch your landing page take shape.</p>
+<div class="split" style="align-items:start">
+<div>
+<label for="a">YOUR ANSWER (THE PEAK)</label><input id="a" value="Join our calm, strong yoga community today" maxlength="70">
+<label for="k1">KEY LINE 1</label><input id="k1" value="Classes for every level" maxlength="30">
+<label for="k2">KEY LINE 2</label><input id="k2" value="Friendly, certified teachers" maxlength="30">
+<label for="k3">KEY LINE 3</label><input id="k3" value="First week welcomes you free" maxlength="30">
+<div class="meter"><i id="bm"></i></div><p id="bn" style="margin-top:10px;font-weight:800"></p>
+</div>
+<div class="pv"><div class="top"><h3 id="pa"></h3></div><div class="cols"><div id="p1"></div><div id="p2"></div><div id="p3"></div></div><div class="cta">Book your first class →</div></div>
+</div>
+</div></section>
+
+<section><div class="wrap rv">
+<span class="tag">6 · THE EASYLANDX WAY</span>
+<h2>Strategy, beautifully built</h2>
+<div class="grid3">
+<div class="cardc"><h3>🔺 Answer first</h3><p>Your promise sits at the peak, bold and clear.</p></div>
+<div class="card"><h3>🧭 Guided flow</h3><p>SCQA openings welcome visitors with familiar ground.</p></div>
+<div class="cardc"><h3>🎯 Action titles</h3><p>Every headline answers “so what?” with a benefit.</p></div>
+</div>
+</div></section>
+
+<footer><div class="wrap">
+<h2>Your pyramid is ready to rise</h2>
+<p>Share your answer with the world, one clear page at a time.</p>
+<a class="btn pulse" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+<p style="margin-top:30px;font-size:14px;opacity:.8">Page made by easylandx</p>
+</div></footer>
+
+<script>
+const $=s=>document.querySelector(s);
+// reveal
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('on')),{threshold:.12});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+// pyramid
+const T=[["The Answer","One clear promise at the peak. Visitors know instantly what is offered and why it matters.",34],
+["Key Lines","Three grouped ideas that each support the answer. Same kind, same rhythm, complete coverage.",67],
+["Supporting Details","Facts, stories and proof that bring each key line to life, ready for curious readers.",100]];
+function tier(i){document.querySelectorAll('.tier').forEach((t,j)=>{t.classList.toggle('act',j==i);t.nextElementSibling.classList.toggle('on',j==i)});
+$('#pt').textContent=T[i][0];$('#pd').textContent=T[i][1];$('#pm').style.width=T[i][2]+'%'}
+document.querySelectorAll('.tier').forEach(t=>t.onclick=()=>tier(+t.dataset.i));tier(0);
+// SCQA
+const S=[["Situation","“Busy people everywhere want a calm moment in their day, and yoga delivers it.”"],
+["Complication","“Schedules keep growing, and finding a class that fits feels like a puzzle.”"],
+["Question","“How can anyone enjoy yoga with a full calendar?”"],
+["Answer","“Join our flexible studio: 6am to 9pm classes, every level, book in one tap.”"]];
+S.forEach((s,i)=>{const b=document.createElement('button');b.className='tab';b.textContent=(i+1)+'. '+s[0];b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('act'));b.classList.add('act');$('#sh').textContent=s[0];$('#sp').textContent=s[1]};$('#tabs').appendChild(b)});
+$('.tab').click();
+// So what
+const W=[["Market Findings","Our Market Is Growing Every Quarter"],["Our Services","Three Services That Save You Hours"],["About Us","A Friendly Team Cheering Your Success"],["Pricing","Simple Plans That Fit Your Goals"]];
+const sw=$('#sw');W.forEach(w=>{const b=document.createElement('button');b.innerHTML=w[0]+'<small>tap to upgrade</small>';b.onclick=()=>{b.classList.toggle('on');b.firstChild.textContent=b.classList.contains('on')?w[1]:w[0];b.querySelector('small').textContent=b.classList.contains('on')?'action title ✓':'tap to upgrade';up()};sw.appendChild(b)});
+function up(){const n=sw.querySelectorAll('.on').length;$('#sm').style.width=n/W.length*100+'%';$('#sn').textContent=n==W.length?'Every title now answers “so what?” Wonderful!':n+' of '+W.length+' titles upgraded'}up();
+// builder
+function bld(){const v=id=>$(id).value.trim();$('#pa').textContent=v('#a')||'Your answer here';
+[1,2,3].forEach(i=>$('#p'+i).textContent=v('#k'+i)||'Key line');
+let s=0;[ '#a','#k1','#k2','#k3'].forEach(i=>{if(v(i).length>8)s++});
+$('#bm').style.width=s*25+'%';$('#bn').textContent=['Start typing to grow your pyramid','Great start!','Building nicely','Almost complete','Pyramid complete! Ready to launch 🚀'][s]}
+['#a','#k1','#k2','#k3'].forEach(i=>$(i).oninput=bld);bld();
+</script>
+</body>
+</html>
