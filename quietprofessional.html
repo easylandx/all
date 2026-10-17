@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx · Calm, Confident Landing Pages</title>
+<style>
+:root{--lime:#a6e22e;--ink:#10260a;--tan:#ff8a1f;--tan2:#ffb066;--soft:#c3ee63;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--lime);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.6}
+.w{max-width:1040px;margin:0 auto;padding-inline:clamp(22px,6vw,64px)}
+h1,h2,h3{font-family:"Trebuchet MS",Verdana,sans-serif;line-height:1.1;margin:0 0 .5em}
+h1{font-size:clamp(2.2rem,6vw,4rem);font-weight:900}
+h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900}
+h2 span,h1 span{background:var(--tan);padding:0 .25em;border-radius:.2em}
+section{padding:64px 0}
+.btn{display:inline-block;background:var(--tan);color:var(--ink);font:900 1.05rem "Trebuchet MS",sans-serif;padding:14px 28px;border-radius:99px;border:3px solid var(--ink);text-decoration:none;cursor:pointer;box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+nav{display:flex;justify-content:space-between;align-items:center;padding-block:18px;gap:12px;flex-wrap:wrap}
+.logo{font:900 1.4rem "Trebuchet MS",sans-serif}.logo b{color:var(--tan);-webkit-text-stroke:1px var(--ink)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+.hero p{font-size:1.15rem;max-width:34em}
+.band{background:var(--ink);color:var(--lime)}
+.band h2 span{color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:var(--soft);border:3px solid var(--ink);border-radius:22px;padding:24px;box-shadow:6px 6px 0 var(--ink)}
+.band .card{background:var(--lime);color:var(--ink);box-shadow:6px 6px 0 var(--tan)}
+.num{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--tan);border:3px solid var(--ink);font:900 1.2rem sans-serif;margin-bottom:10px}
+.flip{perspective:900px;height:250px;cursor:pointer;border:0;background:none;padding:0;text-align:left;font:inherit;color:inherit}
+.flip i{position:absolute;inset:0;display:block;transition:transform .6s;transform-style:preserve-3d}
+.flip{position:relative}
+.flip.on i{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:3px solid var(--ink);border-radius:22px;padding:22px;display:flex;flex-direction:column;justify-content:center;font-style:normal;box-shadow:6px 6px 0 var(--ink)}
+.front{background:var(--soft)}.back{background:var(--tan);transform:rotateY(180deg)}
+.face h3{font-size:1.25rem}.face small{font:700 .8rem sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.breath{display:grid;place-items:center;gap:18px;text-align:center}
+.orb{width:180px;height:180px;border-radius:50%;background:var(--tan);border:4px solid var(--lime);display:grid;place-items:center;font:900 2.6rem sans-serif;color:var(--ink);transition:transform 3s ease-in-out;box-shadow:0 0 0 14px rgba(255,138,31,.35)}
+.orb.go{transform:scale(1.35)}
+.row{display:grid;grid-template-columns:1fr 2fr auto;gap:12px;align-items:center;margin:14px 0}
+@media(max-width:620px){.row{grid-template-columns:1fr auto}.row input{grid-column:1/-1;order:3}}
+.row label{font:800 1rem sans-serif}
+input[type=range]{width:100%;accent-color:var(--tan);height:28px}
+.meter{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
+@media(max-width:620px){.meter{grid-template-columns:1fr;justify-items:center;text-align:center}}
+.tip{background:var(--ink);color:var(--lime);border-radius:16px;padding:16px 20px;font-weight:700;min-height:4.2em}
+.plan{display:flex;align-items:center;gap:14px;padding:16px 18px;border:3px solid var(--ink);border-radius:18px;margin:12px 0;background:var(--soft);cursor:pointer;font:inherit;width:100%;text-align:left;color:inherit;transition:background .2s,transform .2s}
+.plan:hover{transform:translateX(4px)}
+.plan .tick{flex:none;width:34px;height:34px;border-radius:50%;border:3px solid var(--ink);display:grid;place-items:center;font:900 1.1rem sans-serif;background:var(--lime)}
+.plan.done{background:var(--tan)}.plan.done .tick{background:var(--ink);color:var(--tan)}
+.plan b{display:block;font-family:sans-serif}.plan span{font-size:.95rem}
+.bar{height:20px;border:3px solid var(--ink);border-radius:99px;background:var(--lime);overflow:hidden;margin-top:18px}
+.bar div{height:100%;width:0;background:var(--tan);transition:width .5s}
+.cta{text-align:center}
+.cta h2{font-size:clamp(1.8rem,5vw,3rem)}
+footer{padding:28px 0 36px;text-align:center;font:700 .95rem sans-serif}
+svg .f1{animation:flt 5s ease-in-out infinite}.f2{animation:flt 6s ease-in-out -2s infinite}
+@keyframes flt{50%{transform:translateY(-12px)}}
+.ring{transform-origin:200px 200px;animation:pulse 4s ease-in-out infinite}
+.r2{animation-delay:-1.3s}.r3{animation-delay:-2.6s}
+@keyframes pulse{0%,100%{transform:scale(.92);opacity:.5}50%{transform:scale(1.06);opacity:1}}
+.rise{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}.rise.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rise{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="w">
+  <nav>
+    <div class="logo">easy<b>land</b>x</div>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx ↗</a>
+  </nav>
+</header>
+
+<main>
+<section class="w hero" style="padding-top:28px">
+  <div>
+    <h1>Landing pages with <span>quiet power</span></h1>
+    <p>Inspired by <em>The Quiet Professional</em>: results and inner calm travel together. Every easylandx page is crafted by hand to feel grounded, clear and confident, so your visitors feel welcome and ready to say yes.</p>
+    <p><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx →</a></p>
+  </div>
+  <svg viewBox="0 0 400 400" role="img" aria-label="Calm rings around a landing page with a tangerine button">
+    <circle class="ring" cx="200" cy="200" r="190" fill="none" stroke="#10260a" stroke-width="3" stroke-dasharray="4 10"/>
+    <circle class="ring r2" cx="200" cy="200" r="150" fill="#c3ee63" stroke="#10260a" stroke-width="3"/>
+    <circle class="ring r3" cx="200" cy="200" r="110" fill="#ff8a1f" opacity=".35"/>
+    <g class="f1"><rect x="110" y="95" width="180" height="210" rx="18" fill="#a6e22e" stroke="#10260a" stroke-width="5"/>
+      <rect x="110" y="95" width="180" height="32" rx="16" fill="#10260a"/>
+      <circle cx="128" cy="111" r="5" fill="#ff8a1f"/><circle cx="144" cy="111" r="5" fill="#a6e22e"/>
+      <rect x="130" y="150" width="140" height="16" rx="8" fill="#10260a"/>
+      <rect x="130" y="178" width="100" height="10" rx="5" fill="#10260a" opacity=".6"/>
+      <rect x="130" y="196" width="120" height="10" rx="5" fill="#10260a" opacity=".6"/>
+      <rect x="130" y="236" width="90" height="34" rx="17" fill="#ff8a1f" stroke="#10260a" stroke-width="4"/></g>
+    <g class="f2"><circle cx="330" cy="90" r="22" fill="#ff8a1f" stroke="#10260a" stroke-width="4"/>
+      <path d="M320 90l7 7 13-14" fill="none" stroke="#10260a" stroke-width="5" stroke-linecap="round"/></g>
+    <g class="f2"><path d="M70 300q20-40 40 0t40 0" fill="none" stroke="#10260a" stroke-width="5" stroke-linecap="round"/></g>
+    <g class="f1"><polygon points="62,120 80,150 44,150" fill="#ff8a1f" stroke="#10260a" stroke-width="4"/></g>
+  </svg>
+</section>
+
+<section class="band">
+  <div class="w">
+    <h2 class="rise">Three big ideas, <span>one calm page</span></h2>
+    <div class="grid">
+      <div class="card rise"><div class="num">1</div><h3>Ambition meets inner peace</h3><p>Drive and well-being work as a team. A landing page that feels peaceful and purposeful invites visitors to join your journey.</p></div>
+      <div class="card rise"><div class="num">2</div><h3>New paradigm for success</h3><p>Results flow from clarity. One focused message, one inviting button, and a page that shines with intention.</p></div>
+      <div class="card rise"><div class="num">3</div><h3>Sustainability over hustle</h3><p>Steady grounding builds lasting excellence. A page crafted once with care keeps welcoming people for the long run.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="w">
+  <h2 class="rise">Four lessons, <span>four page habits</span></h2>
+  <p class="rise">Tap a card to flip it and see the lesson at work in your landing page.</p>
+  <div class="grid">
+    <button class="flip rise" aria-label="Flip card"><i><span class="face front"><small>Lesson 1</small><h3>Worth beyond roles</h3><p>Titles describe what you do, while you remain so much more.</p></span><span class="face back"><small>On your page</small><h3>Lead with your story</h3><p>Show the person behind the title. Warm, human copy builds trust at first glance.</p></span></i></button>
+    <button class="flip rise" aria-label="Flip card"><i><span class="face front"><small>Lesson 2</small><h3>Emotional mastery</h3><p>Calm, thoughtful responses outshine quick reactions.</p></span><span class="face back"><small>On your page</small><h3>Gentle, confident tone</h3><p>Clear sentences and generous space let every visitor feel at ease.</p></span></i></button>
+    <button class="flip rise" aria-label="Flip card"><i><span class="face front"><small>Lesson 3</small><h3>An internal anchor</h3><p>Stability that stays steady while priorities shift around you.</p></span><span class="face back"><small>On your page</small><h3>One anchor button</h3><p>A single, vivid call to action keeps every scroll pointing home.</p></span></i></button>
+    <button class="flip rise" aria-label="Flip card"><i><span class="face front"><small>Lesson 4</small><h3>Purpose-driven ambition</h3><p>Goals rooted in values and personal growth.</p></span><span class="face back"><small>On your page</small><h3>Values-first message</h3><p>Share what you stand for, and the right clients feel the connection.</p></span></i></button>
+  </div>
+</section>
+
+<section class="band">
+  <div class="w breath">
+    <h2 class="rise">The <span>3-second pause</span></h2>
+    <p style="max-width:34em">Mindful presence begins with a pause. Press the orb, breathe in as it grows, and enjoy a fresh start before your next page decision.</p>
+    <button class="orb" id="orb" aria-label="Start a 3 second pause">Begin</button>
+    <div id="orbmsg" style="font:800 1.1rem sans-serif;min-height:1.6em">Ready when you are.</div>
+  </div>
+</section>
+
+<section class="w">
+  <h2 class="rise">Weekly <span>energy audit</span></h2>
+  <p>Slide each dial to reflect your week. Higher means more of the good stuff.</p>
+  <div class="card meter">
+    <svg width="170" height="170" viewBox="0 0 170 170" aria-hidden="true">
+      <circle cx="85" cy="85" r="68" fill="none" stroke="#a6e22e" stroke-width="18"/>
+      <circle id="gauge" cx="85" cy="85" r="68" fill="none" stroke="#ff8a1f" stroke-width="18" stroke-linecap="round" stroke-dasharray="427" stroke-dashoffset="214" transform="rotate(-90 85 85)" style="transition:stroke-dashoffset .5s"/>
+      <text id="gtxt" x="85" y="98" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="38" fill="#10260a">50%</text>
+    </svg>
+    <div>
+      <div class="row"><label for="a1">Energy renewal</label><input id="a1" type="range" min="0" max="10" value="5"><b id="v1">5</b></div>
+      <div class="row"><label for="a2">Boundary strength</label><input id="a2" type="range" min="0" max="10" value="5"><b id="v2">5</b></div>
+      <div class="row"><label for="a3">Grounded responses</label><input id="a3" type="range" min="0" max="10" value="5"><b id="v3">5</b></div>
+      <div class="tip" id="tip"></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="w">
+    <h2 class="rise">Three strategies, <span>beautifully applied</span></h2>
+    <div class="grid">
+      <div class="card rise"><div class="num">A</div><h3>Boundaries &amp; energy</h3><p>Protect bandwidth with brief resets. Your page gives visitors the same gift: short sections, roomy margins, easy rhythm.</p></div>
+      <div class="card rise"><div class="num">B</div><h3>Mindful presence</h3><p>Listen first, then respond. easylandx pages begin with your visitor's goals, then present your offer with warmth.</p></div>
+      <div class="card rise"><div class="num">C</div><h3>Daily grounding</h3><p>Start with intention. Every page opens with a clear headline that sets a confident, peaceful tone.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="w">
+  <h2 class="rise">Your <span>mindful action plan</span></h2>
+  <p>Tap each step as you complete it and watch your progress glow.</p>
+  <button class="plan"><span class="tick"></span><span><b>Energy management</b><span>Schedule 5-minute buffers between meetings, and add generous spacing to your page.</span></span></button>
+  <button class="plan"><span class="tick"></span><span><b>Professional presence</b><span>Pause for 3 seconds before replying, and let your headline speak with calm clarity.</span></span></button>
+  <button class="plan"><span class="tick"></span><span><b>Daily grounding</b><span>Spend 5 quiet minutes on intention, then launch your page with a clear purpose.</span></span></button>
+  <div class="bar" aria-hidden="true"><div id="pb"></div></div>
+  <p id="pm" style="font:800 1.05rem sans-serif">0 of 3 steps complete. Every step counts!</p>
+</section>
+
+<section class="band cta">
+  <div class="w">
+    <h2 class="rise">Ready for a page that <span>feels like you?</span></h2>
+    <p style="max-width:34em;margin-inline:auto 0;margin:0 auto 24px">Handcrafted, bold and welcoming. Let your next landing page radiate calm confidence.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener" style="box-shadow:5px 5px 0 var(--lime)">easylandx ↗</a>
+  </div>
+</section>
+</main>
+
+<footer class="w">Made by easylandx · Calm pages, confident results</footer>
+
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.15});
+document.querySelectorAll('.rise').forEach(e=>io.observe(e));
+document.querySelectorAll('.flip').forEach(b=>b.onclick=()=>b.classList.toggle('on'));
+
+const orb=document.getElementById('orb'),om=document.getElementById('orbmsg');let busy=false;
+orb.onclick=()=>{if(busy)return;busy=true;orb.classList.add('go');let n=3;orb.textContent=n;om.textContent='Breathe in slowly…';
+const t=setInterval(()=>{n--;if(n>0){orb.textContent=n;om.textContent=n==2?'Hold gently…':'Release with ease…'}else{clearInterval(t);orb.classList.remove('go');orb.textContent='Calm';om.textContent='Wonderful! You are grounded and ready.';setTimeout(()=>{orb.textContent='Again';busy=false},1800)}},1000)};
+
+const tips=[[3,'Small resets add up. Try a 5-minute buffer between your next two tasks.'],[6,'Strong foundation! A morning pause will lift your energy even higher.'],[8.5,'Radiant balance. Your page can echo this calm with generous space and one bold button.'],[11,'Outstanding grounding! Share this calm confidence on a landing page by easylandx.']];
+function audit(){let s=0;[1,2,3].forEach(i=>{const v=+document.getElementById('a'+i).value;document.getElementById('v'+i).textContent=v;s+=v});
+const p=Math.round(s/30*100);document.getElementById('gtxt').textContent=p+'%';document.getElementById('gauge').style.strokeDashoffset=427*(1-p/100);
+document.getElementById('tip').textContent=tips.find(t=>s/3<t[0])[1]}
+['a1','a2','a3'].forEach(i=>document.getElementById(i).oninput=audit);audit();
+
+const plans=[...document.querySelectorAll('.plan')];
+plans.forEach(p=>p.onclick=()=>{p.classList.toggle('done');p.querySelector('.tick').textContent=p.classList.contains('done')?'✓':'';
+const d=plans.filter(x=>x.classList.contains('done')).length;document.getElementById('pb').style.width=d/3*100+'%';
+document.getElementById('pm').textContent=d==3?'All 3 steps complete. Beautifully done!':d+' of 3 steps complete. Every step counts!'});
+</script>
+</body>
+</html>

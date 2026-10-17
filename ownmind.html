@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx · Own Your Mind, Own Your Landing Page</title>
+<style>
+:root{--em:#0A9A62;--em2:#087F51;--vi:#7B1FFF;--vi2:#5B0FD1;--wh:#fff;--ink:#05281a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box;margin:0}
+body{background:var(--em);color:var(--wh);font-family:Georgia,"Times New Roman",serif;line-height:1.6;overflow-x:hidden}
+.w{max-width:1040px;margin:0 auto;padding:0 clamp(22px,6vw,48px)}
+section{padding:72px 0}
+h1,h2,h3,.btn,.tag{font-family:"Trebuchet MS",Verdana,sans-serif}
+h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.08;font-weight:900}
+h2{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:900;margin-bottom:12px}
+h3{font-size:1.15rem;font-weight:800}
+p.lead{font-size:1.12rem;max-width:640px;margin:14px 0 26px}
+.tag{display:inline-block;background:var(--vi);padding:5px 14px;border-radius:99px;font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+.btn{display:inline-block;background:var(--vi);color:#fff;text-decoration:none;font-weight:900;padding:15px 30px;border-radius:14px;border:3px solid #fff;box-shadow:0 6px 0 var(--vi2);transition:.2s;cursor:pointer;font-size:1rem}
+.btn:hover{transform:translateY(-3px);box-shadow:0 9px 0 var(--vi2)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--em2);border-bottom:3px solid var(--vi)}
+nav .w{display:flex;justify-content:space-between;align-items:center;padding-top:10px;padding-bottom:10px}
+nav b{font-family:"Trebuchet MS",sans-serif;font-size:1.3rem;font-weight:900}nav b span{color:#C9A8FF}
+nav .btn{padding:8px 18px;font-size:.9rem;box-shadow:0 3px 0 var(--vi2)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+@media(max-width:780px){.hero{grid-template-columns:1fr}}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:28px}
+.card{background:#fff;color:var(--ink);border-radius:22px;padding:26px;border-bottom:7px solid var(--vi);transition:.25s}
+.card:hover{transform:translateY(-8px) rotate(-.6deg)}
+.card svg{width:84px;height:84px;margin-bottom:8px}
+.card p{margin-top:6px}
+.card small{display:block;margin-top:10px;color:var(--vi2);font-weight:bold;font-family:"Trebuchet MS",sans-serif}
+.band{background:var(--em2)}
+.flip{perspective:900px;height:190px;cursor:pointer}
+.fi{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.flip.on .fi{transform:rotateY(180deg)}
+.fi>div{position:absolute;inset:0;backface-visibility:hidden;border-radius:20px;padding:22px;display:flex;flex-direction:column;justify-content:center;border:3px solid #fff}
+.fi .f{background:var(--vi);align-items:center;text-align:center;font-family:"Trebuchet MS",sans-serif}
+.fi .f b{font-size:1.2rem}.fi .f em{font-size:.8rem;margin-top:8px;opacity:.9}
+.fi .b{background:#fff;color:var(--ink);transform:rotateY(180deg);font-size:.98rem}
+.lab{background:#fff;color:var(--ink);border-radius:26px;padding:clamp(20px,4vw,38px);border:4px solid var(--vi);display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:780px){.lab{grid-template-columns:1fr}}
+.lab label{display:block;font-family:"Trebuchet MS",sans-serif;font-weight:800;font-size:.85rem;margin:12px 0 4px;color:var(--vi2)}
+.lab input,.lab textarea{width:100%;padding:11px 13px;border:2px solid #cdb8ff;border-radius:12px;font:inherit;color:var(--ink)}
+.lab input:focus,.lab textarea:focus{outline:3px solid var(--vi);border-color:var(--vi)}
+.out{background:var(--ink);color:#fff;border-radius:18px;padding:22px;position:relative}
+.out h3{color:#C9A8FF;margin-bottom:8px}
+.out ol{padding-left:20px;margin:8px 0}
+.ring{position:absolute;top:14px;right:14px;width:64px;height:64px}
+.ring text{font:900 15px "Trebuchet MS",sans-serif;fill:#fff}
+.aff{margin-top:12px;padding:12px;border-left:5px solid var(--vi);background:#10402c;font-style:italic}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 16px}
+.tabs button{font-family:"Trebuchet MS",sans-serif;font-weight:800;border:3px solid #fff;background:transparent;color:#fff;padding:9px 16px;border-radius:99px;cursor:pointer;font-size:.92rem}
+.tabs button.on{background:var(--vi)}
+.panel{background:#fff;color:var(--ink);border-radius:22px;padding:28px;border-left:9px solid var(--vi);min-height:140px}
+.panel h3{color:var(--vi2);margin-bottom:6px}
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:24px}
+.map div{background:var(--vi);border-radius:20px;padding:22px;border:3px solid #fff}
+.map b{font-family:"Trebuchet MS",sans-serif;display:block;margin-bottom:6px}
+.bp{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;margin-top:24px}@media(max-width:780px){.bp{grid-template-columns:1fr}}.bp .map{grid-template-columns:1fr;margin-top:0}.map div{cursor:pointer;transition:.3s;user-select:none}.map div:hover{transform:translateX(6px)}.map div.on{background:#fff;color:var(--ink);transform:scale(1.03);border-color:var(--vi)}.map div.on b{color:var(--vi2)}.mock{background:#fff;color:var(--ink);border-radius:20px;padding:16px;border:4px solid var(--vi);font-family:"Trebuchet MS",sans-serif}.mh i{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--vi);margin-right:6px}.ms{opacity:.2;filter:grayscale(1);transition:.5s;margin:10px 0;padding:14px;border-radius:12px;background:#eee;text-align:center}.ms.lit{opacity:1;filter:none;background:#f1e7ff;animation:pulse .6s}.ms u{display:inline-block;background:var(--vi);color:#fff;padding:9px 18px;border-radius:10px;text-decoration:none;font-weight:900}.ms span{display:inline-block;width:28%;height:34px;margin:0 1%;border-radius:8px;background:var(--vi);opacity:.7}.mt{height:10px;background:#ddd;border-radius:9px;overflow:hidden;margin-top:14px}#bf{height:100%;width:0;background:var(--vi);transition:.5s}.mock p{margin-top:8px;font-weight:800;color:var(--vi2);font-size:.9rem}.sw{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.sw i{width:34px;height:34px;border-radius:50%;border:3px solid #fff;display:block;animation:bob 3s ease-in-out infinite}
+.cta{text-align:center}
+footer{background:var(--ink);padding:26px 0;text-align:center;font-size:.9rem}footer a{color:#C9A8FF}
+@keyframes bob{50%{transform:translateY(-9px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{50%{transform:scale(1.07);opacity:.85}}
+@keyframes dash{to{stroke-dashoffset:0}}
+.fl{animation:bob 4s ease-in-out infinite}.sp{transform-origin:200px 190px;animation:spin 30s linear infinite}
+.pu{transform-origin:200px 190px;animation:pulse 3s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav><div class="w"><b>easy<span>landx</span></b><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx ↗</a></div></nav>
+
+<header><section class="w hero">
+<div>
+<span class="tag">Landing pages · Focused minds</span>
+<h1>Own your mind. Launch a landing page that shines.</h1>
+<p class="lead">Napoleon Hill’s <i>How to Own Your Own Mind</i> teaches that vision, organized thought and controlled attention turn goals into reality. A great landing page grows from the very same three powers, and easylandx brings them to life.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx →</a>
+</div>
+<svg viewBox="0 0 400 380" role="img" aria-label="A glowing mind with rays focusing on one bright goal">
+<g class="sp"><g stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7">
+<path d="M200 40v30M200 310v30M30 190h30M340 190h30M80 70l22 22M298 288l22 22M80 310l22-22M298 92l22-22"/></g></g>
+<circle class="pu" cx="200" cy="190" r="108" fill="#7B1FFF"/>
+<circle cx="200" cy="190" r="108" fill="none" stroke="#fff" stroke-width="5"/>
+<circle cx="200" cy="190" r="70" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="6 10" opacity=".8"/>
+<circle cx="200" cy="190" r="34" fill="none" stroke="#fff" stroke-width="3"/>
+<circle class="pu" cx="200" cy="190" r="14" fill="#fff"/>
+<g class="fl" fill="#fff"><circle cx="70" cy="90" r="9"/><circle cx="335" cy="120" r="6"/><circle cx="320" cy="300" r="10"/><circle cx="60" cy="290" r="7"/></g>
+<g stroke="#fff" stroke-width="2" opacity=".6"><path d="M70 90L180 170M335 120L218 178M320 300L215 205M60 290L185 208"/></g>
+</svg>
+</section></header>
+
+<section class="band"><div class="w">
+<span class="tag">Three core pillars</span>
+<h2>Three powers, one brilliant page</h2>
+<p class="lead">Hill describes how the mind creates what it focuses on. Each pillar maps naturally to the way easylandx shapes a landing page.</p>
+<div class="cards">
+<div class="card"><svg viewBox="0 0 90 90"><circle cx="45" cy="38" r="22" fill="#7B1FFF"/><rect x="36" y="58" width="18" height="10" rx="4" fill="#05281a"/><g stroke="#7B1FFF" stroke-width="4" stroke-linecap="round"><path d="M45 4v7M12 38H5M85 38h-7M20 14l5 5M70 14l-5 5"/></g></svg>
+<h3>1 · Creative Vision</h3><p>Imagination aimed at constructive outcomes spots opportunities everywhere. Synthetic imagination blends existing ideas into fresh combinations, while creative imagination welcomes original sparks.</p><small>On your page: a look that is unmistakably yours.</small></div>
+<div class="card"><svg viewBox="0 0 90 90"><rect x="8" y="10" width="74" height="16" rx="6" fill="#7B1FFF"/><rect x="8" y="34" width="50" height="16" rx="6" fill="#7B1FFF" opacity=".75"/><rect x="8" y="58" width="30" height="16" rx="6" fill="#7B1FFF" opacity=".5"/></svg>
+<h3>2 · Organized Thought</h3><p>Verified facts, clear structure and step-by-step pathways make big goals manageable. Knowledge becomes power when it is arranged into a concrete plan.</p><small>On your page: a clean flow from headline to action.</small></div>
+<div class="card"><svg viewBox="0 0 90 90"><circle cx="45" cy="45" r="36" fill="none" stroke="#7B1FFF" stroke-width="5"/><circle cx="45" cy="45" r="22" fill="none" stroke="#7B1FFF" stroke-width="5"/><circle cx="45" cy="45" r="8" fill="#7B1FFF"/></svg>
+<h3>3 · Controlled Attention</h3><p>Directing your entire mental focus toward one objective magnetizes habits and decisions. Willpower acts as a steady governor, and singular concentration builds mastery.</p><small>On your page: one goal, one clear button.</small></div>
+</div></div></section>
+
+<section><div class="w">
+<span class="tag">Essential lessons</span>
+<h2>Four lessons to flip open</h2>
+<p class="lead">Tap a card to reveal how each lesson powers a landing page.</p>
+<div class="cards" id="flips"></div>
+</div></section>
+
+<section class="band"><div class="w">
+<span class="tag">Interactive · Definite Major Purpose</span>
+<h2>Build your purpose statement</h2>
+<p class="lead">Hill’s first strategy is a single, concise statement of goal, deadline and plan. Fill in the fields and watch your landing page purpose take shape.</p>
+<div class="lab">
+<div>
+<label for="g">My clear, specific goal</label><input id="g" placeholder="Welcome 50 new clients with my landing page">
+<label for="d">Target completion date</label><input id="d" type="date">
+<label for="v">Value I will give in return</label><input id="v" placeholder="Helpful, friendly service">
+<label for="s1">Action step 1</label><input id="s1" placeholder="Choose my one headline">
+<label for="s2">Action step 2</label><input id="s2" placeholder="Pick my single button">
+<label for="s3">Action step 3</label><input id="s3" placeholder="Launch with easylandx">
+</div>
+<div class="out">
+<svg class="ring" viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="none" stroke="#10402c" stroke-width="8"/><circle id="rc" cx="32" cy="32" r="26" fill="none" stroke="#9B5CFF" stroke-width="8" stroke-linecap="round" stroke-dasharray="163.4" stroke-dashoffset="163.4" transform="rotate(-90 32 32)" style="transition:.5s"/><text id="rt" x="32" y="37" text-anchor="middle">0%</text></svg>
+<h3>My Definite Purpose</h3>
+<div id="o1">Fill in the fields to see your statement.</div>
+<ol id="o2"></ol>
+<div class="aff" id="o3">Your daily affirmation appears here.</div>
+<a class="btn" style="margin-top:16px;padding:11px 20px" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch it with easylandx →</a>
+</div></div>
+</div></section>
+
+<section><div class="w">
+<span class="tag">Actionable strategies</span>
+<h2>Five habits of a focused mind</h2>
+<div class="tabs" id="tabs"></div>
+<div class="panel" id="panel"></div>
+</div></section>
+
+<section class="band"><div class="w">
+<span class="tag">Blueprint</span>
+<h2>Your landing page, mind-powered</h2>
+<p class="lead">Tap each power to switch it on and watch a landing page assemble in the preview.</p>
+<div class="bp"><div class="map" id="bm">
+<div><b>🎯 Definite purpose</b>Every page welcomes visitors toward one inviting outcome.</div>
+<div><b>🧩 Organized thought</b>Headline, benefits, proof and action flow in a friendly order.</div>
+<div><b>🔦 Controlled attention</b>One bold button keeps every visitor’s focus bright.</div>
+<div><b>🤝 Master Mind alliance</b>Your ideas plus easylandx craft equal a polished launch.</div>
+</div>
+<div class="mock" id="mk"><div class="mh"><i></i><i></i><i></i></div>
+<div class="ms" data-s="0"><b>Welcome 50 new clients</b><br><small>One inviting goal</small></div>
+<div class="ms" data-s="1"><span></span><span></span><span></span></div>
+<div class="ms" data-s="2"><u>Launch now →</u></div>
+<div class="ms" data-s="3">🤝 Crafted by you + easylandx</div>
+<div class="mt"><div id="bf"></div></div><p id="bg">0/4 powers active</p><p id="bmsg">Tap a power to add it to the page.</p></div></div>
+</div></section>
+
+<section class="cta"><div class="w">
+<h2>Your focused vision deserves a beautiful home</h2>
+<p class="lead" style="margin-inline:auto">Bring your definite purpose to life with a landing page crafted for you.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx →</a>
+</div></section>
+
+<footer><div class="w">Made by <a href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a> · Inspired by Napoleon Hill’s <i>How to Own Your Own Mind</i></div></footer>
+
+<script>
+var L=[["Mastery over self-limitation","Rise beyond old habits","Boundaries are shaped by conditioning, so you can reshape them. A confident page invites visitors to imagine more."],
+["Definiteness of purpose","One anchor, steady course","A mind with a clear purpose moves with energy. Give your page one headline and one goal."],
+["Applied knowledge","Action turns ideas into power","Principles shine when practiced. Launching your page is knowledge in motion."],
+["Failure as instruction","Every result teaches","Each setback is useful feedback. Refresh your page, learn from visitors and grow stronger."]];
+document.getElementById('flips').innerHTML=L.map(function(x){return '<div class="flip" tabindex="0"><div class="fi"><div class="f"><b>'+x[0]+'</b><em>'+x[1]+' · tap</em></div><div class="b">'+x[2]+'</div></div></div>'}).join('');
+document.querySelectorAll('.flip').forEach(function(f){f.onclick=function(){f.classList.toggle('on')};f.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();f.classList.toggle('on')}}});
+var T=[["Adopt a definite purpose","Write one concise statement of goal, time frame and plan, then read it each morning. Your landing page gets one star message."],
+["Go the extra mile","Offer more value than expected. Generous details such as clear answers and warm tone build goodwill and trusted reputation."],
+["Form a Master Mind","Gather like-minded friends to share knowledge and feedback. Collaboration with easylandx brings expert polish to your vision."],
+["Exercise willpower daily","Choose disciplined actions in small decisions. Each one strengthens the willpower muscle that guides your attention."],
+["Engage autosuggestion","Feed your mind positive affirmations tied to your goal. Confidence grows when your inner voice repeats your purpose."]];
+var tb=document.getElementById('tabs'),pn=document.getElementById('panel');
+T.forEach(function(t,i){var b=document.createElement('button');b.textContent=(i+1)+' · '+t[0].split(' ').slice(-1)[0];b.onclick=function(){sel(i)};tb.appendChild(b)});
+function sel(i){[].forEach.call(tb.children,function(b,j){b.className=i===j?'on':''});pn.innerHTML='<h3>'+T[i][0]+'</h3><p>'+T[i][1]+'</p>'}sel(0);
+var bm=document.getElementById('bm'),mk=document.getElementById('mk');
+[].forEach.call(bm.children,function(c,i){c.setAttribute('tabindex','0');c.setAttribute('role','button');
+function tg(){c.classList.toggle('on');mk.querySelector('[data-s="'+i+'"]').classList.toggle('lit',c.classList.contains('on'));
+var n=bm.querySelectorAll('.on').length;document.getElementById('bg').textContent=n+'/4 powers active';document.getElementById('bf').style.width=n*25+'%';
+document.getElementById('bmsg').textContent=n===4?'🎉 Your page glows! Ready to launch with easylandx.':'Tap a power to add it to the page.'}
+c.onclick=tg;c.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tg()}}});
+var ids=['g','d','v','s1','s2','s3'];
+function upd(){var e=ids.map(function(i){return document.getElementById(i).value.trim()});
+var n=e.filter(Boolean).length,p=Math.round(n/6*100);
+document.getElementById('rc').style.strokeDashoffset=163.4*(1-p/100);document.getElementById('rt').textContent=p+'%';
+var g=e[0]||'[my goal]',d=e[1]||'[my date]',v=e[2]||'[my value]';
+document.getElementById('o1').innerHTML=e[0]?'<b>Goal:</b> '+esc(e[0])+'<br><b>By:</b> '+esc(e[1]||'choose a date')+'<br><b>Value I give:</b> '+esc(e[2]||'my service'):'Fill in the fields to see your statement.';
+document.getElementById('o2').innerHTML=e.slice(3).filter(Boolean).map(function(s){return '<li>'+esc(s)+'</li>'}).join('');
+document.getElementById('o3').textContent=n>2?'“By '+d+', I will achieve '+g+' through '+v+'. I have absolute faith in my ability to carry out this plan.”':'Your daily affirmation appears here.'}
+function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+ids.forEach(function(i){document.getElementById(i).oninput=upd});
+</script>
+</body>
+</html>
