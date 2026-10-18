@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Landing pages with unhinged focus</title>
+<style>
+:root{--or:#FF5A00;--sage:#9CAF88;--sage-d:#6F8760;--ink:#1E1208;--cream:#FFF3E8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--or);color:var(--ink);font:500 18px/1.6 "Helvetica Neue",Arial,sans-serif;overflow-x:hidden}
+.w{max-width:1080px;margin:0 auto;padding:0 max(24px,5vw)}
+section{padding:72px 0}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.08;margin:0 0 16px;font-weight:900}
+h1{font-size:clamp(2.4rem,7vw,4.6rem)}h2{font-size:clamp(1.9rem,4.5vw,3rem)}h3{font-size:1.3rem}
+.tag{display:inline-block;background:var(--ink);color:var(--sage);padding:4px 14px;border-radius:99px;font:800 .78rem/1.6 Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+.btn{display:inline-block;background:var(--sage);color:var(--ink);font:900 1rem Arial,sans-serif;padding:15px 30px;border-radius:99px;text-decoration:none;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s;cursor:pointer}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+nav{position:sticky;top:0;z-index:10;background:var(--or);border-bottom:3px solid var(--ink);padding-top:env(safe-area-inset-top,0px)}
+nav .w{display:flex;justify-content:space-between;align-items:center;height:68px}
+.logo{font:900 1.5rem Georgia,serif;color:var(--ink);text-decoration:none}.logo b{color:var(--cream)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero p{font-size:1.2rem;max-width:34ch}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+.card{background:var(--sage);border:3px solid var(--ink);border-radius:22px;padding:26px;box-shadow:6px 6px 0 var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.dark{background:var(--ink);color:var(--cream)}
+.dark .card{color:var(--ink)}.dark h2{color:var(--sage)}
+.float{animation:fl 5s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-14px)}}
+.spin{transform-origin:200px 200px;animation:sp 24s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+.spin2{transform-origin:200px 200px;animation:sp 12s linear infinite reverse}
+.pulse{animation:pu 2.4s ease-in-out infinite;transform-origin:center;transform-box:fill-box}@keyframes pu{50%{transform:scale(1.18)}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.chip{font:800 .95rem Arial,sans-serif;padding:10px 18px;border-radius:99px;border:3px solid var(--ink);background:var(--cream);color:var(--ink);cursor:pointer;transition:all .25s}
+.chip.off{background:var(--ink);color:var(--sage);text-decoration:line-through;opacity:.75}
+.mock{background:var(--cream);border:3px solid var(--ink);border-radius:16px;padding:16px;min-height:120px;display:flex;flex-direction:column;gap:8px}
+.blk{background:var(--sage);border:2px solid var(--ink);border-radius:10px;padding:10px 14px;font:800 .9rem Arial,sans-serif;max-height:60px;overflow:hidden;transition:all .45s}
+.blk.gone{max-height:0;padding:0 14px;opacity:0;border-width:0;margin:-4px 0}
+.blk.big{background:var(--or);font-size:1.15rem;padding:18px 14px}
+input[type=range]{width:100%;accent-color:var(--ink);height:34px}
+.bar{display:flex;gap:4px;margin:14px 0}.bar i{flex:1;height:30px;border-radius:6px;border:2px solid var(--ink);background:var(--cream);transition:background .25s}
+.bar i.p{background:var(--ink)}.bar i.r{background:var(--or)}
+.big-n{font:900 3rem Georgia,serif}
+.cel{display:flex;align-items:center;gap:14px;padding:12px 14px;border:3px solid var(--ink);border-radius:14px;background:var(--cream);margin:10px 0;cursor:pointer;font-weight:800}
+.cel input{width:24px;height:24px;accent-color:var(--ink)}
+.cel.on{background:var(--ink);color:var(--sage)}
+.ring{width:130px;height:130px}
+footer{padding:50px 0 70px;text-align:center}
+.reveal{opacity:0;transform:translateY(28px);transition:all .7s}.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav><div class="w"><a class="logo" href="#top">easy<b>landx</b></a><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener" style="padding:9px 20px;box-shadow:3px 3px 0 var(--ink)">easylandx</a></div></nav>
+
+<header id="top"><div class="w"><section class="hero">
+<div><span class="tag">Landing pages · made by easylandx</span>
+<h1>One page. One bold focus. More results.</h1>
+<p>Your landing page shines when every element earns its place. easylandx crafts pages that celebrate your one big idea, so visitors feel clarity and take action.</p>
+<p><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx →</a></p></div>
+<svg class="float" viewBox="0 0 400 400" role="img" aria-label="Orbiting seasons illustration">
+<circle cx="200" cy="200" r="170" fill="var(--sage)" stroke="#1E1208" stroke-width="6"/>
+<g class="spin"><circle cx="200" cy="200" r="130" fill="none" stroke="#1E1208" stroke-width="4" stroke-dasharray="4 14" stroke-linecap="round"/>
+<circle cx="200" cy="70" r="20" fill="#FF5A00" stroke="#1E1208" stroke-width="5"/><circle cx="330" cy="200" r="14" fill="#1E1208"/><circle cx="70" cy="200" r="14" fill="#FFF3E8" stroke="#1E1208" stroke-width="4"/></g>
+<g class="spin2"><circle cx="200" cy="200" r="85" fill="none" stroke="#6F8760" stroke-width="5"/><circle cx="200" cy="115" r="11" fill="#1E1208"/><circle cx="285" cy="200" r="11" fill="#FF5A00" stroke="#1E1208" stroke-width="4"/></g>
+<rect x="150" y="165" width="100" height="70" rx="12" fill="#FFF3E8" stroke="#1E1208" stroke-width="5"/>
+<rect x="164" y="179" width="72" height="10" rx="5" fill="#FF5A00"/><rect x="164" y="198" width="46" height="8" rx="4" fill="#1E1208"/>
+<rect x="164" y="214" width="30" height="10" rx="5" fill="#6F8760" class="pulse"/>
+</svg></section></div></header>
+
+<section class="dark"><div class="w reveal">
+<span class="tag">The big idea</span>
+<h2>Landing pages thrive on strategic subtraction</h2>
+<p style="max-width:62ch">Inspired by <b>Unhinged Habits</b> by Jonathan Goodman: the secret to having more is choosing what to release. A landing page gains power when it steps out of "the middle" and goes all-in on what matters most. Here is how that works for your page.</p>
+<div class="grid" style="margin-top:30px">
+<div class="card"><h3>🎯 Beyond the middle</h3><p>Pages with a bold, singular message feel unforgettable. Visitors know exactly where to look and what to do next.</p></div>
+<div class="card"><h3>✂️ Subtraction wins</h3><p>Every extra menu, badge, and paragraph asks for attention. Releasing them gives your headline and button room to shine.</p></div>
+<div class="card"><h3>🌗 Seasonal rhythm</h3><p>Launch with intense energy, then rest and refine. Seasons keep your pages fresh and your energy high.</p></div>
+</div></div></section>
+
+<section id="subtract"><div class="w reveal">
+<span class="tag">Interactive 1 · Strategic Subtraction</span>
+<h2>Tap an element to release it</h2>
+<p>Watch the page gain focus as supporting elements fade away. Your key message grows stronger with every tap.</p>
+<div class="grid" style="align-items:start">
+<div class="card"><h3>Page elements</h3><div class="chips" id="chips"></div>
+<div class="big-n" id="focus">0%</div><p>Focus score — <span id="msg">Tap an element to begin</span></p></div>
+<div class="mock" id="mock"></div></div></div></section>
+
+<section class="dark" id="seasons"><div class="w reveal">
+<span class="tag">Interactive 2 · The 8:4 Rule</span>
+<h2>Plan a 12-week page season</h2>
+<p>8 weeks of unhinged focus, then 4 weeks of rest, review, and fresh exploration. Slide through the season.</p>
+<div class="card"><input type="range" id="wk" min="1" max="12" value="1" aria-label="Season week">
+<div class="bar" id="bar"></div>
+<h3 id="ph">Week 1 · Push</h3><p id="pt"></p></div></div></section>
+
+<section id="compass"><div class="w reveal">
+<span class="tag">The Explorer's Compass</span>
+<h2>Keep your pages full of wonder</h2>
+<div class="hero">
+<svg viewBox="0 0 400 400" role="img" aria-label="Animated compass"><circle cx="200" cy="200" r="170" fill="var(--sage)" stroke="#1E1208" stroke-width="6"/>
+<circle cx="200" cy="200" r="140" fill="#FFF3E8" stroke="#1E1208" stroke-width="4"/>
+<g font-family="Georgia" font-weight="900" font-size="28" text-anchor="middle" fill="#1E1208"><text x="200" y="85">N</text><text x="200" y="332">S</text><text x="322" y="210">E</text><text x="78" y="210">W</text></g>
+<g class="spin" style="animation-duration:9s"><polygon points="200,90 222,200 200,310 178,200" fill="#FF5A00" stroke="#1E1208" stroke-width="5"/><polygon points="200,90 222,200 178,200" fill="#1E1208"/></g>
+<circle cx="200" cy="200" r="12" fill="#FFF3E8" stroke="#1E1208" stroke-width="5"/></svg>
+<div><p>Routine brings efficiency; surprise brings presence. Give your landing page a living moment: a fresh headline, a new image, an unexpected line of delight. Leave open space, try an unfamiliar path, and let visitors feel the spark.</p>
+<div class="card"><h3 id="exp">Tap for today's exploration</h3><p><button class="btn" id="expb" style="font-size:.95rem;padding:10px 22px">Surprise me ✨</button></p></div></div></div></div></section>
+
+<section class="dark"><div class="w reveal">
+<span class="tag">Obsession + Competence</span>
+<h2>Shine in 1–2 areas, stay competent everywhere else</h2>
+<div class="grid">
+<div class="card"><h3>🔥 World-class focus</h3><p>Your headline, your offer, your call-to-action. These earn your full creative energy.</p></div>
+<div class="card"><h3>✅ Merely competent</h3><p>Footer, legal text, extras. Simple and solid is enough, freeing energy for what counts.</p></div>
+<div class="card"><h3>🕊️ Optionality is freedom</h3><p>A streamlined page keeps your options open and your time yours to spend.</p></div>
+<div class="card"><h3>🤝 Three friendship proxies</h3><p>Spend your social energy on true connections. Pages work the same way: warm words for the people you serve best.</p></div>
+</div></div></section>
+
+<section id="4s"><div class="w reveal">
+<span class="tag">Interactive 3 · The 4S Celebration Protocol</span>
+<h2>Celebrate your launch the 4S way</h2>
+<p>Define "done," then celebrate every milestone. Tick each S for your page launch.</p>
+<div class="grid" style="align-items:center">
+<div id="cels"></div>
+<div class="card" style="text-align:center"><svg class="ring" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="#FFF3E8" stroke-width="14"/><circle id="arc" cx="60" cy="60" r="50" fill="none" stroke="#1E1208" stroke-width="14" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314" transform="rotate(-90 60 60)" style="transition:stroke-dashoffset .6s"/></svg>
+<h3 id="cm">Ready to celebrate</h3></div></div></div></section>
+
+<section class="dark"><div class="w reveal">
+<span class="tag">Key lessons</span>
+<h2>Intensity creates leaps</h2>
+<div class="grid">
+<div class="card"><h3>Intermittent intensity</h3><p>Focused bursts of launch energy create bigger leaps than endless moderate effort.</p></div>
+<div class="card"><h3>Gain over perceived loss</h3><p>A focused page celebrates what it offers. Visitors see the gain, so guilt over what is left out fades.</p></div>
+<div class="card"><h3>Presence over autopilot</h3><p>Default layouts invite autopilot. Intentional pages invite attention.</p></div>
+</div></div></section>
+
+<footer><div class="w"><h2>Ready for your bold, focused page?</h2>
+<p><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx →</a></p>
+<p style="margin-top:36px;font-weight:800">Made by <a href="https://easylandx.github.io" target="_blank" rel="noopener" style="color:var(--ink)">easylandx</a> · Inspired by <i>Unhinged Habits</i> by Jonathan Goodman</p></div></footer>
+
+<script>
+(function(){
+var els=[["Navigation menu","Menu"],["Pop-up banner","Banner"],["Sidebar links","Sidebar"],["Extra badges","Badges"],["Long paragraph","Long text"]];
+var core=["Bold headline","Hero button"];
+var off={},chips=document.getElementById("chips"),mock=document.getElementById("mock");
+var msgs=["Tap an element to begin","Breathing room appears","Your message grows","Beautifully clear","Crystal focus achieved"];
+els.forEach(function(e,i){var c=document.createElement("button");c.className="chip";c.textContent=e[0];c.onclick=function(){off[i]=!off[i];c.classList.toggle("off",off[i]);upd()};chips.appendChild(c);
+var b=document.createElement("div");b.className="blk";b.id="b"+i;b.textContent=e[1];mock.appendChild(b)});
+core.forEach(function(t,i){var b=document.createElement("div");b.className="blk big";b.textContent=t;mock.appendChild(b)});
+function upd(){var n=0;els.forEach(function(e,i){document.getElementById("b"+i).classList.toggle("gone",!!off[i]);if(off[i])n++});
+document.getElementById("focus").textContent=Math.round(n/els.length*100)+"%";document.getElementById("msg").textContent=msgs[n]}
+var bar=document.getElementById("bar"),wk=document.getElementById("wk");
+for(var i=1;i<=12;i++){bar.appendChild(document.createElement("i"))}
+function wkUpd(){var w=+wk.value,p=w<=8;[].forEach.call(bar.children,function(x,i){x.className=i<w?(i<8?"p":"r"):""});
+document.getElementById("ph").textContent="Week "+w+" · "+(p?"Unhinged push":"Rest & explore");
+document.getElementById("pt").textContent=p?(w<3?"Define your one bold message and release everything else.":w<6?"Build, publish, and refine with full energy.":"Lean in. Intensity creates the biggest leaps."):(w==9?"Celebrate, step back, and enjoy the view.":w<12?"Review results, explore fresh ideas, prune with joy.":"Choose your next season's theme with a refreshed mind.")}
+wk.oninput=wkUpd;wkUpd();
+var ex=["Swap your hero image for something unexpected.","Rewrite your headline in 6 words.","Add one surprise line of delight.","Browse three pages from a totally different field.","Take an unscheduled 30-minute walk and sketch ideas.","Try a brand-new color pairing for a day."];
+var ei=0;document.getElementById("expb").onclick=function(){document.getElementById("exp").textContent=ex[ei++%ex.length]};
+var S=[["Shared","Celebrate with people who matter"],["Scheduled","Put the reward on the calendar"],["Sacred","Stay fully present in the moment"],["Significant","Choose a meaningful reward"]];
+var cw=document.getElementById("cels"),done=0,cm=["Ready to celebrate","Great start!","Halfway there!","Almost glowing!","Celebration complete 🎉"];
+S.forEach(function(s){var l=document.createElement("label");l.className="cel";l.innerHTML='<input type="checkbox"><span>'+s[0]+' — '+s[1]+'</span>';
+l.querySelector("input").onchange=function(e){l.classList.toggle("on",e.target.checked);done=cw.querySelectorAll("input:checked").length;
+document.getElementById("arc").style.strokeDashoffset=314-314*done/4;document.getElementById("cm").textContent=cm[done]};cw.appendChild(l)});
+var io=new IntersectionObserver(function(a){a.forEach(function(x){if(x.isIntersecting)x.target.classList.add("in")})},{threshold:.1});
+document.querySelectorAll(".reveal").forEach(function(r){io.observe(r)});
+})();
+</script>
+</body>
+</html>

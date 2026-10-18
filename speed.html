@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx | Landing Pages Designed Around Your Brain</title>
+<style>
+:root{--bg:#FFD500;--ink:#0a0a0a;--soft:#ffe65c;--pad:clamp(22px,6vw,72px);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#FFD500;--ink:#0a0a0a;--soft:#ffe65c}}
+:root[data-theme="dark"]{--bg:#FFD500;--ink:#0a0a0a;--soft:#ffe65c}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",Helvetica,Arial,sans-serif;line-height:1.55;overflow-x:hidden}
+section,header,footer{padding:clamp(48px,8vw,96px) var(--pad)}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:Impact,"Arial Black",Helvetica,sans-serif;letter-spacing:.5px;line-height:1.05;margin:0 0 .5em;text-transform:uppercase}
+h1{font-size:clamp(2.6rem,8vw,5.4rem)}
+h2{font-size:clamp(1.9rem,5vw,3.2rem)}
+h3{font-size:1.3rem}
+p{margin:0 0 1em;font-size:1.08rem}
+.btn{display:inline-block;background:var(--ink);color:var(--bg);font-weight:900;text-transform:uppercase;letter-spacing:1px;text-decoration:none;padding:16px 30px;border:3px solid var(--ink);border-radius:999px;cursor:pointer;font-size:1rem;font-family:inherit;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink);background:var(--bg);color:var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--bg)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding:18px var(--pad);border-bottom:4px solid var(--ink)}
+.logo{font-family:Impact,"Arial Black",sans-serif;font-size:1.7rem;letter-spacing:1px}
+.logo span{background:var(--ink);color:var(--bg);padding:0 8px;border-radius:8px;margin-left:2px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero .tag{display:inline-block;border:3px solid var(--ink);border-radius:999px;padding:6px 16px;font-weight:900;text-transform:uppercase;font-size:.8rem;letter-spacing:1.5px;margin-bottom:20px}
+.hero .lead{font-size:1.25rem;max-width:34ch}
+.hero svg{width:100%;height:auto;max-width:460px;justify-self:center}
+.float{animation:float 4s ease-in-out infinite}
+.float2{animation:float 5.2s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.spin{transform-origin:center;transform-box:fill-box;animation:spin 18s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pulse{transform-origin:center;transform-box:fill-box;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.zap{animation:zap 1.6s steps(2) infinite}
+@keyframes zap{0%,100%{opacity:1}50%{opacity:.35}}
+.marquee{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;padding:14px 0;font-family:Impact,sans-serif;text-transform:uppercase;letter-spacing:2px;font-size:1.15rem}
+.marquee div{display:inline-block;animation:slide 28s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.card{border:4px solid var(--ink);border-radius:22px;padding:26px;background:var(--soft);transition:transform .25s}
+.card:hover{transform:rotate(-1.2deg) translateY(-6px)}
+.card svg{width:64px;height:64px;margin-bottom:10px}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+.panel{border:4px solid var(--ink);border-radius:28px;padding:clamp(22px,4vw,44px);background:var(--bg);box-shadow:10px 10px 0 var(--ink)}
+.modes{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
+.mode{font:inherit;font-weight:900;text-transform:uppercase;border:3px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:12px 22px;cursor:pointer;transition:.2s}
+.mode[aria-pressed="true"],.mode:hover{background:var(--ink);color:var(--bg)}
+.dial{display:grid;grid-template-columns:260px 1fr;gap:30px;align-items:center}
+.dial svg{width:100%;max-width:260px}
+#needle{transition:transform .9s cubic-bezier(.3,1.6,.5,1);transform-origin:130px 130px}
+.out{border-left:6px solid var(--ink);padding-left:18px;min-height:120px}
+.loop{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.steps{display:grid;gap:12px}
+.step{border:3px solid var(--ink);border-radius:16px;padding:12px 18px;font-weight:700;background:var(--soft);cursor:pointer;transition:.2s}
+.step.on{background:var(--ink);color:var(--bg);transform:translateX(10px)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.chip{font:inherit;font-weight:700;border:3px solid var(--ink);background:var(--soft);color:var(--ink);border-radius:14px;padding:10px 16px;cursor:pointer;transition:.2s}
+.chip:hover{background:var(--ink);color:var(--bg)}
+.chip:disabled{opacity:.35;cursor:default}
+.slots{display:grid;gap:12px;margin:18px 0}
+.slot{display:flex;align-items:center;gap:14px;border:3px dashed var(--ink);border-radius:16px;padding:14px 18px;min-height:58px;font-weight:700}
+.slot.full{border-style:solid;background:var(--soft)}
+.slot button{margin-left:auto}
+.tick{width:34px;height:34px;border-radius:50%;border:3px solid var(--ink);background:transparent;cursor:pointer;font-size:1.1rem;font-weight:900;color:var(--ink)}
+.slot.done{background:var(--ink);color:var(--bg)}
+.slot.done .tick{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.bar{height:22px;border:3px solid var(--ink);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--ink);transition:width .6s}
+.msg{font-weight:900;margin-top:12px;min-height:1.6em}
+.stars{position:fixed;inset:0;pointer-events:none;z-index:50}
+.star{position:absolute;font-size:26px;animation:pop 1.2s ease-out forwards}
+@keyframes pop{from{transform:translate(0,0) scale(.4);opacity:1}to{transform:translate(var(--x),var(--y)) scale(1.4) rotate(200deg);opacity:0}}
+.cta{text-align:center;background:var(--ink);color:var(--bg)}
+.cta .btn{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.cta .btn:hover{background:transparent;color:var(--bg);box-shadow:6px 6px 0 var(--bg)}
+footer{text-align:center;font-weight:700;border-top:4px solid var(--ink)}
+@media(max-width:780px){.hero,.dial,.loop{grid-template-columns:1fr}.hero svg{order:-1;max-width:300px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="logo">easy<span>landx</span></div>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx ➜</a>
+</div>
+
+<header>
+  <div class="wrap hero">
+    <div>
+      <div class="tag">⚡ Landing pages · Brain First</div>
+      <h1>Launch pages that move at the speed of your ideas</h1>
+      <p class="lead">Your imagination, intuition and drive are startup superpowers. easylandx turns them into polished landing pages in a flow that feels energizing from the first spark.</p>
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+      <a class="btn ghost" href="#energy">Explore the toolkit ↓</a>
+    </div>
+    <svg viewBox="0 0 400 400" aria-label="Illustration of a glowing brain with lightning and a rising landing page">
+      <circle cx="200" cy="200" r="170" fill="none" stroke="#0a0a0a" stroke-width="4" stroke-dasharray="4 14" class="spin"/>
+      <g class="float">
+        <path d="M200 90c-30-28-86-8-84 34-30 8-34 52-6 66-8 40 40 62 70 38 30 24 78 2 70-38 28-14 24-58-6-66 2-42-54-62-84-34z" fill="#0a0a0a"/>
+        <path d="M200 100v200M160 150c20 10 20 30 0 40M240 150c-20 10-20 30 0 40M165 235c20-6 25 14 35 14M235 235c-20-6-25 14-35 14" stroke="#FFD500" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <path d="M212 120l-26 52h22l-18 54 44-66h-24l22-40z" fill="#FFD500" class="zap"/>
+      </g>
+      <g class="float2">
+        <rect x="262" y="262" width="108" height="84" rx="12" fill="#FFD500" stroke="#0a0a0a" stroke-width="6"/>
+        <rect x="274" y="276" width="52" height="10" rx="5" fill="#0a0a0a"/>
+        <rect x="274" y="294" width="84" height="8" rx="4" fill="#0a0a0a" opacity=".6"/>
+        <rect x="274" y="316" width="40" height="16" rx="8" fill="#0a0a0a"/>
+      </g>
+      <g class="pulse"><text x="44" y="96" font-size="44">✨</text></g>
+      <g class="pulse" style="animation-delay:.8s"><text x="316" y="110" font-size="34">★</text></g>
+      <g class="pulse" style="animation-delay:1.4s"><text x="56" y="330" font-size="30">★</text></g>
+    </svg>
+  </div>
+</header>
+
+<div class="marquee"><div>Interest-driven ✦ Energy-first ✦ Quick wins ✦ Visual systems ✦ Flexible sprints ✦ Superpowers amplified ✦ Interest-driven ✦ Energy-first ✦ Quick wins ✦ Visual systems ✦ Flexible sprints ✦ Superpowers amplified ✦ </div></div>
+
+<section>
+  <div class="wrap">
+    <h2 class="reveal">Neurodiversity is an advantage</h2>
+    <p class="reveal" style="max-width:60ch">Hyper-focus, rapid solutions, intuitive creativity and bold risk-taking are the engine of every great launch. Brain First thinking gives that engine a business system that fits it perfectly. easylandx brings the same spirit to your website.</p>
+    <div class="grid">
+      <div class="card reveal">
+        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22" fill="none" stroke="#0a0a0a" stroke-width="5"/><circle cx="32" cy="32" r="11" fill="none" stroke="#0a0a0a" stroke-width="5"/><circle cx="32" cy="32" r="3" fill="#0a0a0a" class="pulse"/></svg>
+        <h3>Hyper-focus</h3><p>Deep, joyful concentration builds a complete page in one satisfying session.</p>
+      </div>
+      <div class="card reveal">
+        <svg viewBox="0 0 64 64"><path d="M36 6L16 36h14l-4 22 22-32H33z" fill="#0a0a0a" class="zap"/></svg>
+        <h3>Rapid solutions</h3><p>Fast thinking meets a fast builder, so ideas go live while they are fresh.</p>
+      </div>
+      <div class="card reveal">
+        <svg viewBox="0 0 64 64"><path d="M8 50c10-40 38-40 48 0" fill="none" stroke="#0a0a0a" stroke-width="5" stroke-linecap="round"/><circle cx="32" cy="22" r="7" fill="#0a0a0a" class="pulse"/></svg>
+        <h3>Intuitive creativity</h3><p>Trust your instincts. Every page is shaped around your vision and voice.</p>
+      </div>
+      <div class="card reveal">
+        <svg viewBox="0 0 64 64"><path d="M32 6l7 16 17 2-13 12 4 17-15-9-15 9 4-17L8 24l17-2z" fill="#0a0a0a" class="spin"/></svg>
+        <h3>Bold ambition</h3><p>Risk tolerance fuels launches that stand out and get noticed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="energy" style="background:var(--soft);border-top:4px solid var(--ink);border-bottom:4px solid var(--ink)">
+  <div class="wrap">
+    <h2 class="reveal">Energy is your calendar</h2>
+    <p class="reveal" style="max-width:60ch">Interest, urgency, novelty and passion set the pace. Choose your energy today and see the perfect landing-page task light up.</p>
+    <div class="panel reveal">
+      <div class="modes" role="group" aria-label="Choose your energy">
+        <button class="mode" data-lvl="high" aria-pressed="false">🔥 Spark</button>
+        <button class="mode" data-lvl="mid" aria-pressed="false">🌊 Flow</button>
+        <button class="mode" data-lvl="low" aria-pressed="false">🌙 Recharge</button>
+      </div>
+      <div class="dial">
+        <svg viewBox="0 0 260 160" aria-hidden="true">
+          <path d="M20 130A110 110 0 0 1 240 130" fill="none" stroke="#0a0a0a" stroke-width="22" stroke-linecap="round" opacity=".18"/>
+          <path d="M20 130A110 110 0 0 1 240 130" fill="none" stroke="#0a0a0a" stroke-width="6" stroke-dasharray="3 12"/>
+          <g id="needle" style="transform:rotate(-90deg)"><line x1="130" y1="130" x2="130" y2="38" stroke="#0a0a0a" stroke-width="8" stroke-linecap="round"/></g>
+          <circle cx="130" cy="130" r="14" fill="#0a0a0a"/>
+        </svg>
+        <div class="out" id="eOut"><h3>Pick an energy mode</h3><p>The needle moves and your best next step appears here.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap loop">
+    <div>
+      <h2 class="reveal">The dopamine-friendly build loop</h2>
+      <p class="reveal">Novelty, clear milestones and quick rewards keep momentum glowing. easylandx pages come together in short, rewarding steps, so every finish line arrives fast. Tap a step to watch the loop in action.</p>
+      <div class="steps" id="steps">
+        <div class="step on">1 · Novelty: a fresh idea and a fresh page</div>
+        <div class="step">2 · Milestone: hero section complete</div>
+        <div class="step">3 · Reward: preview it live in seconds</div>
+        <div class="step">4 · Momentum: onward to the next section</div>
+      </div>
+    </div>
+    <svg viewBox="0 0 360 360" style="width:100%;max-width:380px;justify-self:center" aria-label="Animated loop of four steps">
+      <circle cx="180" cy="180" r="120" fill="none" stroke="#0a0a0a" stroke-width="6" stroke-dasharray="2 14" stroke-linecap="round"/>
+      <g class="spin" style="animation-duration:12s"><circle cx="180" cy="60" r="16" fill="#0a0a0a"/></g>
+      <g id="nodes" font-family="Impact,sans-serif" font-size="30" text-anchor="middle" fill="#FFD500">
+        <g><circle cx="180" cy="60" r="30" fill="#0a0a0a"/><text x="180" y="71">1</text></g>
+        <g><circle cx="300" cy="180" r="30" fill="#FFD500" stroke="#0a0a0a" stroke-width="5"/><text x="300" y="191" fill="#0a0a0a">2</text></g>
+        <g><circle cx="180" cy="300" r="30" fill="#FFD500" stroke="#0a0a0a" stroke-width="5"/><text x="180" y="311" fill="#0a0a0a">3</text></g>
+        <g><circle cx="60" cy="180" r="30" fill="#FFD500" stroke="#0a0a0a" stroke-width="5"/><text x="60" y="191" fill="#0a0a0a">4</text></g>
+      </g>
+      <text x="180" y="190" text-anchor="middle" font-family="Impact,sans-serif" font-size="26" fill="#0a0a0a">KEEP GOING</text>
+    </svg>
+  </div>
+</section>
+
+<section style="background:var(--ink);color:var(--bg)">
+  <div class="wrap">
+    <h2 class="reveal">Systems that carry the details</h2>
+    <p class="reveal" style="max-width:60ch">Hand routine tasks to smart systems and keep your spotlight on the exciting work. Visual boards and external accountability replace memory and willpower.</p>
+    <div class="grid">
+      <div class="card reveal" style="background:var(--bg);color:var(--ink)"><h3>🧩 Visual first</h3><p>Every section of your page is a clear, colorful block you can see at a glance.</p></div>
+      <div class="card reveal" style="background:var(--bg);color:var(--ink)"><h3>🤝 Delegate early</h3><p>Let easylandx handle structure and polish, freeing you to share your story.</p></div>
+      <div class="card reveal" style="background:var(--bg);color:var(--ink)"><h3>⏱ Batch the admin</h3><p>Gather updates into one high-energy window and complete them together.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="reveal">Flexible sprints, creative pivots</h2>
+    <p class="reveal" style="max-width:60ch">Fluid sprint targets leave room for inspired turns. A three-task boundary keeps bursts of hyper-focus joyful and sustainable. Add up to three tasks, then check them off to celebrate.</p>
+    <div class="panel reveal">
+      <div class="chips" id="chips"></div>
+      <div class="slots" id="slots"></div>
+      <div class="bar"><i id="fill"></i></div>
+      <div class="msg" id="msg">Choose your sprint tasks above ☝️</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Your brain-first landing page awaits</h2>
+    <p class="reveal">Bring your energy, your ideas and your vision. We will bring the launch.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx ➜</a>
+  </div>
+</section>
+
+<footer>made by easylandx · <a href="https://easylandx.github.io" target="_blank" rel="noopener" style="color:inherit">easylandx.github.io</a></footer>
+
+<div class="stars" id="stars"></div>
+
+<script>
+(function(){
+  // Reveal on scroll
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  // Energy dial
+  var data={
+    high:{a:60,t:'🔥 Spark day',p:'Tackle the big creative moves: write your headline, pick your visuals and launch your hero section while ideas sizzle.'},
+    mid:{a:0,t:'🌊 Flow day',p:'Perfect for steady building. Add benefits, testimonials and your call to action in one smooth stretch.'},
+    low:{a:-60,t:'🌙 Recharge day',p:'Gentle wins shine today: polish a photo, refresh a caption, or let your page rest while you gather inspiration.'}
+  };
+  var needle=document.getElementById('needle'),out=document.getElementById('eOut'),modes=document.querySelectorAll('.mode');
+  modes.forEach(function(b){b.addEventListener('click',function(){
+    var d=data[b.dataset.lvl];
+    modes.forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    needle.style.transform='rotate('+d.a+'deg)';
+    out.innerHTML='<h3>'+d.t+'</h3><p>'+d.p+'</p>';
+  })});
+
+  // Loop steps
+  var steps=document.querySelectorAll('.step'),nodes=document.querySelectorAll('#nodes > g'),cur=0,timer;
+  function setStep(i){
+    cur=i;
+    steps.forEach(function(s,k){s.classList.toggle('on',k===i)});
+    nodes.forEach(function(n,k){
+      var c=n.querySelector('circle'),t=n.querySelector('text');
+      c.setAttribute('fill',k===i?'#0a0a0a':'#FFD500');
+      t.setAttribute('fill',k===i?'#FFD500':'#0a0a0a');
+    });
+  }
+  steps.forEach(function(s,i){s.addEventListener('click',function(){setStep(i);clearInterval(timer);timer=setInterval(function(){setStep((cur+1)%4)},2600)})});
+  timer=setInterval(function(){setStep((cur+1)%4)},2600);
+
+  // Sprint builder
+  var tasks=['Write headline','Choose photos','Add pricing','Craft call to action','Add testimonials','Share the link'];
+  var picked=[],done={};
+  var chips=document.getElementById('chips'),slots=document.getElementById('slots'),fill=document.getElementById('fill'),msg=document.getElementById('msg');
+  function burst(){
+    var box=document.getElementById('stars');
+    for(var i=0;i<18;i++){
+      var s=document.createElement('span');s.className='star';s.textContent=['★','✨','⚡'][i%3];
+      s.style.left='50%';s.style.top='55%';
+      s.style.setProperty('--x',(Math.random()*600-300)+'px');
+      s.style.setProperty('--y',(Math.random()*500-300)+'px');
+      box.appendChild(s);
+      (function(n){setTimeout(function(){n.remove()},1300)})(s);
+    }
+  }
+  function render(){
+    chips.innerHTML='';
+    tasks.forEach(function(t){
+      var b=document.createElement('button');b.className='chip';b.textContent='+ '+t;
+      b.disabled=picked.indexOf(t)>-1||picked.length>=3;
+      b.onclick=function(){picked.push(t);render()};
+      chips.appendChild(b);
+    });
+    slots.innerHTML='';
+    for(var i=0;i<3;i++){
+      var d=document.createElement('div');d.className='slot';
+      var t=picked[i];
+      if(t){
+        d.className+=' full'+(done[t]?' done':'');
+        d.innerHTML='<button class="tick" aria-label="Complete '+t+'">'+(done[t]?'✓':'')+'</button><span>'+t+'</span>';
+        d.querySelector('.tick').onclick=(function(t){return function(){
+          done[t]=!done[t];render();if(done[t])burst();
+        }})(t);
+      }else{d.textContent='Open sprint slot '+(i+1);d.style.opacity='.6'}
+      slots.appendChild(d);
+    }
+    var n=picked.filter(function(t){return done[t]}).length,pct=picked.length?Math.round(n/picked.length*100):0;
+    fill.style.width=pct+'%';
+    if(!picked.length)msg.textContent='Choose your sprint tasks above ☝️';
+    else if(pct===100&&picked.length===3)msg.textContent='🎉 Sprint complete! Your page is ready to shine.';
+    else if(pct===100)msg.textContent='🎉 Sprint complete! Add more slots or celebrate this win.';
+    else if(picked.length>=3)msg.textContent='Sprint full: three focused tasks keep your energy glowing. '+pct+'% done.';
+    else msg.textContent=pct+'% done · room for '+(3-picked.length)+' more.';
+  }
+  render();
+})();
+</script>
+</body>
+</html>

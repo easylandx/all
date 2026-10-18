@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX – Landing Pages That Flow With Your Brain</title>
+<style>
+:root{--bg:#6a1bff;--bg2:#5a10e6;--ink:#fff;--soft:#e6dcff;--em:#19f0a0;--em2:#0fd98c;--card:rgba(255,255,255,.1);--line:rgba(255,255,255,.22);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#5d12f0;--bg2:#4d0cd0}}
+:root[data-theme="dark"]{--bg:#5d12f0;--bg2:#4d0cd0}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif;line-height:1.6;overflow-x:hidden}
+.w{width:100%;max-width:1060px;margin:0 auto;padding-inline:clamp(22px,6vw,48px)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .w{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-weight:900;font-size:22px;letter-spacing:-.5px}.logo b{color:var(--em)}
+.btn{display:inline-block;background:var(--em);color:#12003a;font-weight:800;padding:13px 26px;border-radius:999px;text-decoration:none;transition:transform .2s,box-shadow .2s;border:0;cursor:pointer;font-size:16px}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 0 -2px rgba(0,0,0,.2),0 0 28px var(--em)}
+.btn.sm{padding:9px 20px;font-size:14px}
+.ghost{background:transparent;color:var(--ink);border:2px solid var(--em)}
+section{padding:80px 0}
+h1{font-size:clamp(38px,7vw,68px);line-height:1.05;font-weight:900;letter-spacing:-1.5px}
+h2{font-size:clamp(28px,4.5vw,42px);font-weight:900;letter-spacing:-.8px;margin-bottom:12px}
+h1 em,h2 em{color:var(--em);font-style:normal}
+p.lead{color:var(--soft);font-size:19px;max-width:620px;margin:18px 0 28px}
+.eyebrow{color:var(--em);font-weight:800;letter-spacing:2px;font-size:13px;text-transform:uppercase;margin-bottom:10px}
+.hero .w{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+@media(max-width:800px){.hero .w{grid-template-columns:1fr}}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+svg .fl{animation:fl 5s ease-in-out infinite}svg .fl2{animation:fl 6s ease-in-out infinite reverse}
+@keyframes fl{50%{transform:translateY(-14px)}}
+svg .sp{animation:sp 14s linear infinite;transform-origin:250px 210px}@keyframes sp{to{transform:rotate(360deg)}}
+svg .pl{animation:pl 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}@keyframes pl{50%{transform:scale(1.25);opacity:.6}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:30px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;transition:transform .25s,border-color .25s}
+.card:hover{transform:translateY(-6px) rotate(-.6deg);border-color:var(--em)}
+.card .ic{width:54px;height:54px;border-radius:16px;background:var(--em);color:#12003a;display:grid;place-items:center;font-weight:900;font-size:26px;margin-bottom:14px}
+.card h3{font-size:20px;margin-bottom:6px}.card p{color:var(--soft);font-size:15px}
+.rev{opacity:0;transform:translateY(30px);transition:all .7s}.rev.on{opacity:1;transform:none}
+.lab{background:var(--bg2);border:2px solid var(--em);border-radius:28px;padding:clamp(20px,4vw,38px);margin-top:28px}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.tab{background:transparent;color:var(--ink);border:2px solid var(--line);border-radius:999px;padding:10px 20px;font-weight:700;cursor:pointer;font-size:15px;transition:.2s}
+.tab.act{background:var(--em);color:#12003a;border-color:var(--em)}
+.lab2{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}
+@media(max-width:760px){.lab2{grid-template-columns:1fr}}
+.chk{list-style:none;padding:0}
+.chk li{display:flex;gap:12px;align-items:center;padding:13px 16px;margin-bottom:10px;background:var(--card);border-radius:14px;cursor:pointer;transition:.2s;animation:in .4s both}
+@keyframes in{from{opacity:0;transform:translateX(-14px)}}
+.chk li:hover{background:rgba(255,255,255,.18)}
+.box{flex:none;width:26px;height:26px;border-radius:8px;border:2px solid var(--em);display:grid;place-items:center;color:#12003a;font-weight:900;transition:.2s}
+.chk li.d .box{background:var(--em)}.chk li.d span{opacity:.65;text-decoration:line-through}
+.ring{display:grid;place-items:center;text-align:center}
+.ring svg{width:190px;height:190px}
+.ring circle.pg{transition:stroke-dashoffset .6s cubic-bezier(.3,1.4,.5,1)}
+.msg{color:var(--em);font-weight:800;margin-top:8px;min-height:28px}
+.steps{counter-reset:s;display:grid;gap:16px;margin-top:30px}
+.step{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px}
+.step .n{width:56px;height:56px;border-radius:50%;background:var(--em);color:#12003a;font-weight:900;font-size:24px;display:grid;place-items:center}
+.step h3{margin-bottom:4px}.step p{color:var(--soft);font-size:15px}
+.cta{text-align:center;background:var(--em);color:#12003a;border-radius:36px;padding:clamp(34px,6vw,64px) clamp(20px,5vw,40px);position:relative;overflow:hidden}
+.cta h2{color:#12003a}.cta p{max-width:560px;margin:10px auto 26px;font-size:18px}
+.cta .btn{background:#12003a;color:var(--em)}
+.cta .btn:hover{box-shadow:0 10px 0 -2px rgba(0,0,0,.25)}
+.bub{position:absolute;border-radius:50%;background:rgba(106,27,255,.18);animation:fl 7s ease-in-out infinite}
+footer{padding:36px 0 50px;color:var(--soft);text-align:center;font-size:14px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rev{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav><div class="w"><div class="logo">Easy<b>Land</b>X</div><a class="btn sm" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></div></nav>
+
+<header class="hero"><section class="w">
+<div>
+<div class="eyebrow">Brain-first landing pages</div>
+<h1>Landing pages that <em>flow</em> with the way you think.</h1>
+<p class="lead">EasyLandX crafts bold, single-page experiences that welcome visitors, spotlight one clear offer, and keep your energy for the work you love.</p>
+<div class="row"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a><a class="btn ghost" href="#lab">Try the Energy Lab</a></div>
+</div>
+<svg viewBox="0 0 500 420" role="img" aria-label="Animated landing page illustration">
+<circle class="sp" cx="250" cy="210" r="175" fill="none" stroke="#19f0a0" stroke-width="2" stroke-dasharray="4 16" opacity=".7"/>
+<circle cx="250" cy="210" r="140" fill="#fff" opacity=".07"/>
+<g class="fl"><rect x="110" y="80" width="280" height="250" rx="22" fill="#fff"/><rect x="110" y="80" width="280" height="38" rx="22" fill="#12003a"/><rect x="110" y="100" width="280" height="18" fill="#12003a"/>
+<circle cx="132" cy="99" r="6" fill="#19f0a0"/><circle cx="152" cy="99" r="6" fill="#fff" opacity=".5"/><circle cx="172" cy="99" r="6" fill="#fff" opacity=".5"/>
+<rect x="136" y="142" width="170" height="16" rx="8" fill="#6a1bff"/><rect x="136" y="168" width="120" height="10" rx="5" fill="#cdbbff"/>
+<rect x="136" y="188" width="140" height="10" rx="5" fill="#cdbbff"/>
+<rect x="136" y="216" width="96" height="34" rx="17" fill="#19f0a0"/>
+<rect x="136" y="268" width="62" height="44" rx="10" fill="#6a1bff" opacity=".9"/><rect x="208" y="268" width="62" height="44" rx="10" fill="#19f0a0"/><rect x="280" y="268" width="62" height="44" rx="10" fill="#cdbbff"/>
+<circle cx="340" cy="190" r="34" fill="#6a1bff"/><path d="M326 192l10 10 18-22" stroke="#19f0a0" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="fl2"><path d="M70 150l12 28 28 12-28 12-12 28-12-28-28-12 28-12z" fill="#19f0a0"/><circle cx="430" cy="120" r="16" fill="#19f0a0"/><rect x="410" y="290" width="46" height="46" rx="14" fill="#fff" transform="rotate(18 433 313)"/><path d="M425 313h16M433 305v16" stroke="#6a1bff" stroke-width="5" stroke-linecap="round"/></g>
+<circle class="pl" cx="60" cy="330" r="12" fill="#19f0a0"/><circle class="pl" cx="450" cy="40" r="9" fill="#fff"/>
+</svg>
+</section></header>
+
+<section class="w rev">
+<div class="eyebrow">The EasyLandX way</div>
+<h2>Designed around <em>what lights you up</em></h2>
+<p class="lead">Great focus grows from four sparks. Every EasyLandX page is shaped to ignite them for you and for your visitors.</p>
+<div class="grid">
+<div class="card"><div class="ic">I</div><h3>Interest</h3><p>A headline that sparks curiosity in the first second and invites a closer look.</p></div>
+<div class="card"><div class="ic">N</div><h3>Novelty</h3><p>Fresh visuals, playful motion and surprising details keep every scroll rewarding.</p></div>
+<div class="card"><div class="ic">C</div><h3>Challenge</h3><p>One inviting question for visitors to answer, turning browsing into a satisfying win.</p></div>
+<div class="card"><div class="ic">U</div><h3>Urgency</h3><p>Friendly, timely invitations such as “spots open this month” inspire joyful action.</p></div>
+</div>
+</section>
+
+<section class="w rev" id="lab">
+<div class="eyebrow">Interactive · Energy Lab</div>
+<h2>Match your page tasks to <em>today’s energy</em></h2>
+<p class="lead">Choose how you feel right now. Discover the perfect landing page moves for that energy, then tap each one to celebrate your progress.</p>
+<div class="lab">
+<div class="tabs" id="tabs"></div>
+<div class="lab2">
+<div><p id="blurb" style="color:var(--soft);margin-bottom:16px"></p><ul class="chk" id="list"></ul></div>
+<div class="ring"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="82" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="16"/><circle class="pg" id="pg" cx="100" cy="100" r="82" fill="none" stroke="#19f0a0" stroke-width="16" stroke-linecap="round" stroke-dasharray="515.2" stroke-dashoffset="515.2" transform="rotate(-90 100 100)"/><text id="pct" x="100" y="112" text-anchor="middle" fill="#fff" font-size="40" font-weight="900">0%</text></svg><div class="msg" id="msg"></div></div>
+</div></div>
+</section>
+
+<section class="w rev">
+<div class="eyebrow">Your path to new clients</div>
+<h2>Four phases, <em>one smooth rhythm</em></h2>
+<div class="steps">
+<div class="step"><div class="n">1</div><div><h3>Creative burst: shape your micro-offer</h3><p>Name the one result your client wants, the single streamlined solution you deliver, and the transformation they will enjoy. EasyLandX turns it into a crisp headline, three key benefits (speed, ease, clarity) and one bright call to action.</p></div></div>
+<div class="step"><div class="n">2</div><div><h3>Sprint mode: share it in short, focused bursts</h3><p>Use ready-to-send outreach notes, like a quick-idea message or a warm check-in, in 20 to 30 minute sprints. Your landing page is the welcoming destination every message points to.</p></div></div>
+<div class="step"><div class="n">3</div><div><h3>The 15-minute alignment chat</h3><p>Visitors book a short, friendly call. Open with context, ask two guiding questions, present a simple plan, then invite the next step. Short, structured and energizing.</p></div></div>
+<div class="step"><div class="n">4</div><div><h3>Systems and guardrails that protect your energy</h3><p>Automate invoices, agreements and intake forms. Bring a 24-hour “sleep on it” rhythm to exciting new ideas, and batch outreach into one 45-minute sprint each week. Your business stays steady while you stay inspired.</p></div></div>
+</div>
+</section>
+
+<section class="w rev">
+<div class="eyebrow">Why it feels so good</div>
+<h2>Built on three <em>powerful truths</em></h2>
+<div class="grid">
+<div class="card"><div class="ic">⚙</div><h3>Systems carry the load</h3><p>Smart structure and automation let willpower rest and results keep rolling.</p></div>
+<div class="card"><div class="ic">☾</div><h3>Rest fuels brilliance</h3><p>Planned recharge time boosts creativity, so every launch arrives fresh.</p></div>
+<div class="card"><div class="ic">★</div><h3>Your personal manual</h3><p>Your best work windows and favorite triggers shape each page, so it fits you perfectly.</p></div>
+</div>
+</section>
+
+<section class="w rev"><div class="cta">
+<div class="bub" style="width:120px;height:120px;left:-30px;top:-30px"></div><div class="bub" style="width:80px;height:80px;right:30px;bottom:-20px;animation-delay:-3s"></div>
+<h2>Ready for a landing page that feels like you?</h2>
+<p>Step into EasyLandX and watch your offer shine on a page crafted for your energy, your style and your next great client.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a>
+</div></section>
+
+<footer><div class="w">© 2026 EasyLandX · Landing pages made with joy</div></footer>
+
+<script>
+const M={
+flow:{n:"Creative Flow",b:"Your spark is bright. Channel it into the creative heart of your page.",t:["Write a headline that excites you","Sketch your micro-offer in one sentence","Pick bold visuals and playful motion","Design your signature call to action"]},
+steady:{n:"Steady Calm",b:"A gentle, easy rhythm. Perfect for tidy, satisfying touches.",t:["Arrange sections in a clear visual order","Polish your three key benefits","Refresh photos and icons","Update contact details and links"]},
+burst:{n:"Urgency Burst",b:"A short window of bright focus. Finish with a joyful sprint!",t:["Set a 20-minute timer","Publish your page","Send your outreach note to three contacts","Book your first alignment chat"]}
+};
+let cur="flow",done={};
+const tabs=document.getElementById("tabs"),list=document.getElementById("list");
+Object.keys(M).forEach(k=>{const b=document.createElement("button");b.className="tab";b.textContent=M[k].n;b.onclick=()=>{cur=k;render()};b.dataset.k=k;tabs.appendChild(b)});
+function render(){
+ document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("act",t.dataset.k===cur));
+ document.getElementById("blurb").textContent=M[cur].b;
+ done[cur]=done[cur]||[];list.innerHTML="";
+ M[cur].t.forEach((t,i)=>{const li=document.createElement("li");li.style.animationDelay=i*70+"ms";
+  if(done[cur][i])li.className="d";
+  li.innerHTML='<div class="box">'+(done[cur][i]?"✓":"")+'</div><span>'+t+'</span>';
+  li.onclick=()=>{done[cur][i]=!done[cur][i];render()};list.appendChild(li)});
+ const c=done[cur].filter(Boolean).length,p=Math.round(c/M[cur].t.length*100);
+ document.getElementById("pg").style.strokeDashoffset=515.2*(1-p/100);
+ document.getElementById("pct").textContent=p+"%";
+ document.getElementById("msg").textContent=p===100?"Brilliant! Time to celebrate! 🎉":p>0?"Wonderful momentum!":"Tap a step to begin";
+}
+render();
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("on")}),{threshold:.12});
+document.querySelectorAll(".rev").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

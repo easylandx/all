@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX Landing Pages: Build Once, Live Now</title>
+<style>
+:root{--bg:#FF6B6B;--deep:#4A0F18;--mid:#C93A4A;--soft:#FF8A8A;--pale:#FFB3B3;--y:#FFE62E;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme="dark"]{--bg:#FF6B6B}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--deep);font-family:"Trebuchet MS",Verdana,system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:clamp(22px,6vw,56px)}
+section{padding-block:clamp(56px,9vw,96px)}
+h1,h2,h3{font-family:Impact,"Arial Black",sans-serif;letter-spacing:.01em;line-height:1.05;margin:0 0 .5em;text-transform:uppercase}
+h1{font-size:clamp(2.6rem,9vw,5.6rem)}
+h2{font-size:clamp(1.9rem,5.5vw,3.2rem)}
+h3{font-size:1.25rem}
+mark{background:var(--y);color:var(--deep);padding:0 .15em}
+.tag{display:inline-block;background:var(--y);color:var(--deep);font-weight:800;font-size:.78rem;letter-spacing:.12em;padding:.35em .8em;border-radius:99px;margin-bottom:1rem;text-transform:uppercase}
+.btn{display:inline-block;background:var(--y);color:var(--deep);font-weight:900;text-decoration:none;text-transform:uppercase;letter-spacing:.06em;padding:1em 1.8em;border-radius:99px;border:3px solid var(--deep);box-shadow:5px 5px 0 var(--deep);transition:transform .15s,box-shadow .15s;cursor:pointer;font-size:1rem}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--deep)}
+.btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--deep)}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);padding-top:env(safe-area-inset-top,0px);border-bottom:3px solid var(--deep)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:12px}
+nav b{font-family:Impact,sans-serif;font-size:1.4rem;letter-spacing:.03em}
+nav .btn{padding:.6em 1.2em;font-size:.85rem;box-shadow:3px 3px 0 var(--deep)}
+.hero{display:grid;gap:32px;align-items:center}
+@media(min-width:820px){.hero{grid-template-columns:1.1fr .9fr}}
+.hero p{font-size:1.2rem;max-width:34em}
+.art{width:100%;height:auto;display:block}
+.sun{transform-origin:200px 170px;animation:spin 30s linear infinite}
+.float{animation:fl 4s ease-in-out infinite}.float.b{animation-delay:-2s}
+.cloud{animation:drift 9s ease-in-out infinite alternate}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fl{50%{transform:translateY(-12px)}}
+@keyframes drift{to{transform:translateX(28px)}}
+.band{background:var(--deep);color:var(--pale)}
+.band h2,.band h3{color:var(--y)}
+.formula{font-family:Impact,sans-serif;font-size:clamp(1.1rem,3.6vw,2rem);text-transform:uppercase;display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:1.2rem 0}
+.formula span{background:var(--y);color:var(--deep);padding:.3em .6em;border-radius:12px}
+.formula i{font-style:normal;color:var(--y)}
+.panel{background:var(--deep);color:#fff;border-radius:24px;padding:clamp(20px,4vw,36px);border:3px solid var(--deep)}
+.panel label{display:block;font-weight:800;margin:1rem 0 .3rem}
+.panel output{color:var(--y);font-weight:900}
+input[type=range]{width:100%;accent-color:var(--y);height:28px}
+.bar{display:flex;height:44px;border-radius:12px;overflow:hidden;margin:1rem 0;background:var(--mid)}
+.bar div{display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.8rem;transition:width .4s;overflow:hidden;white-space:nowrap}
+.bar .inv{background:var(--y);color:var(--deep)}.bar .wk{background:var(--pale);color:var(--deep)}
+.res{font-size:1.1rem;margin:.4rem 0}
+.res b{color:var(--y)}
+.cal{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:1rem 0}
+@media(min-width:620px){.cal{grid-template-columns:repeat(6,1fr)}}
+.cal button{font:inherit;font-weight:900;padding:.9em 0;border-radius:14px;border:3px solid var(--y);background:transparent;color:var(--y);cursor:pointer;transition:.2s}
+.cal button.on{background:var(--y);color:var(--deep);transform:rotate(-2deg)}
+.cards{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--soft);border:3px solid var(--deep);border-radius:22px;padding:22px;box-shadow:6px 6px 0 var(--deep);transition:transform .2s}
+.card:hover{transform:translateY(-6px) rotate(-.6deg)}
+.card .n{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--y);font-family:Impact,sans-serif;font-size:1.3rem;margin-bottom:12px;border:3px solid var(--deep)}
+.card p{margin:0}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.tabs button{font:inherit;font-weight:900;text-transform:uppercase;padding:.7em 1.3em;border-radius:99px;border:3px solid var(--deep);background:transparent;color:var(--deep);cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--y);box-shadow:4px 4px 0 var(--deep)}
+.tabout{background:var(--soft);border:3px solid var(--deep);border-radius:22px;padding:24px;min-height:120px;font-size:1.1rem}
+.tabout strong{background:var(--y);padding:0 .25em}
+details{border:3px solid var(--y);border-radius:18px;padding:16px 20px;margin-bottom:12px}
+summary{cursor:pointer;font-weight:900;font-size:1.1rem;color:var(--y);list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";transition:transform .25s;font-size:1.5rem;line-height:1}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:.8em 0 0}
+.cta{text-align:center}
+.cta h2{max-width:14em;margin-inline:auto}
+footer{border-top:3px solid var(--deep);padding-block:36px;text-align:center;font-weight:700}
+footer em{font-style:normal;background:var(--y);padding:.1em .5em}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Easy<mark>LandX</mark></b><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></div></nav>
+
+<header><div class="wrap"><section class="hero">
+<div>
+<span class="tag">Landing pages · built for freedom</span>
+<h1>Your page works. <mark>You live.</mark></h1>
+<p>A landing page is the quiet, always-on employee of a flexible life. Launch it once with EasyLandX, let it greet visitors in every season, and keep your calendar for the things you love.</p>
+<p><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></p>
+</div>
+<svg class="art" viewBox="0 0 400 360" role="img" aria-label="Illustration of a landing page browser window under a spinning sun with floating coins">
+<g class="sun"><circle cx="200" cy="170" r="130" fill="none" stroke="#FFE62E" stroke-width="4" stroke-dasharray="4 18" stroke-linecap="round"/></g>
+<circle cx="200" cy="170" r="92" fill="#FFE62E"/>
+<g class="cloud"><ellipse cx="70" cy="70" rx="42" ry="16" fill="#FFB3B3"/><ellipse cx="95" cy="60" rx="26" ry="14" fill="#FFB3B3"/></g>
+<g class="cloud" style="animation-delay:-4s"><ellipse cx="320" cy="40" rx="36" ry="13" fill="#FFB3B3"/></g>
+<rect x="80" y="130" width="240" height="170" rx="16" fill="#4A0F18"/>
+<rect x="80" y="130" width="240" height="30" rx="16" fill="#C93A4A"/>
+<circle cx="100" cy="145" r="5" fill="#FFE62E"/><circle cx="116" cy="145" r="5" fill="#FFB3B3"/><circle cx="132" cy="145" r="5" fill="#FF6B6B"/>
+<rect x="104" y="180" width="130" height="14" rx="7" fill="#FFE62E"/>
+<rect x="104" y="204" width="180" height="8" rx="4" fill="#FFB3B3"/><rect x="104" y="220" width="150" height="8" rx="4" fill="#FFB3B3"/>
+<rect x="104" y="246" width="86" height="30" rx="15" fill="#FFE62E"/>
+<g class="float"><circle cx="340" cy="210" r="22" fill="#FFE62E" stroke="#4A0F18" stroke-width="4"/><text x="340" y="217" text-anchor="middle" font-family="Impact" font-size="20" fill="#4A0F18">$</text></g>
+<g class="float b"><circle cx="58" cy="230" r="18" fill="#FFE62E" stroke="#4A0F18" stroke-width="4"/><text x="58" y="237" text-anchor="middle" font-family="Impact" font-size="17" fill="#4A0F18">$</text></g>
+<path d="M60 330 q70 -30 140 0 t140 0" fill="none" stroke="#4A0F18" stroke-width="5" stroke-linecap="round"/>
+</svg>
+</section></div></header>
+
+<main>
+<section class="band"><div class="wrap reveal">
+<span class="tag">The core formula</span>
+<h2>Stop waiting for a giant pile. <mark style="">Fund life now.</mark></h2>
+<p>Full financial independence can take decades. A flexible life can start within a few years, by balancing two income streams against what you actually spend. Become a <b>Freetimer</b>: assets plus work you enjoy.</p>
+<div class="formula"><span>Lifestyle expenses</span><i>=</i><span>Investment income</span><i>+</i><span>Flexible work income</span></div>
+<p>An EasyLandX landing page is a simple, low-overhead engine for that flexible work income: one clear page, one clear offer, no enterprise machinery.</p>
+</div></section>
+
+<section><div class="wrap reveal">
+<span class="tag" style="">Try it · Freetimer calculator</span>
+<h2>How much work does your freedom need?</h2>
+<div class="panel">
+<label for="exp">Monthly lifestyle expenses: <output id="expO"></output></label>
+<input id="exp" type="range" min="1000" max="10000" step="100" value="4000">
+<label for="inv">Monthly investment income (dividends, rentals): <output id="invO"></output></label>
+<input id="inv" type="range" min="0" max="10000" step="100" value="1500">
+<label for="cash">Cash reserve: <output id="cashO"></output></label>
+<input id="cash" type="range" min="0" max="120000" step="1000" value="30000">
+<div class="bar" aria-hidden="true"><div class="inv" id="bInv"></div><div class="wk" id="bWk"></div></div>
+<p class="res" id="r1"></p><p class="res" id="r2"></p><p class="res" id="r3"></p>
+</div>
+</div></section>
+
+<section class="band"><div class="wrap reveal">
+<span class="tag">Design your seasons</span>
+<h2>Tap the months you work.</h2>
+<p>Ditch the 50-week grind. Work intensely in your seasons, then rest, travel, or create. Time is the one resource you cannot earn back.</p>
+<div class="cal" id="cal"></div>
+<p class="res" id="calR" style="color:#fff"></p>
+</div></section>
+
+<section><div class="wrap reveal">
+<span class="tag">Four lessons</span>
+<h2>What the Time Freedom mindset says about your page</h2>
+<div class="cards">
+<div class="card"><div class="n">1</div><h3>Work can be valuable</h3><p>Retirement can bring boredom. Build a page for work that gives you purpose, people and structure, on your terms.</p></div>
+<div class="card"><div class="n">2</div><h3>Time is finite</h3><p>Do not gamble life on age 65. Launch fast with EasyLandX and reclaim summers now.</p></div>
+<div class="card"><div class="n">3</div><h3>Know your money type</h3><p>Choose a page strategy that fits how you naturally handle money. See below.</p></div>
+<div class="card"><div class="n">4</div><h3>Cash flow over net worth</h3><p>A page that brings steady inquiries is a river of cash flow, not an illiquid pile.</p></div>
+</div>
+</div></section>
+
+<section class="band"><div class="wrap reveal" style="">
+<span class="tag">Which are you?</span>
+<h2>Your money personality</h2>
+<div class="tabs" role="tablist" id="tabs">
+<button role="tab" aria-selected="true" data-k="0">Minimizer</button>
+<button role="tab" aria-selected="false" data-k="1">Manager</button>
+<button role="tab" aria-selected="false" data-k="2">Maker</button>
+</div>
+<div class="tabout" id="tabout" style="color:var(--deep)" aria-live="polite"></div>
+</div></section>
+
+<section><div class="wrap reveal">
+<span class="tag">Action steps</span>
+<h2>Five moves to a lighter calendar</h2>
+<div class="panel" style="padding:20px">
+<details open><summary>Design a seasonal schedule</summary><p>Concentrate your client work into a few intense seasons. Let your landing page keep collecting interest during the breaks, with an auto-reply and a clear “back in September” note.</p></details>
+<details><summary>Build an unscalable lifestyle business</summary><p>Resist scaling for scaling’s sake. One focused page, one offer, high margins, low overhead, few hours. Small on purpose.</p></details>
+<details><summary>Use a “no-budget” budget</summary><p>Automate cash flows instead of tracking every coffee. Keep your page’s subscription and hosting costs simple and predictable too.</p></details>
+<details><summary>Keep heavy cash reserves</summary><p>A deep cushion makes time away feel calm. Try the cash slider above and watch your runway grow.</p></details>
+<details><summary>Plan for zero income in year one</summary><p>Assume your new venture earns nothing at first. That runway prevents scarcity-driven choices, and lets you test headlines and offers patiently.</p></details>
+</div>
+</div></section>
+
+<section class="band cta"><div class="wrap reveal">
+<svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true"><circle class="float" cx="60" cy="60" r="44" fill="#FFE62E"/><path d="M40 62 l14 14 l28 -30" fill="none" stroke="#4A0F18" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<h2>Launch your page. <mark>Take the summer.</mark></h2>
+<p style="max-width:34em;margin-inline:auto 0;margin:0 auto 1.6rem">Start your landing page with EasyLandX and give your flexible work a home.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</div></section>
+</main>
+
+<footer><div class="wrap">Inspired by the book <em>Time Freedom: Rethink Your Work and Money to Create a Life You Love Now</em> by Brian Herriot.</div></footer>
+
+<script>
+const $=id=>document.getElementById(id),fmt=n=>'$'+Math.round(n).toLocaleString('en-US');
+function calc(){
+ const e=+$('exp').value,i=+$('inv').value,c=+$('cash').value;
+ $('expO').textContent=fmt(e);$('invO').textContent=fmt(i);$('cashO').textContent=fmt(c);
+ const w=Math.max(0,e-i),pi=Math.min(100,i/e*100);
+ $('bInv').style.width=pi+'%';$('bWk').style.width=(100-pi)+'%';
+ $('bInv').textContent=pi>14?'Investments':'';$('bWk').textContent=pi<86?'Flexible work':'';
+ $('r1').innerHTML=w===0?'<b>Fully funded.</b> Your investments cover your lifestyle.':'Flexible work must bring in <b>'+fmt(w)+'/mo</b> (about '+Math.round(w/50)+' hours at $50/hr).';
+ const m=c/e;$('r2').innerHTML='Your cash reserve covers <b>'+m.toFixed(1)+' months</b> of expenses.';
+ $('r3').innerHTML=m>=12?'You can survive a zero-income first year. Go launch.':'A zero-income year one needs <b>'+fmt(e*12-c)+'</b> more in reserve.';
+}
+['exp','inv','cash'].forEach(k=>$(k).addEventListener('input',calc));calc();
+const mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],cal=$('cal');
+mo.forEach((m,x)=>{const b=document.createElement('button');b.textContent=m;if([0,1,2,3,8,9,10].includes(x))b.className='on';b.onclick=()=>{b.classList.toggle('on');cr()};cal.appendChild(b)});
+function cr(){const n=cal.querySelectorAll('.on').length,wk=Math.round(n*4.33);
+ $('calR').innerHTML='You work <mark>'+n+' months</mark> (about '+wk+' weeks) and rest <mark>'+(12-n)+'</mark>. That is '+(50-wk>0?(50-wk)+' fewer working weeks than the 50-week grind.':'no break from the grind. Free a month!')}
+cr();
+const T=[
+['<strong>Minimizers</strong> spend less and love simplicity. Your page: a lean one-screen EasyLandX launch with one offer. Your low expenses mean fewer work hours are needed.'],
+['<strong>Managers</strong> optimize systems. Your page: automate bookings, replies and payments so the page runs itself through every off-season.'],
+['<strong>Makers</strong> create income. Your page: spin up a new EasyLandX page for each idea, test it, and keep the winners as extra streams of cash flow.']];
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));$('tabout').innerHTML=T[b.dataset.k]});
+$('tabout').innerHTML=T[0];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx | Landing pages built like a multi-tool</title>
+<style>
+:root{--gold:#E3A800;--ink:#1c1606;--silver:#CDD5DD;--silver2:#9FACB9;--steel:#5B6773;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gold:#CC9700;color-scheme:dark}}
+:root[data-theme="dark"]{--gold:#CC9700}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--gold);color:var(--ink);font:17px/1.65 "Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif;overflow-x:hidden}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:clamp(22px,6vw,56px)}
+h1,h2,h3{line-height:1.1;margin:0 0 .5em;font-weight:900;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,7vw,4.6rem)}
+h2{font-size:clamp(1.8rem,4.5vw,2.8rem)}
+p{margin:0 0 1em}
+section{padding:clamp(56px,9vw,104px) 0}
+.eyebrow{display:inline-block;background:var(--ink);color:var(--silver);font-weight:800;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;padding:.45em 1em;border-radius:99px;margin-bottom:1.2em}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ink)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px}
+.logo{color:var(--silver);font-weight:900;font-size:1.2rem;letter-spacing:-.02em}
+.logo b{color:var(--gold)}
+.btn{display:inline-block;background:var(--silver);color:var(--ink);font-weight:900;text-decoration:none;padding:.9em 1.6em;border-radius:12px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s;cursor:pointer;font-size:1rem}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+nav .btn{box-shadow:none;border-color:var(--silver2);padding:.55em 1.1em;font-size:.9rem}
+.hero{display:grid;gap:36px;align-items:center}
+@media(min-width:860px){.hero{grid-template-columns:1.1fr .9fr}}
+.hero p.lead{font-size:1.2rem;max-width:34em}
+.art svg{width:100%;height:auto;display:block}
+.blade{transform-box:view-box;transform-origin:80px 167px}
+.fan .blade{animation:fan 7s ease-in-out infinite}
+.fan .blade:nth-child(2){animation-delay:.25s}.fan .blade:nth-child(3){animation-delay:.5s}.fan .blade:nth-child(4){animation-delay:.75s}.fan .blade:nth-child(5){animation-delay:1s}
+@keyframes fan{0%,10%{transform:rotate(0)}35%,70%{transform:rotate(var(--a))}95%,100%{transform:rotate(0)}}
+.band{background:var(--ink);color:var(--silver)}
+.band h2,.band h3{color:#fff}
+.panel{background:linear-gradient(160deg,#E4EAF0,var(--silver) 55%,var(--silver2));border:3px solid var(--ink);border-radius:18px;padding:clamp(20px,4vw,34px);color:var(--ink);box-shadow:8px 8px 0 var(--ink)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.tools button,.tabs button{font:inherit;font-weight:800;border:3px solid var(--ink);background:transparent;color:var(--ink);padding:.55em 1.1em;border-radius:99px;cursor:pointer;transition:background .2s,color .2s,transform .15s}
+.tools button:hover,.tabs button:hover{transform:translateY(-2px)}
+.tools button[aria-pressed="true"],.tabs button[aria-selected="true"]{background:var(--ink);color:var(--silver)}
+.stage{display:grid;gap:24px;align-items:center}
+@media(min-width:820px){.stage{grid-template-columns:1.2fr 1fr}}
+.stage h3{font-size:1.6rem}
+.grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{text-align:left;font:inherit;color:inherit;width:100%}
+.card .more{max-height:0;overflow:hidden;opacity:0;transition:max-height .5s,opacity .5s}
+.card.open .more{max-height:260px;opacity:1}
+.card .plus{float:right;font-weight:900;font-size:1.6rem;transition:transform .3s}
+.card.open .plus{transform:rotate(45deg)}
+.num{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));text-align:center}
+.num b{display:block;font-size:clamp(2.4rem,6vw,3.6rem);color:var(--gold);font-weight:900;line-height:1}
+.num span{color:var(--silver);font-weight:700}
+.tl{position:relative;margin:30px 0 0;padding-left:34px}
+.tl:before{content:"";position:absolute;left:10px;top:6px;bottom:6px;width:6px;background:var(--ink);border-radius:4px}
+.tl .it{position:relative;margin-bottom:26px}
+.tl .it:before{content:"";position:absolute;left:-34px;top:6px;width:26px;height:26px;border-radius:50%;background:var(--silver);border:5px solid var(--ink)}
+.tl .yr{font-weight:900;font-size:1.3rem}
+.ring{display:grid;gap:24px;align-items:center}
+@media(min-width:760px){.ring{grid-template-columns:1fr 220px}}
+.chk label{display:flex;gap:12px;align-items:center;padding:.6em .2em;font-weight:700;cursor:pointer;border-bottom:2px solid rgba(28,22,6,.2)}
+.chk input{width:22px;height:22px;accent-color:#1c1606;flex:none}
+.meter{text-align:center}
+.meter circle.v{transition:stroke-dashoffset .7s cubic-bezier(.3,1.3,.5,1)}
+.cta{text-align:center}
+.cta .btn{font-size:1.2rem}
+footer{background:var(--ink);color:var(--silver);text-align:center;padding:36px 0}
+footer .btn{margin-top:8px}
+.spark{position:absolute;width:10px;height:10px;background:var(--silver);border:2px solid var(--ink);transform:rotate(45deg);animation:fl 6s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-18px) rotate(225deg)}}
+.rel{position:relative}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><span class="logo">easy<b>landx</b></span><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a></div></nav>
+
+<header class="wrap rel" style="padding-block:clamp(44px,8vw,90px)">
+  <span class="spark" style="left:4%;top:12%"></span><span class="spark" style="right:6%;top:46%;animation-delay:2s"></span>
+  <div class="hero">
+    <div>
+      <span class="eyebrow">Landing pages · made by easylandx</span>
+      <h1>One page. Many jobs. Built to last.</h1>
+      <p class="lead">Tim Leatherman spotted a gap between a pocket knife and a toolbox, then shaped one compact tool that did the work of many. easylandx brings that same spirit to landing pages: every element earns its place and every visitor finds the next step.</p>
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+    </div>
+    <div class="art" aria-hidden="true">
+      <svg viewBox="0 0 600 300"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EEF2F6"/><stop offset="1" stop-color="#9FACB9"/></linearGradient></defs>
+        <g class="fan" id="heroFan"></g>
+        <rect x="60" y="150" width="470" height="34" rx="17" fill="url(#g1)" stroke="#1c1606" stroke-width="5"/>
+        <rect x="120" y="160" width="350" height="6" rx="3" fill="#1c1606" opacity=".25"/>
+        <circle cx="80" cy="167" r="13" fill="#1c1606"/><circle cx="80" cy="167" r="5" fill="#CDD5DD"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section class="band">
+  <div class="wrap stage">
+    <div class="rv">
+      <span class="eyebrow" style="background:var(--silver);color:var(--ink)">The spark</span>
+      <h2>A road trip revealed a gap worth filling</h2>
+      <p>Tim and his wife Chau set off across Europe and Asia in a $300 1969 Fiat. Hotel plumbing and car engines kept offering chances to tinker, and his pocket knife kept inviting one wish: pliers.</p>
+      <p>That wish pointed to open space between a small pocket knife and a heavy toolbox. A landing page fills a gap just like it: the space between a social profile and a full website, where a visitor gets exactly the right tool at the right moment.</p>
+    </div>
+    <div class="rv" aria-hidden="true">
+      <svg viewBox="0 0 400 240" style="width:100%">
+        <rect x="10" y="150" width="380" height="14" fill="#9FACB9"/>
+        <g><animateTransform attributeName="transform" type="translate" values="0 0;8 0;0 0" dur="3s" repeatCount="indefinite"/>
+        <path d="M70 150 l14 -44 h150 l40 44z" fill="#CDD5DD" stroke="#E3A800" stroke-width="5"/>
+        <rect x="52" y="124" width="250" height="28" rx="8" fill="#CDD5DD" stroke="#E3A800" stroke-width="5"/>
+        <rect x="102" y="114" width="50" height="22" fill="#1c1606"/><rect x="164" y="114" width="50" height="22" fill="#1c1606"/>
+        <circle cx="110" cy="158" r="22" fill="#1c1606" stroke="#9FACB9" stroke-width="5"/><circle cx="250" cy="158" r="22" fill="#1c1606" stroke="#9FACB9" stroke-width="5"/></g>
+        <g fill="#E3A800"><circle cx="330" cy="50" r="8"><animate attributeName="r" values="6;12;6" dur="2.4s" repeatCount="indefinite"/></circle><path d="M330 20v14M330 66v14M300 50h14M346 50h14" stroke="#E3A800" stroke-width="4"/></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="rv"><span class="eyebrow">Interactive</span><h2>Unfold your page’s multi-tool</h2>
+    <p>Every great landing page carries a compact set of tools. Tap each one to see it open.</p></div>
+    <div class="panel rv">
+      <div class="stage">
+        <div><svg viewBox="0 0 600 300" aria-hidden="true" style="width:100%"><g id="mtBlades"></g>
+          <rect x="60" y="150" width="470" height="34" rx="17" fill="url(#g1)" stroke="#1c1606" stroke-width="5"/>
+          <circle cx="80" cy="167" r="13" fill="#1c1606"/><circle cx="80" cy="167" r="5" fill="#CDD5DD"/></svg></div>
+        <div><h3 id="tTitle"></h3><p id="tText"></p></div>
+      </div>
+      <div class="tools" id="tBtns" role="group" aria-label="Page tools"></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="num rv">
+      <div><b data-to="3">0</b><span>years to a proud prototype</span></div>
+      <div><b data-to="8">0</b><span>years of steady craft before the first sale</span></div>
+      <div><b data-to="500">0</b><span>tools in the first order, 1983</span></div>
+      <div><b data-to="25">0</b><span>year warranty promise</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="rv"><span class="eyebrow">Lessons in action</span><h2>Four lessons, shaped into every easylandx page</h2><p>Tap a card to see how each lesson from the book guides your landing page.</p></div>
+    <div class="grid" id="cards"></div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="rv"><span class="eyebrow" style="background:var(--silver);color:var(--ink)">The journey</span><h2>From garage workbench to belts around the world</h2></div>
+    <div class="tl">
+      <div class="it rv"><div class="yr">The road trip</div><p>A budget journey with Chau shows the value of having pliers within easy reach.</p></div>
+      <div class="it rv"><div class="yr">The garage years</div><p>Tim teaches himself metalworking, machining, and welding in his brother-in-law’s garage. The “Mr. 7-Point” prototype takes shape after three years of hands-on practice.</p></div>
+      <div class="it rv"><div class="yr">A new category</div><p>Knife makers and tool makers each saw a neighbor’s product. Tim turns to mail-order catalogs such as Cabela’s and Early Winters, where a story and pictures introduce something fresh.</p></div>
+      <div class="it rv"><div class="yr">1983</div><p>Early Winters orders 500 units. Partner Steve Berliner brings operations and commercial skill. Early profits flow back into better machinery and a growing team.</p></div>
+      <div class="it rv"><div class="yr">Today</div><p>Contractors, outdoor fans, first responders, and service members carry the tool daily, powered by quality and a 25-year promise.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="rv"><span class="eyebrow">The playbook</span><h2>Strategic objectives, ready for your page</h2></div>
+    <div class="panel rv">
+      <div class="tabs tools" id="tabs" role="tablist"></div>
+      <h3 id="pbT"></h3><p id="pbA" style="margin:0"></p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="rv"><span class="eyebrow" style="background:var(--silver);color:var(--ink)">Interactive</span><h2>Check your page’s launch readiness</h2><p>Tick each tool you have ready. Watch the meter fill toward launch day.</p></div>
+    <div class="panel ring rv">
+      <div class="chk" id="chk"></div>
+      <div class="meter">
+        <svg viewBox="0 0 140 140" width="200" aria-hidden="true"><circle cx="70" cy="70" r="54" fill="none" stroke="#9FACB9" stroke-width="16" opacity=".6"/><circle class="v" id="rv" cx="70" cy="70" r="54" fill="none" stroke="#1c1606" stroke-width="16" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="339.3" transform="rotate(-90 70 70)"/><text id="rp" x="70" y="78" text-anchor="middle" font-size="26" font-weight="900" fill="#1c1606">0%</text></svg>
+        <p id="rm" style="font-weight:800;margin:6px 0 0">Pick your first tool.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap cta rv">
+    <h2>Your gap is ready to be filled</h2>
+    <p style="max-width:34em;margin-inline:auto 0;margin-inline:auto">A crafted landing page tells your story straight to the people who need it. Bring your expertise and easylandx brings the build.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+  </div>
+</section>
+
+<footer><div class="wrap"><p style="margin:0 0 12px;font-weight:800">Landing pages made by easylandx</p><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a></div></footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const tools=[
+ ["Headline · the pliers","The core grip","One clear headline holds your whole message, the way pliers hold what matters. Visitors know within seconds who you serve and how.",-78,250],
+ ["Story · the blade","The cutting edge","Your origin story, like Tim’s road trip, shows why you care. A short, vivid narrative lets visitors feel the spark behind your work.",-62,290],
+ ["Proof · the screwdriver","The steady turn","Testimonials, results, and visuals demonstrate your quality. Daily utility keeps a brand relevant for years.",-46,230],
+ ["Action · the opener","The easy open","A single, bright button opens the door to the next step. One focused call to action makes choosing simple.",-30,200],
+ ["Promise · the file","The lasting finish","A clear promise, like the 25-year warranty, builds trust and turns happy visitors into enthusiastic advocates.",-14,270]];
+function blade(t,i,fan){const L=t[4];return `<g class="blade" id="${fan?'f':'b'}${i}" style="--a:${t[3]}deg"><rect x="80" y="159" width="${L}" height="16" rx="8" fill="#CDD5DD" stroke="#1c1606" stroke-width="4"/><circle cx="${80+L-14}" cy="167" r="3" fill="#1c1606"/></g>`}
+$("#heroFan").innerHTML=tools.map((t,i)=>blade(t,i,1)).join("");
+$("#mtBlades").innerHTML=tools.map((t,i)=>blade(t,i,0)).join("");
+function pick(n){tools.forEach((t,i)=>{const b=$("#b"+i);b.style.transition="transform .7s cubic-bezier(.3,1.4,.5,1)";b.style.transform=i===n?`rotate(${t[3]}deg)`:"rotate(0)";});
+ $("#tTitle").textContent=tools[n][1];$("#tText").textContent=tools[n][2];
+ [...$("#tBtns").children].forEach((b,i)=>b.setAttribute("aria-pressed",i===n))}
+$("#tBtns").innerHTML=tools.map((t,i)=>`<button type="button" aria-pressed="false">${t[0]}</button>`).join("");
+[...$("#tBtns").children].forEach((b,i)=>b.onclick=()=>pick(i));pick(0);
+
+const lessons=[
+ ["Patience","Crafted over time","Three years of garage work produced a prototype Tim was proud of. Each easylandx page is shaped by hand, refined round after round until the details shine."],
+ ["New category","Direct storytelling","Gatekeepers saw a knife or a tool, while customers saw something new. Your landing page speaks straight to your visitor, so your fresh idea gets its own stage."],
+ ["Partnership","Strengths combined","Tim’s engineering met Steve Berliner’s operations and commercial skill. You bring your expertise, easylandx brings design and build craft."],
+ ["Promise","Quality that lasts","A 25-year warranty turned users into advocates. Reliable pages, clear commitments, and steady care create a lasting advantage."]];
+$("#cards").innerHTML=lessons.map((l,i)=>`<button type="button" class="card panel rv" aria-expanded="false"><span class="plus">+</span><h3>${i+1}. ${l[0]}</h3><strong>${l[1]}</strong><div class="more"><p style="margin-top:.8em">${l[2]}</p></div></button>`).join("");
+document.querySelectorAll(".card").forEach(c=>c.onclick=()=>{const o=c.classList.toggle("open");c.setAttribute("aria-expanded",o)});
+
+const pb=[
+ ["Spot the gap","Opportunity spotting → Gap friction","Look for moments where today’s tools cover 60% of the job. Your landing page completes the other 40% with one clear path."],
+ ["Test and refine","Iteration strategy","Build, preview, and adjust in real conditions. Real screens and real visitors guide each improvement."],
+ ["Find the right venue","Welcoming a fresh idea","When a channel feels like a fit for someone else’s story, choose a venue that suits yours. Your page presents your offer in its own words."],
+ ["Grow steadily","Scaling","Begin focused, keep quality high, and expand as demand grows. Early wins fund the next improvement."],
+ ["Keep improving","Lasting advantage","Protect your edge through a steady rhythm of upgrades. Continuous improvement keeps your page a step ahead."]];
+$("#tabs").innerHTML=pb.map((p,i)=>`<button type="button" role="tab" aria-selected="false">${p[0]}</button>`).join("");
+function tab(n){[...$("#tabs").children].forEach((b,i)=>b.setAttribute("aria-selected",i===n));$("#pbT").textContent=pb[n][1];$("#pbA").textContent=pb[n][2]}
+[...$("#tabs").children].forEach((b,i)=>b.onclick=()=>tab(i));tab(0);
+
+const items=["A clear headline that names who you serve","A short origin story with a vivid visual","Proof: testimonials or results","One bright call-to-action button","A confident promise to visitors","A polished look on every screen"];
+const msgs=["Pick your first tool.","Great start, the handle is in your hand.","Tools are lining up nicely.","Halfway to a launch-ready page.","Your multi-tool is taking shape.","One tool away from launch.","Fully equipped. Time to launch!"];
+$("#chk").innerHTML=items.map(t=>`<label><input type="checkbox"> ${t}</label>`).join("");
+document.querySelectorAll("#chk input").forEach(c=>c.onchange=()=>{const n=document.querySelectorAll("#chk input:checked").length,p=Math.round(n/items.length*100);
+ $("#rv").style.strokeDashoffset=339.3*(1-n/items.length);$("#rp").textContent=p+"%";$("#rm").textContent=msgs[n]});
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);
+ e.target.querySelectorAll("[data-to]").forEach(c=>{const to=+c.dataset.to,t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/1400);c.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)})}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(e=>io.observe(e));
+</script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Landing pages built to grow</title>
+<style>
+:root{--bg:#FF5F00;--deep:#E64F00;--ink:#1A0B00;--teal:#0B5C63;--tealb:#12D6C4;--paper:#FFF3EA;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Helvetica Neue",Arial,sans-serif;overflow-x:hidden}
+.w{max-width:1080px;margin:0 auto;padding-inline:clamp(22px,6vw,56px)}
+section{padding-block:clamp(56px,9vw,104px)}
+h1,h2,h3{line-height:1.02;margin:0;letter-spacing:-.03em;font-weight:900}
+h1{font-size:clamp(44px,9vw,104px)}
+h2{font-size:clamp(34px,5.6vw,62px);margin-bottom:18px}
+h3{font-size:22px;letter-spacing:-.01em}
+p{margin:0 0 14px}
+.lead{font-size:clamp(18px,2.2vw,22px);max-width:640px;font-weight:500}
+.tag{display:inline-block;background:var(--teal);color:#fff;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:99px;margin-bottom:18px}
+nav{display:flex;justify-content:space-between;align-items:center;padding-block:20px}
+.logo{font-weight:900;font-size:24px;letter-spacing:-.04em}.logo b{color:var(--teal)}
+.btn{display:inline-block;background:var(--teal);color:#fff;text-decoration:none;font-weight:900;padding:16px 30px;border-radius:99px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transition:.15s;cursor:pointer;font-size:17px}
+.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.btn.sm{padding:10px 20px;font-size:15px;box-shadow:3px 3px 0 var(--ink)}
+.hero{display:grid;gap:36px;grid-template-columns:1.1fr .9fr;align-items:center}
+.hero h1 em{font-style:normal;color:var(--teal)}
+.hero .btn{margin-top:14px}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+svg{max-width:100%;height:auto;display:block}
+.bar{transform-origin:bottom;animation:rise 1.2s cubic-bezier(.2,.9,.3,1.2) both}
+@keyframes rise{from{transform:scaleY(0)}}
+.float{animation:fl 4s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-10px)}}
+.spin{animation:sp 18s linear infinite;transform-origin:center;transform-box:fill-box}@keyframes sp{to{transform:rotate(360deg)}}
+.dash{stroke-dasharray:8 8;animation:da 1.4s linear infinite}@keyframes da{to{stroke-dashoffset:-16}}
+.marq{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;padding:14px 0;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.marq div{display:inline-block;animation:mq 26s linear infinite}@keyframes mq{to{transform:translateX(-50%)}}
+.marq span{margin:0 22px}.marq i{color:var(--tealb);font-style:normal}
+.card{background:var(--paper);border:3px solid var(--ink);border-radius:22px;padding:clamp(20px,4vw,36px);box-shadow:8px 8px 0 var(--ink)}
+.sim{display:grid;gap:28px;grid-template-columns:1fr 1fr;margin-top:30px}
+@media(max-width:820px){.sim{grid-template-columns:1fr}}
+input[type=range]{width:100%;accent-color:var(--teal);height:34px}
+.big{font-size:clamp(40px,7vw,68px);font-weight:900;letter-spacing:-.04em;color:var(--teal)}
+.phase{font-weight:900;text-transform:uppercase;letter-spacing:.1em;font-size:13px}
+.steps{display:flex;gap:8px;margin:12px 0 18px}
+.steps div{flex:1;height:10px;border-radius:9px;background:#e9c9b3;transition:.4s}
+.steps div.on{background:var(--teal)}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:30px}
+.pil{background:var(--deep);border:3px solid var(--ink);border-radius:20px;padding:22px;cursor:pointer;text-align:left;font:inherit;color:inherit;transition:.2s;position:relative}
+.pil:hover{transform:translateY(-6px);background:var(--paper)}
+.pil .n{font-size:44px;font-weight:900;color:var(--paper);-webkit-text-stroke:2px var(--ink);line-height:1}
+.pil:hover .n{color:var(--tealb)}
+.pil .more{max-height:0;overflow:hidden;transition:max-height .45s}
+.pil.open{background:var(--paper)}.pil.open .more{max-height:320px}
+.pil .msg{font-weight:800;margin:8px 0}
+.pil .k{display:inline-block;margin-top:6px;font-size:12px;font-weight:900;color:var(--teal);text-transform:uppercase;letter-spacing:.1em}
+.score{display:grid;gap:30px;grid-template-columns:1.2fr .8fr;align-items:center}
+@media(max-width:820px){.score{grid-template-columns:1fr}}
+.chk{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:2px dashed #e0b79a;cursor:pointer;font-weight:600}
+.chk input{width:24px;height:24px;accent-color:var(--teal);flex:none;margin-top:2px}
+.chk small{display:block;font-weight:500;opacity:.75}
+.ring{transition:stroke-dashoffset .8s cubic-bezier(.2,.9,.3,1)}
+.verdict{font-weight:900;font-size:22px;text-align:center;min-height:60px}
+.fun{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:30px}
+.fun div{background:var(--ink);color:var(--paper);padding:16px;text-align:center;font-weight:800;border-radius:12px;transition:.3s;cursor:pointer;opacity:0;transform:translateY(20px)}
+.fun div:hover{background:var(--teal)}
+.vis .fun div,.fun.vis div{opacity:1;transform:none}
+.cta{text-align:center}
+.cta .card{background:var(--ink);color:var(--paper);box-shadow:8px 8px 0 var(--teal)}
+.cta .btn{background:var(--tealb);color:var(--ink);border-color:var(--paper);box-shadow:5px 5px 0 var(--teal);font-size:20px}
+footer{padding-block:40px;font-weight:600;border-top:3px solid var(--ink)}
+footer b{font-weight:900}
+.rv{opacity:0;transform:translateY(30px);transition:.8s}.rv.vis{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="w">
+<nav><div class="logo">Easy<b>Land</b>X</div><a class="btn sm" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a></nav>
+<section class="hero" style="padding-top:20px">
+<div>
+<span class="tag">Landing pages · built to grow</span>
+<h1>Landing pages that <em>scale</em> with you.</h1>
+<p class="lead" style="margin-top:22px">Intuition doesn’t scale; repeatable mechanisms do. EasyLandX builds landing pages as a sales engine: tested early, standardized in the middle, industrialized at scale.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a>
+</div>
+<svg viewBox="0 0 420 380" role="img" aria-label="Rising bars with a landing page browser window">
+<rect x="20" y="330" width="380" height="6" fill="#1A0B00"/>
+<rect class="bar" style="animation-delay:.1s" x="40" y="270" width="70" height="60" fill="#FFF3EA" stroke="#1A0B00" stroke-width="4"/>
+<rect class="bar" style="animation-delay:.3s" x="130" y="200" width="70" height="130" fill="#12D6C4" stroke="#1A0B00" stroke-width="4"/>
+<rect class="bar" style="animation-delay:.5s" x="220" y="120" width="70" height="210" fill="#0B5C63" stroke="#1A0B00" stroke-width="4"/>
+<rect class="bar" style="animation-delay:.7s" x="310" y="40" width="70" height="290" fill="#1A0B00"/>
+<g class="float"><rect x="60" y="50" width="170" height="120" rx="10" fill="#FFF3EA" stroke="#1A0B00" stroke-width="4"/>
+<rect x="60" y="50" width="170" height="26" rx="10" fill="#1A0B00"/><circle cx="76" cy="63" r="4" fill="#FF5F00"/><circle cx="90" cy="63" r="4" fill="#12D6C4"/>
+<rect x="76" y="92" width="100" height="12" fill="#1A0B00"/><rect x="76" y="112" width="70" height="8" fill="#0B5C63"/><rect x="76" y="136" width="64" height="20" rx="10" fill="#12D6C4" stroke="#1A0B00" stroke-width="3"/></g>
+<g class="spin"><path d="M350 330 l10 -22 l10 22z" fill="none"/><circle cx="355" cy="20" r="14" fill="none" stroke="#1A0B00" stroke-width="4" stroke-dasharray="6 6"/></g>
+<path class="dash" d="M70 262 L165 192 L255 112 L345 32" fill="none" stroke="#12D6C4" stroke-width="5" stroke-linecap="round"/>
+</svg>
+</section>
+</div>
+
+<div class="marq"><div><span>Experiment</span><i>◆</i><span>Build</span><i>◆</i><span>Scale</span><i>◆</i><span>Test</span><i>◆</i><span>Standardize</span><i>◆</i><span>Industrialize</span><i>◆</i><span>Experiment</span><i>◆</i><span>Build</span><i>◆</i><span>Scale</span><i>◆</i><span>Test</span><i>◆</i><span>Standardize</span><i>◆</i><span>Industrialize</span><i>◆</i></div></div>
+
+<div class="w">
+<section id="phases">
+<span class="tag">Three phases of revenue growth</span>
+<h2>Your landing page should match your phase.</h2>
+<p class="lead">Hire for the phase you’re in, not the one you admire. The same goes for pages: a $500K startup and a $50M company need different machines. Drag to see yours.</p>
+<div class="sim card rv">
+<div>
+<div class="phase">Annual recurring revenue</div>
+<div class="big" id="arr">$0.5M</div>
+<input id="sl" type="range" min="0" max="100" value="12" aria-label="ARR slider">
+<div class="steps"><div id="s1"></div><div id="s2"></div><div id="s3"></div></div>
+<svg viewBox="0 0 300 120" aria-hidden="true"><path class="dash" d="M10 100 Q80 100 110 70 T200 40 T290 10" fill="none" stroke="#0B5C63" stroke-width="5" stroke-linecap="round"/><circle id="dot" cx="10" cy="100" r="11" fill="#12D6C4" stroke="#1A0B00" stroke-width="4"/></svg>
+</div>
+<div>
+<div class="phase" id="pn" style="color:var(--teal)"></div>
+<h3 id="pt" style="font-size:30px;margin:6px 0 12px"></h3>
+<p id="pf"></p>
+<p><b>Landing page playbook:</b></p>
+<p id="pl"></p>
+</div>
+</div>
+</section>
+
+<section id="pillars">
+<span class="tag">Seven pillars</span>
+<h2>Seven lessons, built into every page.</h2>
+<p class="lead">Tap a pillar to see the message from the book and how EasyLandX puts it to work on your landing page.</p>
+<div class="grid" id="grid"></div>
+</section>
+
+<section id="score">
+<span class="tag">Interactive · Readiness check</span>
+<h2>Is your landing page built to grow?</h2>
+<p class="lead">Tick what’s true today. Strong pages track leading indicators, not just revenue closed.</p>
+<div class="score card rv" style="margin-top:30px">
+<div id="list"></div>
+<div>
+<svg viewBox="0 0 200 200" aria-label="Score ring"><circle cx="100" cy="100" r="80" fill="none" stroke="#e9c9b3" stroke-width="22"/>
+<circle class="ring" id="ring" cx="100" cy="100" r="80" fill="none" stroke="#0B5C63" stroke-width="22" stroke-linecap="round" stroke-dasharray="502.65" stroke-dashoffset="502.65" transform="rotate(-90 100 100)"/>
+<text id="pct" x="100" y="118" text-anchor="middle" font-size="52" font-weight="900" fill="#1A0B00">0%</text></svg>
+<div class="verdict" id="vd">Tick a box to start.</div>
+</div>
+</div>
+</section>
+
+<section id="funnel">
+<span class="tag">Stage gates, not sentiment</span>
+<h2>Verifiable buyer actions drive every stage.</h2>
+<p class="lead">Standardize the funnel on what buyers actually do. Each step below is a measurable action, tracked from day one.</p>
+<div class="fun rv" id="fun">
+<div style="width:100%">1 · Visitor lands, message matches the buyer persona</div>
+<div style="width:86%">2 · Reads proof and objection handling</div>
+<div style="width:72%">3 · Clicks the primary call to action</div>
+<div style="width:58%">4 · Books a qualified meeting</div>
+<div style="width:44%;background:var(--teal)">5 · Becomes a customer, onboarding starts</div>
+</div>
+</section>
+
+<section class="cta">
+<div class="card rv">
+<h2>Ready to build your growth engine?</h2>
+<p class="lead" style="margin:0 auto 26px">Launch a landing page that learns, standardizes and scales with every phase.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a>
+</div>
+</section>
+</div>
+
+<footer><div class="w">Inspired by <b>Built to Grow: A Handbook for High-Performance Sales Teams</b> by <b>Stephanie Friedman</b> (Stripe Press).</div></footer>
+
+<script>
+const P=[
+["Phase 1 · Experiment","0 to $1M ARR","Move from founder-led sales to your first hires. Discover what messaging lands and prove customer value.","Ship fast, test one message per page, and run A/B tests on headlines. Record what buyers say and start a living playbook."],
+["Phase 2 · Build","$1M to $10–20M ARR","Establish repeatable processes, formal structure and standard operations.","Standardize one page template per persona, tie stages to buyer actions, and clean up CRM capture from form to follow-up."],
+["Phase 3 · Scale","$20M to $100M ARR","Industrialize the go-to-market engine and manage complexity across teams.","Specialize pages by segment and territory, align product, marketing and sales on one message, and review pipeline at scale."]];
+const sl=document.getElementById('sl');
+function upd(){const v=+sl.value;const i=v<10?0:v<20?1:2;
+document.getElementById('arr').textContent=v<10?'$'+(v/10).toFixed(1)+'M':'$'+v+'M';
+const p=P[i];pn.textContent=p[0];pt.textContent=p[1];pf.textContent=p[2];pl.textContent=p[3];
+[s1,s2,s3].forEach((e,j)=>e.classList.toggle('on',j<=i));
+const x=10+v*2.8,y=100-v*0.9;dot.setAttribute('cx',x);dot.setAttribute('cy',Math.max(y,10))}
+sl.oninput=upd;upd();
+const PL=[
+["Playbook development","Intuition does not scale; repeatable mechanisms do.","Document personas, objections and pricing on the page, then update it as buyers change."],
+["Hiring and talent","Hire for your current phase, not enterprise prestige.","Start with pathfinder pages that test hypotheses; add specialized scaler pages once the motion is proven."],
+["Revenue ops and forecasting","Predictability comes from pipeline health and data integrity.","Every click, form and booking maps to a verifiable stage, and data lands clean in the CRM."],
+["Customer success and retention","Sales creates revenue; retention builds enterprise value.","The page promises only what the product delivers, and a success path continues after conversion."],
+["Compensation and incentives","Compensation drives behavior; match incentives to goals.","Keep goals simple and transparent: one primary conversion, plus customer health metrics."],
+["Culture and accountability","Balance accountability with support and psychological safety.","Watch leading indicators like qualified meetings, and review wins and losses together."],
+["Cross-functional collaboration","Sales cannot operate as an isolated island.","Lost-deal friction feeds product, positioning feeds marketing, and one page unites all three."]];
+grid.innerHTML=PL.map((p,i)=>`<button class="pil" aria-expanded="false"><div class="n">${i+1}</div><h3>${p[0]}</h3><div class="more"><div class="msg">“${p[1]}”</div><span class="k">On your landing page</span><p>${p[2]}</p></div></button>`).join('');
+grid.querySelectorAll('.pil').forEach(b=>b.onclick=()=>{const o=b.classList.toggle('open');b.setAttribute('aria-expanded',o)});
+const C=[["Message matches one clear buyer persona","Playbook"],["Primary call to action is simple and single","Playbook"],["Objections are answered on the page","Playbook"],["Every stage is tied to a buyer action","Forecasting"],["Leads flow into the CRM cleanly","Forecasting"],["You track qualified meetings, not just revenue","Culture"],["Page promises match what the product delivers","Retention"],["Product, marketing and sales share one message","Collaboration"]];
+list.innerHTML=C.map(c=>`<label class="chk"><input type="checkbox"><span>${c[0]}<small>${c[1]}</small></span></label>`).join('');
+const R=502.65;
+list.onchange=()=>{const n=list.querySelectorAll('input:checked').length,p=Math.round(n/C.length*100);
+ring.style.strokeDashoffset=R*(1-p/100);pct.textContent=p+'%';
+vd.textContent=p==0?'Tick a box to start.':p<40?'Experiment mode. Test and document.':p<80?'Build mode. Standardize what works.':'Scale ready. Industrialize it.'};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis')}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>
