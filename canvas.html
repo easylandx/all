@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX | Landing Pages with the AI Marketing Canvas</title>
+<style>
+:root{--bg:#1E3A8A;--bg2:#17307a;--bg3:#2a4aa3;--ac:#0D9488;--acl:#5eead4;--tx:#fff;--mut:#cfd9f5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif;line-height:1.6;overflow-x:hidden}
+.w{max-width:1080px;margin:0 auto;padding:0 clamp(24px,8vw,96px)}
+section{padding:88px 0}
+h1,h2,h3{line-height:1.1;margin:0 0 16px;font-weight:900;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,6vw,4.4rem)}h2{font-size:clamp(1.9rem,4vw,3rem)}h3{font-size:1.25rem}
+p{margin:0 0 14px;color:var(--mut)}
+.tag{display:inline-block;background:var(--ac);color:#fff;font-weight:800;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:99px;margin-bottom:18px}
+nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:2px solid var(--ac)}
+nav .w{display:flex;justify-content:space-between;align-items:center;height:62px}
+.logo{font-weight:900;font-size:1.3rem;color:#fff;text-decoration:none}.logo b{color:var(--acl)}
+.btn{display:inline-block;background:var(--ac);color:#fff;font-weight:900;text-decoration:none;padding:14px 28px;border-radius:12px;border:3px solid #fff;cursor:pointer;font-size:1rem;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 0 #0a0f2e55}
+.btn.sm{padding:8px 18px;font-size:.9rem}
+.hero .w{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero{padding-top:64px}
+.hero p{font-size:1.15rem}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--bg2);border:3px solid var(--ac);border-radius:18px;padding:24px;transition:transform .25s}
+.card:hover{transform:translateY(-6px) rotate(-.6deg)}
+.card .ic{width:54px;height:54px;border-radius:14px;background:var(--ac);display:grid;place-items:center;margin-bottom:14px}
+.band{background:var(--bg2)}
+.steps{display:flex;gap:10px;align-items:flex-end;margin:26px 0 20px;height:200px}
+.step{flex:1;background:var(--bg3);border:3px solid var(--ac);border-radius:14px 14px 0 0;color:#fff;font-weight:900;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:10px 4px;font-size:.85rem;transition:all .3s;font-family:inherit}
+.step span{font-size:1.6rem}
+.step[aria-selected=true]{background:var(--ac);border-color:#fff}
+.panel{background:var(--bg);border:3px solid var(--ac);border-radius:18px;padding:26px;min-height:190px}
+.panel.on{animation:pop .4s}
+@keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.lp{margin-top:10px;background:var(--ac);border-radius:12px;padding:12px 16px;color:#fff;font-weight:700}
+.mx{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:30px 0 20px 34px}
+.mx button{background:var(--bg3);color:#fff;border:3px solid var(--ac);border-radius:16px;padding:22px 16px;min-height:120px;cursor:pointer;text-align:left;font:800 1rem inherit;font-family:inherit;transition:all .25s}
+.mx button small{display:block;color:var(--mut);font-weight:500;margin-top:6px}
+.mx button.on{background:var(--ac);border-color:#fff;transform:scale(1.03)}
+.ax{position:absolute;left:-34px;top:0;bottom:0;writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-weight:800;color:var(--acl);font-size:.8rem;letter-spacing:.1em}
+.axb{text-align:center;font-weight:800;color:var(--acl);font-size:.8rem;letter-spacing:.1em;display:grid;grid-template-columns:1fr 1fr;margin-left:34px}
+.out{background:var(--bg);border:3px dashed var(--acl);border-radius:16px;padding:20px;min-height:90px}
+.chk{display:grid;gap:10px;margin:20px 0}
+.chk label{display:flex;gap:14px;align-items:center;background:var(--bg2);border:3px solid var(--ac);border-radius:14px;padding:14px 18px;cursor:pointer;font-weight:700}
+.chk input{appearance:none;width:26px;height:26px;border:3px solid #fff;border-radius:8px;flex:none;display:grid;place-items:center;cursor:pointer;margin:0}
+.chk input:checked{background:var(--ac)}.chk input:checked::after{content:"✓";color:#fff;font-weight:900}
+.chk label:has(input:checked){background:var(--bg3)}
+.meter{height:22px;background:var(--bg);border:3px solid #fff;border-radius:99px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--ac);transition:width .5s}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.tog{display:inline-flex;border:3px solid #fff;border-radius:99px;overflow:hidden;margin-bottom:18px}
+.tog button{background:transparent;color:#fff;border:0;font:800 .95rem inherit;font-family:inherit;padding:10px 22px;cursor:pointer}
+.tog button.on{background:var(--ac)}
+.cta{text-align:center}
+footer{background:var(--bg2);border-top:3px solid var(--ac);padding:40px 0;text-align:center}
+footer p{margin:6px 0}
+.orbit1{transform-origin:200px 200px;animation:spin 14s linear infinite}
+.orbit2{transform-origin:200px 200px;animation:spin 22s linear infinite reverse}
+.float{animation:fl 4s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fl{50%{transform:translateY(-12px)}}
+@keyframes dash{to{stroke-dashoffset:-40}}
+.dash{stroke-dasharray:8 8;animation:dash 2s linear infinite}
+.rv{opacity:0;transform:translateY(28px);transition:all .7s}.rv.in{opacity:1;transform:none}
+@media(max-width:760px){.hero .w,.two{grid-template-columns:1fr}.steps{height:170px}.step{font-size:.7rem}section{padding:60px 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav><div class="w"><a class="logo" href="#top">Easy<b>LandX</b></a><a class="btn sm" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></div></nav>
+
+<header class="hero" id="top"><div class="w">
+<div>
+<span class="tag">Landing pages + AI strategy</span>
+<h1>Landing pages that think, learn and convert.</h1>
+<p>EasyLandX builds affordable, conversion-focused landing pages for small businesses, using the same playbook modern marketing leaders use to put AI to work: clean data, quick experiments, and human judgment in the driver’s seat.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a>
+</div>
+<svg viewBox="0 0 400 400" role="img" aria-label="Animated illustration: a marketer at the center with Predictive and Generative AI orbiting">
+<circle cx="200" cy="200" r="150" fill="none" stroke="#0D9488" stroke-width="3" class="dash"/>
+<circle cx="200" cy="200" r="95" fill="none" stroke="#5eead4" stroke-width="3" class="dash"/>
+<g class="orbit1"><circle cx="200" cy="50" r="30" fill="#0D9488" stroke="#fff" stroke-width="4"/><path d="M186 58l8-10 6 6 10-12" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g class="orbit2"><circle cx="200" cy="105" r="26" fill="#fff"/><path d="M200 92l4 9 9 4-9 4-4 9-4-9-9-4 9-4z" fill="#0D9488"/></g>
+<g class="float"><circle cx="200" cy="200" r="52" fill="#17307a" stroke="#fff" stroke-width="4"/>
+<circle cx="200" cy="188" r="14" fill="#fff"/><path d="M174 226c4-20 48-20 52 0" fill="#fff"/>
+<path d="M170 196l-14 6M230 196l14 6M178 214l-10 10M222 214l10 10" stroke="#0D9488" stroke-width="6" stroke-linecap="round"/></g>
+<text x="200" y="372" text-anchor="middle" fill="#cfd9f5" font-size="15" font-weight="700">Predictive ◦ Generative ◦ You</text>
+</svg>
+</div></header>
+
+<section class="band"><div class="w">
+<span class="tag rv">Core messages</span>
+<h2 class="rv">Four ideas behind every EasyLandX page</h2>
+<div class="grid">
+<div class="card rv"><div class="ic"><svg width="30" height="30" viewBox="0 0 30 30"><path d="M4 24L12 14l6 6 8-12" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>AI is a strategy</h3><p>It shapes how customers are won, kept and valued over time. Your landing page is where that journey begins.</p></div>
+<div class="card rv"><div class="ic"><svg width="30" height="30" viewBox="0 0 30 30"><circle cx="11" cy="15" r="7" stroke="#fff" stroke-width="4" fill="none"/><circle cx="20" cy="15" r="7" stroke="#fff" stroke-width="4" fill="none"/></svg></div><h3>The dual engine</h3><p>Predictive AI forecasts intent and finds what performs. Generative AI creates fresh, personal messaging at scale.</p></div>
+<div class="card rv"><div class="ic"><svg width="30" height="30" viewBox="0 0 30 30"><circle cx="15" cy="8" r="5" fill="#fff"/><path d="M6 26v-8a9 9 0 0 1 18 0v8" stroke="#fff" stroke-width="4" fill="none"/></svg></div><h3>The AI exosuit</h3><p>AI amplifies your empathy and creative judgment. You pilot, the suit adds strength and speed.</p></div>
+<div class="card rv"><div class="ic"><svg width="30" height="30" viewBox="0 0 30 30"><path d="M15 3l10 4v8c0 6-4 10-10 12C9 25 5 21 5 15V7z" stroke="#fff" stroke-width="3.5" fill="none" stroke-linejoin="round"/><path d="M10 15l4 4 6-8" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg></div><h3>Trust by design</h3><p>Privacy, fairness and brand safety are built in from day one, so growth stays healthy and lasting.</p></div>
+</div>
+</div></section>
+
+<section><div class="w">
+<span class="tag rv">The 5-step roadmap</span>
+<h2 class="rv">Climb the staircase, one step at a time</h2>
+<p class="rv">Tap a step to see the idea and how EasyLandX puts it on your landing page.</p>
+<div class="steps" role="tablist" id="steps"></div>
+<div class="panel on" id="panel" aria-live="polite"></div>
+</div></section>
+
+<section class="band"><div class="w">
+<span class="tag rv">2x2 prioritization matrix</span>
+<h2 class="rv">Pick the quick win first</h2>
+<p class="rv">Projects sort by where they work (inside your team or out with customers) and what kind of AI powers them. Tap a square.</p>
+<div class="mx" id="mx"><div class="ax">PREDICTIVE ← → GENERATIVE</div></div>
+<div class="axb"><span>INTERNAL PRODUCTIVITY</span><span>EXTERNAL GROWTH</span></div>
+<div class="out" id="out" style="margin-top:18px">Choose a square to see a landing-page project that fits it.</div>
+</div></section>
+
+<section><div class="w two">
+<div>
+<span class="tag rv">First-party data moat</span>
+<h2 class="rv">Own the relationship, own the insight</h2>
+<p class="rv">Third-party tracking fades. Direct channels grow stronger. Every form, booking and WhatsApp tap on your page becomes first-party data that belongs to you, and it feeds the unified customer profile at the heart of Step 1.</p>
+<p class="rv">Tap the visitors to see them flow into your moat.</p>
+<button class="btn" id="drop">Welcome a visitor</button> <b id="cnt" style="margin-left:10px">0 profiles</b>
+</div>
+<svg viewBox="0 0 360 300" id="moat" role="img" aria-label="Animated moat illustration collecting visitor data">
+<rect x="20" y="130" width="320" height="150" rx="20" fill="#17307a" stroke="#0D9488" stroke-width="4"/>
+<path d="M20 190q40-22 80 0t80 0 80 0 80 0" stroke="#5eead4" stroke-width="4" fill="none" class="dash"/>
+<path d="M20 230q40-22 80 0t80 0 80 0 80 0" stroke="#0D9488" stroke-width="4" fill="none" class="dash"/>
+<rect x="130" y="20" width="100" height="90" rx="8" fill="#0D9488" stroke="#fff" stroke-width="4"/><path d="M120 20l20-14 20 14 20-14 20 14 20-14 20 14" stroke="#fff" stroke-width="4" fill="none"/>
+<rect x="165" y="60" width="30" height="50" rx="14" fill="#fff"/>
+<g id="dots"></g>
+</svg>
+</div></section>
+
+<section class="band"><div class="w">
+<span class="tag rv">Generative engine optimization</span>
+<h2 class="rv">Be the answer AI assistants share</h2>
+<p class="rv">GEO adapts classic SEO so your brand appears inside AI search, assistants and generated answers. Check what your page already offers and watch the visibility meter climb.</p>
+<div class="chk" id="chk"></div>
+<div class="meter"><i id="mt"></i></div>
+<p id="mm" style="margin-top:12px;font-weight:700;color:#fff">0 of 5 ready</p>
+</div></section>
+
+<section><div class="w">
+<span class="tag rv">Predictive + Generative</span>
+<h2 class="rv">See the dual engine in action</h2>
+<div class="tog" id="tog"><button class="on" data-k="p">Predictive</button><button data-k="g">Generative</button></div>
+<div class="panel" id="eng"></div>
+</div></section>
+
+<section class="band cta"><div class="w">
+<h2 class="rv">Ready to put the canvas to work?</h2>
+<p class="rv">Affordable, conversion-focused landing pages made for small businesses. Not a template. Built for you.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a>
+</div></section>
+
+<footer><div class="w"><p><b>Easy<span style="color:#5eead4">LandX</span></b></p><p>Inspired by <i>The AI Marketing Canvas, Second Edition: A Five-Step AI Plan for Marketers</i> by Rajkumar Venkatesan and Jim Lecinski.</p></div></footer>
+
+<script>
+const S=[["Foundation","Gather clean first-party data across every touchpoint and unify customer profiles by breaking down silos.","Every page ships with tidy forms, tracking you own, and one clear place for leads to land."],
+["Experimentation","Pilot low-risk tasks, learn fast, refine prompts and data pipelines, and show early ROI.","Test two headlines or one button color first. Small bets, quick lessons."],
+["Expansion","Scale what worked across more functions, build team skills, and connect marketing with data.","Reuse winning sections across your pages, your offers and your campaigns."],
+["Transformation","Automate end-to-end touchpoints and personalize in real time, from discovery to after-purchase care.","Pages greet each audience with the message that fits them, then follow up automatically."],
+["Monetization","Turn insights and automated experiences into new revenue streams and platform models.","Insights from your page unlock new offers, bundles and recurring services."]];
+const st=document.getElementById('steps'),pn=document.getElementById('panel');
+S.forEach((s,i)=>{const b=document.createElement('button');b.className='step';b.role='tab';b.style.height=(38+i*15)+'%';b.innerHTML='<span>'+(i+1)+'</span>'+s[0];b.onclick=()=>sel(i);st.appendChild(b)});
+function sel(i){[...st.children].forEach((b,j)=>b.setAttribute('aria-selected',i==j));pn.classList.remove('on');void pn.offsetWidth;pn.classList.add('on');pn.innerHTML='<h3>Step '+(i+1)+': '+S[i][0]+'</h3><p>'+S[i][1]+'</p><div class="lp"><b>On your landing page:</b> '+S[i][2]+'</div>'}
+sel(0);
+const M=[["Predictive × Internal","Lead scoring","Rank incoming inquiries so you reply first to the warmest ones.","Quick win"],["Predictive × External","Visitor intent","Spot which visitors are ready to book and which offer they prefer.","Next up"],["Generative × Internal","Faster drafts","Create headline, section and caption variations in minutes, then polish them with your voice.","Quick win"],["Generative × External","Personal messages","Tailor hero text and offers to each audience in real time.","Grow into it"]];
+const mx=document.getElementById('mx'),out=document.getElementById('out');
+M.forEach((m,i)=>{const b=document.createElement('button');b.innerHTML=m[0]+'<small>'+m[1]+'</small>';b.onclick=()=>{[...mx.querySelectorAll('button')].forEach(x=>x.classList.remove('on'));b.classList.add('on');out.innerHTML='<h3>'+m[1]+' <span class="tag" style="margin:0 0 0 8px">'+m[3]+'</span></h3><p style="margin:0">'+m[2]+'</p>'};mx.appendChild(b)});
+const dots=document.getElementById('dots');let n=0;
+document.getElementById('drop').onclick=()=>{n++;document.getElementById('cnt').textContent=n+' profile'+(n>1?'s':'');
+const x=60+Math.random()*240,c=document.createElementNS('http://www.w3.org/2000/svg','circle');c.setAttribute('cx',x);c.setAttribute('cy',0);c.setAttribute('r',9);c.setAttribute('fill','#5eead4');c.setAttribute('stroke','#fff');c.setAttribute('stroke-width',3);dots.appendChild(c);
+const tx=180,t0=performance.now();(function f(t){const p=Math.min((t-t0)/900,1);c.setAttribute('cy',20+p*100);c.setAttribute('cx',x+(tx-x)*p*p);if(p<1)requestAnimationFrame(f);else{c.setAttribute('cy',150+(n%5)*22);c.setAttribute('cx',60+((n*47)%240))}})(t0)};
+const G=["Clear, direct answers to common questions","Structured details: services, prices, location","First-party contact channels (forms, WhatsApp)","Consistent brand voice across pages","Privacy notice and honest claims"];
+const ck=document.getElementById('chk');
+G.forEach(g=>{const l=document.createElement('label');l.innerHTML='<input type="checkbox"> '+g;ck.appendChild(l)});
+ck.onchange=()=>{const k=ck.querySelectorAll('input:checked').length;document.getElementById('mt').style.width=k*20+'%';document.getElementById('mm').textContent=k+' of 5 ready'+(k==5?' · Ready to be found in AI answers!':'')};
+const E={p:["Predictive AI: know what comes next","Analyze patterns to forecast intent, group audiences, and find which version of your page earns the most action.","Example: your page learns that evening visitors prefer WhatsApp, so the button moves up for them."],
+g:["Generative AI: say it your way, at scale","Create hyper-personal messages and visuals on demand, always shaped by your brand and reviewed by a human.","Example: a bakery page greets weekend visitors with a fresh-brunch headline in seconds."]};
+const eng=document.getElementById('eng');
+function show(k){eng.classList.remove('on');void eng.offsetWidth;eng.classList.add('on');eng.innerHTML='<h3>'+E[k][0]+'</h3><p>'+E[k][1]+'</p><div class="lp">'+E[k][2]+'</div>'}
+document.getElementById('tog').onclick=e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#tog button').forEach(x=>x.classList.toggle('on',x==b));show(b.dataset.k)};show('p');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>

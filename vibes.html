@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX Landing Pages: Pages That Vibe</title>
+<style>
+:root{--bg:#00E5FF;--bg2:#33EBFF;--bg3:#7FF3FF;--ink:#00323A;--coral:#FF6F61;--coral-d:#E5483A;--card:#E6FCFF;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#00E5FF;--ink:#00323A}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;line-height:1.55;overflow-x:hidden}
+.wrap{max-width:1040px;margin:0 auto;padding:0 clamp(24px,8vw,96px)}
+section{padding:clamp(64px,10vw,120px) 0}
+h1,h2,h3{font-weight:900;letter-spacing:-.02em;line-height:1.05}
+h1{font-size:clamp(2.6rem,7vw,5rem)}h2{font-size:clamp(2rem,4.5vw,3.2rem);margin-bottom:16px}
+h3{font-size:1.3rem;margin-bottom:8px}
+.coral{color:var(--coral-d)}
+.tag{display:inline-block;background:var(--coral);color:#fff;font-weight:800;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:99px;margin-bottom:18px}
+.lead{font-size:1.2rem;max-width:620px;margin:16px 0 28px}
+.btn{display:inline-block;background:var(--coral);color:#fff;font-weight:900;text-decoration:none;padding:16px 30px;border-radius:99px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transition:.15s;cursor:pointer;font-size:1rem;font-family:inherit}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.btn.alt{background:#fff;color:var(--ink)}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;padding:calc(12px + env(safe-area-inset-top,0px)) 0 12px;background:var(--bg);border-bottom:3px solid var(--ink)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+nav b{font-size:1.3rem;font-weight:900}nav .btn{padding:8px 20px;box-shadow:3px 3px 0 var(--ink)}
+.hero{padding-top:150px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
+@media(max-width:820px){.hero-grid{grid-template-columns:1fr}}
+.orb{animation:float 5s ease-in-out infinite}.orb2{animation:float 6s ease-in-out infinite reverse}
+@keyframes float{50%{transform:translateY(-14px)}}
+.pulse{animation:pulse 2.4s ease-out infinite;transform-origin:center;transform-box:fill-box}
+@keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.8);opacity:0}}
+.dash{stroke-dasharray:8 10;animation:dash 1.2s linear infinite}@keyframes dash{to{stroke-dashoffset:-36}}
+.band{background:var(--ink);color:var(--bg);padding:18px 0;overflow:hidden;white-space:nowrap}
+.band div{display:inline-block;animation:slide 24s linear infinite;font-weight:900;font-size:1.2rem}
+@keyframes slide{to{transform:translateX(-50%)}}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;margin-top:32px}
+.card{background:var(--card);border:3px solid var(--ink);border-radius:22px;padding:26px;box-shadow:6px 6px 0 var(--ink);transition:.2s}
+.card:hover{transform:translateY(-6px) rotate(-.6deg)}
+.card .n{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--coral);color:#fff;font-weight:900;margin-bottom:12px}
+.lab{background:var(--bg2);border-block:3px solid var(--ink)}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 18px}
+.tab{background:#fff;border:3px solid var(--ink);border-radius:99px;padding:10px 18px;font-weight:800;cursor:pointer;font-family:inherit;color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--coral);color:#fff}
+.panel{background:var(--card);border:3px solid var(--ink);border-radius:22px;padding:28px;box-shadow:6px 6px 0 var(--ink);display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;animation:pop .35s}
+@keyframes pop{from{opacity:0;transform:translateY(10px)}}
+@media(max-width:760px){.panel{grid-template-columns:1fr}}
+.quote{font-weight:800;border-left:6px solid var(--coral);padding-left:14px;margin:10px 0}
+.meter-box{background:var(--card);border:3px solid var(--ink);border-radius:22px;padding:28px;box-shadow:6px 6px 0 var(--ink);display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:760px){.meter-box{grid-template-columns:1fr}}
+.chk{display:flex;gap:12px;align-items:flex-start;padding:12px;border:2px solid var(--ink);border-radius:14px;margin-bottom:10px;background:#fff;cursor:pointer;font-weight:600}
+.chk input{accent-color:#FF6F61;width:22px;height:22px;margin-top:2px;flex:none}
+.chk:has(input:checked){background:#FFE3DF}
+.score{font-size:3.2rem;font-weight:900;color:var(--coral-d)}
+.bar{height:22px;border:3px solid var(--ink);border-radius:99px;background:#fff;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--coral);transition:width .5s}
+.verdict{font-weight:800;margin-top:12px;min-height:3.2em}
+.cta{text-align:center;background:var(--coral);color:#fff;border-block:3px solid var(--ink)}
+.cta .btn{background:#fff;color:var(--ink)}
+.cta .coral{color:var(--ink)}
+footer{padding:44px 0 56px;text-align:center;font-weight:700}
+.reveal{opacity:0;transform:translateY(28px);transition:.7s}.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Easy<span class="coral">LandX</span></b><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX ↗</a></div></nav>
+
+<section class="hero"><div class="wrap hero-grid">
+<div>
+<span class="tag">Landing Pages That Vibe</span>
+<h1>Great pages create <span class="coral">real connection.</span></h1>
+<p class="lead">Every visitor arrives hoping for a spark. EasyLandX builds affordable, conversion-focused landing pages for small businesses, designed around the science of strong connections.</p>
+<a class="btn" href="#lab">Try the Vibe Lab</a> &nbsp; <a class="btn alt" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX ↗</a>
+</div>
+<svg viewBox="0 0 400 360" role="img" aria-label="Two circles connecting through a glowing link">
+<circle cx="200" cy="180" r="150" fill="#7FF3FF" stroke="#00323A" stroke-width="4"/>
+<circle class="pulse" cx="200" cy="180" r="40" fill="#FF6F61"/>
+<path class="dash" d="M120 180 Q200 90 280 180" fill="none" stroke="#00323A" stroke-width="5" stroke-linecap="round"/>
+<g class="orb"><circle cx="110" cy="190" r="52" fill="#FF6F61" stroke="#00323A" stroke-width="5"/><circle cx="95" cy="178" r="7" fill="#00323A"/><circle cx="125" cy="178" r="7" fill="#00323A"/><path d="M90 205q20 18 40 0" fill="none" stroke="#00323A" stroke-width="5" stroke-linecap="round"/></g>
+<g class="orb2"><circle cx="290" cy="190" r="52" fill="#fff" stroke="#00323A" stroke-width="5"/><circle cx="275" cy="178" r="7" fill="#00323A"/><circle cx="305" cy="178" r="7" fill="#00323A"/><path d="M270 205q20 18 40 0" fill="none" stroke="#00323A" stroke-width="5" stroke-linecap="round"/></g>
+<path d="M200 60l8 18 20 2-15 13 5 20-18-11-18 11 5-20-15-13 20-2z" fill="#FF6F61" stroke="#00323A" stroke-width="3" class="orb"/>
+</svg>
+</div></section>
+
+<div class="band"><div>CONNECTION IS BUILT, NOT FOUND ✦ SOLIDARITY OVER SIMILARITY ✦ CLOSENESS DOESN’T NEED TIME ✦ FRICTION CAN DEEPEN BONDS ✦ CONNECTION IS BUILT, NOT FOUND ✦ SOLIDARITY OVER SIMILARITY ✦ CLOSENESS DOESN’T NEED TIME ✦ FRICTION CAN DEEPEN BONDS ✦</div></div>
+
+<section><div class="wrap reveal">
+<span class="tag">The Big Idea</span>
+<h2>Vibing is a skill, and your landing page can practice it.</h2>
+<p class="lead">In <b>Vibe</b>, Adam Grant shows that chemistry is a learnable discipline: mutual resonance, psychological safety, and shared experiences. A landing page is a first meeting at scale. Design it with intention and visitors feel welcome right away.</p>
+<div class="cards">
+<div class="card"><span class="n">1</span><h3>Built, not found</h3><p>Chemistry grows through intentional practice. Your page builds it step by step: headline, proof, invitation.</p></div>
+<div class="card"><span class="n">2</span><h3>Solidarity over similarity</h3><p>Visitors do not need to match you. They need to share your purpose. Lead with the outcome you both want.</p></div>
+<div class="card"><span class="n">3</span><h3>Closeness is quick</h3><p>High trust can form fast under the right conditions. Clear promises and real testimonials set those conditions in seconds.</p></div>
+<div class="card"><span class="n">4</span><h3>Friction deepens bonds</h3><p>Honest answers to tough questions (price, timing, fit) create deeper trust than flawless polish.</p></div>
+</div></div></section>
+
+<section class="lab" id="lab"><div class="wrap">
+<span class="tag">Five Strategies</span>
+<h2>From book lesson to <span class="coral">page tactic.</span></h2>
+<p class="lead">Tap a lesson to see how EasyLandX turns it into a landing page element.</p>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div class="panel" id="panel"></div>
+</div></section>
+
+<section><div class="wrap reveal">
+<span class="tag">Interactive</span>
+<h2>Your Page Vibe Meter</h2>
+<p class="lead">Tick the connection practices your landing page already uses. Watch the vibe rise.</p>
+<div class="meter-box">
+<div id="checks"></div>
+<div style="text-align:center">
+<svg viewBox="0 0 240 240" width="100%" style="max-width:260px" aria-hidden="true">
+<circle cx="120" cy="120" r="100" fill="#fff" stroke="#00323A" stroke-width="5"/>
+<circle id="glow" cx="120" cy="120" r="20" fill="#FF6F61" style="transition:r .5s,opacity .5s" opacity=".5"/>
+<g id="sparks"></g>
+<g id="face"><circle cx="90" cy="108" r="8" fill="#00323A"/><circle cx="150" cy="108" r="8" fill="#00323A"/><path id="mouth" d="M85 150 Q120 150 155 150" fill="none" stroke="#00323A" stroke-width="7" stroke-linecap="round" style="transition:d .5s"/></g>
+</svg>
+<div class="score"><span id="pct">0</span>%</div>
+<div class="bar"><i id="fill"></i></div>
+<p class="verdict" id="verdict"></p>
+</div></div></div></section>
+
+<section class="cta"><div class="wrap reveal">
+<h2>Ready for a page that <span class="coral">vibes</span> with your customers?</h2>
+<p class="lead" style="margin-inline:auto">EasyLandX creates affordable, conversion-focused landing pages and websites for small businesses. Crafted by hand around your story, never a template.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to EasyLandX ↗</a>
+</div></section>
+
+<footer><div class="wrap">Inspired by the book <b>Vibe: The Secrets of Strong Connections in a Lonely World</b> by <b>Adam Grant</b>.</div></footer>
+
+<script>
+const L=[
+["Trust beyond liking","Build trust beyond personal liking","Astronauts trusted crewmates through shared mission, not friendship.","Lead with shared commitments: guarantees, process steps, and clear outcomes. Psychological safety beats personality.","Add a “What you can count on” strip with 3 promises.","#FF6F61"],
+["Productive friction","Practice productive friction","Great bands grew closer by debating ideas, not egos.","Answer the tough questions up front. An honest FAQ turns doubt into an us-vs-the-problem conversation.","Add an FAQ titled “Fair questions, straight answers.”","#fff"],
+["Healthy distance","Embrace distance to preserve closeness","Comedy troupes thrive on time apart and fresh perspectives.","Give visitors breathing room: generous spacing, one clear action per section, and easy return paths.","Use wide margins and a single call to action per screen.","#FF6F61"],
+["Intentional convener","Become an intentional convener","One journalist’s event design led to 78 marriages through structured prompts.","Design the page like a gathering: low barrier to start, a shared purpose, and a meaningful first question.","Open with a quick, friendly form: “What are you hoping to grow?”","#fff"],
+["Quiet connectors","Shift from isolation to active connection","Introverts thrive as conveners of small, focused groups.","Quality over quantity: speak to one ideal customer, not the whole crowd. Warm, specific copy connects deeply.","Write the headline to one person with one need.","#FF6F61"]];
+const tabs=document.getElementById('tabs'),panel=document.getElementById('panel');
+function show(i){[...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',j===i));const l=L[i];
+panel.innerHTML=`<div><h3>${l[1]}</h3><p class="quote">${l[2]}</p><p>${l[3]}</p><p style="margin-top:12px"><b class="coral">Landing page move:</b> ${l[4]}</p></div>
+<svg viewBox="0 0 300 220" aria-hidden="true"><rect x="10" y="10" width="280" height="200" rx="18" fill="#7FF3FF" stroke="#00323A" stroke-width="4"/>
+<circle cx="150" cy="105" r="${30+i*6}" fill="${l[5]}" stroke="#00323A" stroke-width="5" class="orb"/>
+${[0,1,2,3,4].map(k=>`<circle cx="${50+k*50}" cy="${k===i?165:185}" r="${k===i?13:9}" fill="${k===i?'#FF6F61':'#fff'}" stroke="#00323A" stroke-width="3"/>`).join('')}
+<text x="150" y="112" text-anchor="middle" font-size="34" font-weight="900" fill="#00323A">${i+1}</text></svg>`}
+L.forEach((l,i)=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.textContent=l[0];b.onclick=()=>show(i);tabs.appendChild(b)});show(0);
+const C=["Clear promise tied to a shared goal (solidarity)","Honest FAQ that welcomes tough questions","Generous spacing and one call to action per section","A friendly first-step prompt or short form","Copy written to one ideal customer","Real testimonials that build trust fast"];
+const checks=document.getElementById('checks');
+C.forEach((t,i)=>{const d=document.createElement('label');d.className='chk';d.innerHTML=`<input type="checkbox"><span>${t}</span>`;d.firstChild.onchange=upd;checks.appendChild(d)});
+const V=["Start ticking to grow your page vibe.","A spark. Keep building.","Warming up nicely.","Real chemistry is forming.","Strong connection. Visitors feel welcome.","Almost perfect resonance!","Full vibe! Your page is ready to connect."];
+function upd(){const n=checks.querySelectorAll('input:checked').length,p=Math.round(n/C.length*100);
+document.getElementById('pct').textContent=p;document.getElementById('fill').style.width=p+'%';
+document.getElementById('verdict').textContent=V[n];
+const g=document.getElementById('glow');g.setAttribute('r',20+n*13);g.setAttribute('opacity',.4+n*.1);
+document.getElementById('mouth').setAttribute('d',`M85 ${150-n*2} Q120 ${150+n*13} 155 ${150-n*2}`);
+let s='';for(let k=0;k<n*2;k++){const a=k*2.4,r=108+Math.sin(k)*6;s+=`<circle cx="${120+Math.cos(a)*r}" cy="${120+Math.sin(a)*r}" r="5" fill="#FF6F61" stroke="#00323A" stroke-width="2" class="pulse"/>`}
+document.getElementById('sparks').innerHTML=s}
+upd();
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

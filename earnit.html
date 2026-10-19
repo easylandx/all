@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Landing Pages Built for Humans</title>
+<style>
+:root{--cy:#00F0FF;--cy2:#5CF6FF;--cy3:#00D2E0;--ink:#042a30;--cu:#A9581A;--cu2:#C77A3A;--cream:#FFF3E6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--cy);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;font-weight:700;line-height:1.5;overflow-x:hidden}
+.wrap{max-width:1100px;margin:0 auto;padding:0 clamp(24px,8vw,96px)}
+section{padding:clamp(56px,9vw,110px) 0}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:900;line-height:1.08;margin:0 0 .5em}
+h1{font-size:clamp(2.4rem,7vw,4.8rem)}h2{font-size:clamp(1.9rem,4.5vw,3rem)}h3{font-size:1.3rem}
+p{margin:0 0 1em;font-weight:600}
+.cu{color:var(--cu)}
+.eyebrow{display:inline-block;background:var(--cu);color:var(--cream);padding:.3em .9em;border-radius:99px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2em}
+nav{position:sticky;top:0;z-index:20;background:var(--cy);border-bottom:3px solid var(--ink);padding-top:env(safe-area-inset-top,0px)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+.logo{font-family:Georgia,serif;font-weight:900;font-size:1.4rem;text-decoration:none;color:var(--ink)}.logo b{color:var(--cu)}
+.btn{display:inline-block;background:var(--cu);color:var(--cream);border:3px solid var(--ink);border-radius:14px;padding:.75em 1.4em;font:inherit;font-weight:900;text-decoration:none;cursor:pointer;box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.btn.sm{padding:.45em 1em;box-shadow:3px 3px 0 var(--ink)}
+.btn.alt{background:var(--cy2);color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero p{font-size:1.2rem;max-width:34em}
+.cta-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:1.4em}
+.art{width:100%;height:auto}
+.card{background:var(--cy2);border:3px solid var(--ink);border-radius:22px;padding:28px;box-shadow:7px 7px 0 var(--ink)}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:28px;margin-top:36px}
+.num{width:54px;height:54px;border-radius:50%;background:var(--cu);color:var(--cream);display:grid;place-items:center;font:900 1.5rem Georgia,serif;margin-bottom:14px;border:3px solid var(--ink)}
+.band{background:var(--ink);color:var(--cy);border-radius:28px;padding:clamp(28px,5vw,56px)}
+.band h2{color:var(--cy)}.band .cu{color:var(--cu2)}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;margin-top:24px}
+.stat div{border:3px solid var(--cu2);border-radius:18px;padding:18px;text-align:center}
+.stat b{display:block;font:900 2.4rem Georgia,serif;color:var(--cu2)}
+label{display:block;margin:18px 0 6px}
+input[type=range]{width:100%;accent-color:var(--cu);height:28px}
+.out{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:20px}
+.big{font:900 3.4rem Georgia,serif;color:var(--cu);line-height:1}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.tog{display:inline-flex;border:3px solid var(--ink);border-radius:99px;overflow:hidden;margin-bottom:20px}
+.tog button{font:inherit;font-weight:900;border:0;padding:.6em 1.3em;background:transparent;color:var(--ink);cursor:pointer}
+.tog button.on{background:var(--cu);color:var(--cream)}
+.mock{position:relative;background:var(--cream);border:3px solid var(--ink);border-radius:18px;min-height:340px;padding:18px;overflow:hidden}
+.mock .bar{height:12px;border-radius:6px;background:var(--ink);opacity:.15;margin:10px 0}
+.mock .pop{position:absolute;background:var(--cu);color:var(--cream);border:3px solid var(--ink);border-radius:10px;padding:6px 10px;font-size:.8rem;transition:all .4s}
+.mock .good{display:none;text-align:center;padding-top:30px}
+.mock.util .good{display:block;animation:pop .5s}
+.mock.util .noise{display:none}
+.mock:not(.util) .noise{display:block}
+.mock .pop:nth-child(1){top:10px;right:10px;animation:wob 1.4s infinite}
+.mock .pop:nth-child(2){bottom:20px;left:12px;animation:wob 1.1s infinite}
+.mock .pop:nth-child(3){top:120px;right:30px;animation:wob 1.7s infinite}
+.meter{height:30px;border:3px solid var(--ink);border-radius:99px;overflow:hidden;background:var(--cream)}
+.meter i{display:block;height:100%;width:0;background:var(--cu);transition:width .5s}
+.chk{display:flex;align-items:center;gap:12px;background:var(--cy2);border:3px solid var(--ink);border-radius:14px;padding:12px 16px;margin:10px 0;cursor:pointer}
+.chk input{width:22px;height:22px;accent-color:var(--cu)}
+.tabs{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}
+.tabs button{font:inherit;font-weight:900;border:3px solid var(--ink);border-radius:14px;padding:.6em 1.2em;background:var(--cy2);cursor:pointer}
+.tabs button.on{background:var(--cu);color:var(--cream)}
+.pane{display:none}.pane.on{display:block;animation:pop .4s}
+.pane li{margin:.7em 0;font-weight:700}
+.pane ul{padding-left:1.2em}
+.hero-quote{font-family:Georgia,serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:900}
+footer{border-top:3px solid var(--ink);text-align:center;padding:48px 0 56px}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+@keyframes wob{50%{transform:translateY(-6px) rotate(2deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{r:34}50%{r:42}}
+@keyframes flow{to{stroke-dashoffset:-60}}
+@keyframes float{50%{transform:translateY(-10px)}}
+.spin{transform-origin:200px 200px;animation:spin 40s linear infinite}
+.spin2{transform-origin:200px 200px;animation:spin 24s linear infinite reverse}
+.flow{stroke-dasharray:8 12;animation:flow 1.2s linear infinite}
+.core{animation:pulse 2.4s ease-in-out infinite}
+.fl{animation:float 4s ease-in-out infinite}
+.rev{opacity:0;transform:translateY(24px);transition:all .7s}.rev.in{opacity:1;transform:none}
+@media(max-width:800px){.hero,.two{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rev{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="#top">Easy<b>Land</b>X</a><a class="btn sm" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX ↗</a></div></nav>
+
+<main id="top">
+<section><div class="wrap hero">
+ <div>
+  <span class="eyebrow">Landing pages · Human first</span>
+  <h1>Your customers have <span class="cu">finite attention.</span> Earn it with trust.</h1>
+  <p>The attention economy turned human focus into a mined resource. EasyLandX builds affordable, conversion-focused landing pages that give people something better: a clear answer, fast, from a real human brand.</p>
+  <div class="cta-row"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX ↗</a><a class="btn alt" href="#audit">Try the Attention Audit</a></div>
+ </div>
+ <svg class="art" viewBox="0 0 400 400" role="img" aria-label="Streams of attention converging on one human dot">
+  <circle cx="200" cy="200" r="180" fill="none" stroke="#042a30" stroke-width="3" stroke-dasharray="2 10"/>
+  <g class="spin"><circle cx="200" cy="20" r="12" fill="#A9581A" stroke="#042a30" stroke-width="3"/><circle cx="380" cy="200" r="9" fill="#042a30"/><circle cx="60" cy="330" r="11" fill="#C77A3A" stroke="#042a30" stroke-width="3"/></g>
+  <g class="spin2"><circle cx="200" cy="70" r="8" fill="#042a30"/><circle cx="330" cy="260" r="12" fill="#A9581A" stroke="#042a30" stroke-width="3"/><circle cx="90" cy="150" r="9" fill="#C77A3A" stroke="#042a30" stroke-width="3"/></g>
+  <g stroke="#A9581A" stroke-width="4" fill="none" stroke-linecap="round" class="flow"><path d="M200 30V150"/><path d="M370 200H250"/><path d="M200 370V250"/><path d="M30 200H150"/><path d="M80 80L160 160"/><path d="M320 80L240 160"/><path d="M80 320L160 240"/><path d="M320 320L240 240"/></g>
+  <circle class="core" cx="200" cy="200" r="34" fill="#A9581A" stroke="#042a30" stroke-width="5"/>
+  <circle cx="200" cy="192" r="9" fill="#FFF3E6"/><path d="M182 222q18-22 36 0" fill="#FFF3E6"/>
+  <text x="200" y="395" text-anchor="middle" font-family="Georgia" font-weight="900" font-size="16" fill="#042a30">Human · Dot · AI</text>
+ </svg>
+</div></section>
+
+<section class="rev"><div class="wrap">
+ <div class="band">
+  <span class="eyebrow">The big idea</span>
+  <h2>Attention is finite. What it becomes is <span class="cu">infinite.</span></h2>
+  <p style="font-size:1.15rem;max-width:44em">Trust, belief, purchases, votes. Every visitor who lands on your page is spending the most precious thing they own. Generative AI now creates content endlessly, so the winners are the brands people believe. A landing page is your first handshake.</p>
+  <div class="stat"><div><b>1</b>finite attention span per visitor</div><div><b>∞</b>things trust can turn into</div><div><b>3s</b>to show who you are</div></div>
+ </div>
+</div></section>
+
+<section class="rev" id="lessons"><div class="wrap">
+ <span class="eyebrow">3 key lessons → 3 page principles</span>
+ <h2>What the book teaches, built into every page</h2>
+ <div class="grid3">
+  <div class="card"><div class="num">1</div><h3>Future actions stem from past attention</h3><p>What people see first shapes the story they tell about you. EasyLandX opens with your clearest promise, so the first impression builds the right belief.</p>
+   <svg viewBox="0 0 200 70" class="art"><path d="M10 55C50 55 60 15 100 15S150 55 190 20" fill="none" stroke="#A9581A" stroke-width="5" stroke-linecap="round" class="flow"/><circle cx="190" cy="20" r="9" fill="#042a30"/></svg></div>
+  <div class="card"><div class="num">2</div><h3>Attention fracking is hitting its limits</h3><p>Micro-moment tricks fragment focus and create distrust. Our pages use one goal, one message, one button: focus that respects people.</p>
+   <svg viewBox="0 0 200 70" class="art"><g fill="#A9581A" stroke="#042a30" stroke-width="3"><rect x="10" y="30" width="30" height="30" rx="5"/><rect x="55" y="38" width="22" height="22" rx="5" transform="rotate(12 66 49)"/><rect x="95" y="46" width="14" height="14" rx="4"/></g><circle cx="155" cy="38" r="22" fill="#042a30" class="core"/><circle cx="155" cy="38" r="8" fill="#00F0FF"/></svg></div>
+  <div class="card"><div class="num">3</div><h3>Trust is the main asset</h3><p>When anything can be faked at no cost, real faces, real offers, and real contact options stand out. Authenticity becomes your conversion engine.</p>
+   <svg viewBox="0 0 200 70" class="art fl"><path d="M100 6l42 14v24c0 14-18 22-42 28-24-6-42-14-42-28V20z" fill="#A9581A" stroke="#042a30" stroke-width="4"/><path d="M82 38l12 12 24-26" fill="none" stroke="#FFF3E6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+ </div>
+</div></section>
+
+<section class="rev" id="audit"><div class="wrap two">
+ <div>
+  <span class="eyebrow">Interactive · Audit your attention diet</span>
+  <h2>How much focus can you <span class="cu">reclaim?</span></h2>
+  <p>Treat focus as a non-renewable asset. Use AI as a utility agent for repetitive work, and put those hours into customers, craft, and care.</p>
+  <div class="card">
+   <label>Hours a day on feeds: <span id="v1">3</span>h</label><input type="range" id="s1" min="0" max="8" step=".5" value="3">
+   <label>Hours a day on repetitive tasks: <span id="v2">2</span>h</label><input type="range" id="s2" min="0" max="6" step=".5" value="2">
+   <label>Share of those tasks AI could handle: <span id="v3">60</span>%</label><input type="range" id="s3" min="0" max="100" step="5" value="60">
+  </div>
+ </div>
+ <div class="card" style="text-align:center">
+  <svg viewBox="0 0 220 220" style="width:min(300px,100%)"><circle cx="110" cy="110" r="90" fill="none" stroke="#FFF3E6" stroke-width="22"/><circle id="ring" cx="110" cy="110" r="90" fill="none" stroke="#A9581A" stroke-width="22" stroke-linecap="round" stroke-dasharray="565" stroke-dashoffset="565" transform="rotate(-90 110 110)" style="transition:stroke-dashoffset .6s"/><text id="ringT" x="110" y="118" text-anchor="middle" font-family="Georgia" font-weight="900" font-size="38" fill="#042a30">0</text></svg>
+  <div class="big" id="wk">0 h</div><p>hours reclaimed per week</p>
+  <p id="msg" style="font-size:1.05rem"></p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Turn them into customers ↗</a>
+ </div>
+</div></section>
+
+<section class="rev"><div class="wrap">
+ <div class="two">
+  <div>
+   <span class="eyebrow">Interactive · Metrics shift</span>
+   <h2>From impressions to <span class="cu">utility</span></h2>
+   <p>Measure value by time saved and help delivered, not by time spent. Flip the switch and see the same business with a page that serves the visitor.</p>
+   <div class="tog" role="group" aria-label="Page style"><button id="bImp" class="on">Impressions</button><button id="bUti">Utility</button></div>
+   <p id="metric" style="font-size:1.1rem"></p>
+  </div>
+  <div class="mock" id="mock">
+   <div class="noise"><div class="bar" style="width:70%"></div><div class="bar"></div><div class="bar" style="width:85%"></div><div class="bar" style="width:40%"></div><div class="bar"></div><div class="bar" style="width:60%"></div><div class="pop">SALE!!</div><div class="pop">Subscribe</div><div class="pop">Wait, don't go</div></div>
+   <div class="good"><svg viewBox="0 0 120 120" width="90"><circle cx="60" cy="60" r="46" fill="#A9581A" stroke="#042a30" stroke-width="5"/><path d="M38 62l15 15 30-34" fill="none" stroke="#FFF3E6" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg><h3 style="margin-top:12px">Book your free quote in 30 seconds</h3><p>One clear promise. One real human. One button.</p><span class="btn sm">Message us</span></div>
+  </div>
+ </div>
+</div></section>
+
+<section class="rev"><div class="wrap two">
+ <div class="card">
+  <span class="eyebrow">Interactive · Trust-centric architecture</span>
+  <h2 style="font-size:1.9rem">Build your trust score</h2>
+  <label class="chk"><input type="checkbox"> Real photos of real people</label>
+  <label class="chk"><input type="checkbox"> Clear, honest offer</label>
+  <label class="chk"><input type="checkbox"> One main action</label>
+  <label class="chk"><input type="checkbox"> Direct contact like WhatsApp</label>
+  <label class="chk"><input type="checkbox"> Real customer words</label>
+  <label class="chk"><input type="checkbox"> Fast, mobile-friendly load</label>
+  <div class="meter" style="margin-top:18px"><i id="tm"></i></div>
+  <p id="tt" style="margin-top:12px;font-size:1.1rem">Tick what your page has today.</p>
+ </div>
+ <div>
+  <h2>Provenance wins in a <span class="cu">synthetic</span> world</h2>
+  <p>Synthetic text, video, and audio cost almost nothing now. Verified, human, accountable brands are the rare ones. EasyLandX puts your real story front and center, so visitors know exactly who is behind the page.</p>
+  <svg viewBox="0 0 300 150" class="art"><g class="fl"><circle cx="70" cy="75" r="40" fill="#A9581A" stroke="#042a30" stroke-width="5"/><circle cx="70" cy="65" r="11" fill="#FFF3E6"/><path d="M48 98q22-26 44 0" fill="#FFF3E6"/></g><path d="M120 75H180" stroke="#042a30" stroke-width="5" stroke-dasharray="4 10" class="flow"/><rect x="190" y="35" width="90" height="80" rx="12" fill="#FFF3E6" stroke="#042a30" stroke-width="5"/><rect x="202" y="50" width="50" height="9" rx="4" fill="#A9581A"/><rect x="202" y="68" width="66" height="7" rx="3" fill="#042a30" opacity=".25"/><rect x="202" y="82" width="40" height="7" rx="3" fill="#042a30" opacity=".25"/><circle cx="262" cy="100" r="10" fill="#A9581A"/></svg>
+ </div>
+</div></section>
+
+<section class="rev"><div class="wrap">
+ <span class="eyebrow">Actionable strategies</span>
+ <h2>Your playbook, powered by <span class="cu">EasyLandX</span></h2>
+ <div class="tabs" role="tablist"><button class="on" data-t="0">For businesses</button><button data-t="1">For creators</button><button data-t="2">The EasyLandX way</button></div>
+ <div class="card">
+  <div class="pane on"><ul><li><b>Shift metrics:</b> track time saved and questions answered, not just visits.</li><li><b>Build trust architecture:</b> show who you are, where you are, and how to reach you.</li><li><b>Reinvest in the purpose economy:</b> use the hours AI frees for care, teaching, and creative work.</li></ul></div>
+  <div class="pane"><ul><li><b>Audit your attention diet:</b> choose what deserves your focus each day.</li><li><b>Use AI as a utility agent:</b> hand repetitive tasks to tools, keep the human parts for you.</li><li><b>Lead with your voice:</b> a page that sounds like you earns belief.</li></ul></div>
+  <div class="pane"><ul><li><b>Affordable:</b> professional pages priced for small businesses.</li><li><b>Conversion-focused:</b> every section moves one visitor toward one action.</li><li><b>Custom, not a template:</b> designed around your brand and your customers.</li></ul></div>
+ </div>
+</div></section>
+
+<section class="rev"><div class="wrap">
+ <div class="band" style="text-align:center">
+  <p class="hero-quote">AI built to serve humans, not to extract from them.</p>
+  <h2>Ready for a page people <span class="cu">trust?</span></h2>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener" style="font-size:1.2rem">Go to EasyLandX ↗</a>
+ </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+ <a class="btn sm" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX ↗</a>
+ <p style="margin-top:22px">Inspired by the book <i>Human Dot AI: How the Fight for Your Attention Became the World’s Biggest Business</i> by Joe Marchese (with Jonathan Bing).</p>
+</div></footer>
+
+<script>
+const $=id=>document.getElementById(id);
+function audit(){
+ const a=+$('s1').value,b=+$('s2').value,c=+$('s3').value;
+ $('v1').textContent=a;$('v2').textContent=b;$('v3').textContent=c;
+ const wk=Math.round((b*c/100*7+a*0.25*7)*10)/10;
+ $('wk').textContent=wk+' h';$('ringT').textContent=Math.round(wk);
+ $('ring').style.strokeDashoffset=565*(1-Math.min(wk/30,1));
+ $('msg').textContent=wk<5?'A great start. Small wins add up.':wk<12?'That is a full workday of focus back every week.':'Wow, that is a whole new part-time role for your creativity.';
+}
+['s1','s2','s3'].forEach(i=>$(i).addEventListener('input',audit));audit();
+const mock=$('mock');
+function mode(u){mock.classList.toggle('util',u);$('bUti').classList.toggle('on',u);$('bImp').classList.toggle('on',!u);
+ $('metric').innerHTML=u?'<b>Utility view:</b> visitors find the answer in seconds and take action with confidence.':'<b>Impressions view:</b> lots of noise, scattered focus, and little trust.';}
+$('bImp').onclick=()=>mode(false);$('bUti').onclick=()=>mode(true);mode(false);
+const boxes=[...document.querySelectorAll('.chk input')];
+boxes.forEach(x=>x.addEventListener('change',()=>{
+ const n=boxes.filter(b=>b.checked).length,p=Math.round(n/boxes.length*100);
+ $('tm').style.width=p+'%';
+ $('tt').textContent=n==0?'Tick what your page has today.':p+'% trust score · '+(p==100?'Beautiful. People will believe you.':'Every tick builds belief.');
+}));
+const tabs=[...document.querySelectorAll('.tabs button')],panes=[...document.querySelectorAll('.pane')];
+tabs.forEach(t=>t.onclick=()=>{tabs.forEach(x=>x.classList.remove('on'));panes.forEach(x=>x.classList.remove('on'));t.classList.add('on');panes[+t.dataset.t].classList.add('on')});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rev').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>
