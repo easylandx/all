@@ -1,4 +1,5 @@
 <title>EasyLandX 10% Happier Pages</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -220,6 +221,322 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
   *{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
 }
+
+/* Mobile usability enhancements */
+@media (max-width: 600px){
+  html{font-size:16px}
+  body{font-size:1rem;line-height:1.58}
+
+  .wrap{
+    width:100%;
+    padding-left:max(18px, env(safe-area-inset-left, 18px));
+    padding-right:max(18px, env(safe-area-inset-right, 18px));
+  }
+
+  .sec{
+    padding-block:52px;
+  }
+
+  .top{
+    position:sticky;
+    top:0;
+    padding-top:env(safe-area-inset-top, 0px);
+  }
+
+  .bar{
+    min-height:64px;
+    padding-block:10px;
+    gap:10px;
+  }
+
+  .brand{font-size:1.28rem}
+
+  .top .btn{
+    min-height:44px;
+    padding:.7rem .85rem;
+    font-size:.9rem;
+  }
+
+  .hero{
+    padding-block:36px 52px;
+  }
+
+  .hero-grid{
+    gap:34px;
+  }
+
+  h1{
+    font-size:clamp(2.35rem,12vw,3.35rem);
+    line-height:1.02;
+  }
+
+  h2{
+    font-size:clamp(1.9rem,9vw,2.7rem);
+  }
+
+  h3{
+    font-size:clamp(1.35rem,7vw,1.75rem);
+  }
+
+  .lead{
+    font-size:1.03rem;
+    margin-top:15px;
+  }
+
+  .cta-row{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+    margin-top:26px;
+  }
+
+  .btn{
+    width:100%;
+    min-height:48px;
+    justify-content:center;
+    padding:.85rem 1rem;
+  }
+
+  .orb{
+    max-width:360px;
+  }
+
+  .lessons{
+    margin-top:34px;
+  }
+
+  .lesson{
+    gap:18px;
+    padding-block:26px;
+  }
+
+  .lhead{
+    align-items:center;
+    gap:12px;
+  }
+
+  .num{
+    font-size:2.65rem;
+    min-width:30px;
+  }
+
+  .ico{
+    width:68px;
+    height:68px;
+  }
+
+  .lesson h3{
+    margin:6px 0 8px;
+  }
+
+  .voice,.comp,.quad,.game,.duo{
+    gap:28px;
+    margin-top:32px;
+  }
+
+  .chip{
+    width:100%;
+    min-height:48px;
+    padding:13px 14px;
+    font-size:1rem;
+  }
+
+  .reply{
+    padding:17px;
+    min-height:0;
+  }
+
+  .wire,.qsvg{
+    max-width:340px;
+  }
+
+  .ctl label{
+    margin-top:20px;
+  }
+
+  input[type=range]{
+    height:32px;
+  }
+
+  .steps{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+
+  .steps .chip{
+    width:100%;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .stat{
+    padding:14px;
+  }
+
+  .sv{
+    font-size:2rem;
+  }
+
+  .chartbox{
+    padding:12px 6px 8px;
+    overflow:hidden;
+  }
+
+  #chart{
+    width:100%;
+    min-width:0;
+  }
+
+  .panel{
+    padding:20px 16px;
+  }
+
+  .stage{
+    height:390px;
+    min-height:390px;
+  }
+
+  .mock{
+    width:min(76%,290px);
+    padding:18px;
+  }
+
+  .mh{
+    font-size:1.25rem;
+  }
+
+  .drift{
+    max-width:42%;
+    min-height:44px;
+    padding:9px 8px;
+    font-size:.78rem;
+    line-height:1.15;
+  }
+
+  .d1{top:3%;left:3%}
+  .d2{top:3%;right:3%}
+  .d3{bottom:3%;left:3%}
+  .d4{bottom:3%;right:3%}
+
+  .gflow{
+    grid-template-columns:minmax(0,1fr) 76px minmax(0,1fr);
+    gap:6px;
+  }
+
+  .gring,.gring svg{
+    width:76px;
+    height:76px;
+  }
+
+  .gnode{
+    padding:10px 6px;
+    font-size:.8rem;
+  }
+
+  .seg{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+
+  .lang{
+    padding:18px 16px;
+  }
+
+  .lang h4{
+    font-size:1.3rem;
+  }
+
+  .cta{
+    padding-block:58px;
+  }
+
+  .cta h2{
+    max-width:100%;
+    font-size:clamp(2rem,9vw,2.8rem);
+  }
+
+  .cta .rings{
+    right:-220px;
+    width:420px;
+    height:420px;
+    opacity:.45;
+  }
+
+  footer .wrap{
+    flex-direction:column;
+    gap:8px;
+  }
+}
+
+@media (max-width:380px){
+  .wrap{
+    padding-left:16px;
+    padding-right:16px;
+  }
+
+  .top .btn{
+    padding-inline:.7rem;
+    font-size:.82rem;
+  }
+
+  .brand{
+    font-size:1.15rem;
+  }
+
+  h1{
+    font-size:2.2rem;
+  }
+
+  .steps{
+    grid-template-columns:1fr;
+  }
+
+  .stage{
+    height:365px;
+    min-height:365px;
+  }
+
+  .gflow{
+    grid-template-columns:1fr;
+  }
+
+  .gring{
+    margin-inline:auto;
+  }
+
+  .gnode{
+    width:100%;
+  }
+}
+
+/* Prevent accidental horizontal overflow from interactive content. */
+img,svg,video,canvas{
+  max-width:100%;
+}
+
+button,a,input{
+  -webkit-tap-highlight-color:transparent;
+}
+
+button,
+.btn,
+.chip,
+.drift{
+  touch-action:manipulation;
+}
+
+@media (hover:none){
+  .btn:hover,
+  .chip:hover,
+  .drift:hover{
+    transform:none;
+  }
+}
+
 </style>
 
 <header class="top">
