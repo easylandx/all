@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX Landing Pages | Authority, built page by page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lime:#C8F02B; --purple:#5B1FA8; --deep:#3A1270; --white:#FFFFFF;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--lime);color:var(--deep);font-family:"DM Sans",system-ui,sans-serif;font-size:18px;line-height:1.55}
+h1,h2,h3{font-family:"Bricolage Grotesque","Arial Black",system-ui,sans-serif;font-weight:800;line-height:1.02;margin:0;letter-spacing:-.02em}
+h1{font-size:clamp(2.6rem,8vw,5.6rem)}
+h2{font-size:clamp(2rem,5vw,3.4rem);margin-bottom:.5em}
+h3{font-size:1.35rem;line-height:1.15}
+p{margin:0 0 1em;max-width:62ch}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:24px}
+section{padding-block:80px}
+.btn{display:inline-block;background:var(--purple);color:var(--white);font:700 1rem "DM Sans",sans-serif;padding:14px 26px;border-radius:999px;border:3px solid var(--purple);text-decoration:none;cursor:pointer;transition:transform .15s,background .15s,color .15s}
+.btn:hover{transform:translateY(-3px);background:var(--white);color:var(--purple)}
+.btn.alt{background:transparent;color:var(--purple)}
+.btn.alt:hover{background:var(--purple);color:var(--white)}
+:focus-visible{outline:4px solid var(--purple);outline-offset:3px}
+nav{display:flex;justify-content:space-between;align-items:center;padding-block:18px;gap:12px}
+.logo{font:800 1.5rem "Bricolage Grotesque",sans-serif;color:var(--purple);text-decoration:none}
+.logo b{background:var(--purple);color:var(--lime);padding:0 8px;border-radius:8px;margin-left:2px}
+
+/* hero */
+.hero{padding-block:40px 90px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero p.lead{font-size:1.3rem;margin-top:24px}
+.hero .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.art{width:100%;height:auto;display:block}
+.float{animation:float 5s ease-in-out infinite}
+.float.b{animation-delay:-2.5s}
+@keyframes float{50%{transform:translateY(-12px)}}
+.cursor{animation:click 4s ease-in-out infinite}
+@keyframes click{0%,20%{transform:translate(70px,40px)}45%,60%{transform:translate(0,0)}52%{transform:translate(0,0) scale(.9)}100%{transform:translate(70px,40px)}}
+.pulse{animation:pulse 4s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+@keyframes pulse{0%,40%{transform:scale(1)}52%{transform:scale(1.08)}64%,100%{transform:scale(1)}}
+
+/* marquee */
+.strip{background:var(--purple);color:var(--lime);overflow:hidden;white-space:nowrap;padding-block:14px}
+.strip span{display:inline-block;font:800 1.6rem "Bricolage Grotesque",sans-serif;animation:slide 30s linear infinite;padding-right:0}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* three messages */
+.msgs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+.msg{background:var(--white);border-radius:28px;padding:28px}
+.msg:nth-child(2){background:var(--purple);color:var(--white)}
+.msg svg{width:64px;height:64px;margin-bottom:14px}
+.msg p{margin:.6em 0 0}
+
+/* authority steps */
+.dark{background:var(--purple);color:var(--white)}
+.dark .accent{color:var(--lime)}
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.stairs{display:flex;align-items:flex-end;gap:10px;height:280px}
+.stair{flex:1;border-radius:18px 18px 0 0;background:var(--white);color:var(--purple);padding:14px;font:800 1.1rem "Bricolage Grotesque",sans-serif;display:flex;align-items:flex-end;cursor:pointer;border:0;text-align:left;transition:height .5s cubic-bezier(.2,.9,.3,1.2),background .2s}
+.stair[aria-pressed="true"]{background:var(--lime)}
+.stair:nth-child(1){height:34%}.stair:nth-child(2){height:62%}.stair:nth-child(3){height:100%}
+.stairs.go .stair:nth-child(1){height:44%}.stairs.go .stair:nth-child(2){height:72%}
+.step-text{min-height:9em}
+.step-text h3{color:var(--lime);font-size:1.8rem;margin-bottom:.4em}
+
+/* A-Z explorer */
+.az{display:flex;flex-wrap:wrap;gap:8px;margin-block:24px}
+.az button{width:54px;height:54px;border-radius:16px;border:3px solid var(--purple);background:transparent;color:var(--purple);font:800 1.35rem "Bricolage Grotesque",sans-serif;cursor:pointer;transition:transform .15s,background .15s,color .15s}
+.az button:hover{transform:rotate(-6deg) scale(1.08)}
+.az button[aria-pressed="true"]{background:var(--purple);color:var(--lime)}
+.card{background:var(--white);border-radius:28px;padding:32px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start}
+.bigletter{font:800 7rem/0.8 "Bricolage Grotesque",sans-serif;color:var(--purple);background:var(--lime);border-radius:24px;padding:22px 28px}
+.card h3{font-size:1.8rem;color:var(--purple);margin-bottom:.4em}
+.card .move{border-left:6px solid var(--purple);padding-left:14px;margin-top:14px}
+.card.pop{animation:pop .35s ease}
+@keyframes pop{from{transform:scale(.97);opacity:.5}}
+
+/* checklist */
+.check{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.list label{display:flex;gap:14px;align-items:center;background:rgba(255,255,255,.12);border:3px solid var(--lime);border-radius:20px;padding:14px 18px;cursor:pointer;font-weight:500;transition:background .2s,color .2s}
+.list input{position:absolute;opacity:0}
+.box{flex:none;width:30px;height:30px;border-radius:10px;border:3px solid var(--lime);display:grid;place-items:center;color:var(--purple);font-weight:800;transition:background .2s}
+.list input:checked + .box{background:var(--lime)}
+.list input:checked ~ .t{color:var(--lime)}
+.list input:focus-visible + .box{outline:4px solid var(--white);outline-offset:3px}
+.list input:not(:checked) + .box::after{content:""}
+.list input:checked + .box::after{content:"✓"}
+.meter{text-align:center}
+.ring{width:min(300px,80%);margin-inline:auto;display:block}
+.ring .arc{transition:stroke-dashoffset .6s cubic-bezier(.3,1,.4,1)}
+.meter p{margin:16px auto 0;font-weight:700;font-size:1.2rem}
+
+/* strategies */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+.strat{border:4px solid var(--purple);border-radius:28px;padding:28px;background:transparent}
+.strat ul{padding-left:1.1em;margin:.8em 0 0}
+.strat li{margin-bottom:.5em}
+.strat.fill{background:var(--purple);color:var(--white)}
+.strat.fill h3{color:var(--lime)}
+.strat.white{background:var(--white)}
+
+/* cta */
+.cta{text-align:center}
+.cta h2{max-width:14em;margin-inline:auto}
+.cta p{margin-inline:auto}
+.cta .btn{font-size:1.25rem;padding:18px 38px;margin-top:10px}
+footer{background:var(--purple);color:var(--white);padding-block:36px;text-align:center}
+footer em{color:var(--lime);font-style:normal;font-weight:700}
+
+@media(max-width:860px){
+  .hero-grid,.steps,.check,.msgs,.grid3{grid-template-columns:1fr}
+  .card{grid-template-columns:1fr}
+  .bigletter{font-size:5rem;justify-self:start}
+  section{padding-block:60px}
+  body{font-size:17px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav>
+    <a class="logo" href="#top">Easy<b>LandX</b></a>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+  </nav>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Your landing page is your authority, live.</h1>
+      <p class="lead">EasyLandX builds affordable, conversion-focused landing pages for small businesses. Every page turns visibility into trust and trust into clients.</p>
+      <div class="actions">
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+        <a class="btn alt" href="#toolkit">Explore the A–Z toolkit</a>
+      </div>
+    </div>
+    <div class="float">
+      <svg class="art" viewBox="0 0 440 400" role="img" aria-label="Illustration of a landing page with a cursor clicking a button">
+        <rect x="20" y="30" width="400" height="320" rx="26" fill="#fff" stroke="#5B1FA8" stroke-width="6"/>
+        <path d="M20 56a26 26 0 0 1 26-26h348a26 26 0 0 1 26 26v26H20z" fill="#5B1FA8"/>
+        <circle cx="48" cy="56" r="7" fill="#C8F02B"/><circle cx="72" cy="56" r="7" fill="#fff"/><circle cx="96" cy="56" r="7" fill="#fff"/>
+        <rect x="52" y="112" width="230" height="26" rx="13" fill="#5B1FA8"/>
+        <rect x="52" y="150" width="170" height="26" rx="13" fill="#5B1FA8"/>
+        <rect x="52" y="196" width="250" height="12" rx="6" fill="#C8F02B"/>
+        <rect x="52" y="218" width="200" height="12" rx="6" fill="#C8F02B"/>
+        <g class="pulse"><rect x="52" y="256" width="140" height="48" rx="24" fill="#5B1FA8"/><rect x="76" y="276" width="92" height="10" rx="5" fill="#fff"/></g>
+        <circle cx="338" cy="190" r="62" fill="#C8F02B"/>
+        <path d="M338 150l11 28 30 2-23 19 8 29-26-16-26 16 8-29-23-19 30-2z" fill="#5B1FA8"/>
+        <g class="cursor"><path d="M150 288l0 52 14-13 10 24 12-5-10-23 19-1z" fill="#fff" stroke="#3A1270" stroke-width="4" stroke-linejoin="round"/></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="strip" aria-hidden="true"><span>Authority ✦ Brand ✦ Clarity ✦ Community ✦ Focus ✦ Intention ✦ Launch ✦ Positioning ✦ Systems ✦ Visibility ✦ Authority ✦ Brand ✦ Clarity ✦ Community ✦ Focus ✦ Intention ✦ Launch ✦ Positioning ✦ Systems ✦ Visibility ✦ </span></div>
+
+<section>
+  <div class="wrap">
+    <h2>Three big ideas shape every page we build.</h2>
+    <p>The Business Bible gathers 26 experts into one A–Z toolkit. Three messages stand out, and each one guides how an EasyLandX page is planned.</p>
+    <div class="msgs">
+      <div class="msg">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="22" cy="24" r="10" fill="#5B1FA8"/><circle cx="44" cy="24" r="10" fill="#C8F02B" stroke="#5B1FA8" stroke-width="4"/><path d="M6 54c2-14 12-18 16-18s14 4 16 18zM30 54c2-14 12-18 14-18s12 4 14 18z" fill="#5B1FA8"/></svg>
+        <h3>Collaborative wisdom</h3>
+        <p>Great results grow from shared, battle-tested insight. Your page draws on proven patterns, so you start strong instead of starting from zero.</p>
+      </div>
+      <div class="msg">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="10" width="48" height="44" rx="8" fill="#C8F02B"/><path d="M18 24h28M18 34h28M18 44h16" stroke="#5B1FA8" stroke-width="5" stroke-linecap="round"/></svg>
+        <h3>An A–Z toolkit</h3>
+        <p>Practical beats theoretical. Each letter is a tool you can pick up and use today, from authority to visibility.</p>
+      </div>
+      <div class="msg">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6l7 17 18 2-14 12 5 18-16-10-16 10 5-18L7 25l18-2z" fill="#5B1FA8"/></svg>
+        <h3>Authority over visibility</h3>
+        <p>Being seen is the start. Being trusted as the expert makes clients arrive ready to say yes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap steps">
+    <div>
+      <h2>Climb from <span class="accent">seen</span> to <span class="accent">trusted</span> to <span class="accent">chosen</span>.</h2>
+      <p>Tap a step. Each one shows how a landing page carries a visitor higher.</p>
+      <div class="step-text" id="stepText" aria-live="polite">
+        <h3>Chosen</h3>
+        <p>Positioned as the expert, you attract clients naturally. The page leads with your proven framework and one clear next step.</p>
+      </div>
+    </div>
+    <div class="stairs" id="stairs">
+      <button class="stair" data-i="0" aria-pressed="false">Seen</button>
+      <button class="stair" data-i="1" aria-pressed="false">Trusted</button>
+      <button class="stair" data-i="2" aria-pressed="true">Chosen</button>
+    </div>
+  </div>
+</section>
+
+<section id="toolkit">
+  <div class="wrap">
+    <h2>The A–Z toolkit for your page.</h2>
+    <p>Pick a letter to see the book’s lesson and the EasyLandX move that puts it to work.</p>
+    <div class="az" id="az" role="group" aria-label="Choose a letter"></div>
+    <div class="card" id="azCard" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="dark" id="launch">
+  <div class="wrap check">
+    <div>
+      <h2>Build your pre-launch, one tick at a time.</h2>
+      <p>Warm up your audience weeks before the big day. Tick each action and watch your launch readiness rise.</p>
+      <ul class="list" id="list"></ul>
+    </div>
+    <div class="meter">
+      <svg class="ring" viewBox="0 0 200 200" role="img" aria-label="Launch readiness meter">
+        <circle cx="100" cy="100" r="80" fill="none" stroke="#fff" stroke-opacity=".2" stroke-width="22"/>
+        <circle class="arc" id="arc" cx="100" cy="100" r="80" fill="none" stroke="#C8F02B" stroke-width="22" stroke-linecap="round" stroke-dasharray="502.65" stroke-dashoffset="502.65" transform="rotate(-90 100 100)"/>
+        <text id="pct" x="100" y="116" text-anchor="middle" font-family="Bricolage Grotesque,Arial Black,sans-serif" font-weight="800" font-size="52" fill="#fff">0%</text>
+      </svg>
+      <p id="msg">Tick your first action to begin.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The strategies behind every EasyLandX page.</h2>
+    <div class="grid3">
+      <div class="strat fill">
+        <h3>Positioning and authority</h3>
+        <ul>
+          <li><b>Thought leadership.</b> Share your frameworks and behind-the-scenes process before the ask.</li>
+          <li><b>Ideal client focus.</b> Speak to one person’s goals, so the right visitors feel understood.</li>
+        </ul>
+      </div>
+      <div class="strat white">
+        <h3>Structure and efficiency</h3>
+        <ul>
+          <li><b>Systems and processes.</b> A repeatable page layout makes every update quick.</li>
+          <li><b>Co-creation.</b> Partners, guests, and alliances widen your reach.</li>
+        </ul>
+      </div>
+      <div class="strat">
+        <h3>Launch and growth</h3>
+        <ul>
+          <li><b>Pre-launch building.</b> Teasers and stories gather your audience early.</li>
+          <li><b>Multidisciplinary tuning.</b> Marketing, PR, legal, and cash flow all get a regular review.</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:36px;font-weight:700;font-size:1.2rem">Holistic health matters too: strong pricing, clear systems, a confident personal brand, and a resilient mindset work together. EasyLandX pages are built to support all four.</p>
+  </div>
+</section>
+
+<section class="dark cta">
+  <div class="wrap">
+    <h2>Make your page the entry point to every great client relationship.</h2>
+    <p>Like a book that opens doors, your landing page nurtures trust and invites long-term partnership. EasyLandX builds it for you, affordably and with conversions in mind.</p>
+    <a class="btn" style="background:var(--lime);border-color:var(--lime);color:var(--purple)" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">Inspired by <em>The Business Bible: An A-Z of Business Advice for Business Owners</em> by Lyndsey Meredith.</div>
+</footer>
+
+<script>
+(function(){
+  /* authority steps */
+  var steps=[
+    {t:"Seen",d:"Visibility opens the door. Your page makes a bold first impression and shows visitors exactly where they landed."},
+    {t:"Trusted",d:"Consistent insights, clear frameworks, and behind-the-scenes proof turn a visit into confidence."},
+    {t:"Chosen",d:"Positioned as the expert, you attract clients naturally. The page leads with your proven framework and one clear next step."}
+  ];
+  var stairs=document.getElementById("stairs"),st=document.getElementById("stepText");
+  stairs.addEventListener("click",function(e){
+    var b=e.target.closest(".stair"); if(!b) return;
+    var i=+b.dataset.i;
+    [].forEach.call(stairs.children,function(x,j){x.setAttribute("aria-pressed",j===i)});
+    stairs.classList.toggle("go",i<2);
+    st.innerHTML="<h3>"+steps[i].t+"</h3><p>"+steps[i].d+"</p>";
+  });
+
+  /* A-Z toolkit */
+  var az={
+    A:["Authority","Meredith champions authority over plain visibility: be the trusted expert and clients come to you.","Lead with your credentials, results, and a signature framework in the first screen."],
+    B:["Brand","A personal brand makes you memorable and part of holistic business health.","One bold look, one voice, and a page that feels unmistakably yours."],
+    C:["Community","Co-creation and alliances expand your reach beyond what you can do alone.","Feature partner logos, guest voices, and a warm invitation to join in."],
+    D:["Documentation","Writing down repeatable workflows early prevents burnout and makes scaling smooth.","A page structure with reusable sections, so every new page is quick to launch."],
+    E:["Energy","Holistic business health includes your own well-being. A rested owner builds a stronger business.","A simple page that runs on its own, so your time stays free for what you love."],
+    F:["Focus","Tailor everything to your ideal client’s needs instead of broad content.","One audience, one promise, one button. Every element earns its place."],
+    G:["Growth","Regularly reviewing every area of the business keeps growth steady and healthy.","Page analytics and simple tweaks that lift sign-ups month after month."],
+    H:["Habits","Consistent sharing of insights builds authority far faster than occasional bursts.","A page with a content section ready for your regular tips and updates."],
+    I:["Intention","Structured, intentional action beats last-minute scrambling every time.","A planned page flow guides visitors step by step toward the goal."],
+    J:["Journey","Clients move through a journey from curious to committed, and each stage needs the right message.","A visitor path with a clear headline, proof, and one inviting next step."],
+    K:["Knowledge","Sharing your know-how generously opens doors and nurtures long-term relationships.","A helpful guide or free resource offered as the entry point to working with you."],
+    L:["Launch","Start nurturing your audience weeks ahead with storytelling and teasers.","A coming-soon page with an email sign-up builds your list before day one."],
+    M:["Mindset","Resilience and a confident outlook carry a business through every season.","Encouraging, confident copy that reflects your belief in what you offer."],
+    N:["Networking","Strategic alliances and guest contributions put you in front of new audiences.","A partner page and referral link that make it easy to spread the word."],
+    O:["Offer","A clearly structured offer makes pricing and decisions simple for your client.","One standout offer with transparent pricing and a single button to claim it."],
+    P:["Positioning","Share your frameworks and insights consistently so trust comes before the sale.","A clear headline that states who you help and the result they gain."],
+    Q:["Quality","Reviewing PR, legal protection, and marketing keeps every detail polished and professional.","Clean design, checked copy, and pages that look great on every screen."],
+    R:["Relationships","Trust and long-term relationships are the real engine behind client acquisition.","Testimonials and a friendly contact form that start the conversation."],
+    S:["Systems","Document repeatable workflows early so you can scale with energy to spare.","Reusable page sections make updates fast and keep quality steady."],
+    T:["Trust","Authority is trust made visible. Clients choose the expert they feel they know.","Real stories, results, and behind-the-scenes moments placed right where visitors decide."],
+    U:["Understanding","Knowing your ideal client’s needs lets you speak directly to what matters to them.","Copy written to one person’s goals, so the right visitors feel instantly at home."],
+    V:["Visibility","Visibility is the first rung. Pair it with authority and it becomes lasting growth.","Fast loading, mobile-ready pages that shine in search and social shares."],
+    W:["Well-being","Personal well-being and business success grow together.","A calm, uncluttered page that is easy to enjoy and easy to act on."],
+    X:["X-factor","Your unique perspective is what makes you stand out in a crowded market.","A signature look and message that no one else can copy."],
+    Y:["Yes","Intentional steps make it easy for clients to say yes with confidence.","A bold button with a clear promise, placed where decisions happen."],
+    Z:["Zoom in","Zooming in on one ideal client and one clear goal gives your message its power.","A tightly focused page where every section moves visitors toward the goal."]
+  };
+  var box=document.getElementById("az"),card=document.getElementById("azCard");
+  function show(k){
+    var d=az[k];
+    [].forEach.call(box.children,function(b){b.setAttribute("aria-pressed",b.textContent===k)});
+    card.className="card";void card.offsetWidth;card.className="card pop";
+    card.innerHTML='<div class="bigletter">'+k+'</div><div><h3>'+d[0]+'</h3><p>'+d[1]+'</p><div class="move"><b>The EasyLandX move:</b> '+d[2]+'</div></div>';
+  }
+  Object.keys(az).forEach(function(k){
+    var b=document.createElement("button");b.type="button";b.textContent=k;b.setAttribute("aria-pressed","false");
+    b.addEventListener("click",function(){show(k)});box.appendChild(b);
+  });
+  show("A");
+
+  /* pre-launch checklist */
+  var items=["Name your ideal client and their goals","Write one clear promise for your page","Share a behind-the-scenes teaser","Document your repeatable steps","Invite a partner to co-create"];
+  var msgs=["Tick your first action to begin.","Great start. Your foundation is forming.","Momentum is building.","Your audience is warming up.","Almost there. One action to go.","Launch-ready. Your authority is set to shine."];
+  var list=document.getElementById("list"),arc=document.getElementById("arc"),pct=document.getElementById("pct"),msg=document.getElementById("msg");
+  items.forEach(function(t,i){
+    var li=document.createElement("li");
+    li.innerHTML='<label><input type="checkbox"><span class="box"></span><span class="t">'+t+'</span></label>';
+    li.querySelector("input").addEventListener("change",update);
+    list.appendChild(li);
+  });
+  function update(){
+    var n=list.querySelectorAll("input:checked").length,p=Math.round(n/items.length*100);
+    arc.style.strokeDashoffset=502.65*(1-p/100);
+    pct.textContent=p+"%";msg.textContent=msgs[n];
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX · Landing pages buyers chase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--lime:#C8FF00;--lime2:#DDFF55;--mag:#E0008A;--tan:#FF8A00;--ink:#14180A;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--lime);color:var(--ink);font:500 18px/1.55 'Bricolage Grotesque',system-ui,sans-serif}
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(24px,9vw,130px)}
+section{padding:clamp(56px,9vw,110px) 0}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.03em;line-height:1.02}
+h2{font-size:clamp(32px,5vw,56px);margin-bottom:18px}
+h3{font-size:24px;letter-spacing:-.02em;margin-bottom:8px}
+p{margin:0 0 14px;max-width:62ch}
+.btn{display:inline-block;background:var(--mag);color:#fff;font:800 18px 'Bricolage Grotesque',sans-serif;padding:14px 28px;border:3px solid var(--ink);border-radius:999px;text-decoration:none;box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s;cursor:pointer}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.btn.tan{background:var(--tan);color:var(--ink)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;gap:16px}
+.logo{font-weight:800;font-size:26px;letter-spacing:-.04em}
+.logo b{color:var(--mag)}
+/* hero */
+.hero{padding-top:24px}
+.hero h1{font-size:clamp(42px,8vw,104px)}
+.hero h1 span{display:block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 span:nth-child(2){animation-delay:.15s;color:var(--mag)}
+.hero h1 span:nth-child(3){animation-delay:.3s}
+@keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.hero p.lead{font-size:clamp(19px,2.2vw,23px);margin:24px 0 28px}
+.stage{margin-top:44px;border:3px solid var(--ink);border-radius:28px;background:var(--lime2);overflow:hidden;box-shadow:8px 8px 0 var(--ink)}
+.bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:3px solid var(--ink);background:var(--lime)}
+.seg{display:flex;border:3px solid var(--ink);border-radius:999px;overflow:hidden}
+.seg button{font:800 16px 'Bricolage Grotesque',sans-serif;padding:8px 20px;border:0;background:transparent;color:var(--ink);cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--lime)}
+.count{font-weight:800}
+.count em{font-style:normal;background:var(--tan);padding:2px 12px;border-radius:999px;border:2px solid var(--ink)}
+canvas{display:block;width:100%;height:340px;touch-action:pan-y}
+.cap{padding:12px 18px;border-top:3px solid var(--ink);font-size:16px;margin:0;max-width:none}
+/* core */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;margin-top:36px}
+.blk{border:3px solid var(--ink);border-radius:24px;padding:28px;box-shadow:6px 6px 0 var(--ink)}
+.blk svg{width:56px;height:56px;margin-bottom:14px}
+.blk.b1{background:var(--ink);color:var(--lime)}
+.blk.b2{background:var(--mag);color:#fff}
+.blk.b3{background:var(--tan)}
+.blk.b4{background:var(--lime2)}
+.blk p{margin:0}
+/* quadrant */
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;align-items:center;margin-top:30px}
+.quad{position:relative;padding:0 0 30px 30px}
+.qg{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;aspect-ratio:1/.85}
+.qg button{font:800 16px/1.2 'Bricolage Grotesque',sans-serif;border:3px solid var(--ink);border-radius:18px;background:var(--lime2);color:var(--ink);cursor:pointer;padding:10px;transition:transform .2s,background .2s}
+.qg button:hover{transform:scale(1.03)}
+.qg button[aria-pressed=true]{background:var(--ink);color:var(--lime)}
+.qg button.hot{background:var(--mag);color:#fff}
+.qg button.hot[aria-pressed=true]{background:var(--tan);color:var(--ink)}
+.ax{position:absolute;font-weight:800;font-size:15px}
+.ax.y{left:0;top:50%;transform:translate(-50%,-50%) rotate(-90deg);white-space:nowrap}
+.ax.x{bottom:0;left:60%;transform:translateX(-50%)}
+.qout{min-height:92px;border:3px dashed var(--ink);border-radius:18px;padding:16px;margin-top:16px}
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 20px}
+.tabs button{font:800 17px 'Bricolage Grotesque',sans-serif;border:3px solid var(--ink);border-radius:999px;background:transparent;color:var(--ink);padding:9px 20px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--lime)}
+.panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;animation:pop .35s both}
+@keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.panel div{border:3px solid var(--ink);border-radius:22px;padding:22px;background:var(--lime2)}
+.panel div:last-child{background:var(--tan);box-shadow:6px 6px 0 var(--ink)}
+.panel small{display:block;font-weight:800;font-size:16px;margin-bottom:6px}
+/* garden */
+.garden{border:3px solid var(--ink);border-radius:28px;background:var(--lime2);padding:clamp(16px,3vw,32px);box-shadow:8px 8px 0 var(--ink)}
+.garden svg{display:block;width:100%;height:auto}
+.chk{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:22px 0}
+.chk label{display:flex;gap:12px;align-items:flex-start;border:3px solid var(--ink);border-radius:16px;padding:12px 14px;cursor:pointer;background:var(--lime);font-weight:600;line-height:1.3}
+.chk input{width:22px;height:22px;accent-color:var(--mag);flex:none;margin-top:1px}
+.chk label:has(input:checked){background:var(--ink);color:var(--lime)}
+.meter{height:22px;border:3px solid var(--ink);border-radius:999px;overflow:hidden;background:var(--lime)}
+.meter i{display:block;height:100%;width:0;background:var(--mag);transition:width .6s cubic-bezier(.3,1.4,.5,1),background .3s}
+.msg{font-weight:800;font-size:20px;margin:12px 0 0}
+.grow{transform-box:fill-box;transform-origin:50% 100%;transform:scale(0);transition:transform .8s cubic-bezier(.3,1.6,.5,1)}
+.on .grow{transform:scale(1)}
+.bee{display:none;fill:var(--tan);stroke:var(--ink);stroke-width:2;animation:drift 5s ease-in-out infinite alternate}
+@keyframes drift{0%{transform:translate(0,0)}33%{transform:translate(40px,-24px)}66%{transform:translate(-30px,-40px)}100%{transform:translate(24px,16px)}}
+/* qualifier */
+.qual{border:3px solid var(--ink);border-radius:28px;padding:clamp(20px,3vw,36px);background:var(--ink);color:var(--lime);box-shadow:8px 8px 0 var(--mag);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px}
+.qual label{display:block;font-weight:800;margin-bottom:2px}
+.qual label span{font-weight:500;opacity:.85}
+.qual input[type=range]{width:100%;accent-color:var(--tan);margin:2px 0 16px}
+.dial{background:var(--lime);color:var(--ink);border-radius:22px;padding:22px;text-align:center}
+.dial b{display:block;font-size:68px;line-height:1;letter-spacing:-.04em}
+.dial .meter{margin:14px 0}
+/* lessons */
+.les{display:grid;gap:16px;margin-top:30px}
+.les p{max-width:none;font-weight:800;font-size:clamp(22px,3.4vw,36px);line-height:1.12;letter-spacing:-.025em;margin:0;padding:18px 0 18px 26px;border-left:12px solid var(--mag)}
+.les p:nth-child(even){border-color:var(--tan)}
+/* cta */
+.cta{text-align:center}
+.cta h2{margin-inline:auto;max-width:14ch}
+.cta svg{width:150px;height:150px;margin-bottom:10px;animation:sway 4s ease-in-out infinite alternate;transform-origin:50% 100%}
+@keyframes sway{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
+footer{border-top:3px solid var(--ink);padding:32px 0 48px;font-size:17px}
+footer p{max-width:none;margin:0}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <div class="logo">Easy<b>Land</b>X</div>
+  <a class="btn tan" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</nav>
+
+<header class="hero">
+  <h1><span>Stop chasing.</span><span>Let buyers</span><span>chase you.</span></h1>
+  <p class="lead">EasyLandX builds affordable, conversion-focused landing pages that work like a garden: they teach, build trust and bring high-intent buyers to you. Try both mindsets below.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+
+  <div class="stage">
+    <div class="bar">
+      <div class="seg" role="group" aria-label="Choose a mindset">
+        <button id="mH" aria-pressed="true">Hunter</button>
+        <button id="mA" aria-pressed="false">Attractor</button>
+      </div>
+      <div class="count"><span id="cl">Buyers backing away</span> <em id="cn">0</em></div>
+    </div>
+    <canvas id="field" aria-label="Animated buyers moving away from a hunter or toward a landing page"></canvas>
+    <p class="cap" id="cap">The hunter pushes harder, and buyers step back. Switch to Attractor to see them walk toward your page.</p>
+  </div>
+</header>
+
+<section id="mind">
+  <h2>From hunter to attractor</h2>
+  <p>Cold outreach, aggressive pitching and constant follow-up trigger defensive reactions. Attractors publish value, show results and build authority, so buyers start the conversation themselves. Your landing page is the heart of that system.</p>
+  <div class="grid2">
+    <div class="blk b1">
+      <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"><path d="M12 6v24a16 16 0 0 0 32 0V6h-10v24a6 6 0 0 1-12 0V6z"/><path d="M12 14h10M34 14h10" stroke="#E0008A"/></svg>
+      <h3>The mindset shift</h3><p>Publish value, demonstrate results and establish authority. Buyers who feel pulled stay curious instead of guarded.</p>
+    </div>
+    <div class="blk b2">
+      <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"><rect x="8" y="8" width="40" height="40" rx="6"/><path d="M18 20h20M18 29h20M18 38h12"/></svg>
+      <h3>Education first</h3><p>Lead with your buyer’s biggest problem instead of a product deck. Explain it better than anyone and you become the obvious expert.</p>
+    </div>
+    <div class="blk b3">
+      <svg viewBox="0 0 56 56" fill="#14180A"><path d="M32 4 10 32h14l-4 20 26-30H31z"/></svg>
+      <h3>Disruptive problems</h3><p>Aim at issues that are both important and urgent. Those are the problems buyers want solved this week.</p>
+    </div>
+    <div class="blk b4">
+      <svg viewBox="0 0 56 56" fill="none" stroke="#14180A" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M28 4l20 8v16c0 14-9 22-20 26C17 50 8 42 8 28V12z"/><path d="m18 28 7 7 13-14" stroke="#E0008A"/></svg>
+      <h3>Trust as the engine</h3><p>Clear pricing, timelines, expectations and proof points remove friction and speed up every deal.</p>
+    </div>
+  </div>
+</section>
+
+<section id="quad">
+  <h2>Find the disruptive problem</h2>
+  <p>Press a square. The top-right square is where your headline and lead magnet earn the fastest response.</p>
+  <div class="split">
+    <div class="quad">
+      <span class="ax y">Importance →</span><span class="ax x">Urgency →</span>
+      <div class="qg" id="qg">
+        <button data-t="Important, steady pace. Share these in your nurture series and guides so buyers keep learning with you.">Important, not urgent</button>
+        <button class="hot" data-t="Disruptive problem. Both important and urgent, so buyers act quickly. Put it in your headline and your lead magnet.">Disruptive problem</button>
+        <button data-t="Not a priority yet. Keep it for a later blog post or a short FAQ on your page.">Quiet topics</button>
+        <button data-t="Urgent with smaller stakes. Quick tips and short answers build goodwill fast.">Urgent, lower stakes</button>
+      </div>
+    </div>
+    <div>
+      <h3>What it means for your page</h3>
+      <div class="qout" id="qo" aria-live="polite">Choose a square to see how to use it.</div>
+    </div>
+  </div>
+</section>
+
+<section id="play">
+  <h2>The five-part playbook</h2>
+  <p>Each strategy from the book becomes a clear building block on an EasyLandX landing page.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="panel" id="panel" role="tabpanel" aria-live="polite"></div>
+</section>
+
+<section id="garden">
+  <h2>Grow your garden</h2>
+  <p>An inbound system works on its own, day and night. Tick each element and watch your garden bloom and your buyers arrive.</p>
+  <div class="garden">
+    <svg viewBox="0 0 600 270" id="gs" role="img" aria-label="A garden with five plants that grow as you tick elements">
+      <circle cx="530" cy="46" r="26" fill="#FF8A00" stroke="#14180A" stroke-width="3"/>
+      <path d="M0 232h600v38H0z" fill="#14180A"/>
+      <g id="p0" transform="translate(60,232)"><g class="grow"><path d="M0 0V-92" stroke="#14180A" stroke-width="6" fill="none"/><path d="M0-30q-24-4-26-22q22 0 26 22" fill="#14180A"/><circle cy="-104" r="22" fill="#E0008A" stroke="#14180A" stroke-width="4"/><circle cy="-104" r="8" fill="#FF8A00"/></g></g>
+      <g id="p1" transform="translate(180,232)"><g class="grow"><path d="M0 0V-150" stroke="#14180A" stroke-width="6" fill="none"/><path d="M0-50q26-4 28-24q-24 2-28 24" fill="#14180A"/><g fill="#FF8A00" stroke="#14180A" stroke-width="3"><circle cy="-172" r="26"/><circle cx="-26" cy="-172" r="9"/><circle cx="26" cy="-172" r="9"/><circle cy="-198" r="9"/></g><circle cy="-172" r="11" fill="#14180A"/></g></g>
+      <g id="p2" transform="translate(300,232)"><g class="grow"><path d="M0 0V-110" stroke="#14180A" stroke-width="6" fill="none"/><path d="M0-40q-26-6-28-26q24 2 28 26" fill="#14180A"/><path d="M-24-112q0 30 24 30t24-30l-12 12-12-22-12 22z" fill="#E0008A" stroke="#14180A" stroke-width="4" stroke-linejoin="round"/></g></g>
+      <g id="p3" transform="translate(420,232)"><g class="grow"><path d="M0 0V-100M0-50l-26-26M0-66l26-26" stroke="#14180A" stroke-width="6" fill="none"/><g fill="#FF8A00" stroke="#14180A" stroke-width="3"><circle cy="-112" r="14"/><circle cx="-30" cy="-82" r="12"/><circle cx="30" cy="-98" r="12"/></g></g></g>
+      <g id="p4" transform="translate(540,232)"><g class="grow"><path d="M0 0V-70" stroke="#14180A" stroke-width="6" fill="none"/><path d="M0-26q22-4 24-22q-20 2-24 22" fill="#14180A"/><g fill="#E0008A" stroke="#14180A" stroke-width="3"><circle cx="-14" cy="-82" r="10"/><circle cx="14" cy="-82" r="10"/><circle cy="-96" r="10"/><circle cy="-68" r="10"/></g><circle cy="-82" r="8" fill="#FF8A00"/></g></g>
+      <g id="bees"></g>
+    </svg>
+    <div class="chk" id="chk">
+      <label><input type="checkbox"> Lead magnet: a free landing page checklist</label>
+      <label><input type="checkbox"> Authority: your face, story and client wins</label>
+      <label><input type="checkbox"> Qualification: a short “this is for you if…” form</label>
+      <label><input type="checkbox"> Nurture: a welcome email and SMS series</label>
+      <label><input type="checkbox"> Friction-free: visible pricing and one-click booking</label>
+    </div>
+    <div class="meter" aria-hidden="true"><i id="gb"></i></div>
+    <p class="msg" id="gm" aria-live="polite">Plant your first seed.</p>
+  </div>
+</section>
+
+<section id="fit">
+  <h2>Qualify with confidence</h2>
+  <p>Clear criteria protect your energy for high-intent accounts. Slide each score to see how a lead fits and what to do next.</p>
+  <div class="qual">
+    <div>
+      <label for="s0">Budget <span>matches your investment tiers</span></label><input id="s0" type="range" min="0" max="10" value="5">
+      <label for="s1">Authority <span>can say yes</span></label><input id="s1" type="range" min="0" max="10" value="5">
+      <label for="s2">Urgency <span>needs a fix soon</span></label><input id="s2" type="range" min="0" max="10" value="5">
+      <label for="s3">Alignment <span>fits your solution</span></label><input id="s3" type="range" min="0" max="10" value="5">
+    </div>
+    <div class="dial">
+      <b id="fs">50%</b>
+      <div class="meter"><i id="fb" style="width:50%"></i></div>
+      <p id="fm" style="margin:0 auto" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section id="lessons">
+  <h2>Four lessons to keep</h2>
+  <div class="les">
+    <p>Pause the pitch. Start a meaningful conversation.</p>
+    <p>Solve real problems in public, and buyers ask for tailored help in private.</p>
+    <p>Build a system that captures, qualifies and follows up for you.</p>
+    <p>Position your brand around results and proof, not features and claims.</p>
+  </div>
+</section>
+
+<section class="cta">
+  <svg viewBox="0 0 150 150" aria-hidden="true"><path d="M75 146V60" stroke="#14180A" stroke-width="8" stroke-linecap="round" fill="none"/><path d="M75 110q-40-4-46-40q38 2 46 40" fill="#E0008A" stroke="#14180A" stroke-width="5"/><path d="M75 90q40-4 46-40q-38 2-46 40" fill="#FF8A00" stroke="#14180A" stroke-width="5"/><circle cx="75" cy="44" r="20" fill="#14180A"/><circle cx="75" cy="44" r="8" fill="#C8FF00"/></svg>
+  <h2>Ready to plant your garden?</h2>
+  <p style="margin-inline:auto">Get a landing page that educates, builds trust and makes the next step effortless.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+</section>
+</div>
+
+<footer><div class="wrap"><p>Inspired by <em>How to Get Buyers to Chase You: The B2B Growth Playbook for Attracting Leads, Building Trust, and Closing Faster</em> by Solomon Thimothy.</p></div></footer>
+
+<script>
+(()=>{
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+/* hero field */
+const c=document.getElementById('field'),g=c.getContext('2d'),N=48,D=[],H={x:60,y:60,a:0},M={x:-999,y:-999};
+let W=0,Ht=0,mode='h',t=0,leads=0,away=0;
+function size(){const r=c.getBoundingClientRect(),d=devicePixelRatio||1;W=r.width;Ht=r.height;c.width=W*d;c.height=Ht*d;g.setTransform(d,0,0,d,0,0)}
+function seed(){D.length=0;for(let i=0;i<N;i++)D.push({x:Math.random()*W,y:Math.random()*Ht,vx:0,vy:0,l:false})}
+c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();M.x=e.clientX-r.left;M.y=e.clientY-r.top});
+c.addEventListener('pointerleave',()=>{M.x=M.y=-999});
+function step(){
+ t+=.016;const cx=W/2,cy=Ht/2;leads=0;away=0;
+ if(mode==='h'){let n=null,nd=1e9;for(const p of D){const d=(p.x-H.x)**2+(p.y-H.y)**2;if(d<nd){nd=d;n=p}}
+  if(n){const dx=n.x-H.x,dy=n.y-H.y,l=Math.hypot(dx,dy)||1;H.x+=dx/l*1.9;H.y+=dy/l*1.9;H.a=Math.atan2(dy,dx)}}
+ for(const p of D){
+  let ax=0,ay=0;
+  if(mode==='h'){p.l=false;
+   for(const s of [H,M]){const dx=p.x-s.x,dy=p.y-s.y,d=Math.hypot(dx,dy);if(d<150&&d>0){const f=(150-d)/150*.5;ax+=dx/d*f;ay+=dy/d*f;if(s===H)away++}}
+   ax+=(Math.random()-.5)*.12;ay+=(Math.random()-.5)*.12;
+  }else{
+   const dx=cx-p.x,dy=cy-p.y,d=Math.hypot(dx,dy)||1,f=Math.min(.09,.0006*d+.02);
+   ax=dx/d*f-dy/d*.018;ay=dy/d*f+dx/d*.018;
+   if(d<95){p.l=true;leads++}else p.l=false;
+   if(d<46){ax-=dx/d*.16;ay-=dy/d*.16}
+  }
+  p.vx=(p.vx+ax)*.96;p.vy=(p.vy+ay)*.96;const s=Math.hypot(p.vx,p.vy);if(s>3.4){p.vx*=3.4/s;p.vy*=3.4/s}
+  p.x+=p.vx;p.y+=p.vy;
+  if(p.x<6||p.x>W-6){p.vx*=-1;p.x=Math.max(6,Math.min(W-6,p.x))}
+  if(p.y<6||p.y>Ht-6){p.vy*=-1;p.y=Math.max(6,Math.min(Ht-6,p.y))}
+ }
+}
+function draw(){
+ g.clearRect(0,0,W,Ht);const cx=W/2,cy=Ht/2;
+ if(mode==='a'){
+  g.lineWidth=3;
+  for(let k=0;k<3;k++){const r=40+((t*30+k*40)%120);g.strokeStyle='rgba(224,0,138,'+(1-(r-40)/120)+')';g.beginPath();g.arc(cx,cy,r,0,7);g.stroke()}
+  g.fillStyle='#E0008A';g.strokeStyle='#14180A';g.lineWidth=4;g.beginPath();g.roundRect(cx-40,cy-32,80,64,10);g.fill();g.stroke();
+  g.strokeStyle='#fff';g.lineWidth=4;g.lineCap='round';g.beginPath();g.moveTo(cx-24,cy-14);g.lineTo(cx+24,cy-14);g.moveTo(cx-24,cy+2);g.lineTo(cx+10,cy+2);g.stroke();
+  g.fillStyle='#FF8A00';g.beginPath();g.roundRect(cx-24,cy+13,34,10,5);g.fill();
+ }else{
+  g.save();g.translate(H.x,H.y);g.rotate(H.a);g.fillStyle='#E0008A';g.strokeStyle='#14180A';g.lineWidth=3;g.beginPath();g.moveTo(18,0);g.lineTo(-12,-13);g.lineTo(-6,0);g.lineTo(-12,13);g.closePath();g.fill();g.stroke();g.restore();
+ }
+ for(const p of D){g.beginPath();g.arc(p.x,p.y,p.l?7:5,0,7);g.fillStyle=p.l?'#FF8A00':'#14180A';g.fill();if(p.l){g.strokeStyle='#14180A';g.lineWidth=2;g.stroke()}}
+ document.getElementById('cn').textContent=mode==='h'?away:leads;
+}
+function loop(){step();draw();requestAnimationFrame(loop)}
+function setMode(m){mode=m;
+ document.getElementById('mH').setAttribute('aria-pressed',m==='h');document.getElementById('mA').setAttribute('aria-pressed',m==='a');
+ document.getElementById('cl').textContent=m==='h'?'Buyers backing away':'Buyers reaching out';
+ document.getElementById('cap').textContent=m==='h'?'The hunter pushes harder, and buyers step back. Switch to Attractor to see them walk toward your page.':'Your landing page educates and shows proof, so buyers move in on their own and turn into leads.';
+ if(rm){for(let i=0;i<260;i++)step();draw()}}
+document.getElementById('mH').onclick=()=>setMode('h');
+document.getElementById('mA').onclick=()=>setMode('a');
+size();seed();addEventListener('resize',()=>{size()});
+if(rm){setMode('h')}else loop();
+/* quadrant */
+const qo=document.getElementById('qo'),qb=[...document.querySelectorAll('#qg button')];
+qb.forEach(b=>b.onclick=()=>{qb.forEach(x=>x.setAttribute('aria-pressed',x===b));qo.textContent=b.dataset.t});
+/* tabs */
+const T=[
+["Lead magnet","Attracts qualified buyers and quietly filters out low-fit leads.","Offer a high-value tool, assessment, free consultation or framework that solves an urgent pain point and delivers an immediate win.","A free landing page audit or checklist front and center, with one short form."],
+["Authority","Buyers build relationships with people, not faceless organizations.","Share case-study breakdowns, behind-the-scenes processes, team wins and real client outcomes. Show your face and voice often.","Founder photo, a short video, client results and a “how we built it” story."],
+["Qualification","Focusing on well-matched prospects saves resources and shortens the pipeline.","Set clear criteria for budget, authority, urgency and alignment. Choose fit early to save sales energy for high-intent accounts.","A form with three fit questions and a friendly “this is for you if…” section."],
+["Nurture engine","Most buyers need time, so helpful touchpoints keep you top of mind.","Combine email and SMS series with retargeting ads and value-based check-ins that share insights, case studies and guides.","A welcome email series triggered by the form, plus retargeting on the page."],
+["Friction-free path","Simple journeys speed up deals and keep buyers moving.","Simplify scheduling, outline process steps up front, show pricing or investment tiers and streamline onboarding.","A three-step process strip, visible pricing tiers and an embedded booking button."]];
+const tb=document.getElementById('tabs'),pn=document.getElementById('panel');
+function show(i){[...tb.children].forEach((b,j)=>b.setAttribute('aria-selected',i===j));const d=T[i];
+ pn.innerHTML='<div><small>Role</small>'+d[1]+'</div><div><small>Execution</small>'+d[2]+'</div><div><small>On your landing page</small>'+d[3]+'</div>';
+ pn.style.animation='none';pn.offsetWidth;pn.style.animation=''}
+T.forEach((d,i)=>{const b=document.createElement('button');b.role='tab';b.textContent=d[0];b.onclick=()=>show(i);tb.appendChild(b)});show(0);
+/* garden */
+const msgs=["Plant your first seed.","One bloom is up, and buyers notice.","Your garden is growing.","Trust builds with every visit.","Almost a full garden.","Full garden: buyers reach out on their own."];
+const bx=[...document.querySelectorAll('#chk input')],bees=document.getElementById('bees'),bl=[];
+for(let i=0;i<15;i++){const e=document.createElementNS('http://www.w3.org/2000/svg','circle');e.setAttribute('r',5);e.setAttribute('class','bee');e.setAttribute('cx',40+Math.random()*520);e.setAttribute('cy',50+Math.random()*120);e.style.animationDelay=(-Math.random()*5)+'s';e.style.animationDuration=(3+Math.random()*3)+'s';bees.appendChild(e);bl.push(e)}
+function up(){const n=bx.filter(b=>b.checked).length;
+ bx.forEach((b,i)=>document.getElementById('p'+i).classList.toggle('on',b.checked));
+ document.getElementById('gb').style.width=n*20+'%';document.getElementById('gm').textContent=msgs[n];
+ bl.forEach((e,i)=>e.style.display=i<n*3?'block':'none')}
+bx.forEach(b=>b.onchange=up);
+/* qualifier */
+const sl=[0,1,2,3].map(i=>document.getElementById('s'+i));
+function fit(){const s=Math.round(sl.reduce((a,x)=>a+ +x.value,0)*2.5);
+ document.getElementById('fs').textContent=s+'%';const b=document.getElementById('fb');b.style.width=s+'%';b.style.background=s>=75?'#E0008A':s>=50?'#FF8A00':'#14180A';
+ document.getElementById('fm').textContent=s>=75?'High fit. Invite them to book a call right away.':s>=50?'Growing fit. Send a helpful guide and a friendly check-in.':'Early stage. Nurture with useful content until the timing is right.'}
+sl.forEach(x=>x.oninput=fit);fit();
+})();
+</script>
+</body>
+</html>

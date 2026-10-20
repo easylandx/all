@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Landing Pages with a Human Heart</title>
+<style>
+:root{--bg:#00F0C0;--ink:#062a24;--y:#FFD000;--o:#FF5A36;--w:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;line-height:1.6;overflow-x:hidden}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(24px,9vw,120px)}
+section{padding:clamp(64px,10vw,120px) 0}
+h1,h2,h3{font-weight:900;line-height:1.08;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,7vw,4.6rem)}h2{font-size:clamp(1.8rem,4.6vw,3rem)}h3{font-size:1.25rem}
+p{margin:0 0 1em;max-width:62ch}
+.tag{display:inline-block;background:var(--ink);color:var(--y);font-weight:900;padding:.3em .9em;border-radius:99px;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.2rem}
+mark{background:var(--y);color:var(--ink);padding:0 .2em;border-radius:6px}
+mark.o{background:var(--o);color:#fff}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font-weight:900;font-size:1.3rem}.logo b{color:var(--o)}
+.btn{display:inline-block;background:var(--o);color:#fff;font-weight:900;text-decoration:none;padding:.9em 1.6em;border-radius:99px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transition:.15s;cursor:pointer;font-size:1rem;font-family:inherit}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.btn.y{background:var(--y);color:var(--ink)}
+.hero{display:grid;gap:40px;align-items:center;grid-template-columns:1.1fr .9fr;padding-top:30px}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+.card{background:var(--w);border:3px solid var(--ink);border-radius:28px;padding:clamp(22px,4vw,40px);box-shadow:8px 8px 0 var(--ink)}
+.grid{display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.band{background:var(--y)}.band2{background:var(--ink);color:var(--bg)}
+.band2 .card{color:var(--ink)}
+.float{animation:fl 5s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-14px)}}
+.spin{animation:sp 30s linear infinite;transform-origin:center}@keyframes sp{to{transform:rotate(360deg)}}
+.pulse{animation:pu 2.4s ease-in-out infinite;transform-origin:center;transform-box:fill-box}@keyframes pu{50%{transform:scale(1.12)}}
+.rev{opacity:0;transform:translateY(30px);transition:.8s}.rev.on{opacity:1;transform:none}
+.ico{width:64px;height:64px;margin-bottom:12px}
+/* slider */
+input[type=range]{width:100%;accent-color:var(--o);height:30px}
+.meter{height:22px;border:3px solid var(--ink);border-radius:99px;overflow:hidden;background:#fff;margin:6px 0 14px}
+.meter i{display:block;height:100%;transition:width .3s}
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+.chip{border:3px solid var(--ink);background:#fff;border-radius:99px;padding:.6em 1.1em;font-weight:900;cursor:pointer;font-family:inherit;font-size:.95rem;color:var(--ink)}
+.chip.on{background:var(--ink);color:var(--y)}
+.out{background:var(--bg);border:3px dashed var(--ink);border-radius:20px;padding:18px 22px;min-height:96px}
+/* breath */
+.breath{width:150px;height:150px;border-radius:50%;background:var(--y);border:4px solid var(--ink);margin:20px auto;display:flex;align-items:center;justify-content:center;font-weight:900;text-align:center;transition:transform 4s ease-in-out,background 4s;cursor:pointer;user-select:none}
+.breath.in{transform:scale(1.45);background:var(--o);color:#fff}
+.steps{counter-reset:s;padding:0;list-style:none}
+.steps li{counter-increment:s;padding:14px 0 14px 60px;position:relative;border-bottom:2px solid rgba(6,42,36,.2)}
+.steps li:before{content:counter(s);position:absolute;left:0;top:10px;width:42px;height:42px;border-radius:50%;background:var(--o);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;border:3px solid var(--ink)}
+footer{padding:60px 0 80px;text-align:center}
+.credit{font-weight:900;font-size:1.05rem}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+<nav><div class="logo">Easy<b>Land</b>X</div><a class="btn y" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a></nav>
+</header>
+
+<main>
+<section style="padding-top:20px">
+<div class="wrap hero">
+<div>
+<span class="tag">Landing pages • Human first</span>
+<h1>Landing pages that <mark>feel</mark> human and <mark class="o">act</mark> with confidence.</h1>
+<p>When AI writes the pitch for everyone, the page that wins is the one that understands its visitor and invites a clear next step. EasyLandX builds conversion-focused landing pages and websites for small businesses at an affordable price, powered by empathy and assertiveness.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a>
+<a class="btn y" href="#balance" style="margin-left:8px">Try the Balance Lab</a>
+</div>
+<div class="float">
+<svg viewBox="0 0 400 360" role="img" aria-label="Heart and arrow joined in two overlapping circles">
+<circle class="spin" cx="200" cy="180" r="170" fill="none" stroke="#062a24" stroke-width="3" stroke-dasharray="4 14" stroke-linecap="round"/>
+<circle cx="150" cy="180" r="105" fill="#FFD000" stroke="#062a24" stroke-width="5"/>
+<circle cx="250" cy="180" r="105" fill="#FF5A36" stroke="#062a24" stroke-width="5" style="mix-blend-mode:multiply"/>
+<path class="pulse" d="M110 165c0-22 30-26 40-6 10-20 40-16 40 6 0 24-40 44-40 44s-40-20-40-44z" fill="#fff" stroke="#062a24" stroke-width="4"/>
+<path d="M235 205l55-50m0 0h-34m34 0v34" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="150" y="295" text-anchor="middle" font-weight="900" font-size="18" fill="#062a24">EMPATHY</text>
+<text x="255" y="295" text-anchor="middle" font-weight="900" font-size="18" fill="#062a24">ASSERTIVENESS</text>
+<circle cx="200" cy="180" r="9" fill="#062a24"/>
+</svg>
+</div>
+</div>
+</section>
+
+<section class="band">
+<div class="wrap">
+<span class="tag">Message 01</span>
+<h2>The human element is the ultimate differentiator.</h2>
+<p>AI now drafts proposals, finds data, and prepares pitches. Product knowledge is available to everyone, so technology stops being an edge. What stands out is emotional intelligence and genuine human connection.</p>
+<div class="grid">
+<div class="card rev"><svg class="ico" viewBox="0 0 64 64"><rect x="10" y="14" width="44" height="36" rx="8" fill="#00F0C0" stroke="#062a24" stroke-width="4"/><circle cx="24" cy="30" r="5" fill="#062a24"/><circle cx="40" cy="30" r="5" fill="#062a24"/><path d="M22 41h20" stroke="#062a24" stroke-width="4" stroke-linecap="round"/><path d="M32 14V6" stroke="#062a24" stroke-width="4"/><circle cx="32" cy="5" r="3" fill="#FF5A36"/></svg><h3>Everyone has the same data</h3><p>Copy, layouts, and facts are easy to generate. Sameness is the new default.</p></div>
+<div class="card rev"><svg class="ico" viewBox="0 0 64 64"><path d="M32 54C8 38 6 20 18 14c7-3 12 1 14 6 2-5 7-9 14-6 12 6 10 24-14 40z" fill="#FF5A36" stroke="#062a24" stroke-width="4" stroke-linejoin="round"/></svg><h3>Connection is the edge</h3><p>A page that mirrors a visitor's real feelings earns trust that no template can copy.</p></div>
+<div class="card rev"><svg class="ico" viewBox="0 0 64 64"><circle cx="32" cy="32" r="22" fill="#FFD000" stroke="#062a24" stroke-width="4"/><path d="M22 32l8 8 14-16" fill="none" stroke="#062a24" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Trust closes the deal</h3><p>Closing stays human to human, and your landing page is the first handshake.</p></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<span class="tag">Message 02</span>
+<h2>Guide visitors through decision anxiety.</h2>
+<p>Buyers face information overload and big choices. A great page does more than list features: it calms the moment, clarifies the path, and shows what happens next.</p>
+<div class="card rev">
+<svg viewBox="0 0 700 170" width="100%" role="img" aria-label="Path from overwhelmed to confident">
+<path d="M30 120 C120 20 180 160 260 90 S400 20 470 90 S600 120 670 60" fill="none" stroke="#062a24" stroke-width="6" stroke-linecap="round" stroke-dasharray="2 14"/>
+<g class="pulse"><circle cx="40" cy="118" r="22" fill="#FF5A36" stroke="#062a24" stroke-width="4"/></g>
+<circle cx="350" cy="62" r="22" fill="#FFD000" stroke="#062a24" stroke-width="4"/>
+<circle cx="665" cy="62" r="22" fill="#00F0C0" stroke="#062a24" stroke-width="4"/>
+<text x="40" y="162" text-anchor="middle" font-weight="900" font-size="15">Overwhelmed</text>
+<text x="350" y="30" text-anchor="middle" font-weight="900" font-size="15">Understood</text>
+<text x="660" y="105" text-anchor="middle" font-weight="900" font-size="15">Confident</text>
+</svg>
+</div>
+</div>
+</section>
+
+<section class="band2" id="balance">
+<div class="wrap">
+<span class="tag" style="background:var(--y);color:var(--ink)">Message 03 • Interactive</span>
+<h2>Assertiveness is empathy taking action.</h2>
+<p>Empathy brings patience, warmth, and active listening. Assertiveness brings directness, drive, and confidence. Slide to see how a landing page behaves at each balance.</p>
+<div class="card">
+<label for="bal" style="font-weight:900">Empathy ◀──────▶ Assertiveness</label>
+<input id="bal" type="range" min="0" max="100" value="50" aria-label="Balance between empathy and assertiveness">
+<div>Empathy <b id="ev">50%</b></div><div class="meter"><i id="em" style="background:#FFD000;width:50%"></i></div>
+<div>Assertiveness <b id="av">50%</b></div><div class="meter"><i id="am" style="background:#FF5A36;width:50%"></i></div>
+<div class="out" id="balOut"></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<span class="tag">Lesson 01</span>
+<h2>Find your silent voice.</h2>
+<p>Your silent voice is the inner compass of self-awareness, emotional presence, and intuition. AI processes data; your silent voice decides how to connect, what to say, and when to pause and listen. At EasyLandX, every page starts there: the owner's own voice, made clear.</p>
+<div class="grid">
+<div class="card rev" style="background:var(--y)"><h3>Listen first</h3><p>We learn how you speak with customers before we write a single headline.</p></div>
+<div class="card rev" style="background:var(--o);color:#fff"><h3>Speak clearly</h3><p>One promise, one message, one bold button on every page.</p></div>
+<div class="card rev"><h3>Stay present</h3><p>Pages shaped by intuition, so visitors feel a person on the other side.</p></div>
+</div>
+</div>
+</section>
+
+<section class="band">
+<div class="wrap">
+<span class="tag">Lesson 02 • Interactive</span>
+<h2>Keep the balance. Both sides matter.</h2>
+<p>Pick a style and see what it brings to a landing page.</p>
+<div class="chips" id="chips">
+<button class="chip" data-k="e">Empathy only</button>
+<button class="chip" data-k="a">Assertiveness only</button>
+<button class="chip on" data-k="b">Balanced mastery</button>
+</div>
+<div class="card" id="trap"></div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<span class="tag">Strategy 01 • Interactive</span>
+<h2>AI prepares. Humans connect.</h2>
+<p>Hand routine work to AI, then invest the saved time in authentic conversation. Toggle to see the split in an EasyLandX project.</p>
+<div class="chips"><button class="chip on" data-s="ai">AI prepares</button><button class="chip" data-s="hu">Humans connect</button></div>
+<div class="card" id="split"></div>
+</div>
+</section>
+
+<section class="band2">
+<div class="wrap">
+<span class="tag" style="background:var(--y);color:var(--ink)">Strategy 02 • Interactive</span>
+<h2>Practice the dynamic pause.</h2>
+<p>Deliberate pauses reveal emotional shifts that tools cannot detect. Tap the circle and breathe: in for four seconds, out for four seconds, then speak.</p>
+<div class="card" style="text-align:center">
+<div class="breath" id="br" role="button" tabindex="0">Tap to<br>pause</div>
+<p id="brTxt" style="margin:0 auto;font-weight:900">Notice. Listen. Then lead.</p>
+</div>
+</div>
+</section>
+
+<section class="band">
+<div class="wrap">
+<span class="tag">Strategy 03 • Interactive</span>
+<h2>Reframe objections with actionable empathy.</h2>
+<p>Validate the worry sincerely, then assertively solve the root cause. Choose a visitor concern:</p>
+<div class="chips" id="obj">
+<button class="chip on" data-o="0">"Too expensive"</button>
+<button class="chip" data-o="1">"I'm not sure yet"</button>
+<button class="chip" data-o="2">"Will it work for me?"</button>
+</div>
+<div class="card" id="objOut"></div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<span class="tag">Framework</span>
+<h2>The EasyLandX Human Page Method</h2>
+<ol class="steps">
+<li><b>Hear</b> — listen to the owner's silent voice and the customer's real concern.</li>
+<li><b>Validate</b> — open the page with words that show the visitor is understood.</li>
+<li><b>Guide</b> — reduce choices and lead the eye to one clear step.</li>
+<li><b>Act</b> — a bold, confident button that turns empathy into action.</li>
+<li><b>Pause &amp; refine</b> — watch real signals, then improve with care.</li>
+</ol>
+</div>
+</section>
+
+<section class="band2" style="text-align:center">
+<div class="wrap">
+<svg viewBox="0 0 120 120" width="120" class="float" aria-hidden="true"><circle cx="45" cy="60" r="34" fill="#FFD000"/><circle cx="75" cy="60" r="34" fill="#FF5A36" style="mix-blend-mode:multiply"/></svg>
+<h2>Ready for a page with a human heart?</h2>
+<p style="margin-inline:auto">Affordable. Conversion-focused. Not a template, not a builder: a landing page made for your business.</p>
+<a class="btn y" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a>
+</div>
+</section>
+</main>
+
+<footer class="wrap">
+<p class="credit" style="margin-inline:auto">Inspired by <i>Humanizing Selling in an AI World: Empathy and Assertiveness — The New Drivers of Sales Success</i> by Linda Richardson.</p>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+// reveal
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')}),{threshold:.15});
+document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+// balance
+const bal=$('#bal');
+function upd(){const a=+bal.value,e=100-a;$('#ev').textContent=e+'%';$('#av').textContent=a+'%';$('#em').style.width=e+'%';$('#am').style.width=a+'%';
+let t;if(a<30)t='<b>Too soft.</b> The page agrees with every worry but never invites a step. Visitors feel heard, then drift away.';
+else if(a>70)t='<b>Too pushy.</b> Big shouting buttons and pressure. Visitors feel rushed and trust fades.';
+else t='<b>Balanced mastery.</b> Warm words that show understanding, plus a clear, confident next step. Visitors feel safe and ready to act.';
+$('#balOut').innerHTML=t}
+bal.oninput=upd;upd();
+// traps
+const traps={e:['Over-sympathizing','Agrees with every objection and the deal stalls. Add a clear, confident call to action.'],a:['Bulldozing','Pushes hard, so buyers resist and trust drops. Add warmth and listening first.'],b:['Balanced mastery','Deep emotional understanding joined with active, clear direction. This is where conversions grow.']};
+function trap(k){$('#trap').innerHTML='<h3>'+traps[k][0]+'</h3><p style="margin:0">'+traps[k][1]+'</p>'}
+document.querySelectorAll('#chips .chip').forEach(c=>c.onclick=()=>{document.querySelectorAll('#chips .chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');trap(c.dataset.k)});trap('b');
+// split
+const sp={ai:['Research &amp; structure','Competitor scans, layout drafts, copy variations, and quick checks: AI speeds all of it up.'],hu:['Listening &amp; leading','Voice-to-voice discovery, reading the room, choosing the message, and guiding each decision: this part stays human.']};
+function split(k){$('#split').innerHTML='<h3>'+sp[k][0]+'</h3><p style="margin:0">'+sp[k][1]+'</p>'}
+document.querySelectorAll('[data-s]').forEach(c=>c.onclick=()=>{document.querySelectorAll('[data-s]').forEach(x=>x.classList.remove('on'));c.classList.add('on');split(c.dataset.s)});split('ai');
+// breath
+const br=$('#br');let on=false,tm;
+function breathe(){if(on){on=false;clearInterval(tm);br.classList.remove('in');br.innerHTML='Tap to<br>pause';$('#brTxt').textContent='Notice. Listen. Then lead.';return}
+on=true;let s=true;const go=()=>{br.classList.toggle('in',s);br.textContent=s?'Breathe in':'Breathe out';$('#brTxt').textContent=s?'Listen to the tone behind the words.':'Now respond with warmth and direction.';s=!s};go();tm=setInterval(go,4000)}
+br.onclick=breathe;br.onkeydown=e=>{if(e.key==='Enter'||e.key===' ')breathe()};
+// objections
+const ob=[['Validate','Budget matters, and choosing wisely is smart.','Act','EasyLandX pages are affordable and built for conversions. Pick a clear package and start this week.'],['Validate','Big decisions deserve time, and that feeling is natural.','Act','Book a short conversation. We listen, answer your questions, and agree on one simple next step.'],['Validate','You want a page that fits your business, not a copy of someone else.','Act','Every page is custom, shaped by your voice and your customers. Share your story and see your draft.']];
+function oo(i){const o=ob[i];$('#objOut').innerHTML='<p><mark>'+o[0]+'</mark> '+o[1]+'</p><p style="margin:0"><mark class="o">'+o[2]+'</mark> '+o[3]+'</p>'}
+document.querySelectorAll('[data-o]').forEach(c=>c.onclick=()=>{document.querySelectorAll('[data-o]').forEach(x=>x.classList.remove('on'));c.classList.add('on');oo(c.dataset.o)});oo(0);
+</script>
+</body>
+</html>

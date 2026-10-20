@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx: landing pages that help before they sell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#047857;--bg2:#06694c;--bg3:#0a8a63;--tint:#d1fae5;--ink:#f0fdf7;--amber:#fbbf24;--amber2:#f59e0b;--slate:#334155;--slate2:#94a3b8;--paper:#e8eef0;
+--m:clamp(20px,5vw,64px);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.06rem/1.65 Figtree,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.1;margin:0 0 .5em;letter-spacing:-.01em}
+h1{font-size:clamp(2.4rem,6.4vw,4.6rem);font-weight:800}
+h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:800}
+h3{font-size:1.3rem;font-weight:600}
+p{margin:0 0 1em;max-width:62ch}
+section{padding:clamp(56px,9vw,110px) var(--m)}
+.wrap{max-width:1100px;margin:0 auto}
+.alt{background:var(--bg2)}.lite{background:var(--bg3)}
+.btn{display:inline-block;background:var(--amber);color:var(--slate);font:700 1.05rem Figtree,sans-serif;padding:.9em 1.6em;border-radius:999px;border:0;text-decoration:none;cursor:pointer;transition:transform .2s,background .2s;box-shadow:0 5px 0 var(--amber2)}
+.btn:hover{transform:translateY(-2px);background:#fcd34d}.btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--amber2)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--tint)}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+nav{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px var(--m);background:var(--bg);border-bottom:2px solid var(--bg2)}
+nav b{font:800 1.4rem Fraunces,serif}nav b i{color:var(--amber);font-style:normal}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;min-height:80vh}
+.hero p{font-size:1.2rem;color:var(--tint)}
+.row{display:flex;flex-wrap:wrap;gap:14px;margin-top:1.4em}
+.card{background:var(--paper);color:var(--slate);border-radius:22px;padding:26px}
+.card h3{color:var(--slate)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.lead{color:var(--tint);font-size:1.15rem}
+/* hero art */
+svg{max-width:100%;height:auto;display:block}
+.float{animation:fl 4s ease-in-out infinite}.float2{animation:fl 5s ease-in-out -2s infinite}
+@keyframes fl{50%{transform:translateY(-14px)}}
+.spin{transform-origin:center;transform-box:fill-box;animation:sp 18s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+.grow{transform-origin:bottom;transform-box:fill-box;animation:gr 3.2s ease-in-out infinite alternate}
+@keyframes gr{from{transform:scaleY(.45)}to{transform:scaleY(1)}}
+.pulse{animation:pu 2.4s ease-out infinite;transform-origin:center;transform-box:fill-box}@keyframes pu{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(1.7)}}
+/* swap */
+.tog{display:inline-flex;background:var(--bg2);border-radius:999px;padding:5px;margin-bottom:20px}
+.tog button{border:0;background:transparent;color:var(--ink);font:700 1rem Figtree;padding:.6em 1.3em;border-radius:999px;cursor:pointer}
+.tog button[aria-pressed=true]{background:var(--amber);color:var(--slate)}
+.mock{background:#fff;color:var(--slate);border-radius:16px;overflow:hidden;box-shadow:0 12px 0 rgba(0,0,0,.12)}
+.bar{display:flex;gap:6px;padding:10px 14px;background:var(--slate2)}.bar i{width:11px;height:11px;border-radius:50%;background:#fff;opacity:.8}
+.mb{padding:22px;transition:opacity .25s}
+.mb h4{font:800 1.5rem Fraunces,serif;margin:0 0 8px}
+.chip{display:inline-block;background:var(--slate);color:#fff;border-radius:8px;padding:.5em 1em;font-weight:700;font-size:.95rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+/* lies */
+.lie{background:var(--paper);color:var(--slate);border:0;border-radius:22px;padding:24px;text-align:left;font:inherit;cursor:pointer;min-height:230px;transition:transform .35s,background .3s;width:100%;display:block}
+.lie small{font-weight:700;color:var(--slate2)}
+.lie q{display:block;font:800 1.3rem/1.2 Fraunces,serif;margin:10px 0;quotes:"“" "”"}
+.lie.on{background:var(--amber);transform:rotateX(0) scale(1.02)}.lie.on small{color:var(--slate)}
+.lie.flip{animation:fp .45s}@keyframes fp{50%{transform:rotateY(90deg)}}
+/* tabs, builder */
+.gifts{display:grid;grid-template-columns:260px 1fr;gap:24px}
+.gl label{display:flex;align-items:center;gap:12px;background:var(--bg2);border-radius:16px;padding:14px 16px;margin-bottom:10px;cursor:pointer;font-weight:700;border:2px solid transparent;transition:.2s}
+.gl label:has(input:checked){background:var(--amber);color:var(--slate)}
+.gl input{width:20px;height:20px;accent-color:var(--slate)}
+.blk{max-height:0;opacity:0;overflow:hidden;transition:max-height .5s,opacity .5s,margin .5s;background:#ecfdf5;border-left:6px solid var(--amber2);border-radius:10px;padding:0 14px;margin:0}
+.blk.show{max-height:140px;opacity:1;padding:12px 14px;margin:12px 0}
+.meter{height:16px;background:var(--bg2);border-radius:99px;overflow:hidden;margin:14px 0 6px}
+.meter div{height:100%;width:0;background:var(--amber);transition:width .6s cubic-bezier(.3,1.4,.5,1)}
+/* rings */
+.rings button{cursor:pointer}.rings circle{transition:fill .25s}
+.out{background:var(--paper);color:var(--slate);border-radius:18px;padding:20px;min-height:112px}
+/* cut */
+.cut{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.cut button{border:0;background:var(--paper);color:var(--slate);font:700 1rem Figtree;padding:.7em 1.2em;border-radius:999px;cursor:pointer;transition:.3s}
+.cut button[aria-pressed=true]{background:var(--bg2);color:var(--tint);text-decoration:line-through;box-shadow:inset 0 0 0 2px var(--amber)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;counter-reset:s}
+.steps .card{position:relative;padding-top:48px}.steps .card::before{counter-increment:s;content:counter(s);position:absolute;top:-16px;left:22px;width:44px;height:44px;border-radius:50%;background:var(--amber);color:var(--slate);display:grid;place-items:center;font:800 1.3rem Fraunces}
+input[type=text]{width:100%;padding:.9em 1.1em;border-radius:14px;border:3px solid var(--slate2);font:inherit;color:var(--slate)}
+footer{background:var(--bg2);padding:56px var(--m);text-align:center}
+footer p{margin-inline:auto}
+@media(max-width:820px){.hero,.two,.gifts{grid-template-columns:1fr}.hero{min-height:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav><b>easyland<i>x</i></b><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a></nav>
+
+<section><div class="wrap hero">
+<div>
+<h1>Landing pages that help first, and win the work second.</h1>
+<p>easylandx builds affordable, individually crafted, conversion-focused landing pages for small businesses. Every page is designed around one question: how can this page genuinely help the person reading it?</p>
+<div class="row"><a class="btn" href="#gifts">Build a page that gives</a><a class="btn ghost" href="https://easylandx.github.io" target="_blank" rel="noopener">See our work</a></div>
+</div>
+<svg viewBox="0 0 440 400" role="img" aria-label="Illustration of a landing page with a gift, growing bars and a hand-shake of connection">
+<circle cx="220" cy="200" r="170" fill="#06694c"/>
+<circle class="spin" cx="220" cy="200" r="150" fill="none" stroke="#fbbf24" stroke-width="3" stroke-dasharray="4 16" stroke-linecap="round"/>
+<g class="float2"><rect x="70" y="70" width="270" height="215" rx="16" fill="#e8eef0"/><rect x="70" y="70" width="270" height="34" rx="16" fill="#94a3b8"/><rect x="70" y="90" width="270" height="14" fill="#94a3b8"/>
+<circle cx="90" cy="87" r="5" fill="#fff"/><circle cx="108" cy="87" r="5" fill="#fff"/><circle cx="126" cy="87" r="5" fill="#fff"/>
+<rect x="92" y="124" width="140" height="14" rx="7" fill="#334155"/><rect x="92" y="148" width="190" height="9" rx="4" fill="#94a3b8"/><rect x="92" y="165" width="160" height="9" rx="4" fill="#94a3b8"/>
+<rect x="92" y="190" width="96" height="30" rx="15" fill="#fbbf24"/>
+<g fill="#047857"><rect class="grow" x="232" y="236" width="18" height="38" rx="4"/><rect class="grow" style="animation-delay:-1s" x="258" y="216" width="18" height="58" rx="4"/><rect class="grow" style="animation-delay:-2s" x="284" y="196" width="18" height="78" rx="4"/></g></g>
+<g class="float"><rect x="300" y="215" width="84" height="72" rx="8" fill="#fbbf24"/><rect x="292" y="198" width="100" height="26" rx="6" fill="#f59e0b"/><rect x="332" y="198" width="20" height="89" fill="#334155"/>
+<path d="M342 198c-24-34-46-6-16 0zM342 198c24-34 46-6 16 0z" fill="none" stroke="#334155" stroke-width="5" stroke-linejoin="round"/></g>
+<g><circle class="pulse" cx="95" cy="310" r="26" fill="#fbbf24"/><circle cx="95" cy="310" r="16" fill="#fbbf24"/><circle cx="165" cy="340" r="12" fill="#94a3b8"/><circle cx="235" cy="318" r="14" fill="#d1fae5"/><path d="M95 310L165 340L235 318" stroke="#d1fae5" stroke-width="3" fill="none" stroke-dasharray="5 6"/></g>
+</svg>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<h2>The core idea: a great deal can make your year, a great relationship can make your career.</h2>
+<p class="lead">Give to Grow argues that pushy pitches and short-term closing tactics are exhausting and outdated. Growth comes from generosity, trust and behavioral science. Stop asking “how do I sell this person?” and start asking “how can I genuinely help?” Focus on actions that serve others, and results follow as a byproduct.</p>
+<p class="lead">That is how we build every landing page.</p>
+<div class="two" style="margin-top:34px">
+<div><h3>Helping vs. selling: flip your page</h3><p>Many experts hate sales because it feels pushy. Reframe the page as an act of service and the resistance disappears. Toggle below to see the same business with two different hero sections.</p>
+<div class="tog" role="group" aria-label="Page mode"><button id="mSell" aria-pressed="true">Selling</button><button id="mHelp" aria-pressed="false">Helping</button></div></div>
+<div class="mock"><div class="bar"><i></i><i></i><i></i></div><div class="mb" id="mb" aria-live="polite"></div></div>
+</div></div></section>
+
+<section class="lite"><div class="wrap">
+<h2>The five lies that keep small businesses off the page</h2>
+<p class="lead">Select each card to hear the lie, then the truth and the way an easylandx page answers it.</p>
+<div class="grid" id="lies" style="perspective:900px"></div>
+</div></section>
+
+<section><div class="wrap two">
+<div><h2>Doing the work vs. winning the work</h2>
+<p>Execution and growth are different mindsets. Doing the work is scope, tasks and tactical precision. Winning the work is building relationships, finding unmet needs, framing solutions and lowering the client’s perceived risk. Mixing them up causes frustration.</p>
+<p>easylandx handles the build, so you can free your time for the conversations that grow your business. Each page is crafted for you, never a template or a drag-and-drop builder.</p></div>
+<svg viewBox="0 0 420 300" role="img" aria-label="Two modes: tools for doing the work, a handshake for winning the work">
+<rect x="10" y="30" width="190" height="240" rx="20" fill="#06694c"/><rect x="220" y="30" width="190" height="240" rx="20" fill="#fbbf24"/>
+<g class="spin" style="animation-duration:9s"><circle cx="105" cy="120" r="34" fill="none" stroke="#94a3b8" stroke-width="12" stroke-dasharray="14 9"/></g><circle cx="105" cy="120" r="12" fill="#94a3b8"/>
+<rect x="45" y="190" width="120" height="10" rx="5" fill="#d1fae5"/><rect x="45" y="212" width="80" height="10" rx="5" fill="#d1fae5"/>
+<g class="float"><circle cx="285" cy="108" r="26" fill="#334155"/><circle cx="345" cy="108" r="26" fill="#047857"/><path d="M285 108Q315 140 345 108" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/></g>
+<rect x="255" y="190" width="120" height="10" rx="5" fill="#334155"/><rect x="275" y="212" width="80" height="10" rx="5" fill="#334155"/>
+<text x="105" y="22" fill="#d1fae5" text-anchor="middle" font-family="Figtree" font-weight="700" font-size="15">Doing</text><text x="315" y="22" fill="#fbbf24" text-anchor="middle" font-family="Figtree" font-weight="700" font-size="15">Winning</text></svg>
+</div></section>
+
+<section class="alt" id="gifts"><div class="wrap">
+<h2>Build a page with the Four Gifts</h2>
+<p class="lead">Generosity works best when it is structured. Give value upfront and trust builds. Switch each gift on and watch the page, and the trust meter, respond.</p>
+<div class="gifts">
+<div class="gl" id="gl"></div>
+<div><div class="mock"><div class="bar"><i></i><i></i><i></i></div><div class="mb"><h4>Marta’s Bakery: weekend orders</h4><p style="margin:0 0 10px">Fresh bread, baked to order. Reserve yours today.</p><span class="chip">Reserve a loaf</span><div id="blks"></div></div></div>
+<div class="meter" aria-hidden="true"><div id="mt"></div></div><p id="mtx" style="margin:0"></p></div>
+</div></div></section>
+
+<section><div class="wrap">
+<h2>The relationship framework, built into every page</h2>
+<div class="grid" style="margin:26px 0">
+<div class="card"><h3>Key Relationship List</h3><p>Keep an intentional inventory of five to twenty relationships to nurture. Each easylandx page speaks to one audience, with one clear next step for them.</p></div>
+<div class="card"><h3>Prospect Pipeline by proximity</h3><p>Sort opportunities by how close they are to working with you, not by abstract deal stages. Select a ring.</p></div>
+<div class="card"><h3>It’s always your move</h3><p>Silence is not rejection. It is a prompt to offer a different kind of help.</p><button class="btn" id="mv" style="box-shadow:0 5px 0 var(--amber2)">Silence? Show a move</button><p id="mvt" style="margin-top:16px;font-weight:700" aria-live="polite"></p></div>
+</div>
+<div class="two">
+<svg class="rings" viewBox="0 0 360 360" role="group" aria-label="Pipeline rings, from outer to inner: Reading, Asking, Booked, Working together">
+<circle cx="180" cy="180" r="170" fill="#06694c" data-i="0" tabindex="0"/><circle cx="180" cy="180" r="125" fill="#0a8a63" data-i="1" tabindex="0"/><circle cx="180" cy="180" r="80" fill="#94a3b8" data-i="2" tabindex="0"/><circle cx="180" cy="180" r="38" fill="#fbbf24" data-i="3" tabindex="0"/>
+<circle class="pulse" cx="180" cy="180" r="38" fill="#fbbf24" pointer-events="none"/>
+<g font-family="Figtree" font-weight="700" font-size="13" text-anchor="middle" pointer-events="none"><text x="180" y="30" fill="#d1fae5">Reading</text><text x="180" y="75" fill="#f0fdf7">Asking</text><text x="180" y="120" fill="#334155">Booked</text><text x="180" y="185" fill="#334155">Working</text></g></svg>
+<div class="out" id="ro" aria-live="polite"></div>
+</div></div></section>
+
+<section class="lite"><div class="wrap">
+<h2>Cut to climb</h2>
+<p class="lead">Leaders climb by eliminating, automating or delegating lower-value work. Ego says only you can do it, and that is the bottleneck. Select the tasks you would hand off.</p>
+<div class="cut" id="cut"></div>
+<div class="meter" aria-hidden="true"><div id="ct"></div></div>
+<p id="ctx" style="font-weight:700"></p>
+</div></section>
+
+<section><div class="wrap">
+<h2>Discovery that sounds like your customer</h2>
+<div class="steps" style="margin-top:34px">
+<div class="card"><h3>Define a shared purpose</h3><p>Every easylandx project opens with a mutual goal: what should this page help your visitor do?</p></div>
+<div class="card"><h3>Probe and listen</h3><p>Open questions like “could you elaborate on that?” uncover the real pain points before a single pixel is drawn.</p></div>
+<div class="card"><h3>Use their language</h3><p>We mirror the exact words customers use, to show we understand and to build trust.</p></div>
+</div>
+<div class="card" style="margin-top:34px"><h3>Try the mirror</h3><p>Type how a customer describes their problem.</p><input type="text" id="mi" placeholder="e.g. I never have time to sort out my bookings" aria-label="Customer phrase"><div id="mo" class="chip" style="margin-top:14px;white-space:normal;display:none"></div></div>
+</div></section>
+
+<footer>
+<h2>Ready to give your visitors a reason to trust you?</h2>
+<p>Let’s build a landing page that serves first and grows your business as a result.</p>
+<div class="row" style="justify-content:center"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to easylandx</a></div>
+<p style="margin-top:42px;color:var(--tint)">Inspired by <b>Give to Grow: Invest in Relationships to Build Your Business and Your Career</b> by Mo Bunnell.</p>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+// helping vs selling
+const modes={mSell:'<h4>Best prices in town! Buy now!</h4><p style="margin:0 0 12px">Limited offer. Sign up today or miss out.</p><span class="chip">Buy now</span>',
+mHelp:'<h4>3 mistakes that make your bread go stale</h4><p style="margin:0 0 12px">A free guide, plus a quick chat about what you need.</p><span class="chip">Get the free guide</span>'};
+function setMode(id){for(const k in modes)$('#'+k).setAttribute('aria-pressed',k===id);const b=$('#mb');b.style.opacity=0;setTimeout(()=>{b.innerHTML=modes[id];b.style.opacity=1},200)}
+$('#mSell').onclick=()=>setMode('mSell');$('#mHelp').onclick=()=>setMode('mHelp');setMode('mSell');
+// five lies
+const lies=[["I don’t have enough time","Business development is the engine of your career, not extra work.","A page works for you around the clock."],
+["I’m not good at sales","It is a learnable skill built on relationships, not an innate trait.","The page leads with help, so no pitching is needed."],
+["I don’t want to be a nag","Helpful follow-ups show care.","Clear next steps let visitors reply when ready."],
+["They’re super busy right now","Silence means competing priorities, not rejection.","The page waits patiently and makes it easy to return."],
+["The work should speak for itself","Expertise alone does not grow a business without intentional nurturing.","We turn your expertise into a page people can find and trust."]];
+$('#lies').innerHTML=lies.map((l,i)=>`<button class="lie" data-i="${i}" aria-pressed="false"><small>The lie</small><q>${l[0]}</q><span>Select to reveal the truth</span></button>`).join('');
+document.querySelectorAll('.lie').forEach(b=>b.onclick=()=>{const l=lies[b.dataset.i],on=b.classList.toggle('on');b.setAttribute('aria-pressed',on);b.classList.remove('flip');void b.offsetWidth;b.classList.add('flip');
+setTimeout(()=>{b.innerHTML=on?`<small>The truth</small><q>${l[1]}</q><span><b>On your page:</b> ${l[2]}</span>`:`<small>The lie</small><q>${l[0]}</q><span>Select to reveal the truth</span>`},220)});
+// gifts
+const gifts=[["Perspective","A short insight","Tip: three small tweaks that lift weekend orders."],["Connections","An introduction","We recommend a local flour supplier who delivers."],["Collaboration","A free sample","Book a free 15-minute menu brainstorm."],["Support","Genuine validation","Your first order of the week? We celebrate with you."]];
+$('#gl').innerHTML=gifts.map((g,i)=>`<label><input type="checkbox" data-i="${i}">${g[0]}</label>`).join('');
+$('#blks').innerHTML=gifts.map((g,i)=>`<div class="blk" id="b${i}"><b>${g[1]}</b><br>${g[2]}</div>`).join('');
+const msgs=["Add a gift to begin building trust.","A good start: the page teaches something.","Trust is growing: people feel seen.","Almost there: this page serves.","All four gifts: a page that builds relationships."];
+function upd(){let n=0;document.querySelectorAll('#gl input').forEach(c=>{c.checked&&n++;$('#b'+c.dataset.i).classList.toggle('show',c.checked)});$('#mt').style.width=n*25+'%';$('#mtx').textContent=msgs[n]}
+document.querySelectorAll('#gl input').forEach(c=>c.onchange=upd);upd();
+// rings
+const stages=["Reading: a visitor lands. Give a useful insight, with no form in the way.","Asking: they have a question. Offer a clear, friendly way to ask, and answer like a guide.","Booked: a call is set. Frame a shared purpose and lower their sense of risk.","Working together: keep nurturing. Celebrate wins and make introductions."];
+function ring(i){$('#ro').textContent=stages[i];document.querySelectorAll('.rings circle[data-i]').forEach(c=>c.style.stroke=c.dataset.i==i?'#fbbf24':'none');document.querySelectorAll('.rings circle[data-i]').forEach(c=>c.style.strokeWidth=5)}
+document.querySelectorAll('.rings circle[data-i]').forEach(c=>{c.onclick=()=>ring(c.dataset.i);c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();ring(c.dataset.i)}}});ring(0);
+// moves
+const moves=["Share one article that fits their current challenge.","Introduce them to someone in your network who can help.","Offer a free mini-session, with no strings.","Congratulate them on a recent win.","Ask what would be most useful this month."];let mi=0;
+$('#mv').onclick=()=>{$('#mvt').textContent=moves[mi++%moves.length]};
+// cut
+const tasks=["Wrestling with a page builder","Fixing mobile layouts","Rewriting copy again and again","Guessing at design","Tuning load speed by hand"];
+$('#cut').innerHTML=tasks.map(t=>`<button aria-pressed="false">${t}</button>`).join('');
+document.querySelectorAll('#cut button').forEach(b=>b.onclick=()=>{b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');const n=document.querySelectorAll('#cut [aria-pressed=true]').length;$('#ct').style.width=n*20+'%';
+$('#ctx').textContent=n?`${n} of ${tasks.length} handed off: more time for people and relationships.`:'Select tasks to hand off.'});
+$('#ctx').textContent='Select tasks to hand off.';
+// mirror
+$('#mi').oninput=e=>{const v=e.target.value.trim(),o=$('#mo');o.style.display=v?'inline-block':'none';o.textContent=v?`Headline: “${v.replace(/^i\s/i,'You ').replace(/\bmy\b/gi,'your').replace(/\.$/,'')}? We fix that.”`:''};
+</script>
+</body>
+</html>
