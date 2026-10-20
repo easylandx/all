@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx | Landing pages that turn strangers into leads</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#FFD700;--ink:#111111;--white:#FFFFFF;--pad:clamp(22px,6vw,90px);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--gold);color:var(--ink);font:400 18px/1.6 "DM Sans",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif;line-height:1.02;margin:0;letter-spacing:-.02em}
+h1{font-size:clamp(44px,9vw,120px);font-weight:800}
+h2{font-size:clamp(34px,5.4vw,68px);font-weight:800}
+h3{font-size:clamp(22px,2.4vw,30px);font-weight:800}
+p{margin:0}
+section{padding:clamp(60px,9vw,120px) var(--pad)}
+.wrap{max-width:1160px;margin:0 auto}
+.lead{max-width:60ch;margin-top:20px;font-size:clamp(18px,2vw,22px)}
+.btn{display:inline-block;background:var(--ink);color:var(--white);font:700 18px "DM Sans",sans-serif;padding:18px 34px;border-radius:999px;text-decoration:none;border:3px solid var(--ink);transition:transform .2s,background .2s,color .2s;cursor:pointer}
+.btn:hover{background:var(--white);color:var(--ink);transform:translateY(-3px) rotate(-1deg)}
+.btn:focus-visible,button:focus-visible,input:focus-visible{outline:4px solid var(--white);outline-offset:3px;box-shadow:0 0 0 7px var(--ink)}
+.btn.alt{background:transparent;color:var(--ink)}
+.btn.alt:hover{background:var(--ink);color:var(--white)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px var(--pad);gap:16px}
+.logo{font:800 28px "Bricolage Grotesque",sans-serif;color:var(--ink);text-decoration:none}
+.logo b{background:var(--ink);color:var(--gold);padding:0 6px;border-radius:6px;margin-left:2px}
+nav .btn{padding:11px 22px;font-size:16px}
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-top:30px}
+.hero .row{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.funnel{width:100%;height:auto;overflow:visible}
+.dot{animation:fall 5s linear infinite;opacity:0}
+@keyframes fall{0%{transform:translateY(0);opacity:0}10%{opacity:1}55%{transform:translateY(190px);opacity:1}62%{opacity:0;transform:translateY(205px)}100%{opacity:0;transform:translateY(205px)}}
+.out{animation:rise 5s ease-in infinite;opacity:0}
+@keyframes rise{0%,55%{opacity:0;transform:translateY(0)}65%{opacity:1}100%{opacity:1;transform:translateY(95px)}}
+.float{animation:bob 4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+/* marquee */
+.marq{background:var(--ink);color:var(--gold);overflow:hidden;white-space:nowrap;padding:14px 0;font:800 22px "Bricolage Grotesque",sans-serif}
+.marq div{display:inline-block;animation:slide 28s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+/* equation */
+.eq{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:18px;align-items:center;margin-top:44px}
+.card{background:var(--white);border:3px solid var(--ink);border-radius:22px;padding:26px}
+.card h3{margin-bottom:8px}
+.eq .card{text-align:center}
+.eq svg{width:84px;height:84px;margin:0 auto 10px;display:block}
+.arrow{font:800 44px "Bricolage Grotesque";animation:nudge 1.6s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateX(8px)}}
+/* HRR */
+.hrr{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-top:44px}
+.steps{display:grid;gap:14px}
+.step{all:unset;cursor:pointer;display:block;background:var(--white);border:3px solid var(--ink);border-radius:22px;padding:22px 26px;transition:background .25s,color .25s,transform .25s}
+.step:focus-visible{outline:4px solid var(--white);box-shadow:0 0 0 7px var(--ink)}
+.step h3{margin-bottom:6px}
+.step[aria-pressed=true]{background:var(--ink);color:var(--white);transform:translateX(10px)}
+.mock{background:var(--white);border:3px solid var(--ink);border-radius:22px;overflow:hidden;position:sticky;top:20px}
+.bar{background:var(--ink);padding:10px 14px;display:flex;gap:7px}
+.bar i{width:11px;height:11px;border-radius:50%;background:var(--gold)}
+.mock .body{padding:22px;display:grid;gap:14px}
+.blk{border:3px dashed #11111155;border-radius:14px;padding:16px;transition:all .3s;opacity:.45}
+.blk.on{border:3px solid var(--ink);background:var(--gold);opacity:1;transform:scale(1.03)}
+.blk strong{display:block;font:800 22px "Bricolage Grotesque"}
+.ln{height:9px;background:var(--ink);border-radius:5px;margin-top:8px;width:80%}
+.ln.s{width:55%;opacity:.4}
+.fake{display:inline-block;background:var(--ink);color:var(--white);padding:8px 18px;border-radius:99px;font-weight:700;margin-top:10px;font-size:15px}
+/* core four */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:40px 0 20px}
+.tab{all:unset;cursor:pointer;padding:12px 22px;border:3px solid var(--ink);border-radius:99px;font-weight:700;transition:background .2s,color .2s}
+.tab:focus-visible{outline:4px solid var(--white);box-shadow:0 0 0 7px var(--ink)}
+.tab[aria-selected=true]{background:var(--ink);color:var(--white)}
+.panel{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;background:var(--white);border:3px solid var(--ink);border-radius:26px;padding:clamp(22px,4vw,44px);animation:pop .4s ease}
+@keyframes pop{from{opacity:0;transform:translateY(14px)}}
+.panel ul{padding-left:20px;margin:14px 0 0}
+.panel li{margin-bottom:8px}
+.panel svg{width:100%;height:auto;max-height:260px}
+.tag{display:inline-block;background:var(--gold);border:2px solid var(--ink);border-radius:99px;padding:3px 14px;font-weight:700;font-size:15px;margin-bottom:12px}
+/* rule of 100 */
+.calc{background:var(--ink);color:var(--white);border-radius:30px;padding:clamp(26px,5vw,56px);margin-top:40px}
+.calc h3{color:var(--gold)}
+.calc label{display:block;margin:26px 0 8px;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--gold);height:30px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.stat{background:var(--white);color:var(--ink);border-radius:18px;padding:18px}
+.stat b{display:block;font:800 clamp(30px,4.6vw,56px)/1 "Bricolage Grotesque"}
+.bars{display:flex;align-items:flex-end;gap:4px;height:120px;margin-top:30px}
+.bars span{flex:1;background:var(--gold);border-radius:4px 4px 0 0;transition:height .35s;min-height:3px}
+/* secrets + accel */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+.grid4 .card{transition:transform .25s}
+.grid4 .card:hover{transform:translateY(-8px) rotate(-1.5deg)}
+.grid4 svg{width:60px;height:60px;margin-bottom:10px}
+.grid4 p{font-size:16px}
+.cta{text-align:center}
+.cta h2{max-width:14ch;margin:0 auto 18px}
+.cta .btn{font-size:22px;padding:22px 46px;background:var(--ink)}
+.cta .btn{animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 14px #11111122}}
+footer{padding:34px var(--pad) 48px;border-top:3px solid var(--ink);text-align:center}
+footer p{max-width:60ch;margin:0 auto}
+@media(max-width:860px){
+.hero,.hrr,.panel,.two{grid-template-columns:1fr}
+.eq{grid-template-columns:1fr}.arrow{transform:rotate(90deg);text-align:center;animation:none}
+.grid4{grid-template-columns:1fr 1fr}
+.mock{position:static}
+.stats{grid-template-columns:1fr}
+}
+@media(max-width:480px){.grid4{grid-template-columns:1fr}body{font-size:17px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.dot,.out{opacity:1}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="#top">easyland<b>x</b></a>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+</nav>
+
+<section class="hero" id="top">
+  <div>
+    <h1>Strangers in. Leads out.</h1>
+    <p class="lead">easylandx builds affordable, custom landing pages for small businesses. Every page is crafted by hand for one job: turn people who don’t know you into people who want to hear from you.</p>
+    <div class="row">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to easylandx</a>
+      <a class="btn alt" href="#four">See the strategy</a>
+    </div>
+  </div>
+  <svg class="funnel" viewBox="0 0 400 440" role="img" aria-label="Animated illustration: strangers fall into a landing page and come out as engaged leads">
+    <g>
+      <circle class="dot" cx="90" cy="20" r="11" fill="#fff" stroke="#111" stroke-width="3" style="animation-delay:0s"/>
+      <circle class="dot" cx="150" cy="0" r="11" fill="#fff" stroke="#111" stroke-width="3" style="animation-delay:.8s"/>
+      <circle class="dot" cx="210" cy="14" r="11" fill="#fff" stroke="#111" stroke-width="3" style="animation-delay:1.6s"/>
+      <circle class="dot" cx="270" cy="0" r="11" fill="#fff" stroke="#111" stroke-width="3" style="animation-delay:2.4s"/>
+      <circle class="dot" cx="330" cy="20" r="11" fill="#fff" stroke="#111" stroke-width="3" style="animation-delay:3.2s"/>
+      <circle class="dot" cx="180" cy="-10" r="11" fill="#fff" stroke="#111" stroke-width="3" style="animation-delay:4s"/>
+    </g>
+    <g class="float">
+      <path d="M40 120 L360 120 L250 300 L150 300 Z" fill="#fff" stroke="#111" stroke-width="5" stroke-linejoin="round"/>
+      <rect x="95" y="145" width="210" height="14" rx="7" fill="#111"/>
+      <rect x="120" y="172" width="160" height="9" rx="4.5" fill="#111" opacity=".35"/>
+      <rect x="150" y="205" width="100" height="26" rx="13" fill="#111"/>
+      <rect x="165" y="248" width="70" height="8" rx="4" fill="#FFD700" stroke="#111" stroke-width="2"/>
+    </g>
+    <rect x="175" y="300" width="50" height="30" fill="#111"/>
+    <g>
+      <circle class="out" cx="200" cy="335" r="14" fill="#111" stroke="#fff" stroke-width="3" style="animation-delay:.2s"/>
+      <circle class="out" cx="200" cy="335" r="14" fill="#111" stroke="#fff" stroke-width="3" style="animation-delay:1.6s"/>
+      <circle class="out" cx="200" cy="335" r="14" fill="#111" stroke="#fff" stroke-width="3" style="animation-delay:3s"/>
+    </g>
+    <rect x="70" y="420" width="260" height="10" rx="5" fill="#111"/>
+    <text x="200" y="408" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="20" fill="#111">engaged leads</text>
+  </svg>
+</section>
+
+<div class="marq" aria-hidden="true"><div>More leads &nbsp;•&nbsp; Better pages &nbsp;•&nbsp; Hook &nbsp;•&nbsp; Retain &nbsp;•&nbsp; Reward &nbsp;•&nbsp; Give value first &nbsp;•&nbsp; More leads &nbsp;•&nbsp; Better pages &nbsp;•&nbsp; Hook &nbsp;•&nbsp; Retain &nbsp;•&nbsp; Reward &nbsp;•&nbsp; Give value first &nbsp;•&nbsp;</div></div>
+
+<section>
+  <div class="wrap">
+    <h2>Leads are the lifeblood of a business</h2>
+    <p class="lead">A lead is simply a person you can contact. An engaged lead is someone who has shown interest in what you offer. Without a steady flow of them, even a great product stays invisible. A landing page is where that flow starts.</p>
+    <div class="eq">
+      <div class="card">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="26" r="14" fill="#fff" stroke="#111" stroke-width="4"/><path d="M12 72c2-20 14-26 28-26s26 6 28 26z" fill="#fff" stroke="#111" stroke-width="4"/></svg>
+        <h3>Strangers</h3><p>People who have never heard of you.</p>
+      </div>
+      <div class="arrow" aria-hidden="true">+</div>
+      <div class="card" style="background:var(--gold)">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><rect x="12" y="30" width="56" height="38" rx="6" fill="#fff" stroke="#111" stroke-width="4"/><path d="M12 38h56M40 30V68" stroke="#111" stroke-width="4"/><path d="M40 30c-14-18-24 0-8 0M40 30c14-18 24 0 8 0" fill="none" stroke="#111" stroke-width="4"/></svg>
+        <h3>Lead magnet</h3><p>A free offer so valuable saying no feels foolish.</p>
+      </div>
+      <div class="arrow" aria-hidden="true">=</div>
+      <div class="card">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><path d="M40 70C6 46 10 12 40 28c30-16 34 18 0 42z" fill="#111" stroke="#111" stroke-width="4" stroke-linejoin="round"/><path d="M28 36l8 8 16-16" fill="none" stroke="#FFD700" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Engaged leads</h3><p>People who trade their contact details for value.</p>
+      </div>
+    </div>
+    <p class="lead">Every easylandx page is built around this equation: one clear lead magnet, one clear action, and nothing that gets in the way.</p>
+  </div>
+</section>
+
+<section style="background:var(--white);border-block:3px solid var(--ink)">
+  <div class="wrap">
+    <h2>Hook. Retain. Reward.</h2>
+    <p class="lead">Every page we build follows this framework. Tap each step to see where it lives on a landing page.</p>
+    <div class="hrr">
+      <div class="steps" role="group" aria-label="Hook, Retain, Reward">
+        <button class="step" aria-pressed="true" data-i="0"><h3>Hook</h3><p>Capture attention in the first few seconds with a sharp headline, a striking image, and an opening line that names the visitor’s problem.</p></button>
+        <button class="step" aria-pressed="false" data-i="1"><h3>Retain</h3><p>Keep them reading by speaking to specific pain points, showing proof, and making every section earn the next scroll.</p></button>
+        <button class="step" aria-pressed="false" data-i="2"><h3>Reward</h3><p>Deliver clear value or a solution in exchange for their attention: the free guide, the quote, the booking, the first win.</p></button>
+      </div>
+      <div class="mock" aria-live="polite">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="body">
+          <div class="blk on" data-b="0"><strong>Stop losing customers to a slow website</strong><div class="ln"></div><div class="ln s"></div></div>
+          <div class="blk" data-b="1"><strong>Real stories, real results</strong><div class="ln"></div><div class="ln s"></div><div class="ln s"></div></div>
+          <div class="blk" data-b="2"><strong>Get your free guide</strong><span class="fake">Send it to me</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="four">
+  <div class="wrap">
+    <h2>The Core Four, built into your page</h2>
+    <p class="lead">Every way of finding customers falls into four groups: one-on-one or one-to-many, warm or cold. Pick one to see how an easylandx landing page supports it.</p>
+    <div class="tabs" role="tablist" aria-label="The Core Four">
+      <button class="tab" role="tab" aria-selected="true" data-t="0">Warm outreach</button>
+      <button class="tab" role="tab" aria-selected="false" data-t="1">Cold outreach</button>
+      <button class="tab" role="tab" aria-selected="false" data-t="2">Free content</button>
+      <button class="tab" role="tab" aria-selected="false" data-t="3">Paid ads</button>
+    </div>
+    <div class="panel" id="panel" role="tabpanel"></div>
+  </div>
+</section>
+
+<section style="background:var(--white);border-block:3px solid var(--ink)">
+  <div class="wrap">
+    <h2>The Rule of 100</h2>
+    <p class="lead">Take 100 actions a day, every day, for at least 100 days: 100 messages, 100 calls, 100 minutes of content, or $100 in ads. Consistency beats intensity. Your landing page is the place every one of those actions lands.</p>
+    <div class="calc">
+      <h3>Try the math</h3>
+      <label for="act">Daily actions: <span id="actv">100</span></label>
+      <input id="act" type="range" min="10" max="200" step="10" value="100">
+      <label for="rate">Share of people who take your lead magnet: <span id="ratev">3</span>%</label>
+      <input id="rate" type="range" min="1" max="15" step="1" value="3">
+      <div class="stats">
+        <div class="stat"><b id="s1">3</b>new leads per day</div>
+        <div class="stat"><b id="s2">300</b>leads in 100 days</div>
+        <div class="stat"><b id="s3">+0</b>extra leads if your page converts 2 points better</div>
+      </div>
+      <div class="bars" id="bars" aria-hidden="true"></div>
+      <p style="margin-top:12px;opacity:.8">Each bar is one 10-day block. Illustrative numbers only. This is why both levers matter: do more, and do it better.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>More and better</h2>
+    <p class="lead">Scaling comes down to two variables. Do more of what works, and do it better. Volume brings people to the page. A better page makes more of them say yes.</p>
+    <div class="two">
+      <div class="card" style="background:var(--gold)">
+        <h3>Give away your secrets</h3>
+        <p>Share your best knowledge for free to build trust, authority, and demand. Your landing page can hold a free checklist, a mini-guide, or a short audit, all useful on their own.</p>
+      </div>
+      <div class="card">
+        <h3>Sell the implementation</h3>
+        <p>People pay for speed, personal execution, and accountability. Once your free value earns trust, your page makes the next step easy: book a call, request a quote, start now.</p>
+      </div>
+    </div>
+    <h2 style="margin-top:80px">Four ways to multiply it</h2>
+    <p class="lead">Once the Core Four are running, add leverage. Each one plugs into a page built to receive it.</p>
+    <div class="grid4">
+      <div class="card"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="18" cy="20" r="8" fill="#FFD700" stroke="#111" stroke-width="3"/><circle cx="44" cy="20" r="8" fill="#fff" stroke="#111" stroke-width="3"/><path d="M18 30v8l12 12M44 30v8L32 50" fill="none" stroke="#111" stroke-width="3"/></svg><h3>Referrals</h3><p>Ask at the moment of a win. A dedicated referral page makes it one tap.</p></div>
+      <div class="card"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="22" fill="#FFD700" stroke="#111" stroke-width="3"/><path d="M20 38l20-16M22 24h.1M38 38h.1" stroke="#111" stroke-width="6" stroke-linecap="round"/></svg><h3>Affiliates</h3><p>Partners who already hold your audience’s trust send them to a page made for them.</p></div>
+      <div class="card"><svg viewBox="0 0 60 60" aria-hidden="true"><rect x="8" y="14" width="44" height="32" rx="5" fill="#fff" stroke="#111" stroke-width="3"/><path d="M8 26h44" stroke="#111" stroke-width="3"/><circle cx="30" cy="38" r="4" fill="#FFD700" stroke="#111" stroke-width="2"/></svg><h3>Agencies</h3><p>Specialists drive traffic. A fast, clear page makes their work pay off.</p></div>
+      <div class="card"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="16" r="8" fill="#FFD700" stroke="#111" stroke-width="3"/><circle cx="14" cy="42" r="7" fill="#fff" stroke="#111" stroke-width="3"/><circle cx="46" cy="42" r="7" fill="#fff" stroke="#111" stroke-width="3"/><path d="M26 23l-8 13M34 23l8 13" stroke="#111" stroke-width="3"/></svg><h3>In-house team</h3><p>A team that runs the Core Four daily needs one reliable page to send people to.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" style="background:var(--white);border-top:3px solid var(--ink)">
+  <div class="wrap">
+    <h2>Your page, built for leads</h2>
+    <p class="lead" style="margin-inline:auto;margin-bottom:34px">Custom. Affordable. Crafted one at a time for your business, not pulled from a template.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Get your page at easylandx</a>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Inspired by</strong> <em>$100M Leads: How to Get Strangers to Show Up for Stuff</em> by Alex Hormozi.</p>
+</footer>
+
+<script>
+(function(){
+var HRR=document.querySelectorAll('.step'),B=document.querySelectorAll('.blk');
+HRR.forEach(function(b){b.addEventListener('click',function(){
+HRR.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+B.forEach(function(k,i){k.classList.toggle('on',i==b.dataset.i)});
+})});
+
+var svgs=[
+'<svg viewBox="0 0 300 220" aria-hidden="true"><circle cx="150" cy="110" r="34" fill="#FFD700" stroke="#111" stroke-width="4"/><circle cx="60" cy="50" r="20" fill="#fff" stroke="#111" stroke-width="4"/><circle cx="240" cy="50" r="20" fill="#fff" stroke="#111" stroke-width="4"/><circle cx="60" cy="175" r="20" fill="#fff" stroke="#111" stroke-width="4"/><circle cx="240" cy="175" r="20" fill="#fff" stroke="#111" stroke-width="4"/><path d="M76 60l44 36M224 60l-44 36M76 165l44-36M224 165l-44-36" stroke="#111" stroke-width="4" stroke-dasharray="8 8"><animate attributeName="stroke-dashoffset" from="32" to="0" dur="1.4s" repeatCount="indefinite"/></path></svg>',
+'<svg viewBox="0 0 300 220" aria-hidden="true"><circle cx="150" cy="110" r="100" fill="none" stroke="#111" stroke-width="4" stroke-dasharray="6 10"/><circle cx="150" cy="110" r="60" fill="none" stroke="#111" stroke-width="4"/><circle cx="150" cy="110" r="22" fill="#111"/><path d="M40 40L146 106" stroke="#FFD700" stroke-width="8" stroke-linecap="round"><animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite"/></path><path d="M40 40L146 106" stroke="#111" stroke-width="3" stroke-linecap="round"/></svg>',
+'<svg viewBox="0 0 300 220" aria-hidden="true"><rect x="40" y="30" width="220" height="160" rx="14" fill="#fff" stroke="#111" stroke-width="4"/><path d="M126 76l64 34-64 34z" fill="#111"><animateTransform attributeName="transform" type="scale" values="1;1.08;1" dur="1.8s" repeatCount="indefinite" additionalTransform="" /></path><rect x="60" y="164" width="180" height="8" rx="4" fill="#111" opacity=".25"/><rect x="60" y="164" width="90" height="8" rx="4" fill="#FFD700" stroke="#111" stroke-width="2"><animate attributeName="width" values="20;180;20" dur="5s" repeatCount="indefinite"/></rect></svg>',
+'<svg viewBox="0 0 300 220" aria-hidden="true"><rect x="40" y="130" width="40" height="60" fill="#fff" stroke="#111" stroke-width="4"/><rect x="110" y="90" width="40" height="100" fill="#FFD700" stroke="#111" stroke-width="4"/><rect x="180" y="50" width="40" height="140" fill="#111"/><path d="M50 110L130 70 200 30" fill="none" stroke="#111" stroke-width="4" stroke-dasharray="8 8"><animate attributeName="stroke-dashoffset" from="32" to="0" dur="1.4s" repeatCount="indefinite"/></path><circle cx="200" cy="30" r="10" fill="#fff" stroke="#111" stroke-width="4"/></svg>'
+];
+var T=[
+{tag:'One-on-one, warm',h:'Friends, past clients, contacts',p:'Reach out to people who already know and trust you, and give them one link that does the talking.',l:['A page you can drop into any message or email','A simple ask: a quick call or a referral','Proof from past work, front and center']},
+{tag:'One-on-one, cold',h:'Strangers who fit your ideal client',p:'Cold messages are short and personal. The page they click through to must be clear in seconds.',l:['A headline that matches your message','Short, focused copy with a single next step','Fast loading and easy on a phone']},
+{tag:'One-to-many, warm',h:'Your followers and audience',p:'Teach for free, then point people to your lead magnet. The landing page turns attention into contacts.',l:['A lead magnet tied to the problem you teach about','A short form that asks only what you need','One link for every post, video, and bio']},
+{tag:'One-to-many, cold',h:'Ads at scale',p:'Paid traffic costs money on every visit, so the page has to convert. Strong hook, clear offer, one action.',l:['Message match between ad and page','Layouts built to test headlines and offers','Tracking for a predictable cost per lead']}
+];
+var P=document.getElementById('panel'),TB=document.querySelectorAll('.tab');
+function show(i){var t=T[i];P.innerHTML='<div><span class="tag">'+t.tag+'</span><h3>'+t.h+'</h3><p style="margin-top:10px">'+t.p+'</p><ul>'+t.l.map(function(x){return'<li>'+x+'</li>'}).join('')+'</ul></div>'+svgs[i];
+TB.forEach(function(b){b.setAttribute('aria-selected',b.dataset.t==i?'true':'false')})}
+TB.forEach(function(b){b.addEventListener('click',function(){show(+b.dataset.t)})});
+show(0);
+
+var a=document.getElementById('act'),r=document.getElementById('rate'),bars=document.getElementById('bars');
+for(var i=0;i<10;i++){bars.appendChild(document.createElement('span'))}
+function calc(){
+var A=+a.value,R=+r.value,d=A*R/100,tot=Math.round(d*100),extra=Math.round(A*(R+2)/100*100)-tot;
+document.getElementById('actv').textContent=A;document.getElementById('ratev').textContent=R;
+document.getElementById('s1').textContent=d%1?d.toFixed(1):d;
+document.getElementById('s2').textContent=tot.toLocaleString('en-US');
+document.getElementById('s3').textContent='+'+extra.toLocaleString('en-US');
+var sp=bars.children,k=Math.sqrt(d/30);
+for(var i=0;i<10;i++){sp[i].style.height=Math.max(4,Math.round((i+1)*10*k))+'%'}
+}
+a.addEventListener('input',calc);r.addEventListener('input',calc);calc();
+})();
+</script>
+</body>
+</html>
