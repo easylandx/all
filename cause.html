@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx | Landing pages that cause results</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#a9d9ff;--bg2:#c9e8ff;--bg3:#8cc9f7;--ink:#111;--y:#ffd60a;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Space Grotesk",system-ui,Arial,sans-serif;font-size:18px;line-height:1.55}
+h1,h2,h3{font-family:"Archivo Black","Arial Black",Impact,sans-serif;font-weight:900;line-height:1.05;margin:0 0 .5em;letter-spacing:-.01em}
+h1{font-size:clamp(2.5rem,7vw,5.2rem)}h2{font-size:clamp(1.9rem,4.5vw,3.2rem)}h3{font-size:1.3rem}
+p{margin:0 0 1em;max-width:62ch}
+.wrap{max-width:1080px;margin:0 auto;padding:0 max(24px,env(safe-area-inset-left,0px)) 0 max(24px,env(safe-area-inset-right,0px))}
+section{padding:80px 0;position:relative}
+.btn{display:inline-block;background:var(--y);color:var(--ink);font:700 1rem "Space Grotesk",sans-serif;text-decoration:none;border:3px solid var(--ink);border-radius:999px;padding:12px 26px;box-shadow:5px 5px 0 var(--ink);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover,.btn:focus-visible{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink);outline:none}
+.btn.alt{background:#fff}.btn.on{background:var(--ink);color:var(--y)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:3px solid var(--ink)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:64px}
+.logo{font-family:"Archivo Black",sans-serif;font-size:1.35rem;text-decoration:none;color:var(--ink)}
+.logo span{background:var(--y);padding:0 6px;border:2px solid var(--ink);border-radius:6px}
+nav .links{display:flex;gap:20px;align-items:center}
+nav .links a:not(.btn){color:var(--ink);font-weight:700;text-decoration:none}
+@media(max-width:760px){nav .links a:not(.btn){display:none}}
+.card{background:var(--bg2);border:3px solid var(--ink);border-radius:20px;box-shadow:8px 8px 0 var(--ink);padding:26px}
+.grid{display:grid;gap:28px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:820px){.g2,.g3{grid-template-columns:1fr}}
+.tag{display:inline-block;background:var(--ink);color:var(--y);font-weight:700;padding:4px 12px;border-radius:999px;font-size:.85rem;margin-bottom:14px}
+.hl{background:linear-gradient(transparent 58%,var(--y) 58%)}
+.hero{padding-top:56px;overflow:hidden}
+.blob{position:absolute;border:3px solid var(--ink);border-radius:50%;z-index:0;animation:fl 7s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-22px) rotate(8deg)}}
+.hero .wrap{position:relative;z-index:1}
+.dash{stroke-dasharray:8 8;animation:mv 1s linear infinite}@keyframes mv{to{stroke-dashoffset:-16}}
+.pulse{animation:pl 2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}@keyframes pl{50%{transform:scale(1.12)}}
+svg text{font-family:"Space Grotesk",sans-serif;font-weight:700}
+.rung{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:var(--bg2);border:3px solid var(--ink);border-radius:14px;padding:14px 18px;margin-bottom:12px;font:700 1.05rem "Space Grotesk",sans-serif;cursor:pointer;transition:transform .2s,background .2s;color:var(--ink)}
+.rung[aria-selected=true]{background:var(--y);transform:translateX(14px);box-shadow:5px 5px 0 var(--ink)}
+.rung i{font-style:normal;font-family:"Archivo Black";background:var(--ink);color:var(--y);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex:none}
+.bars .row{display:flex;align-items:center;gap:12px;margin:10px 0}
+.bars .lab{width:130px;font-weight:700;font-size:.95rem;flex:none}
+.bar{height:34px;border:3px solid var(--ink);border-radius:10px;background:var(--bg3);transition:width .7s cubic-bezier(.2,.8,.2,1);display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-weight:700;min-width:54px}
+.bar.y{background:var(--y)}
+.seg{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.verdict{border:3px solid var(--ink);border-radius:14px;padding:14px 18px;margin-top:14px;background:#fff;font-weight:500;transition:background .3s}
+.verdict.bad{background:var(--y)}
+input[type=range]{width:100%;accent-color:#111}
+.big{font-family:"Archivo Black";font-size:2.4rem}
+.step{background:var(--bg2);border:3px solid var(--ink);border-radius:20px;padding:22px;box-shadow:6px 6px 0 var(--ink)}
+.cta{text-align:center}.cta .card{background:var(--y);padding:48px 24px}.cta p{margin:0 auto 1.2em}
+.cta .btn{background:var(--ink);color:var(--y);box-shadow:5px 5px 0 #fff}
+footer{border-top:3px solid var(--ink);padding:34px 0;background:var(--bg2)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="#top">easy<span>landx</span></a>
+<div class="links"><a href="#ladder">Ladder</a><a href="#paradox">Paradox</a><a href="#dag">Diagrams</a><a href="#do">Do</a>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a></div></div></nav>
+
+<header id="top" class="hero section">
+<div class="blob" style="width:150px;height:150px;background:var(--y);right:6%;top:40px"></div>
+<div class="blob" style="width:70px;height:70px;background:#fff;left:3%;bottom:60px;animation-delay:-3s"></div>
+<div class="wrap grid g2" style="align-items:center">
+<div>
+<span class="tag">Landing pages for small businesses</span>
+<h1>A page should <span class="hl">cause</span> results, not just collect visits.</h1>
+<p>easylandx crafts affordable, custom, conversion-focused landing pages, built one by one for each client. Every choice on the page is treated as a cause with an intended effect.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+<a class="btn alt" href="#ladder" style="margin-left:8px">See the thinking</a>
+</div>
+<div class="card" aria-label="Animated causal diagram: Visitor, Page, Customer">
+<svg viewBox="0 0 400 300" width="100%" role="img" aria-label="Visitor leads to Page leads to Customer">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs>
+<rect x="10" y="20" width="110" height="64" rx="16" fill="#fff" stroke="#111" stroke-width="4"/><text x="65" y="59" text-anchor="middle" font-size="17">Visitor</text>
+<g class="pulse"><rect x="145" y="108" width="110" height="64" rx="16" fill="#ffd60a" stroke="#111" stroke-width="4"/><text x="200" y="146" text-anchor="middle" font-size="17">Your page</text></g>
+<rect x="280" y="200" width="110" height="64" rx="16" fill="#111" stroke="#111" stroke-width="4"/><text x="335" y="238" text-anchor="middle" font-size="17" fill="#ffd60a">Customer</text>
+<path class="dash" d="M95 88 L160 106" stroke="#111" stroke-width="4" fill="none" marker-end="url(#ah)"/>
+<path class="dash" d="M235 176 L300 198" stroke="#111" stroke-width="4" fill="none" marker-end="url(#ah)"/>
+<circle cx="340" cy="60" r="26" fill="#fff" stroke="#111" stroke-width="4"/><text x="340" y="67" text-anchor="middle" font-size="20">?</text>
+<path class="dash" d="M320 82 L300 110" stroke="#111" stroke-width="3" fill="none"/>
+<text x="30" y="282" font-size="14">do(page) = cause, not luck</text>
+</svg></div></div>
+</header>
+
+<section><div class="wrap">
+<span class="tag">The big idea</span>
+<h2>Data is dumb. Causes are not.</h2>
+<div class="grid g3">
+<div class="card rv"><h3>Counts are not reasons</h3><p>Visits, clicks and bounce rates describe what happened. They cannot tell you <em>why</em> a visitor left or what to change.</p></div>
+<div class="card rv"><h3>Assumptions come first</h3><p>Before we build, we draw how we believe your customer decides. A clear causal model keeps every section of the page honest.</p></div>
+<div class="card rv"><h3>Every page is an experiment</h3><p>Headline, proof, button and speed are interventions. We design each one to test a cause and drive an effect.</p></div>
+</div></div></section>
+
+<section id="ladder" style="background:var(--bg3);border-block:3px solid var(--ink)"><div class="wrap">
+<span class="tag">Framework 1: the Ladder of Causation</span>
+<h2>Three rungs. We build for all three.</h2>
+<div class="grid g2" style="align-items:start">
+<div role="tablist" aria-label="Ladder of causation">
+<button class="rung" role="tab" aria-selected="false" data-i="2"><i>3</i>Counterfactuals: imagining</button>
+<button class="rung" role="tab" aria-selected="false" data-i="1"><i>2</i>Intervention: doing</button>
+<button class="rung" role="tab" aria-selected="true" data-i="0"><i>1</i>Association: seeing</button>
+<p style="font-size:.9rem;margin-top:16px">Tap a rung to climb.</p></div>
+<div class="card" id="rungPanel" style="min-height:330px" aria-live="polite"></div>
+</div></div></section>
+
+<section id="paradox"><div class="wrap">
+<span class="tag">Framework 2: Simpson’s Paradox</span>
+<h2>The winning page that loses everywhere.</h2>
+<p>Two page versions were tested on 350 visitors each. Flip between the combined view and the split by device, and watch the winner change.</p>
+<div class="grid g2" style="align-items:center">
+<div class="card bars" aria-live="polite">
+<div class="seg"><button class="btn on" id="sCom">Combined</button><button class="btn alt" id="sSpl">Split by device</button></div>
+<div id="simp"></div>
+<div class="verdict" id="simpV"></div></div>
+<div><h3>What easylandx does with this</h3>
+<p>Raw averages can crown the wrong page. We ask who the visitors are, which device they use and where they came from before declaring a winner.</p>
+<p>The causal diagram tells us whether to look at the whole group or at each segment. Mobile and desktop visitors get layouts crafted for how they actually browse.</p>
+<svg viewBox="0 0 300 110" width="100%" aria-hidden="true"><g class="pulse"><circle cx="50" cy="55" r="34" fill="#ffd60a" stroke="#111" stroke-width="4"/></g><rect x="120" y="22" width="60" height="66" rx="10" fill="#fff" stroke="#111" stroke-width="4"/><rect x="214" y="30" width="68" height="50" rx="8" fill="#111"/><text x="50" y="61" text-anchor="middle" font-size="16">All</text><text x="150" y="61" text-anchor="middle" font-size="13">Mobile</text><text x="248" y="61" text-anchor="middle" font-size="13" fill="#ffd60a">Desktop</text></svg>
+</div></div></div></section>
+
+<section id="dag" style="background:var(--bg3);border-block:3px solid var(--ink)"><div class="wrap">
+<span class="tag">Framework 3: causal diagrams</span>
+<h2>Draw the arrows before you read the numbers.</h2>
+<p>Choose a structure, then decide whether to control for <b>Z</b>. See what happens to the truth.</p>
+<div class="grid g2" style="align-items:center">
+<div class="card"><div class="seg" id="dagSeg"></div>
+<svg id="dagSvg" viewBox="0 0 400 230" width="100%" role="img" aria-label="Causal diagram"></svg>
+<button class="btn alt" id="ctl" aria-pressed="false">Control for Z: off</button></div>
+<div><h3 id="dagT"></h3><p id="dagD"></p><div class="verdict" id="dagV" aria-live="polite"></div></div>
+</div></div></section>
+
+<section id="do"><div class="wrap">
+<span class="tag">Framework 4: seeing vs. doing</span>
+<h2>Observe the page, then do() something to it.</h2>
+<p>Seeing a conversion rate answers “what is?”. Forcing a change answers “what if?”. Pick interventions and compare with the world where you changed nothing.</p>
+<div class="grid g2" style="align-items:start">
+<div class="card">
+<label for="vis"><b>Monthly visitors:</b> <span id="visN">1000</span></label>
+<input type="range" id="vis" min="500" max="5000" step="100" value="1000">
+<p style="margin:16px 0 8px"><b>Your interventions</b></p>
+<div class="seg" id="ints"></div>
+<p style="font-size:.9rem;margin:0">Illustrative model: baseline 2% conversion, each change adds a modest lift.</p></div>
+<div class="card bars" aria-live="polite">
+<div class="row"><span class="lab">Without change</span><div class="bar" id="b0"></div></div>
+<div class="row"><span class="lab">With do()</span><div class="bar y" id="b1"></div></div>
+<div class="verdict" id="doV"></div>
+<svg viewBox="0 0 300 40" width="100%" aria-hidden="true" style="margin-top:10px"><path class="dash" d="M5 20 H280" stroke="#111" stroke-width="4" marker-end="url(#ah)"/></svg>
+</div></div></div></section>
+
+<section style="background:var(--bg3);border-block:3px solid var(--ink)"><div class="wrap">
+<span class="tag">How we work</span>
+<h2>Causal thinking, built into every page.</h2>
+<div class="grid g3" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+<div class="step rv"><h3>Draw</h3><p>We map how your customer decides: confounders, mediators and colliders included.</p></div>
+<div class="step rv"><h3>Craft</h3><p>A custom page, never a template, shaped around that map.</p></div>
+<div class="step rv"><h3>Intervene</h3><p>Headline, proof and button are deliberate actions with a measurable effect.</p></div>
+<div class="step rv"><h3>Imagine</h3><p>We ask what would have happened otherwise, and improve from the answer.</p></div>
+</div></div></section>
+
+<section class="cta"><div class="wrap"><div class="card rv">
+<h2>Ready for a page that works?</h2>
+<p>Affordable, custom and conversion-focused. Let’s build yours.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a>
+</div></div></section>
+
+<footer><div class="wrap"><p style="margin:0"><b>Inspired by</b> <i>The Book of Why: The New Science of Cause and Effect</i> by Judea Pearl and Dana Mackenzie.</p></div></footer>
+
+<script>
+const $=s=>document.querySelector(s);
+/* Ladder */
+const R=[
+["Association: seeing","What does a symptom tell me about a disease?","On a page: which sections get viewed, where visitors scroll, what converts together. Useful, but passive. It shows patterns, never reasons.","Plain analytics and most template builders live here."],
+["Intervention: doing","What happens if we double the price? Or rewrite the headline?","On a page: we change one thing on purpose and watch the effect. Headline, proof, button, speed. Each is a deliberate do().","Active experimenters operate here, and so does easylandx."],
+["Counterfactuals: imagining","Would this visitor have bought anyway? What if the offer was different?","On a page: we imagine the world that did not happen, to find which changes truly earned the sale and which only took the credit.","The deepest reasoning shapes every custom easylandx page."]];
+const P=$("#rungPanel");
+function rung(i){document.querySelectorAll(".rung").forEach(b=>b.setAttribute("aria-selected",b.dataset.i==i));
+const r=R[i];P.innerHTML=`<span class="tag">Rung ${+i+1}</span><h3>${r[0]}</h3><p><b>${r[1]}</b></p><p>${r[2]}</p><p style="margin:0">${r[3]}</p>`}
+document.querySelectorAll(".rung").forEach(b=>b.onclick=()=>rung(b.dataset.i));rung(0);
+/* Simpson */
+const D={Desktop:[[81,87],[234,270]],Mobile:[[192,263],[55,80]],Combined:[[273,350],[289,350]]};
+function simp(split){$("#sCom").className="btn "+(split?"alt":"on");$("#sSpl").className="btn "+(split?"on":"alt");
+const keys=split?["Desktop","Mobile"]:["Combined"];let h="";
+keys.forEach(k=>{h+=`<p style="margin:10px 0 0"><b>${k}</b></p>`;["Page A","Page B"].forEach((n,j)=>{const [a,b]=D[k][j],p=Math.round(a/b*100);
+h+=`<div class="row"><span class="lab">${n}</span><div class="bar ${p>=(D[k][1-j][0]/D[k][1-j][1]*100)?"y":""}" style="width:${p}%">${p}%</div></div>`})});
+$("#simp").innerHTML=h;const v=$("#simpV");v.className="verdict"+(split?" bad":"");
+v.textContent=split?"Page A wins on desktop AND on mobile. The overall result misled us, because B got mostly easy desktop traffic.":"Combined, Page B looks better (83% vs 78%). Now split the visitors by device."}
+$("#sCom").onclick=()=>simp(0);$("#sSpl").onclick=()=>simp(1);simp(0);
+/* DAG */
+const N={Confounder:{n:{Z:[200,40],X:[70,185],Y:[330,185]},e:[["Z","X"],["Z","Y"]],q:["X","Y"],t:"Confounder (fork)",d:"Z drives both X and Y. Example: a strong ad campaign (Z) both prompts a redesign (X) and lifts sales (Y), so the redesign looks like a hero.",off:["Fake link: the redesign gets credit that belongs to the campaign.",1],on:["Good. Adjusting for Z removes the false correlation.",0]},
+Mediator:{n:{X:[60,115],Z:[200,115],Y:[340,115]},e:[["X","Z"],["Z","Y"]],q:[],t:"Mediator (chain)",d:"Z is the mechanism. Example: a new headline (X) builds trust (Z), and trust drives signups (Y).",off:["Good. The total effect of the headline on signups is visible.",0],on:["Careful. Controlling for trust hides the very effect you wanted to measure.",1]},
+Collider:{n:{X:[70,40],Y:[330,40],Z:[200,185]},e:[["X","Z"],["Y","Z"]],q:[],t:"Collider (inverted fork)",d:"X and Y both cause Z. Example: design quality (X) and low price (Y) both lead to purchase (Z). Look only at buyers and they seem linked.",off:["Good. Leave the collider alone and X and Y stay independent.",0],on:["Trap. Conditioning on Z creates a spurious link between X and Y.",1]}};
+let cur="Confounder",ctl=false;
+function dag(){const m=N[cur];let s=`<defs><marker id="ah2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs>`;
+const pt=(a,b)=>{const [x1,y1]=m.n[a],[x2,y2]=m.n[b],dx=x2-x1,dy=y2-y1,l=Math.hypot(dx,dy),k=34/l;return[x1+dx*k,y1+dy*k,x2-dx*k,y2-dy*k]};
+m.e.forEach(([a,b])=>{const [p,q,r,t]=pt(a,b);s+=`<line class="dash" x1="${p}" y1="${q}" x2="${r}" y2="${t}" stroke="#111" stroke-width="4" marker-end="url(#ah2)"/>`});
+if(ctl&&cur!=="Mediator"&&cur){const [p,q,r,t]=pt("X","Y");const sp=(cur==="Collider"&&ctl)||(cur==="Confounder"&&!ctl);}
+if((cur==="Collider"&&ctl)||(cur==="Confounder"&&!ctl)){const [p,q,r,t]=pt("X","Y");s+=`<line class="dash" x1="${p}" y1="${q}" x2="${r}" y2="${t}" stroke="#111" stroke-width="3" stroke-dasharray="3 7" opacity=".6"/><text x="${(p+r)/2}" y="${(q+t)/2-10}" text-anchor="middle" font-size="14">fake link</text>`}
+Object.entries(m.n).forEach(([k,[x,y]])=>{const z=k==="Z",f=z&&ctl?"#111":(z?"#ffd60a":"#fff");
+s+=`<g ${z?'class="pulse"':''}>${z&&ctl?`<rect x="${x-40}" y="${y-40}" width="80" height="80" rx="14" fill="none" stroke="#111" stroke-width="3"/>`:""}<circle cx="${x}" cy="${y}" r="30" fill="${f}" stroke="#111" stroke-width="4"/><text x="${x}" y="${y+7}" text-anchor="middle" font-size="22" fill="${z&&ctl?"#ffd60a":"#111"}">${k}</text></g>`});
+$("#dagSvg").innerHTML=s;$("#dagT").textContent=m.t;$("#dagD").textContent=m.d;
+const v=m[ctl?"on":"off"];$("#dagV").textContent=v[0];$("#dagV").className="verdict"+(v[1]?" bad":"");
+$("#ctl").textContent="Control for Z: "+(ctl?"on":"off");$("#ctl").setAttribute("aria-pressed",ctl);
+document.querySelectorAll("#dagSeg button").forEach(b=>b.className="btn "+(b.textContent===cur?"on":"alt"))}
+Object.keys(N).forEach(k=>{const b=document.createElement("button");b.textContent=k;b.onclick=()=>{cur=k;ctl=false;dag()};$("#dagSeg").appendChild(b)});
+$("#ctl").onclick=()=>{ctl=!ctl;dag()};dag();
+/* do() simulator */
+const I=[["Sharper headline",.6],["Real client proof",.5],["Faster load",.4],["One clear button",.7]],on=new Set();
+I.forEach(([n],i)=>{const b=document.createElement("button");b.className="btn alt";b.textContent=n;b.setAttribute("aria-pressed","false");
+b.onclick=()=>{on.has(i)?on.delete(i):on.add(i);b.className="btn "+(on.has(i)?"on":"alt");b.setAttribute("aria-pressed",on.has(i));sim()};$("#ints").appendChild(b)});
+function sim(){const v=+$("#vis").value;$("#visN").textContent=v;let r=2;on.forEach(i=>r+=I[i][1]);
+const a=Math.round(v*.02),b=Math.round(v*r/100),mx=Math.max(a,v*.0545);
+$("#b0").style.width=Math.max(12,a/mx*100)+"%";$("#b0").textContent=a;$("#b1").style.width=Math.max(12,b/mx*100)+"%";$("#b1").textContent=b;
+$("#doV").textContent=on.size?`Counterfactual: ${a} signups. After do(): ${b}. That is ${b-a} more, at ${r.toFixed(1)}% conversion.`:"Nothing changed yet. Choose an intervention to compare worlds."}
+$("#vis").oninput=sim;sim();
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(e=>io.observe(e));
+</script>
+</body>
+</html>

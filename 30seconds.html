@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx | Landing pages that earn the next 30 seconds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--o:#FF5722;--k:#121212;--pad:clamp(22px,6vw,88px);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--o);color:var(--k);font-family:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;font-size:18px;line-height:1.55;overflow-x:hidden}
+section,header,footer{padding:clamp(56px,9vw,120px) var(--pad)}
+.wrap{max-width:1120px;margin:0 auto}
+h1,h2,h3{line-height:1.02;margin:0 0 .5em;letter-spacing:-.03em;font-weight:800}
+h1{font-size:clamp(2.6rem,8vw,6rem)}
+h2{font-size:clamp(2rem,5vw,3.6rem)}
+h3{font-size:1.3rem;letter-spacing:-.01em}
+p{margin:0 0 1em;max-width:60ch}
+.btn{display:inline-block;background:var(--k);color:var(--o);font:inherit;font-weight:700;text-decoration:none;padding:16px 30px;border:3px solid var(--k);border-radius:999px;cursor:pointer;transition:transform .2s,background .2s,color .2s}
+.btn:hover,.btn:focus-visible{background:var(--o);color:var(--k);transform:translateY(-3px) rotate(-1deg)}
+.btn.ghost{background:transparent;color:var(--k)}
+.btn.ghost:hover,.btn.ghost:focus-visible{background:var(--k);color:var(--o)}
+:focus-visible{outline:3px dashed var(--k);outline-offset:4px}
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:clamp(30px,6vw,70px)}
+.logo{font-weight:800;font-size:1.5rem;letter-spacing:-.04em;text-decoration:none;color:var(--k)}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero p{font-size:1.2rem}
+.row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+.inv{background:var(--k);color:var(--o)}
+.inv .btn{background:var(--o);color:var(--k);border-color:var(--o)}
+.inv .btn:hover,.inv .btn:focus-visible{background:var(--k);color:var(--o)}
+.inv :focus-visible{outline-color:var(--o)}
+.art{width:100%;height:auto;display:block}
+.ring{transform-origin:center;animation:pulse 3.6s ease-out infinite}
+.ring:nth-child(2){animation-delay:1.2s}.ring:nth-child(3){animation-delay:2.4s}
+@keyframes pulse{0%{transform:scale(.3);opacity:.9}100%{transform:scale(1.15);opacity:0}}
+.float{animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px)}}
+.cursor{animation:cur 6s ease-in-out infinite}
+@keyframes cur{0%,100%{transform:translate(0,0)}40%{transform:translate(-70px,-40px)}60%{transform:translate(-70px,-40px) scale(.85)}}
+.blink{animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.marquee{border-block:3px solid var(--k);overflow:hidden;white-space:nowrap;padding:14px 0;font-weight:800;font-size:1.4rem}
+.marquee div{display:inline-block;animation:slide 26s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:30px}
+.card{border:3px solid var(--k);border-radius:22px;padding:26px}
+.card.fill{background:var(--k);color:var(--o)}
+.big{font-size:clamp(3rem,8vw,5.5rem);font-weight:800;line-height:1;letter-spacing:-.05em}
+/* clock */
+.clock{display:grid;grid-template-columns:minmax(0,320px) 1fr;gap:clamp(24px,5vw,60px);align-items:center;margin-top:30px}
+.dial{position:relative;width:100%;max-width:320px;margin:0 auto}
+.dial svg{width:100%;height:auto;display:block;transform:rotate(-90deg)}
+.dial .t{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-weight:800;font-size:3rem;letter-spacing:-.04em}
+.dial small{display:block;font-size:.9rem;font-weight:700;letter-spacing:0}
+.stage{border:3px solid var(--o);border-radius:18px;padding:16px 20px;margin-bottom:12px;opacity:.4;transition:opacity .3s,background .3s,color .3s}
+.stage.on{opacity:1;background:var(--o);color:var(--k)}
+.stage b{display:block;font-size:1.1rem}
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0}
+.tab{font:inherit;font-weight:700;background:transparent;color:var(--k);border:3px solid var(--k);border-radius:999px;padding:10px 22px;cursor:pointer;transition:background .2s,color .2s}
+.tab[aria-selected=true]{background:var(--k);color:var(--o)}
+.lab{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:clamp(24px,5vw,60px);align-items:start}
+.page{border:3px solid var(--k);border-radius:20px;padding:14px;display:grid;gap:10px;background:var(--o)}
+.blk{border:3px dashed var(--k);border-radius:12px;padding:14px;font-weight:700;transition:all .35s;min-height:72px}
+.blk.on{background:var(--k);color:var(--o);border-style:solid;transform:scale(1.03)}
+.say{border-left:8px solid var(--k);padding:4px 0 4px 20px;font-size:1.35rem;font-weight:700;letter-spacing:-.01em;margin:0 0 18px}
+/* objections */
+.obj{display:grid;grid-template-columns:minmax(0,320px) 1fr;gap:clamp(24px,5vw,60px);margin-top:30px}
+.ol{display:grid;gap:12px;align-content:start}
+.ob{font:inherit;text-align:left;font-weight:700;color:var(--o);background:transparent;border:3px solid var(--o);border-radius:16px;padding:14px 18px;cursor:pointer;transition:background .2s,color .2s}
+.ob[aria-pressed=true]{background:var(--o);color:var(--k)}
+.ans{border:3px solid var(--o);border-radius:22px;padding:clamp(20px,3vw,34px);min-height:260px}
+.ans .why{font-size:.95rem;font-weight:700;margin-bottom:14px}
+.ans .fix{font-size:1.4rem;font-weight:700;line-height:1.3;letter-spacing:-.01em}
+.pop{animation:pop .4s ease}
+@keyframes pop{from{transform:translateY(12px);opacity:0}}
+.steps{counter-reset:s}
+.steps .card{position:relative;padding-top:60px}
+.steps .card::before{counter-increment:s;content:counter(s);position:absolute;top:-3px;left:22px;background:var(--k);color:var(--o);font-weight:800;width:48px;height:56px;display:grid;place-items:center;border-radius:0 0 14px 14px;font-size:1.4rem}
+.loop{width:100%;max-width:520px;margin:30px auto 0;display:block}
+.dash{stroke-dasharray:10 12;animation:dash 2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-44}}
+footer{text-align:center}
+footer p{margin-inline:auto}
+.credit{margin-top:44px;font-size:1rem;opacity:.9}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+@media(max-width:820px){.hero,.clock,.lab,.obj{grid-template-columns:1fr}body{font-size:17px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="wrap">
+<nav><a class="logo" href="#top">easylandx</a><a class="btn ghost" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a></nav>
+<div class="hero" id="top">
+<div>
+<h1>Landing pages that earn the next 30 seconds.</h1>
+<p>Cold calling is hard, so most people do it badly. Most landing pages are the same story: a visitor lands, feels interrupted, and leaves. easylandx builds each page by hand to win the first five seconds, then the next thirty, then the click.</p>
+<div class="row">
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Get your page at easylandx</a>
+<a class="btn ghost" href="#clock">See how it works</a>
+</div>
+</div>
+<svg class="art" viewBox="0 0 400 400" role="img" aria-label="Illustration of a landing page browser window with a cursor, ringing like a phone call">
+<g transform="translate(200 200)" fill="none" stroke="#121212" stroke-width="4">
+<circle class="ring" r="190"/><circle class="ring" r="190"/><circle class="ring" r="190"/>
+</g>
+<g class="float">
+<rect x="70" y="90" width="260" height="210" rx="22" fill="#FF5722" stroke="#121212" stroke-width="6"/>
+<path d="M70 132h260" stroke="#121212" stroke-width="6"/>
+<circle cx="98" cy="111" r="6" fill="#121212"/><circle cx="120" cy="111" r="6" fill="#121212"/><circle cx="142" cy="111" r="6" fill="#121212"/>
+<rect x="96" y="156" width="170" height="16" rx="8" fill="#121212"/>
+<rect x="96" y="182" width="120" height="16" rx="8" fill="#121212"/>
+<rect x="96" y="212" width="190" height="8" rx="4" fill="#121212" opacity=".5"/>
+<rect x="96" y="228" width="150" height="8" rx="4" fill="#121212" opacity=".5"/>
+<rect x="96" y="254" width="104" height="30" rx="15" fill="#121212"/>
+<rect x="112" y="266" width="72" height="6" rx="3" fill="#FF5722"/>
+<g class="cursor"><path d="M270 270l0 46 12-11 9 22 9-4-9-21 16-1z" fill="#121212" stroke="#FF5722" stroke-width="3"/></g>
+</g>
+<g class="float" style="animation-delay:-2s">
+<circle cx="336" cy="90" r="34" fill="#121212"/>
+<path d="M324 80c0 14 8 22 22 22l4-8-8-4-4 3c-4-2-6-5-8-9l3-4-4-8z" fill="#FF5722"/>
+</g>
+</svg>
+</div>
+</div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div>
+Sell the next step &nbsp;•&nbsp; Earn 30 seconds &nbsp;•&nbsp; Sound like a peer &nbsp;•&nbsp; Problem first &nbsp;•&nbsp; Low friction ask &nbsp;•&nbsp; Sell the next step &nbsp;•&nbsp; Earn 30 seconds &nbsp;•&nbsp; Sound like a peer &nbsp;•&nbsp; Problem first &nbsp;•&nbsp; Low friction ask &nbsp;•&nbsp;
+</div></div>
+
+<section id="why">
+<div class="wrap rv">
+<h2>Hard things are where the leverage lives.</h2>
+<p>Cold calling works because it is uncomfortable, and almost everyone avoids doing it well. Landing pages follow the same rule. Anyone can publish a template. Very few people sit down and write for one specific visitor in one specific moment.</p>
+<div class="cols">
+<div class="card"><div class="big">1</div><h3>Sell the next step</h3><p>A landing page does not need to close the sale. Its job is to earn a meeting, a message, or a quote request.</p></div>
+<div class="card"><div class="big">0</div><h3>Robotic scripts</h3><p>Template copy sounds like a pushy pitchman. Each easylandx page is individually crafted, so it sounds like an industry peer.</p></div>
+<div class="card fill"><div class="big">5s</div><h3>To win the first 30</h3><p>Visitors decide fast. The headline, tone and layout must lower defenses immediately.</p></div>
+</div>
+</div>
+</section>
+
+<section id="clock" class="inv">
+<div class="wrap rv">
+<h2>Earn time in increments.</h2>
+<p>You do not need a ten minute pitch. Your only goal in the first five seconds is to earn thirty. In those thirty, earn a minute. Press the button and watch a visitor’s attention move through a landing page.</p>
+<div class="clock">
+<div class="dial">
+<svg viewBox="0 0 200 200" aria-hidden="true">
+<circle cx="100" cy="100" r="90" fill="none" stroke="#FF5722" stroke-opacity=".25" stroke-width="14"/>
+<circle id="arc" cx="100" cy="100" r="90" fill="none" stroke="#FF5722" stroke-width="14" stroke-linecap="round" stroke-dasharray="565.5" stroke-dashoffset="565.5"/>
+</svg>
+<div class="t"><div><span id="sec">0</span><small>seconds on page</small></div></div>
+</div>
+<div>
+<div class="stage" id="s1"><b>0 to 5 seconds: the hook</b>A calm, specific headline that names the visitor’s world. No hype, no jargon.</div>
+<div class="stage" id="s2"><b>5 to 30 seconds: the problem</b>Name the problems peers in their role face. Ask a question they can answer in their head.</div>
+<div class="stage" id="s3"><b>30 to 60 seconds: the small ask</b>One low-friction step, like “Want to see how we fixed this for a business like yours?”</div>
+<div class="row"><button class="btn" id="run" type="button">Run the clock</button></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="anatomy">
+<div class="wrap rv">
+<h2>The 3-part call, rebuilt as a page.</h2>
+<p>Every high-converting cold call has the same flow. So does every easylandx page. Choose a phase to see which part of the page does the work.</p>
+<div class="tabs" role="tablist" aria-label="Call phases">
+<button class="tab" role="tab" aria-selected="true" data-i="0">The opener</button>
+<button class="tab" role="tab" aria-selected="false" data-i="1">Problem-first pitch</button>
+<button class="tab" role="tab" aria-selected="false" data-i="2">Low-friction CTA</button>
+</div>
+<div class="lab">
+<div class="page" aria-hidden="true">
+<div class="blk on" data-b="0">Hero: headline + calm subtitle</div>
+<div class="blk" data-b="1">Problems you solve for peers</div>
+<div class="blk" data-b="2">Small, easy button</div>
+</div>
+<div id="lab-out" aria-live="polite">
+<h3 id="lab-t"></h3>
+<p class="say" id="lab-q"></p>
+<p id="lab-d"></p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="objections" class="inv">
+<div class="wrap rv">
+<h2>Objections are reflexes, not rejections.</h2>
+<p>When a prospect says “send me an email” they are protecting themselves, not closing the door. Visitors do the same thing silently. Pick a reflex and see how a well-built page answers it.</p>
+<div class="obj">
+<div class="ol" role="group" aria-label="Visitor objections">
+<button class="ob" type="button" aria-pressed="true" data-i="0">“I’ll just look later.”</button>
+<button class="ob" type="button" aria-pressed="false" data-i="1">“I already have a Facebook page.”</button>
+<button class="ob" type="button" aria-pressed="false" data-i="2">“I don’t have time for this.”</button>
+<button class="ob" type="button" aria-pressed="false" data-i="3">“There’s no budget right now.”</button>
+</div>
+<div class="ans" aria-live="polite">
+<div class="why" id="ob-w"></div>
+<div class="fix" id="ob-f"></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="engine">
+<div class="wrap rv">
+<h2>The execution engine.</h2>
+<div class="cols steps">
+<div class="card"><h3>Batch by niche</h3><p>Pages are grouped by industry and role, so the context of the message stays identical from headline to button. Every client still gets a page crafted individually.</p></div>
+<div class="card"><h3>Master the first five seconds</h3><p>We rehearse the opening of every page the way a rep records an opener. If it sounds hesitant or overeager, we rewrite it.</p></div>
+<div class="card fill"><h3>Run the multi-touch loop</h3><p>A page works best with a follow-up that mentions the exact problem it named. Click, message, remind, repeat.</p></div>
+</div>
+<svg class="loop" viewBox="0 0 520 160" role="img" aria-label="Loop: page, message, follow up, back to page">
+<g fill="#121212"><circle cx="70" cy="80" r="46"/><circle cx="260" cy="80" r="46"/><circle cx="450" cy="80" r="46"/></g>
+<g fill="none" stroke="#121212" stroke-width="5" stroke-linecap="round"><path class="dash" d="M120 80h92"/><path class="dash" d="M310 80h92"/><path class="dash" d="M450 130c0 28-40 28-190 28S70 158 70 130"/></g>
+<g fill="#FF5722" font-weight="800" font-size="17" text-anchor="middle"><text x="70" y="86">Page</text><text x="260" y="86">Message</text><text x="450" y="86">Follow up</text></g>
+</svg>
+</div>
+</section>
+
+<footer class="inv">
+<div class="wrap rv">
+<h2>Ready for a page that sounds like a peer?</h2>
+<p>Affordable, custom, conversion focused landing pages and websites for small businesses. Built one at a time, never from a template.</p>
+<div class="row" style="justify-content:center"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to easylandx</a></div>
+<p class="credit">Inspired by the book <b>Cold Calling Sucks (And That’s Why It Works)</b> by Armand Farrokh and Nick Cegelski.</p>
+</div>
+</footer>
+
+<script>
+(function(){
+var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+// reveal
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12});
+$$('.rv').forEach(function(el){io.observe(el)});
+// clock
+var run=$('#run'),arc=$('#arc'),sec=$('#sec'),st=[$('#s1'),$('#s2'),$('#s3')],timer;
+function show(n){st.forEach(function(s,i){s.classList.toggle('on',i===n)})}
+run.addEventListener('click',function(){
+clearInterval(timer);var t=0;show(0);arc.style.transition='none';arc.style.strokeDashoffset=565.5;sec.textContent=0;
+setTimeout(function(){arc.style.transition='stroke-dashoffset .5s linear'},20);
+run.textContent='Run it again';
+timer=setInterval(function(){t++;
+sec.textContent=t;arc.style.strokeDashoffset=565.5*(1-t/60);
+show(t<5?0:t<30?1:2);
+if(t>=60)clearInterval(timer)},100);
+});
+// anatomy
+var D=[
+{t:'The opener: lower defenses',q:'“Hey, I know I caught you in the middle of something. Can I tell you why I’m here?”',d:'On a page, this is the hero. Acknowledge that the visitor is busy, speak calmly, and open with their context, such as “Running a small shop is already a full time job.” A headline built from their world gets permission to continue.'},
+{t:'Problem-first pitch: educate and probe',q:'“Usually when we talk to owners like you, it’s one of two things.”',d:'Skip the feature list. Name the typical trigger, state the problem, then ask a checking question: a page that looks great but never brings enquiries, or a site that is hard to use on a phone. Which sounds familiar?'},
+{t:'Low-friction CTA: sell the next step',q:'“Are you opposed to taking a quick look at how we solved this for a business like yours?”',d:'Avoid a heavy ask like “Book a 30 minute call.” Offer one small step, such as “See a page like yours” or “Send me a quick message.” Easy to say yes to, easy to follow through.'}
+];
+function setTab(i){
+$$('.tab').forEach(function(b,k){b.setAttribute('aria-selected',k===i)});
+$$('.blk').forEach(function(b,k){b.classList.toggle('on',k===i)});
+$('#lab-t').textContent=D[i].t;$('#lab-q').textContent=D[i].q;$('#lab-d').textContent=D[i].d;
+var o=$('#lab-out');o.classList.remove('pop');void o.offsetWidth;o.classList.add('pop');
+}
+$$('.tab').forEach(function(b){b.addEventListener('click',function(){setTab(+b.dataset.i)})});
+setTab(0);
+// objections
+var O=[
+{w:'Root cause: brush off, guard up',f:'“Happy to show you. So you don’t get something generic, which matters more to you: more enquiries, or looking more professional?” The page asks one specific question instead of repeating the pitch.'},
+{w:'Root cause: status quo bias',f:'“A social page is a great start. Many of our clients had one too, then added a focused page because [specific gap] kept costing them customers. Are you seeing that?” Validate first, then differentiate.'},
+{w:'Root cause: interruption reflex',f:'“Totally fair. Give it 15 seconds. If it’s irrelevant, close the tab.” Short sections, scannable headings and one clear button respect the visitor’s time.'},
+{w:'Root cause: defensive reaction',f:'“You don’t have to buy anything today. Just see how a custom page can stay affordable for a small business. Worth a look?” Remove the financial pressure and keep the ask tiny.'}
+];
+function setObj(i){
+$$('.ob').forEach(function(b,k){b.setAttribute('aria-pressed',k===i)});
+$('#ob-w').textContent=O[i].w;$('#ob-f').textContent=O[i].f;
+var a=$('.ans');a.classList.remove('pop');void a.offsetWidth;a.classList.add('pop');
+}
+$$('.ob').forEach(function(b){b.addEventListener('click',function(){setObj(+b.dataset.i)})});
+setObj(0);
+})();
+</script>
+</body>
+</html>
