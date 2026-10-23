@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX | Landing pages that play tiki-taka</title>
+<style>
+:root{--blue:#0A3CFF;--deep:#0830CC;--red:#DC143C;--gold:#F6B820;--white:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--blue);color:var(--white);font-family:"Archivo Black","Arial Black",Impact,sans-serif;line-height:1.5}
+p,li,button,.body{font-family:"Trebuchet MS",Verdana,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding-left:24px;padding-right:24px}
+section{padding-top:84px;padding-bottom:84px}
+h1,h2,h3{margin:0;line-height:1.02;letter-spacing:-.02em}
+h1{font-size:clamp(2.6rem,8vw,5.6rem)}
+h2{font-size:clamp(2rem,5vw,3.4rem);margin-bottom:16px}
+h3{font-size:1.25rem;margin-bottom:8px}
+p{font-size:1.08rem;max-width:62ch;margin:0 0 14px}
+.red{color:var(--red)}.gold{color:var(--gold)}
+nav{position:sticky;top:0;z-index:20;background:var(--blue);border-bottom:4px solid var(--white)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px}
+.logo{font-size:1.4rem;color:var(--white);text-decoration:none}
+.btn{display:inline-block;background:var(--gold);color:#111;font-weight:900;font-size:1rem;padding:14px 26px;border:4px solid #111;border-radius:0;text-decoration:none;cursor:pointer;box-shadow:6px 6px 0 #111;transition:transform .15s,box-shadow .15s}
+.btn:hover,.btn:focus-visible{transform:translate(3px,3px);box-shadow:3px 3px 0 #111}
+.btn.red{background:var(--red);color:#fff;border-color:#fff;box-shadow:6px 6px 0 #fff}
+.btn.red:hover{box-shadow:3px 3px 0 #fff}
+:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
+.hero{padding-top:56px;overflow:hidden}
+.hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
+.hero p{font-size:1.25rem}
+.hero .btns{display:flex;gap:18px;flex-wrap:wrap;margin-top:24px}
+.hero svg{width:100%;height:auto}
+.ball{animation:roll 6s linear infinite;transform-origin:center;transform-box:fill-box}
+@keyframes roll{to{transform:rotate(360deg)}}
+.dash{stroke-dasharray:10 12;animation:flow 1.2s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-22}}
+.bob{animation:bob 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.band{background:var(--red);border-top:4px solid #fff;border-bottom:4px solid #fff;overflow:hidden;padding:14px 0;white-space:nowrap}
+.band span{display:inline-block;animation:slide 24s linear infinite;font-size:1.3rem}
+@keyframes slide{to{transform:translateX(-50%)}}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:32px}
+.card{background:var(--deep);border:4px solid #fff;padding:24px}
+.card:nth-child(2){border-color:var(--gold)}.card:nth-child(3){border-color:var(--red)}
+.card svg{width:64px;height:64px;margin-bottom:10px}
+.card p{font-size:1rem;margin:0}
+.lab{background:var(--deep);border-top:4px solid #fff;border-bottom:4px solid #fff}
+.lab .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:start}
+#pitch{width:100%;height:auto;background:#0A3CFF;border:4px solid #fff;touch-action:manipulation}
+.node{cursor:pointer}
+.node circle{fill:var(--gold);stroke:#111;stroke-width:4;transition:fill .2s}
+.node.has circle{fill:var(--red);stroke:#fff}
+.node text{font-family:"Trebuchet MS",sans-serif;font-weight:900;font-size:15px;fill:#111;pointer-events:none}
+.node.has text{fill:#fff}
+.node:focus-visible circle{stroke:#fff;stroke-width:6}
+.panel{border:4px solid var(--gold);padding:22px;background:var(--blue)}
+.stat{font-size:3.4rem;line-height:1}
+.panel p{font-size:1rem}
+.five{text-align:center}
+.five .wrap{display:flex;flex-direction:column;align-items:center}
+.clock{position:relative;width:200px;height:200px;margin:20px 0}
+.clock svg{width:100%;height:100%;transform:rotate(-90deg)}
+.clock .t{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4rem}
+#ring{transition:stroke-dashoffset .1s linear}
+#msg{min-height:3.2em;font-size:1.15rem}
+.playbook{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;margin-top:30px;border:4px solid #fff}
+.pb{padding:24px;border:2px solid #fff;background:var(--blue);cursor:pointer;text-align:left;color:#fff;font:inherit;display:block;width:100%}
+.pb h3{display:flex;justify-content:space-between;gap:10px}
+.pb .more{max-height:0;overflow:hidden;transition:max-height .35s;font-size:1rem}
+.pb[aria-expanded=true]{background:var(--red)}
+.pb[aria-expanded=true] .more{max-height:200px;margin-top:8px}
+.pb:hover{background:var(--deep)}.pb[aria-expanded=true]:hover{background:var(--red)}
+.cta{text-align:center;background:var(--gold);color:#111;border-top:4px solid #111}
+.cta .wrap{display:flex;flex-direction:column;align-items:center}
+.cta p{max-width:50ch}
+.cta .btn{background:var(--red);color:#fff;border-color:#111;font-size:1.3rem;padding:18px 34px}
+footer{padding-top:34px;padding-bottom:40px;text-align:center;border-top:4px solid #fff}
+footer p{margin:0 auto 8px;font-size:.95rem}
+@media(max-width:800px){.hero .grid,.lab .grid{grid-template-columns:1fr}section{padding-top:60px;padding-bottom:60px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="#top">Easy<span class="gold">Land</span><span class="red">X</span></a><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></div></nav>
+
+<header id="top" class="hero"><div class="wrap grid">
+<div>
+<h1>Landing pages that play <span class="gold">tiki-taka.</span></h1>
+<p>Keep the visitor's attention, pass them from one clear idea to the next, and score the sign-up. EasyLandX builds affordable, conversion-focused pages for small businesses using the most patient strategy in football.</p>
+<div class="btns"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a><a class="btn red" href="#lab">Play the passing game</a></div>
+</div>
+<svg viewBox="0 0 400 360" role="img" aria-label="Illustration of a football passed between three players in a triangle">
+<rect x="10" y="10" width="380" height="340" fill="none" stroke="#fff" stroke-width="6"/>
+<line x1="200" y1="10" x2="200" y2="350" stroke="#fff" stroke-width="4"/>
+<circle cx="200" cy="180" r="56" fill="none" stroke="#fff" stroke-width="4"/>
+<path class="dash" d="M90 270 L200 80 L310 270 Z" fill="none" stroke="#F6B820" stroke-width="6"/>
+<g class="bob"><circle cx="90" cy="270" r="26" fill="#DC143C" stroke="#fff" stroke-width="5"/><text x="90" y="277" text-anchor="middle" font-size="20" fill="#fff" font-family="Arial Black">1</text></g>
+<g class="bob" style="animation-delay:-1s"><circle cx="200" cy="80" r="26" fill="#F6B820" stroke="#111" stroke-width="5"/><text x="200" y="87" text-anchor="middle" font-size="20" fill="#111" font-family="Arial Black">2</text></g>
+<g class="bob" style="animation-delay:-2s"><circle cx="310" cy="270" r="26" fill="#DC143C" stroke="#fff" stroke-width="5"/><text x="310" y="277" text-anchor="middle" font-size="20" fill="#fff" font-family="Arial Black">3</text></g>
+<g><circle cx="200" cy="180" r="16" fill="#fff" stroke="#111" stroke-width="4"><animateMotion dur="4s" repeatCount="indefinite" path="M-110 90 L0 -100 L110 90 Z"/></circle></g>
+</svg>
+</div></header>
+
+<div class="band" aria-hidden="true"><span>POSSESSION IS DEFENSE ★ PASS WITH PURPOSE ★ EVERY SECTION IS A PLAYMAKER ★ WIN IN FIVE SECONDS ★ POSSESSION IS DEFENSE ★ PASS WITH PURPOSE ★ EVERY SECTION IS A PLAYMAKER ★ WIN IN FIVE SECONDS ★</span></div>
+
+<section><div class="wrap">
+<h2>The lesson: control the ball, control the result.</h2>
+<p>Tiki-taka turned football into chess. Barcelona and Spain won by holding possession, moving constantly and letting collective intelligence beat brute force. A landing page faces the same match: your visitor has endless exits, and you only win by keeping them with you until they act.</p>
+<div class="cards">
+<div class="card"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="#F6B820" stroke="#111" stroke-width="4"/><path d="M32 14l12 9-4 14H24l-4-14z" fill="#111"/></svg><h3>Possession is defense</h3><p>If your visitor is reading, they are not leaving. Hold attention with a clear promise, short copy and a page that never loses the thread.</p></div>
+<div class="card"><svg viewBox="0 0 64 64"><path d="M32 8L58 54H6z" fill="none" stroke="#F6B820" stroke-width="5"/><circle cx="32" cy="8" r="6" fill="#DC143C"/><circle cx="58" cy="54" r="6" fill="#DC143C"/><circle cx="6" cy="54" r="6" fill="#DC143C"/></svg><h3>Collective intelligence</h3><p>Headline, proof, offer and button all act as playmakers. No lone star section: each one sets up the next.</p></div>
+<div class="card"><svg viewBox="0 0 64 64"><path d="M8 32h40M36 18l14 14-14 14" fill="none" stroke="#DC143C" stroke-width="6"/></svg><h3>Patience and fluidity</h3><p>Do not force the sale on screen one. Cycle through trust, value and ease until a clear gap opens for the click.</p></div>
+</div></div></section>
+
+<section class="lab" id="lab"><div class="wrap grid">
+<div>
+<h2>Play the passing game.</h2>
+<p>Your page is a passing network. Click or tap any player to pass the ball there. Pass to every role to build a complete move, then score with the button.</p>
+<svg id="pitch" viewBox="0 0 560 400" role="group" aria-label="Interactive pitch with five landing page roles">
+<line x1="280" y1="0" x2="280" y2="400" stroke="#fff" stroke-width="3" opacity=".5"/>
+<circle cx="280" cy="200" r="60" fill="none" stroke="#fff" stroke-width="3" opacity=".5"/>
+<g id="lines" stroke="#F6B820" stroke-width="3" opacity=".6"></g>
+<g id="nodes"></g>
+<circle id="ball" r="13" fill="#fff" stroke="#111" stroke-width="4" cx="90" cy="300"/>
+</svg>
+</div>
+<div class="panel" aria-live="polite">
+<div class="stat gold" id="passes">0</div>
+<p><strong>passes made</strong></p>
+<h3 id="roleName">Hook</h3>
+<p id="roleText">Start here. The headline gives the ball a direction in one glance.</p>
+<p id="progress">Roles used: 1 of 5</p>
+<a class="btn red" id="goal" href="https://easylandx.github.io" target="_blank" rel="noopener" style="display:none">Goal! EasyLandX</a>
+</div>
+</div></section>
+
+<section class="five"><div class="wrap">
+<h2>The 5-second rule.</h2>
+<p>Lose the ball and the team swarms it within five seconds. Visitors decide just as fast. Press start and count what a visitor must understand before the clock runs out.</p>
+<div class="clock"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="90" fill="none" stroke="#fff" stroke-width="14" opacity=".25"/><circle id="ring" cx="100" cy="100" r="90" fill="none" stroke="#F6B820" stroke-width="14" stroke-dasharray="565.5" stroke-dashoffset="0"/></svg><div class="t" id="sec">5</div></div>
+<p id="msg">What does this business do, and what should I click?</p>
+<button class="btn red" id="start" type="button">Start the 5 seconds</button>
+</div></section>
+
+<section class="lab"><div class="wrap">
+<h2>The playbook, applied.</h2>
+<p>Select a tactic to see how EasyLandX turns it into a page that converts.</p>
+<div class="playbook" id="pb"></div>
+</div></section>
+
+<section class="cta"><div class="wrap">
+<h2>Ready to keep the ball?</h2>
+<p>Affordable landing pages built to hold attention, guide the next pass and finish with a click. Step onto the pitch.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</div></section>
+
+<footer><div class="wrap"><p><strong>Inspired by the content summarized: Tiki-Taka, its core messages, lessons and strategies.</strong></p><p>&copy; EasyLandX</p></div></footer>
+
+<script>
+(function(){
+var NS="http://www.w3.org/2000/svg";
+var roles=[
+{n:"Hook",x:90,y:300,t:"The headline gives the ball a direction in one glance."},
+{n:"Proof",x:200,y:90,t:"Reviews, numbers and logos. A short, safe pass that builds trust."},
+{n:"Offer",x:370,y:70,t:"Show the value clearly. Create an overload: more reasons to say yes than to leave."},
+{n:"Ease",x:470,y:230,t:"One-touch play: a short form, a fast page, no friction."},
+{n:"Action",x:330,y:330,t:"The button. Everything before it was setting up this finish."}];
+var nodes=document.getElementById("nodes"),lines=document.getElementById("lines"),ball=document.getElementById("ball");
+var cur=0,passes=0,used={0:1};
+for(var i=0;i<roles.length;i++)for(var j=i+1;j<roles.length;j++){var l=document.createElementNS(NS,"line");l.setAttribute("x1",roles[i].x);l.setAttribute("y1",roles[i].y);l.setAttribute("x2",roles[j].x);l.setAttribute("y2",roles[j].y);lines.appendChild(l)}
+roles.forEach(function(r,i){
+var g=document.createElementNS(NS,"g");g.setAttribute("class","node"+(i==0?" has":""));g.setAttribute("tabindex","0");g.setAttribute("role","button");g.setAttribute("aria-label","Pass to "+r.n);
+g.innerHTML='<circle cx="'+r.x+'" cy="'+r.y+'" r="36"/><text x="'+r.x+'" y="'+(r.y+5)+'" text-anchor="middle">'+r.n+'</text>';
+function go(){pass(i)}
+g.addEventListener("click",go);g.addEventListener("keydown",function(e){if(e.key=="Enter"||e.key==" "){e.preventDefault();go()}});
+nodes.appendChild(g)});
+function move(x,y){
+var sx=+ball.getAttribute("cx"),sy=+ball.getAttribute("cy"),t0=null;
+function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/350,1);ball.setAttribute("cx",sx+(x-sx)*p);ball.setAttribute("cy",sy+(y-sy)*p);if(p<1)requestAnimationFrame(step)}
+requestAnimationFrame(step)}
+function pass(i){
+if(i==cur)return;cur=i;passes++;used[i]=1;
+var r=roles[i];move(r.x+(i==0?0:0),r.y-46);
+[].forEach.call(nodes.children,function(n,k){n.setAttribute("class","node"+(k==i?" has":""))});
+document.getElementById("passes").textContent=passes;
+document.getElementById("roleName").textContent=r.n;
+document.getElementById("roleText").textContent=r.t;
+var c=Object.keys(used).length;
+document.getElementById("progress").textContent="Roles used: "+c+" of 5";
+if(c==5&&passes>=5)document.getElementById("goal").style.display="inline-block"}
+ball.setAttribute("cx",roles[0].x);ball.setAttribute("cy",roles[0].y-46);
+
+var ring=document.getElementById("ring"),sec=document.getElementById("sec"),msg=document.getElementById("msg"),btn=document.getElementById("start"),timer=null;
+btn.addEventListener("click",function(){
+clearInterval(timer);var s=5,start=Date.now();btn.textContent="Counting...";msg.textContent="Who is it for? What do you offer? What is the next click?";
+timer=setInterval(function(){
+var e=(Date.now()-start)/1000,left=Math.max(5-e,0);
+sec.textContent=Math.ceil(left);ring.setAttribute("stroke-dashoffset",565.5*(e/5));
+if(left<=0){clearInterval(timer);sec.textContent="0";msg.textContent="Time. If the visitor could answer all three, you kept possession. EasyLandX pages are built to pass this test.";btn.textContent="Press again"}
+},100)});
+
+var tactics=[
+["Triangles and diamonds","Headline, proof and button always form a triangle, so the visitor has an obvious next pass wherever they are on the page."],
+["Overloads","Win the key zone: stack benefits, guarantees and testimonials around the decision point so reasons to act outnumber doubts."],
+["One-touch play","Fast loading, tiny forms and one goal per page. Move the visitor faster than their doubts can shift."],
+["Weight of pass","Each section hands over exactly what the next needs: the right message, to the right person, at the right moment."],
+["Width and depth","Stretch with benefits and visuals on the wings; give the core message room in the middle where attention lives."],
+["Between the lines","Meet the visitor in the pocket between curiosity and commitment with a low-risk step, like a free quote or a quick chat."],
+["Counter-press","When attention slips, win it back within seconds: sticky button, exit offer and a simple follow-up message."],
+["High line","Push everything upward: key info above the fold, compressed space, no wasted scrolling before the offer."]];
+var pb=document.getElementById("pb");
+tactics.forEach(function(t){
+var b=document.createElement("button");b.type="button";b.className="pb";b.setAttribute("aria-expanded","false");
+b.innerHTML='<h3>'+t[0]+'<span aria-hidden="true">+</span></h3><div class="more"><p>'+t[1]+'</p></div>';
+b.addEventListener("click",function(){var o=b.getAttribute("aria-expanded")=="true";b.setAttribute("aria-expanded",!o);b.querySelector("span").textContent=o?"+":"–"});
+pb.appendChild(b)});
+})();
+</script>
+</body>
+</html>
