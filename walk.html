@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EasyLandX | The Landing Page That Walks by Itself</title>
+<meta name="description" content="EasyLandX builds custom, conversion-focused landing pages for small businesses, using the three-praises strategy from Kipling's cat.">
+<style>
+:root{
+  --emerald:#10C47E;
+  --emerald-deep:#087a4f;
+  --magenta:#FF1CB4;
+  --turq:#2DF5E0;
+  --ink:#04241a;
+  --paper:#F4FFF9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--emerald);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;font-weight:600;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:900;line-height:1.08;letter-spacing:-.01em}
+h1{font-size:clamp(2.6rem,6.5vw,5rem)}
+h2{font-size:clamp(2rem,4.6vw,3.4rem);margin-bottom:.6rem}
+h3{font-size:1.4rem;margin-bottom:.4rem}
+p{font-size:1.08rem}
+a{color:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+section{padding:88px 0;position:relative}
+.bg-e{background:var(--emerald)}
+.bg-m{background:var(--magenta)}
+.bg-t{background:var(--turq)}
+.kicker{display:inline-block;background:var(--ink);color:var(--turq);font-weight:800;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:99px;margin-bottom:16px}
+.lead{max-width:680px;font-size:1.2rem;margin-bottom:34px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:var(--emerald);border-bottom:4px solid var(--ink)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:Georgia,serif;font-weight:900;font-size:1.5rem;text-decoration:none}
+.logo span{color:var(--paper);background:var(--magenta);padding:0 7px;border-radius:8px;margin-left:2px;color:var(--ink)}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a.l{text-decoration:none;font-weight:800}
+.nav-links a.l:hover{text-decoration:underline;text-decoration-thickness:3px}
+@media(max-width:760px){.nav-links a.l{display:none}}
+
+/* buttons */
+.btn{display:inline-block;border:3px solid var(--ink);border-radius:14px;padding:13px 24px;font-weight:900;font-size:1.05rem;text-decoration:none;cursor:pointer;font-family:inherit;color:var(--ink);box-shadow:5px 5px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.btn.mag{background:var(--magenta)}
+.btn.tq{background:var(--turq)}
+.btn.em{background:var(--emerald)}
+.btn.big{font-size:1.4rem;padding:18px 38px}
+
+/* hero */
+.hero{padding:60px 0 80px}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.hero h1 em{font-style:normal;background:var(--magenta);padding:0 .12em;border-radius:12px;display:inline-block;transform:rotate(-1.5deg)}
+.hero h1 u{text-decoration:none;background:var(--turq);padding:0 .12em;border-radius:12px;display:inline-block;transform:rotate(1deg)}
+.hero p.lead{margin-top:22px}
+.btn-row{display:flex;gap:16px;flex-wrap:wrap}
+.scene-card{border:4px solid var(--ink);border-radius:26px;overflow:hidden;box-shadow:10px 10px 0 var(--ink);background:var(--emerald-deep)}
+.scene-card svg{display:block;width:100%;height:auto}
+
+/* animations */
+@keyframes stroll{0%{transform:translateX(0) scaleX(1)}46%{transform:translateX(250px) scaleX(1)}50%{transform:translateX(250px) scaleX(-1)}96%{transform:translateX(0) scaleX(-1)}100%{transform:translateX(0) scaleX(1)}}
+@keyframes flick{0%,100%{transform:scale(1,1)}25%{transform:scale(1.08,.92)}50%{transform:scale(.94,1.1)}75%{transform:scale(1.05,.97)}}
+@keyframes twinkle{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes wag{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(16deg)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes drift{from{transform:translateX(-30px)}to{transform:translateX(30px)}}
+.walker{transform-box:fill-box;transform-origin:center;animation:stroll 14s ease-in-out infinite}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flick .7s ease-in-out infinite}
+.flame.b{animation-duration:.9s;animation-delay:-.3s}
+.star{animation:twinkle 2.4s ease-in-out infinite}
+.tail{transform-box:fill-box;transform-origin:100% 100%;animation:wag 1.6s ease-in-out infinite}
+.bobber{animation:bob .5s ease-in-out infinite}
+.floaty{animation:float 5s ease-in-out infinite}
+.drifty{animation:drift 9s ease-in-out infinite alternate}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+
+/* cards */
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.card{background:var(--paper);border:4px solid var(--ink);border-radius:22px;padding:24px;box-shadow:7px 7px 0 var(--ink);transition:transform .15s}
+.card:hover{transform:translateY(-6px) rotate(-.6deg)}
+.card svg{width:96px;height:96px;margin-bottom:10px;display:block}
+.card.win{background:var(--ink);color:var(--paper)}
+.card.win h3{color:var(--turq)}
+.tag{display:inline-block;font-size:.75rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:99px;border:2px solid currentColor;margin-top:10px}
+
+/* praise */
+.praise-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:start}
+@media(max-width:940px){.praise-grid{grid-template-columns:1fr}}
+.panel{background:var(--paper);border:4px solid var(--ink);border-radius:24px;padding:26px;box-shadow:8px 8px 0 var(--ink)}
+.bubble{background:var(--magenta);border:3px solid var(--ink);border-radius:18px;padding:14px 18px;margin:16px 0;min-height:84px;font-weight:800}
+.meter{display:flex;gap:10px;margin:16px 0}
+.pip{flex:1;height:18px;border:3px solid var(--ink);border-radius:99px;background:#fff;transition:background .4s}
+.pip.on{background:var(--turq)}
+.translate{background:var(--turq);border:3px solid var(--ink);border-radius:16px;padding:14px 18px;margin-top:14px}
+.translate b{display:block;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+
+/* builder */
+.builder{display:grid;grid-template-columns:1fr 1.2fr;gap:30px}
+@media(max-width:900px){.builder{grid-template-columns:1fr}}
+label{display:block;font-weight:900;margin:14px 0 6px}
+select{width:100%;padding:12px;border:3px solid var(--ink);border-radius:12px;font:inherit;font-weight:800;background:#fff;color:var(--ink)}
+.blue li{list-style:none;display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:3px dashed var(--ink);animation:pop .4s both}
+.blue li:last-child{border:0}
+@keyframes pop{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+.num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--magenta);border:3px solid var(--ink);display:grid;place-items:center;font-weight:900}
+.pr{font-size:.72rem;font-weight:900;background:var(--ink);color:var(--turq);padding:2px 8px;border-radius:99px;margin-left:6px;white-space:nowrap}
+.headline{font-family:Georgia,serif;font-weight:900;font-size:1.5rem;background:var(--emerald);border:3px solid var(--ink);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+
+/* game */
+.arena{position:relative;height:300px;border:4px solid var(--ink);border-radius:24px;background:var(--paper);overflow:hidden;box-shadow:8px 8px 0 var(--ink);background-image:radial-gradient(var(--emerald) 2px,transparent 2px);background-size:26px 26px}
+.mouse{position:absolute;width:74px;height:48px;border:0;background:none;cursor:pointer;transition:left .35s ease,top .35s ease;display:none}
+.mouse svg{width:100%;height:100%}
+.hud{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0}
+.chip{background:var(--ink);color:var(--turq);padding:10px 18px;border-radius:14px;font-weight:900}
+.pop{position:absolute;font-weight:900;color:var(--magenta);font-size:1.5rem;pointer-events:none;animation:up .8s forwards}
+@keyframes up{to{transform:translateY(-50px);opacity:0}}
+
+/* terms */
+.terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
+.terms .card{background:var(--turq)}
+
+/* cta */
+.cta{text-align:center}
+.cta h2{max-width:800px;margin:0 auto 18px}
+.cta p{max-width:640px;margin:0 auto 30px}
+
+footer{background:var(--magenta);border-top:5px solid var(--ink);padding:34px 0;text-align:center}
+footer p{font-size:1rem}
+footer .insp{margin-top:10px;font-weight:900}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">Easy<span>LandX</span></a>
+    <div class="nav-links">
+      <a class="l" href="#bargain">The Bargain</a>
+      <a class="l" href="#praises">Three Praises</a>
+      <a class="l" href="#builder">Blueprint</a>
+      <a class="l" href="#hunt">Catch a Lead</a>
+      <a class="btn mag" style="padding:8px 18px;box-shadow:3px 3px 0 var(--ink)" href="https://easypagex.github.io" target="_blank" rel="noopener">EasyLandX ↗</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero bg-e" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker">Landing pages for small businesses</span>
+      <h1>The page that <em>walks</em> <u>by itself.</u></h1>
+      <p class="lead">Kipling's cat got the fire, the warmth and the milk without giving up who he was. EasyLandX builds custom, conversion-focused landing pages that do the same for your business: they earn attention, keep your identity, and bring in customers on your terms.</p>
+      <div class="btn-row">
+        <a class="btn mag big" href="https://easypagex.github.io" target="_blank" rel="noopener">Visit EasyLandX ↗</a>
+        <a class="btn tq big" href="#praises">Earn the 3 praises</a>
+      </div>
+    </div>
+    <div class="scene-card">
+      <svg viewBox="0 0 560 420" aria-label="Animated cat walking past a cave with a glowing fire under a starry sky">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#087a4f"/><stop offset="1" stop-color="#0fa36a"/></linearGradient>
+          <g id="catsh">
+            <path class="tail" d="M10 52 C-14 44 -10 14 10 18" stroke="#04241a" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <ellipse cx="38" cy="52" rx="30" ry="16" fill="#04241a"/>
+            <circle cx="72" cy="38" r="15" fill="#04241a"/>
+            <polygon points="60,28 62,10 73,24" fill="#04241a"/>
+            <polygon points="76,24 87,10 88,30" fill="#04241a"/>
+            <polygon points="63,24 63.5,16 69,23" fill="#FF1CB4"/>
+            <circle cx="67" cy="37" r="3.4" fill="#2DF5E0"/><circle cx="79" cy="37" r="3.4" fill="#2DF5E0"/>
+            <rect x="19" y="62" width="7" height="16" rx="3.5" fill="#04241a" class="bobber"/>
+            <rect x="30" y="62" width="7" height="16" rx="3.5" fill="#04241a"/>
+            <rect x="46" y="62" width="7" height="16" rx="3.5" fill="#04241a" class="bobber"/>
+            <rect x="57" y="62" width="7" height="16" rx="3.5" fill="#04241a"/>
+          </g>
+        </defs>
+        <rect width="560" height="420" fill="url(#sky)"/>
+        <circle cx="460" cy="70" r="40" fill="#2DF5E0"/><circle cx="478" cy="60" r="36" fill="#087a4f"/>
+        <g fill="#F4FFF9">
+          <circle class="star" cx="60" cy="50" r="3"/><circle class="star" cx="150" cy="95" r="2.5" style="animation-delay:-.8s"/>
+          <circle class="star" cx="240" cy="40" r="3" style="animation-delay:-1.4s"/><circle class="star" cx="330" cy="85" r="2.5" style="animation-delay:-.4s"/>
+          <circle class="star" cx="395" cy="38" r="2" style="animation-delay:-1.8s"/><circle class="star" cx="100" cy="140" r="2" style="animation-delay:-1.1s"/>
+        </g>
+        <g class="floaty"><path d="M30 120 q20-24 40 0 q20-24 40 0" stroke="#FF1CB4" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+        <!-- trees -->
+        <g fill="#04241a"><polygon points="20,330 60,190 100,330"/><polygon points="80,330 125,215 170,330"/><rect x="55" y="320" width="10" height="30"/><rect x="120" y="320" width="10" height="30"/></g>
+        <!-- cave -->
+        <path d="M230 360 L230 230 Q230 120 380 120 Q530 120 530 230 L530 360 Z" fill="#FF1CB4" stroke="#04241a" stroke-width="6"/>
+        <path d="M262 360 L262 240 Q262 158 380 158 Q498 158 498 240 L498 360 Z" fill="#065f3f"/>
+        <g transform="translate(380 330)">
+          <g class="flame"><path d="M0 0 C-30 -10 -20 -50 0 -78 C20 -50 30 -10 0 0Z" fill="#FF1CB4"/></g>
+          <g class="flame b"><path d="M0 0 C-16 -6 -12 -30 0 -48 C12 -30 16 -6 0 0Z" fill="#2DF5E0"/></g>
+          <rect x="-34" y="0" width="68" height="9" rx="4" fill="#F4FFF9"/>
+        </g>
+        <!-- ground -->
+        <rect y="352" width="560" height="68" fill="#04241a"/>
+        <rect y="352" width="560" height="8" fill="#2DF5E0"/>
+        <!-- cat -->
+        <g transform="translate(40 268)"><g class="walker"><use href="#catsh"/></g></g>
+        <text x="280" y="396" text-anchor="middle" font-family="Georgia,serif" font-weight="900" font-size="20" fill="#F4FFF9">"I am not a friend, and I am not a servant."</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- BARGAIN: story → strategy -->
+<section class="bg-t" id="bargain">
+  <div class="wrap">
+    <span class="kicker rv">Chapter 1 · The wild ones</span>
+    <h2 class="rv">Everyone else surrendered. The cat negotiated.</h2>
+    <p class="lead rv">In the story, the Dog, the Horse and the Cow each traded their whole independence for food and shelter. Too many small business websites do the same: they give up their identity to a template, a trend or a discount. The cat made a specific deal instead.</p>
+    <div class="grid4">
+      <div class="card rv">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="52" r="26" fill="#10C47E" stroke="#04241a" stroke-width="5"/><ellipse cx="22" cy="48" rx="10" ry="22" fill="#FF1CB4" stroke="#04241a" stroke-width="5"/><ellipse cx="78" cy="48" rx="10" ry="22" fill="#FF1CB4" stroke="#04241a" stroke-width="5"/><circle cx="41" cy="48" r="4" fill="#04241a"/><circle cx="59" cy="48" r="4" fill="#04241a"/><ellipse cx="50" cy="62" rx="8" ry="6" fill="#04241a"/></svg>
+        <h3>The Dog</h3><p>Became the First Friend and guards the cave. Full loyalty, zero leverage.</p>
+        <span class="tag">= The generic template</span>
+      </div>
+      <div class="card rv">
+        <svg viewBox="0 0 100 100"><path d="M30 85 L36 30 Q40 12 62 14 L80 24 L74 46 L58 44 L56 85Z" fill="#2DF5E0" stroke="#04241a" stroke-width="5" stroke-linejoin="round"/><path d="M36 30 Q22 40 26 70" stroke="#FF1CB4" stroke-width="9" fill="none" stroke-linecap="round"/><circle cx="64" cy="28" r="4" fill="#04241a"/></svg>
+        <h3>The Horse</h3><p>Became the First Servant, carrying everything on his back.</p>
+        <span class="tag">= The bloated everything-page</span>
+      </div>
+      <div class="card rv">
+        <svg viewBox="0 0 100 100"><path d="M18 30 Q8 18 16 10 Q28 16 32 28Z M82 30 Q92 18 84 10 Q72 16 68 28Z" fill="#F4FFF9" stroke="#04241a" stroke-width="5"/><rect x="22" y="26" width="56" height="52" rx="22" fill="#FF1CB4" stroke="#04241a" stroke-width="5"/><circle cx="38" cy="48" r="4" fill="#04241a"/><circle cx="62" cy="48" r="4" fill="#04241a"/><ellipse cx="50" cy="68" rx="16" ry="10" fill="#F4FFF9" stroke="#04241a" stroke-width="4"/><circle cx="44" cy="68" r="2.5" fill="#04241a"/><circle cx="56" cy="68" r="2.5" fill="#04241a"/></svg>
+        <h3>The Cow</h3><p>Gives milk every day for sweet green grass. Endless giving.</p>
+        <span class="tag">= Discounting for attention</span>
+      </div>
+      <div class="card win rv">
+        <svg viewBox="0 0 100 100"><polygon points="22,40 26,10 46,28" fill="#2DF5E0"/><polygon points="78,40 74,10 54,28" fill="#2DF5E0"/><circle cx="50" cy="56" r="30" fill="#2DF5E0"/><circle cx="38" cy="52" r="5" fill="#04241a"/><circle cx="62" cy="52" r="5" fill="#04241a"/><polygon points="45,62 55,62 50,69" fill="#FF1CB4"/><path d="M14 60 L36 64 M14 72 L36 68 M86 60 L64 64 M86 72 L64 68" stroke="#F4FFF9" stroke-width="3" stroke-linecap="round"/></svg>
+        <h3>The Cat</h3><p>Trades one clear service for specific comforts, and keeps his freedom.</p>
+        <span class="tag" style="color:var(--magenta)">= The EasyLandX page</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE PRAISES -->
+<section class="bg-e" id="praises">
+  <div class="wrap">
+    <span class="kicker rv">Chapter 2 · The framework</span>
+    <h2 class="rv">The Three Praises: a conversion path.</h2>
+    <p class="lead rv">The cat did not ask for everything at once. He set three conditions, each unlocking a bigger reward. A great landing page works the same way. Press the button and walk the cat through the cave.</p>
+    <div class="praise-grid">
+      <div class="scene-card rv">
+        <svg viewBox="0 0 620 300" id="pscene" aria-label="Interactive scene: the cat earns three praises">
+          <rect width="620" height="300" fill="#0fa36a"/>
+          <g fill="#04241a"><polygon points="10,250 50,110 90,250"/><polygon points="80,250 125,135 170,250"/></g>
+          <path d="M215 250 L215 150 Q215 40 410 40 Q605 40 605 150 L605 250Z" fill="#FF1CB4" stroke="#04241a" stroke-width="6"/>
+          <path d="M240 250 L240 155 Q240 66 410 66 Q580 66 580 155 L580 250Z" fill="#065f3f"/>
+          <!-- baby cradle -->
+          <g transform="translate(315 215)"><path d="M-30 0 Q0 28 30 0Z" fill="#2DF5E0" stroke="#04241a" stroke-width="4"/><circle cx="0" cy="-6" r="11" fill="#F4FFF9" stroke="#04241a" stroke-width="3"/><circle cx="-4" cy="-8" r="1.8" fill="#04241a"/><circle cx="4" cy="-8" r="1.8" fill="#04241a"/><text id="zzz" x="14" y="-18" font-weight="900" font-size="16" fill="#2DF5E0" opacity="0">z z z</text></g>
+          <!-- fire -->
+          <g transform="translate(435 240)"><g class="flame"><path d="M0 0 C-26 -8 -18 -44 0 -68 C18 -44 26 -8 0 0Z" fill="#FF1CB4"/></g><g class="flame b"><path d="M0 0 C-13 -5 -10 -26 0 -40 C10 -26 13 -5 0 0Z" fill="#2DF5E0"/></g><rect x="-30" y="0" width="60" height="8" rx="4" fill="#F4FFF9"/></g>
+          <!-- milk bowl -->
+          <g transform="translate(535 228)"><path d="M-26 0 H26 Q22 24 0 24 Q-22 24 -26 0Z" fill="#F4FFF9" stroke="#04241a" stroke-width="4"/><ellipse id="milk" cx="0" cy="0" rx="22" ry="5" fill="#2DF5E0" stroke="#04241a" stroke-width="2" opacity="0"/></g>
+          <!-- mouse -->
+          <g id="pmouse" style="transition:transform 1.2s ease,opacity .4s" transform="translate(600 246)"><ellipse cx="0" cy="0" rx="13" ry="8" fill="#F4FFF9" stroke="#04241a" stroke-width="3"/><circle cx="-12" cy="-4" r="5" fill="#F4FFF9" stroke="#04241a" stroke-width="3"/><path d="M13 0 q14 4 20 -6" stroke="#04241a" stroke-width="3" fill="none"/></g>
+          <rect y="250" width="620" height="50" fill="#04241a"/><rect y="250" width="620" height="6" fill="#2DF5E0"/>
+          <g id="pcat" style="transition:transform 1.1s cubic-bezier(.5,.1,.3,1)" transform="translate(30 178)"><use href="#catsh"/></g>
+        </svg>
+      </div>
+      <div class="panel rv">
+        <span class="kicker" style="margin-bottom:6px" id="pstage">Stage 0 · The Wet Wild Woods</span>
+        <div class="meter"><div class="pip" id="p1"></div><div class="pip" id="p2"></div><div class="pip" id="p3"></div></div>
+        <div class="bubble" id="pbubble">The cat watches from the woods. He wants the warmth, but he will not give up his freedom to get it.</div>
+        <div class="translate"><b>On your landing page</b><span id="ptrans">Your visitor arrives "wild": distracted, skeptical, one click from leaving. Your job is to earn each next step.</span></div>
+        <div class="btn-row" style="margin-top:20px">
+          <button class="btn mag" id="pnext">Earn praise #1</button>
+          <button class="btn tq" id="preset">Back to the woods</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LESSONS -->
+<section class="bg-m" id="lessons">
+  <div class="wrap">
+    <span class="kicker rv">Chapter 3 · The lessons</span>
+    <h2 class="rv">Four lessons, built into every page we make.</h2>
+    <p class="lead rv">Kipling's core ideas turn directly into landing page strategy. This is how each one shapes the pages EasyLandX builds for small businesses.</p>
+    <div class="grid4">
+      <div class="card rv">
+        <svg viewBox="0 0 100 100"><circle cx="30" cy="50" r="18" fill="#10C47E" stroke="#04241a" stroke-width="5"/><circle cx="70" cy="50" r="18" fill="#2DF5E0" stroke="#04241a" stroke-width="5"/><path d="M44 50 H56" stroke="#04241a" stroke-width="6" stroke-linecap="round"/></svg>
+        <h3>Independence through negotiation</h3><p>Every page makes a clear, fair trade: one helpful action from the visitor in exchange for one specific benefit. No pressure, no giving away the farm.</p>
+      </div>
+      <div class="card rv">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="34" fill="none" stroke="#04241a" stroke-width="5"/><circle cx="50" cy="50" r="20" fill="none" stroke="#04241a" stroke-width="5"/><circle cx="50" cy="50" r="7" fill="#FF1CB4" stroke="#04241a" stroke-width="4"/><path d="M50 50 L84 16" stroke="#04241a" stroke-width="5" stroke-linecap="round"/></svg>
+        <h3>Skill and strategy over force</h3><p>Observation, patience and timing beat loud tactics. We study your customer first, then place the message and the button exactly where the decision happens.</p>
+      </div>
+      <div class="card rv">
+        <svg viewBox="0 0 100 100"><path d="M50 82 C10 55 14 22 36 22 C44 22 48 28 50 32 C52 28 56 22 64 22 C86 22 90 55 50 82Z" fill="#FF1CB4" stroke="#04241a" stroke-width="5" stroke-linejoin="round"/><path d="M32 46 H68" stroke="#04241a" stroke-width="5" stroke-linecap="round"/></svg>
+        <h3>Mutual benefit, not subservience</h3><p>The best pages work for the visitor and the owner. Helpful, honest copy, and a straightforward way to get in touch.</p>
+      </div>
+      <div class="card rv">
+        <svg viewBox="0 0 100 100"><path d="M50 12 L84 28 V56 C84 74 66 86 50 92 C34 86 16 74 16 56 V28Z" fill="#2DF5E0" stroke="#04241a" stroke-width="5" stroke-linejoin="round"/><path d="M34 52 L46 64 L68 40" stroke="#04241a" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Maintain your identity</h3><p>You can join the market without becoming a clone. Custom design, your voice, your colors, in Spanish, English, or both.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILDER -->
+<section class="bg-t" id="builder">
+  <div class="wrap">
+    <span class="kicker rv">Interactive · Your bargain</span>
+    <h2 class="rv">Build your cat-approved page blueprint.</h2>
+    <p class="lead rv">Tell the cat about your business and get a section-by-section outline, with each block mapped to the praise it earns.</p>
+    <div class="builder">
+      <div class="panel rv">
+        <label for="bt">Your business</label>
+        <select id="bt">
+          <option value="restaurant">Restaurant or café</option>
+          <option value="salon">Salon, barber or spa</option>
+          <option value="trades">Plumber, electrician or trades</option>
+          <option value="coach">Coach or consultant</option>
+          <option value="shop">Local shop</option>
+        </select>
+        <label for="bg">Your goal</label>
+        <select id="bg">
+          <option value="book">Get bookings</option>
+          <option value="call">Get phone calls</option>
+          <option value="sell">Get sales</option>
+          <option value="lead">Get sign-ups and inquiries</option>
+        </select>
+        <label for="bl">Language</label>
+        <select id="bl">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="both">Both: English and Español</option>
+        </select>
+        <button class="btn mag" style="margin-top:22px" id="bgo">Show my blueprint</button>
+      </div>
+      <div class="panel rv" id="bout" aria-live="polite">
+        <p>Pick your options and press the button. The cat will sketch your page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAME -->
+<section class="bg-e" id="hunt">
+  <div class="wrap">
+    <span class="kicker rv">Interactive · The third praise</span>
+    <h2 class="rv">Catch the mouse. Catch the lead.</h2>
+    <p class="lead rv">The cat earned his milk by being useful at the right moment. A landing page does the same: it makes the next step so clear and so close that your visitor can't miss it. Catch as many mice as you can in 20 seconds. They get faster, just like attention spans.</p>
+    <div class="arena rv" id="arena">
+      <button class="mouse" id="mouse" aria-label="Catch the mouse">
+        <svg viewBox="0 0 74 48"><path d="M58 30 q14 2 14 -10" stroke="#04241a" stroke-width="4" fill="none" stroke-linecap="round"/><ellipse cx="34" cy="30" rx="26" ry="15" fill="#FF1CB4" stroke="#04241a" stroke-width="4"/><circle cx="16" cy="16" r="9" fill="#2DF5E0" stroke="#04241a" stroke-width="4"/><circle cx="8" cy="30" r="3" fill="#04241a"/></svg>
+      </button>
+      <div id="arenaMsg" style="position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;font-family:Georgia,serif;font-weight:900;font-size:1.6rem">Press start and the mice come out.</div>
+    </div>
+    <div class="hud">
+      <div class="chip">Leads caught: <span id="score">0</span></div>
+      <div class="chip">Time: <span id="time">20</span>s</div>
+      <div class="chip">Best: <span id="best">0</span></div>
+      <button class="btn mag" id="gstart">Start the hunt</button>
+    </div>
+  </div>
+</section>
+
+<!-- TERMS -->
+<section class="bg-m" id="terms">
+  <div class="wrap">
+    <span class="kicker rv">Chapter 4 · The terms</span>
+    <h2 class="rv">The Man and the Dog set terms too. So do we.</h2>
+    <p class="lead rv">In the story, the cat had to keep his side: catch the mice and be kind to the Baby. A good bargain has conditions on both sides. These are the terms we hold every EasyLandX page to.</p>
+    <div class="terms">
+      <div class="card rv"><h3>Custom, never copy-paste</h3><p>Built around your business, your audience and your voice. Not a template with your logo on top.</p></div>
+      <div class="card rv"><h3>One job per page</h3><p>Every landing page exists to catch one thing: the booking, the call, the sale or the inquiry.</p></div>
+      <div class="card rv"><h3>Affordable for small business</h3><p>Professional, conversion-focused design that a local business can actually afford.</p></div>
+      <div class="card rv"><h3>Two languages, one identity</h3><p>We work across Spanish- and English-speaking markets, so your message lands in the language your customers speak.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-e cta" id="cta">
+  <div class="wrap">
+    <svg viewBox="0 0 180 120" width="180" class="floaty" style="margin-bottom:10px" aria-hidden="true"><use href="#catsh" transform="translate(30 10) scale(1.3)"/></svg>
+    <h2 class="rv">Ready to walk into the cave on your own terms?</h2>
+    <p class="lead rv" style="margin-left:auto;margin-right:auto">Let EasyLandX build the landing page that earns your customer's attention, trust and action.</p>
+    <a class="btn mag big" href="https://easypagex.github.io" target="_blank" rel="noopener">Go to EasyLandX ↗</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 EasyLandX. All rights reserved.</p>
+    <p class="insp">Inspired by <em>The Cat That Walked by Himself and Other Tales</em> by Rudyard Kipling.</p>
+  </div>
+</footer>
+
+<script>
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* three praises */
+const steps=[
+ {st:'Stage 0 · The Wet Wild Woods',x:30,b:'The cat watches from the woods. He wants the warmth, but he will not give up his freedom to get it.',t:'Your visitor arrives "wild": distracted, skeptical, one click from leaving. Your job is to earn each next step.',btn:'Earn praise #1'},
+ {st:'Stage 1 · Praise one: entry to the cave',x:250,b:'He plays with the crying Baby until it laughs. "Wonderful!" says the Woman. First praise earned, and the Cat may enter the cave.',t:'THE HOOK. The first screen is kind and clear: a human headline, a plain promise, one obvious next step. Earn the right to stay in five seconds.',btn:'Earn praise #2'},
+ {st:'Stage 2 · Praise two: a seat by the fire',x:370,b:'He purrs the Baby to sleep. Second praise earned, and he may sit by the fire, forever.',t:'THE WARMTH. Trust is built: real proof, calm layout, honest answers to doubts. Visitors relax, scroll and start to believe.',btn:'Earn praise #3'},
+ {st:'Stage 3 · Praise three: the milk',x:470,b:'A mouse runs by and the Cat pounces. Third praise earned: warm white milk, three times a day, for always.',t:'THE MILK. Skill meets action: one button, one short form, one result you can measure. The visitor becomes a customer.',btn:'Replay'}
+];
+let ps=0;
+const $=id=>document.getElementById(id);
+function renderP(){
+  const s=steps[ps];
+  $('pstage').textContent=s.st;$('pbubble').textContent=s.b;$('ptrans').textContent=s.t;$('pnext').textContent=s.btn;
+  $('pcat').style.transform=`translate(${s.x}px,178px)`;
+  [1,2,3].forEach(i=>$('p'+i).classList.toggle('on',ps>=i));
+  $('zzz').setAttribute('opacity',ps>=2?1:0);
+  $('milk').setAttribute('opacity',ps>=3?1:0);
+  $('pmouse').style.transform=ps===2?'translate(330px 246px)':ps>=3?'translate(330px 246px)':'translate(600px 246px)';
+  $('pmouse').style.opacity=ps>=3?0:1;
+}
+$('pnext').onclick=()=>{ps=ps>=3?0:ps+1;renderP()};
+$('preset').onclick=()=>{ps=0;renderP()};
+renderP();
+
+/* blueprint */
+const heads={
+ restaurant:{en:'Your table is waiting. Reserve it in 30 seconds.',es:'Tu mesa te espera. Reserva en 30 segundos.'},
+ salon:{en:'Walk in tired. Walk out feeling like you.',es:'Entra cansad@. Sal sintiéndote tú.'},
+ trades:{en:'Fast, honest repairs. Call and get a real answer today.',es:'Reparaciones rápidas y honestas. Llama y recibe respuesta hoy.'},
+ coach:{en:'Clear next steps for your business, starting this week.',es:'Pasos claros para tu negocio, desde esta semana.'},
+ shop:{en:'Local things worth coming back for. Find yours.',es:'Productos locales que querrás volver a comprar. Encuentra el tuyo.'}
+};
+const ctas={book:['Book now','Reservar ahora'],call:['Call now','Llamar ahora'],sell:['Buy today','Comprar hoy'],lead:['Get my free quote','Pedir mi presupuesto']};
+const proofs={restaurant:'Photos of real dishes, review snippets, opening hours',salon:'Before/after photos, stylist profiles, review snippets',trades:'Service area, licences, real job photos, review snippets',coach:'Client results, short bio, a clear process',shop:'Best-sellers, local story, customer photos'};
+$('bgo').onclick=()=>{
+  const bt=$('bt').value,bg=$('bg').value,bl=$('bl').value;
+  const h=bl==='es'?heads[bt].es:heads[bt].en;
+  const c=bl==='es'?ctas[bg][1]:bl==='both'?ctas[bg][0]+' / '+ctas[bg][1]:ctas[bg][0];
+  const hh=bl==='both'?heads[bt].en+'  ·  '+heads[bt].es:h;
+  const items=[
+   ['Hero: headline, one-line promise, main button "'+c+'"','Praise 1 · The Hook'],
+   ['Who it is for, and the problem you solve in plain words','Praise 1 · The Hook'],
+   ['Proof: '+proofs[bt],'Praise 2 · The Warmth'],
+   ['Three simple steps: what happens after they click','Praise 2 · The Warmth'],
+   ['Honest answers to the 3 biggest doubts (FAQ)','Praise 2 · The Warmth'],
+   ['Final action block: "'+c+'" with the simplest possible form or contact','Praise 3 · The Milk']
+  ];
+  $('bout').innerHTML='<div class="headline">'+hh+'</div><ul class="blue">'+items.map((it,i)=>`<li style="animation-delay:${i*.08}s"><span class="num">${i+1}</span><span>${it[0]}<span class="pr">${it[1]}</span></span></li>`).join('')+'</ul><a class="btn tq" style="margin-top:14px" href="https://easypagex.github.io" target="_blank" rel="noopener">Build this with EasyLandX ↗</a>';
+};
+
+/* game */
+let score=0,best=0,time=20,run=false,tmo,tick;
+const arena=$('arena'),mouse=$('mouse');
+function place(){
+  const w=arena.clientWidth-80,h=arena.clientHeight-54;
+  mouse.style.left=Math.random()*w+'px';mouse.style.top=Math.random()*h+'px';
+}
+function hop(){
+  if(!run)return;
+  place();
+  const delay=Math.max(380,900-score*30);
+  tmo=setTimeout(hop,delay);
+}
+function end(){
+  run=false;clearTimeout(tmo);clearInterval(tick);mouse.style.display='none';
+  best=Math.max(best,score);$('best').textContent=best;
+  const m=$('arenaMsg');m.style.display='grid';
+  m.innerHTML=score>=15?'Master hunter! '+score+' leads caught.<br>Your page would do the same.':score>=8?'Nicely done: '+score+' leads caught.':'You caught '+score+'. Even cats practise.';
+  $('gstart').textContent='Hunt again';
+}
+$('gstart').onclick=()=>{
+  if(run)return;
+  score=0;time=20;run=true;$('score').textContent=0;$('time').textContent=20;
+  $('arenaMsg').style.display='none';mouse.style.display='block';$('gstart').textContent='Hunting...';
+  hop();
+  tick=setInterval(()=>{time--;$('time').textContent=time;if(time<=0)end()},1000);
+};
+mouse.onclick=e=>{
+  if(!run)return;
+  score++;$('score').textContent=score;
+  const p=document.createElement('div');p.className='pop';p.textContent='+1 lead';
+  p.style.left=mouse.style.left;p.style.top=mouse.style.top;arena.appendChild(p);setTimeout(()=>p.remove(),800);
+  clearTimeout(tmo);hop();
+};
+</script>
+</body>
+</html>
