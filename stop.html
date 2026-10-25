@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX – Landing pages that bring calm and action</title>
+<style>
+:root{--y:#FFE600;--y2:#FFF27A;--b:#1F2C5C;--g:#1B5E35;--ink:#1F2C5C;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--y:#FFE600;--y2:#FFF27A;--b:#1F2C5C;--g:#1B5E35;--ink:#1F2C5C}}
+:root[data-theme="dark"]{--y:#FFE600;--b:#1F2C5C;--g:#1B5E35;--ink:#1F2C5C}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--y);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.08;margin:0 0 .5em;font-weight:900}
+h1{font-size:clamp(2.6rem,8vw,5.6rem);letter-spacing:-.02em}
+h2{font-size:clamp(1.9rem,5vw,3.2rem)}
+h3{font-size:1.35rem}
+p{margin:0 0 1em;max-width:64ch}
+section{padding:72px 6vw;position:relative}
+.wrap{max-width:1080px;margin:0 auto}
+.btn{display:inline-block;background:var(--b);color:var(--y);font-weight:900;font-size:1.1rem;padding:16px 30px;border:3px solid var(--b);border-radius:999px;text-decoration:none;cursor:pointer;transition:transform .2s,background .2s,color .2s;font-family:inherit}
+.btn:hover,.btn:focus-visible{background:var(--g);border-color:var(--g);transform:translateY(-3px) rotate(-1deg)}
+.btn.alt{background:transparent;color:var(--b)}
+.btn.alt:hover{background:var(--b);color:var(--y)}
+:focus-visible{outline:4px solid var(--g);outline-offset:3px}
+nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:12px 6vw;padding-top:calc(12px + env(safe-area-inset-top,0px));background:var(--y);border-bottom:3px solid var(--b)}
+nav b{font-family:Georgia,serif;font-size:1.5rem}
+nav b span{color:var(--g)}
+nav .btn{padding:9px 20px;font-size:.95rem}
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;min-height:82vh}
+.hero p.lead{font-size:1.25rem}
+.hero .row{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
+.art{width:100%;height:auto;overflow:visible}
+.sun{transform-origin:300px 120px;animation:spin 40s linear infinite}
+.float{animation:bob 5s ease-in-out infinite}
+.float2{animation:bob 7s ease-in-out infinite reverse}
+.cloud{animation:drift 14s ease-in-out infinite alternate}
+.bar{transform-origin:left center;transform:scaleX(0);animation:grow 1.2s cubic-bezier(.2,.8,.2,1) forwards}
+.bar.d1{animation-delay:.4s}.bar.d2{animation-delay:.8s}.bar.d3{animation-delay:1.2s}
+.pop{transform-box:fill-box;transform-origin:center;transform:scale(0);animation:pop .6s cubic-bezier(.3,1.6,.5,1) 1.7s forwards}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{50%{transform:translateY(-12px)}}
+@keyframes drift{to{transform:translateX(26px)}}
+@keyframes grow{to{transform:scaleX(1)}}
+@keyframes pop{to{transform:scale(1)}}
+/* dark blocks */
+.blue{background:var(--b);color:var(--y)}
+.blue .btn{background:var(--y);color:var(--b);border-color:var(--y)}
+.blue .btn:hover{background:var(--g);color:var(--y);border-color:var(--g)}
+.green{background:var(--g);color:var(--y)}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{border:3px solid var(--b);border-radius:22px;padding:24px;background:var(--y2);transition:transform .25s}
+.card:hover{transform:translateY(-6px)}
+.card svg{width:64px;height:64px;margin-bottom:10px}
+.blue .card,.green .card{background:transparent;border-color:var(--y)}
+.tag{display:inline-block;background:var(--g);color:var(--y);padding:4px 14px;border-radius:999px;font-weight:700;font-size:.9rem;margin-bottom:12px}
+/* day tight */
+.days{display:flex;gap:16px;flex-wrap:wrap;margin:24px 0}
+.day{flex:1 1 200px;border:3px solid var(--y);border-radius:20px;padding:20px;text-align:center;transition:.3s;cursor:pointer;background:transparent;color:inherit;font:inherit}
+.day.on{background:var(--y);color:var(--b);transform:scale(1.05)}
+.day.off{opacity:.45}
+.day b{display:block;font-family:Georgia,serif;font-size:1.5rem}
+/* planner */
+.planner{border:4px solid var(--b);border-radius:28px;padding:28px;background:var(--y2)}
+.steps{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.steps button{flex:1 1 140px;padding:12px;border:3px solid var(--b);border-radius:14px;background:transparent;color:var(--b);font:inherit;font-weight:900;cursor:pointer}
+.steps button.on{background:var(--b);color:var(--y)}
+.steps button.done{background:var(--g);color:var(--y);border-color:var(--g)}
+textarea,input[type=text]{width:100%;border:3px solid var(--b);border-radius:14px;padding:12px;font:inherit;background:var(--y);color:var(--b);min-height:90px}
+input[type=text]{min-height:0}
+.panel{display:none}.panel.on{display:block;animation:fade .4s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+.result{margin-top:18px;border-left:10px solid var(--g);padding:14px 18px;background:var(--y);border-radius:0 16px 16px 0;font-weight:700}
+/* slider */
+.meter{height:26px;border:3px solid var(--y);border-radius:999px;overflow:hidden;margin:14px 0}
+.meter i{display:block;height:100%;width:50%;background:var(--y);transition:width .3s}
+input[type=range]{width:100%;accent-color:var(--y);height:34px}
+/* checklist */
+.check{list-style:none;padding:0;margin:0}
+.check li{display:flex;align-items:center;gap:14px;padding:14px 16px;border:3px solid var(--b);border-radius:16px;margin-bottom:10px;cursor:pointer;background:var(--y2);transition:.25s;font-weight:700;user-select:none}
+.check li:hover{transform:translateX(6px)}
+.check .box{width:30px;height:30px;border:3px solid var(--b);border-radius:9px;flex:none;display:grid;place-items:center;color:var(--y);font-weight:900}
+.check li.on{background:var(--g);color:var(--y);border-color:var(--g)}
+.check li.on .box{background:var(--y);color:var(--g);border-color:var(--y)}
+.prog{height:22px;border:3px solid var(--b);border-radius:999px;overflow:hidden;margin:16px 0 6px}
+.prog i{display:block;height:100%;width:0;background:var(--g);transition:width .5s}
+.ratio{display:flex;height:70px;border-radius:18px;overflow:hidden;border:3px solid var(--y);font-weight:900;font-family:Georgia,serif;font-size:1.5rem}
+.ratio div{display:grid;place-items:center}
+.final{text-align:center}
+.final p{margin-inline:auto}
+footer{background:var(--b);color:var(--y);text-align:center;padding:36px 6vw}
+footer em{font-family:Georgia,serif;font-size:1.15rem}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
+@media(max-width:800px){.hero{grid-template-columns:1fr;min-height:0}section{padding:54px 6vw}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.bar,.pop{transform:none}}
+</style>
+</head>
+<body>
+<nav><b>Easy<span>LandX</span></b><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></nav>
+
+<section class="hero wrap" style="max-width:1180px">
+  <div>
+    <span class="tag">Landing pages, built for calm and action</span>
+    <h1>One page. One goal. Live today.</h1>
+    <p class="lead">EasyLandX turns a clear idea into a landing page that welcomes visitors, guides them to one next step, and lets you move on to the good stuff. Clarity first, momentum second, results right after.</p>
+    <div class="row">
+      <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+      <a class="btn alt" href="#planner">Try the 3-step planner</a>
+    </div>
+  </div>
+  <svg class="art" viewBox="0 0 600 460" role="img" aria-label="Illustration of a landing page being built under a bright sun">
+    <g class="sun"><circle cx="300" cy="120" r="64" fill="#1B5E35"/>
+      <g stroke="#1F2C5C" stroke-width="10" stroke-linecap="round"><path d="M300 22v-18M300 218v18M202 120h-18M398 120h18M231 51l-13-13M369 189l13 13M369 51l13-13M231 189l-13 13"/></g></g>
+    <g class="cloud"><path d="M60 110q0-30 32-30 12-24 44-14 26 2 26 30 24 2 24 24H60z" fill="#1F2C5C"/></g>
+    <g class="cloud" style="animation-duration:18s"><path d="M430 60q0-20 22-20 8-16 30-9 18 1 18 20 16 1 16 16H430z" fill="#1B5E35"/></g>
+    <g class="float2"><rect x="70" y="170" width="460" height="270" rx="22" fill="#FFF27A" stroke="#1F2C5C" stroke-width="8"/>
+      <path d="M70 212h460" stroke="#1F2C5C" stroke-width="8"/>
+      <circle cx="102" cy="191" r="7" fill="#1B5E35"/><circle cx="126" cy="191" r="7" fill="#1F2C5C"/><circle cx="150" cy="191" r="7" fill="#1B5E35"/>
+      <rect class="bar d1" x="110" y="244" width="300" height="26" rx="8" fill="#1F2C5C"/>
+      <rect class="bar d2" x="110" y="286" width="230" height="16" rx="8" fill="#1B5E35"/>
+      <rect class="bar d3" x="110" y="314" width="270" height="16" rx="8" fill="#1B5E35" opacity=".6"/>
+      <rect class="pop" x="110" y="356" width="150" height="48" rx="24" fill="#1F2C5C"/>
+      <path class="pop" d="M150 380h70m-14-12l14 12-14 12" stroke="#FFE600" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle class="pop" cx="470" cy="300" r="42" fill="#1B5E35"/><path class="pop" d="M450 300l14 14 28-30" stroke="#FFE600" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g class="float"><circle cx="40" cy="330" r="16" fill="#1B5E35"/><rect x="540" y="200" width="30" height="30" rx="8" fill="#1F2C5C" transform="rotate(20 555 215)"/></g>
+  </svg>
+</section>
+
+<section class="blue">
+  <div class="wrap">
+    <h2>Three truths that shape every EasyLandX page</h2>
+    <div class="grid">
+      <div class="card">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#FFE600" stroke-width="5" stroke-linecap="round"><circle cx="32" cy="32" r="22"/><path d="M32 18v14l10 6"/></svg>
+        <h3>Calm is a habit</h3>
+        <p>Carnegie taught that unease is a learned habit, so calm can be learned too. A repeatable page structure builds that habit: same proven flow, fresh message every time.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#FFE600" stroke-width="5" stroke-linecap="round"><rect x="8" y="14" width="48" height="40" rx="8"/><path d="M8 26h48M22 8v12M42 8v12"/></svg>
+        <h3>Live in day-tight compartments</h3>
+        <p>Yesterday is finished and tomorrow is open. Your page works on today's visitor with today's offer: one promise, one button, one clear next step.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#FFE600" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 52L28 36l8 8 16-24M40 20h12v12"/></svg>
+        <h3>Action fills the mind</h3>
+        <p>Momentum creates confidence. Publish the first version, watch real visitors, and improve with facts instead of guesses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="tag">Interactive: day-tight planner</span>
+    <h2>Pick today's compartment</h2>
+    <p>Tap a day. Your landing page lives in "Today", and the other compartments take a rest.</p>
+    <div class="days" style="color:var(--b)" id="days">
+      <button class="day off" data-t="Yesterday is complete. Keep the lessons from past results and let the rest go.">Yesterday<b>Learned</b></button>
+      <button class="day on" data-t="Today is where your page works: a clear headline, a single offer, one button to click.">Today<b>Launch</b></button>
+      <button class="day off" data-t="Tomorrow is a bright unknown. Plan lightly, and let tomorrow's visitors guide tomorrow's edits.">Tomorrow<b>Open</b></button>
+    </div>
+    <div class="result" id="dayMsg">Today is where your page works: a clear headline, a single offer, one button to click.</div>
+  </div>
+</section>
+
+<section class="green" id="planner">
+  <div class="wrap">
+    <span class="tag" style="background:var(--y);color:var(--g)">Interactive: Carrier's 3-step formula</span>
+    <h2>Plan your page with confidence</h2>
+    <p>Willis Carrier's formula brings instant clarity. Work through the steps for your landing page.</p>
+    <div class="planner" style="color:var(--b)">
+      <div class="steps" id="steps">
+        <button class="on" data-i="0">1. Analyze</button><button data-i="1">2. Accept</button><button data-i="2">3. Improve</button>
+      </div>
+      <div class="panel on" data-i="0">
+        <h3>What is the toughest outcome for this page?</h3>
+        <p>Be honest and specific. Example: "Nobody signs up in the first week."</p>
+        <textarea id="in0" placeholder="Type the toughest realistic outcome..."></textarea>
+        <p style="margin-top:14px"><button class="btn" data-next="1">Next: Accept</button></p>
+      </div>
+      <div class="panel" data-i="1">
+        <h3>Can you accept it, if it happens?</h3>
+        <p>Almost always yes. Once accepted, you have nothing left to lose and everything to gain.</p>
+        <label style="font-weight:700"><input type="checkbox" id="acc" style="width:22px;height:22px;accent-color:#1B5E35;vertical-align:middle"> Yes, I can accept it and keep going.</label>
+        <p style="margin-top:14px"><button class="btn" data-next="2">Next: Improve</button></p>
+      </div>
+      <div class="panel" data-i="2">
+        <h3>How will you improve on it?</h3>
+        <p>Name one calm action you can take this week.</p>
+        <input type="text" id="in2" placeholder="Example: Share the page with 10 friendly prospects">
+        <p style="margin-top:14px"><button class="btn" id="make">Build my plan</button></p>
+      </div>
+      <div class="result" id="plan" hidden></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Four more tools, built into the page</h2>
+    <div class="grid">
+      <div class="card"><svg viewBox="0 0 64 64" fill="none" stroke="#1F2C5C" stroke-width="5" stroke-linecap="round"><rect x="8" y="8" width="48" height="48" rx="10"/><path d="M18 20h28M18 32h28M18 44h14"/></svg>
+        <h3>The 4-question decision board</h3><p>What is the goal of this page? What shapes it? What are all the options? Which one is best? Write it down, then choose with facts.</p></div>
+      <div class="card"><svg viewBox="0 0 64 64" fill="none" stroke="#1B5E35" stroke-width="5" stroke-linecap="round"><path d="M8 52h48"/><rect x="14" y="30" width="8" height="22"/><rect x="28" y="20" width="8" height="32"/><rect x="42" y="10" width="8" height="42"/></svg>
+        <h3>Law of averages</h3><p>Most of what we imagine never happens. Test your page with real visitors and let the numbers speak.</p></div>
+      <div class="card"><svg viewBox="0 0 64 64" fill="none" stroke="#1F2C5C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 32h34M30 20l12 12-12 12"/><path d="M52 12v40"/></svg>
+        <h3>Cooperate with the inevitable</h3><p>Algorithms, seasons, and market shifts are facts of life. Flow with them and spend your energy where you have influence.</p></div>
+      <div class="card"><svg viewBox="0 0 64 64" fill="none" stroke="#1B5E35" stroke-width="5" stroke-linecap="round"><path d="M32 8v8M32 48v8M8 32h8M48 32h8"/><circle cx="32" cy="32" r="12"/></svg>
+        <h3>Stop-loss on effort</h3><p>Decide up front how much time a page deserves. Reach that mark, publish, and move forward.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="blue">
+  <div class="wrap">
+    <span class="tag">Interactive: stop-loss slider</span>
+    <h2>How much time is this page worth?</h2>
+    <p>Set your limit. Wall Street traders place a stop-loss order; you can place one on perfecting.</p>
+    <input type="range" min="1" max="40" value="8" id="sl" aria-label="Hours to spend on your page">
+    <div class="meter"><i id="slBar"></i></div>
+    <div class="result" id="slMsg" style="color:var(--b)"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="tag">Interactive: keep busy, keep energized</span>
+    <h2>Your launch checklist</h2>
+    <p>Busy hands bring a quiet mind. Tap each step as you complete it and watch your progress grow.</p>
+    <ul class="check" id="check">
+      <li><span class="box"></span>Write one promise in a single sentence</li>
+      <li><span class="box"></span>Choose one button and one next step</li>
+      <li><span class="box"></span>Add a friendly photo, proof, or story</li>
+      <li><span class="box"></span>Rest for 10 minutes before you hit publish</li>
+      <li><span class="box"></span>Publish with EasyLandX and celebrate</li>
+    </ul>
+    <div class="prog"><i id="prog"></i></div>
+    <b id="progTxt">0 of 5 complete</b>
+  </div>
+</section>
+
+<section class="green">
+  <div class="wrap">
+    <h2>Inner peace, written into your brand</h2>
+    <p>Pages with a peaceful point of view feel trustworthy. Carnegie's lessons become your copy and design principles.</p>
+    <div class="grid" style="margin:26px 0">
+      <div class="card"><h3>Fill the page with courage, health, and hope</h3><p>Your words shape your visitor's mood. Use bright, confident language.</p></div>
+      <div class="card"><h3>Cheer on your competitors</h3><p>Carnegie advised letting go of grudges. Spend your energy on your own craft and your customers.</p></div>
+      <div class="card"><h3>Give for the joy of giving</h3><p>Offer value freely, and enjoy the good it does. Appreciation is a happy bonus.</p></div>
+      <div class="card"><h3>Be yourself</h3><p>Your voice is your edge. A page that sounds like you attracts the right people.</p></div>
+      <div class="card"><h3>Rest before you are tired</h3><p>Energy powers great work. Short breaks keep your ideas fresh.</p></div>
+    </div>
+    <h3>Count your blessings: 90% of life is going right</h3>
+    <div class="ratio"><div style="width:90%;background:var(--y);color:var(--g)">90% going right</div><div style="width:10%;background:var(--b);color:var(--y)">10%</div></div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <svg viewBox="0 0 200 140" width="220" aria-hidden="true" class="float"><circle cx="100" cy="70" r="46" fill="#1B5E35"/><path d="M76 72l17 17 33-38" stroke="#FFE600" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="30" r="9" fill="#1F2C5C"/><circle cx="182" cy="108" r="12" fill="#1F2C5C"/><rect x="164" y="16" width="18" height="18" rx="5" fill="#1B5E35" transform="rotate(25 173 25)"/></svg>
+    <h2>Stop waiting. Start launching.</h2>
+    <p>Your clear, confident landing page is a few calm steps away.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener" style="font-size:1.3rem;padding:20px 44px">EasyLandX</a>
+  </div>
+</section>
+
+<footer><em>Inspired by "How to Stop Worrying and Start Living" by Dale Carnegie.</em></footer>
+<canvas class="confetti" id="cf"></canvas>
+
+<script>
+(function(){
+var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+// day compartments
+$$('#days .day').forEach(function(b){b.addEventListener('click',function(){
+  $$('#days .day').forEach(function(x){x.classList.remove('on');x.classList.add('off')});
+  b.classList.add('on');b.classList.remove('off');$('#dayMsg').textContent=b.dataset.t;});});
+// planner
+function go(i){
+  $$('.panel').forEach(function(p){p.classList.toggle('on',+p.dataset.i===i)});
+  $$('#steps button').forEach(function(s,k){s.classList.toggle('on',k===i);s.classList.toggle('done',k<i)});
+}
+$$('#steps button').forEach(function(s){s.addEventListener('click',function(){go(+s.dataset.i)})});
+$$('[data-next]').forEach(function(b){b.addEventListener('click',function(){go(+b.dataset.next)})});
+$('#make').addEventListener('click',function(){
+  var a=$('#in0').value.trim()||'a quiet first week',i=$('#in2').value.trim()||'share the page with ten friendly prospects';
+  var acc=$('#acc').checked?'Accepted, and ready to move.':'Take a deep breath; acceptance is one tick away.';
+  var r=$('#plan');r.hidden=false;
+  r.innerHTML='<b>Your plan</b><br>Toughest outcome: '+esc(a)+'<br>Status: '+acc+'<br>Improvement this week: '+esc(i)+'<br>Next: publish your page with EasyLandX.';
+  burst();
+});
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+// stop-loss
+function sl(){var v=+$('#sl').value;$('#slBar').style.width=(v/40*100)+'%';
+  var m=v<=4?'A quick sprint. Perfect for a simple one-offer page.':v<=12?'A healthy limit. Enough time to craft it well and publish.':v<=24?'A generous limit. Add a checkpoint at the halfway mark.':'A big investment. Break it into day-tight chunks.';
+  $('#slMsg').textContent=v+' hours: '+m+' When the clock reaches '+v+', publish and learn from real visitors.';}
+$('#sl').addEventListener('input',sl);sl();
+// checklist
+var items=$$('#check li');
+items.forEach(function(li){li.addEventListener('click',function(){
+  li.classList.toggle('on');$('.box',li).textContent=li.classList.contains('on')?'\u2713':'';
+  var n=items.filter(function(x){return x.classList.contains('on')}).length;
+  $('#prog').style.width=(n/items.length*100)+'%';
+  $('#progTxt').textContent=n+' of '+items.length+' complete'+(n===items.length?' \u2013 you did it!':'');
+  if(n===items.length)burst();});});
+// confetti
+var cv=$('#cf'),cx=cv.getContext('2d'),P=[],run=false;
+function burst(){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  cv.width=innerWidth;cv.height=innerHeight;
+  var c=['#1F2C5C','#1B5E35','#FFF27A'];
+  for(var i=0;i<110;i++)P.push({x:innerWidth/2,y:innerHeight*.6,vx:(Math.random()-.5)*14,vy:-Math.random()*14-4,s:6+Math.random()*8,c:c[i%3],r:Math.random()*6});
+  if(!run){run=true;tick();}
+}
+function tick(){
+  cx.clearRect(0,0,cv.width,cv.height);
+  P=P.filter(function(p){return p.y<cv.height+20});
+  P.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.r+=.2;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/2,p.s,p.s);cx.restore()});
+  if(P.length)requestAnimationFrame(tick);else{run=false;cx.clearRect(0,0,cv.width,cv.height)}
+}
+})();
+</script>
+</body>
+</html>

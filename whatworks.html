@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Landing pages that fit your life</title>
+<style>
+:root{--bg:#FFC800;--ink:#161200;--coral:#FF5A60;--teal:#00C4B3;--card:rgba(255,255,255,.38);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#FFC800;--ink:#161200}}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;line-height:1.55;overflow-x:hidden}
+.wrap{max-width:1040px;margin:0 auto;padding:56px 28px}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.1;margin:0 0 14px}
+h1{font-size:clamp(2.4rem,7vw,4.6rem);font-weight:900}
+h2{font-size:clamp(1.8rem,4.5vw,2.8rem);font-weight:900}
+h3{font-size:1.3rem}
+p{margin:0 0 14px}
+.kicker{display:inline-block;background:var(--ink);color:var(--bg);padding:4px 12px;border-radius:99px;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:3px solid var(--ink);padding:12px 28px;padding-top:calc(12px + env(safe-area-inset-top,0px));display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-weight:900;font-size:1.3rem;letter-spacing:-.02em}.brand b{color:var(--coral)}
+.btn{display:inline-block;background:var(--coral);color:#fff;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:12px 22px;border-radius:14px;font-weight:900;font-size:1rem;text-decoration:none;cursor:pointer;font-family:inherit;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.btn.teal{background:var(--teal);color:var(--ink)}
+.btn.sm{padding:8px 16px;box-shadow:3px 3px 0 var(--ink)}
+.card{background:var(--card);border:3px solid var(--ink);border-radius:20px;padding:22px}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.hero{display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:center}
+.row{display:flex;flex-wrap:wrap;gap:16px;margin-top:22px}
+/* animations */
+@keyframes float{50%{transform:translateY(-12px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes dash{to{stroke-dashoffset:-60}}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bloom{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.fl{animation:float 4s ease-in-out infinite}.fl2{animation:float 5s ease-in-out infinite reverse}
+.sp{transform-origin:center;transform-box:fill-box;animation:spin 14s linear infinite}
+.bl{transform-origin:center;transform-box:fill-box;animation:bloom 3s ease-in-out infinite}
+.flow{stroke-dasharray:10 10;animation:dash 1.6s linear infinite}
+.reveal{opacity:0;transform:translateY(26px);transition:.7s}.reveal.in{opacity:1;transform:none}
+/* lessons */
+.lesson .num{font-size:2.6rem;font-weight:900;color:var(--coral);font-family:Georgia,serif}
+.lesson .tag{display:block;margin-top:10px;padding-top:10px;border-top:2px dashed var(--ink);font-size:.92rem}
+.lesson svg{width:64px;height:64px}
+/* planner */
+label{display:flex;justify-content:space-between;font-weight:700;margin:14px 0 4px}
+input[type=range]{width:100%;accent-color:var(--coral);height:28px}
+.out{text-align:center}
+.ring{width:190px;height:190px;margin:0 auto 10px;display:block}
+.ring circle{transition:stroke-dashoffset .8s cubic-bezier(.3,1.4,.5,1)}
+.big{font-size:2.4rem;font-weight:900;font-family:Georgia,serif}
+.verdict{background:var(--ink);color:var(--bg);border-radius:14px;padding:14px;font-weight:700;min-height:70px}
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.tab{background:transparent;border:3px solid var(--ink);border-radius:99px;padding:8px 16px;font-weight:800;cursor:pointer;font-family:inherit;color:var(--ink)}
+.tab[aria-selected=true]{background:var(--ink);color:var(--bg)}
+.panel{display:none;animation:pop .45s}.panel.on{display:block}
+.panel ul{padding-left:20px;margin:0}.panel li{margin-bottom:8px}
+.ex{background:var(--teal);border:3px solid var(--ink);border-radius:14px;padding:12px 16px;margin-top:14px;font-weight:700}
+/* cycle */
+.cyc{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.cyc button{background:var(--card);border:3px solid var(--ink);border-radius:18px;padding:18px;text-align:left;font-family:inherit;color:var(--ink);cursor:pointer;font-size:1rem;transition:.2s}
+.cyc button:hover{transform:rotate(-1.5deg)}
+.cyc button.on{background:var(--coral);color:#fff}
+.cyc button.on.t{background:var(--teal);color:var(--ink)}
+.cyc strong{display:block;font-size:1.1rem;margin-bottom:4px}
+#cycOut{margin-top:16px;min-height:70px}
+/* commitments */
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+.chip{border:3px solid var(--ink);background:var(--card);border-radius:99px;padding:10px 18px;font-weight:800;cursor:pointer;font-family:inherit;font-size:1rem;color:var(--ink);transition:.3s}
+.chip.keep{background:var(--teal);transform:scale(1.06)}
+.chip.drop{opacity:.35;text-decoration:line-through;background:transparent}
+footer{border-top:3px solid var(--ink);text-align:center}
+.credit{font-family:Georgia,serif;font-size:1.15rem}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav><span class="brand">easylandx<b>.</b></span><a class="btn sm" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a></nav>
+
+<header class="wrap hero">
+ <div>
+  <span class="kicker">Landing pages · built for real life</span>
+  <h1>Pages that grow <span style="color:var(--coral)">with you</span>, at your pace.</h1>
+  <p style="font-size:1.2rem">Your landing page is a living practice, not a finish line. easylandx helps you launch a page that fits your energy, your calendar and your values, then evolve it one small adjustment at a time.</p>
+  <div class="row">
+   <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+   <a class="btn teal" href="#planner">Try the capacity planner</a>
+  </div>
+ </div>
+ <svg viewBox="0 0 400 340" role="img" aria-label="Illustration of a landing page window blooming with shapes">
+  <circle class="sp" cx="330" cy="60" r="34" fill="#FF5A60" stroke="#161200" stroke-width="4"/>
+  <g stroke="#161200" stroke-width="4" class="sp"><path d="M330 8v-0M330 112v0" /></g>
+  <g class="fl">
+   <rect x="40" y="50" width="280" height="220" rx="18" fill="#fff" stroke="#161200" stroke-width="5"/>
+   <rect x="40" y="50" width="280" height="40" rx="18" fill="#161200"/>
+   <circle cx="66" cy="70" r="7" fill="#FF5A60"/><circle cx="90" cy="70" r="7" fill="#FFC800"/><circle cx="114" cy="70" r="7" fill="#00C4B3"/>
+   <rect x="64" y="112" width="150" height="16" rx="8" fill="#161200"/>
+   <rect x="64" y="140" width="210" height="10" rx="5" fill="#161200" opacity=".35"/>
+   <rect x="64" y="160" width="170" height="10" rx="5" fill="#161200" opacity=".35"/>
+   <rect x="64" y="190" width="96" height="34" rx="12" fill="#FF5A60" stroke="#161200" stroke-width="4"/>
+   <circle class="bl" cx="250" cy="215" r="36" fill="#00C4B3" stroke="#161200" stroke-width="4"/>
+  </g>
+  <g class="fl2"><path d="M20 300 q60-60 120-10 t120-10 t120-10" fill="none" stroke="#161200" stroke-width="5" class="flow" stroke-linecap="round"/></g>
+  <g class="fl2"><circle cx="360" cy="230" r="14" fill="#00C4B3" stroke="#161200" stroke-width="4"/><circle cx="30" cy="150" r="10" fill="#FF5A60" stroke="#161200" stroke-width="4"/></g>
+ </svg>
+</header>
+
+<section class="wrap reveal">
+ <span class="kicker">The myth of linear progress</span>
+ <h2>Real journeys curve. Your page can too.</h2>
+ <p>Traditional goal-setting pictures a straight road from A to B. Life and work move in waves, pauses and surprises. A landing page that welcomes this rhythm keeps you consistent without perfectionism.</p>
+ <div class="card">
+  <svg viewBox="0 0 700 200" style="width:100%" role="img" aria-label="Straight path versus wavy real path">
+   <line x1="40" y1="60" x2="660" y2="60" stroke="#161200" stroke-width="5" stroke-dasharray="4 10" stroke-linecap="round"/>
+   <text x="40" y="38" font-weight="900" font-size="16">The plan</text>
+   <path id="real" d="M40 150 C120 70 160 200 240 140 S350 70 420 150 S560 200 660 110" fill="none" stroke="#FF5A60" stroke-width="7" stroke-linecap="round" class="flow" opacity="0" style="transition:opacity .6s"/>
+   <text id="rl" x="40" y="190" font-weight="900" font-size="16" opacity="0" style="transition:opacity .6s">The real path</text>
+   <circle cx="40" cy="60" r="11" fill="#00C4B3" stroke="#161200" stroke-width="4"/><circle cx="660" cy="60" r="11" fill="#00C4B3" stroke="#161200" stroke-width="4"/>
+   <circle id="dot" r="11" fill="#FF5A60" stroke="#161200" stroke-width="4" opacity="0"/>
+  </svg>
+  <button class="btn sm" id="reveal">Show the real path</button>
+ </div>
+</section>
+
+<section class="wrap reveal">
+ <span class="kicker">Core lessons</span>
+ <h2>Four lessons, one gentle page.</h2>
+ <div class="grid">
+  <article class="card lesson">
+   <svg viewBox="0 0 64 64"><circle class="sp" cx="32" cy="32" r="22" fill="none" stroke="#161200" stroke-width="5" stroke-dasharray="12 8"/><circle class="bl" cx="32" cy="32" r="9" fill="#FF5A60" stroke="#161200" stroke-width="4"/></svg>
+   <div class="num">1</div><h3>Practice over perfection</h3>
+   <p>Static goals create pass-or-fail pressure. Dynamic practices flex with life and keep you moving.</p>
+   <span class="tag"><b>On your page:</b> publish a clear first version, then refine it in a steady weekly rhythm.</span>
+  </article>
+  <article class="card lesson">
+   <svg viewBox="0 0 64 64"><rect x="10" y="30" width="44" height="26" rx="6" fill="#00C4B3" stroke="#161200" stroke-width="4"/><rect class="fl" x="18" y="10" width="28" height="14" rx="6" fill="#FF5A60" stroke="#161200" stroke-width="4"/></svg>
+   <div class="num">2</div><h3>Capacity-based planning</h3>
+   <p>Begin with the time, energy, focus, emotional bandwidth and funds you truly have today.</p>
+   <span class="tag"><b>On your page:</b> choose the sections and updates your real week can hold.</span>
+  </article>
+  <article class="card lesson">
+   <svg viewBox="0 0 64 64"><path class="bl" d="M32 54 C6 36 8 12 24 12 c6 0 8 4 8 6 0-2 2-6 8-6 16 0 18 24-8 42z" fill="#FF5A60" stroke="#161200" stroke-width="4"/></svg>
+   <div class="num">3</div><h3>Worth apart from output</h3>
+   <p>When value lives within you, strategy gets clearer and creative energy flows freely.</p>
+   <span class="tag"><b>On your page:</b> share what you stand for, calmly and confidently, without chasing every trend.</span>
+  </article>
+  <article class="card lesson">
+   <svg viewBox="0 0 64 64"><circle cx="28" cy="28" r="16" fill="none" stroke="#161200" stroke-width="5"/><line x1="40" y1="40" x2="56" y2="56" stroke="#161200" stroke-width="6" stroke-linecap="round"/><circle class="bl" cx="28" cy="28" r="6" fill="#00C4B3"/></svg>
+   <div class="num">4</div><h3>Curiosity over judgment</h3>
+   <p>Every surprise is information. Explore the data points, then adjust.</p>
+   <span class="tag"><b>On your page:</b> read your visitor behavior as friendly feedback that points to the next tweak.</span>
+  </article>
+ </div>
+</section>
+
+<section class="wrap reveal" id="planner">
+ <span class="kicker">Interactive · capacity planner</span>
+ <h2>Start with the capacity you have.</h2>
+ <p>Slide to describe your week. The planner shapes a landing page practice that fits it.</p>
+ <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+  <div class="card">
+   <label>Hours available this week <span id="vh">10</span></label><input id="h" type="range" min="1" max="30" value="10">
+   <label>Energy <span id="ve">6</span>/10</label><input id="e" type="range" min="1" max="10" value="6">
+   <label>Focus <span id="vf">6</span>/10</label><input id="f" type="range" min="1" max="10" value="6">
+   <label>Restoration protected first <span id="vr">25</span>%</label><input id="r" type="range" min="0" max="50" value="25">
+  </div>
+  <div class="card out">
+   <svg class="ring" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="#161200" stroke-opacity=".2" stroke-width="14"/><circle id="arc" cx="60" cy="60" r="50" fill="none" stroke="#FF5A60" stroke-width="14" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314" transform="rotate(-90 60 60)"/><circle class="bl" cx="60" cy="60" r="16" fill="#00C4B3" stroke="#161200" stroke-width="4"/></svg>
+   <div class="big"><span id="eff">0</span> focused hours</div>
+   <p style="margin:6px 0 12px">your effective capacity</p>
+   <div class="verdict" id="verd"></div>
+  </div>
+ </div>
+</section>
+
+<section class="wrap reveal">
+ <span class="kicker">Practical strategies</span>
+ <h2>Four strategies for a page that works.</h2>
+ <div class="tabs" role="tablist" id="tabs"></div>
+ <div class="card" id="panels"></div>
+</section>
+
+<section class="wrap reveal">
+ <span class="kicker">Interactive · observation cycle</span>
+ <h2>Pause. Notice. Nudge.</h2>
+ <p>Tap each question to see how a quick check-in guides a small, iterative adjustment.</p>
+ <div class="cyc" id="cyc"></div>
+ <div class="ex card" id="cycOut">Choose a question to begin your check-in.</div>
+</section>
+
+<section class="wrap reveal">
+ <span class="kicker">Interactive · essential commitments</span>
+ <h2>Keep three. Release the rest.</h2>
+ <p>Tap up to three page elements that match your values and capacity. Everything else is released with full permission.</p>
+ <div class="card">
+  <div class="chips" id="chips"></div>
+  <div class="verdict" id="comm">Pick your first essential.</div>
+  <button class="btn sm" id="reset" style="margin-top:14px">Start fresh</button>
+ </div>
+</section>
+
+<section class="wrap reveal" style="text-align:center">
+ <svg viewBox="0 0 200 70" style="width:220px"><path class="flow" d="M10 50 q30-50 60 0 t60 0 t60 0" fill="none" stroke="#161200" stroke-width="5" stroke-linecap="round"/><circle class="bl" cx="100" cy="22" r="10" fill="#FF5A60" stroke="#161200" stroke-width="4"/></svg>
+ <h2>Your page. Your rhythm. Your next small step.</h2>
+ <p style="font-size:1.15rem">Launch a landing page that supports a sustainable, values-led way of working.</p>
+ <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+</section>
+
+<footer class="wrap" style="padding-top:36px;padding-bottom:48px">
+ <p class="credit">Inspired by the book <b>What Works: A Comprehensive Guide to Change That Fits Your Life</b> by <b>Tara McMullin</b>.</p>
+ <p>Made by easylandx</p>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const io=new IntersectionObserver(es=>es.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// real path
+$('#reveal').onclick=()=>{
+ const p=$('#real');p.style.opacity=1;$('#rl').style.opacity=1;
+ const d=$('#dot');d.style.opacity=1;const len=p.getTotalLength();let t=0;
+ const step=()=>{t=(t+1.6)%len;const pt=p.getPointAtLength(t);d.setAttribute('cx',pt.x);d.setAttribute('cy',pt.y);requestAnimationFrame(step)};
+ if(!window._on){window._on=1;step()}
+ $('#reveal').textContent='Beautiful: it curves and keeps moving';
+};
+// planner
+const g=id=>+$('#'+id).value;
+function plan(){
+ ['h','e','f','r'].forEach(k=>$('#v'+k).textContent=g(k));
+ const eff=g('h')*(1-g('r')/100)*((g('e')+g('f'))/20);
+ $('#eff').textContent=eff.toFixed(1);
+ $('#arc').style.strokeDashoffset=314-314*Math.min(eff/20,1);
+ let v=eff<2.5?'A 20-minute weekly review and one small text tweak. Gentle, steady and plenty.':eff<5?'One page, one weekly practice: refine a single section and review how it feels.':eff<9?'One page, two practice sessions: improve a section, then run your observation check-in.':'Room for two pages or a deeper refresh, with rest booked first and boundaries set from real numbers.';
+ $('#verd').textContent=v;
+}
+document.querySelectorAll('#planner input').forEach(i=>i.oninput=plan);plan();
+// strategies
+const S=[
+ ['Practice First','Focus on habits, rhythms and behaviors rather than only target outcomes.',['Swap “reach 10,000 visitors” for “publish and review every week”.','Pick a cadence that fits your actual schedule and bandwidth.','Celebrate consistency; results follow the rhythm.'],'Your practice: Friday 30 minutes, improve one headline and look at what visitors enjoyed.'],
+ ['Guard Capacity','Audit your daily and weekly energy cycles and protect restoration first.',['Map when your energy peaks and when it dips.','Book rest, play and white space before client work.','Set boundaries from real constraints rather than best-case scenarios.'],'Your practice: edit your page in your high-energy window and keep evenings restful.'],
+ ['Observation Cycle','Run regular qualitative check-ins with three key questions.',['What is working right now?','What is not working yet?','What can I shift or adjust?','Choose small, iterative adjustments over sweeping overhauls.'],'Your practice: one question per visit, one tiny change per week.'],
+ ['Essential Commitments','Strip away external “shoulds” and industry trends.',['Keep a tight focus on a few initiatives that match your values and capacity.','Give yourself full permission to drop low-impact tasks that drain energy.','Let your page say a few things beautifully.'],'Your practice: three core sections, each one clear, confident and yours.']
+];
+S.forEach((s,i)=>{
+ const b=document.createElement('button');b.className='tab';b.setAttribute('role','tab');b.textContent=(i+1)+'. '+s[0];b.setAttribute('aria-selected',i==0);
+ b.onclick=()=>{document.querySelectorAll('.tab').forEach((x,j)=>x.setAttribute('aria-selected',j==i));document.querySelectorAll('.panel').forEach((x,j)=>x.classList.toggle('on',j==i))};
+ $('#tabs').appendChild(b);
+ const p=document.createElement('div');p.className='panel'+(i?'':' on');
+ p.innerHTML='<h3>'+s[0]+'</h3><p>'+s[1]+'</p><ul>'+s[2].map(x=>'<li>'+x+'</li>').join('')+'</ul><div class="ex">'+s[3]+'</div>';
+ $('#panels').appendChild(p);
+});
+// cycle
+const C=[['What is working right now?','Notice your wins','Visitors linger on the story section and clicks on the main button feel steady. Keep that energy.',0],['What is not working yet?','Gather the data','The pricing area gets quick scrolls. Treat it as curious evidence, not a verdict on you.',1],['What can I shift or adjust?','Choose one tweak','Rewrite two sentences in the pricing area this week. A small change, tested with a calm mind.',0]];
+C.forEach(c=>{const b=document.createElement('button');b.innerHTML='<strong>'+c[0]+'</strong>'+c[1];
+ b.onclick=()=>{document.querySelectorAll('#cyc button').forEach(x=>x.className='');b.className='on'+(c[3]?' t':'');$('#cycOut').textContent=c[2]};$('#cyc').appendChild(b)});
+// commitments
+const E=['Clear headline','Your story','Services','Testimonials','Newsletter pop-up','Trend-chasing banner','Live visitor counter','Daily blog feed'];
+let keep=[];
+function draw(){
+ $('#chips').innerHTML='';
+ E.forEach(n=>{const b=document.createElement('button');const k=keep.includes(n);b.className='chip'+(k?' keep':keep.length==3?' drop':'');b.textContent=(k?'✓ ':'')+n;
+  b.onclick=()=>{if(k)keep=keep.filter(x=>x!=n);else if(keep.length<3)keep.push(n);draw()};$('#chips').appendChild(b)});
+ $('#comm').textContent=keep.length<3?'Selected '+keep.length+' of 3. Choose what matches your values and capacity.':'Your essentials: '+keep.join(', ')+'. Everything else is released with full permission. Lighter, clearer, yours.';
+}
+$('#reset').onclick=()=>{keep=[];draw()};draw();
+</script>
+</body>
+</html>

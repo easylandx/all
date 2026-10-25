@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Landing pages that let visitors persuade themselves</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--cy:#00D9F5;--cy2:#00C2DE;--cy3:#7FEBFA;--ink:#022B33;--gold:#FFC21A;--coral:#FF5E4D;--w:rgba(255,255,255,.34);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--cy);color:var(--ink);font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:500;font-size:18px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-weight:800;line-height:1.02;margin:0;letter-spacing:-.02em}
+h1{font-size:clamp(2.6rem,8vw,5.6rem)}
+h2{font-size:clamp(2rem,5vw,3.4rem);margin-bottom:.4em}
+h3{font-size:1.25rem;line-height:1.2}
+p{margin:.6em 0;max-width:62ch}
+.q{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400}
+section,header,footer{padding:72px max(22px,calc((100vw - 1060px)/2))}
+nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:12px max(22px,calc((100vw - 1060px)/2));background:var(--cy);border-bottom:3px solid var(--ink)}
+nav b{font-size:1.3rem;font-weight:800}
+.btn{display:inline-block;background:var(--gold);color:var(--ink);font:800 1rem 'Bricolage Grotesque',sans-serif;padding:12px 24px;border:3px solid var(--ink);border-radius:999px;text-decoration:none;cursor:pointer;box-shadow:4px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn.c{background:var(--coral)}
+:focus-visible{outline:4px solid var(--coral);outline-offset:3px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;min-height:82vh}
+.hero p{font-size:1.25rem}
+.hero .lead{animation:rise .9s .1s both}.hero .art{animation:rise .9s .35s both}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.fl{animation:fl 4s ease-in-out infinite}.fl2{animation:fl 5s -1.5s ease-in-out infinite}.fl3{animation:fl 3.6s -2.4s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-14px)}}
+.spin{transform-origin:260px 210px;animation:sp 40s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+.pulse{animation:pu 2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}@keyframes pu{50%{transform:scale(1.08)}}
+.band{background:var(--cy2);border-block:3px solid var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:26px}
+.card{background:var(--w);border:3px solid var(--ink);border-radius:22px;padding:20px;text-align:left;color:var(--ink);font:inherit;cursor:pointer;transition:background .2s,transform .2s}
+.card:hover{transform:translateY(-3px)}
+.card[aria-expanded=true]{background:var(--gold)}
+.card .more{display:none;margin-top:10px;font-size:.98rem}
+.card[aria-expanded=true] .more{display:block}
+.card i{display:inline-block;font-style:normal;font-weight:800;background:var(--ink);color:var(--cy);border-radius:50%;width:34px;height:34px;line-height:34px;text-align:center;margin-bottom:10px}
+.panel{background:var(--w);border:3px solid var(--ink);border-radius:26px;padding:26px;margin-top:24px}
+.opts{display:grid;gap:12px}
+.opt{background:var(--cy3);border:3px solid var(--ink);border-radius:16px;padding:14px 16px;font:inherit;text-align:left;cursor:pointer;color:var(--ink);transition:background .2s}
+.opt:hover,.opt[aria-pressed=true]{background:var(--gold)}
+.two{display:grid;grid-template-columns:1fr 240px;gap:26px;align-items:center}
+.gauge{--p:50;width:210px;height:210px;border-radius:50%;margin:auto;background:conic-gradient(var(--coral) calc(var(--p)*1%),var(--cy3) 0);display:grid;place-items:center;border:3px solid var(--ink);transition:--p .6s;position:relative}
+.gauge::after{content:"";position:absolute;inset:26px;border-radius:50%;background:var(--cy);border:3px solid var(--ink)}
+.gauge span{position:relative;z-index:1;font-weight:800;font-size:2.4rem}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.tab{background:var(--cy3);border:3px solid var(--ink);border-radius:999px;padding:8px 18px;font:800 1rem 'Bricolage Grotesque',sans-serif;color:var(--ink);cursor:pointer}
+.tab[aria-selected=true]{background:var(--coral)}
+.ex{background:var(--ink);color:var(--cy3);border-radius:18px;padding:16px 20px;margin-top:14px}
+.ex b{color:var(--gold)}
+.ex .q{font-size:1.45rem;color:#fff}
+.stairs rect{fill:var(--cy3);stroke:var(--ink);stroke-width:3;transition:fill .3s}
+.stairs rect.on{fill:var(--gold)}
+.stairs rect.cur{fill:var(--coral)}
+.track{position:relative;height:16px;background:var(--cy3);border:3px solid var(--ink);border-radius:99px;margin:26px 8px}
+.dot{position:absolute;top:50%;left:0;width:30px;height:30px;margin:-15px 0 0 -15px;background:var(--gold);border:3px solid var(--ink);border-radius:50%;transition:left .6s cubic-bezier(.6,-.3,.3,1.3)}
+.dots{display:grid;grid-template-columns:repeat(20,1fr);gap:6px;margin:16px 0}
+.dots i{aspect-ratio:1;border-radius:50%;background:var(--cy3);border:2px solid var(--ink);transition:background .25s,transform .25s}
+.dots i.on{background:var(--gold);transform:scale(1.12)}
+input[type=range]{width:100%;accent-color:var(--coral);height:30px}
+.big{font-size:2.4rem;font-weight:800}
+.cta{text-align:center;background:var(--ink);color:var(--cy)}
+.cta h2{color:#fff}.cta p{margin-inline:auto}
+.cta .btn{font-size:1.3rem;padding:16px 36px;margin-top:14px}
+.ins{padding:30px 22px 40px;text-align:center;background:var(--cy2);border-top:3px solid var(--ink)}
+.ins p{margin:.3em auto}
+@media(max-width:760px){.hero,.two{grid-template-columns:1fr}.hero{min-height:auto}.gauge{width:170px;height:170px}.gauge::after{inset:22px}nav .btn{padding:8px 16px}body{font-size:17px}section,header{padding-block:52px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav><b>EasyLandX</b><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></nav>
+
+<header class="hero">
+  <div class="lead">
+    <h1>Landing pages that let visitors persuade themselves.</h1>
+    <p>Selling is neuroscience. EasyLandX builds pages that open with a curious question, guide visitors through their own goals, and invite a confident next step.</p>
+    <a class="btn c" href="#guard">Try the guard test</a>
+  </div>
+  <div class="art" aria-hidden="true">
+    <svg viewBox="0 0 520 440" width="100%">
+      <circle class="spin" cx="260" cy="210" r="190" fill="none" stroke="#022B33" stroke-width="3" stroke-dasharray="4 16" stroke-linecap="round"/>
+      <rect x="90" y="80" width="340" height="250" rx="22" fill="#fff" stroke="#022B33" stroke-width="5"/>
+      <path d="M90 126h340" stroke="#022B33" stroke-width="5"/>
+      <circle cx="116" cy="103" r="7" fill="#FF5E4D"/><circle cx="140" cy="103" r="7" fill="#FFC21A"/><circle cx="164" cy="103" r="7" fill="#00D9F5"/>
+      <rect x="120" y="150" width="200" height="22" rx="11" fill="#022B33"/>
+      <rect x="120" y="184" width="150" height="12" rx="6" fill="#7FEBFA"/>
+      <rect x="120" y="206" width="170" height="12" rx="6" fill="#7FEBFA"/>
+      <rect class="pulse" x="120" y="248" width="120" height="42" rx="21" fill="#FFC21A" stroke="#022B33" stroke-width="4"/>
+      <rect x="338" y="150" width="70" height="140" rx="14" fill="#00D9F5" stroke="#022B33" stroke-width="4"/>
+      <path d="M352 190l14 16 26-30" fill="none" stroke="#022B33" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <g class="fl"><path d="M40 70h120a16 16 0 0 1 16 16v38a16 16 0 0 1-16 16H92l-24 22v-22H40a16 16 0 0 1-16-16V86a16 16 0 0 1 16-16z" fill="#FFC21A" stroke="#022B33" stroke-width="4"/><text x="100" y="116" text-anchor="middle" font-size="44" font-weight="800" fill="#022B33">?</text></g>
+      <g class="fl2"><circle cx="440" cy="60" r="38" fill="#FF5E4D" stroke="#022B33" stroke-width="4"/><text x="440" y="76" text-anchor="middle" font-size="46" font-weight="800" fill="#022B33">?</text></g>
+      <g class="fl3"><circle cx="420" cy="370" r="30" fill="#FFC21A" stroke="#022B33" stroke-width="4"/><path d="M406 370l10 11 18-22" fill="none" stroke="#022B33" stroke-width="5" stroke-linecap="round"/></g>
+      <g class="fl2"><circle cx="70" cy="350" r="26" fill="#FF5E4D" stroke="#022B33" stroke-width="4"/></g>
+    </svg>
+  </div>
+</header>
+
+<section class="band" id="lessons">
+  <h2>Four lessons, built into every page</h2>
+  <p>Today’s visitors arrive informed and ready to compare. Tap a lesson to see how EasyLandX applies it.</p>
+  <div class="grid">
+    <button class="card" aria-expanded="false"><i>1</i><h3>Lower the guard</h3><div class="more">Visitors lift their shield the moment a page sounds like a pitch. We replace feature lists with a warm, relevant opening so the first seconds feel like a conversation.</div></button>
+    <button class="card" aria-expanded="false"><i>2</i><h3>Guide, then present</h3><div class="more">Think trusted advisor. Sections mirror the visitor’s current situation, goals and desired outcome before your offer appears.</div></button>
+    <button class="card" aria-expanded="false"><i>3</i><h3>Let them lead</h3><div class="more">People trust their own conclusions. Questions, quick selectors and self-check cards help visitors arrive at “this fits me” on their own.</div></button>
+    <button class="card" aria-expanded="false"><i>4</i><h3>Quality over numbers</h3><div class="more">One relevant visitor in a meaningful dialogue outshines a crowd of passers-by. We design for the right audience and deep connection.</div></button>
+  </div>
+</section>
+
+<section id="guard">
+  <h2>The guard test</h2>
+  <p>Pick a headline for a landing page. Watch how the visitor’s guard responds.</p>
+  <div class="panel two">
+    <div class="opts" id="gopts">
+      <button class="opt" data-g="88" data-m="Feature lists put visitors in evaluation mode. The shield goes up.">“50 features, best price, limited-time deal.”</button>
+      <button class="opt" data-g="96" data-m="Pressure sends the guard to its highest point. Visitors step away to think it over.">“Buy now! Only 3 spots left!”</button>
+      <button class="opt" data-g="12" data-m="A curious question shifts focus to the visitor’s world. The guard comes down and attention comes in.">“What made you start thinking about a new landing page?”</button>
+    </div>
+    <div><div class="gauge" id="gauge" style="--p:50" aria-live="polite"><span id="gval">50%</span></div><p style="text-align:center;margin:8px 0 0;font-weight:800">Visitor guard</p></div>
+  </div>
+  <p id="gmsg" class="q" style="font-size:1.6rem;margin-top:20px">Choose a headline to begin.</p>
+</section>
+
+<section class="band" id="nepq">
+  <h2>The question ladder</h2>
+  <p>The book’s Neuro-Emotional Persuasion Questions move a visitor through five stages. Climb the ladder and see the matching page section.</p>
+  <div class="panel two" style="grid-template-columns:1fr 1.3fr">
+    <svg class="stairs" id="stairs" viewBox="0 0 300 250" width="100%" aria-hidden="true">
+      <rect x="10" y="190" width="50" height="50" rx="8"/><rect x="66" y="150" width="50" height="90" rx="8"/><rect x="122" y="110" width="50" height="130" rx="8"/><rect x="178" y="70" width="50" height="170" rx="8"/><rect x="234" y="30" width="50" height="210" rx="8"/>
+    </svg>
+    <div>
+      <div class="tabs" role="tablist" id="ntabs"></div>
+      <h3 id="nt"></h3><p id="nd"></p>
+      <div class="ex"><b>Question to ask</b><div class="q" id="nq"></div><p style="margin:10px 0 0"><b>On the page</b> <span id="np"></span></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="stages">
+  <h2>Three-stage conversation</h2>
+  <p>Every EasyLandX page flows like a great conversation. Tap a stage.</p>
+  <div class="track"><div class="dot" id="dot"></div></div>
+  <div class="tabs" role="tablist" id="stabs"></div>
+  <div class="panel" style="margin-top:6px"><h3 id="st"></h3><p id="sd"></p><p><b>Page blueprint:</b> <span id="sp"></span></p></div>
+</section>
+
+<section class="band" id="tone">
+  <h2>Tone shapes trust</h2>
+  <p>How a message sounds matters as much as what it says. Choose a tone and see the voice of your page copy shift.</p>
+  <div class="panel">
+    <div class="tabs" id="ttabs" role="tablist"></div>
+    <svg viewBox="0 0 800 120" width="100%" aria-hidden="true"><path id="wave" d="" fill="none" stroke="#022B33" stroke-width="6" stroke-linecap="round"/><path id="wave2" d="" fill="none" stroke="#FFC21A" stroke-width="4" stroke-linecap="round"/></svg>
+    <div class="ex"><div class="q" id="tq"></div><p style="margin:10px 0 0"><b>Use it for</b> <span id="tp"></span></p></div>
+  </div>
+</section>
+
+<section id="quality">
+  <h2>Quality beats the numbers game</h2>
+  <p>Slide the relevance dial. Same 100 visitors, more meaningful conversations.</p>
+  <div class="panel">
+    <div class="two">
+      <div>
+        <label for="rel" style="display:block;font-weight:800">Page relevance</label>
+        <input type="range" id="rel" min="0" max="100" step="5" value="10"
+          aria-label="Page relevance" aria-describedby="relhelp rtxt">
+        <p id="relhelp" style="font-size:.95rem;margin-top:0">Move the dial from broad reach to a highly relevant audience.</p>
+        <p class="big" id="rtxt" aria-live="polite" style="margin:8px 0 0"></p>
+        <p id="rdesc" style="margin-top:4px">A broad audience means fewer conversations that are a strong fit.</p>
+      </div>
+      <div>
+        <div class="gauge" id="rgauge" style="--p:10" role="img" aria-label="10 percent relevance">
+          <span id="rpercent">10%</span>
+        </div>
+        <p style="text-align:center;margin:8px 0 0;font-weight:800">Audience relevance</p>
+      </div>
+    </div>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+    <p style="font-size:.9rem;margin-bottom:0">Illustrative model: the same 100 visitors, with relevance changing the number of meaningful conversations.</p>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Ready for a page that starts conversations?</h2>
+  <p>Let EasyLandX shape a landing page where visitors recognize their goals and choose their own next step.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</section>
+
+<footer class="ins">
+  <p>Inspired by <b>The New Model of Selling: Selling to an Unsellable Generation</b> (2023)</p>
+  <p>by <b>Jeremy Miner</b> and <b>Jerry Acuff</b></p>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+document.querySelectorAll('.card').forEach(c=>c.onclick=()=>c.setAttribute('aria-expanded',c.getAttribute('aria-expanded')!=='true'));
+
+// guard test
+const g=$('#gauge');
+document.querySelectorAll('#gopts .opt').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#gopts .opt').forEach(x=>x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');
+  const to=+b.dataset.g,from=parseFloat(g.style.getPropertyValue('--p'))||50,t0=performance.now();
+  (function step(t){const k=Math.min(1,(t-t0)/600),v=Math.round(from+(to-from)*k);g.style.setProperty('--p',v);$('#gval').textContent=v+'%';if(k<1)requestAnimationFrame(step)})(t0);
+  $('#gmsg').textContent=b.dataset.m;
+});
+
+// tabs helper
+function tabs(el,items,fn){
+  items.forEach((it,i)=>{const b=document.createElement('button');b.className='tab';b.setAttribute('role','tab');b.textContent=it;b.onclick=()=>{[...el.children].forEach((x,j)=>x.setAttribute('aria-selected',j===i));fn(i)};el.appendChild(b)});
+  el.children[0].click();
+}
+// NEPQ
+const N=[
+ ['Connecting','Establish context and shift the focus to the visitor’s world. Relevance comes first.','Hi, thanks for stopping by. What brought you here today?','Hero headline written as a friendly question, with one easy answer button.'],
+ ['Situation','Uncover the current reality, setup and existing process.','How are you welcoming visitors on your site right now?','A two-tap selector that mirrors where the visitor stands today.'],
+ ['Gap-finding','Help visitors notice the bottlenecks and gaps between today and their goal.','What would you love to see working better?','A self-check list where visitors tick the outcomes they want.'],
+ ['Solution','Invite visitors to picture the situation with the gap closed.','If every visitor felt personally welcomed, what would that open up for you?','An outcome preview showing the page they imagine, with real results.'],
+ ['Consequence','Explore the value of acting now and the cost of keeping things as they are.','Where would you like to be by next quarter, and what does your current page make possible?','A timeline comparing next quarter with a refreshed page and a gentle next step.']];
+const st=$('#stairs').querySelectorAll('rect');
+tabs($('#ntabs'),N.map(n=>n[0]),i=>{$('#nt').textContent=N[i][0]+' questions';$('#nd').textContent=N[i][1];$('#nq').textContent='“'+N[i][2]+'”';$('#np').textContent=N[i][3];st.forEach((r,j)=>r.setAttribute('class',j<i?'on':j===i?'cur':''))});
+// stages
+const S=[
+ ['Engagement','Establish relevance, lower the guard, and earn permission to explore deeper.','Question-led hero, short intro, one friendly invitation to continue.'],
+ ['Transition','Summarize what the visitor shared and connect it to the outcomes they want.','A “here is what we heard” recap section that reflects their goals back.'],
+ ['Commitment','Help the visitor own the decision. The next step feels like the logical way to reach their goal.','A calm call to action that restates the outcome they chose, with a clear first step.']];
+tabs($('#stabs'),S.map(s=>s[0]),i=>{$('#st').textContent=S[i][0]+' stage';$('#sd').textContent=S[i][1];$('#sp').textContent=S[i][2];$('#dot').style.left=(i*50)+'%'});
+// tone
+const T=[['Curious','Interesting! Tell me more about how visitors find you today?','Hero questions and discovery selectors.',14,.012,.05],['Empathetic','It sounds like you have put real care into this. Thank you for sharing it.','Recap sections and testimonials.',22,.008,.025],['Calm','Take your time. What would feel like a good next step for you?','Calls to action and pricing notes.',5,.004,.012]];
+let amp=14,fr=.012,sp=.05,ph=0;
+tabs($('#ttabs'),T.map(t=>t[0]),i=>{$('#tq').textContent='“'+T[i][1]+'”';$('#tp').textContent=T[i][2];[amp,fr,sp]=[T[i][3],T[i][4]*10,T[i][5]]});
+function wave(){ph+=sp;let a='',b='';for(let x=0;x<=800;x+=8){const y=60+Math.sin(x*fr+ph)*amp*(1+.5*Math.sin(x*.004));const y2=60+Math.sin(x*fr*1.6+ph*1.4+1)*amp*.6;a+=(x?'L':'M')+x+' '+y.toFixed(1);b+=(x?'L':'M')+x+' '+y2.toFixed(1)}$('#wave').setAttribute('d',a);$('#wave2').setAttribute('d',b);requestAnimationFrame(wave)}
+wave();
+// quality: keep the 100 visitors visible and update the illustrative conversation count.
+const D=$('#dots');
+for(let i=0;i<100;i++)D.appendChild(document.createElement('i'));
+const R=$('#rel');
+function rel(){
+  const v=Number(R.value);
+  // Illustrative 1:1 relationship: relevance percentage maps directly to conversations out of 100.
+  const n=Math.round(v);
+  [...D.children].forEach((d,i)=>d.classList.toggle('on',i<n));
+  $('#rtxt').textContent=n+' of 100 visitors start a meaningful conversation';
+  $('#rpercent').textContent=v+'%';
+  $('#rgauge').style.setProperty('--p',v);
+  $('#rgauge').setAttribute('aria-label',v+' percent audience relevance');
+  $('#rdesc').textContent = v < 30
+    ? 'Broad reach: most visitors may not be the right fit yet.'
+    : v < 70
+      ? 'Better targeting: more visitors see a clear reason to engage.'
+      : 'Strong relevance: more visitors are likely to recognize that this is for them.';
+}
+R.addEventListener('input',rel);
+rel();
+</script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasylandX · Landing Pages That Think Sideways</title>
+<style>
+:root{--bg:#DC143C;--deep:#a80f2d;--gold:#FFD700;--cyan:#00E5FF;--ink:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font:17px/1.6 Georgia,"Times New Roman",serif;overflow-x:hidden}
+.wrap{max-width:1040px;margin:0 auto;padding:clamp(36px,7vw,80px) clamp(24px,6vw,64px)}
+h1,h2,h3,.btn,.tag{font-family:"Arial Black",Impact,Helvetica,sans-serif;letter-spacing:-.01em}
+h1{font-size:clamp(2.2rem,6.5vw,4.4rem);line-height:1.02;text-transform:uppercase}
+h2{font-size:clamp(1.6rem,4vw,2.5rem);line-height:1.1;text-transform:uppercase;margin-bottom:14px}
+h3{font-size:1.05rem;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.g{color:var(--gold)}.c{color:var(--cyan)}
+.tag{display:inline-block;font-size:.75rem;background:var(--gold);color:#111;padding:6px 12px;border-radius:99px;margin-bottom:20px}
+.lead{max-width:640px;margin:18px 0 28px;font-size:1.15rem}
+.btn{display:inline-block;background:var(--cyan);color:#06222a;padding:15px 28px;border-radius:12px;text-decoration:none;font-size:.95rem;text-transform:uppercase;border:3px solid #fff;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--gold)}
+.btn.alt{background:var(--gold);color:#111}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.board{position:relative;aspect-ratio:1;max-width:380px;width:100%;margin:0 auto}
+.board svg{width:100%;height:100%;overflow:visible}
+.knight{animation:hop 4s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes hop{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(-3deg)}}
+.dash{stroke-dasharray:8 8;animation:flow 1.4s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-32}}
+.ping{animation:ping 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes ping{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.8);opacity:0}}
+section{border-top:4px solid #fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;margin-top:26px}
+.card{background:var(--deep);border:3px solid #fff;border-radius:16px;padding:22px;transition:transform .25s}
+.card:hover{transform:translateY(-6px) rotate(-.6deg)}
+.card .ic{font-size:2rem;margin-bottom:8px;display:block}
+.panel{background:var(--deep);border:3px solid var(--gold);border-radius:20px;padding:clamp(18px,4vw,32px);margin-top:26px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:16px}
+.sw{background:transparent;color:#fff;border:3px solid #fff;border-radius:99px;padding:10px 18px;font:700 .85rem Arial,sans-serif;cursor:pointer;text-transform:uppercase}
+.sw.on{background:var(--cyan);color:#06222a;border-color:var(--cyan)}
+#tree{width:100%;height:auto;display:block}
+.note{font-size:.95rem;margin-top:10px;min-height:3em}
+.cands{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:6px}
+.cand{background:var(--bg);border:3px solid #fff;border-radius:14px;padding:16px;cursor:pointer;opacity:0;transform:translateY(16px) scale(.95);animation:in .5s forwards;text-align:left;color:#fff;font:inherit}
+.cand b{display:block;color:var(--gold);font-family:Arial,sans-serif;text-transform:uppercase;font-size:.78rem;margin-bottom:6px}
+.cand:hover,.cand.pick{border-color:var(--cyan);box-shadow:5px 5px 0 var(--cyan)}
+@keyframes in{to{opacity:1;transform:none}}
+.steps{counter-reset:s;display:grid;gap:16px;margin-top:24px}
+.step{display:flex;gap:18px;align-items:flex-start;background:var(--deep);border-left:8px solid var(--cyan);padding:18px 20px;border-radius:12px}
+.step::before{counter-increment:s;content:counter(s);font:900 2rem Arial Black,sans-serif;color:var(--gold);min-width:34px}
+.cta{text-align:center}
+.cta h2{max-width:700px;margin:0 auto 14px}
+.cta .lead{margin-left:auto;margin-right:auto}
+footer{border-top:4px solid #fff;text-align:center;font-size:.95rem}
+footer .by{font-family:Arial,sans-serif;font-weight:700;margin-bottom:10px}
+.pieces span{display:inline-block;font-size:1.8rem;animation:hop 3s ease-in-out infinite;margin:0 6px}
+.pieces span:nth-child(2){animation-delay:.4s}.pieces span:nth-child(3){animation-delay:.8s}.pieces span:nth-child(4){animation-delay:1.2s}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.cand{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="wrap hero">
+  <div>
+    <span class="tag">EasylandX · Landing pages</span>
+    <h1>Launch pages that <span class="g">think sideways</span></h1>
+    <p class="lead">Great chess players win by looking <b class="c">wide</b>, not just deep. EasylandX applies that same mindset to landing pages, so every page you launch is built from many strong options and shaped around what your visitor does next.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx →</a>
+  </div>
+  <div class="board" aria-hidden="true">
+    <svg viewBox="0 0 300 300">
+      <defs><pattern id="ck" width="75" height="75" patternUnits="userSpaceOnUse"><rect width="37.5" height="37.5" fill="#a80f2d"/><rect x="37.5" y="37.5" width="37.5" height="37.5" fill="#a80f2d"/></pattern></defs>
+      <rect width="300" height="300" rx="14" fill="#DC143C" stroke="#fff" stroke-width="6"/>
+      <rect x="3" y="3" width="294" height="294" rx="12" fill="url(#ck)"/>
+      <path class="dash" d="M75 225 L75 150 L150 150" fill="none" stroke="#00E5FF" stroke-width="5" stroke-linecap="round"/>
+      <path class="dash" d="M75 225 L150 225 L150 75" fill="none" stroke="#FFD700" stroke-width="5" stroke-linecap="round"/>
+      <path class="dash" d="M75 225 L225 225 L225 150" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+      <circle class="ping" cx="150" cy="150" r="20" fill="#00E5FF"/>
+      <circle class="ping" cx="150" cy="75" r="20" fill="#FFD700" style="animation-delay:.6s"/>
+      <circle class="ping" cx="225" cy="150" r="20" fill="#fff" style="animation-delay:1.2s"/>
+      <circle cx="150" cy="150" r="9" fill="#00E5FF"/><circle cx="150" cy="75" r="9" fill="#FFD700"/><circle cx="225" cy="150" r="9" fill="#fff"/>
+      <g class="knight"><text x="75" y="248" font-size="76" text-anchor="middle" fill="#FFD700" stroke="#111" stroke-width="2">♞</text></g>
+    </svg>
+  </div>
+</header>
+
+<section><div class="wrap">
+  <span class="tag">Core messages</span>
+  <h2>Three ideas, one <span class="g">smarter page</span></h2>
+  <div class="grid">
+    <div class="card"><span class="ic">↔️</span><h3>Breadth over depth</h3><p>Strong players weigh several alternatives at a shallow depth. Your page does the same: several headline angles, several offers, several calls to action, all tested side by side.</p></div>
+    <div class="card"><span class="ic">🧭</span><h3>Flexibility wins</h3><p>A single rigid plan leans on many assumptions. A wide set of options keeps your page resilient when audiences, seasons and markets shift.</p></div>
+    <div class="card"><span class="ic">🌍</span><h3>A skill for everyone</h3><p>You can borrow chess mental models without being a master. Candidate moves, position and time management fit page building beautifully.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <span class="tag">Play with it · Decision trees</span>
+  <h2>Shorter, <span class="c">fuller</span> decision trees</h2>
+  <p class="lead">Instead of one scenario ten steps out, look at four possibilities three steps out. Switch the view, then press the surprise button and watch which plan keeps moving.</p>
+  <div class="panel">
+    <div class="row">
+      <button class="sw on" data-m="deep">One path · 10 deep</button>
+      <button class="sw" data-m="wide">4 paths · 3 deep</button>
+      <button class="btn alt" id="surprise" style="padding:10px 20px">⚡ A surprise arrives</button>
+    </div>
+    <svg id="tree" viewBox="0 0 760 250" role="img" aria-label="Decision tree comparison"></svg>
+    <p class="note" id="treeNote"></p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <span class="tag">Play with it · Candidate moves</span>
+  <h2>Scan <span class="g">one move wide</span></h2>
+  <p class="lead">Before you commit, list every immediate choice. Pick your page goal, scan the board, then choose your move.</p>
+  <div class="panel">
+    <div class="row" id="goals">
+      <button class="sw on" data-g="calls">Book more calls</button>
+      <button class="sw" data-g="sell">Sell a product</button>
+      <button class="sw" data-g="list">Grow my list</button>
+      <button class="btn alt" id="scan" style="padding:10px 20px">♞ Scan the board</button>
+    </div>
+    <div class="cands" id="cands"></div>
+    <p class="note" id="pickNote">Press “Scan the board” to reveal four candidate moves.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <span class="tag">Key lessons</span>
+  <h2>Four lessons, <span class="c">built into every page</span></h2>
+  <div class="grid">
+    <div class="card"><span class="ic">📐</span><h3>Life is not a straight line</h3><p>One path creates blind spots. Pages with several entry points welcome visitors who arrive from every direction.</p></div>
+    <div class="card"><span class="ic">🎲</span><h3>Embrace candidate moves</h3><p>Generate a wide set of options, even unusual ones, before committing to your headline and offer.</p></div>
+    <div class="card"><span class="ic">⏱️</span><h3>Focus under pressure</h3><p>Spend limited attention on the moments that change the outcome: the first screen, the offer and the button.</p></div>
+    <div class="card"><span class="ic">🔄</span><h3>Learn from blunders</h3><p>Spot a weak position early, keep the lesson, and pivot sideways instead of doubling down.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <span class="tag">Practical strategies</span>
+  <h2>Your <span class="g">opening playbook</span></h2>
+  <div class="steps">
+    <div class="step"><div><h3>Build shorter, fuller trees</h3>Map four distinct visitor journeys, three steps each, from first glance to action.</div></div>
+    <div class="step"><div><h3>Scan one move wide</h3>Inspired by Capablanca: review every choice available right now before executing your main plan.</div></div>
+    <div class="step"><div><h3>Construct a mind palace</h3>Keep structure simple and visual, so complex details stay easy to hold in busy moments.</div></div>
+    <div class="step"><div><h3>Find the pivot point</h3>When a page stalls, change the dynamic with a sideways move: a new angle, a new audience, a new offer.</div></div>
+  </div>
+</div></section>
+
+<section class="cta"><div class="wrap">
+  <div class="pieces" aria-hidden="true"><span>♞</span><span>♜</span><span>♝</span><span>♛</span></div>
+  <h2>Your next move: a page that <span class="g">sees every option</span></h2>
+  <p class="lead">Bring your idea. EasylandX shapes it into a landing page that is focused, flexible and ready to welcome visitors.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx →</a>
+</div></section>
+
+<footer><div class="wrap">
+  <p class="by">Made by easylandx</p>
+  <p>Inspired by the book <i>Thinking Sideways: How to Think Like a Chess Player and Win at Life</i> by Jennifer Shahade.</p>
+</div></footer>
+
+<script>
+const $=s=>document.querySelector(s),NS="http://www.w3.org/2000/svg";
+const tree=$("#tree");let mode="deep",hit=false;
+function el(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);tree.appendChild(e);return e}
+function draw(){
+  tree.innerHTML="";
+  if(mode==="deep"){
+    for(let i=0;i<10;i++){const x=50+i*73,broken=hit&&i>=4;
+      if(i)el("line",{x1:x-73,y1:125,x2:x,y2:125,stroke:broken?"#7a0b21":"#FFD700","stroke-width":5});
+      const c=el("circle",{cx:x,cy:125,r:17,fill:broken?"#7a0b21":"#FFD700",stroke:"#fff","stroke-width":3});
+      if(hit&&i===4){el("text",{x,y:131,"text-anchor":"middle","font-size":20,fill:"#fff"}).textContent="✕"}
+    }
+    $("#treeNote").textContent=hit?"The surprise arrives at step 5. Every step after it relied on that path, so the whole plan needs rebuilding.":"One long chain of assumptions: each step depends on the one before it.";
+  }else{
+    const rootX=60;el("circle",{cx:rootX,cy:125,r:18,fill:"#00E5FF",stroke:"#fff","stroke-width":3});
+    for(let b=0;b<4;b++){const y=35+b*60,hurt=hit&&b===0;
+      let px=rootX,py=125;
+      for(let d=1;d<=3;d++){const x=rootX+d*210,cy=y;
+        el("line",{x1:px,y1:py,x2:x,y2:cy,stroke:hurt&&d>1?"#7a0b21":(hit&&b===2?"#00E5FF":"#FFD700"),"stroke-width":hit&&b===2?6:4});
+        el("circle",{cx:x,cy,r:12,fill:hurt&&d>1?"#7a0b21":(hit&&b===2?"#00E5FF":"#FFD700"),stroke:"#fff","stroke-width":2});
+        px=x;py=cy}
+    }
+    $("#treeNote").textContent=hit?"One branch is blocked, and three others are still open. You pivot sideways to the glowing path and keep your momentum.":"Four distinct options, each only three steps long. Fewer fragile assumptions, a much wider view.";
+  }
+}
+document.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{mode=b.dataset.m;hit=false;document.querySelectorAll("[data-m]").forEach(x=>x.classList.toggle("on",x===b));draw()});
+$("#surprise").onclick=()=>{hit=!hit;draw()};
+draw();
+
+const D={
+ calls:[["The Outcome","Book a 15-minute call and leave with a clear plan."],["The Proof","Meet the clients who booked, and see what changed for them."],["The Question","Which next step fits your goals? Let’s find out together."],["The Shortcut","Pick a time in two clicks, with the calendar right on the page."]],
+ sell:[["The Benefit","Feel the difference from your very first day."],["The Story","How a small idea became a favorite, told in three short scenes."],["The Offer","Launch week bundle, with a bonus for early friends."],["The Demo","See it in action in 20 seconds, then make it yours."]],
+ list:[["The Gift","Take the free starter guide, delivered in a minute."],["The Series","Five short lessons, one friendly email each morning."],["The Community","Join readers who share one smart idea every week."],["The Quiz","Answer 3 quick questions and get a personal recommendation."]]
+};
+let goal="calls";
+document.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{goal=b.dataset.g;document.querySelectorAll("[data-g]").forEach(x=>x.classList.toggle("on",x===b));$("#cands").innerHTML="";$("#pickNote").textContent="Press “Scan the board” to reveal four candidate moves."});
+$("#scan").onclick=()=>{
+  const box=$("#cands");box.innerHTML="";
+  D[goal].forEach((m,i)=>{const c=document.createElement("button");c.className="cand";c.style.animationDelay=i*.15+"s";c.innerHTML="<b>♞ Move "+(i+1)+" · "+m[0]+"</b>"+m[1];
+    c.onclick=()=>{box.querySelectorAll(".cand").forEach(x=>x.classList.remove("pick"));c.classList.add("pick");$("#pickNote").innerHTML="Your move: <b class='g'>"+m[0]+"</b>. The other three stay ready as alternates if the position shifts.";};
+    box.appendChild(c)});
+  $("#pickNote").textContent="Four candidate moves are on the board. Choose the one that fits best.";
+};
+</script>
+</body>
+</html>
