@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasylandX · Landing Pages Built to Scale 10x</title>
+<style>
+:root{--bg:#0052FF;--bg2:#0047DB;--bg3:#003BB8;--ac:#FF5722;--w:#fff;--soft:rgba(255,255,255,.14);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--w);font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;line-height:1.6;overflow-x:hidden;padding:48px 0}
+.wrap{max-width:1040px;margin:0 auto;padding:0 28px}
+section{padding:64px 0}
+h1,h2,h3{line-height:1.1;margin:0 0 16px;font-weight:900;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,7vw,4.6rem)}h2{font-size:clamp(1.8rem,4.5vw,2.8rem)}h3{font-size:1.25rem}
+.ac{color:var(--ac)}.tag{display:inline-block;background:var(--ac);color:#fff;font-weight:800;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:99px;margin-bottom:18px}
+.btn{display:inline-block;background:var(--ac);color:#fff;font-weight:900;text-decoration:none;padding:16px 30px;border-radius:14px;border:3px solid #fff;font-size:1.05rem;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 0 #b83a12;cursor:pointer}
+.btn:hover{transform:translateY(-3px);box-shadow:0 9px 0 #b83a12}
+.btn.alt{background:#fff;color:var(--bg);box-shadow:0 6px 0 var(--bg3)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;position:relative}
+.hero p{font-size:1.2rem;max-width:520px}
+.blob{position:absolute;border-radius:50%;background:var(--bg2);z-index:-1;animation:float 8s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-24px) rotate(8deg)}}
+.art{background:var(--bg2);border:3px solid #fff;border-radius:28px;padding:16px}
+.draw{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 3s .3s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.rocket{animation:rk 3s .3s forwards;transform:translate(0,0)}
+@keyframes rk{to{transform:translate(0,-6px)}}
+.pulse{animation:pl 1.6s infinite}@keyframes pl{50%{opacity:.35}}
+.grid{display:grid;gap:20px}.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--bg2);border:3px solid #fff;border-radius:22px;padding:26px;transition:transform .25s}
+.card:hover{transform:translateY(-6px) rotate(-.6deg)}
+.card .n{font-size:3rem;font-weight:900;color:var(--ac);line-height:1}
+.rv{opacity:0;transform:translateY(34px);transition:all .7s}.rv.on{opacity:1;transform:none}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.tab{font:inherit;font-weight:800;background:var(--bg2);color:#fff;border:3px solid #fff;border-radius:14px;padding:12px 18px;cursor:pointer;transition:.2s}
+.tab.on{background:var(--ac)}
+.panel{background:var(--bg3);border:3px solid #fff;border-radius:24px;padding:30px;display:grid;grid-template-columns:1.2fr .8fr;gap:28px;min-height:280px}
+.panel ul{padding-left:20px;margin:0 0 14px}.panel li{margin-bottom:8px}
+.apply{background:var(--ac);border-radius:16px;padding:16px 18px;font-weight:700}
+.lab{background:var(--bg3);border:3px solid #fff;border-radius:26px;padding:30px;margin-bottom:26px}
+.lab h3{display:flex;align-items:center;gap:12px}.lab h3 span{background:var(--ac);width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none}
+input[type=range]{width:100%;accent-color:var(--ac);height:30px}
+.big{font-size:2.6rem;font-weight:900;color:var(--ac)}
+.row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.chip{font:inherit;font-weight:700;border:3px solid #fff;background:var(--bg2);color:#fff;border-radius:99px;padding:9px 16px;cursor:pointer;transition:.25s}
+.chip.off{background:transparent;opacity:.5;text-decoration:line-through;border-style:dashed}
+.chip.star{border-color:var(--ac)}
+.bar{height:22px;border-radius:99px;background:var(--bg);border:2px solid #fff;overflow:hidden;margin:6px 0 14px}
+.bar i{display:block;height:100%;background:var(--ac);width:0;transition:width .6s}
+.bar i.wh{background:#fff}
+.task{display:flex;gap:10px;align-items:center;padding:8px 14px;margin:6px 0;border-radius:12px;background:var(--bg2);transition:.4s;font-weight:700}
+.task.out{opacity:.3;transform:translateX(18px);text-decoration:line-through}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.lx{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;text-align:center}
+.lx div{background:var(--bg2);border:3px solid #fff;border-radius:18px;padding:20px 10px;font-weight:800}
+.lx b{display:block;font-size:2rem;color:var(--ac)}
+.take li{background:var(--bg2);border-left:8px solid var(--ac);padding:14px 18px;margin-bottom:12px;list-style:none;border-radius:0 14px 14px 0;font-weight:700}
+.take{padding:0}
+.cta{text-align:center;background:var(--ac);border:3px solid #fff;border-radius:30px;padding:48px 24px}
+.cta .btn{background:#fff;color:var(--ac);box-shadow:0 6px 0 var(--bg3)}
+footer{text-align:center;padding:36px 0 8px;opacity:.95;font-weight:600}
+@media(max-width:820px){.hero,.panel,.two{grid-template-columns:1fr}.g3{grid-template-columns:1fr}.lx{grid-template-columns:1fr 1fr}.hero{padding-top:12px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.draw{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<section class="hero" style="padding-top:24px">
+ <div class="blob" style="width:260px;height:260px;right:-60px;top:-30px"></div>
+ <div class="blob" style="width:120px;height:120px;left:-40px;bottom:0;animation-delay:2s"></div>
+ <div>
+  <span class="tag">Landing pages · made by easylandx</span>
+  <h1>Think <span class="ac">10x.</span><br>Beyond 10%.</h1>
+  <p>Linear growth is a comfortable trap. EasylandX landing pages give you a clear, repeatable offer that scales exponentially, so your effort turns into leverage.</p>
+  <p style="display:flex;gap:14px;flex-wrap:wrap">
+   <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasylandX →</a>
+   <a class="btn alt" href="#lab">Try the Scale Lab</a>
+  </p>
+ </div>
+ <div class="art">
+  <svg viewBox="0 0 400 320" width="100%" role="img" aria-label="Linear growth line stays low while exponential curve rockets upward">
+   <g stroke="#fff" stroke-opacity=".35" stroke-width="1.5"><path d="M30 290H380M30 290V20"/><path d="M30 230H380M30 170H380M30 110H380M30 50H380" stroke-dasharray="4 8"/></g>
+   <path class="draw" d="M30 290 L380 235" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/>
+   <path class="draw" d="M30 290 C170 285 270 250 340 60" stroke="#FF5722" stroke-width="8" fill="none" stroke-linecap="round"/>
+   <text x="268" y="226" fill="#fff" font-size="14" font-weight="700">Linear +10%</text>
+   <text x="42" y="40" fill="#FF5722" font-size="18" font-weight="900">Exponential 10x</text>
+   <g class="rocket"><g transform="translate(340 52) rotate(-12)"><path d="M0 -34C14 -18 14 6 8 18H-8C-14 6-14 -18 0 -34Z" fill="#fff"/><circle cx="0" cy="-8" r="6" fill="#FF5722"/><path d="M-8 10L-20 24L-8 20ZM8 10L20 24L8 20Z" fill="#FF5722"/><path class="pulse" d="M-5 20Q0 42 5 20Z" fill="#FF5722"/></g></g>
+   <circle cx="30" cy="290" r="9" fill="#FF5722" stroke="#fff" stroke-width="3"/>
+   <g fill="#fff"><circle class="pulse" cx="90" cy="70" r="3"/><circle class="pulse" cx="150" cy="40" r="2" style="animation-delay:.5s"/><circle class="pulse" cx="230" cy="90" r="3" style="animation-delay:1s"/></g>
+  </svg>
+ </div>
+</section>
+
+<section class="rv">
+ <span class="tag">The core thesis</span>
+ <h2>Scaling is a different game, not a bigger effort.</h2>
+ <p style="max-width:760px;font-size:1.15rem">Hardy and Erickson show that doing more of what you do today delivers 10–20% a year. Exponential results come from breaking the current operating model, releasing dead weight, and building a system that grows without you pushing it. Your landing page is that system’s front door: one clear promise, one clear action, repeatable for every visitor.</p>
+ <div class="grid g3" style="margin-top:28px">
+  <div class="card"><div class="n">01</div><h3>Optimize only what deserves to exist</h3><p>Tweaking a flawed offer adds complexity. Choose the offer worth scaling, then give it one focused page.</p></div>
+  <div class="card"><div class="n">02</div><h3>Compress time</h3><p>Aggressive deadlines reveal what matters. A page launched this week beats a perfect one next quarter.</p></div>
+  <div class="card"><div class="n">03</div><h3>Your ceiling is built on compromise</h3><p>Release 80% of what you do and double down on the 20% that delivers disproportionate results.</p></div>
+ </div>
+</section>
+
+<section class="rv" id="framework">
+ <span class="tag">The 6-part framework</span>
+ <h2>Six strategies. One scalable landing page.</h2>
+ <div class="tabs" id="tabs"></div>
+ <div class="panel" id="panel"></div>
+</section>
+
+<section class="rv" id="lab">
+ <span class="tag">Interactive · Scale Lab</span>
+ <h2>Feel the framework in your hands.</h2>
+
+ <div class="lab">
+  <h3><span>1</span>Strategy 1 · Set an Impossible Goal</h3>
+  <p>Slide your growth target. Watch how the 5-year curve changes from “improve a little” to “build differently.”</p>
+  <input type="range" id="mult" min="1" max="100" value="10" aria-label="Growth multiplier">
+  <div class="row"><div>Target: <span class="big" id="mv">10x</span></div><div id="mtxt" style="max-width:420px;font-weight:700"></div></div>
+  <svg id="gc" viewBox="0 0 600 220" width="100%" style="margin-top:12px;background:var(--bg2);border-radius:16px"></svg>
+ </div>
+
+ <div class="two">
+  <div class="lab" style="margin:0">
+   <h3><span>2</span>Strategy 2 · Compress Time</h3>
+   <p>Shorten the launch deadline. Parkinson’s Law keeps only the essentials.</p>
+   <input type="range" id="wk" min="1" max="12" value="12" aria-label="Weeks to launch">
+   <div class="row"><div>Deadline: <span class="big" id="wv" style="font-size:1.8rem">12 weeks</span></div></div>
+   <div id="tasks"></div>
+  </div>
+  <div class="lab" style="margin:0">
+   <h3><span>3</span>Strategies 3–5 · Raise the Floor</h3>
+   <p>Tap activities to release them. Watch effort drop while results stay.</p>
+   <div class="chips" id="chips"></div>
+   <div>Effort used: <b id="ev">100%</b></div><div class="bar"><i class="wh" id="eb" style="width:100%"></i></div>
+   <div>Results kept: <b id="rv">100%</b></div><div class="bar"><i id="rb" style="width:100%"></i></div>
+   <div id="verdict" style="font-weight:800"></div>
+  </div>
+ </div>
+
+ <div class="lab" style="margin-top:26px">
+  <h3><span>4</span>Strategy 6 · Who, Not How</h3>
+  <p>Your one-person capacity has a ceiling. Add A-players and watch it lift.</p>
+  <input type="range" id="who" min="0" max="5" value="0" aria-label="A-players on team">
+  <div class="row"><div>A-players: <span class="big" id="whv" style="font-size:1.8rem">0</span></div><div id="whtxt" style="font-weight:700"></div></div>
+  <svg id="team" viewBox="0 0 600 110" width="100%" style="background:var(--bg2);border-radius:16px;margin-top:10px"></svg>
+ </div>
+</section>
+
+<section class="rv">
+ <span class="tag">Why EasylandX</span>
+ <h2>Landing pages designed to scale.</h2>
+ <p style="max-width:720px;font-size:1.1rem">Each page is crafted around one simplified offer, so outcomes stay reliable while your attention moves to the highest-leverage work.</p>
+ <div class="lx" style="margin-top:22px">
+  <div><b>1</b>Clear offer</div><div><b>1</b>Bold action</div><div><b>∞</b>Repeatable visits</div><div><b>10x</b>Leverage mindset</div>
+ </div>
+</section>
+
+<section class="rv">
+ <span class="tag">Actionable takeaways</span>
+ <h2>Four moves to start today.</h2>
+ <ul class="take">
+  <li>Set goals big enough to change how you work, beyond how hard you work.</li>
+  <li>Simplify offers, operations, and client lists to the clear and valuable core.</li>
+  <li>Use time compression to uncover bottlenecks faster.</li>
+  <li>Hand ownership to A-players so execution grows past founder capacity.</li>
+ </ul>
+</section>
+
+<section class="rv">
+ <div class="cta">
+  <h2>Ready to scale beyond yourself?</h2>
+  <p style="font-size:1.15rem">Launch your page with easylandx and turn one clear offer into exponential reach.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasylandX →</a>
+ </div>
+</section>
+
+<footer>Made by easylandx<br>Inspired by the book <i>The Science of Scaling: Grow Your Business Bigger and Faster Than You Think Possible</i> by Dr. Benjamin Hardy and Blake Erickson.</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+// Reveal
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('on')),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// Strategies
+const S=[
+["1 · Change Your Frame","Define an Impossible Goal and shift from effort to system.",["Aim for 10x–100x, so standard tactics prove inadequate right away.","Focus on leverage, systems, and capabilities over personal exertion."],"Open with one bold promise above the fold. The page does the persuading while you sleep."],
+["2 · Compress Time","Apply Parkinson’s Law on purpose.",["Cut project timelines to force radical simplification.","Release projects, offers, and partnerships that miss exponential returns (escalation of commitment)."],"Publish this week. Launch a lean page, learn from real visitors, then refine."],
+["3 · Raise Your Floor","Raise the baseline for quality, pricing, clients, and talent.",["Set higher standards across the company.","Say goodbye to low-margin, high-friction clients to free capacity for high-value ones."],"Speak directly to your ideal client so the right people say yes and the rest self-select."],
+["4 · Simplify Your System","A scalable offer is clear, valuable, and repeatable.",["Remove friction, extra product lines, and complex packages.","Document and automate so results hold without the founder."],"One headline, one offer, one button. Simple pages convert and repeat."],
+["5 · Accelerate Your Focus","Find blind spots and double down on leverage points.",["Spot the biases and attachments keeping the business small.","Direct capital, attention, and effort to the highest-leverage activities."],"Track the one metric that matters: visitors who take the next step."],
+["6 · Scale Beyond Yourself","Build around Who, not How.",["Empower A-player talent to solve problems you used to carry.","Grow an autonomous team that owns outcomes."],"Your page greets, qualifies, and invites, acting as a teammate that works around the clock."]];
+const tabs=$('tabs'),panel=$('panel');
+function show(i){[...tabs.children].forEach((b,j)=>b.classList.toggle('on',i===j));const s=S[i];
+ panel.innerHTML=`<div><h3 style="font-size:1.7rem">${s[0]}</h3><p style="font-weight:700;font-size:1.1rem">${s[1]}</p><ul>${s[2].map(x=>`<li>${x}</li>`).join('')}</ul></div><div><div class="apply"><div style="font-size:.8rem;letter-spacing:.1em;text-transform:uppercase">On your easylandx page</div>${s[3]}</div><svg viewBox="0 0 200 90" width="100%" style="margin-top:14px"><g fill="none" stroke="#fff" stroke-width="3">${Array.from({length:6},(_,k)=>`<rect x="${8+k*31}" y="${78-(k<=i?(k+1)*11:6)}" width="22" height="${(k<=i?(k+1)*11:6)}" rx="4" fill="${k===i?'#FF5722':k<i?'#fff':'none'}"/>`).join('')}</g></svg></div>`}
+S.forEach((s,i)=>{const b=document.createElement('button');b.className='tab';b.textContent=s[0].split(' · ')[0]+' '+s[0].split(' · ')[1].split(' ')[0];b.onclick=()=>show(i);tabs.appendChild(b)});
+show(0);
+// Goal scaler
+function drawG(){const m=+$('mult').value;$('mv').textContent=m+'x';
+ const W=600,H=220,P=30;let lp='',ep='';
+ for(let t=0;t<=50;t++){const y=t/10,l=1+.15*y,e=Math.pow(m,y/5),mx=Math.max(m,1.75),x=P+t*(W-2*P)/50,f=v=>H-P-(v-1)*(H-2*P)/(mx-1);
+  lp+=(t?'L':'M')+x+' '+f(l);ep+=(t?'L':'M')+x+' '+f(e)}
+ $('gc').innerHTML=`<path d="M30 190H570" stroke="#fff" stroke-opacity=".4"/><path d="${lp}" stroke="#fff" stroke-width="4" fill="none"/><path d="${ep}" stroke="#FF5722" stroke-width="6" fill="none" stroke-linecap="round"/><text x="40" y="26" fill="#FF5722" font-weight="900" font-size="16">${m}x goal → ${m}x</text><text x="400" y="${H-P-12}" fill="#fff" font-size="13" font-weight="700">Linear: 1.75x</text><text x="300" y="212" fill="#fff" font-size="12" text-anchor="middle">Year 0 → Year 5</text>`;
+ $('mtxt').textContent=m<5?'Comfort zone: tweaking is enough, and so is the ceiling.':m<25?'Bold: standard tactics start to fall short, so the system must change.':'Impossible goal: only a new model, simplified and leveraged, can deliver.'}
+$('mult').oninput=drawG;drawG();
+// Time compression
+const T=["Core offer & headline","One bold button","Hero visual","Client-fit message","Proof & results","Extra product lines","Complex package tiers","Pixel-perfect polish","Weekly meetings about it","Rewriting every section"];
+const tk=$('tasks');T.forEach(t=>{const d=document.createElement('div');d.className='task';d.innerHTML='<span>✔</span>'+t;tk.appendChild(d)});
+function wk(){const w=+$('wk').value;$('wv').textContent=w+(w===1?' week':' weeks');const keep=Math.max(3,Math.round(T.length*(w/12)));
+ [...tk.children].forEach((d,i)=>{d.classList.toggle('out',i>=keep);d.firstChild.textContent=i>=keep?'✖':'✔'})}
+$('wk').oninput=wk;wk();
+// 80/20
+const A=[["Flagship offer",15,40,1],["Ideal clients",10,30,1],["Automated onboarding",8,12,1],["A-player delegation",7,7,1],["Custom one-off offers",20,4,0],["Low-margin clients",18,3,0],["Constant tweaking",12,2,0],["Meetings without outcomes",10,2,0]];
+const on=A.map(()=>true),ch=$('chips');
+A.forEach((a,i)=>{const b=document.createElement('button');b.className='chip'+(a[3]?' star':'');b.textContent=a[0];b.onclick=()=>{on[i]=!on[i];b.classList.toggle('off',!on[i]);upd()};ch.appendChild(b)});
+function upd(){let e=0,r=0;A.forEach((a,i)=>{if(on[i]){e+=a[1];r+=a[2]}});$('ev').textContent=e+'%';$('rv').textContent=r+'%';$('eb').style.width=e+'%';$('rb').style.width=r+'%';
+ $('verdict').textContent=e===100?'Tap activities to release them.':r>=e*1.5?'Leverage unlocked: '+(Math.round(r/e*10)/10)+'x results per unit of effort.':r>=e?'Nice. Keep releasing dead weight.':'Keep your orange-ringed leverage points.'}
+upd();
+// Team
+function tm(){const n=+$('who').value;$('whv').textContent=n;$('whtxt').textContent=['Founder capacity: 1x','Capacity: 3x','Capacity: 6x','Capacity: 12x','Capacity: 25x','Capacity: 50x+'][n];
+ let s='';for(let i=0;i<=n;i++){const x=40+i*90,c=i?'#FF5722':'#fff';s+=`<g style="transform-origin:${x}px 60px"><circle cx="${x}" cy="38" r="16" fill="${c}" stroke="#fff" stroke-width="3"><animate attributeName="r" values="12;16" dur=".4s"/></circle><path d="M${x-24} 90Q${x} 52 ${x+24} 90Z" fill="${c}" stroke="#fff" stroke-width="3"/></g>`;if(i)s+=`<path d="M${x-66} 60H${x-30}" stroke="#fff" stroke-width="3" stroke-dasharray="4 5"/>`}
+ $('team').innerHTML=s}
+$('who').oninput=tm;tm();
+</script>
+</body>
+</html>

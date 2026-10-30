@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx | Steer your mind, launch your page</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap">
+<style>
+:root{--r:#E10600;--r2:#BD0500;--r3:#930400;--y:#FFD60A;--w:#FFF6DA;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--r);color:var(--w);font:400 1.06rem/1.6 "Bricolage Grotesque",system-ui,sans-serif;overflow-x:hidden}
+.wrap{max-width:1080px;margin:0 auto;padding:clamp(48px,8vw,96px) clamp(24px,6vw,72px)}
+h1,h2,h3{font-weight:800;line-height:1.05;margin:0 0 .5em;letter-spacing:-.02em;color:var(--y)}
+h1{font-size:clamp(2.4rem,7vw,5rem)}h2{font-size:clamp(1.9rem,4.5vw,3.1rem)}h3{font-size:1.25rem;letter-spacing:0}
+p{margin:0 0 1em;max-width:62ch}
+a{color:inherit}
+.btn{display:inline-block;background:var(--y);color:var(--r3);font-weight:800;text-decoration:none;padding:.85em 1.6em;border-radius:999px;border:3px solid var(--y);cursor:pointer;font:inherit;font-weight:800;transition:transform .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-3px) rotate(-1deg);background:var(--r);color:var(--y)}
+.btn.ghost{background:transparent;color:var(--y)}.btn.ghost:hover{background:var(--y);color:var(--r3)}
+.btn:focus-visible,.chip:focus-visible,.cloud:focus-visible,.tog:focus-visible,input:focus-visible{outline:3px solid var(--w);outline-offset:3px}
+header{position:sticky;top:0;z-index:20;background:var(--r);border-bottom:3px solid var(--r3);padding:calc(14px + env(safe-area-inset-top,0px)) clamp(24px,6vw,72px) 14px}
+header div{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.logo{font-weight:800;font-size:1.3rem;color:var(--y);text-decoration:none}
+header .btn{padding:.5em 1.2em}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero svg{width:100%;height:auto;max-width:440px;justify-self:center}
+.row{display:flex;flex-wrap:wrap;gap:14px;margin-top:1.4em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.card{background:var(--r2);border:3px solid var(--r3);border-radius:22px;padding:24px;transition:transform .25s,border-color .25s}
+.card:hover{transform:translateY(-6px);border-color:var(--y)}
+.card svg{width:56px;height:56px;margin-bottom:10px}
+.card p{margin:0;font-size:.98rem}
+.band{background:var(--r2);border-block:3px solid var(--r3)}
+.tool{background:var(--r3);border:3px solid var(--y);border-radius:28px;padding:clamp(20px,4vw,36px);margin-top:28px}
+.tool h3{font-size:1.5rem}
+.sky{position:relative;isolation:isolate;height:250px;border-radius:20px;background:var(--r);overflow:hidden;border:3px solid var(--r2)}
+.cloud{position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;font:600 .86rem/1.2 inherit;padding:14px 22px;width:170px;min-height:64px;background:var(--w);color:var(--r3);border:0;border-radius:60px;cursor:pointer;animation:drift 14s linear infinite;transition:background .4s,color .4s,top 1.4s,opacity 1.4s}
+.cloud::before,.cloud::after{content:"";position:absolute;background:inherit;border-radius:50%;z-index:-1}
+.cloud::before{width:54px;height:54px;top:-22px;left:22px}.cloud::after{width:40px;height:40px;top:-12px;right:26px}
+.cloud.seen{background:var(--y);color:var(--r3)}
+.cloud.gone{top:-90px!important;opacity:0}
+@keyframes drift{from{transform:translateX(-200px)}to{transform:translateX(calc(100vw))}}
+.sky .cloud{animation-name:driftbox}
+@keyframes driftbox{0%{left:-190px}100%{left:100%}}
+.status{font-weight:800;color:var(--y);margin-top:14px;min-height:1.6em}
+.breath{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:22px}
+.ring{width:96px;height:96px;border-radius:50%;border:6px solid var(--y);display:grid;place-items:center;font-weight:800;color:var(--y);text-align:center;font-size:.8rem;transition:transform 1s}
+.ring.on{animation:pulse 4s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.25);background:rgba(255,214,10,.2)}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.chip{background:transparent;color:var(--y);border:3px solid var(--y);padding:.5em 1.1em;border-radius:999px;font:inherit;font-weight:600;cursor:pointer;transition:.2s}
+.chip.on,.chip:hover{background:var(--y);color:var(--r3)}
+.qbox{background:var(--r);border-radius:18px;padding:20px;min-height:120px;border:3px solid var(--r2)}
+.qbox b{color:var(--y)}
+.meter{height:28px;background:var(--r);border-radius:99px;overflow:hidden;border:3px solid var(--r2);margin:16px 0 8px}
+.meter i{display:block;height:100%;width:0;background:var(--y);transition:width .5s,background .5s}
+.tog{display:flex;justify-content:space-between;gap:12px;width:100%;text-align:left;background:var(--r);color:var(--w);border:3px solid var(--r2);border-radius:14px;padding:.6em 1em;font:inherit;cursor:pointer;transition:.2s}
+.tog.on{border-color:var(--y);background:var(--r2)}
+.tog span:last-child{color:var(--y);font-weight:800}
+.toggles{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.steps{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.steps label{display:flex;gap:12px;align-items:center;background:var(--r);border:3px solid var(--r2);border-radius:14px;padding:.7em 1em;cursor:pointer}
+.steps input{accent-color:var(--y);width:22px;height:22px}
+.steps input:checked+span{text-decoration:line-through;opacity:.7}
+.split{display:grid;grid-template-columns:1fr 150px;gap:24px;align-items:center}
+.pring{width:150px;height:150px;transform:rotate(-90deg)}
+.pring circle{fill:none;stroke-width:14}
+.big{font-size:clamp(1.2rem,3vw,1.7rem);font-weight:800;color:var(--y);margin:12px 0 0;max-width:30ch}
+.cta{text-align:center}.cta p{margin-inline:auto}
+footer{background:var(--r3);text-align:center}
+footer p{margin-inline:auto;font-size:.95rem}
+.float{animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-12px)}}
+.spin{transform-origin:200px 200px;animation:spin 40s linear infinite}.spin2{transform-origin:200px 200px;animation:spin 24s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.blink{transform-origin:200px 200px;animation:blink 5s infinite}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+@media(max-width:760px){.hero,.split{grid-template-columns:1fr}.pring{justify-self:center}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div><a class="logo" href="#top">easylandx</a><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a></div></header>
+
+<main id="top">
+<section class="wrap hero">
+<div>
+<h1>Your mind is easier to steer than you think. So is your landing page.</h1>
+<p>A landing page works when visitors feel clarity within seconds. Use the ideas of mental mastery to launch pages that guide attention, frame meaning and invite action.</p>
+<div class="row"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a><a class="btn ghost" href="#tools">Try the tools</a></div>
+</div>
+<svg viewBox="0 0 400 400" role="img" aria-label="An observing eye at the centre of a mind, surrounded by orbiting thoughts">
+<g class="spin"><circle cx="200" cy="200" r="175" fill="none" stroke="#FFD60A" stroke-width="3" stroke-dasharray="3 14" stroke-linecap="round"/>
+<circle cx="200" cy="25" r="14" fill="#FFF6DA"/><circle cx="375" cy="200" r="10" fill="#FFD60A"/><circle cx="90" cy="352" r="12" fill="#FFF6DA"/></g>
+<g class="spin2"><circle cx="200" cy="200" r="128" fill="none" stroke="#FFF6DA" stroke-width="2" stroke-dasharray="40 12"/>
+<circle cx="328" cy="200" r="9" fill="#FFD60A"/><circle cx="110" cy="110" r="11" fill="#FFF6DA"/><circle cx="136" cy="318" r="8" fill="#FFD60A"/></g>
+<circle cx="200" cy="200" r="84" fill="#930400" stroke="#FFD60A" stroke-width="5"/>
+<g class="blink"><path d="M110 200 Q200 120 290 200 Q200 280 110 200Z" fill="#FFD60A"/><circle cx="200" cy="200" r="30" fill="#930400"/><circle cx="200" cy="200" r="12" fill="#FFD60A"/><circle cx="210" cy="190" r="5" fill="#FFF6DA"/></g>
+<g class="float"><rect x="262" y="298" width="96" height="62" rx="10" fill="#FFF6DA"/><rect x="272" y="308" width="52" height="8" rx="4" fill="#E10600"/><rect x="272" y="324" width="76" height="6" rx="3" fill="#BD0500"/><rect x="272" y="338" width="34" height="12" rx="6" fill="#FFD60A"/></g>
+</svg>
+</section>
+
+<section class="band"><div class="wrap">
+<h2>Four messages, applied to every page you launch</h2>
+<div class="grid">
+<div class="card"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="22" fill="none" stroke="#FFD60A" stroke-width="4"/><path d="M28 12v16l10 8" fill="none" stroke="#FFD60A" stroke-width="4" stroke-linecap="round"/></svg><h3>The mind is a tool</h3><p>Your page serves you when it has direction: one purpose, one promise, one action.</p></div>
+<div class="card"><svg viewBox="0 0 56 56"><path d="M6 28Q28 4 50 28Q28 52 6 28Z" fill="none" stroke="#FFD60A" stroke-width="4"/><circle cx="28" cy="28" r="7" fill="#FFD60A"/></svg><h3>Perception sets reality</h3><p>Visitors assign meaning within seconds. Your headline frames what everything else on the page means.</p></div>
+<div class="card"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="9" fill="#FFD60A"/><path d="M28 4v10M28 42v10M4 28h10M42 28h10" stroke="#FFD60A" stroke-width="4" stroke-linecap="round"/></svg><h3>Awareness comes first</h3><p>Many pages run on autopilot. Notice every choice, then design each one on purpose.</p></div>
+<div class="card"><svg viewBox="0 0 56 56"><path d="M8 46L22 30l10 8 16-24" fill="none" stroke="#FFD60A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M38 14h10v10" fill="none" stroke="#FFD60A" stroke-width="4" stroke-linecap="round"/></svg><h3>Mastery is a skill</h3><p>Repetition and small upgrades build great pages. Anyone can train this, whatever their personality.</p></div>
+</div></div></section>
+
+<section class="wrap">
+<h2>Four lessons for a calmer, sharper launch</h2>
+<div class="grid">
+<div class="card"><h3>You are the observer</h3><p>Step back from the noise of doubt. Review your page like a calm observer, then refine with confidence.</p></div>
+<div class="card"><h3>Protect your energy</h3><p>Overthinking drains the energy you need for building. Decide, publish, learn, repeat.</p></div>
+<div class="card"><h3>Wire your focus</h3><p>What you repeat becomes your default path. Look for solutions daily and your pages keep improving.</p></div>
+<div class="card"><h3>Accept, then act</h3><p>Resistance adds friction. Welcome where your page stands today and move to the next step.</p></div>
+</div></section>
+
+<section class="band" id="tools"><div class="wrap">
+<h2>Five frameworks you can use right now</h2>
+<p>Each tool turns an idea from the book into a move for your landing page.</p>
+
+<div class="tool"><h3>1. The observer stance</h3>
+<p>Thoughts drift by like clouds. Tap each cloud to name it: “I am experiencing a thought about…”</p>
+<div class="sky" id="sky"></div>
+<div class="status" id="skyStatus">Observed 0 of 5</div>
+<div class="breath"><button class="btn ghost" id="pi">Interrupt the loop</button><div class="ring" id="ring">ready</div><p id="piText" style="margin:0">Tap to run the five-senses circuit breaker.</p></div>
+</div>
+
+<div class="tool"><h3>2. Targeted interrogation</h3>
+<p>Choose a thought, then answer three questions to reframe it.</p>
+<div class="chips" id="thoughts"></div>
+<div class="qbox" id="qbox">Pick a thought above to begin.</div>
+<div class="row"><button class="btn ghost" id="nextQ" disabled>Next question</button></div>
+</div>
+
+<div class="tool"><h3>3. Strict attention budgeting</h3>
+<p>Your visitor holds 100 points of attention. Tap elements to add them to your page.</p>
+<div class="toggles" id="budget"></div>
+<div class="meter"><i id="bar"></i></div>
+<div class="status" id="bmsg">Spent 0 of 100</div>
+</div>
+
+<div class="tool"><h3>4. Micro-actions over willpower</h3>
+<div class="split"><div><p>Five small steps, each one easy to begin.</p><ul class="steps" id="steps"></ul><div class="status" id="smsg"></div></div>
+<svg class="pring" viewBox="0 0 150 150"><circle cx="75" cy="75" r="62" stroke="#BD0500"/><circle id="arc" cx="75" cy="75" r="62" stroke="#FFD60A" stroke-linecap="round" stroke-dasharray="390" stroke-dashoffset="390" style="transition:stroke-dashoffset .6s"/></svg></div>
+</div>
+
+<div class="tool"><h3>5. Daily intentional priming</h3>
+<p>Choose your focus before the day chooses for you.</p>
+<div class="chips" id="prime"></div>
+<p class="big" id="primeOut">Select a focus to set your intention.</p>
+</div>
+</div></section>
+
+<section class="wrap cta">
+<h2>Ready to give your message a home?</h2>
+<p>One focused page, one clear action, built by an easy tool that stays out of your way.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+</section>
+</main>
+
+<footer><div class="wrap"><p><b>made by easylandx</b></p><p>Inspired by the book “Your Mind Is Easier to Control Than You Think” by Shedrack Krinbut.</p></div></footer>
+
+<script>
+const $=s=>document.querySelector(s);
+// 1 observer
+const th=["My headline needs to be perfect","Visitors may leave quickly","Others have nicer pages","I should wait until I feel ready","Maybe the colors need more tweaking"];
+let seen=0;const sky=$("#sky");
+th.forEach((t,i)=>{const c=document.createElement("button");c.className="cloud";c.textContent=t;c.style.top=(30+(i%3)*64)+"px";c.style.animationDuration=(16+i*3)+"s";c.style.animationDelay=(-i*4)+"s";
+c.onclick=()=>{if(c.classList.contains("seen"))return;c.classList.add("seen");c.textContent="I am experiencing a thought about "+t.split(" ").slice(0,3).join(" ").toLowerCase()+"…";seen++;
+$("#skyStatus").textContent=seen<5?"Observed "+seen+" of 5":"You are the sky, the thoughts are the weather. Time to build.";setTimeout(()=>c.classList.add("gone"),900)};sky.appendChild(c)});
+const sens=["See 5 things around you","Hear 4 sounds","Feel 3 textures","Notice 2 scents","Taste 1 flavor","Fresh start. Back to your page."];let pi=0,tm;
+$("#pi").onclick=()=>{clearInterval(tm);pi=0;$("#ring").classList.add("on");const go=()=>{$("#piText").textContent=sens[pi];$("#ring").textContent=pi<5?(5-pi):"go";if(pi>=5){clearInterval(tm);$("#ring").classList.remove("on")}pi++};go();tm=setInterval(go,2500)};
+// 2 reframe
+const R=[["My page feels unfinished","Is it true right now? The page is live in draft form and ready to grow.","Is this story serving me? It delays sharing, so a gentler story helps.","Realistic alternative: “Version one lets me learn.” Next step: publish today and refine this week."],
+["Visitors leave quickly","Is it true right now? Quick visits show that first impressions matter most.","Is this story serving me? It points to a clear task: sharpen the opening.","Realistic alternative: “My first screen can win attention.” Next step: rewrite the headline in one sentence."],
+["Others have better pages","Is it true right now? Other pages show you what is possible.","Is this story serving me? Comparison drains energy that building would use.","Realistic alternative: “My page speaks in my voice.” Next step: add one detail only you can offer."]];
+let cur=null,q=0;const ch=$("#thoughts"),qb=$("#qbox"),nq=$("#nextQ");
+R.forEach((r,i)=>{const b=document.createElement("button");b.className="chip";b.textContent=r[0];b.onclick=()=>{[...ch.children].forEach(x=>x.classList.remove("on"));b.classList.add("on");cur=r;q=0;qb.innerHTML="<b>Thought:</b> “"+r[0]+"”";nq.disabled=false;nq.textContent="Next question"};ch.appendChild(b)});
+nq.onclick=()=>{if(!cur)return;q++;qb.innerHTML+="<p style='margin:.8em 0 0'>"+(q<3?"<b>Q"+q+".</b> ":"<b>Reframe.</b> ")+cur[q]+"</p>";if(q>=3){nq.disabled=true;nq.textContent="Reframed"}};
+// 3 budget
+const B=[["Clear headline",15,1],["One main button",10,1],["Hero photo",15,1],["Short story",15,1],["Pop-up window",30,0],["Auto-play music",25,0],["Five menu links",20,0],["Three key stats",10,1],["Testimonial",10,1]];
+let spent=0;
+B.forEach(([n,c])=>{const b=document.createElement("button");b.className="tog";b.innerHTML="<span>"+n+"</span><span>"+c+"</span>";
+b.onclick=()=>{b.classList.toggle("on");spent+=b.classList.contains("on")?c:-c;const p=Math.min(spent,100);$("#bar").style.width=p+"%";$("#bar").style.background=spent>100?"#FFF6DA":"#FFD60A";
+$("#bmsg").textContent=spent>100?"Spent "+spent+" of 100. Over budget: release an item to restore focus.":spent>=70?"Spent "+spent+" of 100. A rich page, with focus held.":"Spent "+spent+" of 100. Room for visitors to breathe."};$("#budget").appendChild(b)});
+// 4 micro
+const S=["Write one goal sentence","Add a headline","Choose one photo","Place one button","Launch with easylandx"];
+S.forEach((s,i)=>{const l=document.createElement("li");l.innerHTML="<label><input type='checkbox'><span>"+s+"</span></label>";l.querySelector("input").onchange=()=>{const n=document.querySelectorAll("#steps input:checked").length;$("#arc").style.strokeDashoffset=390*(1-n/5);$("#smsg").innerHTML=n==5?"All five done. <a href='https://easylandx.github.io' target='_blank' rel='noopener' style='color:#FFD60A'>Open easylandx</a>":n+" of 5 complete"};$("#steps").appendChild(l)});
+// 5 prime
+const P={Clarity:"Today I choose clarity: one message, one action.",Calm:"Today I stay calm and observe before I react.",Courage:"Today I publish, learn and improve.",Curiosity:"Today I look for what my visitors need."};
+Object.keys(P).forEach(k=>{const b=document.createElement("button");b.className="chip";b.textContent=k;b.onclick=()=>{[...$("#prime").children].forEach(x=>x.classList.remove("on"));b.classList.add("on");$("#primeOut").textContent=P[k]};$("#prime").appendChild(b)});
+</script>
+</body>
+</html>

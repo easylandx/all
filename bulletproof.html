@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>EasyLandX Bulletproof Landing Pages</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: stacked full-width magenta bands, each a different tone of one hue. Lime is the only accent, used for ink-style illustrations, buttons and active states. */
+:root{
+  --m-400:#E8239A;
+  --m-500:#D6007E;
+  --m-600:#BC006E;
+  --m-700:#A3005F;
+  --ink:#FFF4FA;
+  --ink-soft:#FFD3EA;
+  --lime:#C8FF2E;
+  --onlime:#3B0023;
+  --font-display:'Bricolage Grotesque','Arial Black',system-ui,sans-serif;
+  --font-body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-mono:'DM Mono',ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--m-500);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.55}
+h1,h2,h3,p,ul,ol{margin:0}
+a{color:inherit}
+button,input,select{font:inherit}
+.band{position:relative;overflow:hidden}
+.wrap{position:relative;max-width:1160px;margin-inline:auto;padding-block:clamp(56px,9vw,104px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.m5{background:var(--m-500)}.m6{background:var(--m-600)}.m7{background:var(--m-700)}
+h1,h2,h3{font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:clamp(2.7rem,7.2vw,5.6rem);line-height:.94}
+h2{font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.02;margin-bottom:.45em}
+h3{font-size:1.45rem;line-height:1.1}
+.hl{color:var(--lime)}
+.eyebrow{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+.eyebrow.lime{color:var(--lime)}
+.lead{font-size:clamp(1.05rem,1.9vw,1.28rem);max-width:60ch;color:var(--ink)}
+.sub{max-width:62ch;color:var(--ink-soft);margin-bottom:36px}
+.k{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:6px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:6px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--lime);color:var(--onlime);font-family:var(--font-display);font-weight:800;font-size:1.05rem;text-decoration:none;padding:14px 26px;border-radius:999px;border:0;cursor:pointer;box-shadow:0 5px 0 var(--m-700);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 var(--m-700)}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--m-700)}
+.btn.sm{padding:10px 20px;font-size:.95rem}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink);box-shadow:none}
+.btn.ghost:hover{background:var(--ink);color:var(--m-600)}
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+
+/* top bar + hero */
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:clamp(36px,6vw,70px)}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;font-size:1.5rem;text-decoration:none;letter-spacing:-.02em}
+.topnav{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.topnav a.l{font-weight:500;text-decoration:none;border-bottom:2px solid transparent}
+.topnav a.l:hover{border-color:var(--lime)}
+@media(max-width:720px){.topnav a.l{display:none}}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.hero-grid>*{min-width:0}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.hero .lead{margin:24px 0 30px}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px;list-style:none;padding:0}
+.tags li{border:2px solid var(--ink-soft);border-radius:999px;padding:6px 14px;font-family:var(--font-mono);font-size:.8rem}
+.art{width:100%;height:auto;display:block;overflow:visible}
+.art text{font-family:var(--font-mono)}
+.deco{position:absolute;border-radius:50%;pointer-events:none}
+.deco.a{width:260px;height:260px;border:3px solid var(--lime);right:-80px;top:-70px;opacity:.55;animation:spin 40s linear infinite}
+.deco.b{width:120px;height:120px;background:var(--m-400);left:-40px;bottom:60px}
+.deco.c{width:22px;height:22px;background:var(--lime);left:46%;top:130px;animation:bob 5s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{50%{transform:translateY(-16px)}}
+.float{animation:float 7s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.draw{stroke-dasharray:320;animation:draw 2.2s ease both}
+.d2{animation-delay:.4s}.d3{animation-delay:.8s}.d4{animation-delay:1.2s}
+@keyframes draw{from{stroke-dashoffset:320}to{stroke-dashoffset:0}}
+.node{transform-box:fill-box;transform-origin:center;animation:pick 6s ease-in-out infinite}
+.n2{animation-delay:1.5s}.n3{animation-delay:3s}.n4{animation-delay:4.5s}
+@keyframes pick{0%,25%,100%{transform:scale(1);fill:#FFD3EA}8%,18%{transform:scale(1.5);fill:#C8FF2E}}
+.cursor{animation:cursor 6s ease-in-out infinite}
+@keyframes cursor{0%{transform:translate(400px,250px)}35%,60%{transform:translate(118px,198px)}48%{transform:translate(118px,198px) scale(.85)}100%{transform:translate(400px,250px)}}
+.btnmock{transform-box:fill-box;transform-origin:center;animation:btnp 6s ease-in-out infinite}
+@keyframes btnp{0%,40%,58%,100%{transform:scale(1)}48%{transform:scale(1.07)}}
+
+/* marquee */
+.marquee{background:var(--lime);color:var(--onlime);overflow:hidden;white-space:nowrap;border-block:3px solid var(--onlime)}
+.marquee .track{display:inline-flex;gap:0;animation:slide 38s linear infinite;padding-block:14px}
+.marquee span{font-family:var(--font-display);font-weight:800;font-size:1.3rem;letter-spacing:.02em;text-transform:uppercase;padding-inline:22px}
+.marquee span::after{content:"\2726";margin-left:44px}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* mindset */
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:34px;margin-top:34px}
+.three>*{min-width:0}
+.idea{border-top:3px solid var(--lime);padding-top:20px}
+.idea .ic{width:64px;height:64px;color:var(--lime);margin-bottom:14px;display:block}
+.idea p{color:var(--ink-soft);margin-top:10px}
+.compare{margin-top:64px;background:var(--m-700);border-radius:22px;padding:clamp(20px,3vw,34px)}
+.seg{display:inline-flex;border:2px solid var(--lime);border-radius:999px;padding:4px;gap:4px;margin:14px 0 22px;flex-wrap:wrap}
+.seg button{background:transparent;color:var(--ink);border:0;padding:9px 18px;border-radius:999px;cursor:pointer;font-weight:700}
+.seg button.on{background:var(--lime);color:var(--onlime)}
+.flow{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:12px}
+.flow li{display:flex;align-items:center;gap:10px;background:var(--m-600);border-radius:14px;padding:10px 16px;font-weight:500;animation:pop .45s ease both;animation-delay:calc(var(--i)*70ms)}
+.flow li span{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--lime);color:var(--onlime);font-family:var(--font-mono);font-size:.8rem;font-weight:500;flex:none}
+@keyframes pop{from{transform:translateY(10px);opacity:.2}to{transform:none;opacity:1}}
+.meter{margin-top:22px}
+.meter p{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.bar{height:14px;background:rgba(255,255,255,.2);border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--lime);border-radius:99px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+#flow-msg{margin-top:14px;color:var(--ink-soft);max-width:62ch}
+
+/* process explorer */
+.explorer{display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;align-items:start}
+.tabs{display:flex;flex-direction:column;gap:8px}
+.tabs button{display:grid;grid-template-columns:34px 1fr;align-items:center;gap:10px;text-align:left;background:transparent;color:var(--ink);border:2px solid rgba(255,211,234,.4);border-radius:14px;padding:10px 14px;cursor:pointer;font-weight:700;transition:background .15s}
+.tabs button:hover{background:var(--m-600)}
+.tabs button .num{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:2px solid currentColor;font-family:var(--font-mono);font-size:.82rem;font-weight:500}
+.tabs button[aria-selected="true"]{background:var(--lime);color:var(--onlime);border-color:var(--lime)}
+@media(max-width:900px){
+  .explorer{grid-template-columns:1fr}
+  .tabs{flex-direction:row;overflow-x:auto;padding-bottom:8px}
+  .tabs button{flex:0 0 auto;grid-template-columns:30px auto}
+}
+.panel{background:var(--m-600);border-radius:22px;padding:clamp(20px,3vw,36px);min-width:0}
+.phead{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.phead .ic{width:54px;height:54px;color:var(--lime);flex:none}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.cols>*{min-width:0}
+@media(max-width:700px){.cols{grid-template-columns:1fr}}
+.cols p{color:var(--ink)}
+.tool{background:var(--m-700);border-radius:16px;padding:clamp(16px,2.4vw,26px);margin-top:26px}
+.tool>.k{margin-bottom:14px}
+.sowhat{margin-top:22px;display:flex;gap:12px;align-items:baseline}
+.sowhat b{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);flex:none}
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+label{display:flex;flex-direction:column;gap:6px;font-family:var(--font-mono);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;min-width:0}
+label output{color:var(--lime);font-size:.95rem;letter-spacing:0}
+input[type=text],input[type=number],select{background:var(--ink);color:var(--onlime);border:0;border-radius:10px;padding:10px 12px;font-family:var(--font-body);font-size:1rem;text-transform:none;letter-spacing:0;width:100%}
+input[type=range]{accent-color:var(--lime);width:100%}
+.statement{font-family:var(--font-display);font-weight:600;font-size:clamp(1.15rem,2.2vw,1.55rem);line-height:1.25;margin:22px 0 16px;text-wrap:balance}
+.statement mark{background:var(--lime);color:var(--onlime);padding:0 6px;border-radius:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0}
+.chips li{border:2px solid var(--ink-soft);border-radius:999px;padding:5px 14px;font-family:var(--font-mono);font-size:.8rem;opacity:.7;transition:all .2s}
+.chips li.on{background:var(--lime);color:var(--onlime);border-color:var(--lime);opacity:1}
+.chips li.on::before{content:"\2713\00a0"}
+/* tree */
+.root{display:inline-block;background:var(--ink);color:var(--onlime);font-family:var(--font-display);font-weight:800;padding:10px 20px;border-radius:999px;margin-bottom:6px}
+.stem{width:3px;height:18px;background:var(--lime);margin-left:40px}
+.branches{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;border-top:3px solid var(--lime);padding-top:14px}
+.branches>*{min-width:0}
+.br>button{width:100%;text-align:left;background:var(--m-600);color:var(--ink);border:2px solid var(--lime);border-radius:12px;padding:10px 14px;cursor:pointer;font-weight:700;display:flex;justify-content:space-between;gap:8px}
+.br>button[aria-expanded="true"]{background:var(--lime);color:var(--onlime)}
+.br ul{list-style:none;padding:10px 4px 0 14px;display:grid;gap:8px;font-size:.95rem;border-left:2px dashed var(--ink-soft);margin-left:10px;margin-top:8px}
+.note{margin-top:16px;color:var(--ink-soft);font-size:.95rem}
+.scatter{width:100%;height:auto;display:block}
+.scatter text{font-family:var(--font-body);font-size:11px;fill:#FFF4FA}
+.scatter .ax{font-family:var(--font-mono);font-size:10px;fill:#FFD3EA;letter-spacing:.1em}
+.scatter .dot{transition:all .3s}
+.sliders{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:14px}
+.count{margin-top:14px;font-family:var(--font-display);font-weight:800;font-size:1.3rem}
+.count b{color:var(--lime)}
+.scroller{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:660px}
+th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:8px 10px;border-bottom:2px solid var(--lime);color:var(--lime)}
+td{padding:12px 10px;border-bottom:1px solid rgba(255,211,234,.3);vertical-align:top;font-size:.95rem}
+tr.done td:not(:first-child){opacity:.55;text-decoration:line-through}
+input[type=checkbox]{width:22px;height:22px;accent-color:var(--lime);cursor:pointer}
+.prog{margin-top:18px}
+.prog p{font-family:var(--font-mono);font-size:.8rem;margin-bottom:8px}
+.results{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:22px}
+.results div{min-width:0}
+.big{font-family:var(--font-display);font-weight:800;font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1;color:var(--lime)}
+.results small{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;display:block;margin-top:6px}
+.cmp{display:grid;gap:10px;margin-top:22px}
+.cmp p{font-size:.85rem;margin-bottom:4px}
+.ladder{display:grid;gap:12px;list-style:none;padding:0}
+.ladder li{background:var(--m-600);border-radius:14px;padding:14px 18px;animation:pop .4s ease both}
+.ladder li small{display:block;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);margin-bottom:4px}
+.ladder li.final{background:var(--lime);color:var(--onlime)}
+.ladder li.final small{color:var(--onlime)}
+.story{display:grid;grid-template-columns:minmax(200px,300px) minmax(0,1fr);gap:28px;align-items:start}
+@media(max-width:700px){.story{grid-template-columns:1fr}}
+.story svg{width:100%;height:auto;display:block;max-width:320px}
+.story .blk{cursor:pointer;transition:fill .2s}
+.story .blk:focus-visible{outline:3px solid var(--ink)}
+.slist{display:grid;gap:8px;list-style:none;padding:0}
+.slist button{width:100%;text-align:left;background:transparent;color:var(--ink);border:2px solid rgba(255,211,234,.4);border-radius:12px;padding:9px 14px;cursor:pointer;font-weight:700}
+.slist button[aria-pressed="true"]{background:var(--lime);color:var(--onlime);border-color:var(--lime)}
+#story-text{margin-top:14px;color:var(--ink)}
+
+/* strategies */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.cards>*{min-width:0}
+.card{background:var(--m-700);border-radius:22px;padding:clamp(20px,3vw,30px);display:flex;flex-direction:column;gap:14px}
+.card p{color:var(--ink-soft)}
+.wave{width:100%;height:auto;display:block}
+.wave text{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em}
+.wave .lab{fill:#FFD3EA;transition:fill .2s}
+.wave .lab.on{fill:#C8FF2E}
+details{background:var(--m-600);border-radius:12px;padding:12px 16px}
+summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--font-mono);color:var(--lime);font-size:1.2rem;line-height:1}
+details[open] summary::after{content:"\2212"}
+details p{margin-top:10px;color:var(--ink)}
+details p b{color:var(--lime)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills button{background:transparent;color:var(--ink);border:2px solid var(--ink-soft);border-radius:999px;padding:6px 14px;cursor:pointer;font-weight:700;font-size:.9rem}
+.pills button[aria-pressed="true"]{background:var(--lime);color:var(--onlime);border-color:var(--lime)}
+#sc-text{color:var(--ink);min-height:5.5em}
+
+/* closing */
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.cta-grid>*{min-width:0}
+@media(max-width:900px){.cta-grid{grid-template-columns:1fr}}
+.cta h2{font-size:clamp(2.2rem,5.4vw,4rem)}
+.cta .btn{font-size:1.25rem;padding:18px 34px}
+footer .wrap{padding-block:40px;display:grid;gap:10px}
+.credit{font-size:1.05rem;max-width:70ch}
+.credit em{color:var(--lime);font-style:italic}
+.copy{font-family:var(--font-mono);font-size:.8rem;color:var(--ink-soft)}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .marquee .track{transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-target" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="10"/><circle cx="24" cy="24" r="2.5" fill="currentColor"/><path d="M24 2v8M24 38v8M2 24h8M38 24h8"/></g></symbol>
+    <symbol id="i-tree" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="9" r="4"/><circle cx="10" cy="38" r="4"/><circle cx="24" cy="38" r="4"/><circle cx="38" cy="38" r="4"/><path d="M24 13v8M24 21H10v13M24 21v13M24 21h14v13"/></g></symbol>
+    <symbol id="i-filter" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h36L28 26v14l-8-4V26z"/></g></symbol>
+    <symbol id="i-plan" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="10" width="34" height="32" rx="5"/><path d="M15 5v9M33 5v9M7 21h34M16 32l5 5 11-11"/></g></symbol>
+    <symbol id="i-calc" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="5" width="30" height="38" rx="5"/><path d="M15 13h18"/><circle cx="17" cy="24" r="1.5" fill="currentColor"/><circle cx="24" cy="24" r="1.5" fill="currentColor"/><circle cx="31" cy="24" r="1.5" fill="currentColor"/><circle cx="17" cy="33" r="1.5" fill="currentColor"/><circle cx="24" cy="33" r="1.5" fill="currentColor"/><circle cx="31" cy="33" r="1.5" fill="currentColor"/></g></symbol>
+    <symbol id="i-layers" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6l18 10-18 10L6 16z"/><path d="M6 25l18 10 18-10"/><path d="M6 34l18 10 18-10"/></g></symbol>
+    <symbol id="i-board" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="38" height="26" rx="4"/><path d="M24 33v9M14 43h20M12 25l8-8 6 5 10-9"/></g></symbol>
+    <symbol id="i-stairs" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 42h10V32h10V22h10V12h8"/><circle cx="10" cy="22" r="4"/><path d="M10 26v4"/></g></symbol>
+    <symbol id="i-question" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="19"/><path d="M17 19a7 7 0 1 1 10 6c-2 1.5-3 2.5-3 5"/><circle cx="24" cy="36" r="1.6" fill="currentColor"/></g></symbol>
+    <symbol id="i-bulb" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M16 32c-4-3-6-6-6-11a14 14 0 0 1 28 0c0 5-2 8-6 11v4H16z"/><path d="M18 42h12M24 2v3M6 8l3 3M42 8l-3 3"/></g></symbol>
+  </defs>
+</svg>
+
+<!-- HERO -->
+<section class="band m5 hero" id="top">
+  <span class="deco a"></span><span class="deco b"></span><span class="deco c"></span>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="logo" href="https://easylandx.github.io" target="_blank" rel="noopener">
+        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" rx="9" fill="#C8FF2E"/><rect x="8" y="9" width="18" height="4" rx="2" fill="#3B0023"/><rect x="8" y="16" width="12" height="4" rx="2" fill="#3B0023"/><rect x="8" y="23" width="8" height="4" rx="2" fill="#3B0023"/></svg>
+        EasyLandX
+      </a>
+      <nav class="topnav" aria-label="Page sections">
+        <a class="l" href="#mindset">Mindset</a>
+        <a class="l" href="#process">The 7 steps</a>
+        <a class="l" href="#strategies">Tactics</a>
+        <a class="btn sm" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX &#8599;</a>
+      </nav>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">EasyLandX &times; Bulletproof Problem Solving</p>
+        <h1>Solve the right problem. <span class="hl">Then</span> build the page.</h1>
+        <p class="lead">Most landing pages start with a template and a hope. EasyLandX starts with a 7-step problem-solving process, so every headline, button and section on your page is there for a reason you can point to.</p>
+        <div class="row">
+          <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX &#8599;</a>
+          <a class="btn ghost" href="#process">Explore the 7 steps</a>
+        </div>
+        <ul class="tags">
+          <li>Custom landing pages</li><li>Built for small businesses</li><li>Affordable</li>
+        </ul>
+      </div>
+
+      <svg class="art" viewBox="0 0 520 440" role="img" aria-label="Illustration of a landing page with a logic tree growing beneath it while a cursor clicks the main button">
+        <g class="float">
+          <rect x="20" y="24" width="480" height="392" rx="22" fill="#BC006E" stroke="#FFF4FA" stroke-width="3"/>
+          <circle cx="46" cy="52" r="6" fill="#C8FF2E"/><circle cx="66" cy="52" r="6" fill="#FFF4FA"/><circle cx="86" cy="52" r="6" fill="#FFF4FA"/>
+          <rect x="112" y="42" width="270" height="20" rx="10" fill="#A3005F"/>
+          <rect x="48" y="92" width="230" height="18" rx="9" fill="#FFF4FA"/>
+          <rect x="48" y="120" width="180" height="18" rx="9" fill="#FFF4FA"/>
+          <rect x="48" y="150" width="140" height="9" rx="4.5" fill="#FFD3EA" opacity=".7"/>
+          <g class="btnmock"><rect x="48" y="176" width="120" height="38" rx="19" fill="#C8FF2E"/><rect x="72" y="191" width="72" height="8" rx="4" fill="#3B0023"/></g>
+          <rect x="308" y="86" width="168" height="124" rx="16" fill="#E8239A"/>
+          <circle cx="438" cy="118" r="16" fill="#C8FF2E"/>
+          <path d="M308 210 L368 150 L408 186 L432 164 L476 210 Z" fill="#A3005F"/>
+          <path d="M48 238 H472" stroke="#FFD3EA" stroke-width="2" stroke-dasharray="4 8" opacity=".6"/>
+          <rect x="165" y="252" width="190" height="30" rx="15" fill="#FFF4FA"/>
+          <text x="260" y="272" text-anchor="middle" font-size="12" fill="#3B0023">Why no sign-ups?</text>
+          <path class="draw" d="M260 282 C260 312 92 300 92 326" fill="none" stroke="#C8FF2E" stroke-width="3" stroke-linecap="round"/>
+          <path class="draw d2" d="M260 282 C260 308 200 304 200 326" fill="none" stroke="#C8FF2E" stroke-width="3" stroke-linecap="round"/>
+          <path class="draw d3" d="M260 282 C260 308 320 304 320 326" fill="none" stroke="#C8FF2E" stroke-width="3" stroke-linecap="round"/>
+          <path class="draw d4" d="M260 282 C260 312 428 300 428 326" fill="none" stroke="#C8FF2E" stroke-width="3" stroke-linecap="round"/>
+          <circle class="node n1" cx="92" cy="340" r="14" fill="#FFD3EA"/>
+          <circle class="node n2" cx="200" cy="340" r="14" fill="#FFD3EA"/>
+          <circle class="node n3" cx="320" cy="340" r="14" fill="#FFD3EA"/>
+          <circle class="node n4" cx="428" cy="340" r="14" fill="#FFD3EA"/>
+          <g font-size="11" fill="#FFF4FA" text-anchor="middle"><text x="92" y="378">Traffic</text><text x="200" y="378">Message</text><text x="320" y="378">Trust</text><text x="428" y="378">Action</text></g>
+          <g class="cursor"><polygon points="0,0 0,22 6,17 11,28 16,26 11,15 19,15" fill="#C8FF2E" stroke="#3B0023" stroke-width="2" stroke-linejoin="round"/></g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Define</span><span>Disaggregate</span><span>Prioritize</span><span>Plan</span><span>Analyze</span><span>Synthesize</span><span>Storyboard</span>
+    <span>Define</span><span>Disaggregate</span><span>Prioritize</span><span>Plan</span><span>Analyze</span><span>Synthesize</span><span>Storyboard</span>
+  </div>
+</div>
+
+<!-- MINDSET -->
+<section class="band m6" id="mindset">
+  <div class="wrap">
+    <p class="eyebrow lime">The mindset</p>
+    <h2>Three ideas that change how a landing page gets made</h2>
+    <p class="sub">The method behind this page comes from a book on structured problem solving. EasyLandX applies it to one job: turning visitors into customers.</p>
+
+    <div class="three">
+      <article class="idea">
+        <svg class="ic" aria-hidden="true"><use href="#i-stairs"/></svg>
+        <h3>Problem solving is a learnable skill</h3>
+        <p>A page that converts is the result of a method, not a flash of genius. EasyLandX runs the same process for every client, so quality does not depend on a lucky day.</p>
+      </article>
+      <article class="idea">
+        <svg class="ic" aria-hidden="true"><use href="#i-question"/></svg>
+        <h3>Avoid solution-first thinking</h3>
+        <p>Choosing colors and writing headlines before you know the real problem is how pages end up answering the wrong question. We frame the problem first and design second.</p>
+      </article>
+      <article class="idea">
+        <svg class="ic" aria-hidden="true"><use href="#i-bulb"/></svg>
+        <h3>Structure fosters creativity</h3>
+        <p>A logic tree does not box ideas in. It points creative energy at the few places on a page where it moves results.</p>
+      </article>
+    </div>
+
+    <div class="compare">
+      <p class="k">Try it</p>
+      <h3>Two ways to start a landing page</h3>
+      <div class="seg" id="seg" role="group" aria-label="Choose an approach">
+        <button type="button" data-k="solution" aria-pressed="false">Solution first</button>
+        <button type="button" data-k="problem" aria-pressed="true" class="on">Problem first</button>
+      </div>
+      <ol class="flow" id="flow"></ol>
+      <div class="meter">
+        <p>Risk of building the wrong thing (illustration)</p>
+        <div class="bar"><i id="risk" style="width:24%"></i></div>
+      </div>
+      <p id="flow-msg"></p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="band m7" id="process">
+  <div class="wrap">
+    <p class="eyebrow lime">The 7-step process</p>
+    <h2>Every step, applied to a landing page</h2>
+    <p class="sub">Pick a step. Each one comes with a small tool built around a typical small-business page. Numbers inside the tools are examples you can change.</p>
+    <div class="explorer">
+      <div class="tabs" id="tabs" role="tablist" aria-label="The 7 steps"></div>
+      <div class="panel" id="panel" role="tabpanel" tabindex="0"></div>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGIES -->
+<section class="band m5" id="strategies">
+  <div class="wrap">
+    <p class="eyebrow">Key strategies and tactics</p>
+    <h2>Three habits that keep the work honest</h2>
+    <p class="sub">The 7 steps give the route. These habits keep the team on it when a project gets messy.</p>
+    <div class="cards">
+      <article class="card">
+        <h3>Porpoising</h3>
+        <svg class="wave" viewBox="0 0 360 160" role="img" aria-label="A dot rising above and diving below a waterline">
+          <path d="M0 80H360" stroke="#FFD3EA" stroke-width="2" stroke-dasharray="5 7"/>
+          <path id="wpath" d="" fill="none" stroke="#C8FF2E" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+          <circle id="wdot" cx="0" cy="80" r="9" fill="#C8FF2E"/>
+          <g id="t-surface" class="lab"><text x="6" y="14">SURFACE</text><text x="6" y="27" font-size="9">Does the whole page serve the goal?</text></g>
+          <g id="t-dive" class="lab"><text x="6" y="135">DIVE</text><text x="6" y="148" font-size="9">Is this button label right?</text></g>
+        </svg>
+        <p>Move between the big picture and the fine detail. Check the goal, then test one headline, then check the goal again. It stops a team from polishing a button on a page that is aimed at the wrong thing.</p>
+      </article>
+
+      <article class="card">
+        <h3>Debiasing</h3>
+        <p>Your own mind is the first thing to challenge. Open each one to see the trap and the guard.</p>
+        <details>
+          <summary>Confirmation bias</summary>
+          <p>You fall in love with the first headline, so you only notice the numbers that back it up.</p>
+          <p><b>Guard:</b> Before a test starts, write down the result that would prove you wrong.</p>
+        </details>
+        <details>
+          <summary>Anchoring bias</summary>
+          <p>The first layout or price you saw becomes the yardstick for every option after it.</p>
+          <p><b>Guard:</b> Sketch three different page directions before choosing one.</p>
+        </details>
+      </article>
+
+      <article class="card">
+        <h3>Wicked problems</h3>
+        <p>When the situation keeps shifting and many people have a say, a fixed long-term plan breaks. Use scenarios, quick rounds of change and mixed viewpoints. Pick a scenario for a small business page:</p>
+        <div class="pills" id="pills" role="group" aria-label="Scenarios">
+          <button type="button" data-k="ads" aria-pressed="true">Ad costs double</button>
+          <button type="button" data-k="rival" aria-pressed="false">A rival opens nearby</button>
+          <button type="button" data-k="slow" aria-pressed="false">Slow season</button>
+        </div>
+        <p id="sc-text"></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="band m6 cta">
+  <div class="wrap">
+    <div class="cta-grid">
+      <div>
+        <p class="eyebrow lime">Your turn</p>
+        <h2>Bring the problem. Get back a page that solves it.</h2>
+        <p class="lead" style="margin-bottom:28px">EasyLandX builds custom, conversion-focused landing pages for small businesses at fair prices, using the same 7 steps you just explored.</p>
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to EasyLandX &#8599;</a>
+      </div>
+      <svg class="art" viewBox="0 0 640 230" role="img" aria-label="Three frames: a rough scribble, a wireframe, and a finished landing page with a lime button">
+        <g class="float">
+          <g transform="translate(6,20)">
+            <rect width="170" height="180" rx="14" fill="#A3005F" stroke="#FFF4FA" stroke-width="3" stroke-dasharray="7 6"/>
+            <path d="M22 40c20-14 30 14 50 0s30 12 52 0" fill="none" stroke="#FFD3EA" stroke-width="3" stroke-linecap="round"/>
+            <path d="M22 78c24 10 34-12 54 0s30 8 50-4" fill="none" stroke="#FFD3EA" stroke-width="3" stroke-linecap="round"/>
+            <path d="M22 120c16-10 36 10 56-2s34 6 56-4" fill="none" stroke="#FFD3EA" stroke-width="3" stroke-linecap="round"/>
+            <text x="85" y="166" text-anchor="middle" font-size="11" fill="#FFF4FA">PROBLEM</text>
+          </g>
+          <path d="M184 110h36m-10-10 10 10-10 10" fill="none" stroke="#C8FF2E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <g transform="translate(234,20)">
+            <rect width="170" height="180" rx="14" fill="#A3005F" stroke="#FFF4FA" stroke-width="3"/>
+            <rect x="18" y="20" width="134" height="14" rx="4" fill="none" stroke="#FFD3EA" stroke-width="2"/>
+            <rect x="18" y="46" width="80" height="50" rx="4" fill="none" stroke="#FFD3EA" stroke-width="2"/>
+            <rect x="108" y="46" width="44" height="50" rx="4" fill="none" stroke="#FFD3EA" stroke-width="2"/>
+            <rect x="18" y="106" width="134" height="12" rx="4" fill="none" stroke="#FFD3EA" stroke-width="2"/>
+            <rect x="18" y="126" width="60" height="16" rx="8" fill="none" stroke="#C8FF2E" stroke-width="2"/>
+            <text x="85" y="166" text-anchor="middle" font-size="11" fill="#FFF4FA">STRUCTURE</text>
+          </g>
+          <path d="M412 110h36m-10-10 10 10-10 10" fill="none" stroke="#C8FF2E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <g transform="translate(462,20)">
+            <rect width="170" height="180" rx="14" fill="#BC006E" stroke="#C8FF2E" stroke-width="3"/>
+            <rect x="18" y="20" width="134" height="14" rx="7" fill="#FFF4FA"/>
+            <rect x="18" y="46" width="80" height="50" rx="8" fill="#E8239A"/>
+            <circle cx="80" cy="60" r="7" fill="#C8FF2E"/>
+            <rect x="108" y="46" width="44" height="50" rx="8" fill="#FFD3EA"/>
+            <rect x="18" y="106" width="134" height="10" rx="5" fill="#FFF4FA" opacity=".8"/>
+            <rect x="18" y="124" width="76" height="22" rx="11" fill="#C8FF2E"/>
+            <text x="85" y="166" text-anchor="middle" font-size="11" fill="#FFF4FA">YOUR PAGE</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<footer class="band m7">
+  <div class="wrap">
+    <p class="credit">Inspired by <em>Bulletproof Problem Solving: The One Skill That Changes Everything</em> by Charles Conn and Robert McLean.</p>
+    <p class="copy">&copy; 2026 EasyLandX. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var eur=new Intl.NumberFormat('en-IE',{style:'currency',currency:'EUR',maximumFractionDigits:0});
+
+  /* ---------- Mindset: solution-first vs problem-first ---------- */
+  var FLOWS={
+    solution:{steps:['Pick a template','Write a headline','Choose photos','Launch','Visitors arrive, few act','Start over'],risk:88,msg:'Effort goes into answers before anyone knows the question. The last step is often a rebuild.'},
+    problem:{steps:['Define the problem','Break it into causes','Pick the few that matter','Build the page around them','Test and learn','Keep what works'],risk:24,msg:'A little time up front aims every later hour at something that moves results.'}
+  };
+  function setFlow(k){
+    var f=FLOWS[k];
+    $('#flow').innerHTML=f.steps.map(function(s,i){return '<li style="--i:'+i+'"><span>'+(i+1)+'</span>'+s+'</li>'}).join('');
+    $('#risk').style.width=f.risk+'%';
+    $('#flow-msg').textContent=f.msg;
+    $$('#seg button').forEach(function(b){var on=b.dataset.k===k;b.setAttribute('aria-pressed',on);b.classList.toggle('on',on)});
+  }
+  $$('#seg button').forEach(function(b){b.addEventListener('click',function(){setFlow(b.dataset.k)})});
+  setFlow('problem');
+
+  /* ---------- Process explorer ---------- */
+  var STEPS=[
+    {id:'define',title:'Define the problem',icon:'i-target',
+     idea:'Write a clear problem statement that is specific, measurable, actionable, relevant and timely. Then pin down the context: what the decision-maker values, what cannot change, how accurate the answer must be, and by when.',
+     use:'A brief like "make us a nice website" is a solution hunting for a problem. We turn it into one sentence with a number and a date, and agree the limits first: budget, brand rules and who signs off.',
+     so:'A target you can measure is a target you can hit.'},
+    {id:'disaggregate',title:'Disaggregate the issues',icon:'i-tree',
+     idea:'Split the big problem into smaller parts with a logic tree. The parts must not overlap and must leave no gaps. Component trees break down a system, issue trees ask why or how, and hypothesis trees test a specific claim.',
+     use:'"Our page does not convert" becomes four branches that follow a real visit: the right people arrive, they understand, they believe, and they can act. Click through the tree below.',
+     so:'Each cause now has one home, and nothing is missing from the visit.'},
+    {id:'prioritize',title:'Prioritize the issues',icon:'i-filter',
+     idea:'Spend effort where it counts. By the 80/20 rule, a small share of levers drives most of the result. Weigh impact against feasibility and prune branches that are low in impact or outside your control.',
+     use:'A page has hundreds of possible tweaks. We keep the few that are high impact and doable, and park the rest, so a small budget lands in the right places.',
+     so:'Saying no to nine good ideas protects the one that matters.'},
+    {id:'plan',title:'Build a workplan',icon:'i-plan',
+     idea:'Turn priorities into tasks with an owner, a data source, an expected output and a deadline. Drive the plan with testable hypotheses instead of open-ended exploring.',
+     use:'Each hypothesis becomes a short test on your page with a named owner and a week. Tick items off to see how a four-week plan moves.',
+     so:'Everyone knows what is being tested, by whom and by when.'},
+    {id:'analyze',title:'Conduct critical analyses',icon:'i-calc',
+     idea:'Start simple. Quick order-of-magnitude math and rules of thumb build intuition. Bring in heavy tools such as machine learning or Monte Carlo simulation only when simple methods fall short.',
+     use:'Before any analytics setup we do the napkin math: visitors times conversion times value. If one extra point of conversion is worth real money, we know where to look first.',
+     so:'Cheap math decides where expensive effort goes.'},
+    {id:'synthesize',title:'Synthesize the findings',icon:'i-layers',
+     idea:'Combine the separate findings into one answer. Move from raw data to takeaways by asking "So what?" until the business implication is clear.',
+     use:'A report full of metrics does not help a bakery owner. We boil the results down to one decision they can act on this week.',
+     so:'Findings become a decision.'},
+    {id:'storyboard',title:'Prepare a storyboard',icon:'i-board',
+     idea:'Deliver the answer in a way that moves decision-makers. Lead with the recommendation, then give the supporting arguments, in a story of situation, complication and resolution.',
+     use:'The same rule shapes the page itself. A good landing page leads with the answer, then proves it. Tap a section of the page to see its role.',
+     so:'Visitors decide faster when the answer comes first.'}
+  ];
+  var cur=0;
+  var tabs=$('#tabs'), panel=$('#panel');
+  tabs.innerHTML=STEPS.map(function(s,i){return '<button type="button" role="tab" id="tab'+i+'" aria-controls="panel" aria-selected="'+(i===0)+'" tabindex="'+(i===0?0:-1)+'" data-i="'+i+'"><span class="num">'+(i+1)+'</span><span>'+s.title+'</span></button>'}).join('');
+  function showStep(i,focus){
+    cur=i;
+    $$('#tabs button').forEach(function(b,j){b.setAttribute('aria-selected',j===i);b.tabIndex=j===i?0:-1});
+    if(focus)$('#tab'+i).focus();
+    var s=STEPS[i];
+    panel.setAttribute('aria-labelledby','tab'+i);
+    panel.innerHTML='<div class="phead"><svg class="ic" aria-hidden="true"><use href="#'+s.icon+'"/></svg><div><p class="k">Step '+(i+1)+' of 7</p><h3>'+s.title+'</h3></div></div>'+
+      '<div class="cols"><div><p class="k">The idea</p><p>'+s.idea+'</p></div><div><p class="k">On your landing page</p><p>'+s.use+'</p></div></div>'+
+      '<div class="tool" id="tool"></div>'+
+      '<p class="sowhat"><b>So what</b><span>'+s.so+'</span></p>';
+    TOOLS[i]($('#tool'));
+  }
+  tabs.addEventListener('click',function(e){var b=e.target.closest('button');if(b)showStep(+b.dataset.i,false)});
+  tabs.addEventListener('keydown',function(e){
+    var k=e.key,n=STEPS.length,t=null;
+    if(k==='ArrowRight'||k==='ArrowDown')t=(cur+1)%n;
+    else if(k==='ArrowLeft'||k==='ArrowUp')t=(cur+n-1)%n;
+    else if(k==='Home')t=0;else if(k==='End')t=n-1;
+    if(t!==null){e.preventDefault();showStep(t,true)}
+  });
+
+  var TOOLS=[];
+
+  /* Step 1: SMART problem statement builder */
+  TOOLS[0]=function(el){
+    el.innerHTML='<p class="k">Build a SMART problem statement</p>'+
+    '<div class="tool-grid">'+
+    '<label>Business<input id="t1-biz" type="text" value="neighborhood bakery"></label>'+
+    '<label>Action that matters<select id="t1-act"><option>orders</option><option>bookings</option><option>phone calls</option><option>quote requests</option></select></label>'+
+    '<label>Per month now<input id="t1-from" type="number" min="0" value="12"></label>'+
+    '<label>Per month target<input id="t1-to" type="number" min="0" value="30"></label>'+
+    '<label>Weeks to get there<input id="t1-wk" type="number" min="0" value="8"></label></div>'+
+    '<p class="statement" id="t1-out"></p>'+
+    '<ul class="chips" id="t1-chips"><li data-c="S">Specific</li><li data-c="M">Measurable</li><li data-c="A">Actionable</li><li data-c="R">Relevant</li><li data-c="T">Timely</li></ul>';
+    function upd(){
+      var biz=$('#t1-biz').value.trim(),act=$('#t1-act').value,f=parseFloat($('#t1-from').value),t=parseFloat($('#t1-to').value),w=parseFloat($('#t1-wk').value);
+      var fo=isNaN(f)?'?':f,to=isNaN(t)?'?':t,wo=isNaN(w)?'?':w;
+      $('#t1-out').innerHTML='Within <mark>'+wo+' weeks</mark>, grow '+act+' from the '+(biz||'business')+' landing page from <mark>'+fo+'</mark> to <mark>'+to+'</mark> a month.';
+      var ok={S:biz.length>0,M:!isNaN(f)&&!isNaN(t),A:true,R:!isNaN(f)&&!isNaN(t)&&t>f,T:!isNaN(w)&&w>0};
+      $$('#t1-chips li').forEach(function(li){li.classList.toggle('on',!!ok[li.dataset.c])});
+    }
+    $$('input,select',el).forEach(function(i){i.addEventListener('input',upd)});
+    upd();
+  };
+
+  /* Step 2: issue tree */
+  var TREE=[
+    {k:'Wrong visitors',s:['Ads or listings attract the wrong people','The page promise differs from the ad promise','Visitors come from places that never buy']},
+    {k:'Unclear message',s:['The headline does not name the result','The offer is buried below the fold','Too many things are asked at once']},
+    {k:'Low trust',s:['No real reviews or photos of the work','Prices or terms are hidden','The page looks unlike the business']},
+    {k:'Hard to act',s:['The button text is vague','The form asks for too much','The page is slow or broken on phones']}
+  ];
+  TOOLS[1]=function(el){
+    el.innerHTML='<p class="k">Issue tree: why do visitors not become customers?</p>'+
+    '<span class="root">Why no sign-ups?</span><div class="stem"></div>'+
+    '<div class="branches">'+TREE.map(function(b,i){return '<div class="br"><button type="button" aria-expanded="'+(i===0)+'" data-i="'+i+'"><span>'+b.k+'</span><span aria-hidden="true">'+(i===0?'−':'+')+'</span></button><ul'+(i===0?'':' hidden')+'>'+b.s.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div>'}).join('')+'</div>'+
+    '<p class="note">MECE check: each cause sits in one branch only (no overlap), and the four branches follow a whole visit: arrive, understand, believe, act (no gaps).</p>';
+    $$('.br>button',el).forEach(function(b){b.addEventListener('click',function(){
+      var open=b.getAttribute('aria-expanded')==='true';
+      b.setAttribute('aria-expanded',!open);
+      b.lastChild.textContent=open?'+':'−';
+      b.nextElementSibling.hidden=open;
+    })});
+  };
+
+  /* Step 3: impact vs feasibility */
+  var LEVERS=[
+    ['Headline',5,5],['Button',5,4],['Mobile speed',4,4],['Real proof',4,5],['Pricing',4,3],
+    ['Logo redo',3,1],['Full rebuild',1,3],['Ad targeting',2,4],['Animations',4,1]
+  ];
+  TOOLS[2]=function(el){
+    el.innerHTML='<p class="k">Prune the tree: impact vs feasibility (example scores)</p>'+
+    '<svg class="scatter" id="sc" viewBox="0 0 440 320" role="img" aria-label="Scatter chart of nine page changes by feasibility and impact"></svg>'+
+    '<div class="sliders"><label>Minimum impact <output id="o-imp"></output><input id="s-imp" type="range" min="1" max="5" step="1" value="4"></label>'+
+    '<label>Minimum feasibility <output id="o-fea"></output><input id="s-fea" type="range" min="1" max="5" step="1" value="3"></label></div>'+
+    '<p class="count" id="sc-count"></p>';
+    function X(f){return 60+(f-1)*80}
+    function Y(i){return 270-(i-1)*60}
+    function draw(){
+      var ti=+$('#s-imp').value,tf=+$('#s-fea').value,kept=0;
+      $('#o-imp').textContent=ti+'+';$('#o-fea').textContent=tf+'+';
+      var s='<rect x="'+(X(tf)-40)+'" y="0" width="'+(420-(X(tf)-40))+'" height="'+(Y(ti)+30)+'" rx="12" fill="#C8FF2E" opacity=".16"/>';
+      s+='<path d="M30 300H430M30 300V4" stroke="#FFD3EA" stroke-width="1.5" fill="none"/>';
+      s+='<text class="ax" x="430" y="314" text-anchor="end">FEASIBILITY &#8594;</text><text class="ax" x="36" y="14">IMPACT &#8593;</text>';
+      LEVERS.forEach(function(l){
+        var k=l[2]>=ti&&l[1]>=tf;if(k)kept++;
+        s+='<g opacity="'+(k?1:.5)+'"><circle class="dot" cx="'+X(l[1])+'" cy="'+Y(l[2])+'" r="10" fill="'+(k?'#C8FF2E':'none')+'" stroke="'+(k?'#C8FF2E':'#FFD3EA')+'" stroke-width="2.5"/><text x="'+X(l[1])+'" y="'+(Y(l[2])+26)+'" text-anchor="middle">'+l[0]+'</text></g>';
+      });
+      $('#sc').innerHTML=s;
+      $('#sc-count').innerHTML='<b>'+kept+'</b> of '+LEVERS.length+' levers kept for the first round';
+    }
+    $$('input',el).forEach(function(i){i.addEventListener('input',draw)});
+    draw();
+  };
+
+  /* Step 4: workplan */
+  var PLAN=[
+    ['A headline that names the customer and the result gets more clicks','EasyLandX','Two headline versions, one week of visits','Winning headline and the reason','Week 1'],
+    ['Real reviews next to the button raise sign-ups','Business owner','Owner sends five real reviews, we place them','Page with a proof section','Week 2'],
+    ['A three-field form beats a seven-field form','EasyLandX','Compare form completions','Final form','Week 3'],
+    ['Faster mobile loading cuts early exits','EasyLandX','Compress images, test on a mid-range phone','Load time check','Week 3'],
+    ['Review results with the decision-maker','Both','30-minute call with the results','Go or adjust decision','Week 4']
+  ];
+  TOOLS[3]=function(el){
+    el.innerHTML='<p class="k">Hypothesis-driven workplan (example)</p><div class="scroller"><table><thead><tr><th>Done</th><th>Hypothesis to test</th><th>Owner</th><th>Data or method</th><th>Output</th><th>Due</th></tr></thead><tbody>'+
+    PLAN.map(function(r,i){return '<tr id="r'+i+'"><td><input type="checkbox" id="c'+i+'" aria-label="Mark done: '+r[0].replace(/"/g,'')+'"></td>'+r.map(function(c){return '<td>'+c+'</td>'}).join('')+'</tr>'}).join('')+
+    '</tbody></table></div><div class="prog"><p id="pg-text"></p><div class="bar"><i id="pg" style="width:0"></i></div></div>';
+    function upd(){
+      var n=0;
+      PLAN.forEach(function(_,i){var c=$('#c'+i).checked;$('#r'+i).classList.toggle('done',c);if(c)n++});
+      $('#pg').style.width=(n/PLAN.length*100)+'%';
+      $('#pg-text').textContent=n+' of '+PLAN.length+' items done';
+    }
+    $$('input[type=checkbox]',el).forEach(function(c){c.addEventListener('change',upd)});
+    upd();
+  };
+
+  /* Step 5: order-of-magnitude calculator */
+  TOOLS[4]=function(el){
+    el.innerHTML='<p class="k">Back-of-the-envelope math (example numbers)</p>'+
+    '<div class="tool-grid">'+
+    '<label>Monthly visitors <output id="o-v"></output><input id="s-v" type="range" min="100" max="5000" step="50" value="800"></label>'+
+    '<label>Visitors who act <output id="o-c"></output><input id="s-c" type="range" min="0.5" max="10" step="0.1" value="2"></label>'+
+    '<label>Value of one customer <output id="o-p"></output><input id="s-p" type="range" min="10" max="1000" step="10" value="120"></label></div>'+
+    '<div class="results"><div><span class="big" id="r-l"></span><small>Customers a month</small></div><div><span class="big" id="r-r"></span><small>Value a month</small></div><div><span class="big" id="r-d"></span><small>Gain from +1 point</small></div></div>'+
+    '<div class="cmp"><div><p>Now</p><div class="bar"><i id="b1"></i></div></div><div><p>With one more point of conversion</p><div class="bar"><i id="b2"></i></div></div></div>'+
+    '<p class="note" id="r-note"></p>';
+    function upd(){
+      var v=+$('#s-v').value,c=+$('#s-c').value,p=+$('#s-p').value;
+      $('#o-v').textContent=v;$('#o-c').textContent=c.toFixed(1)+'%';$('#o-p').textContent=eur.format(p);
+      var leads=v*c/100,rev=leads*p,rev2=v*(c+1)/100*p,d=rev2-rev;
+      $('#r-l').textContent=Math.round(leads);
+      $('#r-r').textContent=eur.format(rev);
+      $('#r-d').textContent='+'+eur.format(d);
+      $('#b1').style.width=(rev/rev2*100)+'%';$('#b2').style.width='100%';
+      $('#r-note').textContent='One more point of conversion adds about '+eur.format(d)+' a month. Compare that with what extra traffic would cost before spending on ads. Heavy statistics come in only when this simple math is too close to call.';
+    }
+    $$('input',el).forEach(function(i){i.addEventListener('input',upd)});
+    upd();
+  };
+
+  /* Step 6: So what? ladder */
+  var LADDER=[
+    ['Finding','Most visitors scroll to the middle of the page, but few click the button.'],
+    ['So what?','They read the top, so the top is not telling them what they get.'],
+    ['So what?','They leave before they reach the offer and the proof.'],
+    ['Implication','Rewrite the top of the page around the customer’s result and put one proof point beside the button. Ship that first.']
+  ];
+  TOOLS[5]=function(el){
+    var n=1;
+    el.innerHTML='<p class="k">Ask "So what?" until you reach a decision (example finding)</p><ol class="ladder" id="lad"></ol><div class="row" style="margin-top:18px"><button type="button" class="btn sm" id="lad-b"></button></div>';
+    function render(){
+      $('#lad').innerHTML=LADDER.slice(0,n).map(function(r,i){return '<li'+(i===LADDER.length-1?' class="final"':'')+'><small>'+r[0]+'</small>'+r[1]+'</li>'}).join('');
+      $('#lad-b').textContent=n<LADDER.length?'So what?':'Start over';
+    }
+    $('#lad-b').addEventListener('click',function(){n=n<LADDER.length?n+1:1;render()});
+    render();
+  };
+
+  /* Step 7: storyboard */
+  var STORY=[
+    ['Lead with the answer','Hero','The headline and button state the recommendation first: what you get and what to do next.'],
+    ['Situation','Where the visitor is','Describe the visitor’s current situation in their own words so they know the page is about them.'],
+    ['Complication','What is at risk','Name what is going wrong or what waiting costs. This is the reason to act now.'],
+    ['Supporting arguments','Proof','Back the answer with reviews, examples and plain prices. Each point supports the headline.'],
+    ['Resolution','Offer and next step','Close with the proposed resolution and one clear action. Nothing else competes with it.']
+  ];
+  var BLK=[[20,90],[120,55],[185,55],[250,80],[340,60]];
+  TOOLS[6]=function(el){
+    var a=0;
+    el.innerHTML='<p class="k">Storyboard a landing page</p><div class="story"><svg viewBox="0 0 300 420" id="wf" role="group" aria-label="Page wireframe with five sections"></svg><div><ul class="slist" id="sl"></ul><p id="story-text"></p></div></div>';
+    function render(){
+      var s='<rect x="2" y="2" width="296" height="416" rx="16" fill="#BC006E" stroke="#FFF4FA" stroke-width="3"/>';
+      BLK.forEach(function(b,i){
+        var on=i===a;
+        s+='<g class="blk" data-i="'+i+'" tabindex="0" role="button" aria-label="'+STORY[i][1]+'"><rect x="20" y="'+(b[0]+12)+'" width="260" height="'+(b[1]-8)+'" rx="12" fill="'+(on?'#C8FF2E':'#D6007E')+'" stroke="'+(on?'#C8FF2E':'#FFD3EA')+'" stroke-width="2"/>'+
+        '<text x="34" y="'+(b[0]+36)+'" font-family="DM Mono, monospace" font-size="11" fill="'+(on?'#3B0023':'#FFF4FA')+'" letter-spacing="1">'+(i+1)+' '+STORY[i][1].toUpperCase()+'</text>'+
+        (i===0?'<rect x="34" y="'+(b[0]+48)+'" width="150" height="10" rx="5" fill="'+(on?'#3B0023':'#FFF4FA')+'"/><rect x="34" y="'+(b[0]+66)+'" width="70" height="16" rx="8" fill="'+(on?'#3B0023':'#C8FF2E')+'"/>':'')+
+        '</g>';
+      });
+      $('#wf').innerHTML=s;
+      $('#sl').innerHTML=STORY.map(function(r,i){return '<li><button type="button" aria-pressed="'+(i===a)+'" data-i="'+i+'">'+(i+1)+'. '+r[0]+'</button></li>'}).join('');
+      $('#story-text').textContent=STORY[a][2];
+    }
+    el.addEventListener('click',function(e){var t=e.target.closest('[data-i]');if(t&&el.contains(t)){a=+t.dataset.i;render()}});
+    el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){var t=e.target.closest('.blk');if(t){e.preventDefault();a=+t.dataset.i;render();var nb=$('.blk[data-i="'+a+'"]',el);if(nb)nb.focus()}}});
+    render();
+  };
+
+  showStep(0,false);
+
+  /* ---------- Porpoising wave ---------- */
+  (function(){
+    var path=$('#wpath'),dot=$('#wdot'),ts=$('#t-surface'),td=$('#t-dive');
+    var d='M0 80';
+    for(var x=0;x<=360;x+=6){d+=' L'+x+' '+(80-Math.sin(x/360*Math.PI*4)*42).toFixed(1)}
+    path.setAttribute('d',d);
+    function at(u){var x=u*360;return [x,80-Math.sin(x/360*Math.PI*4)*42]}
+    function place(u){
+      var p=at(u);dot.setAttribute('cx',p[0]);dot.setAttribute('cy',p[1]);
+      var up=p[1]<80;ts.classList.toggle('on',up);td.classList.toggle('on',!up);
+    }
+    if(reduce){place(.12);return}
+    function loop(t){place((t/9000)%1);requestAnimationFrame(loop)}
+    requestAnimationFrame(loop);
+  })();
+
+  /* ---------- Wicked problems: scenario planner ---------- */
+  var SC={
+    ads:'Every click now costs more, so the page has to convert more of the visitors you already get. Test the headline and the form first, and pause the broad ads that bring the wrong people.',
+    rival:'Lean on what only your business has: real photos, real reviews and local detail. Keep the offer section easy to swap so you can answer the newcomer within days.',
+    slow:'Switch the page to a seasonal offer in a day, because the sections are kept modular. Use the quiet weeks to run the tests that were too risky in a busy month.'
+  };
+  function setSc(k){
+    $('#sc-text').textContent=SC[k];
+    $$('#pills button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.k===k)});
+  }
+  $$('#pills button').forEach(function(b){b.addEventListener('click',function(){setSc(b.dataset.k)})});
+  setSc('ads');
+})();
+</script>
+
+</body>
+</html>

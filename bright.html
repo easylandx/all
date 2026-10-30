@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx | Landing pages powered by positive thinking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--y:#FFD60A;--k:#000;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--y);color:var(--k);font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:18px;line-height:1.55;overflow-x:hidden}
+.wrap{max-width:1120px;margin:0 auto;padding:clamp(28px,5vh,56px) clamp(24px,6vw,72px)}
+h1,h2,h3{font-weight:800;line-height:1.02;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.6rem,7.5vw,5.6rem)}
+h2{font-size:clamp(2rem,4.8vw,3.4rem)}
+h3{font-size:1.35rem;line-height:1.15}
+p{margin:0 0 1em;max-width:62ch}
+section{padding:clamp(40px,8vh,88px) 0}
+.btn{display:inline-block;background:var(--k);color:var(--y);font:800 1.05rem/1.2 "Bricolage Grotesque",system-ui,sans-serif;padding:18px 28px;border:3px solid var(--k);text-decoration:none;cursor:pointer;box-shadow:6px 6px 0 rgba(0,0,0,.28);transition:transform .15s,box-shadow .15s}
+.btn:hover,.btn:focus-visible{transform:translate(-3px,-3px);box-shadow:9px 9px 0 rgba(0,0,0,.35)}
+.btn.ghost{background:transparent;color:var(--k)}
+:focus-visible{outline:4px solid var(--k);outline-offset:4px}
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:1.5rem;letter-spacing:-.03em;display:flex;align-items:center;gap:10px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-top:clamp(32px,6vh,64px)}
+.hero p.lead{font-size:1.3rem;font-weight:600}
+.panel{border:4px solid var(--k);padding:clamp(20px,3vw,34px);box-shadow:10px 10px 0 var(--k);background:var(--y)}
+.dark{background:var(--k);color:var(--y)}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px}
+/* flip cards */
+.flip{perspective:900px;background:none;border:0;padding:0;font:inherit;color:inherit;text-align:left;cursor:pointer;min-height:300px}
+.flip .in{display:block;position:relative;width:100%;height:100%;min-height:300px;transition:transform .6s;transform-style:preserve-3d}
+.flip[aria-pressed=true] .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border:4px solid var(--k);padding:22px;display:flex;flex-direction:column;gap:12px;background:var(--y);box-shadow:8px 8px 0 var(--k)}
+.face.back{transform:rotateY(180deg);background:var(--k);color:var(--y);font-size:.98rem;justify-content:center}
+.face svg{width:56px;height:56px}
+.hint{font-weight:600;font-size:.85rem;margin-top:auto}
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.tab{font:800 1rem "Bricolage Grotesque",system-ui,sans-serif;background:transparent;color:var(--k);border:3px solid var(--k);padding:12px 18px;cursor:pointer}
+.tab[aria-selected=true]{background:var(--k);color:var(--y)}
+.tp{display:none;grid-template-columns:1fr 200px;gap:28px;align-items:center}
+.tp.on{display:grid;animation:pop .45s ease}
+.tp svg{width:100%;height:auto}
+@keyframes pop{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+/* thought swap */
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin:24px 0}
+.chip{font:600 1.05rem/1.3 "Bricolage Grotesque",system-ui,sans-serif;background:var(--k);color:var(--y);border:3px solid var(--k);padding:22px 18px;cursor:pointer;text-align:left;min-height:120px;transition:transform .2s}
+.chip:hover{transform:rotate(-1.2deg) scale(1.02)}
+.chip.drain{animation:drain .9s forwards;pointer-events:none}
+@keyframes drain{0%{transform:none;filter:none}60%{transform:translateY(30px) scaleY(.5) scaleX(.8);filter:blur(3px);opacity:.6}100%{transform:translateY(80px) scale(.1);opacity:0;filter:blur(8px)}}
+.aff{border:3px solid var(--k);padding:18px;min-height:120px;font-weight:600;animation:burst .6s cubic-bezier(.2,1.6,.4,1)}
+.aff span{display:block}
+.aff span+span{margin-top:8px}
+@keyframes burst{from{transform:scale(.3) rotate(-6deg);opacity:0}to{transform:none;opacity:1}}
+.meter{height:22px;border:3px solid var(--k);background:transparent;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--k);width:0;transition:width .4s}
+.row{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+/* dial */
+.two{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:start}
+.mock{position:relative;border:4px solid var(--k);background:var(--y);height:360px;overflow:hidden}
+.mock .bar{background:var(--k);height:28px;display:flex;gap:6px;align-items:center;padding:0 10px}
+.mock .bar b{width:10px;height:10px;border-radius:50%;background:var(--y)}
+.mock h4{font-size:1.7rem;margin:34px 24px 6px;line-height:1.05;font-weight:800}
+.mock p{margin:0 24px;font-size:.9rem;max-width:34ch}
+.cta{position:absolute;left:24px;bottom:28px;background:var(--k);color:var(--y);font-weight:800;padding:12px 20px;transform-origin:left bottom;transition:transform .2s,box-shadow .2s}
+.junk{position:absolute;font-weight:800;font-size:.8rem;padding:6px 10px;border:2px solid var(--k);background:var(--y);transition:opacity .25s,transform .25s}
+.junk.f{background:var(--k);color:var(--y)}
+input[type=range]{width:100%;accent-color:#000;height:36px}
+.breath{width:150px;height:150px;margin:10px auto;display:grid;place-items:center}
+.breath i{display:block;width:150px;height:150px;border-radius:50%;background:var(--k);animation:br 8s ease-in-out infinite}
+@keyframes br{0%,100%{transform:scale(.45)}50%{transform:scale(1)}}
+.blab{text-align:center;font-weight:800;margin:0 auto}
+/* blueprint */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.steps label{display:flex;gap:14px;align-items:center;border:3px solid var(--k);padding:12px 14px;cursor:pointer;font-weight:600;transition:background .2s,color .2s}
+.steps input{appearance:none;width:26px;height:26px;border:3px solid currentColor;flex:none;display:grid;place-content:center;cursor:pointer}
+.steps input::after{content:"";width:12px;height:12px;background:var(--y);transform:scale(0);transition:transform .2s}
+.steps input:checked::after{transform:scale(1)}
+.steps label:has(input:checked){background:var(--k);color:var(--y)}
+.steps label:has(input:checked) input{border-color:var(--y)}
+.ring text{font:800 28px "Bricolage Grotesque",sans-serif}
+#launch{opacity:.35;pointer-events:none;transition:opacity .4s}
+#launch.on{opacity:1;pointer-events:auto;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{transform:scale(1.04)}}
+/* strategy */
+.strat li{margin-bottom:.6em}
+.strat ul{padding-left:1.1em;margin:0}
+.tag{display:inline-block;background:var(--y);color:var(--k);font-weight:800;padding:2px 12px;margin-bottom:12px}
+footer{border-top:4px solid var(--k);margin-top:40px;padding-top:32px;display:grid;gap:18px;justify-items:start}
+/* hero svg anim */
+.rays{transform-origin:260px 170px;animation:spin 40s linear infinite}
+.cloud{animation:drift 9s ease-in-out infinite alternate}
+.c2{animation-duration:12s;animation-delay:-4s}
+.tw{transform-box:fill-box;transform-origin:center;animation:tw 2.4s ease-in-out infinite}
+.tw:nth-of-type(2){animation-delay:.6s}.tw:nth-of-type(3){animation-delay:1.2s}
+.bt{transform-box:fill-box;transform-origin:center;animation:pulse 2s infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes drift{to{transform:translateX(34px)}}
+@keyframes tw{50%{transform:scale(1.5) rotate(20deg)}}
+@media(max-width:860px){.hero,.two,.tp{grid-template-columns:1fr}.tp svg{max-width:180px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <div class="logo"><svg width="34" height="34" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9" fill="#000"/><g stroke="#000" stroke-width="3" stroke-linecap="round"><path d="M20 2v6M20 32v6M2 20h6M32 20h6M7 7l4 4M29 29l4 4M33 7l-4 4M11 29l-4 4"/></g></svg>easylandx</div>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+</nav>
+
+<header class="hero">
+  <div>
+    <h1>Think it bright. Launch it bright.</h1>
+    <p class="lead">Landing pages from easylandx carry the same energy as a confident mind: clear, calm and expecting a great result.</p>
+    <p>Every lesson from <em>The Power of Positive Thinking</em> turns into a practical way to plan, write and launch a landing page that welcomes the right visitors. Explore, play with the tools below, then launch.</p>
+    <a class="btn" href="#swap">Start with a thought swap</a>
+  </div>
+  <svg viewBox="0 0 520 420" role="img" aria-label="A sun rising behind a landing page window">
+    <g class="rays" stroke="#000" stroke-width="8" stroke-linecap="round">
+      <path d="M260 60v-40M260 280v40M150 170h-40M370 170h40M182 92l-28-28M338 248l28 28M338 92l28-28M182 248l-28 28"/>
+    </g>
+    <circle cx="260" cy="170" r="78" fill="#000"/><circle cx="260" cy="170" r="52" fill="none" stroke="#FFD60A" stroke-width="6" stroke-dasharray="4 14" stroke-linecap="round"/>
+    <g class="cloud"><path d="M40 90q0-26 26-26 10-22 38-12 22-6 30 18 24 2 22 24H50q-10-2-10-4z" fill="#000"/></g>
+    <g class="cloud c2"><path d="M380 60q0-20 20-20 8-16 28-8 17-4 22 14 18 2 16 18H388q-8-2-8-4z" fill="#000"/></g>
+    <path class="tw" d="M450 150l6 16 16 6-16 6-6 16-6-16-16-6 16-6z" fill="#000"/>
+    <path class="tw" d="M60 200l5 12 12 5-12 5-5 12-5-12-12-5 12-5z" fill="#000"/>
+    <path class="tw" d="M470 270l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#000"/>
+    <rect x="90" y="215" width="340" height="190" fill="#FFD60A" stroke="#000" stroke-width="8"/>
+    <rect x="90" y="215" width="340" height="38" fill="#000"/>
+    <circle cx="116" cy="234" r="7" fill="#FFD60A"/><circle cx="140" cy="234" r="7" fill="#FFD60A"/><circle cx="164" cy="234" r="7" fill="#FFD60A"/>
+    <rect x="120" y="278" width="220" height="22" fill="#000"/><rect x="120" y="312" width="160" height="12" fill="#000" opacity=".7"/><rect x="120" y="332" width="190" height="12" fill="#000" opacity=".7"/>
+    <g class="bt"><rect x="120" y="358" width="130" height="34" fill="#000"/><text x="185" y="381" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="17" text-anchor="middle" fill="#FFD60A">Launch</text></g>
+    <path d="M360 300l10 22 24 4-18 16 5 24-21-12-21 12 5-24-18-16 24-4z" fill="#000"/>
+  </svg>
+</header>
+
+<section id="messages">
+  <h2>Four messages, one confident page</h2>
+  <p>Peale showed that thoughts steer outcomes. Tap each card to see how the message shapes an easylandx landing page.</p>
+  <div class="grid4">
+    <button class="flip" aria-pressed="false"><span class="in">
+      <span class="face"><svg viewBox="0 0 48 48" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"><circle cx="24" cy="20" r="11"/><path d="M19 34h10M20 39h8M24 4v3M7 20H4M44 20h-3M11 8l2 2M37 8l-2 2"/></svg><h3>Mindset shapes reality</h3><span>Your thoughts steer your mood, health, relationships and results.</span><span class="hint">Tap to reveal how to apply it →</span></span>
+      <span class="face back"><strong>On your page</strong>Start every draft by choosing the outlook you want visitors to feel. Warm, certain copy invites warm, certain action.</span>
+    </span></button>
+    <button class="flip" aria-pressed="false"><span class="in">
+      <span class="face"><svg viewBox="0 0 48 48" fill="none" stroke="#000" stroke-width="3" stroke-linejoin="round"><path d="M24 4l5 13 14 1-11 9 4 14-12-8-12 8 4-14-11-9 14-1z"/></svg><h3>Faith is a working force</h3><span>Conviction removes self-doubt and unlocks potential.</span><span class="hint">Tap to reveal how to apply it →</span></span>
+      <span class="face back"><strong>On your page</strong>Say what you offer with full conviction. Confident statements, real results and one clear promise turn belief into trust.</span>
+    </span></button>
+    <button class="flip" aria-pressed="false"><span class="in">
+      <span class="face"><svg viewBox="0 0 48 48" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"><circle cx="22" cy="26" r="16"/><circle cx="22" cy="26" r="9"/><circle cx="22" cy="26" r="2" fill="#000"/><path d="M22 26L42 6M36 6h6v6"/></svg><h3>Expect the win</h3><span>Anticipating success lines up your actions with it.</span><span class="hint">Tap to reveal how to apply it →</span></span>
+      <span class="face back"><strong>On your page</strong>Write a headline as if the result has already arrived. Your actions, choices and design follow that expectation.</span>
+    </span></button>
+    <button class="flip" aria-pressed="false"><span class="in">
+      <span class="face"><svg viewBox="0 0 48 48" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"><path d="M4 16q5-6 10 0t10 0 10 0 10 0M4 26q5-6 10 0t10 0 10 0 10 0M4 36q5-6 10 0t10 0 10 0 10 0"/></svg><h3>Peace of mind is the base</h3><span>A calm mind decides well and keeps energy high.</span><span class="hint">Tap to reveal how to apply it →</span></span>
+      <span class="face back"><strong>On your page</strong>Give every section room to breathe. A calm layout lets visitors think clearly and click with ease.</span>
+    </span></button>
+  </div>
+</section>
+
+<section id="lessons">
+  <h2>Core lessons, applied</h2>
+  <div class="panel">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-i="0">Believe in yourself</button>
+      <button class="tab" role="tab" aria-selected="false" data-i="1">A peaceful mind has power</button>
+      <button class="tab" role="tab" aria-selected="false" data-i="2">Energy follows expectation</button>
+      <button class="tab" role="tab" aria-selected="false" data-i="3">Challenges are a mental skill</button>
+    </div>
+    <div class="tp on">
+      <div><h3>Your value is real</h3><p>Peale taught that self-doubt drains energy and hides opportunity. Low confidence usually comes from a mistaken picture, rather than a shortage of ability.</p><p><strong>Landing page move:</strong> replace modest self-descriptions with a strong sense of personal value. Put your proof, your story and your unique strength near the top.</p></div>
+      <svg viewBox="0 0 200 200" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round"><circle cx="100" cy="70" r="30"/><path d="M40 170q0-50 60-50t60 50"/><path class="tw" d="M160 30l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#000" stroke="none"/><path class="tw" d="M36 40l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="#000" stroke="none"/></svg>
+    </div>
+    <div class="tp">
+      <div><h3>Quiet creates strength</h3><p>Energy flows when emotional turbulence settles. Calm thoughts conserve strength and open the door to deeper wisdom.</p><p><strong>Landing page move:</strong> choose one message, one color story and one main button. A tranquil page spares your visitor effort and your own energy.</p></div>
+      <svg viewBox="0 0 200 200" fill="none" stroke="#000" stroke-width="6"><circle cx="100" cy="100" r="14" fill="#000"><animate attributeName="r" values="12;16;12" dur="3s" repeatCount="indefinite"/></circle><circle cx="100" cy="100" r="40"><animate attributeName="opacity" values="1;.2;1" dur="3s" repeatCount="indefinite"/></circle><circle cx="100" cy="100" r="68"><animate attributeName="opacity" values=".2;1;.2" dur="3s" repeatCount="indefinite"/></circle><circle cx="100" cy="100" r="94" opacity=".35"/></svg>
+    </div>
+    <div class="tp">
+      <div><h3>Expect strength, receive strength</h3><p>Your body and mind respond to what you anticipate. Expecting health, vigor and success releases the energy to reach them.</p><p><strong>Landing page move:</strong> launch with the assumption of great results. Set a bold goal for visits and sign-ups, then show up every day as someone who expects them.</p></div>
+      <svg viewBox="0 0 200 200" fill="none" stroke="#000" stroke-width="6" stroke-linejoin="round"><rect x="60" y="30" width="80" height="150"/><rect x="60" y="30" width="80" height="150" fill="#000"><animate attributeName="y" values="180;30;180" dur="5s" repeatCount="indefinite"/><animate attributeName="height" values="0;150;0" dur="5s" repeatCount="indefinite"/></rect><path d="M110 70L80 110h22l-8 40 30-44h-22z" fill="#FFD60A" stroke="#FFD60A" stroke-width="2"/></svg>
+    </div>
+    <div class="tp">
+      <div><h3>Shrink the mountain</h3><p>A challenge holds only the power you hand it. Refuse to be intimidated, divide it into parts and solve it step by step.</p><p><strong>Landing page move:</strong> list the pieces of your launch (offer, headline, proof, button), then complete one piece at a time. Momentum builds itself.</p></div>
+      <svg viewBox="0 0 200 200" fill="none" stroke="#000" stroke-width="6" stroke-linejoin="round"><path d="M10 180L90 40l40 70 20-30 40 100z"/><path d="M30 170h30v-20h30v-20h30v-20" stroke-dasharray="6 10"><animate attributeName="stroke-dashoffset" values="32;0" dur="1.2s" repeatCount="indefinite"/></path><path d="M90 40v-24l24 8-24 8" fill="#000"/></svg>
+    </div>
+  </div>
+</section>
+
+<section id="swap">
+  <h2>Thought Swap: two positives for every hesitation</h2>
+  <p>Peale’s Positive Thought Replacement says to answer each self-limiting thought with two affirmations. Tap a hesitation to drain it and watch two confident thoughts arrive.</p>
+  <div class="panel">
+    <div class="chips" id="chips" aria-live="polite"></div>
+    <div class="row">
+      <div style="flex:1;min-width:220px"><div class="meter"><i id="swm"></i></div><p id="swt" style="margin:8px 0 0;font-weight:800">Thoughts replaced: 0 of 5</p></div>
+      <button class="btn ghost" id="swr">Reset</button>
+    </div>
+  </div>
+</section>
+
+<section id="calm">
+  <h2>The Clarity Dial: a peaceful page generates power</h2>
+  <p>Slide toward calm. As clutter fades, the page and its energy grow stronger. Pair it with rhythmic living: slow down and breathe with the circle for a minute.</p>
+  <div class="two">
+    <div>
+      <div class="mock" id="mock" aria-label="Landing page preview">
+        <div class="bar"><b></b><b></b><b></b></div>
+        <h4>Meet the people you help best</h4><p>One clear promise and one confident step.</p>
+        <span class="junk" data-t="85" style="top:40px;right:18px">SALE!!!</span>
+        <span class="junk f" data-t="70" style="top:110px;right:70px">5 pop-ups</span>
+        <span class="junk" data-t="60" style="top:170px;left:150px">Click here</span>
+        <span class="junk f" data-t="50" style="top:210px;right:24px">Subscribe</span>
+        <span class="junk" data-t="40" style="top:250px;left:60px">Banner banner banner</span>
+        <span class="junk f" data-t="30" style="top:140px;left:30px">Blink blink</span>
+        <span class="junk" data-t="20" style="top:300px;right:40px">Another offer</span>
+        <span class="cta" id="cta">Launch your page</span>
+      </div>
+    </div>
+    <div>
+      <label for="dial" style="font-weight:800">Clarity: <span id="dv">0</span>%</label>
+      <input type="range" id="dial" min="0" max="100" value="0">
+      <div class="meter"><i id="em" style="width:0"></i></div>
+      <p id="dmsg" style="font-weight:800;margin-top:10px">Scattered page, scattered energy.</p>
+      <div class="breath" aria-hidden="true"><i></i></div>
+      <p class="blab" id="blab">Breathe in…</p>
+    </div>
+  </div>
+</section>
+
+<section id="strategies">
+  <h2>Every strategy, ready for your launch</h2>
+  <div class="grid4 strat">
+    <div class="panel dark"><span class="tag">A. Daily mental conditioning</span><ul>
+      <li><strong>Thought Drain:</strong> picture hesitation flowing out like water. Do it before writing your page copy.</li>
+      <li><strong>Positive Thought Replacement:</strong> two affirmations for each limiting thought.</li>
+      <li><strong>Silent meditation and prayer:</strong> 15 quiet minutes to release resentment and tune in to purpose.</li></ul></div>
+    <div class="panel dark"><span class="tag">B. Calm and confidence</span><ul>
+      <li><strong>Cancellation Method:</strong> swap a doubtful line for a firm statement of faith, such as “Here is exactly who I help.”</li>
+      <li><strong>Refresh your vocabulary:</strong> retire phrases like “I’m exhausted” or “hopefully.” Audit your page copy too.</li>
+      <li><strong>Visualize success:</strong> picture a visitor reading, smiling and clicking before you publish.</li></ul></div>
+    <div class="panel dark"><span class="tag">C. Renewed energy</span><ul>
+      <li><strong>Rhythmic living:</strong> slower speech, unhurried walks, deep breaths. Mirror it with generous white space.</li>
+      <li><strong>Forgiveness:</strong> release past launches and old drafts. A fresh page starts with a fresh heart.</li></ul></div>
+    <div class="panel dark"><span class="tag">D. Practical solving</span><ul>
+      <li><strong>De-dramatize:</strong> write the challenge on paper, list solutions, act on them in order.</li>
+      <li><strong>Affirm higher assistance:</strong> lean on faith, inner strength and good tools. easylandx shares the load of building.</li></ul></div>
+  </div>
+</section>
+
+<section id="blueprint">
+  <h2>Your Launch Blueprint</h2>
+  <p>Check each step as you complete it. The sun rises with your progress, and the launch button lights up at 100%.</p>
+  <div class="two">
+    <ul class="steps" id="steps">
+      <li><label><input type="checkbox">Drain hesitation: two quiet minutes of thought drain</label></li>
+      <li><label><input type="checkbox">Write one goal sentence for your page</label></li>
+      <li><label><input type="checkbox">Swap each doubt for two affirmations</label></li>
+      <li><label><input type="checkbox">Visualize your visitor saying yes</label></li>
+      <li><label><input type="checkbox">Divide the launch into small, doable pieces</label></li>
+      <li><label><input type="checkbox">Release old drafts and past results</label></li>
+      <li><label><input type="checkbox">Take the very first step today</label></li>
+    </ul>
+    <div class="panel" style="text-align:center">
+      <svg class="ring" viewBox="0 0 240 190" width="100%" style="max-width:340px" role="img" aria-label="Sunrise progress">
+        <defs><clipPath id="sky"><rect x="0" y="0" width="240" height="140"/></clipPath></defs>
+        <g clip-path="url(#sky)"><g id="sun" style="transition:transform .6s" transform="translate(0,90)">
+          <g stroke="#000" stroke-width="6" stroke-linecap="round"><path d="M120 24v-14M120 116v14M72 70H58M182 70h-14M86 36l-10-10M154 104l10 10M154 36l10-10M86 104l-10 10"/></g>
+          <circle cx="120" cy="70" r="34" fill="#000"/></g></g>
+        <rect x="0" y="140" width="240" height="50" fill="#000"/>
+        <text id="pt" x="120" y="172" text-anchor="middle" fill="#FFD60A" font-size="26">0%</text>
+      </svg>
+      <p id="bmsg" style="font-weight:800;margin:12px auto">Take the first step to raise the sun.</p>
+      <a id="launch" class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+    </div>
+  </div>
+</section>
+
+<section style="text-align:center">
+  <h2>Expect a great launch.</h2>
+  <p style="margin-inline:auto">A positive mind and the right tool make a strong pair. Bring your confidence, and let easylandx help you share it with the world.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx</a>
+</section>
+
+<footer>
+  <div class="logo">Made by easylandx</div>
+  <p style="margin:0"><em>Inspired by the book</em> <strong>The Power of Positive Thinking</strong> by Dr. Norman Vincent Peale (first published in 1952).</p>
+</footer>
+</div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+// flip cards
+$$('.flip').forEach(b=>b.onclick=()=>b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true'));
+// tabs
+$$('.tab').forEach(t=>t.onclick=()=>{$$('.tab').forEach(x=>x.setAttribute('aria-selected',x===t));$$('.tp').forEach((p,i)=>p.classList.toggle('on',i==t.dataset.i))});
+// thought swap
+const T=[["Is my offer clear enough?","My offer is clear and valuable.","Visitors understand it within seconds."],
+["Will anyone read this page?","The right people are searching for me.","Every visit is a chance to connect."],
+["I am too busy to launch.","One focused hour moves me forward.","Launching gives me energy."],
+["My page could be better.","Each launch makes the next one stronger.","Progress is my path to excellence."],
+["Others seem further ahead.","My voice is one of a kind.","I grow by serving my audience well."]];
+let n=0;
+function build(){n=0;const c=$('#chips');c.innerHTML='';T.forEach(t=>{const b=document.createElement('button');b.className='chip';b.textContent=t[0];b.onclick=()=>{b.classList.add('drain');setTimeout(()=>{const d=document.createElement('div');d.className='aff';d.innerHTML='<span>★ '+t[1]+'</span><span>★ '+t[2]+'</span>';c.replaceChild(d,b);n++;stat()},850)};c.appendChild(b)});stat()}
+function stat(){$('#swm').style.width=n/T.length*100+'%';$('#swt').textContent=n==T.length?'Mind cleared. Time to launch!':'Thoughts replaced: '+n+' of '+T.length}
+$('#swr').onclick=build;build();
+// clarity dial
+const dial=$('#dial'),msgs=[[0,'Scattered page, scattered energy.'],[35,'Clutter is fading. Energy is rising.'],[70,'Calm page, focused energy.'],[95,'Pure clarity. One confident step.']];
+function dd(){const v=+dial.value;$('#dv').textContent=v;$('#em').style.width=v+'%';
+$$('.junk').forEach(e=>{const o=Math.max(0,Math.min(1,(+e.dataset.t-v)/12));e.style.opacity=o;e.style.transform='scale('+(.6+.4*o)+') rotate('+(o*-3)+'deg)'});
+const c=$('#cta');c.style.transform='scale('+(1+v/90)+')';c.style.boxShadow=v>80?'6px 6px 0 rgba(0,0,0,.35)':'none';
+$('#dmsg').textContent=msgs.filter(m=>v>=m[0]).pop()[1]}
+dial.oninput=dd;dd();
+let inh=true;setInterval(()=>{inh=!inh;$('#blab').textContent=inh?'Breathe in…':'Breathe out…'},4000);
+// blueprint
+const cb=$$('#steps input');
+cb.forEach(c=>c.onchange=()=>{const p=cb.filter(x=>x.checked).length/cb.length;
+$('#sun').setAttribute('transform','translate(0,'+(90-p*90)+')');$('#pt').textContent=Math.round(p*100)+'%';
+$('#launch').classList.toggle('on',p==1);
+$('#bmsg').textContent=p==1?'Your sun is up. Expect success!':p>0.5?'Brilliant momentum. Keep rising.':p>0?'The sun is rising. Keep going.':'Take the first step to raise the sun.'});
+</script>
+</body>
+</html>

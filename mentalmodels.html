@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Landing pages that fit the mind</title>
+<style>
+:root{--lime:#B8FF1F;--ink:#0A0A0A;--soft:#A5E800;--w:min(1080px,100%);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{background:var(--lime);color:var(--ink);font:17px/1.6 "Helvetica Neue",Arial,sans-serif;padding:clamp(28px,5vw,56px) clamp(22px,6vw,64px);overflow-x:hidden}
+.wrap{width:var(--w);margin:0 auto}
+section{padding:clamp(44px,7vw,84px) 0;border-top:3px solid var(--ink)}
+section:first-of-type{border-top:0}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.05;letter-spacing:-.02em}
+h1{font-size:clamp(40px,8vw,88px);font-weight:900}
+h2{font-size:clamp(30px,5vw,52px);margin-bottom:14px}
+h3{font-size:22px;margin-bottom:6px}
+.tag{display:inline-block;background:var(--ink);color:var(--lime);font-weight:800;font-size:12px;letter-spacing:.14em;padding:6px 12px;border-radius:99px;margin-bottom:18px;text-transform:uppercase}
+p.lead{font-size:clamp(18px,2.4vw,22px);max-width:640px;margin:18px 0 26px}
+.btn{display:inline-block;background:var(--ink);color:var(--lime);font-weight:900;text-decoration:none;padding:16px 30px;border-radius:99px;border:3px solid var(--ink);cursor:pointer;font-size:17px;font-family:inherit;transition:transform .2s,background .2s,color .2s}
+.btn:hover{background:var(--lime);color:var(--ink);transform:translateY(-3px) rotate(-1deg)}
+.btn.alt{background:transparent;color:var(--ink)}
+.btn.alt:hover,.btn.on{background:var(--ink);color:var(--lime)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.card{border:3px solid var(--ink);border-radius:22px;padding:24px;background:var(--soft)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:26px}
+.reveal{opacity:0;transform:translateY(28px);transition:all .7s}
+.reveal.in{opacity:1;transform:none}
+svg{max-width:100%;height:auto;display:block}
+.float{animation:fl 5s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-10px)}}
+.pulse{animation:pu 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pu{50%{transform:scale(1.25)}}
+.dash{stroke-dasharray:6 8;animation:da 1.6s linear infinite}
+@keyframes da{to{stroke-dashoffset:-28}}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.meter{height:26px;border:3px solid var(--ink);border-radius:99px;overflow:hidden;background:var(--lime)}
+.meter i{display:block;height:100%;background:var(--ink);width:0;transition:width .5s}
+.dots{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.dots span{width:34px;height:34px;border-radius:50%;background:var(--ink);transition:all .4s;display:grid;place-items:center;color:var(--lime);font-weight:800;font-size:13px}
+.dots.chunk{gap:8px 22px}
+.dots.chunk span:nth-child(4n){margin-right:30px;box-shadow:0 0 0 4px var(--soft),0 0 0 7px var(--ink)}
+input[type=range]{width:100%;accent-color:#0A0A0A;height:30px}
+.flip{perspective:900px;height:210px;cursor:pointer}
+.flip div{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.flip.on div{transform:rotateY(180deg)}
+.flip b,.flip u{position:absolute;inset:0;border:3px solid var(--ink);border-radius:22px;padding:22px;backface-visibility:hidden;text-decoration:none;display:flex;flex-direction:column;justify-content:center}
+.flip b{background:var(--ink);color:var(--lime);font-size:22px;font-family:Georgia,serif}
+.flip b small{font:700 12px Arial;letter-spacing:.12em;margin-top:10px;opacity:.8}
+.flip u{background:var(--soft);transform:rotateY(180deg);font-size:16px}
+.msg{font-weight:800;min-height:28px;margin-top:8px}
+footer{border-top:3px solid var(--ink);padding-top:36px;text-align:center}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section class="hero">
+  <div>
+    <span class="tag">easylandx · landing pages</span>
+    <h1>Pages that fit the way minds work.</h1>
+    <p class="lead">Every visitor arrives with a mental map. Pages made by easylandx meet that map, clear the clutter, and guide people to a confident yes.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx →</a>
+  </div>
+  <svg viewBox="0 0 400 360" class="float" aria-label="Animated network of connected ideas">
+    <g stroke="#0A0A0A" stroke-width="3" fill="none" class="dash">
+      <path d="M200 180L90 80M200 180L320 70M200 180L330 250M200 180L80 270M200 180L200 40M90 80L200 40M320 70L200 40M330 250L320 70M80 270L90 80"/>
+    </g>
+    <circle cx="200" cy="180" r="56" fill="#0A0A0A"/>
+    <text x="200" y="176" text-anchor="middle" fill="#B8FF1F" font-family="Georgia" font-weight="900" font-size="20">YOUR</text>
+    <text x="200" y="200" text-anchor="middle" fill="#B8FF1F" font-family="Georgia" font-weight="900" font-size="20">PAGE</text>
+    <g fill="#0A0A0A"><circle class="pulse" cx="90" cy="80" r="20"/><circle class="pulse" style="animation-delay:.4s" cx="320" cy="70" r="24"/><circle class="pulse" style="animation-delay:.8s" cx="330" cy="250" r="18"/><circle class="pulse" style="animation-delay:1.2s" cx="80" cy="270" r="22"/><circle class="pulse" style="animation-delay:1.6s" cx="200" cy="40" r="16"/></g>
+    <g fill="#B8FF1F" font-family="Arial" font-weight="800" font-size="10" text-anchor="middle"><text x="90" y="84">Hook</text><text x="320" y="74">Proof</text><text x="330" y="254">Offer</text><text x="80" y="274">Trust</text><text x="200" y="44">Why</text></g>
+  </svg>
+</section>
+
+<section class="reveal">
+  <span class="tag">Big idea 1</span>
+  <h2>Visitors read pages through schemas.</h2>
+  <p class="lead">A schema is an inner map of connected concepts. New information either slots into the map (assimilation) or reshapes it (accommodation). Great landing pages know which one they are asking for.</p>
+  <div class="card">
+    <h3>Build a visitor’s map</h3>
+    <p>Add elements to a page and watch the map respond. Familiar elements slot in. Fresh ones grow new branches.</p>
+    <div class="row" id="schemaBtns"></div>
+    <svg id="schemaSvg" viewBox="0 0 600 300" aria-label="Schema map"><circle cx="300" cy="150" r="46" fill="#0A0A0A"/><text x="300" y="145" text-anchor="middle" fill="#B8FF1F" font-family="Georgia" font-weight="900" font-size="13"><tspan x="300" dy="0">Landing</tspan><tspan x="300" dy="16">page</tspan></text><g id="nodes"></g></svg>
+    <p class="msg" id="schemaMsg">Tap an element to add it.</p>
+    <button class="btn alt" id="schemaReset">Reset map</button>
+  </div>
+</section>
+
+<section class="reveal">
+  <span class="tag">Big idea 2</span>
+  <h2>Working memory holds about four chunks.</h2>
+  <p class="lead">Unorganized detail fills the mental workspace fast. Chunking turns many pieces into a few meaningful units, leaving room for the decision you want visitors to make.</p>
+  <div class="card">
+    <h3>The attention budget</h3>
+    <label for="cnt"><b>Details on the page: <span id="cntV">12</span></b></label>
+    <input type="range" id="cnt" min="3" max="16" value="12">
+    <div class="dots" id="dots"></div>
+    <div class="row"><button class="btn alt" id="chunkBtn">Chunk into groups</button></div>
+    <div class="meter"><i id="load"></i></div>
+    <p class="msg" id="loadMsg"></p>
+  </div>
+  <div class="grid">
+    <div class="card"><svg viewBox="0 0 200 90"><g fill="#0A0A0A"><rect x="10" y="10" width="180" height="14" rx="7"/><rect x="10" y="34" width="120" height="10" rx="5"/><rect x="10" y="52" width="150" height="10" rx="5"/><rect x="10" y="70" width="90" height="12" rx="6" class="pulse"/></g></svg><h3>Remove extraneous detail</h3><p>Every extra widget competes with the one that matters. Keep what builds understanding, and give the rest its own page.</p></div>
+    <div class="card"><svg viewBox="0 0 200 90"><g fill="none" stroke="#0A0A0A" stroke-width="4"><circle cx="45" cy="45" r="30"/><circle cx="100" cy="45" r="30"/><circle cx="155" cy="45" r="30"/></g></svg><h3>Chunk with purpose</h3><p>Three sections with clear names beat twelve loose facts. Group, label, and let each chunk carry one idea.</p></div>
+  </div>
+</section>
+
+<section class="reveal">
+  <span class="tag">Big idea 3</span>
+  <h2>Expertise hides what beginners need.</h2>
+  <p class="lead">The curse of knowledge makes insiders write in shorthand. Your visitor is a newcomer to your world. Make the thinking visible.</p>
+  <div class="card">
+    <h3>Swap the voice</h3>
+    <div class="row"><button class="btn on" id="bExp">Expert voice</button><button class="btn alt" id="bNov">Visitor-ready voice</button></div>
+    <div style="display:grid;grid-template-columns:1fr 150px;gap:20px;align-items:center">
+      <p id="voice" style="font-family:Georgia,serif;font-size:22px;font-weight:700"></p>
+      <svg viewBox="0 0 150 120" id="voiceArt"></svg>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <span class="tag">Six strategies</span>
+  <h2>The playbook, made practical.</h2>
+  <p class="lead">Tap a card to flip it and see how easylandx applies each idea from the book.</p>
+  <div class="grid" id="flips"></div>
+</section>
+
+<section class="reveal">
+  <span class="tag">Try it</span>
+  <h2>Check the map, not just the nod.</h2>
+  <p class="lead">Asking “Does this make sense?” invites a polite yes. Asking visitors to explain in their own words reveals the real map. Pick the stronger question:</p>
+  <div class="card">
+    <div class="row" id="qBtns"></div>
+    <p class="msg" id="qMsg">Choose a question.</p>
+  </div>
+</section>
+
+<section class="reveal" style="text-align:center">
+  <h2>Ready to give your visitors a clear path?</h2>
+  <p class="lead" style="margin-inline:auto">Share goals, words, and workflow once. Your page then speaks from one shared map.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Launch your page with easylandx →</a>
+</section>
+
+<footer>
+  <p>Made by <b>easylandx</b></p>
+  <p style="margin-top:10px">Inspired by the book <i>Mental Models: How Understanding the Mind Can Transform the Way You Work and Learn</i> by Jim Heal and Rebekah Berlin.</p>
+</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+// reveal
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add("in")),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(s=>io.observe(s));
+
+// schema builder
+const items=[["Headline",0],["Button",0],["Photo",0],["Interactive demo",1],["Visual story",1],["Live calculator",1]];
+let n=0;const nodes=$("nodes");
+items.forEach(([t,a])=>{const b=document.createElement("button");b.className="btn alt";b.textContent="+ "+t;b.onclick=()=>{
+  const ang=n*0.9+0.3,r=a?120:95,x=300+Math.cos(ang)*r*1.7,y=150+Math.sin(ang)*r*.95;n++;
+  nodes.insertAdjacentHTML("beforeend",`<line x1="300" y1="150" x2="${x}" y2="${y}" stroke="#0A0A0A" stroke-width="3" ${a?'class="dash"':''}/><circle cx="${x}" cy="${y}" r="${a?30:24}" fill="${a?'#0A0A0A':'#B8FF1F'}" stroke="#0A0A0A" stroke-width="3" class="pulse"/><text x="${x}" y="${y+4}" text-anchor="middle" font-size="10" font-weight="800" font-family="Arial" fill="${a?'#B8FF1F':'#0A0A0A'}">${t.split(" ")[0]}</text>`);
+  $("schemaMsg").textContent=a?t+": accommodation. The map stretches into new territory, so add a guide or a clear example.":t+": assimilation. It slots into what visitors already expect.";};
+  $("schemaBtns").append(b)});
+$("schemaReset").onclick=()=>{nodes.innerHTML="";n=0;$("schemaMsg").textContent="Tap an element to add it."};
+
+// cognitive load
+let chunked=false;
+function draw(){const c=+$("cnt").value;$("cntV").textContent=c;
+  $("dots").innerHTML=Array.from({length:c},(_,i)=>`<span>${i+1}</span>`).join("");
+  $("dots").classList.toggle("chunk",chunked);
+  const u=chunked?Math.ceil(c/4):c,p=Math.min(100,u/4*100);
+  $("load").style.width=p+"%";
+  $("loadMsg").textContent=u<=4?"Comfortable: "+u+" unit"+(u>1?"s":"")+" fits in working memory.":"Stretch zone: "+u+" units. Group them to make room.";
+  $("chunkBtn").textContent=chunked?"Show ungrouped":"Chunk into groups";$("chunkBtn").classList.toggle("on",chunked)}
+$("cnt").oninput=draw;$("chunkBtn").onclick=()=>{chunked=!chunked;draw()};draw();
+
+// curse of knowledge
+const V={exp:["Leverage our CRO-optimized above-the-fold hero with A/B-validated CTA affordances.",'<g fill="#0A0A0A"><circle cx="30" cy="30" r="8"/><circle cx="75" cy="20" r="8"/><circle cx="120" cy="40" r="8"/><circle cx="50" cy="70" r="8"/><circle cx="100" cy="85" r="8"/><circle cx="130" cy="100" r="8"/></g><g stroke="#0A0A0A" stroke-width="2" fill="none"><path d="M30 30L75 20L120 40L50 70L100 85L130 100M30 30L50 70M75 20L100 85M120 40L100 85"/></g>'],
+nov:["Show one clear headline and one big button at the top. Visitors know what to do in three seconds.",'<rect x="20" y="15" width="110" height="18" rx="9" fill="#0A0A0A"/><rect x="20" y="45" width="80" height="10" rx="5" fill="#0A0A0A"/><rect x="35" y="75" width="80" height="30" rx="15" fill="#0A0A0A" class="pulse"/><path d="M60 90h30" stroke="#B8FF1F" stroke-width="4"/>']};
+function voice(k){$("voice").textContent=V[k][0];$("voiceArt").innerHTML=V[k][1];$("bExp").className="btn "+(k=="exp"?"on":"alt");$("bNov").className="btn "+(k=="nov"?"on":"alt")}
+$("bExp").onclick=()=>voice("exp");$("bNov").onclick=()=>voice("nov");voice("exp");
+
+// flip cards
+const F=[["Counterexamples","Show the line","Place a “try this” beside a “swap this” example on the page. Clear boundaries help visitors see exactly what you offer."],
+["Dual coding","Words + pictures","Every key promise pairs a short line with an illustration, so abstract ideas land as clear mental pictures."],
+["Scaffolded explanation","Small steps first","Sections build from one simple idea to the full offer, assembling the bigger model piece by piece."],
+["Chunking","Meaningful groups","Features gather into three named clusters. Working memory keeps room for your call to action."],
+["Shared mental models","One map for all","Goals, workflow, and terminology are agreed upfront, so your whole team and your page share the same words."],
+["Misconception checks","Ask how, not if","Test copy by asking people to explain it back. Their words show where the map needs a clearer guide."]];
+$("flips").innerHTML=F.map(f=>`<div class="flip" tabindex="0"><div><b>${f[0]}<small>${f[1].toUpperCase()}</small></b><u>${f[2]}</u></div></div>`).join("");
+document.querySelectorAll(".flip").forEach(c=>{c.onclick=()=>c.classList.toggle("on");c.onkeydown=e=>{if(e.key=="Enter"||e.key==" "){e.preventDefault();c.click()}}});
+
+// question check
+[["Does this make sense?","Friendly, yet it invites a polite yes. The real map stays hidden."],["What would you do first on this page, and why?","Excellent. Their own words reveal the map, the gaps, and the next improvement."]].forEach(([q,m])=>{
+  const b=document.createElement("button");b.className="btn alt";b.textContent=q;b.onclick=()=>{$("qMsg").textContent=m;[...$("qBtns").children].forEach(x=>x.classList.remove("on"));b.classList.add("on")};$("qBtns").append(b)});
+</script>
+</body>
+</html>

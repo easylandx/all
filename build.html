@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#c8ff00">
+<meta name="description" content="A practical, interactive field guide to turning landing-page failures into measurable learning, inspired by mental resilience principles.">
+<title>Easylandx — Fail Forward</title>
+<style>
+:root{--lime:#c8ff00;--cyan:#00e5ff;--ink:#10110c;--paper:#f7f8ef;--muted:#6b6d60;--line:rgba(16,17,12,.18);--radius:22px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--lime);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}a{color:inherit}button,input,textarea,select{font:inherit}button,a{touch-action:manipulation}.wrap{width:min(1180px,calc(100% - 40px));margin:auto}.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--line)}.brand{font-size:1.18rem;font-weight:950;letter-spacing:-.07em;text-decoration:none}.brand span{display:inline-grid;place-items:center;background:var(--ink);color:var(--lime);width:29px;height:29px;border-radius:8px;margin-right:8px;font-size:.85rem;letter-spacing:0}.navlinks{display:flex;gap:24px;align-items:center;font-size:.9rem;font-weight:750}.navlinks a{text-decoration:none}.pill,.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1.5px solid var(--ink);border-radius:999px;padding:12px 18px;font-weight:850;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer}.btn:hover,.pill:hover{transform:translateY(-3px);box-shadow:4px 4px 0 var(--ink)}.btn-dark{background:var(--ink);color:var(--lime)}.btn-cyan{background:var(--cyan);color:var(--ink)}.btn-light{background:var(--paper)}.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;padding:76px 0 84px}.eyebrow{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;font-weight:950;display:flex;align-items:center;gap:10px}.dot{width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 5px rgba(0,229,255,.18)}h1{font-size:clamp(3.5rem,8vw,7.5rem);line-height:.88;letter-spacing:-.085em;margin:24px 0}.outline{color:transparent;-webkit-text-stroke:2px var(--ink)}.hero p{font-size:1.12rem;max-width:560px;color:#34372b}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 20px}.micro{font-size:.8rem;color:#434638}.visual{min-height:440px;position:relative;display:grid;place-items:center}.orbit{position:absolute;width:min(100%,440px);aspect-ratio:1;border:1px solid rgba(16,17,12,.32);border-radius:50%;animation:spin 28s linear infinite}.orbit:before,.orbit:after{content:"";position:absolute;width:13px;height:13px;border-radius:50%;background:var(--cyan);border:2px solid var(--ink)}.orbit:before{top:12%;left:18%}.orbit:after{bottom:15%;right:9%;background:var(--ink)}.art-card{position:relative;width:min(100%,360px);aspect-ratio:.84;background:var(--ink);border-radius:30px;padding:25px;color:var(--paper);transform:rotate(3deg);box-shadow:15px 15px 0 rgba(16,17,12,.13);overflow:hidden;animation:float 5s ease-in-out infinite}.art-top{display:flex;justify-content:space-between;align-items:center;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}.art-top b{background:var(--cyan);color:var(--ink);padding:6px 9px;border-radius:100px}.art-head{font-size:2.7rem;line-height:.92;letter-spacing:-.08em;font-weight:950;margin-top:48px;max-width:260px}.art-head em{font-style:normal;color:var(--lime)}.chart{position:absolute;bottom:20px;left:24px;right:24px;height:120px;display:flex;align-items:end;gap:9px}.bar{flex:1;border:1px solid var(--lime);background:var(--lime);border-radius:8px 8px 2px 2px;transform-origin:bottom;animation:grow 1.2s cubic-bezier(.2,.8,.2,1) both}.bar:nth-child(1){height:27%}.bar:nth-child(2){height:42%;animation-delay:.1s}.bar:nth-child(3){height:35%;animation-delay:.2s}.bar:nth-child(4){height:63%;animation-delay:.3s}.bar:nth-child(5){height:54%;animation-delay:.4s}.bar:nth-child(6){height:82%;background:var(--cyan);border-color:var(--cyan);animation-delay:.5s}.bar:nth-child(7){height:100%;animation-delay:.6s}.sticker{position:absolute;right:-2px;top:16%;background:var(--cyan);border:2px solid var(--ink);border-radius:50%;width:104px;height:104px;display:grid;place-items:center;text-align:center;font-size:.78rem;line-height:1.05;font-weight:950;transform:rotate(12deg);animation:bob 3s ease-in-out infinite}.ticker{background:var(--ink);color:var(--lime);overflow:hidden;padding:14px 0;white-space:nowrap;font-size:.8rem;font-weight:950;letter-spacing:.14em}.ticker-track{display:inline-block;animation:marquee 26s linear infinite}.ticker span{margin:0 25px}.section{padding:88px 0}.section-light{background:var(--paper)}.section-dark{background:var(--ink);color:var(--paper)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:36px}.section h2{font-size:clamp(2.5rem,5vw,4.7rem);line-height:.94;letter-spacing:-.075em;margin:14px 0;max-width:700px}.section-head p{max-width:360px;color:var(--muted);margin:0}.section-dark .section-head p{color:#c3c5b9}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.principle{border:1.5px solid var(--ink);border-radius:var(--radius);padding:25px;min-height:260px;display:flex;flex-direction:column;justify-content:space-between;background:var(--lime);transition:transform .25s}.principle:hover{transform:translateY(-6px) rotate(-.5deg)}.number{font-size:.75rem;font-weight:950;letter-spacing:.12em}.symbol{font-size:2rem;font-weight:950;color:var(--cyan);-webkit-text-stroke:1px var(--ink)}.principle h3{font-size:1.55rem;letter-spacing:-.05em;margin:25px 0 8px}.principle p{margin:0;color:#414435}.split{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:start}.quote{font-size:clamp(1.7rem,3vw,2.7rem);line-height:1.1;letter-spacing:-.06em;font-weight:900;border-left:5px solid var(--cyan);padding-left:24px;margin:0}.quote mark{background:var(--cyan);color:var(--ink);padding:0 .12em}.exercise{border:1px solid rgba(247,248,239,.25);border-radius:var(--radius);padding:22px;margin-bottom:12px}.exercise-head{display:flex;justify-content:space-between;gap:15px;align-items:center}.exercise h3{margin:0;font-size:1.1rem}.exercise p{color:#c3c5b9;margin:12px 0 0}.tag{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:900;border:1px solid rgba(247,248,239,.4);border-radius:100px;padding:5px 9px;white-space:nowrap}.tool-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:24px}.tool-intro{padding:28px;border-radius:var(--radius);background:var(--cyan);border:1.5px solid var(--ink)}.tool-intro h3{font-size:2rem;line-height:.95;letter-spacing:-.07em;margin:18px 0}.tool-intro p{color:#30352e}.tool-panel{background:#fff;border:1.5px solid var(--ink);border-radius:var(--radius);padding:28px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}.tab{border:1px solid var(--ink);background:transparent;border-radius:100px;padding:9px 13px;font-weight:850;cursor:pointer}.tab[aria-selected="true"]{background:var(--ink);color:var(--lime)}.field{display:block;font-size:.83rem;font-weight:850;margin:16px 0 7px}.input,textarea,select{width:100%;border:1.5px solid #c9cbbf;border-radius:12px;padding:12px 13px;background:#fbfcf6;color:var(--ink);outline:none}.input:focus,textarea:focus,select:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(0,229,255,.35)}textarea{resize:vertical;min-height:76px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.formgrid .full{grid-column:1/-1}.output{margin-top:20px;padding:18px;background:#f0f3e5;border-radius:14px;border:1px dashed #8b8e7e;display:none}.output.show{display:block;animation:fadein .3s ease}.output h4{margin:0 0 8px}.output p{margin:6px 0}.timerbox{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:20px 0}.clock{font-variant-numeric:tabular-nums;font-size:2.4rem;letter-spacing:-.06em;font-weight:950}.timer-note{font-size:.85rem;color:var(--muted)}.progress{height:8px;background:#e5e7dc;border-radius:99px;overflow:hidden;margin:12px 0}.progress span{display:block;height:100%;width:0;background:var(--cyan);transition:width .3s}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}.step{border-top:2px solid var(--cyan);padding-top:13px}.step b{display:block;font-size:.75rem;letter-spacing:.1em}.step span{font-size:.9rem}.cta{background:var(--lime);padding:76px 0}.cta-inner{display:flex;justify-content:space-between;align-items:center;gap:30px}.cta h2{font-size:clamp(2.8rem,6vw,5.5rem);letter-spacing:-.08em;line-height:.9;margin:14px 0;max-width:680px}.footer{background:var(--ink);color:var(--paper);padding:30px 0}.footer-inner{display:flex;justify-content:space-between;gap:25px;align-items:center}.footer small{color:#bfc2b5}.booknote{font-size:.85rem;max-width:580px;color:#d5d7cb}.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}.spark{color:var(--cyan)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes float{0%,100%{transform:translateY(0) rotate(3deg)}50%{transform:translateY(-10px) rotate(1deg)}}@keyframes bob{0%,100%{transform:rotate(12deg) translateY(0)}50%{transform:rotate(5deg) translateY(-8px)}}@keyframes grow{from{transform:scaleY(.08)}to{transform:scaleY(1)}}@keyframes marquee{to{transform:translateX(-50%)}}@keyframes fadein{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:800px){.navlinks a:not(.pill){display:none}.hero{grid-template-columns:1fr;padding:55px 0 65px;gap:10px}.hero h1{font-size:clamp(3.6rem,17vw,6rem)}.visual{min-height:390px}.art-card{width:min(82%,330px)}.section{padding:65px 0}.section-head{display:block}.section-head p{margin-top:16px}.grid3{grid-template-columns:1fr}.principle{min-height:210px}.split,.tool-layout{grid-template-columns:1fr;gap:25px}.steps{grid-template-columns:repeat(2,1fr)}.cta-inner{display:block}.cta-inner .btn{margin-top:20px}.footer-inner{align-items:flex-start;flex-direction:column}.formgrid{grid-template-columns:1fr}.formgrid .full{grid-column:auto}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="wrap nav">
+  <a class="brand" href="#" aria-label="Easylandx home"><span>EX</span>easylandx</a>
+  <nav class="navlinks" aria-label="Main navigation"><a href="#framework">Framework</a><a href="#toolkit">Interactive toolkit</a><a class="pill" href="https://easylandx.com/" target="_blank" rel="noopener noreferrer">Visit Easylandx ↗</a></nav>
+</header>
+<main>
+<section class="wrap hero">
+  <div>
+    <div class="eyebrow"><span class="dot"></span> Landing pages · Built to learn</div>
+    <h1>FAIL.<br><span class="outline">LEARN.</span><br>LAUNCH.</h1>
+    <p>Your landing page is not your identity. It’s an experiment. Build smarter pages by turning every bounce, missed click, and quiet launch into useful signal.</p>
+    <div class="hero-actions"><a class="btn btn-dark" href="#toolkit">Run your next experiment <span class="spark">↗</span></a><a class="btn btn-light" href="#framework">Explore the framework ↓</a></div>
+    <div class="micro">A practical field guide for resilient, evidence-led landing page growth.</div>
+  </div>
+  <div class="visual" aria-label="Animated illustration of learning and growth">
+    <div class="orbit"></div>
+    <div class="art-card"><div class="art-top"><span>Field notes / 001</span><b>ITERATE</b></div><div class="art-head">MAKE<br>THE <em>MISS</em><br>MEAN<br>SOMETHING.</div><div class="chart" aria-hidden="true"><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i></div></div>
+    <div class="sticker">LESS<br>GUESSING.<br>MORE<br>LEARNING.</div>
+  </div>
+</section>
+<div class="ticker" aria-hidden="true"><div class="ticker-track"><span>FAIL SMALL</span>✳<span>MEASURE HONESTLY</span>✳<span>REFRAME THE RESULT</span>✳<span>SHIP THE NEXT TEST</span>✳<span>FAIL SMALL</span>✳<span>MEASURE HONESTLY</span>✳<span>REFRAME THE RESULT</span>✳<span>SHIP THE NEXT TEST</span>✳</div></div>
+<section class="section section-light" id="framework">
+ <div class="wrap">
+  <div class="section-head reveal"><div><div class="eyebrow"><span class="dot"></span> The mindset shift</div><h2>Stop treating results like a verdict.</h2></div><p>Landing page performance is feedback—not a judgment of your ability. Use the signal to improve the next decision.</p></div>
+  <div class="grid3">
+   <article class="principle reveal"><div><div class="number">01 / SEPARATE</div><div class="symbol">↗</div></div><div><h3>Failure is data, not identity.</h3><p>A weak conversion rate says this version missed the mark. It does not say you’re bad at marketing. Inspect the message, audience, offer, and friction.</p></div></article>
+   <article class="principle reveal"><div><div class="number">02 / TRAIN</div><div class="symbol">◎</div></div><div><h3>Resilience is a practice.</h3><p>Build a repeatable habit: launch small, review calmly, and make one evidence-led adjustment. Consistency beats waiting for perfect confidence.</p></div></article>
+   <article class="principle reveal"><div><div class="number">03 / MANAGE RISK</div><div class="symbol">⌁</div></div><div><h3>Fail cheaply. Learn quickly.</h3><p>Use small tests before expensive redesigns. Set a hypothesis, a budget, a success metric, and a stop condition before you spend.</p></div></article>
+  </div>
+ </div>
+</section>
+<section class="section section-dark">
+ <div class="wrap split">
+  <div class="reveal"><div class="eyebrow"><span class="dot"></span> Reframe the story</div><h2>Change the question. Change the next move.</h2><p style="color:#c3c5b9;max-width:440px">A setback can trigger self-criticism—or curiosity. Pause the verdict and inspect what the evidence actually says.</p></div>
+  <div class="reveal"><blockquote class="quote">“This page failed” becomes <mark>“This version hasn’t worked yet.”</mark></blockquote><div style="height:24px"></div>
+   <div class="exercise"><div class="exercise-head"><h3>Process over outcome</h3><span class="tag">Decision quality</span></div><p>Did we choose a meaningful audience, a clear hypothesis, and a fair test—even if the result was disappointing?</p></div>
+   <div class="exercise"><div class="exercise-head"><h3>Ask what success hides</h3><span class="tag">Cognitive reframe</span></div><p>What did this result reveal about intent, trust, clarity, friction, or timing that a lucky win might have concealed?</p></div>
+   <div class="exercise"><div class="exercise-head"><h3>Build antifragile systems</h3><span class="tag">Small bets</span></div><p>Keep tests reversible, protect the downside, and turn each finding into a better brief for the next iteration.</p></div>
+  </div>
+ </div>
+</section>
+<section class="section section-light" id="toolkit">
+ <div class="wrap">
+  <div class="section-head reveal"><div><div class="eyebrow"><span class="dot"></span> Interactive toolkit</div><h2>Turn the lesson into a next step.</h2></div><p>Choose a tool, enter what you know, and create a practical starting point. Your entries stay in this page and are not sent to a server.</p></div>
+  <div class="tool-layout reveal">
+   <aside class="tool-intro"><div class="eyebrow">Your experiment desk</div><h3>Curiosity is a conversion tool.</h3><p>Make the next action small enough to start—and specific enough to learn from.</p><div style="font-size:3.4rem;font-weight:950;letter-spacing:-.1em;line-height:1;margin-top:30px">01<span style="color:var(--ink)">→</span>∞</div><p><b>One insight.</b><br>One next experiment.</p></aside>
+   <div class="tool-panel">
+    <div class="tabs" role="tablist" aria-label="Choose an exercise"><button class="tab" role="tab" aria-selected="true" data-tab="premortem">Pre-mortem</button><button class="tab" role="tab" aria-selected="false" data-tab="debrief">Failure debrief</button><button class="tab" role="tab" aria-selected="false" data-tab="reframe">Reframe</button></div>
+    <div id="panel-premortem" class="tabpanel" role="tabpanel">
+      <h3 style="margin:0;letter-spacing:-.04em">Imagine the launch missed.</h3><p style="color:var(--muted);margin-top:6px">Work backwards to protect the test before you run it.</p>
+      <label class="field" for="project">What are you launching?</label><input class="input" id="project" placeholder="e.g. New demo-request landing page">
+      <label class="field" for="risk">What is the most likely reason it could underperform?</label><textarea id="risk" placeholder="e.g. The headline doesn't match the ad promise"></textarea>
+      <label class="field" for="mitigation">What small safeguard or test can reduce that risk?</label><textarea id="mitigation" placeholder="e.g. Test two headline variants with a small audience"></textarea>
+      <button class="btn btn-dark" style="margin-top:16px" id="make-plan">Build my risk plan ↗</button>
+    </div>
+    <div id="panel-debrief" class="tabpanel" role="tabpanel" hidden>
+      <h3 style="margin:0;letter-spacing:-.04em">Review the evidence, not your worth.</h3><p style="color:var(--muted);margin-top:6px">A five-question post-failure review turns a result into an experiment.</p>
+      <div class="formgrid">
+       <div><label class="field" for="expected">Expected outcome</label><textarea id="expected" placeholder="What did you expect?"></textarea></div>
+       <div><label class="field" for="actual">Actual outcome</label><textarea id="actual" placeholder="What happened?"></textarea></div>
+       <div><label class="field" for="variables">Likely variables</label><textarea id="variables" placeholder="What might explain the gap?"></textarea></div>
+       <div><label class="field" for="control">Within your control</label><textarea id="control" placeholder="What can you change?"></textarea></div>
+       <div class="full"><label class="field" for="experiment">Immediate next experiment</label><textarea id="experiment" placeholder="What is one small, measurable test?"></textarea></div>
+      </div>
+      <button class="btn btn-dark" style="margin-top:16px" id="make-debrief">Create my debrief ↗</button>
+    </div>
+    <div id="panel-reframe" class="tabpanel" role="tabpanel" hidden>
+      <h3 style="margin:0;letter-spacing:-.04em">Catch the inner critic in the act.</h3><p style="color:var(--muted);margin-top:6px">Translate a harsh conclusion into a useful, testable question.</p>
+      <label class="field" for="thought">The thought after the setback</label><textarea id="thought" placeholder="e.g. Nobody wants what we're offering"></textarea>
+      <label class="field" for="evidence">What evidence do you actually have?</label><textarea id="evidence" placeholder="e.g. Low sign-ups from one small traffic source"></textarea>
+      <button class="btn btn-dark" style="margin-top:16px" id="make-reframe">Reframe this thought ↗</button>
+    </div>
+    <div class="output" id="output" aria-live="polite"></div>
+   </div>
+  </div>
+ </div>
+</section>
+<section class="section section-light" style="padding-top:0">
+ <div class="wrap">
+  <div class="section-head reveal"><div><div class="eyebrow"><span class="dot"></span> Reset, then respond</div><h2>Give the feeling five minutes. Then get curious.</h2></div><p>The goal is not to suppress emotion. A short, intentional pause can create room to move from reaction to analysis.</p></div>
+  <div class="tool-panel reveal">
+   <div class="exercise-head"><div><div class="eyebrow">5-minute decompression</div><h3 style="font-size:1.6rem;margin-top:8px">Pause the spiral. Restart with intention.</h3></div><span class="tag" style="border-color:var(--ink)">Optional reset</span></div>
+   <p style="color:var(--muted)">Start a five-minute timer. Breathe, step away from the dashboard, or name what you feel. When it ends, choose one constructive next action—no forced positivity required.</p>
+   <div class="timerbox"><div class="clock" id="clock" aria-live="off">05:00</div><button class="btn btn-dark" id="timer-start">Start 5-minute reset</button><button class="btn btn-light" id="timer-reset">Reset</button><span class="timer-note" id="timer-status">Ready when you are.</span></div>
+   <div class="progress" aria-label="Timer progress"><span id="timer-progress"></span></div>
+   <label class="field" for="nextaction">When the timer ends, my next small action is…</label><input class="input" id="nextaction" placeholder="e.g. Check the mobile CTA and run one usability test">
+  </div>
+  <div class="steps reveal"><div class="step"><b>01 / DEFINE</b><span>Write one hypothesis.</span></div><div class="step"><b>02 / LIMIT</b><span>Cap the downside.</span></div><div class="step"><b>03 / OBSERVE</b><span>Measure the signal.</span></div><div class="step"><b>04 / ITERATE</b><span>Choose one next test.</span></div></div>
+ </div>
+</section>
+<section class="cta">
+ <div class="wrap cta-inner"><div><div class="eyebrow"><span class="dot"></span> Your next version starts here</div><h2>Make the next launch a better experiment.</h2><p style="max-width:570px">Build with intention. Learn without the drama. Keep moving forward—one useful iteration at a time.</p></div><a class="btn btn-dark" href="https://easylandx.com/" target="_blank" rel="noopener noreferrer">Explore Easylandx ↗</a></div>
+</section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><div><a class="brand" href="#" style="color:var(--paper)"><span>EX</span>easylandx</a><p class="booknote">A landing-page learning experience about resilience, thoughtful risk, and turning setbacks into feedback.</p></div><div><small>Inspired by the book</small><p style="font-weight:850;margin:6px 0"> <i>From Failure to Success: Everyday Habits and Exercises to Build Mental Resilience and Turn Failures Into Successes</i><br>by Martin Meadows</p><small>Conceptual inspiration only. This page is not affiliated with the author.</small></div></div></footer>
+<script>
+(function(){
+  const tabs=[...document.querySelectorAll('.tab')], panels=[...document.querySelectorAll('.tabpanel')], output=document.getElementById('output');
+  function showTab(name){tabs.forEach(t=>{const active=t.dataset.tab===name;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1});panels.forEach(p=>p.hidden=p.id!=='panel-'+name);output.classList.remove('show');output.innerHTML='';}
+  tabs.forEach(t=>t.addEventListener('click',()=>showTab(t.dataset.tab)));
+  function val(id){return document.getElementById(id).value.trim()}
+  function render(title, rows){output.innerHTML='<h4>'+title+'</h4>'+rows.map(([k,v])=>'<p><b>'+escapeHTML(k)+':</b> '+escapeHTML(v||'Not added yet — fill this in when you can.')+'</p>').join('')+'<button class="btn btn-light" id="copy-output" style="margin-top:12px">Copy this plan</button>';output.classList.add('show');document.getElementById('copy-output').addEventListener('click',async()=>{const text=title+'\\n'+rows.map(([k,v])=>k+': '+(v||'Not added yet')).join('\\n');try{await navigator.clipboard.writeText(text);document.getElementById('copy-output').textContent='Copied ✓'}catch(e){const area=document.createElement('textarea');area.value=text;output.appendChild(area);area.select();document.execCommand('copy');area.remove();document.getElementById('copy-output').textContent='Copied ✓'}})}
+  function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+  document.getElementById('make-plan').addEventListener('click',()=>render('Your pre-mortem plan',[['Project',val('project')],['Likely failure point',val('risk')],['Mitigation / safeguard',val('mitigation')],['Success signal','Define one metric and a review date before launch.'],['Risk boundary','Set a spend, time, or traffic limit before the test starts.']]));
+  document.getElementById('make-debrief').addEventListener('click',()=>render('Your post-failure debrief',[['Expected outcome',val('expected')],['Actual outcome',val('actual')],['Possible variables',val('variables')],['Within my control',val('control')],['Next experiment',val('experiment')]]));
+  document.getElementById('make-reframe').addEventListener('click',()=>render('A more useful reframe',[['Original thought',val('thought')],['Evidence available',val('evidence')],['Reframe','This result describes one outcome—not my identity. What is the smallest test that could clarify what is happening?'],['Next move','Choose one variable, define a measure, and run a bounded experiment.']]));
+  // A small, accessible timer with no background network activity.
+  let remaining=300, interval=null, startedAt=0;
+  const clock=document.getElementById('clock'), status=document.getElementById('timer-status'), progress=document.getElementById('timer-progress'), start=document.getElementById('timer-start');
+  function draw(){const m=Math.floor(remaining/60),s=remaining%60;clock.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');progress.style.width=((300-remaining)/300*100)+'%'}
+  function stop(){if(interval){clearInterval(interval);interval=null}start.textContent='Resume reset'}
+  start.addEventListener('click',()=>{if(interval){stop();status.textContent='Paused. Resume when ready.';return}if(remaining<=0){remaining=300;draw()}startedAt=Date.now();start.textContent='Pause timer';status.textContent='Take a breath. No need to solve it yet.';interval=setInterval(()=>{remaining=Math.max(0,remaining-1);draw();if(remaining===0){stop();start.textContent='Start again';status.textContent=val('nextaction')?'Reset complete. Next: '+val('nextaction'):'Reset complete. Choose one small next action.';progress.style.width='100%'}},1000)});
+  document.getElementById('timer-reset').addEventListener('click',()=>{stop();remaining=300;draw();start.textContent='Start 5-minute reset';status.textContent='Ready when you are.'});
+  // Reveal sections as they enter view; show everything if motion APIs are unavailable.
+  const items=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});items.forEach(el=>observer.observe(el))}else items.forEach(el=>el.classList.add('visible'));
+  // Keep keyboard tab navigation conventional.
+  tabs.forEach((t,i)=>t.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const n=(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[n].focus();showTab(tabs[n].dataset.tab)}}));
+})();
+</script>
+</body>
+</html>
