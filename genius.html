@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#073A8C">
+<title>Genius at Scale — EasyLandX</title>
+<style>
+:root{--blue:#073a8c;--blue2:#052c70;--cyan:#39e8ff;--cyan2:#9af6ff;--white:#f3fbff;--muted:#b7d8ef;--line:rgba(57,232,255,.25)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--blue);color:var(--white);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:radial-gradient(circle at 1px 1px,rgba(154,246,255,.5) 1px,transparent 0);background-size:34px 34px;mask-image:linear-gradient(to bottom,black,transparent 80%);z-index:-1}
+a{color:inherit;text-decoration:none}.wrap{width:min(1160px,calc(100% - 44px));margin:auto}
+nav{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.brand{font-weight:950;letter-spacing:-1.5px;font-size:22px}.brand span{color:var(--cyan)}.navlinks{display:flex;gap:25px;color:var(--muted);font-size:13px;font-weight:700}.navlinks a:hover{color:var(--cyan)}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--cyan);border-radius:99px;padding:9px 14px;color:var(--cyan);font-size:11px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase}
+.hero{min-height:680px;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:35px;padding:76px 0 90px;position:relative}
+.eyebrow{color:var(--cyan);font-size:12px;letter-spacing:2.2px;font-weight:900;text-transform:uppercase}
+h1{font-size:clamp(54px,7vw,96px);line-height:.91;letter-spacing:-6px;margin:23px 0 26px;font-weight:950;max-width:720px}h1 em{font-style:normal;color:var(--cyan)}
+.lead{font-size:18px;line-height:1.65;color:#d4eaff;max-width:570px}.actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:32px}
+.btn{border:1px solid var(--cyan);background:var(--cyan);color:var(--blue2);padding:15px 21px;border-radius:7px;font-weight:950;font-size:13px;letter-spacing:.3px;display:inline-flex;align-items:center;gap:10px;transition:.2s;cursor:pointer}.btn:hover{transform:translateY(-3px);box-shadow:0 12px 35px #00dfff45}.btn.ghost{background:transparent;color:var(--cyan)}
+.hero-art{height:490px;position:relative;display:grid;place-items:center}
+.orbit{position:absolute;border:1px solid rgba(57,232,255,.35);border-radius:50%;animation:spin 32s linear infinite}.orbit.one{width:390px;height:390px}.orbit.two{width:300px;height:300px;animation-direction:reverse;animation-duration:24s;border-style:dashed}
+.core{width:210px;height:210px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a4faff,#25cfea 35%,#0879bf 70%);box-shadow:0 0 80px #39e8ff70;display:grid;place-items:center;position:relative;animation:float 5s ease-in-out infinite}
+.core svg{width:112px;filter:drop-shadow(0 8px 10px #00336b66)}
+.node{position:absolute;width:105px;height:105px;border:1px solid var(--cyan);background:#073a8cdd;backdrop-filter:blur(8px);border-radius:22px;display:grid;place-items:center;text-align:center;padding:12px;color:var(--cyan);font-size:11px;font-weight:900;letter-spacing:.7px;box-shadow:0 10px 35px #001e5055;animation:float 6s ease-in-out infinite}
+.node b{display:block;font-size:24px;margin-bottom:4px;color:white}.n1{top:24px;left:15px}.n2{top:50px;right:0;animation-delay:-2s}.n3{bottom:20px;left:20px;animation-delay:-3s}.n4{bottom:0;right:25px;animation-delay:-1s}
+.scrollhint{position:absolute;bottom:25px;left:0;color:var(--muted);font-size:10px;letter-spacing:2px;text-transform:uppercase}
+section{padding:105px 0;border-top:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:42px}.section-head h2{font-size:clamp(35px,5vw,62px);letter-spacing:-3px;line-height:.98;margin:14px 0 0;max-width:690px}.section-head p{max-width:330px;color:var(--muted);line-height:1.6;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{border:1px solid var(--line);border-radius:14px;padding:26px;background:linear-gradient(145deg,#0b4a9f99,#062e73aa);min-height:245px;position:relative;overflow:hidden;transition:.25s}.card:hover{transform:translateY(-6px);border-color:var(--cyan);box-shadow:0 18px 50px #001e5044}.num{color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:1.5px}.card h3{font-size:23px;letter-spacing:-.8px;margin:28px 0 12px}.card p{color:var(--muted);line-height:1.6;font-size:14px;margin:0}.card:after{content:"";position:absolute;width:130px;height:130px;border:1px solid #39e8ff2b;border-radius:50%;right:-60px;bottom:-70px;box-shadow:0 0 0 18px #39e8ff0b,0 0 0 38px #39e8ff08}
+.callout{margin-top:18px;border:1px solid var(--cyan);border-radius:14px;padding:26px 30px;display:flex;justify-content:space-between;align-items:center;gap:20px;background:#39e8ff0b}.callout strong{font-size:20px;letter-spacing:-.5px}.callout span{color:var(--muted);font-size:13px}
+.abc{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.abc-card{padding:28px;border-radius:14px;background:var(--cyan);color:var(--blue2);min-height:270px;position:relative;overflow:hidden}.abc-card .letter{font-size:76px;font-weight:1000;line-height:1;letter-spacing:-7px}.abc-card h3{font-size:21px;margin:20px 0 9px}.abc-card p{font-size:14px;line-height:1.55;margin:0;max-width:290px}.abc-card svg{position:absolute;right:18px;top:18px;width:62px;opacity:.45}
+.process{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{border-top:2px solid var(--cyan);padding:23px 18px 20px 0}.step .symbol{font-size:28px;color:var(--cyan)}.step h3{font-size:21px;margin:14px 0 10px}.step p{color:var(--muted);line-height:1.6;font-size:14px}
+.lab{display:grid;grid-template-columns:.85fr 1.15fr;gap:35px;align-items:start}.lab-intro p{color:var(--muted);line-height:1.7}.labbox{border:1px solid var(--cyan);border-radius:16px;padding:27px;background:#052d70}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:23px}.tab{border:1px solid var(--line);background:transparent;color:var(--muted);padding:10px 13px;border-radius:6px;font-size:12px;font-weight:850;cursor:pointer}.tab.active{background:var(--cyan);color:var(--blue2);border-color:var(--cyan)}.prompt{color:var(--cyan);font-size:11px;letter-spacing:1.6px;font-weight:900;text-transform:uppercase}.labbox h3{font-size:27px;margin:10px 0}.labbox p{color:#d4eaff;line-height:1.65;font-size:14px;min-height:72px}.question{border-top:1px solid var(--line);padding-top:18px;margin-top:20px}.question label{display:block;font-size:12px;color:var(--muted);margin-bottom:10px}.question input{width:100%;accent-color:var(--cyan)}.range-labels{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:5px}.result{margin-top:17px;border-radius:9px;padding:15px;background:#39e8ff12;color:var(--cyan);font-size:13px;line-height:1.55}
+.scale{display:grid;grid-template-columns:1fr 1fr;gap:18px}.scale-panel{border:1px solid var(--line);border-radius:14px;padding:26px}.scale-panel h3{font-size:22px;margin:0 0 16px}.scale-panel p{color:var(--muted);font-size:14px;line-height:1.6}.scale-panel ul{padding-left:18px;color:#d4eaff;font-size:13px;line-height:2}.quote{font-size:clamp(28px,4vw,48px);font-weight:900;letter-spacing:-2px;line-height:1.12;max-width:900px}.quote span{color:var(--cyan)}
+footer{padding:42px 0 55px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.footerrow{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}.inspired{margin-top:30px;color:#d4eaff;font-size:12px}.inspired strong{color:var(--cyan)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@media(max-width:800px){.navlinks{display:none}.hero{grid-template-columns:1fr;padding-top:65px;gap:0}.hero-art{height:410px;max-width:500px;width:100%;margin:auto}.orbit.one{width:310px;height:310px}.orbit.two{width:240px;height:240px}.core{width:165px;height:165px}.node{width:88px;height:88px;font-size:9px}.node b{font-size:20px}.n1{left:0}.n2{right:0}.cards,.abc,.process{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:20px}.lab{grid-template-columns:1fr}.scale{grid-template-columns:1fr}h1{letter-spacing:-4px}.callout{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a class="brand" href="https://easylandx.github.io/all/">EASYLAND<span>X</span></a><div class="navlinks"><a href="#mindset">Mindset</a><a href="#environment">ABC Framework</a><a href="#process">Creative Process</a><a href="#scale">Scale</a></div><a class="pill" href="#lab">Explore the system ↗</a></nav>
+<main>
+<header class="hero">
+<div>
+<div class="eyebrow">A better architecture for innovation</div>
+<h1>Stop being<br>the <em>hero.</em><br>Build the system.</h1>
+<p class="lead">Innovation at scale is not a performance by one brilliant leader. It is an environment where many people can contribute, challenge, experiment and turn promising ideas into everyday progress.</p>
+<div class="actions"><a class="btn" href="#environment">Build your innovation ecosystem <span>↗</span></a><a class="btn ghost" href="#lab">Try the architect's lens</a></div>
+</div>
+<div class="hero-art" aria-label="Illustration of connected people and ideas">
+<div class="orbit one"></div><div class="orbit two"></div>
+<div class="core"><svg viewBox="0 0 120 120" fill="none" aria-hidden="true"><path d="M60 12 73 42 106 45 81 67 88 100 60 83 32 100 39 67 14 45 47 42 60 12Z" fill="#063B85" stroke="#063B85" stroke-width="3"/><circle cx="60" cy="58" r="13" fill="#B9FBFF"/></svg></div>
+<div class="node n1"><div><b>01</b>PURPOSE</div></div><div class="node n2"><div><b>02</b>CAPABILITY</div></div><div class="node n3"><div><b>03</b>COMMUNITY</div></div><div class="node n4"><div><b>∞</b>LEARNING</div></div>
+</div><div class="scrollhint">↓ Scroll to rethink innovation</div>
+</header>
+<section id="mindset" class="reveal">
+<div class="section-head"><div><div class="eyebrow">01 / The leadership shift</div><h2>From individual brilliance to collective genius.</h2></div><p>The leader's job changes: less directing every move, more designing the conditions in which great work becomes possible.</p></div>
+<div class="cards">
+<article class="card"><div class="num">THE OLD MODEL</div><h3>The Hero</h3><p>One central figure owns the vision, makes the calls and is expected to have the answers. Progress depends on individual capacity.</p></article>
+<article class="card"><div class="num">THE NEW MODEL</div><h3>The Architect</h3><p>A leader shapes purpose, capabilities and relationships so people across the organization can contribute their intelligence.</p></article>
+<article class="card"><div class="num">THE OUTCOME</div><h3>Innovation as a muscle</h3><p>Innovation becomes a repeatable organizational capability, embedded in everyday decisions—not a one-off event or isolated department.</p></article>
+</div>
+<div class="callout"><div><strong>Don't ask: “Who has the big idea?”</strong><br><span>Ask: “What conditions help good ideas emerge, improve and spread?”</span></div><a class="pill" href="#lab">Test the conditions ↗</a></div>
+</section>
+<section id="environment" class="reveal">
+<div class="section-head"><div><div class="eyebrow">02 / Establish the environment</div><h2>The ABC of an innovation-ready organization.</h2></div><p>Culture and capability must be built together. Give people a reason to move, the means to act and the trust to work together.</p></div>
+<div class="abc">
+<article class="abc-card"><div class="letter">A</div><h3>Affirm purpose</h3><p>Make the strategic intent clear. Help teams understand the challenge, the value they are creating and the boundaries that matter.</p></article>
+<article class="abc-card"><div class="letter">B</div><h3>Build capabilities</h3><p>Equip people with practical skills and tools: design thinking, prototyping, data literacy, experimentation and customer discovery.</p></article>
+<article class="abc-card"><div class="letter">C</div><h3>Cultivate community</h3><p>Create psychological safety, trust and cross-functional connection. Make it possible to disagree, contribute and learn together.</p></article>
+</div>
+</section>
+<section id="process" class="reveal">
+<div class="section-head"><div><div class="eyebrow">03 / Drive the creative process</div><h2>Make difference productive. Make learning fast.</h2></div><p>Collective creativity is not about avoiding tension. It is about using tension well—and turning it into something better.</p></div>
+<div class="process">
+<article class="step"><div class="symbol">✳</div><h3>Creative abrasion</h3><p>Invite different perspectives into constructive debate. Challenge assumptions with curiosity, evidence and respect—not personal competition.</p></article>
+<article class="step"><div class="symbol">↗</div><h3>Creative agility</h3><p>Turn hypotheses into small tests. Prototype early, seek quick feedback, learn from evidence and refine the next move.</p></article>
+<article class="step"><div class="symbol">⌘</div><h3>Creative resolution</h3><p>Combine the strongest parts of different ideas into an integrated solution. Aim beyond compromise or the easiest consensus.</p></article>
+</div>
+</section>
+<section class="reveal">
+<div class="section-head"><div><div class="eyebrow">04 / Work with the paradoxes</div><h2>Innovation needs both sides of the equation.</h2></div><p>Scaling innovation means holding productive tensions instead of choosing one extreme.</p></div>
+<div class="cards">
+<article class="card"><div class="num">AUTONOMY + ALIGNMENT</div><h3>Freedom with direction</h3><p>Set a shared purpose and clear guardrails. Let teams choose how to explore within them.</p></article>
+<article class="card"><div class="num">EXPLORATION + EXECUTION</div><h3>Experiment with standards</h3><p>Make room for discovery while keeping ownership, quality and delivery visible.</p></article>
+<article class="card"><div class="num">CHALLENGE + TRUST</div><h3>Debate without division</h3><p>Encourage honest disagreement while protecting the relationships that make collaboration possible.</p></article>
+</div>
+</section>
+<section id="lab" class="reveal">
+<div class="lab">
+<div class="lab-intro"><div class="eyebrow">05 / Interactive field guide</div><h2 style="font-size:clamp(38px,5vw,60px);line-height:.98;letter-spacing:-3px;margin:15px 0 20px">Take the architect's lens.</h2><p>Choose a challenge area. Then rate how consistently your organization puts that principle into practice. Use the result as a starting point for a real team conversation—not as a scorecard.</p><div class="pill">A small experiment in better leadership</div></div>
+<div class="labbox">
+<div class="tabs" role="tablist" aria-label="Innovation challenge"><button class="tab active" data-key="purpose">Purpose</button><button class="tab" data-key="capability">Capability</button><button class="tab" data-key="community">Community</button><button class="tab" data-key="learning">Learning</button></div>
+<div class="prompt" id="lab-kicker">ABC / A — AFFIRM PURPOSE</div><h3 id="lab-title">Can everyone see the direction?</h3><p id="lab-copy">People understand the strategic intent and can connect their experiments to a meaningful organizational challenge.</p>
+<div class="question"><label for="rating">How consistently does this happen today?</label><input id="rating" type="range" min="1" max="5" value="3"><div class="range-labels"><span>Rarely</span><span>Sometimes</span><span>Consistently</span></div></div>
+<div class="result" id="result" aria-live="polite">Your next move: make the purpose concrete. Describe the challenge in one sentence and invite teams to identify where they can contribute.</div>
+</div>
+</div>
+</section>
+<section id="scale" class="reveal">
+<div class="section-head"><div><div class="eyebrow">06 / Scale and integrate</div><h2>Help good ideas travel.</h2></div><p>An experiment only creates lasting value when the organization can absorb what it teaches and make the next step easier.</p></div>
+<div class="scale">
+<div class="scale-panel"><div class="pill">Remove friction</div><h3>Clear the path from idea to impact.</h3><p>Look for the structures that slow promising work down. Make the route from experiment to implementation visible and navigable.</p><ul><li>Reduce unnecessary approvals and handoffs</li><li>Connect teams across silos</li><li>Give experiments clear owners and decision paths</li><li>Protect time and resources for testing</li></ul></div>
+<div class="scale-panel"><div class="pill">Institutionalize learning</div><h3>Make every experiment useful.</h3><p>Capture the insight—not just the outcome. Share what worked, what did not and what the next team should do differently.</p><ul><li>Run short, evidence-led retrospectives</li><li>Share reusable methods and discoveries</li><li>Reward learning as well as successful delivery</li><li>Feed insights into the next experiment</li></ul></div>
+</div>
+</section>
+<section class="reveal"><div class="quote">“The work of leadership is not to be the source of every answer. It is to <span>design a system</span> in which better answers can emerge.”</div></section>
+</main>
+<footer><div class="footerrow"><a class="brand" href="https://easylandx.github.io/all/">EASYLAND<span>X</span></a><span>Build the conditions. Unlock the collective.</span><a class="btn" href="https://easylandx.github.io/all/">Explore EasyLandX ↗</a></div><div class="inspired">Inspired by <strong><em>Genius at Scale</em></strong> by <strong>Linda A. Hill, Emily Tedards, and Jason Wild</strong>.</div></footer>
+</div>
+<script>
+const content={
+purpose:{k:'ABC / A — AFFIRM PURPOSE',t:'Can everyone see the direction?',p:'People understand the strategic intent and can connect their experiments to a meaningful organizational challenge.',tips:['Make the purpose concrete. Describe the challenge in one sentence and invite teams to identify where they can contribute.','Connect team priorities to the shared intent.','Revisit the purpose as new evidence emerges.']},
+capability:{k:'ABC / B — BUILD CAPABILITIES',t:'Do people have the means to experiment?',p:'Teams have access to the skills, methods, tools and time needed to explore possibilities and test assumptions.',tips:['Choose one practical capability to strengthen. Run a short prototype or discovery exercise.','Pair people with complementary skills.','Make tools and learning resources easy to access.']},
+community:{k:'ABC / C — CULTIVATE COMMUNITY',t:'Can people challenge ideas safely?',p:'Different functions and perspectives meet in an atmosphere of trust, candour and shared responsibility.',tips:['Create a structured space for respectful disagreement.','Invite voices missing from the conversation.','Make it safe to surface uncertainty early.']},
+learning:{k:'SCALE — INSTITUTIONALIZE LEARNING',t:'Does each experiment improve the next one?',p:'Teams share evidence and insight from both successful and unsuccessful experiments so learning travels.',tips:['Hold a short learning review and capture one reusable insight.','Share the result beyond the project team.','Remove one process barrier that makes the next test harder.']}
+};
+const tabs=[...document.querySelectorAll('.tab')],rating=document.querySelector('#rating'),kicker=document.querySelector('#lab-kicker'),title=document.querySelector('#lab-title'),copy=document.querySelector('#lab-copy'),result=document.querySelector('#result');let active='purpose';
+function update(){const n=Number(rating.value),item=content[active];let level=n<=2?0:n<=4?1:2;result.textContent='Your next move: '+item.tips[level];}
+tabs.forEach(tab=>tab.addEventListener('click',()=>{tabs.forEach(t=>t.classList.remove('active'));tab.classList.add('active');active=tab.dataset.key;const d=content[active];kicker.textContent=d.k;title.textContent=d.t;copy.textContent=d.p;update();}));rating.addEventListener('input',update);update();
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
