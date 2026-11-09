@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx — Landing Pages & Apps, Decided with Clarity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--y:#FFE600;--y2:#FFF066;--y3:#FFF8B0;--c:#FF5A4D;--cd:#3D100C;--pad:clamp(22px,6vw,72px);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;background:var(--y)}
+body{margin:0;background:var(--y);color:var(--cd);font-family:'DM Sans',system-ui,sans-serif;font-size:18px;line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:'Bricolage Grotesque','Arial Black',system-ui,sans-serif;line-height:1.02;margin:0;letter-spacing:-.02em}
+h1{font-size:clamp(2.6rem,9vw,6.2rem);font-weight:800}
+h2{font-size:clamp(2rem,6vw,3.8rem);font-weight:800}
+h3{font-size:1.35rem;font-weight:700}
+p{margin:0 0 1em}
+.c{color:var(--c)}
+section{padding:clamp(56px,9vw,110px) var(--pad);position:relative}
+.wrap{max-width:1080px;margin:0 auto}
+.tag{display:inline-block;font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;background:var(--c);color:var(--cd);padding:6px 14px;border-radius:99px;margin-bottom:18px}
+.lead{font-size:1.2rem;max-width:640px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px var(--pad);position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--y)}
+.logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.5rem;text-decoration:none;color:var(--cd)}
+.logo b{color:var(--c)}
+.btn{display:inline-block;font:700 1rem 'DM Sans',sans-serif;background:var(--c);color:var(--cd);border:3px solid var(--cd);padding:14px 26px;border-radius:99px;text-decoration:none;cursor:pointer;box-shadow:5px 5px 0 var(--cd);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--cd)}
+.btn:active{transform:translate(4px,4px);box-shadow:1px 1px 0 var(--cd)}
+.btn.alt{background:var(--y3)}
+.btn.sm{padding:9px 18px;font-size:.9rem;box-shadow:3px 3px 0 var(--cd)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding-top:30px}
+.hero svg{width:100%;height:auto;max-height:480px}
+.row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+.card{background:var(--y3);border:3px solid var(--cd);border-radius:26px;padding:26px;box-shadow:7px 7px 0 var(--cd)}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-top:40px}
+.num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:3.4rem;color:var(--c);line-height:1}
+.band{background:var(--c);color:var(--cd)}
+.band .tag{background:var(--y);}
+.band .card{background:var(--y)}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:none}
+/* spiral lab */
+.lab{position:relative;min-height:340px;border:3px solid var(--cd);border-radius:30px;background:var(--y2);margin-top:34px;overflow:hidden;padding:18px}
+.chips{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;padding:20px 0}
+.chip{font:700 1rem 'DM Sans',sans-serif;border:3px solid var(--cd);background:var(--y3);color:var(--cd);border-radius:99px;padding:12px 20px;cursor:pointer;animation:bob 3s ease-in-out infinite;transition:background .3s,transform .3s}
+.chip:nth-child(2n){animation-delay:-1s}.chip:nth-child(3n){animation-delay:-2s}
+.chip.true{background:var(--c);animation:none;transform:rotate(-2deg) scale(1.03);cursor:default}
+@keyframes bob{50%{transform:translateY(-10px) rotate(1.5deg)}}
+.meter{height:18px;border:3px solid var(--cd);border-radius:99px;background:var(--y3);overflow:hidden;margin-top:14px}
+.meter i{display:block;height:100%;width:0;background:var(--c);transition:width .6s}
+.hint{font-weight:700;margin-top:10px}
+/* coin */
+.coinwrap{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;margin-top:34px}
+input[type=text],textarea{width:100%;font:500 1rem 'DM Sans',sans-serif;color:var(--cd);background:var(--y3);border:3px solid var(--cd);border-radius:16px;padding:13px 16px;margin-bottom:12px}
+input::placeholder,textarea::placeholder{color:#7a3a33}
+.scene{perspective:700px;display:grid;place-items:center;min-height:230px}
+.coin{width:170px;height:170px;position:relative;transform-style:preserve-3d;transition:transform 1.6s cubic-bezier(.2,.8,.2,1)}
+.face{position:absolute;inset:0;border-radius:50%;border:5px solid var(--cd);display:grid;place-items:center;text-align:center;font:800 1.05rem 'Bricolage Grotesque',sans-serif;padding:20px;backface-visibility:hidden;background:var(--c)}
+.face.b{transform:rotateY(180deg);background:var(--y3)}
+.res{margin-top:18px;font-weight:500}
+/* trust */
+.timer{height:14px;border:3px solid var(--cd);border-radius:99px;overflow:hidden;background:var(--y3);margin:14px 0 20px}
+.timer i{display:block;height:100%;width:100%;background:var(--c);transform-origin:left}
+.timer.go i{animation:shrink 4s linear forwards}
+@keyframes shrink{to{transform:scaleX(0)}}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.opts .btn{text-align:center}
+.q{font-family:'Bricolage Grotesque',sans-serif;font-size:1.6rem;font-weight:700;margin-bottom:6px}
+.dots{display:flex;gap:8px;margin-top:20px}
+.dots span{width:16px;height:16px;border-radius:50%;border:3px solid var(--cd);background:var(--y3)}
+.dots span.on{background:var(--c)}
+.note{background:var(--y);border:3px dashed var(--cd);border-radius:18px;padding:16px 18px;margin-top:14px;transform:rotate(-1deg);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.pill{font:700 .95rem 'DM Sans',sans-serif;border:3px solid var(--cd);background:var(--y3);color:var(--cd);padding:9px 18px;border-radius:99px;cursor:pointer}
+.pill.on{background:var(--c)}
+.float{position:absolute;pointer-events:none;z-index:0;animation:drift 9s ease-in-out infinite}
+@keyframes drift{50%{transform:translateY(-22px) rotate(12deg)}}
+section>.wrap{position:relative;z-index:1}
+footer{padding:60px var(--pad) 70px;text-align:center}
+footer p{max-width:620px;margin:22px auto 0;font-weight:500}
+#spin{transform-origin:200px 200px;animation:spin 26s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.dash{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 3.2s ease forwards .4s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.pulse{transform-origin:center;animation:beat 1.2s ease-in-out infinite}
+@keyframes beat{15%{transform:scale(1.18)}30%{transform:scale(1)}45%{transform:scale(1.1)}}
+@media(max-width:780px){.hero,.coinwrap{grid-template-columns:1fr}.opts{grid-template-columns:1fr}body{font-size:17px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.dash{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="#top">easyland<b>x</b></a>
+  <a class="btn sm" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx ↗</a>
+</nav>
+
+<section id="top" style="padding-top:20px">
+  <div class="wrap hero">
+    <div>
+      <span class="tag">Landing pages &amp; apps</span>
+      <h1>Stop <span class="c">overthinking</span> it. Launch what’s true.</h1>
+      <p class="lead" style="margin-top:22px">easylandx builds individually crafted, conversion-focused landing pages and apps for small businesses. Affordable, never templated, and built to help you decide with clarity instead of waiting for perfect.</p>
+      <div class="row">
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx ↗</a>
+        <a class="btn alt" href="#spiral">Try the clarity lab ↓</a>
+      </div>
+    </div>
+    <svg viewBox="0 0 400 400" role="img" aria-label="A tangled spiral that straightens into an arrow">
+      <circle cx="200" cy="200" r="170" fill="#FFF066"/>
+      <g id="spin"><path d="M200 200 m0 -8 a8 8 0 1 1 -8 8 a22 22 0 1 1 22 22 a40 40 0 1 1 -40 -40 a62 62 0 1 1 62 62 a88 88 0 1 1 -88 -88 a116 116 0 1 1 116 116" fill="none" stroke="#FF5A4D" stroke-width="9" stroke-linecap="round"/></g>
+      <path class="dash" d="M40 330 C 120 330, 150 330, 240 330 L 340 330" fill="none" stroke="#3D100C" stroke-width="9" stroke-linecap="round"/>
+      <path class="dash" d="M312 304 L346 330 L312 356" fill="none" stroke="#3D100C" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="60" cy="70" r="12" fill="#FF5A4D" class="pulse"/><circle cx="345" cy="95" r="8" fill="#3D100C"/><circle cx="330" cy="250" r="10" fill="#FF5A4D" class="pulse"/>
+    </svg>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap reveal">
+    <span class="tag">Three big messages</span>
+    <h2>Why great websites stall.</h2>
+    <div class="grid3">
+      <div class="card"><div class="num">01</div><h3>Overthinking is fear, not logic.</h3><p style="margin-top:10px">Months of tweaking a headline isn’t careful planning. It’s a defense mechanism treating a page launch like a life-or-death threat.</p></div>
+      <div class="card"><div class="num">02</div><h3>There is no “right” answer.</h3><p style="margin-top:10px">Chasing the flawless layout creates pressure. There are only choices that fit who you are and what your business values right now.</p></div>
+      <div class="card"><div class="num">03</div><h3>Your body already knows.</h3><p style="margin-top:10px">Before your pro-and-con list is done, your gut has reacted to the option you truly want. Learn to notice it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="spiral">
+  <svg class="float" style="top:40px;right:4%" width="90" height="90" viewBox="0 0 90 90"><polygon points="45,5 85,45 45,85 5,45" fill="#FF5A4D"/></svg>
+  <div class="wrap reveal">
+    <span class="tag">Lab 01 · Strategy</span>
+    <h2>From “what if” to <span class="c">what’s true right now.</span></h2>
+    <p class="lead" style="margin-top:16px">Hypotheticals keep you in a loop of imagined failures. Tap each spiraling thought to drop it and anchor in the present.</p>
+    <div class="lab">
+      <div class="chips" id="chips"></div>
+      <div class="meter"><i id="calm"></i></div>
+      <div class="hint" id="calmTxt">Calm: 0 of 5. Tap a thought.</div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap reveal">
+    <span class="tag">Lab 02 · Your body knows</span>
+    <h2>Flip a coin. Feel the <span style="color:var(--y)">relief</span>.</h2>
+    <div class="coinwrap">
+      <div>
+        <p class="lead">Stuck between two options for your site or app? Name them, flip, and notice whether you feel relief or dread while the coin is in the air.</p>
+        <input type="text" id="oa" placeholder="Option A, e.g. Launch the page this week" maxlength="40">
+        <input type="text" id="ob" placeholder="Option B, e.g. Wait for more feedback" maxlength="40">
+        <button class="btn alt" id="flip">Flip the coin</button>
+        <div class="res" id="res"></div>
+      </div>
+      <div class="scene"><div class="coin" id="coin"><div class="face" id="fa">A</div><div class="face b" id="fb">B</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <svg class="float" style="bottom:40px;left:3%" width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" fill="none" stroke="#FF5A4D" stroke-width="10"/></svg>
+  <div class="wrap reveal">
+    <span class="tag">Lab 03 · Mini trust experiments</span>
+    <h2>Five quick calls. <span class="c">Zero second-guessing.</span></h2>
+    <p class="lead" style="margin-top:16px">Rewire your tolerance for small uncertainty. You get four seconds per choice. Go with the first pull.</p>
+    <div class="card" style="margin-top:34px;max-width:720px" id="trust">
+      <div id="tIntro"><button class="btn" id="tStart">Start the experiment</button></div>
+      <div id="tGame" hidden>
+        <div class="q" id="tq"></div>
+        <div class="timer" id="tt"><i></i></div>
+        <div class="opts"><button class="btn alt" id="t1"></button><button class="btn alt" id="t2"></button></div>
+      </div>
+      <div class="dots" id="tdots"></div>
+      <p id="tEnd" style="font-weight:700;margin:16px 0 0"></p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap reveal">
+    <span class="tag">Lab 04 · Journaling prompt</span>
+    <h2>What are you really <span style="color:var(--y)">stalling</span> on?</h2>
+    <p class="lead" style="margin-top:16px">Clarity comes from radical honesty, not from asking ten more friends. Pick the fear closest to your hesitation.</p>
+    <div class="card" style="margin-top:34px;max-width:720px">
+      <div class="pills" id="pills">
+        <button class="pill" data-k="0">Fear of failure</button>
+        <button class="pill" data-k="1">Fear of judgment</button>
+        <button class="pill" data-k="2">Need for approval</button>
+      </div>
+      <div class="q" id="jq">Choose a fear above to reveal your prompt.</div>
+      <textarea id="jt" rows="3" placeholder="Write the honest answer. It stays only on this page."></textarea>
+      <button class="btn sm" id="jb">Pin my honest line</button>
+      <div class="note" id="jn" hidden></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+    <span class="tag">How we apply it</span>
+    <h2>Alignment over perfection, built into every project.</h2>
+    <div class="grid3">
+      <div class="card"><svg width="60" height="60" viewBox="0 0 60 60"><rect x="4" y="8" width="52" height="44" rx="8" fill="#FFE600" stroke="#3D100C" stroke-width="4"/><rect x="12" y="18" width="24" height="6" rx="3" fill="#FF5A4D"/><rect x="12" y="30" width="36" height="5" rx="2.5" fill="#3D100C"/><rect x="12" y="40" width="16" height="6" rx="3" fill="#FF5A4D"/></svg><h3 style="margin-top:12px">Landing pages</h3><p style="margin-top:8px">One clear message, one honest call to action. Crafted by hand for your business and tuned to convert, not copied from a template.</p></div>
+      <div class="card"><svg width="60" height="60" viewBox="0 0 60 60"><rect x="16" y="3" width="28" height="54" rx="8" fill="#FFE600" stroke="#3D100C" stroke-width="4"/><circle cx="30" cy="30" r="8" fill="#FF5A4D" class="pulse"/><rect x="25" y="49" width="10" height="3" rx="1.5" fill="#3D100C"/></svg><h3 style="margin-top:12px">Apps</h3><p style="margin-top:8px">Small, focused, installable apps that do one thing well. We start with what’s true today and grow from real use.</p></div>
+      <div class="card"><svg width="60" height="60" viewBox="0 0 60 60"><path d="M30 52 C6 36 4 18 16 12 C24 8 30 16 30 16 C30 16 36 8 44 12 C56 18 54 36 30 52Z" fill="#FF5A4D" stroke="#3D100C" stroke-width="4" class="pulse"/></svg><h3 style="margin-top:12px">Decisions that feel good</h3><p style="margin-top:8px">A good choice brings inner peace and long-term growth. We help you pick what fits your integrity, then ship it.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="band">
+  <div class="wrap reveal">
+    <h2>Ready to decide and <span style="color:var(--y)">launch</span>?</h2>
+    <p>Skip the endless pros and cons. Tell easylandx what’s true for your business right now.</p>
+    <div class="row" style="justify-content:center"><a class="btn alt" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to easylandx ↗</a></div>
+    <p style="margin-top:46px;font-size:.95rem">Inspired by <i>The Overthinker’s Guide to Making Decisions</i> by Joseph Nguyen.</p>
+  </div>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Lab 1: what-if -> what's true
+const pairs=[["What if nobody clicks?","Right now: you have a clear offer."],["What if it’s not perfect?","Right now: done beats perfect."],["What if they judge it?","Right now: no one has seen it yet."],["What if I choose wrong?","Right now: you can edit anytime."],["What if I’m not ready?","Right now: you’re here, reading."]];
+let calm=0;
+pairs.forEach(p=>{const b=document.createElement('button');b.className='chip';b.textContent=p[0];
+b.onclick=()=>{if(b.classList.contains('true'))return;b.classList.add('true');b.textContent=p[1];calm++;
+$('#calm').style.width=calm*20+'%';
+$('#calmTxt').textContent=calm<5?`Calm: ${calm} of 5. Feels lighter, right?`:'Calm: 5 of 5. Relief over dread. Choose from here.'};
+$('#chips').appendChild(b)});
+
+// Lab 2: coin
+let rot=0;
+$('#flip').onclick=()=>{
+const a=$('#oa').value.trim()||'Option A',b=$('#ob').value.trim()||'Option B';
+$('#fa').textContent=a;$('#fb').textContent=b;
+const heads=Math.random()<.5;rot+=1800+(heads?0:180);
+$('#coin').style.transform=`rotateY(${rot}deg) rotateX(${rot/10%20}deg)`;
+$('#res').textContent='Notice your body while it spins…';
+setTimeout(()=>{const w=heads?a:b,l=heads?b:a;
+$('#res').innerHTML=`The coin says <b>${w.replace(/</g,'&lt;')}</b>. Did you feel relief or a sinking feeling? If you wished it landed on <b>${l.replace(/</g,'&lt;')}</b>, that’s your answer. Trust it.`},1700)};
+
+// Lab 3: mini trust
+const qs=[["Coffee or tea?","Coffee","Tea"],["Cream or ivory?","Cream","Ivory"],["Round or square button?","Round","Square"],["Walk or stay in?","Walk","Stay in"],["Ship today or tomorrow?","Today","Tomorrow"]];
+let ti=0,tm,made=0;
+const dots=$('#tdots');qs.forEach(()=>dots.appendChild(document.createElement('span')));
+function ask(){clearTimeout(tm);if(ti>=qs.length){$('#tGame').hidden=true;$('#tIntro').hidden=false;$('#tStart').textContent='Run it again';
+$('#tEnd').textContent=`${made} of 5 decided on instinct. Every small trust rep makes the big ones easier.`;ti=0;made=0;[...dots.children].forEach(d=>d.classList.remove('on'));return}
+const q=qs[ti];$('#tq').textContent=q[0];$('#t1').textContent=q[1];$('#t2').textContent=q[2];
+const t=$('#tt');t.classList.remove('go');void t.offsetWidth;t.classList.add('go');
+tm=setTimeout(()=>{$('#tEnd').textContent='Time’s up. Trust the first pull next time.';next(false)},4000)}
+function next(ok){if(ok){made++;$('#tEnd').textContent=''}dots.children[ti].classList.add('on');ti++;ask()}
+$('#tStart').onclick=()=>{$('#tIntro').hidden=true;$('#tGame').hidden=false;$('#tEnd').textContent='';ask()};
+$('#t1').onclick=()=>next(true);$('#t2').onclick=()=>next(true);
+
+// Lab 4: journaling
+const prompts=["If this fails, what exactly would I do next? And what would it teach me?","Whose opinion am I really bracing for, and what do I want to say to them?","If nobody could ever approve or disapprove, which choice would I make today?"];
+document.querySelectorAll('.pill').forEach(p=>p.onclick=()=>{document.querySelectorAll('.pill').forEach(x=>x.classList.remove('on'));p.classList.add('on');$('#jq').textContent=prompts[p.dataset.k]});
+$('#jb').onclick=()=>{const v=$('#jt').value.trim();if(!v)return;const n=$('#jn');n.hidden=false;n.textContent='My honest line: “'+v+'”'};
+</script>
+</body>
+</html>
