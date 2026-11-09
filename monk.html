@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx · Landing pages and apps that work like a monk</title>
+<meta name="description" content="Calm, simple, individually crafted landing pages and apps for small businesses.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪷</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,600&family=Nunito+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky:#8ed1fc; --sky-soft:#a9dcfd; --sky-pale:#cdeaff; --sky-deep:#4aa8e8;
+  --ink:#0b3a5c; --ink-soft:#1d577f;
+  --lotus:#ff7eb6; --lotus-deep:#e2478a;
+  --saffron:#ff9d1c; --saffron-deep:#e07d00;
+  --pad:clamp(22px,6vw,72px);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--sky);color:var(--ink);font-family:'Nunito Sans',system-ui,sans-serif;font-size:18px;line-height:1.65;overflow-x:hidden;
+  padding-left:env(safe-area-inset-left,0);padding-right:env(safe-area-inset-right,0)}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.08;letter-spacing:-.01em}
+h1{font-size:clamp(2.6rem,8vw,5.6rem);font-weight:800}
+h2{font-size:clamp(2rem,5vw,3.3rem);font-weight:800;margin-bottom:.5em}
+h3{font-size:1.45rem;font-weight:600;margin-bottom:.35em}
+p{max-width:62ch}
+section{padding:clamp(64px,10vw,120px) var(--pad);position:relative}
+.wrap{max-width:1080px;margin:0 auto;position:relative;z-index:2}
+.btn{display:inline-block;background:var(--saffron);color:var(--ink);font-weight:800;font-size:1.05rem;text-decoration:none;
+  padding:16px 30px;border-radius:999px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s;cursor:pointer;font-family:inherit}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.btn.pink{background:var(--lotus)}
+:focus-visible{outline:4px solid var(--ink);outline-offset:3px}
+
+nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:14px var(--pad);padding-top:calc(14px + env(safe-area-inset-top,0px));background:var(--sky);border-bottom:3px solid var(--ink)}
+nav b{font-family:'Fraunces',serif;font-size:1.4rem}
+nav .btn{padding:9px 20px;font-size:.95rem;box-shadow:3px 3px 0 var(--ink)}
+
+/* hero */
+.hero{min-height:88vh;display:flex;align-items:center;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero p.lead{font-size:1.3rem;margin:22px 0 32px}
+.hero h1 em{font-style:italic;color:var(--lotus-deep)}
+.actions{display:flex;flex-wrap:wrap;gap:16px}
+.lotus-box{position:relative;aspect-ratio:1;max-width:460px;width:100%;justify-self:center}
+.lotus-box svg{width:100%;height:100%;overflow:visible}
+.petal{transform-origin:200px 290px;animation:bloom 1.8s cubic-bezier(.2,.8,.2,1) both}
+.petal.p2,.petal.p3{animation-delay:.25s}.petal.p4,.petal.p5{animation-delay:.5s}.petal.p6,.petal.p7{animation-delay:.75s}
+@keyframes bloom{from{transform:rotate(0) scale(.1);opacity:0}}
+.sway{animation:sway 6s ease-in-out infinite;transform-origin:200px 300px}
+@keyframes sway{50%{transform:rotate(2.5deg)}}
+.ripple{fill:none;stroke:var(--ink);stroke-width:2.5;opacity:0;transform-origin:200px 322px;animation:ripple 5s ease-out infinite}
+.ripple.r2{animation-delay:1.6s}.ripple.r3{animation-delay:3.2s}
+@keyframes ripple{0%{transform:scale(.3);opacity:.6}100%{transform:scale(1.5);opacity:0}}
+.sun{animation:rise 3s ease-out both, glow 5s 3s ease-in-out infinite}
+@keyframes rise{from{transform:translateY(60px);opacity:0}}
+@keyframes glow{50%{transform:scale(1.07)}}
+.sun{transform-origin:70px 70px}
+
+
+/* build */
+.tabs{display:flex;gap:14px;flex-wrap:wrap;margin:30px 0 26px}
+.tab{font-family:inherit;font-weight:800;font-size:1.05rem;color:var(--ink);background:var(--sky-pale);border:3px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer;box-shadow:4px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s,background .2s}
+.tab[aria-selected=true]{background:var(--lotus);transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.panel{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center;background:var(--sky-pale);border:3px solid var(--ink);border-radius:30px;padding:clamp(22px,4vw,44px);box-shadow:8px 8px 0 var(--ink)}
+.panel[hidden]{display:none}
+.panel ul{list-style:none;padding:0;margin-top:16px;display:grid;gap:8px;font-weight:600}
+.panel li::before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:10px;background:var(--saffron);border:2px solid var(--ink)}
+.panel svg.art{width:100%;max-width:380px;justify-self:center;overflow:visible}
+.scan{animation:scan 3.5s ease-in-out infinite}
+@keyframes scan{50%{transform:translateY(8px)}}
+.tapdot{transform-origin:center;transform-box:fill-box;animation:tap 2.6s ease-in-out infinite}
+@keyframes tap{0%,60%,100%{transform:scale(1);opacity:.9}75%{transform:scale(1.9);opacity:.3}}
+.hop{transform-box:fill-box;transform-origin:center bottom;animation:hop 2s ease-in-out infinite}
+.hop.h2{animation-delay:.3s}.hop.h3{animation-delay:.6s}
+@keyframes hop{50%{transform:translateY(-9px)}}
+@media(max-width:820px){.panel{grid-template-columns:1fr}}
+
+/* clouds */
+.cloud{position:absolute;z-index:1;opacity:.85;animation:drift linear infinite}
+.cloud svg{display:block}
+@keyframes drift{from{transform:translateX(-30vw)}to{transform:translateX(130vw)}}
+
+.band{background:var(--sky-pale);border-block:3px solid var(--ink)}
+.deep{background:var(--sky-deep)}
+
+/* messages */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px;margin-top:40px}
+.card{background:var(--sky-pale);border:3px solid var(--ink);border-radius:26px;padding:28px;box-shadow:6px 6px 0 var(--ink)}
+.card:nth-child(1){border-radius:26px 26px 26px 80px}
+.card:nth-child(2){border-radius:80px 26px 26px 26px}
+.card:nth-child(3){border-radius:26px 80px 26px 26px}
+.card .ic{width:62px;height:62px;margin-bottom:14px}
+.tag{display:inline-block;font-weight:800;background:var(--saffron);border:2px solid var(--ink);border-radius:999px;padding:2px 14px;font-size:.9rem;margin-bottom:12px}
+.tag.pk{background:var(--lotus)}
+
+/* interactive: sweep */
+.stage{position:relative;margin-top:34px;background:var(--sky-pale);border:3px solid var(--ink);border-radius:30px;min-height:430px;overflow:hidden;box-shadow:8px 8px 0 var(--ink)}
+.page-mock{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(300px,62%);background:#fff;border:3px solid var(--ink);border-radius:18px;padding:22px 18px;text-align:center;transition:box-shadow .6s,transform .6s}
+.page-mock .pm-h{font-family:'Fraunces',serif;font-weight:800;font-size:1.3rem;line-height:1.1}
+.page-mock .pm-p{font-size:.85rem;margin:8px 0 14px;opacity:.8}
+.page-mock .pm-b{display:inline-block;background:var(--saffron);border:2px solid var(--ink);border-radius:999px;padding:6px 18px;font-weight:800;font-size:.9rem}
+.stage.clear .page-mock{box-shadow:0 0 0 12px rgba(255,126,182,.35),0 0 0 26px rgba(255,157,28,.25);transform:translate(-50%,-50%) scale(1.12)}
+.junk{position:absolute;border:2.5px solid var(--ink);border-radius:12px;padding:6px 12px;font-weight:800;font-size:.85rem;cursor:pointer;
+  background:var(--lotus);transition:transform .45s,opacity .45s;animation:wob 3s ease-in-out infinite;font-family:inherit;color:var(--ink)}
+.junk:nth-child(3n){background:var(--saffron)}
+.junk:nth-child(3n+1){background:#fff}
+.junk.gone{transform:translateY(-80px) scale(.2) rotate(30deg);opacity:0;pointer-events:none}
+@keyframes wob{50%{margin-top:-6px}}
+.meter{margin-top:26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.bar{flex:1 1 220px;height:22px;border:3px solid var(--ink);border-radius:999px;background:#fff;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--lotus),var(--saffron));transition:width .5s}
+#msg{font-weight:800;min-height:2em;margin-top:12px;font-size:1.1rem}
+
+/* frameworks */
+.rows{display:grid;gap:22px;margin-top:36px}
+.row{display:grid;grid-template-columns:90px 1fr;gap:22px;align-items:start;padding:24px;border:3px solid var(--ink);border-radius:26px;background:var(--sky-soft);cursor:pointer;transition:background .25s}
+.row:hover,.row[aria-expanded=true]{background:var(--sky-pale)}
+.row svg{width:90px;height:90px}
+.row .more{max-height:0;overflow:hidden;transition:max-height .5s;}
+.row[aria-expanded=true] .more{max-height:260px}
+.row .more p{padding-top:10px;font-weight:600}
+.row .hint{font-size:.85rem;font-weight:800;color:var(--lotus-deep)}
+
+/* dialogue */
+.duel{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px}
+.side{padding:28px;border:3px solid var(--ink);border-radius:26px}
+.side.deb{background:var(--sky-soft)}
+.side.dia{background:#fff}
+.side ul{list-style:none;padding:0;margin-top:12px;display:grid;gap:8px}
+.side li::before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:10px;background:var(--saffron);border:2px solid var(--ink)}
+.side.dia li::before{background:var(--lotus)}
+
+/* ritual */
+.ritual{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px}
+.r-card{padding:28px;border:3px solid var(--ink);border-radius:26px;background:var(--sky-pale);text-align:left}
+.r-card ol{padding-left:22px;display:grid;gap:8px;margin-top:10px;font-weight:600}
+
+.cta{text-align:center;overflow:hidden}
+.cta h2,.cta p{margin-inline:auto}
+.cta .actions{justify-content:center;margin-top:28px}
+footer{padding:28px var(--pad);border-top:3px solid var(--ink);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--sky-pale);font-weight:600}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:820px){
+  .hero .wrap,.duel,.ritual{grid-template-columns:1fr}
+  .row{grid-template-columns:64px 1fr}.row svg{width:64px;height:64px}
+  .lotus-box{max-width:320px}
+  body{font-size:17px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <b>easylandx</b>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="cloud" style="top:8%;animation-duration:70s"><svg width="180" height="60" viewBox="0 0 180 60"><path d="M30 55a22 22 0 0 1 4-43 30 30 0 0 1 56-6 26 26 0 0 1 46 12 20 20 0 0 1 6 37z" fill="#fff"/></svg></div>
+  <div class="cloud" style="top:62%;animation-duration:95s;animation-delay:-40s;opacity:.6"><svg width="140" height="50" viewBox="0 0 180 60"><path d="M30 55a22 22 0 0 1 4-43 30 30 0 0 1 56-6 26 26 0 0 1 46 12 20 20 0 0 1 6 37z" fill="#fff"/></svg></div>
+  <div class="cloud" style="top:30%;animation-duration:120s;animation-delay:-80s;opacity:.7"><svg width="220" height="72" viewBox="0 0 180 60"><path d="M30 55a22 22 0 0 1 4-43 30 30 0 0 1 56-6 26 26 0 0 1 46 12 20 20 0 0 1 6 37z" fill="#fff"/></svg></div>
+
+  <div class="wrap">
+    <div>
+      <h1>Landing pages and apps that <em>work like a monk.</em></h1>
+      <p class="lead">Calm. Simple. Made by hand for your small business. Landing pages and installable apps with one clear purpose and nothing that gets in the way.</p>
+      <div class="actions">
+        <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit easylandx</a>
+        <a class="btn pink" href="#build">See what we build</a>
+      </div>
+    </div>
+    <div class="lotus-box" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <g class="sun"><circle cx="70" cy="70" r="40" fill="#ff9d1c" stroke="#0b3a5c" stroke-width="4"/>
+          <g stroke="#0b3a5c" stroke-width="4" stroke-linecap="round"><path d="M70 12v-8M70 128v8M12 70H4M128 70h8M29 29l-6-6M111 111l6 6M111 29l6-6M29 111l-6 6"/></g></g>
+        <ellipse class="ripple" cx="200" cy="322" rx="170" ry="28"/>
+        <ellipse class="ripple r2" cx="200" cy="322" rx="170" ry="28"/>
+        <ellipse class="ripple r3" cx="200" cy="322" rx="170" ry="28"/>
+        <ellipse cx="200" cy="322" rx="130" ry="20" fill="#4aa8e8" stroke="#0b3a5c" stroke-width="4"/>
+        <g class="sway">
+          <path class="petal p1" d="M200 290C150 250 150 170 200 110c50 60 50 140 0 180z" fill="#ff7eb6" stroke="#0b3a5c" stroke-width="4" />
+          <path class="petal p2" d="M200 290C140 270 100 210 120 140c60 20 100 90 80 150z" fill="#ff9fc9" stroke="#0b3a5c" stroke-width="4"/>
+          <path class="petal p3" d="M200 290C260 270 300 210 280 140c-60 20-100 90-80 150z" fill="#ff9fc9" stroke="#0b3a5c" stroke-width="4"/>
+          <path class="petal p4" d="M200 292C130 300 70 260 62 200c60-10 120 20 138 92z" fill="#ffbddb" stroke="#0b3a5c" stroke-width="4"/>
+          <path class="petal p5" d="M200 292C270 300 330 260 338 200c-60-10-120 20-138 92z" fill="#ffbddb" stroke="#0b3a5c" stroke-width="4"/>
+          <ellipse class="petal p6" cx="200" cy="262" rx="26" ry="20" fill="#ff9d1c" stroke="#0b3a5c" stroke-width="4"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- BUILD -->
+<section id="build" class="deep" style="border-block:3px solid var(--ink)">
+  <div class="wrap reveal">
+    <h2>One calm approach. Two things we build.</h2>
+    <p>Whether your customers arrive from a link or open you from their home screen, they should feel the same ease. Choose one to explore.</p>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" id="t-lp" aria-selected="true" aria-controls="p-lp" type="button">Landing pages</button>
+      <button class="tab" role="tab" id="t-app" aria-selected="false" aria-controls="p-app" type="button">Apps</button>
+    </div>
+    <div class="panel" id="p-lp" role="tabpanel" aria-labelledby="t-lp">
+      <div>
+        <h3>Landing pages</h3>
+        <p>Individually crafted, conversion-focused pages for small businesses. One promise, one action, and a design made for your brand, never a template.</p>
+        <ul><li>Built by hand for each client</li><li>Fast and made for phones first</li><li>One clear call to action</li></ul>
+      </div>
+      <svg class="art" viewBox="0 0 380 300" aria-hidden="true">
+        <rect x="20" y="20" width="340" height="250" rx="20" fill="#fff" stroke="#0b3a5c" stroke-width="4"/>
+        <path d="M20 60h340" stroke="#0b3a5c" stroke-width="4"/>
+        <circle cx="46" cy="40" r="7" fill="#ff7eb6" stroke="#0b3a5c" stroke-width="2.5"/><circle cx="68" cy="40" r="7" fill="#ff9d1c" stroke="#0b3a5c" stroke-width="2.5"/><circle cx="90" cy="40" r="7" fill="#8ed1fc" stroke="#0b3a5c" stroke-width="2.5"/>
+        <rect x="60" y="92" width="190" height="20" rx="10" fill="#0b3a5c"/>
+        <rect x="60" y="124" width="140" height="20" rx="10" fill="#0b3a5c"/>
+        <rect x="60" y="162" width="220" height="10" rx="5" fill="#8ed1fc"/><rect x="60" y="180" width="180" height="10" rx="5" fill="#8ed1fc"/>
+        <g class="scan"><rect x="60" y="212" width="120" height="36" rx="18" fill="#ff9d1c" stroke="#0b3a5c" stroke-width="4"/><circle class="tapdot" cx="150" cy="230" r="9" fill="#ff7eb6" stroke="#0b3a5c" stroke-width="2.5"/></g>
+        <circle cx="300" cy="150" r="34" fill="#ff7eb6" stroke="#0b3a5c" stroke-width="4"/><circle cx="300" cy="150" r="12" fill="#ff9d1c" stroke="#0b3a5c" stroke-width="3"/>
+      </svg>
+    </div>
+    <div class="panel" id="p-app" role="tabpanel" aria-labelledby="t-app" hidden>
+      <div>
+        <h3>Apps</h3>
+        <p>Installable web apps that open from the home screen, work smoothly on any phone and do one thing well: a camera, a link hub, a small tool, a playful experience.</p>
+        <ul><li>Install from the browser, no app store</li><li>One purpose per screen</li><li>English and Spanish when you need both</li></ul>
+      </div>
+      <svg class="art" viewBox="0 0 380 300" aria-hidden="true">
+        <rect x="120" y="10" width="140" height="280" rx="28" fill="#fff" stroke="#0b3a5c" stroke-width="4"/>
+        <rect x="165" y="22" width="50" height="8" rx="4" fill="#0b3a5c"/>
+        <g><rect class="hop" x="140" y="60" width="44" height="44" rx="12" fill="#ff7eb6" stroke="#0b3a5c" stroke-width="3"/>
+        <rect class="hop h2" x="196" y="60" width="44" height="44" rx="12" fill="#ff9d1c" stroke="#0b3a5c" stroke-width="3"/>
+        <rect class="hop h3" x="140" y="118" width="44" height="44" rx="12" fill="#8ed1fc" stroke="#0b3a5c" stroke-width="3"/>
+        <rect x="196" y="118" width="44" height="44" rx="12" fill="#cdeaff" stroke="#0b3a5c" stroke-width="3" stroke-dasharray="5 5"/>
+        <path d="M218 128v24M206 140h24" stroke="#0b3a5c" stroke-width="4" stroke-linecap="round"/></g>
+        <rect x="140" y="200" width="100" height="40" rx="20" fill="#ff9d1c" stroke="#0b3a5c" stroke-width="4"/>
+        <text x="190" y="226" text-anchor="middle" font-family="Nunito Sans,sans-serif" font-weight="800" font-size="14" fill="#0b3a5c">Install</text>
+        <circle class="tapdot" cx="226" cy="222" r="9" fill="#ff7eb6" stroke="#0b3a5c" stroke-width="2.5"/>
+        <path d="M70 90c-20 0-20 30 0 30h30" fill="none" stroke="#0b3a5c" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 9"/>
+        <circle cx="60" cy="230" r="26" fill="#ff7eb6" stroke="#0b3a5c" stroke-width="4"/><path d="M48 230l9 9 17-18" fill="none" stroke="#0b3a5c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="325" cy="80" r="22" fill="#ff9d1c" stroke="#0b3a5c" stroke-width="4"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- REDEFINING SUCCESS -->
+<section class="band">
+  <div class="wrap reveal">
+    <h2>Success is a page or app that says what matters.</h2>
+    <p>Most websites are caught in a loop: more banners, more popups, more claims, louder than the competition. The result is noise and burnout, for the owner and the visitor. We build the other kind of landing page and app: clear, honest, and aligned with what your business actually offers.</p>
+    <div class="grid3">
+      <div class="card">
+        <svg class="ic" viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="#ff9d1c" stroke="#0b3a5c" stroke-width="3"/><circle cx="32" cy="32" r="12" fill="#fff" stroke="#0b3a5c" stroke-width="3"/></svg>
+        <span class="tag">Message</span>
+        <h3>Redefining success</h3>
+        <p>Not the most features. The most clarity. We start from what genuinely matters to you and the people you serve, then cut everything else.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 64 64"><path d="M32 54C14 44 12 24 32 8c20 16 18 36 0 46z" fill="#ff7eb6" stroke="#0b3a5c" stroke-width="3"/><path d="M32 54V22" stroke="#0b3a5c" stroke-width="3"/></svg>
+        <span class="tag pk">Message</span>
+        <h3>Work as practice</h3>
+        <p>Every headline, button and line of spacing is a small act of care. Your page or app is not a transaction. It is the first conversation with a new customer.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 64 64"><path d="M6 14h32v22H22l-10 10V36H6z" fill="#fff" stroke="#0b3a5c" stroke-width="3" stroke-linejoin="round"/><path d="M26 28h32v22H52v10L42 50H26z" fill="#ff7eb6" stroke="#0b3a5c" stroke-width="3" stroke-linejoin="round"/></svg>
+        <span class="tag">Message</span>
+        <h3>Dialogue over debate</h3>
+        <p>We do not shout over competitors. A good page or app listens first, answers real questions, and leaves the visitor feeling understood.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE -->
+<section id="sweep">
+  <div class="wrap reveal">
+    <h2>Clear the clutter. Watch the page breathe.</h2>
+    <p>A monk keeps the temple sparse so the mind can settle. A landing page or an app works the same way. Tap each distraction to sweep it away.</p>
+    <div class="stage" id="stage">
+      <div class="page-mock">
+        <div class="pm-h">Fresh bread, baked daily.</div>
+        <div class="pm-p">Order by 10am. Pick up by 4pm.</div>
+        <span class="pm-b">Order now</span>
+      </div>
+    </div>
+    <div class="meter">
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar"><i id="fill"></i></div>
+      <button class="btn pink" id="reset" type="button">Start again</button>
+    </div>
+    <div id="msg" aria-live="polite">Tap the distractions. Each one you remove makes the message louder.</div>
+  </div>
+</section>
+
+<!-- LESSONS -->
+<section class="band">
+  <div class="wrap reveal">
+    <h2>Three lessons, built into every page.</h2>
+    <p>Tap a lesson to see how it shapes the pages we make.</p>
+    <div class="rows">
+      <div class="row" tabindex="0" role="button" aria-expanded="false">
+        <svg viewBox="0 0 90 90"><rect x="8" y="8" width="74" height="74" rx="18" fill="#fff" stroke="#0b3a5c" stroke-width="3"/><circle cx="45" cy="45" r="10" fill="#ff9d1c" stroke="#0b3a5c" stroke-width="3"/></svg>
+        <div><h3>Simplicity and minimalism</h3>
+          <p>Less on screen. More in focus.</p><span class="hint">Tap to open</span>
+          <div class="more"><p>One goal per page or screen. One main button. Generous white space and short sentences. Visitors decide faster when there is less to decide between.</p></div></div>
+      </div>
+      <div class="row" tabindex="0" role="button" aria-expanded="false">
+        <svg viewBox="0 0 90 90"><path d="M10 60c15-40 25 20 35-15s25 5 35-20" fill="none" stroke="#e2478a" stroke-width="6" stroke-linecap="round"/><circle cx="80" cy="25" r="8" fill="#ff9d1c" stroke="#0b3a5c" stroke-width="3"/></svg>
+        <div><h3>Embracing imperfection</h3>
+          <p>Friction is part of the craft.</p><span class="hint">Tap to open</span>
+          <div class="more"><p>A first draft is never final. We welcome your feedback, difficult questions and last-minute changes as part of the process, and we refine until the page feels right to you.</p></div></div>
+      </div>
+      <div class="row" tabindex="0" role="button" aria-expanded="false">
+        <svg viewBox="0 0 90 90"><circle cx="45" cy="45" r="34" fill="#cdeaff" stroke="#0b3a5c" stroke-width="3"/><circle cx="45" cy="45" r="22" fill="none" stroke="#0b3a5c" stroke-width="3" stroke-dasharray="4 6"/><circle cx="45" cy="45" r="8" fill="#ff7eb6" stroke="#0b3a5c" stroke-width="3"/></svg>
+        <div><h3>Solving without forcing</h3>
+          <p>Step back. Let the answer surface.</p><span class="hint">Tap to open</span>
+          <div class="more"><p>Before we design, we observe: your customers, your words, your best moments. The right layout, or the right app flow, usually appears on its own once we have listened long enough.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIALOGUE -->
+<section>
+  <div class="wrap reveal">
+    <h2>Your page should talk like a good listener.</h2>
+    <div class="duel">
+      <div class="side deb">
+        <h3>The loud page</h3>
+        <ul><li>Wins by shouting</li><li>Five offers at once</li><li>Talks about itself</li><li>Visitors leave tired</li></ul>
+      </div>
+      <div class="side dia">
+        <h3>The listening page</h3>
+        <ul><li>Starts with the visitor's question</li><li>One clear offer</li><li>Answers real doubts</li><li>Visitors leave understood</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGIES -->
+<section class="deep" style="border-block:3px solid var(--ink)">
+  <div class="wrap reveal">
+    <h2>Three practices behind how we work.</h2>
+    <div class="ritual">
+      <div class="r-card" style="grid-column:1/-1">
+        <span class="tag">Daily rituals</span>
+        <h3>A clear beginning and a clear end</h3>
+        <p>Your page or app opens and closes with intention. The top shows one promise and one action. The end repeats it, so no one is left wondering what to do next.</p>
+      </div>
+      <div class="r-card">
+        <span class="tag pk">Mindful listening</span>
+        <h3>We hear you first</h3>
+        <ol><li>A short conversation about your business</li><li>Your customers' own words</li><li>A page that sounds like you</li></ol>
+      </div>
+      <div class="r-card">
+        <span class="tag">Collective maintenance</span>
+        <h3>We keep tending it together</h3>
+        <ol><li>Small updates and new features as you grow</li><li>Shared ownership of the result</li><li>No template, no lock-in</li></ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cloud" style="top:12%;animation-duration:90s;animation-delay:-30s"><svg width="170" height="58" viewBox="0 0 180 60"><path d="M30 55a22 22 0 0 1 4-43 30 30 0 0 1 56-6 26 26 0 0 1 46 12 20 20 0 0 1 6 37z" fill="#fff"/></svg></div>
+  <div class="wrap reveal">
+    <svg width="120" height="110" viewBox="0 0 120 110" aria-hidden="true"><path d="M60 95C28 85 22 45 60 15c38 30 32 70 0 80z" fill="#ff7eb6" stroke="#0b3a5c" stroke-width="4"/><path d="M60 95C20 100 4 70 8 50c28 0 48 14 52 45z" fill="#ffbddb" stroke="#0b3a5c" stroke-width="4"/><path d="M60 95c40 5 56-25 52-45-28 0-48 14-52 45z" fill="#ffbddb" stroke="#0b3a5c" stroke-width="4"/><circle cx="60" cy="78" r="10" fill="#ff9d1c" stroke="#0b3a5c" stroke-width="4"/></svg>
+    <h2>Ready for a page or app that feels like a deep breath?</h2>
+    <p>Affordable, custom and focused on results. Landing pages and apps made one at a time, for you.</p>
+    <div class="actions"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx</a></div>
+  </div>
+</section>
+
+<footer><span><b>easylandx</b> · Custom landing pages and apps for small businesses</span><a href="https://easylandx.github.io" target="_blank" rel="noopener" style="color:var(--ink);font-weight:800">easylandx.github.io</a></footer>
+
+<script>
+// scroll reveals
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+
+// tabs
+const tabs=[...document.querySelectorAll('.tab')];
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);document.getElementById(x.getAttribute('aria-controls')).hidden=!on});
+}));
+
+// accordion
+document.querySelectorAll('.row').forEach(r=>{
+  const t=()=>{const o=r.getAttribute('aria-expanded')==='true';r.setAttribute('aria-expanded',!o);r.querySelector('.hint').textContent=o?'Tap to open':'Tap to close'};
+  r.addEventListener('click',t);
+  r.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}});
+});
+
+// clutter sweep
+const items=['Pop-up!','Sale 50%','Subscribe','Cookie banner','Chat widget','Ad','New!','Sign up','Banner','Timer','Tab 7','Spin to win'];
+const stage=document.getElementById('stage'),fill=document.getElementById('fill'),bar=document.getElementById('bar'),msg=document.getElementById('msg');
+let removed=0;
+const msgs=[[0,'Tap the distractions. Each one you remove makes the message louder.'],[3,'A little lighter already.'],[6,'Halfway. Notice the headline.'],[9,'Almost there. Breathe.'],[12,'Clear. One message, one action. That is the page.']];
+function build(){
+  stage.classList.remove('clear');stage.querySelectorAll('.junk').forEach(n=>n.remove());removed=0;update();
+  const W=stage.clientWidth,H=stage.clientHeight;
+  items.forEach((t,i)=>{
+    const b=document.createElement('button');b.type='button';b.className='junk';b.textContent=t;
+    const cols=4,c=i%cols,r=Math.floor(i/cols);
+    b.style.left=Math.max(8,Math.min(W-130,(c+Math.random()*.25)*(W/cols)))+'px';
+    b.style.top=Math.max(8,Math.min(H-44,(r+Math.random()*.3)*(H/3.1)))+'px';
+    b.style.animationDelay=(-Math.random()*3)+'s';
+    b.style.transform='rotate('+((Math.random()*14-7)|0)+'deg)';
+    b.onclick=()=>{b.classList.add('gone');removed++;update()};
+    stage.appendChild(b);
+  });
+}
+function update(){
+  const p=Math.round(removed/items.length*100);
+  fill.style.width=p+'%';bar.setAttribute('aria-valuenow',p);
+  let m=msgs[0][1];msgs.forEach(x=>{if(removed>=x[0])m=x[1]});msg.textContent=m;
+  if(removed===items.length)stage.classList.add('clear');
+}
+document.getElementById('reset').onclick=build;
+build();
+</script>
+</body>
+</html>
