@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>easylandx · Landing Pages & Apps That Fail Forward</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#ff1f8e;--lime:#c6ff00;--ink:#2b0018;--soft:#ff5aa9;--pad:clamp(22px,6vw,72px);box-sizing:border-box}
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--pink);color:var(--ink);font-family:'Space Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.55;overflow-x:hidden;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+h1,h2,h3{font-family:'Archivo Black',Impact,sans-serif;line-height:1;margin:0;text-transform:uppercase;letter-spacing:-.01em}
+section,header,footer{padding:clamp(54px,9vw,110px) var(--pad)}
+.wrap{max-width:1080px;margin:0 auto}
+.btn{display:inline-block;background:var(--lime);color:var(--ink);font-family:'Archivo Black',Impact,sans-serif;text-transform:uppercase;text-decoration:none;border:3px solid var(--ink);padding:14px 26px;border-radius:999px;box-shadow:5px 5px 0 var(--ink);cursor:pointer;font-size:16px;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.tag{display:inline-block;background:var(--lime);border:2px solid var(--ink);border-radius:999px;padding:4px 14px;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:calc(10px + env(safe-area-inset-top,0px)) var(--pad) 10px;background:var(--pink);border-bottom:3px solid var(--ink)}
+nav b{font-family:'Archivo Black',Impact,sans-serif;font-size:20px}
+nav .btn{padding:8px 18px;font-size:14px;box-shadow:3px 3px 0 var(--ink)}
+header{padding-top:clamp(110px,16vw,170px);position:relative;overflow:hidden}
+h1{font-size:clamp(44px,10vw,118px)}
+h1 mark{background:var(--lime);color:var(--ink);padding:0 .12em;display:inline-block;transform:rotate(-2deg);border:3px solid var(--ink)}
+.lead{max-width:620px;font-size:clamp(18px,2.4vw,23px);margin:26px 0 32px;font-weight:500}
+.hero-art{position:absolute;right:-30px;top:90px;width:min(52vw,560px);opacity:.95;pointer-events:none}
+.path{stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 5s ease-out infinite}
+@keyframes draw{0%{stroke-dashoffset:1400}70%,100%{stroke-dashoffset:0}}
+.float{animation:fl 4s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-14px) rotate(6deg)}}
+.spin{animation:sp 14s linear infinite;transform-origin:center;transform-box:fill-box}
+@keyframes sp{to{transform:rotate(360deg)}}
+.marquee{border-block:3px solid var(--ink);background:var(--lime);overflow:hidden;white-space:nowrap;padding:12px 0}
+.marquee div{display:inline-block;animation:mq 22s linear infinite;font-family:'Archivo Black',Impact,sans-serif;text-transform:uppercase;font-size:20px}
+@keyframes mq{to{transform:translateX(-50%)}}
+h2{font-size:clamp(34px,6vw,68px);margin-bottom:22px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;margin-top:30px}
+.card{background:var(--lime);border:3px solid var(--ink);border-radius:22px;padding:24px;box-shadow:6px 6px 0 var(--ink)}
+.card h3{font-size:24px;margin-bottom:10px}
+.card p{margin:0}
+.card .ic{width:54px;height:54px;margin-bottom:12px}
+.alt{background:var(--ink);color:var(--pink)}
+.reveal{opacity:0;transform:translateY(34px);transition:all .7s}
+.reveal.in{opacity:1;transform:none}
+/* maze */
+.mazebox{display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:start;margin-top:26px}
+#maze{display:grid;grid-template-columns:repeat(9,1fr);gap:3px;max-width:430px;width:100%;background:var(--ink);border:4px solid var(--ink);border-radius:16px;padding:3px}
+.c{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:clamp(12px,3vw,18px)}
+.c.w{background:var(--ink)}
+.c.o{background:var(--pink);cursor:pointer}
+.c.o.v{background:var(--soft)}
+.c.o.d{background:var(--soft)}
+.c.o.d:after{content:'✕';color:var(--ink)}
+.c.me{background:var(--lime)!important;animation:pulse 1s infinite}
+.c.me:after{content:'●';color:var(--ink)}
+.c.g:after{content:'★';color:var(--ink)}
+.c.g{background:var(--lime)}
+@keyframes pulse{50%{transform:scale(.82)}}
+.stat{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}
+.stat span{background:var(--lime);border:3px solid var(--ink);border-radius:14px;padding:8px 14px;font-weight:700}
+#msg{min-height:84px;font-weight:700;font-size:20px;background:var(--ink);color:var(--lime);border-radius:18px;padding:16px 18px}
+/* types */
+.types{display:grid;gap:12px;margin-top:26px}
+.t{border:3px solid var(--ink);border-radius:20px;background:var(--pink);overflow:hidden}
+.t button{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:flex;align-items:center;gap:16px;padding:16px 20px;font-family:'Archivo Black',Impact,sans-serif;text-transform:uppercase;font-size:clamp(16px,2.4vw,22px)}
+.t button i{font-style:normal;background:var(--lime);border:3px solid var(--ink);border-radius:50%;min-width:42px;height:42px;display:flex;align-items:center;justify-content:center}
+.t button:after{content:'+';margin-left:auto;font-size:30px;transition:transform .25s}
+.t.open{background:var(--lime)}
+.t.open button:after{transform:rotate(45deg)}
+.t .b{max-height:0;overflow:hidden;transition:max-height .4s;padding:0 20px}
+.t.open .b{max-height:420px;padding:0 20px 20px}
+.b p{margin:6px 0}
+.fix{background:var(--ink);color:var(--lime);padding:10px 14px;border-radius:12px;font-weight:700}
+/* steps */
+.steps{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
+.steps button{all:unset;cursor:pointer;background:var(--pink);border:3px solid var(--ink);border-radius:999px;padding:10px 18px;font-weight:700}
+.steps button.on{background:var(--lime);box-shadow:4px 4px 0 var(--ink)}
+.stepcard{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;background:var(--lime);border:3px solid var(--ink);border-radius:26px;padding:28px;box-shadow:8px 8px 0 var(--ink)}
+.stepcard .n{font-family:'Archivo Black',Impact,sans-serif;font-size:clamp(70px,14vw,140px);line-height:.8}
+.stepcard h3{font-size:clamp(24px,4vw,40px);margin-bottom:8px}
+.bar{height:16px;background:var(--pink);border:3px solid var(--ink);border-radius:99px;margin-top:20px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);width:20%;transition:width .5s}
+/* system */
+.sys{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:26px}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:16px 0}
+.days button{all:unset;cursor:pointer;aspect-ratio:1;border:3px solid var(--ink);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;background:var(--pink);transition:transform .15s}
+.days button:hover{transform:scale(1.1)}
+.days button.on{background:var(--ink);color:var(--lime)}
+.quit label{display:block;margin:10px 0;font-weight:700;cursor:pointer}
+.quit input{accent-color:var(--ink);width:20px;height:20px;vertical-align:middle;margin-right:8px}
+#verdict{margin-top:12px;font-family:'Archivo Black',Impact,sans-serif;text-transform:uppercase;font-size:20px}
+.cta{text-align:center;background:var(--lime);border-block:3px solid var(--ink)}
+.cta .btn{background:var(--pink);font-size:clamp(18px,3vw,28px);padding:20px 40px}
+footer{text-align:center;font-weight:500}
+footer b{font-family:'Archivo Black',Impact,sans-serif;background:var(--lime);padding:2px 10px;border:2px solid var(--ink)}
+@media(max-width:700px){.hero-art{opacity:.28;right:-80px;width:430px}.stepcard{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav><b>easylandx</b><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx ↗</a></nav>
+
+<header>
+<svg class="hero-art" viewBox="0 0 560 520" fill="none" aria-hidden="true">
+<path class="path" d="M20 480 H140 V380 H60 V300 H220 V420 H320 V240 H120 V140 H260 V60 H420 V200 H500 V90" stroke="#2b0018" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<g stroke="#2b0018" stroke-width="6" stroke-linecap="round"><path d="M320 420 H400 V480"/><path d="M60 300 V230"/><path d="M420 60 H480"/></g>
+<g stroke="#2b0018" stroke-width="5"><path d="M395 470l22 22M417 470l-22 22"/><path d="M50 222l20 20M70 222l-20 20"/></g>
+<circle class="float" cx="500" cy="90" r="26" fill="#c6ff00" stroke="#2b0018" stroke-width="6"/>
+<path class="spin" d="M120 60l10 22 24 3-18 16 5 24-21-12-21 12 5-24-18-16 24-3z" fill="#c6ff00" stroke="#2b0018" stroke-width="5"/>
+<rect class="float" x="400" y="320" width="110" height="80" rx="12" fill="#c6ff00" stroke="#2b0018" stroke-width="6"/>
+<path d="M400 346h110" stroke="#2b0018" stroke-width="6"/><circle cx="416" cy="333" r="4" fill="#2b0018"/><path d="M420 370h50M420 384h30" stroke="#2b0018" stroke-width="6" stroke-linecap="round"/>
+</svg>
+<div class="wrap">
+<span class="tag">Landing pages &amp; apps</span>
+<h1>Every dead end<br>is <mark>data.</mark></h1>
+<p class="lead">easylandx builds individually crafted, conversion-focused landing pages and apps for small businesses. We design the way resilient builders think: ship, learn, adjust, win.</p>
+<a class="btn" href="#maze-sec">Play the maze ↓</a>
+</div>
+</header>
+
+<div class="marquee"><div>Failure is feedback ✦ Systems over goals ✦ Ship small ✦ Learn fast ✦ Suffering is optional ✦ Custom, never template ✦ Failure is feedback ✦ Systems over goals ✦ Ship small ✦ Learn fast ✦ Suffering is optional ✦ Custom, never template ✦</div></div>
+
+<section>
+<div class="wrap reveal">
+<span class="tag">Three big ideas</span>
+<h2>The mindset behind every build</h2>
+<div class="grid3">
+<div class="card"><svg class="ic" viewBox="0 0 54 54" fill="none" stroke="#2b0018" stroke-width="4" stroke-linecap="round"><circle cx="27" cy="27" r="20"/><path d="M18 30c4 6 14 6 18 0M19 20l4 3M35 20l-4 3"/></svg>
+<h3>Failure ≠ identity</h3><p>A page that doesn't convert means the strategy, copy or offer needs work. It doesn't mean your business is failing. We read the numbers as feedback and fix the plan.</p></div>
+<div class="card"><svg class="ic" viewBox="0 0 54 54" fill="none" stroke="#2b0018" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 48V6h42v42H6zM6 20h28v14M20 6v14M20 34v14M34 48V34h14"/></svg>
+<h3>Life is a maze</h3><p>Each dead end removes a wrong route. Every headline test, layout tweak and app prototype that flops brings your business closer to the version that works.</p></div>
+<div class="card"><svg class="ic" viewBox="0 0 54 54" fill="none" stroke="#2b0018" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 40l8-24 10 14 6-8 10 18z"/><circle cx="40" cy="12" r="5"/></svg>
+<h3>Suffering is optional</h3><p>A bad launch hurts; that's life. Staying stuck in frustration or self-pity is a choice. Feel it, forgive yourself, then move.</p></div>
+</div></div>
+</section>
+
+<section class="alt" id="maze-sec" style="background:var(--lime)">
+<div class="wrap reveal">
+<span class="tag" style="background:var(--pink)">Interactive · The maze metaphor</span>
+<h2>Find the way to your launch</h2>
+<p>Click a glowing neighbor cell to move. Hit a dead end? That's one wrong path eliminated, and your odds just improved.</p>
+<div class="mazebox">
+<div id="maze"></div>
+<div>
+<div class="stat"><span>Steps: <b id="st">0</b></span><span>Dead ends found: <b id="de">0</b></span></div>
+<div id="msg">Start at the dot. Reach the ★ to launch.</div>
+<p style="margin-top:14px"><button class="btn" id="rs" style="background:var(--pink)">Reset maze</button></p>
+</div></div></div>
+</section>
+
+<section>
+<div class="wrap reveal">
+<span class="tag">Interactive · 7 types of failure</span>
+<h2>Different failure, different fix</h2>
+<p>Tap each one. Every cause needs its own solution, and each shows how we apply it to your landing page or app.</p>
+<div class="types" id="types"></div>
+</div>
+</section>
+
+<section style="background:var(--lime);border-block:3px solid var(--ink)">
+<div class="wrap reveal">
+<span class="tag" style="background:var(--pink)">Interactive · The 5-step bounce-back</span>
+<h2>When a launch flops</h2>
+<div class="steps" id="steps"></div>
+<div class="stepcard"><div class="n" id="sn">1</div><div><h3 id="sh"></h3><p id="sp"></p></div></div>
+<div class="bar"><i id="sb"></i></div>
+</div>
+</section>
+
+<section>
+<div class="wrap reveal">
+<span class="tag">Strategies we build into your site</span>
+<h2>Systems beat goals</h2>
+<div class="sys">
+<div class="card"><h3>Daily system</h3><p>Boring and consistent wins. Tap the days you showed up: posted, updated, replied to leads.</p>
+<div class="days" id="days"></div><b id="dc">0 / 7 days · keep the chain going</b></div>
+<div class="card quit"><h3>Strategic quit check</h3><p>Tick what's true about a goal you're stuck on.</p>
+<label><input type="checkbox"> I tested it several times with real data</label>
+<label><input type="checkbox"> Results stay flat despite new approaches</label>
+<label><input type="checkbox"> It no longer fits my business direction</label>
+<label><input type="checkbox"> Another path has a higher return</label>
+<div id="verdict">Tick to see the verdict</div></div>
+<div class="card"><h3>Practice misfortune</h3><p>Stoic move: preview the bad day on purpose. Open your page on slow mobile data, imagine zero leads this week, imagine a client says no. Discomfort rehearsed becomes confidence earned. We stress-test every build the same way.</p></div>
+</div></div>
+</section>
+
+<section class="cta">
+<div class="wrap reveal">
+<h2>Ready to build something that bounces back?</h2>
+<p style="max-width:600px;margin:0 auto 28px;font-weight:500">Affordable, custom, conversion-focused landing pages and apps, crafted one by one. No templates, no site-builder shortcuts.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">easylandx ↗</a>
+</div>
+</section>
+
+<footer>
+<p>Inspired by <b>From Failure to Success: Everyday Habits and Exercises to Build Mental Resilience and Turn Failures Into Successes</b> by <b>Martin Meadows</b>.</p>
+</footer>
+
+<script>
+// scroll reveal
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// maze
+const M=["#########","#S..#...#","#.#.#.#.#","#.#...#.#","#.#####.#","#...#...#","###.#.###","#...#..G#","#########"];
+const W=9;let pos,steps,dead,seen;
+const mz=document.getElementById('maze'),msg=document.getElementById('msg');
+const open=(r,c)=>M[r]&&M[r][c]&&M[r][c]!=='#';
+const nb=(r,c)=>[[r-1,c],[r+1,c],[r,c-1],[r,c+1]].filter(p=>open(...p));
+const dmsgs=["Dead end! That route is eliminated. Valuable data.","Wrong turn, right lesson. One less path to try.","A dead end is feedback, not identity. Back up and go.","Nice: you just saved future-you from this path."];
+function draw(){mz.innerHTML='';for(let r=0;r<W;r++)for(let c=0;c<W;c++){const d=document.createElement('div'),ch=M[r][c];d.className='c '+(ch==='#'?'w':'o');
+if(ch==='G')d.classList.add('g');if(seen.has(r+','+c))d.classList.add('v');if(dead.has(r+','+c))d.classList.add('d');
+if(pos[0]===r&&pos[1]===c)d.classList.add('me');
+d.onclick=()=>go(r,c);mz.appendChild(d)}
+document.getElementById('st').textContent=steps;document.getElementById('de').textContent=dead.size}
+function go(r,c){if(!open(r,c))return;if(Math.abs(r-pos[0])+Math.abs(c-pos[1])!==1)return;
+pos=[r,c];steps++;seen.add(r+','+c);
+if(M[r][c]==='G'){msg.textContent="You made it! "+dead.size+" dead end"+(dead.size===1?'':'s')+" found, each one made the route clearer. Launch time!";}
+else if(nb(r,c).length===1){dead.add(r+','+c);msg.textContent=dmsgs[dead.size%dmsgs.length];}
+else msg.textContent="Keep exploring. Every step gives information.";
+draw()}
+function reset(){pos=[1,1];steps=0;dead=new Set();seen=new Set(['1,1']);msg.textContent="Start at the dot. Reach the ★ to launch.";draw()}
+document.getElementById('rs').onclick=reset;reset();
+
+// 7 types
+const T=[
+["Unrealistic expectations","Poor research and the false-hope loop: expecting a viral page overnight.","Research your market, set honest goals and give the timeline room to breathe. We set realistic conversion targets with you."],
+["Fear-driven failures","Fear of judgment, rejection or failing keeps you from launching at all.","Shrink the challenge: publish a one-section page today, then expand. Small exposure builds courage."],
+["Self-sabotage","Things go well, so you quietly wreck progress because success feels undeserved.","Notice the pattern, keep your systems running and celebrate wins. We build pages that keep working while you grow."],
+["Impatience","Slow results make you abandon a sustainable pace or quit too early.","Trust inputs over outcomes: steady updates, steady testing, steady follow-up. Pages compound over time."],
+["Self-licensing","A milestone makes you feel justified in dropping the habits that got you there.","Treat a launch as the start. Keep the weekly review, keep measuring, keep improving."],
+["Ego-driven mistakes","Refusing to admit ignorance or ask for help slows everything down.","Ask, test, admit what you don't know. We shape every page around what your customers say, not our assumptions."],
+["Uncontrollable circumstances","Bad timing, outages, market shocks: things you can't control.","Radical acceptance, then focus only on what you can control: your offer, your message, your next update."]];
+const tw=document.getElementById('types');
+T.forEach((t,i)=>{const d=document.createElement('div');d.className='t';
+d.innerHTML=`<button><i>${i+1}</i>${t[0]}</button><div class="b"><p>${t[1]}</p><p class="fix">Fix: ${t[2]}</p></div>`;
+d.firstChild.onclick=()=>{const was=d.classList.contains('open');tw.querySelectorAll('.t').forEach(x=>x.classList.remove('open'));if(!was)d.classList.add('open')};tw.appendChild(d)});
+tw.firstChild.classList.add('open');
+
+// bounce back
+const S=[["Process it","Acknowledge the disappointment. Don't numb it or push it down. Let the first reaction happen."],
+["Forgive yourself","Drop the guilt and blame. You made the best decision with the information you had."],
+["Change your state","Move your body, change your scenery. A shifted state unlocks clearer thinking."],
+["Extract lessons","Look at the data objectively: what failed, what worked, what did the setback teach?"],
+["Resume efforts","Re-engage with your plan, upgraded with new insight. Ship the improved version."]];
+const sw=document.getElementById('steps');
+function setS(i){sw.querySelectorAll('button').forEach((b,j)=>b.classList.toggle('on',j===i));
+document.getElementById('sn').textContent=i+1;document.getElementById('sh').textContent=S[i][0];document.getElementById('sp').textContent=S[i][1];document.getElementById('sb').style.width=((i+1)*20)+'%'}
+S.forEach((s,i)=>{const b=document.createElement('button');b.textContent=(i+1)+'. '+s[0];b.onclick=()=>setS(i);sw.appendChild(b)});setS(0);
+
+// days
+const dw=document.getElementById('days');
+['M','T','W','T','F','S','S'].forEach(l=>{const b=document.createElement('button');b.textContent=l;b.onclick=()=>{b.classList.toggle('on');document.getElementById('dc').textContent=dw.querySelectorAll('.on').length+' / 7 days · keep the chain going'};dw.appendChild(b)});
+
+// quit
+const cb=document.querySelectorAll('.quit input'),vd=document.getElementById('verdict');
+cb.forEach(c=>c.onchange=()=>{const n=[...cb].filter(x=>x.checked).length;
+vd.textContent=n===0?'Tick to see the verdict':n<3?'Keep going. Run another test first.':'Strategic quit: redirect your energy.'});
+</script>
+</body>
+</html>
