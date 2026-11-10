@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX: Landing pages and apps, made with a calm mind</title>
+<style>
+:root{--y:#FFEE32;--t:#00E5CF;--ink:#0A2E2B;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--y);color:var(--ink);font:18px/1.6 "Trebuchet MS","Segoe UI",Helvetica,Arial,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.1;margin:0 0 .5em}
+h1{font-size:clamp(2.6rem,8vw,5.4rem);letter-spacing:-.02em}
+h2{font-size:clamp(1.9rem,5vw,3rem)}
+p{max-width:62ch;margin:0 0 1em}
+section{padding:clamp(3rem,8vw,6rem) 1.25rem;max-width:1080px;margin:0 auto}
+.btn{display:inline-block;background:var(--t);color:var(--ink);border:3px solid var(--ink);border-radius:999px;padding:.8em 1.6em;font:700 1rem inherit;font-family:inherit;text-decoration:none;cursor:pointer;box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+:focus-visible{outline:4px solid var(--ink);outline-offset:3px}
+nav{display:flex;justify-content:space-between;align-items:center;max-width:1080px;margin:0 auto;padding:1rem 1.25rem}
+.logo{font:700 1.5rem Georgia,serif;text-decoration:none;color:var(--ink)}
+.logo b{background:var(--t);padding:0 .25em;border-radius:.3em}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;padding-top:2rem}
+.stage{position:relative;aspect-ratio:1;display:grid;place-items:center}
+.orb{width:48%;aspect-ratio:1;border-radius:50%;background:var(--t);border:4px solid var(--ink);display:grid;place-items:center;text-align:center;font-weight:700;transform:scale(.7);transition:transform 4s ease-in-out;cursor:pointer;z-index:2;padding:.5rem}
+.ring{position:absolute;border:3px solid var(--t);border-radius:50%;inset:0;animation:pulse 6s ease-in-out infinite}
+.ring:nth-child(2){inset:10%;animation-delay:1s}.ring:nth-child(3){inset:20%;animation-delay:2s}
+@keyframes pulse{50%{transform:scale(1.07);opacity:.45}}
+.float{position:absolute;animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-14px) rotate(6deg)}}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem}
+.card{border:3px solid var(--ink);border-radius:1.5rem 1.5rem 1.5rem .4rem;padding:1.4rem;background:var(--y);transition:background .2s,transform .2s}
+.card:hover{background:var(--t);transform:rotate(-1deg)}
+.card svg{width:64px;height:64px;margin-bottom:.5rem}
+.panel{background:var(--t);border:3px solid var(--ink);border-radius:2rem;padding:clamp(1.2rem,4vw,2.5rem);box-shadow:8px 8px 0 var(--ink)}
+.tabs{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.2rem}
+.tab{background:var(--y);color:var(--ink);border:3px solid var(--ink);border-radius:999px;padding:.4em 1em;font:700 .95rem inherit;font-family:inherit;cursor:pointer}
+.tab[aria-selected=true]{background:var(--ink);color:var(--y)}
+.apply{background:var(--y);border:3px solid var(--ink);border-radius:1rem;padding:.8rem 1rem;margin-top:1rem}
+.sky{position:relative;height:200px;border:3px solid var(--ink);border-radius:2rem;overflow:hidden;background:var(--t);margin:1rem 0}
+.cloud{position:absolute;left:-40%;background:var(--y);border:3px solid var(--ink);border-radius:999px;padding:.4em 1.2em;white-space:nowrap;font-weight:700;animation:drift 9s linear forwards}
+@keyframes drift{to{left:110%}}
+.row{display:flex;gap:.7rem;flex-wrap:wrap}
+input[type=text]{flex:1;min-width:200px;border:3px solid var(--ink);border-radius:999px;padding:.7em 1.2em;font:inherit;background:var(--y);color:var(--ink)}
+.stop{display:flex;gap:.8rem;flex-wrap:wrap}
+.stop button{width:72px;height:72px;border-radius:50%;border:3px solid var(--ink);background:var(--y);font:700 2rem Georgia,serif;color:var(--ink);cursor:pointer;transition:background .2s,transform .2s}
+.stop button.on{background:var(--t);transform:scale(1.12)}
+.stop button.done{background:var(--ink);color:var(--y)}
+.sense{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem}
+.sense button{border:3px solid var(--ink);border-radius:1rem;background:var(--y);padding:.5rem .9rem;font:700 .95rem inherit;font-family:inherit;color:var(--ink);cursor:pointer}
+.sense button[aria-pressed=true]{background:var(--ink);color:var(--y)}
+.browser{border:3px solid var(--ink);border-radius:1rem;background:var(--y);overflow:hidden}
+.browser i{display:block;height:12px;border-radius:6px;background:var(--t);margin:10px 14px;transform-origin:left;animation:grow 4s ease-in-out infinite alternate}
+.browser i:nth-child(3){animation-delay:.6s;width:70%}.browser i:nth-child(4){animation-delay:1.2s;width:50%}
+@keyframes grow{from{transform:scaleX(.3)}to{transform:scaleX(1)}}
+.cta{text-align:center}.cta p{margin-inline:auto}
+footer{text-align:center;padding:2rem 1.25rem 3rem;border-top:3px solid var(--ink);max-width:1080px;margin:0 auto}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}.rv.in{opacity:1;transform:none}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.stage{max-width:380px;margin:auto}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav><a class="logo" href="#top">Easy<b>LandX</b></a><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Open EasyLandX</a></nav>
+
+<section class="hero" id="top">
+  <div>
+    <h1>Landing pages and apps that start with one calm breath.</h1>
+    <p>EasyLandX helps you build and launch landing pages and apps in minutes. Mindfulness teaches us to pay attention to the present moment without judgment. We build the same way: one clear message, one clear action, no noise.</p>
+    <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Start building on EasyLandX</a>
+  </div>
+  <div class="stage" aria-label="Breathing guide">
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+    <svg class="float" style="top:2%;left:6%" width="60" height="60" viewBox="0 0 60 60"><ellipse cx="30" cy="30" rx="26" ry="19" fill="#FFEE32" stroke="#0A2E2B" stroke-width="3"/><path d="M52 30c6-3 6-9 4-12" stroke="#0A2E2B" stroke-width="3" fill="none"/></svg>
+    <svg class="float" style="bottom:4%;right:4%;animation-delay:1.5s" width="70" height="70" viewBox="0 0 70 70"><circle cx="35" cy="35" r="30" fill="#00E5CF" stroke="#0A2E2B" stroke-width="3"/><path d="M35 14v21l14 8" stroke="#0A2E2B" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+    <button class="orb" id="orb" aria-live="polite"><span id="orbtxt">Tap to breathe</span></button>
+  </div>
+</section>
+
+<section class="rv">
+  <h2>Three ideas behind every page we help you make</h2>
+  <div class="cards">
+    <div class="card"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="none" stroke="#0A2E2B" stroke-width="4"/><circle cx="32" cy="32" r="10" fill="#00E5CF" stroke="#0A2E2B" stroke-width="4"/></svg><h3>Be, don’t clutter</h3><p>Mindfulness is a way of being, not about emptying the mind. Your landing page should feel the same: one purpose, one headline, one button.</p></div>
+    <div class="card"><svg viewBox="0 0 64 64"><rect x="8" y="14" width="48" height="36" rx="8" fill="#00E5CF" stroke="#0A2E2B" stroke-width="4"/><path d="M32 22v12l8 4" stroke="#0A2E2B" stroke-width="4" fill="none" stroke-linecap="round"/></svg><h3>Small steps add up</h3><p>Five to ten minutes a day can change how you feel. A focused page or app can go live in the same short sitting, so you keep moving without burning out.</p></div>
+    <div class="card"><svg viewBox="0 0 64 64"><path d="M32 8l6 16 17 1-13 11 4 17-14-9-14 9 4-17L9 25l17-1z" fill="#00E5CF" stroke="#0A2E2B" stroke-width="4" stroke-linejoin="round"/></svg><h3>Keep the wonder</h3><p>Time pressure and guilt drain the joy from making things. Simple tools bring back the delight of seeing an idea appear on screen.</p></div>
+  </div>
+</section>
+
+<section class="rv">
+  <h2>Four lessons, applied to what you build</h2>
+  <div class="panel">
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div id="lesson" role="tabpanel" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="rv">
+  <h2>Let anxious thoughts drift by</h2>
+  <p>Thoughts are mental events, not facts. Type the worry that stops you from launching, then watch it pass like a cloud.</p>
+  <div class="row"><input type="text" id="worry" maxlength="40" placeholder="“Nobody will read my page…”" aria-label="Your worry"><button class="btn" id="drift">Let it drift</button></div>
+  <div class="sky" id="sky" aria-live="polite"></div>
+  <p id="skymsg">Notice it, don’t believe it, and carry on.</p>
+</section>
+
+<section class="rv">
+  <h2>Pause before you publish: STOP</h2>
+  <p>Tap each letter in order. Use it before you hit publish, change a headline, or start a new app.</p>
+  <div class="stop" id="stop"></div>
+  <div class="panel" style="margin-top:1.2rem"><p id="stoptxt" style="margin:0;font-weight:700">Start with S.</p></div>
+</section>
+
+<section class="rv">
+  <h2>Ground yourself, then design</h2>
+  <p>When you are overthinking, use your senses. Tap what you can notice right now, then bring that attention to your page.</p>
+  <div class="sense" id="sense"></div>
+  <p id="sensemsg" style="margin-top:1rem;font-weight:700">0 of 5 noticed.</p>
+  <div class="browser" aria-hidden="true" style="max-width:420px"><div style="height:14px;background:var(--ink)"></div><i style="width:90%"></i><i></i><i></i><i></i><div style="margin:10px 14px 14px"><span class="btn" style="padding:.2em 1.4em;box-shadow:3px 3px 0 var(--ink)">Go</span></div></div>
+</section>
+
+<section class="rv">
+  <h2>Five daily practices, five ways EasyLandX helps</h2>
+  <div class="cards" id="prac"></div>
+</section>
+
+<section class="cta rv">
+  <h2>Ready to build with a clear head?</h2>
+  <p>Take a breath, pick one message, and launch your next landing page or app.</p>
+  <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener" style="font-size:1.3rem">Go to EasyLandX</a>
+</section>
+
+<footer>Inspired by <em>The Little Book of Mindfulness</em> by Dr. Patrizia Collard.</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+// Breathing orb
+let busy=false;
+$('orb').onclick=()=>{
+  if(busy)return;busy=true;const o=$('orb'),t=$('orbtxt');let n=0;
+  (function cycle(){
+    if(n==3){t.textContent='Present. Well done.';o.style.transform='scale(.7)';busy=false;return}
+    n++;t.textContent='Breathe in…';o.style.transform='scale(1.25)';
+    setTimeout(()=>{t.textContent='Hold';setTimeout(()=>{t.textContent='Breathe out…';o.style.transform='scale(.7)';setTimeout(cycle,4000)},1200)},4000);
+  })();
+};
+// Lessons
+const L=[
+["Being in the now","Most suffering comes from dwelling on the past or fearing the future. Returning to your breath anchors you in safety.","Design for this moment. Show visitors one clear promise above the fold, not every feature at once."],
+["Accept and respond","Pause, accept things as they are, then respond with intention instead of reacting from panic or frustration.","Read your page analytics calmly. Accept what the numbers say, then change one thing on purpose."],
+["The power of thoughts","Thoughts pass like clouds. You do not have to believe or act on every anxious one.","Ship the first version. “It’s not perfect yet” is a thought, not a fact. You can improve it after launch."],
+["Gratitude and compassion","Focusing on what is good, and being kind to yourself and others, builds resilience.","Write copy with kindness for your visitor, and celebrate every page and app you publish."]];
+const tabs=$('tabs');
+L.forEach((l,i)=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.textContent=l[0];b.onclick=()=>show(i);tabs.append(b)});
+function show(i){[...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',i==j));
+  const l=L[i];$('lesson').innerHTML='';
+  const h=document.createElement('h3'),p=document.createElement('p'),a=document.createElement('div'),s=document.createElement('b');
+  h.textContent=l[0];p.textContent=l[1];a.className='apply';s.textContent='On EasyLandX: ';a.append(s,l[2]);$('lesson').append(h,p,a)}
+show(0);
+// Clouds
+$('drift').onclick=()=>{
+  const v=$('worry').value.trim();if(!v)return;
+  const c=document.createElement('div');c.className='cloud';c.textContent=v;c.style.top=(10+Math.random()*65)+'%';
+  $('sky').append(c);setTimeout(()=>c.remove(),9200);$('worry').value='';
+  $('skymsg').textContent='That was a thought, not a fact. Watch it go.';};
+$('worry').onkeydown=e=>{if(e.key=='Enter')$('drift').click()};
+// STOP
+const S=[["S","Stop what you are doing. Take your hands off the editor."],["T","Take a few deep breaths."],["O","Observe your body, mind and feelings. What does your visitor need most?"],["P","Proceed with more awareness. Publish the one clear message."]];
+let step=0;const sb=$('stop');
+S.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s[0];b.setAttribute('aria-label',s[1]);
+  b.onclick=()=>{if(i!=step&&i>step)return;[...sb.children].forEach((x,j)=>x.className=j<=i?(j<i?'done':'on'):'');
+    $('stoptxt').textContent=s[1]+(i==3?' Now you are ready.':'');step=Math.min(i+1,3);if(i==3)step=0};sb.append(b)});
+// Senses
+const se=[["See: a colour","I see"],["Hear: a sound","I hear"],["Feel: a texture","I feel"],["Smell: a scent","I smell"],["Taste: a flavour","I taste"]];
+function cnt(){const n=document.querySelectorAll('#sense [aria-pressed=true]').length;
+  $('sensemsg').textContent=n==5?'All five noticed. Your mind is here. Now build.':n+' of 5 noticed.'}
+se.forEach(s=>{const b=document.createElement('button');b.textContent=s[0];b.setAttribute('aria-pressed','false');
+  b.onclick=()=>{b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!='true');cnt()};$('sense').append(b)});
+// Practices
+[["Daily check-in","Notice how you feel before you start. Open EasyLandX with one goal in mind."],
+["Micro-meditations","Five to ten minutes fits a busy day. Build a small page while the kettle boils."],
+["Mindful eating","Slow down and savour. Review your page the same way, one section at a time."],
+["Sensory grounding","Come back to what you can see and hear. Preview on your phone and notice how it feels."],
+["The STOP pause","Stop, breathe, observe, proceed. Do it before every publish."]].forEach(p=>{
+  const d=document.createElement('div');d.className='card';const h=document.createElement('h3'),t=document.createElement('p');
+  h.textContent=p[0];t.textContent=p[1];d.append(h,t);$('prac').append(d)});
+// Reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX – Landing Pages & Apps, Built from the Inside Out</title>
+<style>
+:root{--bg:#FFB81C;--ink:#0b2a4a;--blue:#1EA7FF;--blue-d:#0a6fc2;--card:#FFC94D;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#E8A010;--ink:#07203b;--card:#F2B232}}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.6;overflow-x:hidden}
+h1,h2,h3,.btn,nav{font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif}
+section{max-width:1000px;margin:0 auto;padding:72px 22px}
+h1{font-size:clamp(2.4rem,7vw,4.6rem);line-height:1.05;margin:0 0 16px;font-weight:900}
+h1 span,h2 span{color:var(--blue-d);background:linear-gradient(transparent 62%,rgba(30,167,255,.35) 0)}
+h2{font-size:clamp(1.7rem,4vw,2.5rem);margin:0 0 14px;font-weight:900}
+p.lead{font-size:1.2rem;max-width:620px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);display:flex;justify-content:space-between;align-items:center;padding:12px 22px;background:var(--bg);z-index:5;font-weight:800}
+nav a{color:var(--ink);text-decoration:none;margin-left:16px;font-size:.9rem}
+.btn{display:inline-block;background:var(--blue);color:#06233f;font-weight:900;padding:14px 28px;border-radius:50px;text-decoration:none;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transition:.2s;cursor:pointer;font-size:1rem}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;min-height:80vh}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+svg{max-width:100%;height:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:26px}
+.card{background:var(--card);border:3px solid var(--ink);border-radius:20px;padding:20px;transition:.25s}
+.card:hover{transform:translateY(-6px) rotate(-1deg);background:var(--blue);}
+.card h3{margin:6px 0}.num{font-size:2rem;font-weight:900;color:var(--blue-d)}.card:hover .num{color:var(--ink)}
+.panel{background:var(--ink);color:#fff;border-radius:26px;padding:28px;margin-top:24px}
+.panel h3{color:var(--blue);margin-top:0}
+.panel input,.panel textarea{width:100%;padding:10px 12px;border-radius:10px;border:2px solid var(--blue);background:#fff;font:inherit;color:var(--ink);margin:4px 0 12px}
+.out{border:3px dashed var(--blue);border-radius:16px;padding:16px;margin-top:10px;min-height:60px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.tab{background:transparent;border:2px solid var(--blue);color:#fff;border-radius:30px;padding:8px 16px;font-weight:800;cursor:pointer;font-family:system-ui,sans-serif}
+.tab.on{background:var(--blue);color:var(--ink)}
+.breath{width:150px;height:150px;border-radius:50%;background:var(--blue);margin:20px auto;display:grid;place-items:center;font:900 1rem system-ui;color:var(--ink);border:4px solid var(--ink);transition:transform 4s ease-in-out}
+.slider{width:100%;accent-color:var(--blue-d)}
+.float{animation:fl 6s ease-in-out infinite}.float2{animation:fl 8s ease-in-out infinite reverse}
+@keyframes fl{50%{transform:translateY(-16px)}}
+.spin{transform-origin:center;transform-box:fill-box;animation:sp 40s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+.pulse{transform-origin:center;transform-box:fill-box;animation:pu 4s ease-in-out infinite}@keyframes pu{50%{transform:scale(1.12);opacity:.6}}
+.reveal{opacity:0;transform:translateY(30px);transition:1s}.reveal.in{opacity:1;transform:none}
+footer{background:var(--ink);color:#fff;text-align:center;padding:50px 22px 60px;font-family:system-ui,sans-serif}
+footer em{color:var(--blue)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav><span>☀ EasyLandX</span><span><a href="#lessons">Lessons</a><a href="#play">Try it</a><a href="#journal">Journal</a></span></nav>
+
+<section class="hero">
+<div>
+<h1>Landing pages &amp; apps that grow <span>from within.</span></h1>
+<p class="lead">True peace comes from the inside, and so does great design. EasyLandX helps you build clear, light, honest landing pages and apps, free of clutter, ego and heavy baggage.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX →</a>
+</div>
+<svg viewBox="0 0 400 400" aria-label="Sun, sky-blue rings and a growing sprout">
+<circle class="spin" cx="200" cy="200" r="170" fill="none" stroke="#1EA7FF" stroke-width="3" stroke-dasharray="4 14"/>
+<circle class="pulse" cx="200" cy="200" r="130" fill="none" stroke="#1EA7FF" stroke-width="6"/>
+<circle class="pulse" style="animation-delay:1.3s" cx="200" cy="200" r="90" fill="#1EA7FF" opacity=".35"/>
+<g class="float"><circle cx="200" cy="170" r="48" fill="#1EA7FF" stroke="#0b2a4a" stroke-width="5"/>
+<path d="M200 218v100" stroke="#0b2a4a" stroke-width="6" stroke-linecap="round"/>
+<path d="M200 290c-50 0-70-30-70-50 40 0 70 20 70 50z" fill="#1EA7FF" stroke="#0b2a4a" stroke-width="5"/>
+<path d="M200 270c40 0 62-24 62-44-36 0-62 16-62 44z" fill="#1EA7FF" stroke="#0b2a4a" stroke-width="5"/></g>
+<g class="float2"><circle cx="70" cy="90" r="10" fill="#0b2a4a"/><circle cx="335" cy="120" r="7" fill="#1EA7FF"/><circle cx="320" cy="320" r="12" fill="#0b2a4a"/><circle cx="60" cy="300" r="8" fill="#1EA7FF"/></g>
+</svg>
+</section>
+
+<section class="reveal">
+<h2>Three truths. <span>One design philosophy.</span></h2>
+<div class="grid">
+<div class="card"><div class="num">01</div><h3>Peace starts within</h3><p>Traffic, trends and vanity metrics can't fix an unclear message. We begin with your core purpose, then build outward.</p></div>
+<div class="card"><div class="num">02</div><h3>Everything changes</h3><p>Markets, audiences and products evolve. Our pages and apps are flexible, easy to edit, and never clung to out of habit.</p></div>
+<div class="card"><div class="num">03</div><h3>Lighter creators, kinder web</h3><p>When your site is honest and calm, it stops projecting pressure on visitors. A lighter product makes a lighter internet.</p></div>
+</div>
+</section>
+
+<section id="lessons" class="reveal">
+<h2>Four lessons, <span>applied to your build</span></h2>
+<div class="grid">
+<div class="card"><h3>Radical honesty</h3><p>Audit your page like a shadow audit: what is cluttered, boastful or fearful? Name it without harsh judgment, then simplify.</p></div>
+<div class="card"><h3>Letting go is liberation</h3><p>Drop the feature, the headline or the template that no longer serves. Space is a design feature.</p></div>
+<div class="card"><h3>Observer mindset</h3><p>Watch your analytics neutrally. Data is information, not a verdict on your worth.</p></div>
+<div class="card"><h3>Growth isn't linear</h3><p>A dip in conversions is a data point, not failure. Iterate with patience and compassion.</p></div>
+</div>
+<div class="panel">
+<h3>Strategies we build in</h3>
+<p><b>Non-attachment:</b> ship, measure, release outcomes you can't control. <b>Ego pause:</b> when feedback stings, ask why before reacting. <b>Daily introspection:</b> a quiet review of what your page is carrying that it doesn't need.</p>
+</div>
+</section>
+
+<section id="play" class="reveal">
+<h2>Try it: <span>the lightness lab</span></h2>
+<div class="panel">
+<h3>1 · Let go of clutter</h3>
+<p>Drag the slider to release what no longer serves your landing page.</p>
+<input class="slider" id="sl" type="range" min="0" max="5" value="0">
+<div class="out" id="clut" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+<p id="clutmsg" style="margin-bottom:0"></p>
+</div>
+<div class="panel">
+<h3>2 · Observe, don't become</h3>
+<p>Tap to breathe with the circle. Watch the thought arise, then let it pass.</p>
+<div class="breath" id="br" role="button" tabindex="0">Breathe in</div>
+<p id="brmsg" style="text-align:center;margin:0">Tap the circle to begin.</p>
+</div>
+</section>
+
+<section id="journal" class="reveal">
+<h2>Reflection templates <span>for creators</span></h2>
+<div class="panel">
+<div class="tabs"><button class="tab on" data-t="1">Emotional Release Journal</button><button class="tab" data-t="2">Self-Love &amp; Shadow Audit</button></div>
+<div id="t1">
+<p>Feeling heavy, anxious or triggered by feedback, a launch or a metric?</p>
+<label>Trigger event (facts only)</label><input id="a1">
+<label>Where do I feel it in my body?</label><input id="a2">
+<label>What did I expect or want to control?</label><input id="a3">
+</div>
+<div id="t2" hidden>
+<p>A weekly check-in for hidden judgments.</p>
+<label>Where was I too hard on myself?</label><input id="b1">
+<label>What hidden fear drove it?</label><input id="b2">
+<label>A compassionate statement to that fear</label><input id="b3">
+<label>One pattern I'm ready to unlearn</label><input id="b4">
+</div>
+<button class="btn" id="mk" style="margin-top:6px">Reflect</button>
+<div class="out" id="res"></div>
+</div>
+</section>
+
+<section class="reveal" style="text-align:center">
+<h2>Ready to build <span>lighter?</span></h2>
+<p class="lead" style="margin:0 auto 24px">Landing pages and apps designed with clarity, honesty and room to breathe.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to EasyLandX →</a>
+</section>
+
+<footer>
+<p style="font-size:1.1rem;margin:0">Inspired by the book <em>Inward</em> by Yung Pueblo (Diego Perez).</p>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const items=['Pop-up','Jargon','Stock clichés','5 CTAs','Noisy banner'];
+const sl=$('#sl'),c=$('#clut');
+function clut(){const n=+sl.value;c.innerHTML='';items.forEach((t,i)=>{const s=document.createElement('span');s.textContent=t;s.style.cssText='padding:6px 14px;border-radius:30px;font:700 .9rem system-ui;transition:.6s;'+(i<n?'opacity:0;transform:scale(.3) translateY(-20px);width:0;padding:0;overflow:hidden;':'background:#1EA7FF;color:#07203b;');c.appendChild(s)});
+$('#clutmsg').textContent=['Heavy. Everything is shouting.','One anchor released.','Getting lighter.','Space is appearing.','Almost clear.','Freedom: one message, one action.'][n]}
+sl.oninput=clut;clut();
+let on=false,iv;const br=$('#br');
+function cycle(a){br.style.transform=a?'scale(1.5)':'scale(1)';br.textContent=a?'Breathe in':'Let go';$('#brmsg').textContent=a?'A thought arises… just watch it.':'It passes. You are not the storm.'}
+function tog(){on=!on;if(on){let a=true;cycle(a);iv=setInterval(()=>{a=!a;cycle(a)},4000)}else{clearInterval(iv);br.style.transform='scale(1)';br.textContent='Breathe in';$('#brmsg').textContent='Tap the circle to begin.'}}
+br.onclick=tog;br.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}};
+let cur='1';
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{cur=b.dataset.t;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===b));$('#t1').hidden=cur!=='1';$('#t2').hidden=cur!=='2';$('#res').textContent=''});
+$('#mk').onclick=()=>{const v=id=>$(id).value.trim()||'…';
+$('#res').innerHTML=cur==='1'?`<b>I acknowledge this feeling:</b> "${v('#a1')}", felt in my ${v('#a2')}. I see I was holding the expectation: ${v('#a3')}.<br><br><i>It does not define me. I consciously choose to let go of my need to control this outcome.</i>`:`<b>Compassion for my fear of ${v('#b2')}:</b> ${v('#b3')}<br><br>Where I was hard on myself: ${v('#b1')}.<br><i>Pattern I'm ready to unlearn: ${v('#b4')}.</i>`};
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>

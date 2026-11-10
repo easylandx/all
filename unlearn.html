@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Landing Pages & Apps That Unlearn the Friction</title>
+<style>
+:root{--bg:#C9EA2E;--bg2:#B9DB1F;--ink:#1E2600;--acc:#FF5F15;--card:#D8F25A;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#A9C81A;--bg2:#98B610;--ink:#141A00;--card:#B9D92E}}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Trebuchet MS",Verdana,system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:Impact,"Arial Black",system-ui,sans-serif;text-transform:uppercase;line-height:1;margin:0 0 .5em;letter-spacing:.01em}
+h1{font-size:clamp(2.6rem,8vw,5.5rem)}h2{font-size:clamp(2rem,5vw,3.2rem)}h3{font-size:1.4rem}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+.tag{display:inline-block;background:var(--ink);color:var(--bg);padding:4px 12px;font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;border-radius:99px}
+.hl{color:var(--acc)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0;font-weight:800}
+nav .logo{font-family:Impact,"Arial Black",sans-serif;font-size:1.6rem;text-transform:uppercase}
+nav .logo span{color:var(--acc)}
+.btn{display:inline-block;background:var(--acc);color:#fff;border:3px solid var(--ink);padding:14px 28px;font:800 1.05rem "Trebuchet MS",sans-serif;text-transform:uppercase;letter-spacing:.06em;text-decoration:none;border-radius:14px;cursor:pointer;box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.btn.alt{background:var(--ink);color:var(--bg);box-shadow:5px 5px 0 var(--acc)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding-top:30px}
+.hero p{font-size:1.2rem;max-width:34em}
+.hero .cta{display:flex;gap:16px;flex-wrap:wrap;margin-top:24px}
+svg{max-width:100%;height:auto;display:block}
+.float{animation:fl 5s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-12px)}}
+.pulse{transform-origin:center;transform-box:fill-box;animation:pl 2.4s ease-in-out infinite}
+@keyframes pl{50%{transform:scale(1.12);opacity:.7}}
+.flow{stroke-dasharray:10 8;animation:fw 1.6s linear infinite}
+@keyframes fw{to{stroke-dashoffset:-36}}
+.spin{transform-origin:center;transform-box:fill-box;animation:sp 22s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.marquee{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;padding:12px 0;font:1.3rem Impact,"Arial Black",sans-serif;text-transform:uppercase}
+.marquee div{display:inline-block;animation:mq 26s linear infinite}
+.marquee b{color:var(--acc);margin:0 18px}
+@keyframes mq{to{transform:translateX(-50%)}}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.card{background:var(--card);border:3px solid var(--ink);border-radius:18px;padding:24px;box-shadow:6px 6px 0 var(--ink);transition:transform .2s}
+.card:hover{transform:rotate(-1deg) translateY(-4px)}
+.card .num{font:2.6rem Impact,sans-serif;color:var(--acc);line-height:1}
+.band{background:var(--ink);color:var(--bg)}
+.band .card{background:var(--bg);color:var(--ink);box-shadow:6px 6px 0 var(--acc);border-color:var(--bg)}
+.lab{background:var(--card);border:3px solid var(--ink);border-radius:22px;padding:28px;box-shadow:8px 8px 0 var(--acc)}
+.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+input[type=range]{width:100%;accent-color:var(--acc);height:30px}
+input[type=text]{width:100%;padding:12px 14px;border:3px solid var(--ink);border-radius:12px;background:var(--bg);font:700 1rem "Trebuchet MS",sans-serif;color:var(--ink)}
+input::placeholder{color:#1E260099}
+.say{min-height:5.6em;font-size:1.15rem;font-weight:700;border-left:8px solid var(--acc);padding:6px 0 6px 14px;margin:14px 0}
+.steps{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.chip{padding:8px 14px;border:3px solid var(--ink);border-radius:99px;font-weight:800;font-size:.85rem;text-transform:uppercase;background:transparent;color:var(--ink);cursor:pointer}
+.chip.on{background:var(--acc);color:#fff}
+.chip.done{background:var(--ink);color:var(--bg)}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:640px;margin-top:14px}
+th,td{border:2px solid var(--ink);padding:8px 10px;text-align:left;font-size:.92rem}
+th{background:var(--ink);color:var(--bg);text-transform:uppercase;font-size:.78rem;letter-spacing:.08em}
+td.ev{font-weight:800;color:var(--acc)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+select,.row input{padding:10px;border:3px solid var(--ink);border-radius:10px;background:var(--bg);color:var(--ink);font:700 .95rem "Trebuchet MS",sans-serif}
+.meter{height:18px;border:3px solid var(--ink);border-radius:99px;overflow:hidden;background:var(--bg)}
+.meter i{display:block;height:100%;width:50%;background:var(--acc);transition:width .4s}
+.final{text-align:center}
+.final p{font-size:1.2rem;max-width:36em;margin:0 auto 26px}
+footer{background:var(--ink);color:var(--bg);padding:34px 0;text-align:center;font-weight:700}
+footer em{color:var(--acc);font-style:normal}
+.reveal{opacity:0;transform:translateY(30px);transition:all .7s}
+.reveal.in{opacity:1;transform:none}
+@media (max-width:760px){.hero,.lab-grid{grid-template-columns:1fr}section{padding:52px 0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><div class="logo">Easy<span>LandX</span></div><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></nav>
+<header class="hero">
+<div>
+<span class="tag">Landing pages &amp; apps</span>
+<h1 style="margin-top:16px">Unlearn the <span class="hl">friction.</span></h1>
+<p>Most pages and apps don’t fail because they’re broken. They fail because they trigger a false alarm: clutter, confusion and fear of the next click. EasyLandX builds landing pages and apps that tell your visitors’ brains one thing: <b>you’re safe here.</b></p>
+<div class="cta"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a><a class="btn alt" href="#lab">Try the lab</a></div>
+</div>
+<svg class="float" viewBox="0 0 400 360" role="img" aria-label="Illustration of a brain with glowing neural circuits">
+<circle cx="200" cy="180" r="160" fill="#FF5F15" opacity=".14" class="pulse"/>
+<circle cx="200" cy="180" r="120" fill="none" stroke="#1E2600" stroke-width="3" stroke-dasharray="4 10" class="spin"/>
+<path d="M200 70c-30-20-80-5-85 35-30 5-45 40-25 65-15 25 0 60 30 65 10 30 55 40 80 15 25 25 70 15 80-15 30-5 45-40 30-65 20-25 5-60-25-65-5-40-55-55-85-35z" fill="#D8F25A" stroke="#1E2600" stroke-width="6" stroke-linejoin="round"/>
+<path d="M200 75v185M150 120c25 10 25 35 0 45M250 120c-25 10-25 35 0 45M140 205c25-5 40 5 60 25M260 205c-25-5-40 5-60 25" fill="none" stroke="#1E2600" stroke-width="4" stroke-linecap="round"/>
+<path d="M120 160c40-30 70 20 110-10s40 30 60 10" fill="none" stroke="#FF5F15" stroke-width="6" stroke-linecap="round" class="flow"/>
+<circle cx="120" cy="160" r="9" fill="#FF5F15" class="pulse"/><circle cx="290" cy="160" r="9" fill="#FF5F15" class="pulse" style="animation-delay:.8s"/><circle cx="200" cy="110" r="9" fill="#1E2600" class="pulse" style="animation-delay:1.4s"/>
+</svg>
+</header>
+</div>
+<div class="marquee"><div>
+<span>False alarm <b>●</b> Safe to scroll <b>●</b> One clear path <b>●</b> Calm interface <b>●</b> Rewire the habit <b>●</b> False alarm <b>●</b> Safe to scroll <b>●</b> One clear path <b>●</b> Calm interface <b>●</b> Rewire the habit <b>●</b> </span><span>False alarm <b>●</b> Safe to scroll <b>●</b> One clear path <b>●</b> Calm interface <b>●</b> Rewire the habit <b>●</b> False alarm <b>●</b> Safe to scroll <b>●</b> One clear path <b>●</b> Calm interface <b>●</b> Rewire the habit <b>●</b> </span>
+</div></div>
+
+<section><div class="wrap reveal">
+<span class="tag">What we make</span>
+<h2 style="margin-top:14px">Landing pages &amp; apps, <span class="hl">built for calm</span></h2>
+<div class="grid3">
+<div class="card"><svg viewBox="0 0 120 80" width="120"><rect x="6" y="6" width="108" height="68" rx="8" fill="#C9EA2E" stroke="#1E2600" stroke-width="4"/><rect x="18" y="18" width="50" height="9" rx="4" fill="#1E2600"/><rect x="18" y="34" width="70" height="6" rx="3" fill="#1E2600" opacity=".4"/><rect x="18" y="50" width="34" height="14" rx="7" fill="#FF5F15" class="pulse"/></svg><h3 style="margin-top:12px">Landing pages</h3><p>One message, one clear action. Pages that lower the visitor’s guard instead of raising it, so they feel safe enough to say yes.</p></div>
+<div class="card"><svg viewBox="0 0 80 80" width="80"><rect x="22" y="4" width="36" height="72" rx="9" fill="#C9EA2E" stroke="#1E2600" stroke-width="4"/><circle cx="40" cy="38" r="12" fill="none" stroke="#FF5F15" stroke-width="5" class="pulse"/><circle cx="40" cy="38" r="3" fill="#1E2600"/></svg><h3 style="margin-top:12px">Apps</h3><p>Interfaces that guide instead of overwhelm. Gentle feedback, honest progress, no alarming surprises.</p></div>
+<div class="card"><svg viewBox="0 0 120 80" width="120"><path d="M6 60l24-22 22 12 28-34 30 18" fill="none" stroke="#1E2600" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 60l24-22 22 12 28-34 30 18" fill="none" stroke="#FF5F15" stroke-width="5" stroke-linecap="round" class="flow"/></svg><h3 style="margin-top:12px">Patterns, not guesses</h3><p>We collect the evidence on how people really behave, then adjust what the data shows, not what we fear.</p></div>
+</div></div></section>
+
+<section class="band"><div class="wrap reveal">
+<span class="tag" style="background:var(--acc);color:#fff">Our philosophy</span>
+<h2 style="margin-top:14px">Three messages we <span class="hl">design by</span></h2>
+<div class="grid3">
+<div class="card"><div class="num">01</div><h3>The friction is real, the cause is learned</h3><p>When users bounce, the frustration is genuine, yet it’s rarely a broken product. It’s a learned reaction to clutter, jargon and risk. Learned habits can be changed.</p></div>
+<div class="card"><div class="num">02</div><h3>Stress hides in the details</h3><p>Pressure, perfectionism and uncertainty pile up in an interface just as they do in a mind. We surface the hidden stressors and design them out.</p></div>
+<div class="card"><div class="num">03</div><h3>Rewiring works both ways</h3><p>People learned to distrust forms and checkouts through repetition. With repeated, safe, simple experiences, trust is learned too.</p></div>
+</div></div></section>
+
+<section><div class="wrap reveal">
+<span class="tag">Core lessons</span>
+<h2 style="margin-top:14px">Danger signal or <span class="hl">safety signal?</span></h2>
+<p style="max-width:42em">The brain can’t easily tell physical danger from emotional stress, and it reads a cluttered screen the same way. Drag the dial to see how a page’s signals change the alarm.</p>
+<div class="lab"><div class="lab-grid">
+<svg viewBox="0 0 300 260" role="img" aria-label="Alarm bell that calms as safety rises">
+<circle id="halo" cx="150" cy="130" r="110" fill="#FF5F15" opacity=".25" class="pulse"/>
+<g id="bell" style="transform-origin:150px 60px">
+<path d="M150 50c-45 0-60 35-60 70v28l-18 22h156l-18-22v-28c0-35-15-70-60-70z" fill="#D8F25A" stroke="#1E2600" stroke-width="6" stroke-linejoin="round"/>
+<circle cx="150" cy="188" r="14" fill="#1E2600"/><circle cx="150" cy="44" r="8" fill="#1E2600"/></g>
+<path id="wA" d="M60 70c-14 18-14 50 0 68M240 70c14 18 14 50 0 68" fill="none" stroke="#FF5F15" stroke-width="7" stroke-linecap="round"/>
+<g id="face"><circle cx="128" cy="120" r="6" fill="#1E2600"/><circle cx="172" cy="120" r="6" fill="#1E2600"/><path id="mouth" d="M126 148q24-18 48 0" fill="none" stroke="#1E2600" stroke-width="5" stroke-linecap="round"/></g>
+</svg>
+<div>
+<label for="safe" style="font-weight:800;text-transform:uppercase">Safety signal: <span id="sv" class="hl">20</span>%</label>
+<input id="safe" type="range" min="0" max="100" value="20">
+<div class="meter" aria-hidden="true"><i id="m"></i></div>
+<div class="say" id="msg" aria-live="polite"></div>
+<div class="steps"><button class="chip" data-v="10">Pop-ups &amp; clutter</button><button class="chip" data-v="55">Clear headline</button><button class="chip" data-v="95">Calm, one path</button></div>
+</div></div></div>
+</div></section>
+
+<section class="band"><div class="wrap reveal">
+<span class="tag" style="background:var(--acc);color:#fff">Key strategies</span>
+<h2 style="margin-top:14px">How EasyLandX <span class="hl">rewires</span> a page</h2>
+<div class="grid3">
+<div class="card"><h3>Education &amp; mindset shift</h3><p>From “our funnel is broken and fragile” to “we’ve formed a bad habit we can change.” Every project starts with that reframe.</p></div>
+<div class="card"><h3>Observe, don’t panic</h3><p>We watch drop-offs with detached curiosity, like somatic tracking for your analytics. A dip is information, not a crisis.</p></div>
+<div class="card"><h3>Uncover the real stressor</h3><p>We find what visitors are actually feeling (doubt, pressure, mistrust) and address it openly rather than bottling it up behind a bigger button.</p></div>
+</div></div></section>
+
+<section id="lab"><div class="wrap reveal">
+<span class="tag">Practical templates</span>
+<h2 style="margin-top:14px">Three frameworks, <span class="hl">hands-on</span></h2>
+
+<div class="lab" style="margin-bottom:34px">
+<h3>1 · The Symptom Dialogue</h3>
+<p>When a friction flare hits your page (or you), talk back to the loop. Name the trouble spot, then step through the four moves.</p>
+<input id="spot" type="text" placeholder="Where is the friction? e.g. the checkout form" maxlength="40" aria-label="Where is the friction">
+<div class="steps" id="st"></div>
+<div class="say" id="dlg" aria-live="polite">Pick a step to begin.</div>
+<button class="btn" id="nx" style="padding:10px 20px;font-size:.9rem">Next move →</button>
+</div>
+
+<div class="lab" style="margin-bottom:34px">
+<h3>2 · The Pattern-Collector Evidence Log</h3>
+<p>Pain, and friction, vary with context. Log it, and let the pattern show you it’s about the situation, not damage.</p>
+<div class="row">
+<input id="l1" placeholder="Page or screen" aria-label="Page or screen">
+<select id="l2" aria-label="Friction level"><option value="2">Friction 2/10</option><option value="5">Friction 5/10</option><option value="8">Friction 8/10</option></select>
+<select id="l3" aria-label="Mood"><option>Calm</option><option>Rushed</option><option>Anxious</option><option>Curious</option></select>
+<input id="l4" placeholder="What shifted it?" aria-label="What shifted it">
+<button class="btn" id="add" style="padding:10px;font-size:.85rem">Add entry</button>
+</div>
+<div class="scroll"><table><thead><tr><th>Where</th><th>Friction</th><th>Emotional state</th><th>Evidence it’s context, not damage</th></tr></thead><tbody id="tb">
+<tr><td>Signup form</td><td>7/10</td><td>Rushed</td><td class="ev">Dropped to 2 when we removed two fields</td></tr></tbody></table></div>
+</div>
+
+<div class="lab">
+<h3>3 · The Daily Reflection Page</h3>
+<p>Spend a few minutes writing freely, then close with safety. Nothing here is saved or sent; it lives only on this page.</p>
+<div class="grid3" style="margin-top:14px">
+<div><b>Core stressor</b><input type="text" id="r1" placeholder="What’s pressing on you?"></div>
+<div><b>Raw feeling</b><input type="text" id="r2" placeholder="Anger, doubt, overwhelm…"></div>
+<div><b>Body reaction</b><input type="text" id="r3" placeholder="Where do you feel it?"></div>
+</div>
+<button class="btn alt" id="rf" style="margin-top:18px;padding:10px 20px;font-size:.9rem">Close with safety</button>
+<div class="say" id="rout" aria-live="polite"></div>
+</div>
+</div></section>
+
+<section><div class="wrap final reveal">
+<svg viewBox="0 0 240 120" width="240" style="margin:0 auto 10px" role="img" aria-label="Calm wave"><path d="M0 70q30-40 60 0t60 0 60 0 60 0" fill="none" stroke="#1E2600" stroke-width="6" stroke-linecap="round"/><path d="M0 70q30-40 60 0t60 0 60 0 60 0" fill="none" stroke="#FF5F15" stroke-width="6" stroke-linecap="round" class="flow"/><circle cx="120" cy="30" r="12" fill="#FF5F15" class="pulse"/></svg>
+<h2>Ready to build something <span class="hl">safe to click?</span></h2>
+<p>Let’s unlearn the friction, one landing page and one app at a time.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener" style="font-size:1.3rem;padding:18px 40px">EasyLandX →</a>
+</div></section>
+
+<footer><div class="wrap">© EasyLandX · Inspired by <em>Unlearn Your Pain</em> by Dr. Howard Schubiner</div></footer>
+
+<script>
+const $=id=>document.getElementById(id);
+// Alarm dial
+const safe=$('safe');
+function upd(){const v=+safe.value;$('sv').textContent=v;$('m').style.width=v+'%';
+$('wA').style.opacity=(100-v)/100;$('halo').style.opacity=.08+(100-v)/160;
+$('bell').style.animation=v<45?'shk '+(0.25+v/150)+'s ease-in-out infinite':'none';
+$('mouth').setAttribute('d',v<40?'M126 156q24 -16 48 0':v<70?'M126 150h48':'M126 146q24 20 48 0');
+$('msg').textContent=v<40?'Alarm ringing. Too many demands at once, so the brain reads it as a threat and tenses up.':v<70?'Alarm quieting. The message is clear, but the page still asks a little too much of the visitor.':'Alarm off. One calm path says: nothing here can hurt you. Trust grows and action follows.';}
+safe.oninput=upd;document.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{safe.value=b.dataset.v;upd()});
+const s=document.createElement('style');s.textContent='@keyframes shk{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}';document.head.appendChild(s);upd();
+// Symptom dialogue
+const moves=['Acknowledge','Evaluate','Dismiss','Redirect'];let cur=-1;
+const st=$('st');moves.forEach((m,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=(i+1)+'. '+m;b.onclick=()=>go(i);st.appendChild(b)});
+function go(i){cur=i;const w=($('spot').value.trim()||'this part of the page');
+const t=[`I notice you’re sending alarm signals around ${w} right now.`,'I am safe. Nothing is broken or torn. This is a signal, not an injury.','This is just an old habit firing a false alarm. I choose not to feed it fear.','Attention outward: pick one small, calming task and begin it now.'];
+$('dlg').textContent=t[i];[...st.children].forEach((c,j)=>c.className='chip'+(j==i?' on':j<i?' done':''))}
+$('nx').onclick=()=>go((cur+1)%4);
+// Evidence log
+$('add').onclick=()=>{const p=$('l1').value.trim()||'Untitled screen',e=$('l4').value.trim()||'Shifted when the context changed';
+const tr=document.createElement('tr');[p,$('l2').value+'/10',$('l3').value,e].forEach((x,i)=>{const td=document.createElement('td');td.textContent=x;if(i==3)td.className='ev';tr.appendChild(td)});
+$('tb').appendChild(tr);$('l1').value='';$('l4').value=''};
+// Reflection
+$('rf').onclick=()=>{const a=$('r1').value.trim()||'a pressure I’m carrying',b=$('r2').value.trim()||'a heavy feeling',c=$('r3').value.trim()||'my body';
+$('rout').textContent=`Stressor: ${a}. Feeling: ${b}. Body: ${c}. Right now, in this moment, the old threat is over and I am safe.`};
+// Reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

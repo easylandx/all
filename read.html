@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX – Landing Pages and Apps That Read Your Visitors</title>
+<style>
+:root{--bg:#1E90E8;--deep:#0B5FA8;--mid:#1678C8;--ink:#06284A;--y:#FFE53B;--w:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1E90E8;--deep:#0B5FA8;--mid:#1678C8;--ink:#06284A;--y:#FFE53B;--w:#fff}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--w);font-family:"Trebuchet MS",Verdana,sans-serif;line-height:1.55;overflow-x:hidden}
+.wrap{max-width:1000px;margin:auto;padding:0 20px}
+section{padding:70px 0}
+h1,h2,h3{font-family:Impact,"Arial Black",sans-serif;letter-spacing:.5px;line-height:1.05}
+h1{font-size:clamp(40px,8vw,84px)}h2{font-size:clamp(30px,5vw,48px);margin-bottom:12px}
+.y{color:var(--y)}
+.btn{display:inline-block;background:var(--y);color:var(--ink);font-weight:900;text-decoration:none;padding:15px 30px;border-radius:50px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transition:.15s;font-size:18px;cursor:pointer}
+.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.logo{font-family:Impact,sans-serif;font-size:28px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center;padding:30px 0 70px}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+.hero p{font-size:19px;margin:18px 0 26px;max-width:480px}
+.blob{animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-14px)}}
+.eye{animation:blink 4s infinite;transform-origin:center;transform-box:fill-box}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+.pulse{animation:pulse 2.4s infinite;transform-origin:center;transform-box:fill-box}
+@keyframes pulse{50%{transform:scale(1.15);opacity:.6}}
+.band{background:var(--deep)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-top:26px}
+.card{background:var(--mid);border:3px solid var(--ink);border-radius:20px;padding:22px;box-shadow:6px 6px 0 var(--ink);transition:.2s}
+.card:hover{transform:translateY(-6px) rotate(-1deg)}
+.card .n{font-family:Impact,sans-serif;font-size:44px;color:var(--y)}
+.card h3{font-size:24px;margin:4px 0 8px}
+.lab{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:26px}
+@media(max-width:760px){.lab{grid-template-columns:1fr}}
+.panel{background:var(--ink);border-radius:24px;padding:22px;border:3px solid var(--y)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.chip{background:transparent;color:var(--w);border:2px solid var(--w);padding:8px 14px;border-radius:30px;font:inherit;font-weight:700;cursor:pointer;transition:.15s}
+.chip.on{background:var(--y);color:var(--ink);border-color:var(--y);transform:scale(1.05)}
+.meter{height:16px;background:var(--mid);border-radius:10px;overflow:hidden;margin:6px 0 14px}
+.meter i{display:block;height:100%;width:0;background:var(--y);transition:width .5s}
+.read{background:var(--y);color:var(--ink);border-radius:16px;padding:16px;font-weight:700;min-height:120px}
+.read small{display:block;font-weight:400;margin-top:8px}
+label.sw{display:flex;gap:10px;align-items:center;cursor:pointer;margin:8px 0;font-weight:700}
+.fig{background:var(--mid);border-radius:20px;padding:10px}
+.arm{transition:d .5s;fill:none;stroke:#fff;stroke-width:12;stroke-linecap:round}
+.leg{transition:d .5s;fill:none;stroke:#06284A;stroke-width:15;stroke-linecap:round}
+.hand{fill:#fff;stroke:#06284A;stroke-width:3;transition:cx .5s,cy .5s,r .5s}
+#body,#head,#pL,#pR{transition:transform .5s;transform-box:view-box}
+#head{transform-origin:150px 78px}#pL,#pR{transform-box:fill-box}
+#fings{opacity:0;transition:opacity .3s}.tapping #fings{opacity:1}
+.fing{stroke:#fff;stroke-width:5;stroke-linecap:round}
+.tapping .fing{animation:tp .3s infinite alternate}.tapping .fing:nth-child(2){animation-delay:.1s}.tapping .fing:nth-child(3){animation-delay:.2s}
+@keyframes tp{from{transform:translateY(-6px)}to{transform:translateY(0)}}
+#cap{margin-top:10px;font-weight:700;font-size:14px;min-height:22px}
+.app{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:24px}
+.phone{width:120px;height:210px;border:5px solid var(--ink);border-radius:26px;background:var(--y);color:var(--ink);padding:14px 10px;font-weight:900;font-size:12px;text-align:center;box-shadow:6px 6px 0 var(--ink);animation:float 4s ease-in-out infinite}
+.phone:nth-child(2){animation-delay:-1.3s;background:var(--w)}.phone:nth-child(3){animation-delay:-2.6s}
+.phone b{display:block;height:46px;border-radius:10px;background:var(--ink);margin:10px 0}
+footer{text-align:center;padding:50px 20px 60px;background:var(--ink)}
+footer p{max-width:600px;margin:18px auto 0}
+</style></head><body>
+<div class="wrap">
+<nav><div class="logo">Easy<span class="y">LandX</span></div><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener" style="padding:9px 20px;font-size:15px">EasyLandX ↗</a></nav>
+<div class="hero">
+<div><h1>Pages and apps that <span class="y">read</span> your visitor.</h1>
+<p>Words can be rehearsed. Behavior can’t. EasyLandX builds landing pages and apps that notice what people actually do, then answer with clarity, empathy and a win-win next step.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">Go to EasyLandX →</a></div>
+<svg class="blob" viewBox="0 0 300 300" aria-label="Illustration of a face watching a page">
+<circle cx="150" cy="150" r="130" fill="#0B5FA8"/><circle class="pulse" cx="150" cy="150" r="105" fill="none" stroke="#FFE53B" stroke-width="4" stroke-dasharray="10 12"/>
+<rect x="85" y="70" width="130" height="150" rx="14" fill="#fff" stroke="#06284A" stroke-width="5"/>
+<rect x="100" y="86" width="100" height="14" rx="5" fill="#06284A"/><rect x="100" y="108" width="70" height="8" rx="4" fill="#1E90E8"/><rect x="100" y="124" width="84" height="8" rx="4" fill="#1E90E8"/>
+<rect x="100" y="150" width="62" height="24" rx="12" fill="#FFE53B" stroke="#06284A" stroke-width="3"/>
+<ellipse cx="150" cy="245" rx="52" ry="30" fill="#FFE53B" stroke="#06284A" stroke-width="5"/>
+<g class="eye"><circle cx="132" cy="245" r="9" fill="#06284A"/></g><g class="eye"><circle cx="168" cy="245" r="9" fill="#06284A"/></g>
+</svg></div></div>
+
+<section class="band"><div class="wrap">
+<h2>The truth is in the <span class="y">body</span>.</h2>
+<p>The book teaches that spoken words are easy to manage, while posture, micro-expressions and movement are far harder to fake. For landing pages, scrolls, clicks, hesitations and exits are the body language of a visit. EasyLandX turns these four ideas into design.</p>
+<div class="grid">
+<div class="card"><div class="n">01</div><h3>Read clusters</h3><p>One gesture proves nothing. One bounce means little; a bounce plus fast scroll plus no click is a cluster. We design around patterns.</p></div>
+<div class="card"><div class="n">02</div><h3>Check congruence</h3><p>Do your promises match the page behavior? Headline says “simple”, form asks twenty fields: that contradiction breaks trust.</p></div>
+<div class="card"><div class="n">03</div><h3>Add context</h3><p>Crossed arms may just mean cold. Mobile, traffic source, culture and timing change what a signal means.</p></div>
+<div class="card"><div class="n">04</div><h3>Mirror and adjust</h3><p>Know when to push forward, when to back off and when to close. Pages and apps adapt in real time.</p></div>
+</div></div></section>
+
+<section><div class="wrap">
+<h2>Try the <span class="y">Gesture Lab</span></h2>
+<p>Tap gestures to build a cluster for an imaginary visitor. Then flip the context switch and see how meaning changes.</p>
+<div class="lab">
+<div class="panel">
+<div class="fig"><svg viewBox="0 0 300 260" id="fig" aria-label="Animated figure">
+<line x1="10" y1="252" x2="290" y2="252" stroke="#06284A" stroke-width="4"/>
+<rect x="20" y="182" width="72" height="8" rx="3" fill="#06284A"/><rect x="28" y="190" width="6" height="62" fill="#06284A"/><rect x="78" y="190" width="6" height="62" fill="#06284A"/>
+<g id="body">
+<path id="legL" class="leg" d="M138 190 L140 245"/><path id="legR" class="leg" d="M162 190 L160 245"/>
+<rect x="115" y="80" width="70" height="115" rx="26" fill="#FFE53B" stroke="#06284A" stroke-width="4"/>
+<path id="armL" class="arm" d="M118 98 L100 140 L104 172"/><path id="armR" class="arm" d="M182 98 L200 140 L196 172"/>
+<g id="head"><circle cx="150" cy="48" r="30" fill="#fff" stroke="#06284A" stroke-width="4"/>
+<circle cx="140" cy="44" r="7" fill="#fff" stroke="#06284A" stroke-width="2"/><circle cx="160" cy="44" r="7" fill="#fff" stroke="#06284A" stroke-width="2"/>
+<circle id="pL" cx="140" cy="44" r="3.5" fill="#06284A"/><circle id="pR" cx="160" cy="44" r="3.5" fill="#06284A"/>
+<path id="mouth" d="M138 60 Q150 68 162 60" fill="none" stroke="#06284A" stroke-width="4" stroke-linecap="round"/></g>
+<circle id="hL" class="hand" cx="104" cy="178" r="9"/><circle id="hR" class="hand" cx="196" cy="178" r="9"/>
+</g>
+<g id="fings"><line class="fing" x1="51" y1="174" x2="51" y2="180"/><line class="fing" x1="58" y1="175" x2="58" y2="181"/><line class="fing" x1="65" y1="174" x2="65" y2="180"/></g>
+</svg></div>
+<div id="cap">Showing: relaxed</div>
+<div class="chips" id="chips"></div>
+<label class="sw"><input type="checkbox" id="cold"> Context: the room is freezing 🥶</label>
+</div>
+<div class="panel">
+<b>Openness</b><div class="meter"><i id="m1"></i></div>
+<b>Defensiveness</b><div class="meter"><i id="m2"></i></div>
+<b>Evaluating</b><div class="meter"><i id="m3"></i></div>
+<b>Boredom</b><div class="meter"><i id="m4"></i></div>
+<div class="read" id="read">Pick two or more gestures to form a cluster.</div>
+</div></div></div></section>
+
+<section class="band"><div class="wrap">
+<h2>Signals, <span class="y">translated</span>.</h2>
+<div class="grid">
+<div class="card"><h3>Open vs defensive</h3><p>Open palms, uncrossed legs: cooperation. Crossed arms, angled away: doubt. On a page: clear pricing and risk-free trials open people up.</p></div>
+<div class="card"><h3>Evaluating</h3><p>Chin stroke, head tilt: weighing a proposal. Give comparison tables and proof, then leave space.</p></div>
+<div class="card"><h3>Bored</h3><p>Tapping, looking away: move on. Shorten the path and show the payoff sooner.</p></div>
+<div class="card"><h3>Suspicion</h3><p>Nose touch, avoided eye contact: hidden doubt. Add honest answers, real names and visible guarantees.</p></div>
+<div class="card"><h3>Confidence vs nerves</h3><p>Firm posture reads as authority; fidgeting reads as anxiety. Calm, confident layouts reassure nervous buyers.</p></div>
+</div>
+<div class="app">
+<div class="phone">LANDING<b></b>Hero • Proof • CTA</div>
+<div class="phone">APP<b></b>Onboard in 3 taps</div>
+<div class="phone">ADAPT<b></b>Push • Pause • Close</div>
+<div style="flex:1;min-width:230px"><h3 style="font-size:30px;margin-bottom:8px">Landing pages <span class="y">+</span> apps</h3><p>Pages earn the first yes. Apps keep the conversation going. Both are built for understanding, empathy and win-win outcomes, never manipulation.</p></div>
+</div></div></section>
+
+<section><div class="wrap" style="text-align:center">
+<h2>Ready to read the room?</h2>
+<p style="margin-bottom:26px">Build pages and apps that listen first.</p>
+<a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a></div></section>
+</div>
+<footer><svg width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="#FFE53B"><animate attributeName="r" values="24;28;24" dur="3s" repeatCount="indefinite"/></circle><circle cx="22" cy="26" r="4" fill="#06284A"/><circle cx="38" cy="26" r="4" fill="#06284A"/><path d="M20 38 Q30 46 40 38" fill="none" stroke="#06284A" stroke-width="3" stroke-linecap="round"/></svg>
+<p>Inspired by the book <b class="y">How to Read a Person Like a Book</b> by Gerard I. Nierenberg and Henry H. Calero.</p></footer>
+<script>
+const G=[
+["Open palms",{o:2},"open"],["Uncrossed legs",{o:2},"open"],["Leaning in",{o:1,e:1},"open"],
+["Crossed arms",{d:2},"closed"],["Body angled away",{d:2},"closed"],["Avoiding eye contact",{d:1,b:1},"closed"],
+["Stroking chin",{e:2},"think"],["Head tilt",{e:2},"think"],
+["Tapping fingers",{b:2},"bored"],["Looking away",{b:1,d:1},"bored"]];
+const $=id=>document.getElementById(id);
+function pose(){const has=n=>[...sel].some(i=>G[i][0]==n);
+const A=(id,d)=>$(id).setAttribute("d",d),H=(id,x,y,r)=>{const e=$(id);e.setAttribute("cx",x);e.setAttribute("cy",y);e.setAttribute("r",r)};
+const open=has("Open palms"),cr=has("Crossed arms"),chin=has("Stroking chin"),tap=has("Tapping fingers"),away=has("Body angled away"),lean=has("Leaning in"),tilt=has("Head tilt"),look=has("Looking away"),avoid=has("Avoiding eye contact"),un=has("Uncrossed legs");
+if(cr){A("armL","M118 98 L140 140 L188 128");H("hL",190,128,9)}else if(open){A("armL","M118 98 L68 112 L38 100");H("hL",30,98,12)}else if(tap){A("armL","M118 98 L92 140 L60 160");H("hL",58,168,9)}else{A("armL","M118 98 L100 140 L104 172");H("hL",104,178,9)}
+if(chin){A("armR","M182 98 L204 130 L158 80");H("hR",155,76,9)}else if(cr){A("armR","M182 98 L160 150 L112 134");H("hR",110,134,9)}else if(open){A("armR","M182 98 L232 112 L262 100");H("hR",270,98,12)}else{A("armR","M182 98 L200 140 L196 172");H("hR",196,178,9)}
+A("legL",un?"M130 190 L94 245":"M138 190 L140 245");A("legR",un?"M170 190 L206 245":"M162 190 L160 245");
+$("body").setAttribute("transform",away?"translate(-10 0) rotate(-13 150 195)":lean?"translate(8 0) rotate(10 150 195)":"");
+let t="";if(tilt)t+="rotate(15 150 78) ";if(look)t+="translate(-8 0) rotate(-8 150 78)";$("head").setAttribute("transform",t);
+const p=look?"translate(-4 0)":avoid?"translate(-2 4)":"";$("pL").setAttribute("transform",p);$("pR").setAttribute("transform",p);
+$("fig").classList.toggle("tapping",tap);
+$("cap").textContent="Showing: "+(sel.size?[...sel].map(i=>G[i][0]).join(" + "):"relaxed");}
+const sel=new Set(),cb=document.getElementById("chips");
+G.forEach((g,i)=>{const b=document.createElement("button");b.className="chip";b.textContent=g[0];b.onclick=()=>{sel.has(i)?sel.delete(i):sel.add(i);b.classList.toggle("on");upd()};cb.appendChild(b)});
+document.getElementById("cold").onchange=upd;
+function upd(){const s={o:0,d:0,e:0,b:0},cold=document.getElementById("cold").checked;let last=null;
+sel.forEach(i=>{const g=G[i];let w=g[1];for(const k in w){let v=w[k];if(cold&&g[0]=="Crossed arms"&&k=="d")v=0.5;s[k]+=v}last=g[2]});
+const mx=5;["o","d","e","b"].forEach((k,j)=>document.getElementById("m"+(j+1)).style.width=Math.min(100,s[k]/mx*100)+"%");
+pose();
+document.getElementById("mouth").setAttribute("d",s.d>s.o&&s.d>1?"M138 64 Q150 56 162 64":"M138 58 Q150 66 162 58");
+const r=document.getElementById("read"),top=Object.entries(s).sort((a,b)=>b[1]-a[1])[0];
+const T={o:["Open and receptive.","Landing page move: invite the click with a clear, low-risk call to action."],d:["Defensive or doubtful.","Landing page move: slow down, add proof, guarantees and honest answers."],e:["Weighing your offer.","Landing page move: supply comparisons and details, then give them room."],b:["Bored and impatient.","Landing page move: shorten the path and show the payoff right away."]};
+if(sel.size<2){r.innerHTML="One gesture is not a reading. Add more to form a cluster."+(sel.size?"<small>Rule one: never read gestures in isolation.</small>":"")}
+else if(top[1]==0){r.innerHTML="Mixed signals. Keep observing."}
+else{r.innerHTML=T[top[0]][0]+"<small>"+T[top[0]][1]+"</small>"+(cold&&sel.has(3)?"<small>Context applied: crossed arms count less when the room is cold.</small>":"")}}
+upd();
+</script></body></html>
