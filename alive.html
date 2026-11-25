@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX – Landing Pages & Apps with Inner Peace</title>
+<style>
+:root{--y:#FFE600;--p:#FF4F8B;--ink:#1d1a05;--soft:#fff3a0;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--y);color:var(--ink);font:500 18px/1.6 Georgia,"Times New Roman",serif;overflow-x:hidden}
+h1,h2,h3,.btn,.tab,nav a{font-family:"Helvetica Neue",Arial,system-ui,sans-serif;font-weight:900;letter-spacing:-.02em}
+a{color:inherit}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 5vw;position:sticky;top:0;background:var(--y);z-index:5;border-bottom:3px solid var(--ink)}
+nav b{font:900 22px "Helvetica Neue",Arial,sans-serif}nav b span{color:var(--p)}
+nav a{text-decoration:none;font-size:15px;margin-left:18px}
+.btn{display:inline-block;background:var(--p);color:var(--ink);border:3px solid var(--ink);padding:14px 28px;border-radius:999px;font-size:18px;text-decoration:none;cursor:pointer;box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+section{padding:80px 5vw;max-width:1100px;margin:auto}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:center;min-height:80vh}
+h1{font-size:clamp(40px,7vw,84px);line-height:.98;margin:0 0 20px}
+h1 em{font-style:normal;color:var(--p);-webkit-text-stroke:0}
+h2{font-size:clamp(30px,5vw,52px);line-height:1;margin:0 0 14px}
+.tag{display:inline-block;background:var(--ink);color:var(--y);padding:4px 14px;border-radius:99px;font:800 13px sans-serif;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+.lead{font-size:21px;max-width:560px}
+.float{animation:fl 6s ease-in-out infinite}.f2{animation-delay:-2s}.f3{animation-delay:-4s}
+@keyframes fl{50%{transform:translateY(-16px)}}
+.spin{transform-origin:200px 200px;animation:sp 40s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.pulse{animation:pu 3s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+@keyframes pu{50%{transform:scale(1.12)}}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0}
+.tab{background:transparent;border:3px solid var(--ink);padding:10px 20px;border-radius:99px;font-size:16px;cursor:pointer;color:var(--ink)}
+.tab[aria-selected=true]{background:var(--p);box-shadow:4px 4px 0 var(--ink)}
+.panel{display:none;grid-template-columns:1fr 1fr;gap:30px;align-items:center;border:3px solid var(--ink);border-radius:28px;padding:30px;background:var(--soft)}
+.panel.on{display:grid;animation:in .5s}
+@keyframes in{from{opacity:0;transform:translateY(14px)}}
+.panel h3{font-size:32px;margin:0 0 8px}
+.panel ul{padding-left:20px;margin:10px 0 0}
+.panel svg{width:100%;max-width:260px;margin:auto;display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:28px}
+.card{border:3px solid var(--ink);border-radius:24px;padding:22px;background:var(--soft);cursor:pointer;transition:transform .2s,background .2s;text-align:left;font:inherit;color:inherit;width:100%}
+.card:hover{transform:rotate(-1.2deg) translateY(-4px)}
+.card .n{font:900 44px sans-serif;color:var(--p)}
+.card h3{margin:0 0 6px;font-size:21px}
+.card p{margin:0;font-size:16px;max-height:0;overflow:hidden;opacity:0;transition:.4s}
+.card.open{background:var(--p)}.card.open .n{color:var(--ink)}.card.open p{max-height:300px;opacity:1;margin-top:8px}
+.breathe{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;background:var(--ink);color:var(--y);border-radius:36px;padding:40px}
+.breathe h2{color:var(--y)}
+.orb-wrap{display:grid;place-items:center;height:280px}
+.orb{width:120px;height:120px;border-radius:50%;background:var(--p);display:grid;place-items:center;color:var(--ink);font:900 16px sans-serif;text-align:center;transition:transform 4s ease-in-out;box-shadow:0 0 0 14px rgba(255,79,139,.25),0 0 0 32px rgba(255,79,139,.12)}
+.orb.in{transform:scale(1.9)}
+.breathe .btn{background:var(--y);border-color:var(--y);box-shadow:5px 5px 0 var(--p);margin-top:10px}
+.check{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:10px}
+.check li{display:flex;gap:14px;align-items:flex-start;border:3px solid var(--ink);border-radius:18px;padding:14px 18px;cursor:pointer;background:var(--soft);transition:.2s;user-select:none}
+.check li:hover{transform:translateX(6px)}
+.box{flex:none;width:28px;height:28px;border:3px solid var(--ink);border-radius:9px;display:grid;place-items:center;font-weight:900;background:var(--y)}
+.check li.done{background:var(--p)}.check li.done .box{background:var(--ink);color:var(--p)}
+.check b{font-family:sans-serif}
+.bar{height:22px;border:3px solid var(--ink);border-radius:99px;margin-top:24px;overflow:hidden;background:var(--soft)}
+.bar i{display:block;height:100%;width:0;background:var(--p);transition:width .6s}
+#msg{font:900 20px sans-serif;margin-top:12px;min-height:30px}
+.cta{text-align:center;padding:90px 5vw 50px}
+footer{border-top:3px solid var(--ink);padding:26px 5vw;text-align:center;font-size:16px}
+@media(max-width:760px){.hero,.panel.on,.breathe{grid-template-columns:1fr}nav a:not(.btn){display:none}.hero{min-height:auto}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav><b>Easy<span>LandX</span></b><div><a href="#elements">Elements</a><a href="#lessons">Lessons</a><a href="#pause">Pause</a><a class="btn" style="padding:8px 18px;font-size:15px;box-shadow:3px 3px 0 var(--ink)" href="https://easylandx.github.io/" target="_blank" rel="noopener">EasyLandX</a></div></nav>
+
+<section class="hero">
+<div>
+<span class="tag">Landing pages & apps</span>
+<h1>Build pages that feel <em>calm</em>, clear and alive.</h1>
+<p class="lead">EasyLandX helps you launch landing pages and apps with courage, clarity, stability and flexibility. Lasting change is built from small, consistent daily shifts, and so are great products.</p>
+<p><a class="btn" href="https://easylandx.github.io/" target="_blank" rel="noopener">Visit EasyLandX →</a></p>
+</div>
+<svg viewBox="0 0 400 400" role="img" aria-label="Four elements orbiting a calm sun">
+<circle cx="200" cy="200" r="150" fill="none" stroke="#1d1a05" stroke-width="3" stroke-dasharray="4 12"/>
+<circle cx="200" cy="200" r="95" fill="none" stroke="#FF4F8B" stroke-width="3"/>
+<circle class="pulse" cx="200" cy="200" r="52" fill="#FF4F8B" stroke="#1d1a05" stroke-width="4"/>
+<path d="M175 205q25 22 50 0" fill="none" stroke="#1d1a05" stroke-width="5" stroke-linecap="round"/>
+<circle cx="182" cy="188" r="4" fill="#1d1a05"/><circle cx="218" cy="188" r="4" fill="#1d1a05"/>
+<g class="spin">
+<g class="float"><circle cx="200" cy="50" r="30" fill="#FFE600" stroke="#1d1a05" stroke-width="4"/><path d="M200 34c10 12 12 18 0 30-12-12-10-18 0-30z" fill="#FF4F8B" stroke="#1d1a05" stroke-width="3"/></g>
+<g class="float f2"><circle cx="350" cy="200" r="30" fill="#FFE600" stroke="#1d1a05" stroke-width="4"/><path d="M335 195q8-8 15 0t15 0M335 207q8-8 15 0t15 0" fill="none" stroke="#1d1a05" stroke-width="4" stroke-linecap="round"/></g>
+<g class="float f3"><circle cx="200" cy="350" r="30" fill="#FFE600" stroke="#1d1a05" stroke-width="4"/><path d="M180 362l20-26 20 26z" fill="#FF4F8B" stroke="#1d1a05" stroke-width="3" stroke-linejoin="round"/></g>
+<g class="float"><circle cx="50" cy="200" r="30" fill="#FFE600" stroke="#1d1a05" stroke-width="4"/><path d="M50 182c12 14 14 22 0 34-14-12-12-20 0-34z" fill="#FF4F8B" stroke="#1d1a05" stroke-width="3"/></g>
+</g>
+</svg>
+</section>
+
+<section id="elements">
+<span class="tag">Framework</span>
+<h2>The Four Elements of a launch</h2>
+<p class="lead">Every EasyLandX project moves through four phases. Tap an element to see how it shapes your page or app.</p>
+<div class="tabs" role="tablist">
+<button class="tab" role="tab" aria-selected="true" data-t="0">🔥 Fire</button>
+<button class="tab" role="tab" aria-selected="false" data-t="1">🌬 Air</button>
+<button class="tab" role="tab" aria-selected="false" data-t="2">⛰ Earth</button>
+<button class="tab" role="tab" aria-selected="false" data-t="3">💧 Water</button>
+</div>
+
+<div class="panel on"><div><h3>Fire: courage & disruption</h3><p>Find the spark to confront stagnation, break old habits and face uncomfortable truths about your product.</p><ul><li>Launch the imperfect first version instead of polishing forever</li><li>Cut the features and copy you are attached to but nobody needs</li><li>Be honest about why visitors leave</li></ul></div>
+<svg viewBox="0 0 260 260"><circle cx="130" cy="130" r="110" fill="#FFE600" stroke="#1d1a05" stroke-width="4"/><path class="pulse" d="M130 40c40 40 62 70 62 105a62 62 0 0 1-124 0c0-25 12-40 28-58 4 18 14 26 22 28-8-30-2-52 12-75z" fill="#FF4F8B" stroke="#1d1a05" stroke-width="4" stroke-linejoin="round"/><path d="M130 120c18 20 26 34 26 50a26 26 0 0 1-52 0c0-14 10-28 26-50z" fill="#FFE600" stroke="#1d1a05" stroke-width="4"/></svg></div>
+
+<div class="panel"><div><h3>Air: clarity & emotional intelligence</h3><p>Slow down and observe objectively. A calm page lets visitors think without being swept away by noise.</p><ul><li>One headline, one promise, one main button</li><li>Generous white space, short sentences, honest words</li><li>Read your page as a stranger would</li></ul></div>
+<svg viewBox="0 0 260 260"><circle cx="130" cy="130" r="110" fill="#FFE600" stroke="#1d1a05" stroke-width="4"/><g fill="none" stroke="#1d1a05" stroke-width="6" stroke-linecap="round"><path class="float" d="M50 100h110a22 22 0 1 0-22-22"/><path class="float f2" d="M70 135h120a24 24 0 1 1-24 24" stroke="#FF4F8B"/><path class="float f3" d="M50 170h70a18 18 0 1 1-18 18"/></g></svg></div>
+
+<div class="panel"><div><h3>Earth: stability & nourishment</h3><p>Ground the product in steady, disciplined, intentional daily actions that build a resilient foundation.</p><ul><li>Fast loading, accessible, mobile-first structure</li><li>Ship a small improvement every day</li><li>Protect the routines that keep you energized</li></ul></div>
+<svg viewBox="0 0 260 260"><circle cx="130" cy="130" r="110" fill="#FFE600" stroke="#1d1a05" stroke-width="4"/><path d="M30 190l60-90 36 50 30-36 74 76z" fill="#FF4F8B" stroke="#1d1a05" stroke-width="4" stroke-linejoin="round"/><path class="float" d="M130 70q0-30 20-40-4 28-20 40z" fill="#1d1a05"/><path d="M128 70v30" stroke="#1d1a05" stroke-width="5"/></svg></div>
+
+<div class="panel"><div><h3>Water: letting go & adaptability</h3><p>Stay fluid. Forgive past mistakes, let go of old versions and welcome feedback with generosity.</p><ul><li>A/B test with curiosity, not ego</li><li>Respond to users kindly, with mutual understanding</li><li>Release what no longer works</li></ul></div>
+<svg viewBox="0 0 260 260"><circle cx="130" cy="130" r="110" fill="#FFE600" stroke="#1d1a05" stroke-width="4"/><path class="pulse" d="M130 45c34 44 52 72 52 98a52 52 0 0 1-104 0c0-26 18-54 52-98z" fill="#FF4F8B" stroke="#1d1a05" stroke-width="4" stroke-linejoin="round"/><path class="float" d="M40 205q22-16 45 0t45 0 45 0 45 0" fill="none" stroke="#1d1a05" stroke-width="6" stroke-linecap="round"/></svg></div>
+</section>
+
+<section id="lessons">
+<span class="tag">Key lessons</span>
+<h2>Five lessons, applied to your product</h2>
+<p class="lead">Tap a card to flip its meaning into practice.</p>
+<div class="grid">
+<button class="card"><div class="n">01</div><h3>Peace is perception</h3><p>Calm is noticing tension without reacting. Design flows that never shout: no pop-up storms, no false urgency. Visitors feel safe and choose freely.</p></button>
+<button class="card"><div class="n">02</div><h3>The past filters the present</h3><p>Old survival patterns replay. Do not rebuild every page from last year’s fear. Review analytics against today’s real goals, not yesterday’s habits.</p></button>
+<button class="card"><div class="n">03</div><h3>Turbulent minds mislead</h3><p>Never make big product decisions when exhausted or upset. After a bad launch day, soothe yourself first and analyze the numbers tomorrow.</p></button>
+<button class="card"><div class="n">04</div><h3>Impermanence is reality</h3><p>Every page is a version, never a monument. Build easy-to-change landing pages and apps so change feels light, not like loss.</p></button>
+<button class="card"><div class="n">05</div><h3>Personal healing, collective peace</h3><p>A regulated builder makes kinder products. Calm teams create calmer experiences for everyone who arrives.</p></button>
+</div>
+</section>
+
+<section id="pause">
+<div class="breathe">
+<div><span class="tag" style="background:var(--p);color:var(--ink)">Interactive</span><h2>The Sacred Pause</h2><p>Before you publish, reply to a customer, or change the headline, pause between trigger and response. Ask: <b>“What do my values say here?”</b></p><button class="btn" id="bb">Begin breathing</button></div>
+<div class="orb-wrap"><div class="orb" id="orb">Ready</div></div>
+</div>
+</section>
+
+<section>
+<span class="tag">Strategies</span>
+<h2>Your launch rules of inner peace</h2>
+<p class="lead">Seven daily practices, translated for makers. Check each one as you live it.</p>
+<ul class="check" id="ck">
+<li><span class="box"></span><span><b>Master the pause.</b> Impulsive edits are old habits wearing authenticity’s clothes. Breathe, then ship.</span></li>
+<li><span class="box"></span><span><b>Protect your system with “no.”</b> Decline requests that drain you and guard the routines that restore you.</span></li>
+<li><span class="box"></span><span><b>Practice radical self-honesty.</b> Look at blind spots in your page with compassion, without shame.</span></li>
+<li><span class="box"></span><span><b>Use gratitude as a pattern-breaker.</b> When metrics feel scarce, name three small things that worked.</span></li>
+<li><span class="box"></span><span><b>Detach from drama.</b> Seek understanding in feedback and comments instead of winning the argument.</span></li>
+<li><span class="box"></span><span><b>Curate growth-oriented relationships.</b> Work with people who reflect your blind spots with kindness.</span></li>
+<li><span class="box"></span><span><b>Express love openly.</b> Thank your users, teammates and friends regularly and out loud.</span></li>
+</ul>
+<div class="bar"><i id="fill"></i></div><div id="msg">Tap a rule to begin.</div>
+</section>
+
+<section class="cta">
+<svg viewBox="0 0 200 80" width="200" aria-hidden="true"><path class="float" d="M10 50q20-30 40 0t40 0 40 0 40 0" fill="none" stroke="#FF4F8B" stroke-width="8" stroke-linecap="round"/></svg>
+<h2>Ready to build with peace of mind?</h2>
+<p class="lead" style="margin:0 auto 26px">Create landing pages and apps that are simple, honest and easy to evolve.</p>
+<a class="btn" href="https://easylandx.github.io/" target="_blank" rel="noopener">EasyLandX →</a>
+</section>
+
+<footer>Inspired by <b><i>Journey – The Year That Changes Everything</i></b> by <b>Yung Pueblo</b> (Diego Perez).</footer>
+
+<script>
+document.querySelectorAll('.tab').forEach(function(t){t.onclick=function(){
+document.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected',x===t)});
+document.querySelectorAll('.panel').forEach(function(p,i){p.classList.toggle('on',i==t.dataset.t)})}});
+document.querySelectorAll('.card').forEach(function(c){c.onclick=function(){c.classList.toggle('open')}});
+var orb=document.getElementById('orb'),bb=document.getElementById('bb'),run=null;
+function cyc(){orb.classList.add('in');orb.textContent='Breathe in';
+setTimeout(function(){orb.textContent='Hold'},4000);
+setTimeout(function(){orb.classList.remove('in');orb.textContent='Breathe out'},5500);}
+bb.onclick=function(){
+if(run){clearInterval(run);run=null;orb.classList.remove('in');orb.textContent='Ready';bb.textContent='Begin breathing';return}
+cyc();run=setInterval(cyc,9500);bb.textContent='Stop'};
+var items=document.querySelectorAll('#ck li'),msgs=['Tap a rule to begin.','A calm start.','Good momentum.','Steady and grounded.','Halfway there.','Flowing now.','Almost there.','Peace is a practice. Beautiful work. 🌸'];
+items.forEach(function(li){li.onclick=function(){li.classList.toggle('done');li.firstChild.textContent=li.classList.contains('done')?'✓':'';
+var n=document.querySelectorAll('#ck li.done').length;
+document.getElementById('fill').style.width=(n/7*100)+'%';document.getElementById('msg').textContent=msgs[n]}});
+</script>
+</body>
+</html>

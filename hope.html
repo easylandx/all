@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX — Landing Pages & Apps built on Credible Hope</title>
+<style>
+:root{--bg:#FFB300;--ink:#0B1F3A;--blue:#0077FF;--blue2:#0A5BD6;--card:#FFC733;--on-blue:#fff;color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#F0A400;--card:#F7B91F;--color-scheme:dark;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#F0A400;--card:#F7B91F;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Helvetica Neue",Arial,system-ui,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:max(22px,env(safe-area-inset-left),env(safe-area-inset-right));padding-inline:clamp(22px,5vw,56px)}
+h1,h2,h3{font-weight:900;line-height:1.08;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(38px,8vw,78px)}h2{font-size:clamp(28px,5vw,46px)}h3{font-size:21px}
+em{font-style:normal;color:var(--blue2)}
+nav{display:flex;justify-content:space-between;align-items:center;padding-block:18px;gap:12px}
+.logo{font-weight:900;font-size:22px;letter-spacing:-.03em}.logo b{color:var(--blue2)}
+.btn{display:inline-block;background:var(--blue);color:var(--on-blue);font-weight:800;text-decoration:none;padding:13px 24px;border-radius:999px;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s;cursor:pointer;font-size:16px}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink)}
+section{padding-block:clamp(48px,9vw,96px)}
+.hero{display:grid;gap:28px;align-items:center;grid-template-columns:1.1fr .9fr}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+.lead{font-size:19px;max-width:34em}
+.row{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+svg{max-width:100%;height:auto;display:block}
+.sun{animation:spin 40s linear infinite;transform-origin:200px 200px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pulse{animation:pulse 3.5s ease-in-out infinite;transform-origin:200px 200px}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.bob{animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-12px)}}
+.band{background:var(--ink);color:#fff;border-radius:28px;padding:clamp(24px,5vw,48px)}
+.band em{color:#4DB2FF}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.tab{font:800 15px inherit;font-family:inherit;border:3px solid var(--ink);background:transparent;color:var(--ink);padding:9px 18px;border-radius:999px;cursor:pointer}
+.tab[aria-selected=true]{background:var(--blue);color:#fff}
+.panel{background:var(--card);border:3px solid var(--ink);border-radius:22px;padding:24px;min-height:150px}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border:3px solid var(--ink);border-radius:22px;padding:24px;transition:transform .2s}
+.card:hover{transform:translateY(-6px) rotate(-.6deg)}
+.ico{width:52px;height:52px;margin-bottom:12px}
+.compass{display:grid;gap:32px;grid-template-columns:1fr 1fr;align-items:center}
+@media(max-width:760px){.compass{grid-template-columns:1fr}}
+.ctl{margin-bottom:16px}.ctl label{display:flex;justify-content:space-between;font-weight:800}
+input[type=range]{width:100%;accent-color:var(--blue);height:28px}
+.read{background:var(--blue);color:#fff;border-radius:18px;padding:18px 20px;font-weight:600;border:3px solid var(--ink)}
+.poly{transition:all .35s ease}
+.tag{display:inline-block;background:var(--ink);color:#fff;border-radius:999px;padding:4px 14px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.cta{text-align:center}
+footer{background:var(--ink);color:#fff;padding-block:36px;text-align:center;font-size:15px}
+footer a{color:#4DB2FF}
+.reveal{opacity:0;transform:translateY(24px);transition:all .7s ease}.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><div class="logo">Easy<b>Land</b>X</div><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a></nav>
+
+<section class="hero" style="padding-top:clamp(24px,5vw,56px)">
+<div>
+<span class="tag">Landing pages &amp; apps</span>
+<h1>Build with <em>credible hope.</em></h1>
+<p class="lead">EasyLandX creates landing pages and apps that give people clarity in an anxious, brittle world: clear direction, honest evidence, and the flexibility to adapt as things change.</p>
+<div class="row"><a class="btn" href="#compass">Try the Hope Compass</a><a class="btn ghost" href="https://easylandx.github.io" target="_blank" rel="noopener">Visit EasyLandX</a></div>
+</div>
+<svg viewBox="0 0 400 400" role="img" aria-label="Animated rising sun over a horizon with a small app window">
+<g class="sun"><g stroke="#0B1F3A" stroke-width="10" stroke-linecap="round">
+<path d="M200 20v50M200 330v50M20 200h50M330 200h50M72 72l35 35M293 293l35 35M72 328l35-35M293 107l35-35"/></g></g>
+<circle class="pulse" cx="200" cy="200" r="104" fill="#0077FF" stroke="#0B1F3A" stroke-width="8"/>
+<g class="bob"><rect x="130" y="150" width="140" height="100" rx="14" fill="#FFB300" stroke="#0B1F3A" stroke-width="7"/>
+<rect x="146" y="168" width="70" height="10" rx="5" fill="#0B1F3A"/><rect x="146" y="188" width="108" height="8" rx="4" fill="#0B1F3A" opacity=".5"/>
+<rect x="146" y="210" width="52" height="20" rx="10" fill="#0077FF"/></g>
+</svg>
+</section>
+
+<section class="reveal">
+<div class="band">
+<span class="tag" style="background:#0077FF">Resilient clarity</span>
+<h2>The future rewards <em>clarity</em> and punishes <em>certainty.</em></h2>
+<p class="lead">Rigid certainty breaks in a chaotic world. Every EasyLandX page and app is designed with a clear purpose and room to bend: simple structures, fast iteration, and feedback loops that let us adjust course as real people respond.</p>
+</div>
+</section>
+
+<section class="reveal">
+<h2>Designing for the <em>BANI</em> world</h2>
+<p class="lead">Tap each condition to see how we respond.</p>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div class="panel" id="panel" aria-live="polite"></div>
+</section>
+
+<section id="compass" class="reveal">
+<span class="tag">Interactive</span>
+<h2>The Credible Hope <em>Compass</em></h2>
+<p class="lead">Before we build your landing page or app, we test the idea in four directions at once. Rate your project and watch the compass shape itself.</p>
+<div class="compass">
+<svg viewBox="0 0 300 300" role="img" aria-label="Compass radar chart of Outcomes, Community, Ethics and Evidence">
+<g fill="none" stroke="#0B1F3A" stroke-width="2" opacity=".35"><polygon points="150,50 250,150 150,250 50,150"/><polygon points="150,90 210,150 150,210 90,150"/></g>
+<path d="M150 20v260M20 150h260" stroke="#0B1F3A" stroke-width="3"/>
+<polygon id="poly" class="poly" fill="#0077FF" fill-opacity=".75" stroke="#0B1F3A" stroke-width="5" points="150,100 200,150 150,200 100,150"/>
+<g font-weight="900" font-size="15" fill="#0B1F3A" text-anchor="middle"><text x="150" y="16">OUTCOMES</text><text x="150" y="296">ETHICS</text><text x="262" y="155" text-anchor="start" font-size="0"></text></g>
+<g font-weight="900" font-size="13" fill="#0B1F3A"><text x="296" y="143" text-anchor="end">COMMUNITY</text><text x="4" y="143">EVIDENCE</text></g>
+</svg>
+<div>
+<div id="ctls"></div>
+<div class="read" id="read"></div>
+</div>
+</div>
+</section>
+
+<section class="reveal">
+<h2>Our <em>disciplines</em></h2>
+<div class="grid">
+<div class="card"><svg class="ico" viewBox="0 0 52 52"><circle cx="26" cy="26" r="20" fill="none" stroke="#0B1F3A" stroke-width="5"/><path d="M26 10l6 16-6 16-6-16z" fill="#0077FF" stroke="#0B1F3A" stroke-width="3"><animateTransform attributeName="transform" type="rotate" values="-25 26 26;25 26 26;-25 26 26" dur="5s" repeatCount="indefinite"/></path></svg><h3>Discerning</h3><p>We ask better questions and stay with ambiguity longer before committing, then adjust based on real-world feedback instead of rushing to soothe anxiety.</p></div>
+<div class="card"><svg class="ico" viewBox="0 0 52 52"><circle cx="16" cy="26" r="11" fill="#0077FF" stroke="#0B1F3A" stroke-width="4"/><circle cx="36" cy="26" r="11" fill="none" stroke="#0B1F3A" stroke-width="4"/></svg><h3>AI-augmented envisioning</h3><p>Generative AI helps us explore multiple scenarios and stress-test assumptions. Humans keep the meaning-making and the moral agency.</p></div>
+<div class="card"><svg class="ico" viewBox="0 0 52 52"><path d="M6 40h40M12 40a14 14 0 0128 0" fill="#0077FF" stroke="#0B1F3A" stroke-width="4"/></svg><h3>Daily grounding</h3><p>Small, steady habits reconnect a team to its purpose. We pair grit with situational awareness and know when to bring others in.</p></div>
+<div class="card"><svg class="ico" viewBox="0 0 52 52"><path d="M10 28l11 11 21-24" fill="none" stroke="#0077FF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 12l14 14M26 12L12 26" stroke="#0B1F3A" stroke-width="0"/></svg><h3>Keep the gifts, refuse the harm</h3><p>Honesty, courage and neighbor-love stay in. Dark patterns, exclusion and technological overreach stay out.</p></div>
+<div class="card"><svg class="ico" viewBox="0 0 52 52"><path d="M8 38c8-22 28-22 36 0" fill="none" stroke="#0B1F3A" stroke-width="5"/><circle cx="26" cy="22" r="6" fill="#0077FF"/></svg><h3>Hope-in-action</h3><p>Not wishful thinking. A calm, grounded trust that turns into shipped work: pages that load, apps that help, and results we can verify.</p></div>
+<div class="card"><svg class="ico" viewBox="0 0 52 52"><path d="M10 34l10-10 8 8 14-16" fill="none" stroke="#0B1F3A" stroke-width="5" stroke-linecap="round"/><circle cx="42" cy="16" r="5" fill="#0077FF"/></svg><h3>Trust &amp; repair</h3><p>We don’t chase a feeling. We practice trustworthiness, fix what breaks quickly, and commit to work that genuinely costs us something.</p></div>
+</div>
+</section>
+
+<section class="reveal">
+<div class="band">
+<h2>What we build</h2>
+<div class="grid" style="margin-top:20px">
+<div><h3 style="color:#4DB2FF">Landing pages</h3><p>Clear, fast, honest pages with one direction and measurable outcomes, built to bend as your audience tells you what works.</p></div>
+<div><h3 style="color:#4DB2FF">Apps</h3><p>Focused tools designed with the community they serve, with ethical boundaries set from day one and evidence that people are actually helped.</p></div>
+</div>
+</div>
+</section>
+
+<section class="cta reveal">
+<h2>Ready to build something <em>hopeful?</em></h2>
+<p class="lead" style="margin-inline:auto">Start with a clear direction. We’ll bring the craft.</p>
+<div class="row" style="justify-content:center"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX →</a></div>
+</section>
+</div>
+
+<footer><div class="wrap">Inspired by the book <b><i>Disciplines of Hope</i></b> by Bob Johansen, Andy Doyle and Jeremy Kirshbaum (2026).</div></footer>
+
+<script>
+const bani=[
+["Brittle","Rigid plans snap. We build bendable pages and apps anchored by one clear purpose, so changes never break the core message."],
+["Anxious","We replace noise with calm. Simple layouts, plain language and honest promises reduce the worry people bring to a screen."],
+["Nonlinear","Small inputs can have big effects. We ship early, measure real feedback and adjust course instead of trusting a straight-line forecast."],
+["Incomprehensible","We broaden perspective by designing with diverse people and testing with real users, so the whole picture comes into view."]];
+const tabs=document.getElementById('tabs'),panel=document.getElementById('panel');
+bani.forEach((b,i)=>{const t=document.createElement('button');t.className='tab';t.role='tab';t.textContent=b[0];
+t.onclick=()=>sel(i);tabs.appendChild(t)});
+function sel(i){[...tabs.children].forEach((t,j)=>t.setAttribute('aria-selected',i===j));
+panel.innerHTML='<h3>'+bani[i][0]+'</h3><p style="margin:0">'+bani[i][1]+'</p>'}
+sel(0);
+
+const dirs=[
+["Outcomes","What positive future are we making real?","Name one clear outcome for your page or app, and a direction people can follow."],
+["Community","Who builds this with us and holds us accountable?","Invite real users into the process early, before you finish."],
+["Ethics","What lines will we refuse to cross?","Write down your boundaries: no dark patterns, no exclusion, no overreach."],
+["Evidence","How will we know people are helped?","Pick one measurable signal that shows you are getting closer."]];
+const vals=[3,3,3,3],ctls=document.getElementById('ctls');
+dirs.forEach((d,i)=>{const w=document.createElement('div');w.className='ctl';
+w.innerHTML='<label for="r'+i+'"><span>'+d[0]+'</span><span id="v'+i+'">3</span></label><input id="r'+i+'" type="range" min="0" max="5" value="3" aria-label="'+d[1]+'">';
+ctls.appendChild(w);w.querySelector('input').oninput=e=>{vals[i]=+e.target.value;draw()}});
+function draw(){const c=150,s=20,p=[[c,c-vals[0]*s],[c+vals[1]*s,c],[c,c+vals[2]*s],[c-vals[3]*s,c]];
+document.getElementById('poly').setAttribute('points',p.map(x=>x.join(',')).join(' '));
+vals.forEach((v,i)=>document.getElementById('v'+i).textContent=v);
+const min=Math.min(...vals),avg=vals.reduce((a,b)=>a+b)/4,i=vals.indexOf(min);
+document.getElementById('read').innerHTML=(avg>=4.5?'<b>Strong, balanced hope.</b> Keep questioning it periodically.':'<b>Weakest direction: '+dirs[i][0]+'.</b> '+dirs[i][2])+'<br><small>'+dirs[i][1]+'</small>'}
+draw();
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

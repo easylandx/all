@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EasyLandX: Landing Pages and Apps That Persuade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&family=Archivo+Black&display=swap">
+<style>
+:root{--cobalt:#0047AB;--deep:#00337D;--mid:#1A5BBF;--sky:#7FA8E8;--paper:#F4F7FF;--red:#E34234;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--cobalt);color:var(--paper);font:400 18px/1.55 Archivo,"Helvetica Neue",Arial,sans-serif}
+h1,h2,h3{font-family:"Archivo Black",Archivo,Impact,sans-serif;font-weight:900;line-height:1.02;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.6rem,8vw,6rem)}h2{font-size:clamp(2rem,5vw,3.4rem)}h3{font-size:1.35rem}
+p{max-width:62ch;margin:0 0 1em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:max(clamp(22px,6vw,48px),env(safe-area-inset-left,0px),env(safe-area-inset-right,0px))}
+section{padding:84px 0;border-top:4px solid var(--paper)}
+nav{position:sticky;top:0;z-index:10;background:var(--cobalt);border-bottom:4px solid var(--paper);padding-top:env(safe-area-inset-top,0px)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-family:"Archivo Black",sans-serif;font-size:1.4rem;text-decoration:none}
+.logo b{color:var(--red)}
+.btn{display:inline-block;background:var(--red);color:var(--paper);font:900 1rem Archivo,sans-serif;text-decoration:none;padding:14px 26px;border:4px solid var(--paper);cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:6px 6px 0 var(--deep)}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--deep)}
+.btn.ghost{background:transparent}
+.red{color:var(--red);background:var(--paper);padding:0 .12em}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-block:70px 90px}
+.hero p{font-size:1.2rem}
+.hero .ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:28px}
+.art{width:100%;height:auto}
+.draw{stroke-dasharray:600;stroke-dashoffset:600;animation:draw 2.2s ease forwards}
+.pop{opacity:0;transform-origin:center;animation:pop .6s cubic-bezier(.2,1.6,.4,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+.float{animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+.pulse{animation:pulse 1.6s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+@keyframes pulse{50%{transform:scale(1.25)}}
+.marquee{background:var(--paper);color:var(--cobalt);overflow:hidden;white-space:nowrap;border-top:4px solid var(--paper);padding:14px 0;font:900 1.1rem "Archivo Black",sans-serif}
+.marquee span{display:inline-block;animation:slide 28s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0}
+.tab{font:900 1rem Archivo,sans-serif;color:var(--paper);background:transparent;border:3px solid var(--paper);padding:10px 18px;cursor:pointer}
+.tab[aria-selected=true]{background:var(--paper);color:var(--cobalt)}
+.panel{display:grid;grid-template-columns:1fr 220px;gap:30px;align-items:center;background:var(--deep);border:4px solid var(--paper);padding:clamp(20px,4vw,32px)}
+.panel[hidden]{display:none}
+.panel svg{width:100%;height:auto}
+.panel .tag{display:inline-block;background:var(--red);padding:4px 12px;font-weight:900;margin-bottom:12px}
+.lab{display:grid;grid-template-columns:1fr 1.15fr;gap:34px;align-items:start}
+.chips{display:grid;gap:12px}
+.chip{display:flex;gap:14px;align-items:center;text-align:left;font:700 1rem/1.3 Archivo,sans-serif;color:var(--paper);background:var(--deep);border:4px solid var(--paper);padding:14px 16px;cursor:pointer;transition:background .2s}
+.chip i{flex:none;width:28px;height:28px;border:3px solid var(--paper);display:grid;place-items:center;font-style:normal;font-weight:900}
+.chip[aria-pressed=true]{background:var(--red)}
+.chip[aria-pressed=true] i::after{content:"✓"}
+.meter{height:26px;border:4px solid var(--paper);margin-top:18px;background:var(--deep)}
+.meter div{height:100%;width:0;background:var(--red);transition:width .6s cubic-bezier(.2,.9,.3,1)}
+.verdict{font-weight:900;margin-top:10px;min-height:3em}
+.browser{background:var(--paper);color:var(--cobalt);border:4px solid var(--paper);box-shadow:10px 10px 0 var(--deep)}
+.bar{background:var(--cobalt);display:flex;gap:7px;padding:9px 12px;border-bottom:4px solid var(--paper)}
+.bar span{width:12px;height:12px;border-radius:50%;background:var(--paper)}
+.bar span:first-child{background:var(--red)}
+.page{padding:20px;display:grid;gap:14px;min-height:420px}
+.blk{border:3px dashed var(--sky);padding:12px;transition:all .45s;opacity:.35;filter:grayscale(1)}
+.blk b{display:block;font-family:"Archivo Black",sans-serif}
+.blk small{display:block;opacity:.85}
+.blk.on{opacity:1;filter:none;border:3px solid var(--cobalt);background:#fff;transform:translateX(0)}
+.blk.on.r{border-color:var(--red)}
+.blk .ph{height:14px;background:var(--sky);margin-top:7px;width:70%}
+.blk.on .ph{background:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:30px}
+.card{border:4px solid var(--paper);padding:22px;background:var(--deep)}
+.card h3{display:flex;gap:10px;align-items:center}
+.card svg{width:44px;height:44px;flex:none}
+details{border:4px solid var(--paper);background:var(--deep);margin-bottom:14px}
+summary{cursor:pointer;font:900 1.1rem "Archivo Black",Archivo,sans-serif;padding:16px 18px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--red);background:var(--paper);width:30px;height:30px;display:grid;place-items:center;flex:none;transition:transform .25s}
+details[open] summary::after{transform:rotate(135deg)}
+details p{padding:0 18px;margin:0 0 18px}
+.cta{text-align:center;background:var(--deep)}
+.cta p{margin-inline:auto}
+footer{border-top:4px solid var(--paper);padding:34px 0 46px;text-align:center}
+footer p{margin:0 auto 6px}
+.marquee,.browser,.card,details{max-width:100%}
+h1,h2,h3,p,summary{overflow-wrap:break-word}
+@media(max-width:820px){.hero,.lab,.panel{grid-template-columns:1fr}.panel svg{max-width:200px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.draw{stroke-dashoffset:0}.pop{opacity:1}.marquee span{transform:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="#top">Easy<b>Land</b>X</a><a class="btn" style="padding:8px 16px;box-shadow:none" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a></div></nav>
+
+<main id="top">
+<div class="wrap hero">
+ <div>
+  <h1>Landing pages and apps that <span class="red">persuade.</span></h1>
+  <p>People don’t act because you pitched harder. They act because they trust you, see themselves in your offer, feel the stakes and had a hand in shaping it. EasyLandX builds landing pages and apps around that idea.</p>
+  <div class="ctas"><a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a><a class="btn ghost" href="#lab">Try the page builder</a></div>
+ </div>
+ <svg class="art" viewBox="0 0 400 360" role="img" aria-label="A landing page wireframe and a phone app being drawn, joined by a heart">
+  <g class="float">
+  <rect class="draw" x="20" y="40" width="250" height="200" fill="#00337D" stroke="#F4F7FF" stroke-width="6"/>
+  <line class="draw" x1="20" y1="68" x2="270" y2="68" stroke="#F4F7FF" stroke-width="6"/>
+  <circle class="pop" style="animation-delay:.8s" cx="38" cy="54" r="5" fill="#E34234"/>
+  <rect class="pop" style="animation-delay:1s" x="40" y="90" width="130" height="18" fill="#F4F7FF"/>
+  <rect class="pop" style="animation-delay:1.2s" x="40" y="116" width="170" height="10" fill="#7FA8E8"/>
+  <rect class="pop" style="animation-delay:1.3s" x="40" y="134" width="140" height="10" fill="#7FA8E8"/>
+  <rect class="pop" style="animation-delay:1.6s" x="40" y="164" width="90" height="30" fill="#E34234" stroke="#F4F7FF" stroke-width="4"/>
+  <circle class="pop" style="animation-delay:1.9s" cx="222" cy="170" r="30" fill="#E34234"/>
+  </g>
+  <g class="float" style="animation-delay:1.2s">
+  <rect class="draw" x="250" y="110" width="120" height="220" rx="18" fill="#0047AB" stroke="#F4F7FF" stroke-width="6"/>
+  <rect class="pop" style="animation-delay:1.4s" x="268" y="140" width="84" height="46" fill="#7FA8E8"/>
+  <rect class="pop" style="animation-delay:1.6s" x="268" y="198" width="84" height="12" fill="#F4F7FF"/>
+  <rect class="pop" style="animation-delay:1.7s" x="268" y="218" width="58" height="12" fill="#F4F7FF"/>
+  <rect class="pop" style="animation-delay:2s" x="268" y="270" width="84" height="26" fill="#E34234"/>
+  </g>
+  <path class="pulse" d="M200 300c-24-18-40-30-40-46a20 20 0 0 1 40-6 20 20 0 0 1 40 6c0 16-16 28-40 46z" transform="translate(-40 20) scale(.8)" fill="#E34234" stroke="#F4F7FF" stroke-width="6"/>
+  <g class="pulse" style="animation-delay:.4s"><circle cx="60" cy="300" r="8" fill="#F4F7FF"/><circle cx="90" cy="320" r="5" fill="#E34234"/></g>
+ </svg>
+</div>
+<div class="marquee" aria-hidden="true"><span>Persuasion is a process, not an event &nbsp;&bull;&nbsp; Resistance is information &nbsp;&bull;&nbsp; Show vivid evidence &nbsp;&bull;&nbsp; Co-create the solution &nbsp;&bull;&nbsp; Persuasion is a process, not an event &nbsp;&bull;&nbsp; Resistance is information &nbsp;&bull;&nbsp; Show vivid evidence &nbsp;&bull;&nbsp; Co-create the solution &nbsp;&bull;&nbsp;</span></div>
+
+<section id="pillars"><div class="wrap">
+ <h2>Four pillars behind every build</h2>
+ <p>Good persuasion isn’t a slick pitch. It’s a trust-based process of finding the right solution together. We turn each pillar into something visitors can see on the page.</p>
+ <div class="tabs" role="tablist" aria-label="Four pillars">
+  <button class="tab" role="tab" aria-selected="true" aria-controls="p0">Credibility</button>
+  <button class="tab" role="tab" aria-selected="false" aria-controls="p1">Common ground</button>
+  <button class="tab" role="tab" aria-selected="false" aria-controls="p2">Vivid evidence</button>
+  <button class="tab" role="tab" aria-selected="false" aria-controls="p3">Emotional connection</button>
+ </div>
+ <div class="panel" id="p0" role="tabpanel"><div><span class="tag">Trust the messenger</span><h3>Before they read, they judge who’s talking.</h3><p>Credibility stands on two legs: expertise (track record, knowledge, sound judgment) and relationships (integrity, empathy, putting the team before ego). Your page needs both.</p><p><b>In EasyLandX pages:</b> real results, honest limits, named people and a clear point of view up front.</p></div>
+  <svg viewBox="0 0 200 200" aria-hidden="true"><circle class="pop" cx="100" cy="100" r="86" fill="none" stroke="#F4F7FF" stroke-width="8"/><path class="draw" d="M56 104l30 30 60-70" fill="none" stroke="#E34234" stroke-width="18" stroke-linecap="square"/></svg></div>
+ <div class="panel" id="p1" role="tabpanel" hidden><div><span class="tag">Speak their reality</span><h3>Frame it around what they value, not what you want.</h3><p>Ideas fail when framed around the leader’s priorities. Find the shared benefit and say it in the audience’s own words.</p><p><b>In EasyLandX pages:</b> headlines written from the visitor’s problem, with one benefit that both sides want.</p></div>
+  <svg viewBox="0 0 200 200" aria-hidden="true"><circle class="float" cx="78" cy="100" r="58" fill="#F4F7FF" opacity=".9"/><circle class="float" style="animation-delay:.6s" cx="122" cy="100" r="58" fill="#E34234" opacity=".85"/></svg></div>
+ <div class="panel" id="p2" role="tabpanel" hidden><div><span class="tag">Make it real</span><h3>Replace abstract numbers with a human story.</h3><p>Don’t say a delay costs 15 percent efficiency. Tell the story of the person stuck behind it. Stories and analogies make stakes feel immediate.</p><p><b>In EasyLandX pages:</b> every key stat is paired with a customer moment, a before-and-after or a screenshot.</p></div>
+  <svg viewBox="0 0 200 200" aria-hidden="true"><rect class="pop" x="20" y="120" width="30" height="60" fill="#7FA8E8"/><rect class="pop" style="animation-delay:.2s" x="62" y="90" width="30" height="90" fill="#F4F7FF"/><rect class="pop" style="animation-delay:.4s" x="104" y="60" width="30" height="120" fill="#E34234"/><circle class="pulse" cx="170" cy="40" r="14" fill="#F4F7FF"/><path d="M170 54v34" stroke="#F4F7FF" stroke-width="6"/></svg></div>
+ <div class="panel" id="p3" role="tabpanel" hidden><div><span class="tag">Feel it</span><h3>People decide with feeling and justify with logic.</h3><p>Read the emotional temperature of the room. Match your intensity to the audience: calm conviction for data-driven teams, higher energy for a stalled one.</p><p><b>In EasyLandX pages:</b> tone, motion and color are tuned to the audience, never louder than the message.</p></div>
+  <svg viewBox="0 0 200 200" aria-hidden="true"><path class="pulse" d="M100 170C40 125 20 95 20 70a40 40 0 0 1 80-12 40 40 0 0 1 80 12c0 25-20 55-80 100z" fill="#E34234" stroke="#F4F7FF" stroke-width="8"/></svg></div>
+</div></section>
+
+<section id="lab"><div class="wrap">
+ <h2>Build a persuasive landing page</h2>
+ <p>Switch on each part and watch the page come alive. Persuasion is built piece by piece, and the meter shows how far along you are.</p>
+ <div class="lab">
+  <div>
+   <div class="chips" id="chips">
+    <button class="chip" aria-pressed="false" data-k="0"><i></i><span><b>Listen first.</b> Open with the visitor’s headache, in their words.</span></button>
+    <button class="chip" aria-pressed="false" data-k="1"><i></i><span><b>Prove credibility.</b> Results, track record and real people.</span></button>
+    <button class="chip" aria-pressed="false" data-k="2"><i></i><span><b>Tell a story.</b> One customer, one stuck moment, one fix.</span></button>
+    <button class="chip" aria-pressed="false" data-k="3"><i></i><span><b>Concede and pivot.</b> Name the biggest risk, then answer it.</span></button>
+    <button class="chip" aria-pressed="false" data-k="4"><i></i><span><b>Start small.</b> A low-risk pilot as the first step.</span></button>
+   </div>
+   <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="meter"><div></div></div>
+   <div class="verdict" id="verdict" aria-live="polite">Page is empty. Switch on a part to begin.</div>
+  </div>
+  <div class="browser" aria-label="Preview of the landing page">
+   <div class="bar"><span></span><span></span><span></span></div>
+   <div class="page">
+    <div class="blk" data-b="0"><b>“Still chasing leads that never reply?”</b><small>Headline built from what your visitors told us.</small><div class="ph"></div></div>
+    <div class="blk r" data-b="1"><b>Trusted by 120+ teams</b><small>Real names, real results, real integrity.</small><div class="ph"></div></div>
+    <div class="blk" data-b="2"><b>Maria’s story</b><small>She was stuck for weeks. Here’s the moment it changed.</small><div class="ph"></div></div>
+    <div class="blk r" data-b="3"><b>“Won’t this be too much work?”</b><small>Fair concern. Here’s how we handle it, then back to the shared goal.</small><div class="ph"></div></div>
+    <div class="blk" data-b="4"><b>Start with a 7-day pilot</b><small>Small step, early proof, easy yes.</small><div class="ph"></div></div>
+   </div>
+  </div>
+ </div>
+</div></section>
+
+<section id="lessons"><div class="wrap">
+ <h2>Five lessons we build with</h2>
+ <div class="grid">
+  <div class="card"><h3><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18" fill="none" stroke="#F4F7FF" stroke-width="5" stroke-dasharray="20 8"/><circle class="pulse" cx="22" cy="22" r="6" fill="#E34234"/></svg>A process, not an event</h3><p>We test ideas early with real visitors, adjust the framing and grow support before launch day.</p></div>
+  <div class="card"><h3><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M6 30l12-18 8 10 12-16" fill="none" stroke="#F4F7FF" stroke-width="5"/><circle cx="38" cy="6" r="5" fill="#E34234"/></svg>Resistance is information</h3><p>Bounces, questions and hesitations are data. We use them to refine the page, not to blame the visitor.</p></div>
+  <div class="card"><h3><svg viewBox="0 0 44 44" aria-hidden="true"><path class="pulse" d="M22 38C6 26 4 18 4 14a9 9 0 0 1 18-3 9 9 0 0 1 18 3c0 4-2 12-18 24z" fill="#E34234"/></svg>Logic needs a hook</h3><p>Pride, urgency, purpose or relief. Without a feeling attached, people stay where they are.</p></div>
+  <div class="card"><h3><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="6" y="22" width="12" height="16" fill="#F4F7FF"/><rect x="24" y="8" width="12" height="30" fill="#E34234"/></svg>Borrow credibility</h3><p>New in a space? Use pilots, partner voices and trusted benchmarks to earn proof fast.</p></div>
+  <div class="card"><h3><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M8 8l28 28M36 8L8 36" stroke="#F4F7FF" stroke-width="5"/><circle cx="22" cy="22" r="7" fill="#E34234"/></svg>Never over-sell</h3><p>We state trade-offs up front. Honesty about drawbacks makes every other claim easier to believe.</p></div>
+ </div>
+</div></section>
+
+<section id="tactics"><div class="wrap">
+ <h2>Tactics in action</h2>
+ <details><summary>Pre-launch listening tours</summary><p>We talk to your key buyers one by one before writing a word. Their headaches and goals become your headlines and your calls to action.</p></details>
+ <details><summary>Concede-and-pivot</summary><p>We name the strongest objection before your visitor does, explain how it’s handled, then return to the benefit you both want.</p></details>
+ <details><summary>Human stories over abstract numbers</summary><p>Each critical data point is paired with a person, a moment or an example, so the stakes are felt as well as understood.</p></details>
+ <details><summary>Calibrated emotional tone</summary><p>A conservative, data-driven audience gets calm, measured conviction. A stalled, discouraged one gets higher energy and a clear vision to move toward.</p></details>
+ <details><summary>Co-create the solution</summary><p>We leave deliberate room for your stakeholders to shape the details. People rarely fight a plan they helped design.</p></details>
+ <details><summary>Small wins first</summary><p>Big shifts start as low-risk pilots: one landing page, one app feature, one measurable result. Early proof beats long debates.</p></details>
+</div></section>
+
+<section class="cta"><div class="wrap">
+ <h2>Ready to build a page people say yes to?</h2>
+ <p>Landing pages and apps made to earn trust, find common ground and move people to act.</p>
+ <a class="btn" href="https://easylandx.github.io" target="_blank" rel="noopener">EasyLandX</a>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+ <p>Inspired by <b>The Persuasive Leader: Proven Strategies for Moving People and Ideas</b> by Jay A. Conger, with Camille N. Smith.</p>
+</div></footer>
+
+<script>
+(function(){
+var tabs=[].slice.call(document.querySelectorAll('.tab'));
+tabs.forEach(function(t,i){t.addEventListener('click',function(){
+ tabs.forEach(function(x,j){x.setAttribute('aria-selected',i===j);var p=document.getElementById('p'+j);p.hidden=i!==j;
+  if(i===j){p.querySelectorAll('.draw,.pop').forEach(function(e){var c=e.getAttribute('class');e.setAttribute('class','');void e.getBoundingClientRect();e.setAttribute('class',c)})}});
+})});
+var chips=[].slice.call(document.querySelectorAll('.chip')),blks=[].slice.call(document.querySelectorAll('.blk'));
+var msgs=["Page is empty. Switch on a part to begin.","A start. People still don’t know why they should trust you.","Taking shape. Keep going.","Getting persuasive. Evidence and feeling are in place.","Strong. Visitors are being heard, not pitched.","Complete. This page is a conversation, not a sales pitch."];
+chips.forEach(function(c){c.addEventListener('click',function(){
+ var on=c.getAttribute('aria-pressed')!=='true';c.setAttribute('aria-pressed',on);
+ blks[+c.dataset.k].classList.toggle('on',on);
+ var n=chips.filter(function(x){return x.getAttribute('aria-pressed')==='true'}).length,pct=n*20;
+ document.querySelector('#meter div').style.width=pct+'%';
+ document.getElementById('meter').setAttribute('aria-valuenow',pct);
+ document.getElementById('verdict').textContent=pct+'% persuasive. '+msgs[n];
+})});
+})();
+</script>
+</body>
+</html>
